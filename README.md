@@ -1,17 +1,22 @@
-# Routine Support UI
-Дизайн система программного комплекса **Routine Support**
+# Routine Support Web
+Веб-приложение программного комплекса **Routine Support**
 
 ## Стек технологий
 - React
 - TypeScript
+- Redux
 - StoryBook
 - ESLint
 - Husky
 
 ## Как запустить проект
-Проект можно запустить командой:
+Установить зависимости:
 ```bash
-yarn storybook
+yarn install
+```
+Запустить проект:
+```bash
+yarn start
 ```
 
 ## Как работать над проектом
@@ -61,4 +66,39 @@ fix: fix some bugs
 - Переменные должны отражать смысл в своем названии.
 - На один файл одна компонента.
 - Константы именуются в верхнем регистре, например: SOME_CONSTANT.
-- Интерфейсы именуем без префикса "I"
+- Интерфейсы именуем без префикса "I".
+
+
+## Пример реализации компоненты React в соответствии с соглашениями
+```tsx
+import * as styles from './Loader.module.css'
+
+interface Props {
+  isLoading: boolean
+}
+
+const Loader: React.FC<Props> = ({isLoading}) => {
+  const LOADING_TEXT = 'Loading...';
+
+  if (isLoading) {
+    return <p className={styles.loadingText}>{LOADING_TEXT}</p>;
+  }
+
+  return null;
+}
+```
+
+## Соглашения по стилям
+В проекте настроен линтер стилей и прекоммит хуки, поэтому git не позволит сделать коммит нарушающий соглашения.
+
+- Никаких использований цвета напрямую, все цвета должны быть вынесены в переменные в файл ./styles/colors.css.
+- Никаких идентификаторов.
+- Классы пишем через camel case: loadingText.
+- Никаких important!. Если сверстать без использования important! невозможно, тогда необходимо оставить в коде комментарий, чтобы решить вопрос на PR.
+- Корневой элемент компоненты должен брать стили из класса root. Например:
+```tsx
+  const Wrapper: React.FC = ({children}) => {
+    return <div className={styles.root}>{children}</div>
+  }
+```
+- Breakpoints должны использоваться из файла ./styles/breakpoints.css.
