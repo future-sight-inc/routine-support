@@ -1,8 +1,14 @@
 {
-  "src/**/*.{ts,tsx}": [
+  "apps/**/*.{ts,tsx}": [
     "yarn lint:write"
   ],
-  "src/**/*.{css,scss}": [
+  "libs/**/*.{ts,tsx}": [
+    "yarn lint:write"
+  ],
+  "apps/**/*.{css,scss}": [
     "yarn stylelint:write"
   ],
+  "libs/**/*.{css,scss}": [
+    "yarn stylelint:write"
+  ]
 }
