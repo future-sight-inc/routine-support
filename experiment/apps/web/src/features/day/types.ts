@@ -1,7 +1,7 @@
-import { DateString } from '../../types/main';
+import { DateString, TimeString } from '../../types/main';
 import { Activity } from '../activity/types';
 
 export type Day = {
   date: DateString;
-  activities: Activity[];
+  activities: { [time in TimeString]: Activity };
 };

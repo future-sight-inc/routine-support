@@ -1,0 +1,14 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.timeColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.cell {
+  padding: 8px;
+  min-height: 40px;
+}

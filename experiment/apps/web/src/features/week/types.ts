@@ -6,5 +6,5 @@ export type WeekNumber = number;
 export type Week = {
   days: Day[];
   year: YearNumber;
-  number: WeekNumber;
+  weekNumber: WeekNumber;
 };

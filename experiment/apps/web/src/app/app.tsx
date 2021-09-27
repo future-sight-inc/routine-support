@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Week } from 'features/week/Week';
+import { Week } from 'features/week';
 
 export const App = () => {
   // todo: Add routing

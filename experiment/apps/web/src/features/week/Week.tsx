@@ -1,15 +1,21 @@
 import React from 'react';
 
+import { Calendar } from './components/Calendar';
+import { WeekSelect } from './components/WeekSelect';
+
 import { useWeek } from './hooks/useWeek';
 
 export const Week: React.FC = () => {
   const {
-    models: { week },
+    models: { week, loading },
+    operations: { getWeek },
   } = useWeek();
 
-  if (!week) {
-    return <p>no week yet</p>;
-  }
-
-  return <p>Here will be a week</p>;
+  // ! Все операции должны передаваться в компоненты через пропсы
+  return (
+    <div>
+      <WeekSelect loading={loading} actions={{ getWeek }} />
+      <Calendar week={week} loading={loading} actions={{}} />
+    </div>
+  );
 };
