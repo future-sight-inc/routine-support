@@ -16,7 +16,7 @@ export const useWeekSelectComponent = (actions: WeekSelectActions) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(actions.getWeek(defaultValues.year, defaultValues.week));
+    actions.getWeek(defaultValues.year, defaultValues.week);
   }, []);
 
   const updateFormByMoment = (moment: moment.Moment) => {
@@ -26,7 +26,7 @@ export const useWeekSelectComponent = (actions: WeekSelectActions) => {
 
   const onSubmit = handleSubmit((values: FieldValues) => {
     setDateRange(getDateRange(values));
-    dispatch(actions.getWeek(values.year, values.week));
+    actions.getWeek(values.year, values.week);
   });
 
   const onPrevClick = (values: FieldValues) => {

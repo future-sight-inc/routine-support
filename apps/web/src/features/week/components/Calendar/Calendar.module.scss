@@ -1,14 +1,23 @@
 .root {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  background: lightgray;
+  border: 1px solid lightgray;
+  grid-column-gap: 1px;
+}
+
+.column {
+  display: grid;
+  grid-row-gap: 1px;
 }
 
 .timeColumn {
-  display: flex;
-  flex-direction: column;
+  @extend .column;
+  text-align: center;
 }
 
 .cell {
   padding: 8px;
   min-height: 40px;
+  background: white;
 }

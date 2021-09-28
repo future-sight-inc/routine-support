@@ -1,11 +1,10 @@
-import { AppThunk } from 'app/store';
 import { YearNumber, WeekNumber } from 'features/week/types';
 import React from 'react';
 import { useWeekSelectComponent } from './useWeekSelectComponent';
 import styles from './WeekSelect.module.scss';
 
 export interface WeekSelectActions {
-  getWeek: (year: YearNumber, week: WeekNumber) => AppThunk;
+  getWeek: (year: YearNumber, week: WeekNumber) => void;
 }
 
 export interface WeekSelectProps {

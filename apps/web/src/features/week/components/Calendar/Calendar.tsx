@@ -1,7 +1,7 @@
-import { Week } from 'features/week/types';
-import React from 'react';
-import styles from './Calendar.module.scss';
-import { getActivitiesArray, getTimeRange } from './utils';
+import { Week } from "features/week/types";
+import React from "react";
+import styles from "./Calendar.module.scss";
+import { getActivitiesArray, getTimeRange } from "./utils";
 
 interface Props {
   loading: boolean;
@@ -23,10 +23,10 @@ export const Calendar: React.FC<Props> = ({ loading, week }) => {
         ))}
       </div>
       {week?.days.map((day) => (
-        <div>
+        <div className={styles.column}>
           <div className={styles.cell}>{day.date}</div>
           {getActivitiesArray(week).map((activity) => (
-            <div className={styles.cell}>{activity?.title || ''}</div>
+            <div className={styles.cell}>{activity?.title || ""}</div>
           ))}
         </div>
       ))}
