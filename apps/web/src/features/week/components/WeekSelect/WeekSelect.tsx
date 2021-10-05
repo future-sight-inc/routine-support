@@ -1,7 +1,8 @@
-import { YearNumber, WeekNumber } from 'features/week/types';
-import React from 'react';
-import { useWeekSelectComponent } from './useWeekSelectComponent';
-import styles from './WeekSelect.module.scss';
+import Button from "@mui/material/Button";
+import { YearNumber, WeekNumber } from "features/week/types";
+import React from "react";
+import * as S from "./styled";
+import { useWeekSelectComponent } from "./hooks";
 
 export interface WeekSelectActions {
   getWeek: (year: YearNumber, week: WeekNumber) => void;
@@ -13,27 +14,24 @@ export interface WeekSelectProps {
 }
 
 export const WeekSelect: React.FC<WeekSelectProps> = ({ actions, loading }) => {
-  const { models, operations } = useWeekSelectComponent(actions);
+  const { operations } = useWeekSelectComponent(actions);
 
   return (
-    <form onSubmit={operations.handleSubmit} className={styles.root}>
-      <button
+    <S.Wrapper>
+      <S.SelectButton
         type="button"
         onClick={operations.handlePrevClick}
         disabled={loading}
       >
         Prev
-      </button>
-      <p>
-        {models.dateRange.start} - {models.dateRange.end}
-      </p>
-      <button
+      </S.SelectButton>
+      <S.SelectButton
         type="button"
         onClick={operations.handleNextClick}
         disabled={loading}
       >
         Next
-      </button>
-    </form>
+      </S.SelectButton>
+    </S.Wrapper>
   );
 };

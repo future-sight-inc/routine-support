@@ -1,21 +1,32 @@
-import React from 'react';
+import { useActivity } from "features/activity/hooks/useActivity";
+import React from "react";
 
-import { Calendar } from './components/Calendar';
-import { WeekSelect } from './components/WeekSelect';
+import { WeekCalendar } from "./components/WeekCalendar";
+import { WeekLayout } from "./components/WeekLayout";
+import { WeekRange } from "./components/WeekRange";
+import { WeekSelect } from "./components/WeekSelect";
 
-import { useWeek } from './hooks/useWeek';
+import { useWeek } from "./hooks/useWeek";
 
 export const Week: React.FC = () => {
   const {
     models: { week, loading },
     operations: { getWeek },
   } = useWeek();
+  const { operations: openNewActivityModal } = useActivity();
 
   // ! Все операции должны передаваться в компоненты через пропсы
   return (
-    <div>
-      <WeekSelect loading={loading} actions={{ getWeek }} />
-      <Calendar week={week} loading={loading} actions={{}} />
-    </div>
+    <WeekLayout
+      weekSelect={<WeekSelect loading={loading} actions={{ getWeek }} />}
+      weekRange={<WeekRange week={week} />}
+      calendar={
+        <WeekCalendar
+          week={week}
+          loading={loading}
+          actions={{ openNewActivityModal }}
+        />
+      }
+    />
   );
 };

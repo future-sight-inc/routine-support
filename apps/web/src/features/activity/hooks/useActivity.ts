@@ -9,19 +9,8 @@ export const useActivity = () => {
   const { activity } = useAppSelector((state) => state.activity);
   const dispatch = useAppDispatch();
 
-  const openActivityModal = (activity: Activity) => {
+  const setActivity = (activity: Activity | null) => {
     dispatch(activityActions.setActivity(activity));
-    setOpened(true);
-  };
-
-  const openNewActivityModal = () => {
-    dispatch(activityActions.setActivity(null));
-    setOpened(true);
-  };
-
-  const closeActivityModal = () => {
-    dispatch(activityActions.setActivity(null));
-    setOpened(false);
   };
 
   const createActivity = () => {};
@@ -30,18 +19,35 @@ export const useActivity = () => {
 
   const deleteActivity = () => {};
 
+  const openActivityModal = (activity: Activity) => {
+    setActivity(activity);
+    setOpened(true);
+  };
+
+  const openNewActivityModal = () => {
+    setActivity(null);
+    setOpened(true);
+  };
+
+  const closeActivityModal = () => {
+    setActivity(null);
+    setOpened(false);
+  };
+
   return {
     models: {
       activity,
-      loading,
       opened,
+      loading,
     },
-    operation: {
-      openActivityModal,
-      openNewActivityModal,
+    operations: {
+      setActivity,
       createActivity,
       updateActivity,
       deleteActivity,
+      openActivityModal,
+      openNewActivityModal,
+      closeActivityModal,
     },
   };
 };
