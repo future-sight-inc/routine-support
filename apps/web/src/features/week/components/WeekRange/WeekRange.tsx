@@ -2,6 +2,7 @@ import React from "react";
 
 import { Week } from "features/week/types";
 import { isDateStringToday } from "utils/isDateStringToday";
+import { parseDate } from "utils/parseDate";
 
 import * as S from "./styled";
 
@@ -14,7 +15,8 @@ export const WeekRange: React.FC<WeekRangeProps> = ({ week }) => {
     <S.Wrapper>
       {week?.days.map((day) => (
         <S.Day today={isDateStringToday(day.date)}>
-          <S.Date>{day.date}</S.Date>
+          <S.DayName>{parseDate(day.date).format("dd")},</S.DayName>
+          <S.Date>{parseDate(day.date).format("DD MMM")}</S.Date>
         </S.Day>
       ))}
     </S.Wrapper>

@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
 import styled from "styled-components";
 
@@ -5,7 +6,7 @@ export const Wrapper = styled(Box)`
   display: grid;
   grid-template-rows: 40px 1fr;
   grid-template-columns: 200px 1fr;
-  gap: 32px;
+  gap: 16px;
 `;
 
 export const Head = styled(Box)`
@@ -16,8 +17,24 @@ export const Head = styled(Box)`
 `;
 
 export const Column = styled(Box)`
+  height: 100vh;
   display: grid;
   gap: 16px;
+  grid-template-rows: 40px calc(100vh - 40px - 16px);
 `;
 
-export const Body = styled(Box)``;
+export const ButtonWrapper = styled(Box)`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const Body = styled(Box)`
+  position: relative;
+`;
+
+export const Spinner = styled(CircularProgress)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;

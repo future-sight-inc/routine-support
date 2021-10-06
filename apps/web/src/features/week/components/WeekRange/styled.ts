@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import styled, { css } from "styled-components";
+import { Theme } from "styles/theme";
 
 export const Wrapper = styled(Box)`
   display: grid;
@@ -32,4 +33,14 @@ export const Day = styled(Box)<{ today?: boolean }>`
     `}
 `;
 
-export const Date = styled(Typography).attrs(() => ({ variant: "body2" }))``;
+export const DayName = styled(Typography).attrs(() => ({
+  variant: "body2",
+}))`
+  margin-right: 4px;
+`;
+
+export const Date = styled(Typography).attrs(() => ({
+  variant: "body2",
+}))`
+  color: ${Theme.font.colors.secondary};
+`;

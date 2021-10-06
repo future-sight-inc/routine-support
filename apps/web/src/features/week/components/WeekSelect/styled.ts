@@ -1,29 +1,22 @@
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import styled from "styled-components";
+import { Button } from "styles/main";
 
 export const Wrapper = styled(Box)``;
 
-export const SelectButton = styled(Button)`
-  height: 40px;
-  width: calc(50% - 0.5px);
-  box-sizing: border-box;
-  background: black;
-  color: white;
-  transition: all 0.5s;
+export const SelectButton = styled(Button).attrs(() => ({
+  backgroundColor: "black",
+  fontColor: "white",
+}))``;
 
-  &:first-child {
-    margin-right: 1px;
-  }
+export const ArrowLeft = styled(ChevronLeftIcon)`
+  width: 32px;
+  height: 32px;
+`;
 
-  &:hover {
-    background: black;
-    opacity: 0.8;
-  }
-
-  &:disabled {
-    background: black;
-    color: white;
-    opacity: 0.7;
-  }
+export const ArrowRight = styled(ChevronRightIcon)`
+  width: 32px;
+  height: 32px;
 `;

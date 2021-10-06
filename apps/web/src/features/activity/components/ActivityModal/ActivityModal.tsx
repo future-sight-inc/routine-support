@@ -1,5 +1,6 @@
 import React from "react";
 
+import * as S from "./styled";
 export interface ActivityModalActions {
   closeActivityModal: () => void;
 }
@@ -12,16 +13,10 @@ export interface ActivityModalProps {
 export const ActivityModal: React.FC<ActivityModalProps> = ({
   opened,
   actions,
-  children,
 }) => {
-  if (!opened) {
-    return null;
-  }
-
   return (
-    <div>
-      <button onClick={actions.closeActivityModal}>close</button>
-      {children}
-    </div>
+    <S.Modal open={opened} onClose={actions.closeActivityModal}>
+      <S.ModalContent></S.ModalContent>
+    </S.Modal>
   );
 };

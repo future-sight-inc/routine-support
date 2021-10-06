@@ -24,14 +24,14 @@ export const WeekSelect: React.FC<WeekSelectProps> = ({ actions, loading }) => {
         onClick={operations.handlePrevClick}
         disabled={loading}
       >
-        Prev
+        <S.ArrowLeft />
       </S.SelectButton>
       <S.SelectButton
         type="button"
         onClick={operations.handleNextClick}
         disabled={loading}
       >
-        Next
+        <S.ArrowRight />
       </S.SelectButton>
     </S.Wrapper>
   );
