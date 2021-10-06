@@ -1,5 +1,5 @@
-import { DateString, TimeString } from '../../types/main';
-import { Activity } from '../activity/types';
+import { DateString, TimeString } from "../../types/main";
+import { Activity } from "../activity/types";
 
 export type Day = {
   date: DateString;

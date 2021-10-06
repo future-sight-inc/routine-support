@@ -1,8 +1,10 @@
-import { Week } from "features/week/types";
 import React from "react";
-import { getActivitiesArray, getTimeRange } from "./utils";
-import * as S from "./styled";
+
+import { Week } from "features/week/types";
 import { isDateStringToday } from "utils/isDateStringToday";
+
+import * as S from "./styled";
+import { getActivitiesArray, getTimeRange } from "./utils";
 
 interface WeekCalendarProps {
   loading: boolean;

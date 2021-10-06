@@ -1,6 +1,6 @@
-import moment from 'moment';
+import moment from "moment";
 
 export const defaultValues = {
-  year: Number(moment().get('year')),
-  week: Number(moment().get('week')),
+  year: Number(moment().get("year")),
+  week: Number(moment().get("week")),
 };

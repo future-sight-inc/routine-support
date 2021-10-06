@@ -1,8 +1,9 @@
-import Button from "@mui/material/Button";
-import { YearNumber, WeekNumber } from "features/week/types";
 import React from "react";
-import * as S from "./styled";
+
+import { YearNumber, WeekNumber } from "features/week/types";
+
 import { useWeekSelectComponent } from "./hooks";
+import * as S from "./styled";
 
 export interface WeekSelectActions {
   getWeek: (year: YearNumber, week: WeekNumber) => void;

@@ -1,4 +1,3 @@
-import { Activity } from "features/activity/types";
 import React from "react";
 
 export interface ActivityModalActions {

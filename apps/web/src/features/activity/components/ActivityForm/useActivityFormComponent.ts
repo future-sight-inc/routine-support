@@ -1,5 +1,6 @@
 import { Activity } from "features/activity/types";
 import { useForm } from "react-hook-form";
+
 import { ActivityFormActions } from "./ActivityForm";
 
 export const useActivityFormComponent = (

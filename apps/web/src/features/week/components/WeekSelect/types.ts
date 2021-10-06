@@ -1,4 +1,4 @@
-import { YearNumber, WeekNumber } from 'features/week/types';
+import { YearNumber, WeekNumber } from "features/week/types";
 
 export interface FieldValues {
   year: YearNumber;

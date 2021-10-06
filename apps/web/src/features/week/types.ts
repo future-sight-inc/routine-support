@@ -1,4 +1,4 @@
-import { Day } from '../day/types';
+import { Day } from "../day/types";
 
 export type YearNumber = number;
 export type WeekNumber = number;

@@ -1,9 +1,9 @@
-import { Week } from "features/week/types";
 import React from "react";
-import * as S from "./styled";
-import moment from "moment";
-import { formatDate } from "utils/formatDate";
+
+import { Week } from "features/week/types";
 import { isDateStringToday } from "utils/isDateStringToday";
+
+import * as S from "./styled";
 
 interface WeekRangeProps {
   week: Week | null;

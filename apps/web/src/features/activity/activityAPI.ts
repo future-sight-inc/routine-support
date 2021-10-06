@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { apiClient } from "services/apiClient";
 import { Id } from "types/main";
+
 import { Activity } from "./types";
 
 // todo: Обработку ошибок вынести в отдельный сервис и использовать в интерсепторе

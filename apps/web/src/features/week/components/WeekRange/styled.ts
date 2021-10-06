@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import styled, { css } from "styled-components";
 
 export const Wrapper = styled(Box)`
   display: grid;

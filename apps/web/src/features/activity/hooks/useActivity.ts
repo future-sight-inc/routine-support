@@ -1,5 +1,7 @@
-import { useAppDispatch, useAppSelector } from "app/hooks";
 import { useState } from "react";
+
+import { useAppDispatch, useAppSelector } from "app/hooks";
+
 import { activityActions } from "../activitySlice";
 import { Activity } from "../types";
 

@@ -1,5 +1,5 @@
-import moment from 'moment';
+import moment from "moment";
 
 export const formatDate = (date: moment.Moment) => {
-  return date.locale('ru').format('DD.MM.YYYY');
+  return date.locale("ru").format("DD.MM.YYYY");
 };

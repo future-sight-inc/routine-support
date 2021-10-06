@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Week } from './types';
+import { Week } from "./types";
 
 export interface WeekState {
   week: Week | null;
@@ -11,7 +11,7 @@ const initialState: WeekState = {
 };
 
 export const weekSlice = createSlice({
-  name: 'week',
+  name: "week",
   initialState,
   reducers: {
     setWeek: (state, action: PayloadAction<Week>) => {

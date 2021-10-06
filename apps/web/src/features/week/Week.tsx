@@ -1,11 +1,11 @@
-import { useActivity } from "features/activity/hooks/useActivity";
 import React from "react";
+
+import { useActivity } from "features/activity/hooks/useActivity";
 
 import { WeekCalendar } from "./components/WeekCalendar";
 import { WeekLayout } from "./components/WeekLayout";
 import { WeekRange } from "./components/WeekRange";
 import { WeekSelect } from "./components/WeekSelect";
-
 import { useWeek } from "./hooks/useWeek";
 
 export const Week: React.FC = () => {

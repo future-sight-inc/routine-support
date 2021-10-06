@@ -1,6 +1,6 @@
-import { Activity } from 'features/activity/types';
-import { Week } from 'features/week/types';
-import { TimeString } from 'types/main';
+import { Activity } from "features/activity/types";
+import { Week } from "features/week/types";
+import { TimeString } from "types/main";
 
 export const getTimeRange = (week: Week): TimeString[] => {
   return Object.keys(week.days[0].activities);

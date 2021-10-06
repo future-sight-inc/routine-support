@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import styled from "styled-components";
 
 export const Wrapper = styled(Box)``;
 

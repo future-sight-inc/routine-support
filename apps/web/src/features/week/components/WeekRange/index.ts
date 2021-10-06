@@ -1,1 +1,1 @@
-export { WeekRange } from './WeekRange'
+export { WeekRange } from "./WeekRange";
