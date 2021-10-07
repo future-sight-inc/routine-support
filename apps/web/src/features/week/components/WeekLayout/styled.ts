@@ -33,8 +33,5 @@ export const Body = styled(Box)`
 `;
 
 export const Spinner = styled(CircularProgress)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  ${({ theme }) => theme.position.absoluteCenter};
 `;

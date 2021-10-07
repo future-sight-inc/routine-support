@@ -1,13 +1,12 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import styled, { css } from "styled-components";
-import { Theme } from "styles/theme";
 
 export const Wrapper = styled(Box)`
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  background: ${Theme.palette.border};
-  border: 1px solid ${Theme.palette.border};
+  background: ${({ theme }) => theme.border.color};
+  border: 1px solid ${({ theme }) => theme.border.main};
   grid-column-gap: 1px;
   border-radius: 8px;
   height: 100%;
@@ -19,10 +18,6 @@ export const Cell = styled(Box)`
   box-sizing: border-box;
   background: white;
   cursor: pointer;
-
-  &:hover {
-    border: 1px solid ${Theme.palette.primary};
-  }
 `;
 
 export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
@@ -50,7 +45,7 @@ export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
     today &&
     css`
       & ${Cell} {
-        background: ${Theme.palette.grey};
+        background: ${({ theme }) => theme.palette.common.grey};
       }
     `}
 
@@ -58,7 +53,7 @@ export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
     weekend &&
     css`
       & ${Cell} {
-        background: ${Theme.palette.lightblue};
+        background: ${({ theme }) => theme.palette.common.lightblue};
       }
     `}
 `;
@@ -67,10 +62,11 @@ export const TimeColumn = styled(Column)`
   text-align: center;
 
   & ${Cell} {
-    background: ${Theme.palette.lightGrey};
+    background: ${({ theme }) => theme.palette.common.lightgrey};
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: default;
 
     &:hover {
       border: none;

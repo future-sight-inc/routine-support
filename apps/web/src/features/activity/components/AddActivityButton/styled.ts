@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button as DefaultButton } from "styles/main";
+import { Button as DefaultButton } from "styled/components/Button";
 
 export const Button = styled(DefaultButton).attrs(() => ({
   backgroundColor: "black",
