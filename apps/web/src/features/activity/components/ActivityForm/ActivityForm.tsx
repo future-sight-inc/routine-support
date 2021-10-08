@@ -4,10 +4,11 @@ import AdapterMoment from "@mui/lab/AdapterMoment";
 import DateTimePicker from "@mui/lab/DateTimePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import TextField from "@mui/material/TextField";
+import { PictogramPicker } from "components/PictogramPicker";
 import { Controller } from "react-hook-form";
 
+import { useActivityFormComponent } from "./hooks";
 import * as S from "./styled";
-import { useActivityFormComponent } from "./useActivityFormComponent";
 
 export interface ActivityFormActions {}
 
@@ -56,6 +57,8 @@ export const ActivityForm: React.FC<ActivityFormProps> = () =>
                 />
               )}
             />
+
+            <PictogramPicker />
 
             {/* <Controller
               name="datetime"

@@ -12,7 +12,7 @@ export const Wrapper = styled(Box)`
 export const Head = styled(Box)`
   height: 40px;
   display: grid;
-  grid-template-columns: 1fr 7fr;
+  grid-template-columns: 140px 7fr;
   gap: 1px;
 `;
 

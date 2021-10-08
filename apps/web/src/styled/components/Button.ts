@@ -2,8 +2,8 @@ import DefaultButton from "@mui/material/Button";
 import styled, { css } from "styled-components";
 
 export const Button = styled(DefaultButton)<{
-  backgroundColor: string;
-  fontColor: string;
+  backgroundColor?: string;
+  fontColor?: string;
 }>`
   ${({ theme }) =>
     ({

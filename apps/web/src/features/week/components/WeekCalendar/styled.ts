@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 
 export const Wrapper = styled(Box)`
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: 140px repeat(7, 1fr);
   background: ${({ theme }) => theme.border.color};
   border: 1px solid ${({ theme }) => theme.border.main};
   grid-column-gap: 1px;
@@ -18,6 +18,10 @@ export const Cell = styled(Box)`
   box-sizing: border-box;
   background: white;
   cursor: pointer;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.palette.primary.main};
+  }
 `;
 
 export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
