@@ -10,6 +10,10 @@ export const Theme: DefaultTheme = {
       main: "#F3F3F3",
       contrastText: "#B9B9B9",
     },
+    error: {
+      main: "#d32f2f",
+      contrastText: "#d32f2f",
+    },
     common: {
       black: "#000",
       white: "#fff",

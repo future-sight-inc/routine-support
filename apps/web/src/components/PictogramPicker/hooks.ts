@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
-export const usePictogramPickerComponent = () => {
+import { ImageUrl } from "types/main";
+
+import { PictogramPickerActions } from "./PictogramPicker";
+
+export const usePictogramPickerComponent = (
+  actions: PictogramPickerActions
+) => {
   const [opened, setOpened] = useState(false);
-  const [selectedPictogram, setSelectedPictogram] = useState<string | null>(
-    null
-  );
+  const [searchString, setSearchString] = useState("");
+  const [pictograms, setPictograms] = useState<ImageUrl[]>([
+    "https://www.sclera.be/resources/pictos/bloemschikken.png",
+    "https://www.sclera.be/resources/pictos/barbeque.png",
+    "https://www.sclera.be/resources/pictos/zee.png",
+    "https://www.sclera.be/resources/pictos/fietsen.png",
+  ]);
+
+  const onSearchStringChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setSearchString(evt.target.value);
+  };
+
+  const onSearchStringClear = () => {
+    setSearchString("");
+  };
 
   const onModalOpen = () => {
     setOpened(true);
@@ -15,16 +33,22 @@ export const usePictogramPickerComponent = () => {
   };
 
   const onPictogramClick = (pictogram: string) => {
-    setSelectedPictogram(pictogram);
+    actions.onChange(pictogram);
     onModalClose();
   };
 
   return {
-    models: { opened, selectedPictogram },
+    models: {
+      pictograms,
+      opened,
+      searchString,
+    },
     operations: {
       onModalOpen,
       onModalClose,
       onPictogramClick,
+      onSearchStringChange,
+      onSearchStringClear,
     },
   };
 };

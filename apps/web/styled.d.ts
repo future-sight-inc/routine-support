@@ -18,6 +18,7 @@ declare module "styled-components" {
       };
       primary: Palette;
       secondary: Palette;
+      error: Palette;
     };
     border: {
       main: string;

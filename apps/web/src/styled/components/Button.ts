@@ -8,7 +8,7 @@ export const Button = styled(DefaultButton)<{
   ${({ theme }) =>
     ({
       backgroundColor = theme.palette.primary.main,
-      fontColor = theme.palette.primary.contrastText,
+      fontColor = theme.palette.common.white,
     }) =>
       css`
         height: 40px;

@@ -3,15 +3,33 @@ import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment, TextField } from "@mui/material";
 import { Modal } from "components/Modal";
+import { ImageUrl } from "types/main";
 
 import { usePictogramPickerComponent } from "./hooks";
 import * as S from "./styled";
 
-export const PictogramPicker: React.FC = () => {
+interface PictogramPickerProps {
+  value?: ImageUrl;
+  onChange: (pictogram: ImageUrl) => void;
+}
+
+export interface PictogramPickerActions {
+  onChange: (pictogram: ImageUrl) => void;
+}
+
+export const PictogramPicker: React.FC<PictogramPickerProps> = ({
+  value: selectedPictogram,
+  onChange,
+}) => {
   const {
-    models: { opened, selectedPictogram },
-    operations: { onModalClose, onModalOpen, onPictogramClick },
-  } = usePictogramPickerComponent();
+    models: { opened, searchString, pictograms },
+    operations: {
+      onModalClose,
+      onModalOpen,
+      onPictogramClick,
+      onSearchStringChange,
+    },
+  } = usePictogramPickerComponent({ onChange });
 
   return (
     <S.Wrapper backgroundImage={selectedPictogram}>
@@ -23,6 +41,8 @@ export const PictogramPicker: React.FC = () => {
           <TextField
             placeholder="Search..."
             fullWidth
+            value={searchString}
+            onChange={onSearchStringChange}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -32,12 +52,7 @@ export const PictogramPicker: React.FC = () => {
             }}
           />
           <S.PictogramsWrapper>
-            {[
-              "https://www.sclera.be/resources/pictos/bloemschikken.png",
-              "https://www.sclera.be/resources/pictos/barbeque.png",
-              "https://www.sclera.be/resources/pictos/zee.png",
-              "https://www.sclera.be/resources/pictos/fietsen.png",
-            ].map((item) => (
+            {pictograms.map((item) => (
               <S.Pictogram
                 src={item}
                 active={selectedPictogram === item}

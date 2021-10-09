@@ -8,6 +8,6 @@ export const ModalContent = styled(Card)`
   width: 400px;
   min-height: 400px;
   ${({ theme }) => theme.position.absoluteCenter}
-
+  outline: none;
   padding: 32px;
 `;

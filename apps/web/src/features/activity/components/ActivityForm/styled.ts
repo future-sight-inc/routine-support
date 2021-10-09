@@ -12,3 +12,8 @@ export const NameInput = styled.input`
   border: none;
   outline: none;
 `;
+
+export const Row = styled(Box)`
+  display: flex;
+  gap: 16px;
+`;

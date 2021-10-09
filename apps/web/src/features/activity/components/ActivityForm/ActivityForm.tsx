@@ -1,11 +1,10 @@
 import React from "react";
 
-import AdapterMoment from "@mui/lab/AdapterMoment";
-import DateTimePicker from "@mui/lab/DateTimePicker";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import TextField from "@mui/material/TextField";
-import { PictogramPicker } from "components/PictogramPicker";
-import { Controller } from "react-hook-form";
+import { ActivityNameInput } from "components/FormFields/ActivityNameInput";
+import { DatePicker } from "components/FormFields/DatePicker";
+import { PictogramPicker } from "components/FormFields/PictogramPicker";
+import { TimePicker } from "components/FormFields/TimePicker";
+import { Button } from "styled/components/Button";
 
 import { useActivityFormComponent } from "./hooks";
 import * as S from "./styled";
@@ -24,58 +23,53 @@ export const ActivityForm: React.FC<ActivityFormProps> = () =>
   // }
   {
     const {
-      models: { control },
-      operations: {},
+      models: {
+        control,
+        minDate,
+        minStartTime,
+        startDisabled,
+        minEndTime,
+        endDisabled,
+      },
+      operations: { onSubmit },
     } = useActivityFormComponent();
 
     return (
-      <form>
+      <form onSubmit={onSubmit}>
         <S.Wrapper>
-          {/* <input type="text" {...register("title")} />
-          <input type="text" {...register("pictogram")} />
-          <input type="text" {...register("date")} />
-          <input type="text" {...register("time")} /> */}
-
-          <LocalizationProvider dateAdapter={AdapterMoment}>
-            <Controller
-              name="name"
+          <ActivityNameInput
+            name="name"
+            control={control}
+            required
+            placeholder="Add name of the activity"
+          />
+          <DatePicker
+            name="date"
+            control={control}
+            label="Date"
+            minDate={minDate}
+            required
+          />
+          <S.Row>
+            <TimePicker
+              name="start"
               control={control}
-              render={({ field }) => (
-                <S.NameInput
-                  {...field}
-                  placeholder="Add name of the activity"
-                />
-              )}
+              label="From"
+              required
+              minTime={minStartTime}
+              disabled={startDisabled}
             />
-            <Controller
-              name="datetime"
+            <TimePicker
+              name="end"
               control={control}
-              render={({ field }) => (
-                <DateTimePicker
-                  renderInput={(props) => <TextField {...props} />}
-                  {...field}
-                />
-              )}
+              label="To"
+              required
+              minTime={minEndTime}
+              disabled={endDisabled}
             />
-
-            <PictogramPicker />
-
-            {/* <Controller
-              name="datetime"
-              control={control}
-              render={({ field }) => (
-                <Select {...field}>
-                  <MenuItem value={10}>
-                    <img
-                      src="https://www.sclera.be/resources/pictos/bloemschikken.png"
-                      width="128px"
-                      height="128px"
-                    />
-                  </MenuItem>
-                </Select>
-              )}
-            /> */}
-          </LocalizationProvider>
+          </S.Row>
+          <PictogramPicker name="pictogram" control={control} required />
+          <Button type="submit">Submit</Button>
         </S.Wrapper>
       </form>
     );
