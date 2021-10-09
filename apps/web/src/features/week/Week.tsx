@@ -48,6 +48,7 @@ export const Week: React.FC = () => {
         >
           <ActivityForm
             activity={Activity.models.activity}
+            loading={Activity.models.loading}
             actions={{
               createActivity: Activity.operations.createActivity,
             }}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "app/hooks";
+import { toast } from "react-toastify";
 
 import { activityAPI } from "../activityAPI";
 import { activityActions } from "../activitySlice";
@@ -16,15 +17,19 @@ export const useActivity = () => {
     dispatch(activityActions.setActivity(activity || null));
   };
 
-  const createActivity = (activity: Activity) => {
+  const createActivity = async (activity: Activity) => {
     try {
-      const response = activityAPI.createActivity(activity);
+      setLoading(true);
+
+      await activityAPI.createActivity(activity);
 
       setOpened(false);
 
-      // todo: add success notification
+      toast.success("Activity added!");
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 

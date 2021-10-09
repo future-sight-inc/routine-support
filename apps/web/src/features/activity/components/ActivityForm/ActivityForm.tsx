@@ -16,11 +16,13 @@ export interface ActivityFormActions {
 
 export interface ActivityFormProps {
   activity: Partial<Activity> | null;
+  loading: boolean;
   actions: ActivityFormActions;
 }
 
 export const ActivityForm: React.FC<ActivityFormProps> = ({
   activity,
+  loading,
   actions,
 }) =>
   // {
@@ -75,7 +77,9 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
             />
           </S.Row>
           <PictogramPicker name="pictogram" control={control} required />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" loading={loading}>
+            Submit
+          </Button>
         </S.Wrapper>
       </form>
     );

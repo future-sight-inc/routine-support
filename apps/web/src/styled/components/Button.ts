@@ -1,7 +1,7 @@
-import DefaultButton from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
 import styled, { css } from "styled-components";
 
-export const Button = styled(DefaultButton)<{
+export const Button = styled(LoadingButton)<{
   backgroundColor?: string;
   fontColor?: string;
 }>`
