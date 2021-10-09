@@ -12,10 +12,10 @@ interface WeekRangeProps {
 export const WeekRange: React.FC<WeekRangeProps> = ({ week }) => {
   return (
     <S.Wrapper>
-      {week?.days.map((day) => (
-        <S.Day today={isToday(day.date)}>
-          <S.DayName>{day.date.format("dd")},</S.DayName>
-          <S.Date>{day.date.format("DD MMM")}</S.Date>
+      {week?.weekInfo.days.map((day) => (
+        <S.Day today={isToday(day)}>
+          <S.DayName>{day.format("dd")},</S.DayName>
+          <S.Date>{day.format("DD MMM")}</S.Date>
         </S.Day>
       ))}
     </S.Wrapper>

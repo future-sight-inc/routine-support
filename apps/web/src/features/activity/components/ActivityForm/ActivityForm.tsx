@@ -10,18 +10,19 @@ import { Button } from "styled/components/Button";
 import { useActivityFormComponent } from "./hooks";
 import * as S from "./styled";
 
-export interface ActivityFormActions {}
-
-export interface ActivityFormModels {
-  activity: Partial<Activity> | null;
+export interface ActivityFormActions {
+  createActivity: (activity: Activity) => void;
 }
 
 export interface ActivityFormProps {
-  models: ActivityFormModels;
-  // actions: ActivityFormActions;
+  activity: Partial<Activity> | null;
+  actions: ActivityFormActions;
 }
 
-export const ActivityForm: React.FC<ActivityFormProps> = ({ models }) =>
+export const ActivityForm: React.FC<ActivityFormProps> = ({
+  activity,
+  actions,
+}) =>
   // {
   // activity,
   // actions,
@@ -37,7 +38,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({ models }) =>
         // endDisabled,
       },
       operations: { onSubmit },
-    } = useActivityFormComponent(models);
+    } = useActivityFormComponent(activity, actions);
 
     return (
       <form onSubmit={onSubmit}>

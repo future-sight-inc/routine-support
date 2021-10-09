@@ -8,7 +8,7 @@ import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
 interface DatePickerProps extends FormFieldProps {
-  minDate: Moment;
+  minDate?: Moment;
 }
 
 export const DatePicker: React.FC<DatePickerProps> = ({

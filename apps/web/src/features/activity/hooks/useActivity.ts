@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "app/hooks";
 
+import { activityAPI } from "../activityAPI";
 import { activityActions } from "../activitySlice";
 import { Activity } from "../types";
 
@@ -15,7 +16,17 @@ export const useActivity = () => {
     dispatch(activityActions.setActivity(activity || null));
   };
 
-  const createActivity = () => {};
+  const createActivity = (activity: Activity) => {
+    try {
+      const response = activityAPI.createActivity(activity);
+
+      setOpened(false);
+
+      // todo: add success notification
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const updateActivity = () => {};
 

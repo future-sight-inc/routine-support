@@ -2,9 +2,9 @@ import React from "react";
 
 import { Activity } from "features/activity/types";
 import { Week } from "features/week/types";
+import { isToday } from "utils/isToday";
 
 import * as S from "./styled";
-import { getTimeRange } from "./utils";
 
 export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
@@ -22,23 +22,26 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
   return (
     <S.Wrapper>
       <S.TimeColumn>
-        {getTimeRange(week).map((time) => (
+        {week.weekInfo.timeRange.map((time) => (
           <S.Cell>
             <S.Time>{time}</S.Time>
           </S.Cell>
         ))}
       </S.TimeColumn>
-      {/* {week?.days.map((day, index) => (
-        <S.Column today={isToday(day.date)} weekend={index >= 5 && index <= 6}>
-          {day.activities.map((activity) => (
+      {week?.weekInfo.days.map((day, index) => (
+        <S.Column today={isToday(day)} weekend={index >= 5 && index <= 6}>
+          {week.weekInfo.timeRange.map((time) => (
             <S.Cell
-              onClick={() => actions.openNewActivityModal({ ...activity })}
-            >
-              {activity?.name || ""}
-            </S.Cell>
+              onClick={() =>
+                actions.openNewActivityModal({
+                  date: day,
+                  start: day.add(time.split(":")[0], "hours"),
+                })
+              }
+            ></S.Cell>
           ))}
         </S.Column>
-      ))} */}
+      ))}
     </S.Wrapper>
   );
 };

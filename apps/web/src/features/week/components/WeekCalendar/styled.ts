@@ -45,19 +45,19 @@ export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
     border-radius: 0 0 8px 0;
   }
 
-  ${({ today }) =>
-    today &&
-    css`
-      & ${Cell} {
-        background: ${({ theme }) => theme.palette.common.grey};
-      }
-    `}
-
   ${({ weekend }) =>
     weekend &&
     css`
       & ${Cell} {
         background: ${({ theme }) => theme.palette.common.lightblue};
+      }
+    `}
+
+  ${({ today }) =>
+    today &&
+    css`
+      & ${Cell} {
+        background: ${({ theme }) => theme.palette.common.grey};
       }
     `}
 `;

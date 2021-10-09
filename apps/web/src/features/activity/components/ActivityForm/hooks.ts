@@ -1,26 +1,31 @@
+import { Activity } from "features/activity/types";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 
-import { ActivityFormModels } from "./ActivityForm";
+import { ActivityFormActions } from "./ActivityForm";
 
-export const useActivityFormComponent = (models: ActivityFormModels) =>
-  // activity: Activity | null,
-  // actions: ActivityFormActions
-  {
-    const { control, handleSubmit } = useForm<any>({
-      defaultValues: { date: moment(), start: moment(), end: null },
-      ...models.activity,
-    });
+export const useActivityFormComponent = (
+  activity: Partial<Activity> | null,
+  actions: ActivityFormActions
+) => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      date: moment(),
+      start: moment(),
+      end: null,
+      ...activity,
+    },
+  });
 
-    const onSubmit = handleSubmit((values) => {
-      console.log(values);
-    });
+  const onSubmit = handleSubmit((values: Activity) => {
+    actions.createActivity(values);
+  });
 
-    return {
-      models: {
-        control,
-        minDate: moment(),
-      },
-      operations: { onSubmit },
-    };
+  return {
+    models: {
+      control,
+      minDate: moment(),
+    },
+    operations: { onSubmit },
   };
+};

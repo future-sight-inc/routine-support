@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios";
 import { ActivityDto } from "dtos/ActivityDto";
 import { apiClient } from "services/apiClient";
 import { Id } from "types/main";
+import { formatActivity } from "utils/formatActivity";
 import { formatActivityDto } from "utils/formatActivityDto";
 
 import { Activity } from "./types";
@@ -16,7 +17,10 @@ export const activityAPI = {
     return formatActivityDto(request.data);
   },
   createActivity: async (data: Activity): Promise<AxiosResponse> => {
-    const request: AxiosResponse = await apiClient.post("activity", data);
+    const request: AxiosResponse = await apiClient.post(
+      "/activity",
+      formatActivity(data)
+    );
 
     return request;
   },

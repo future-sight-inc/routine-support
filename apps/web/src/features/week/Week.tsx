@@ -37,14 +37,21 @@ export const Week: React.FC = () => {
         )
       }
       addActivityButton={
-        <AddActivityButton onClick={Activity.operations.openNewActivityModal} />
+        <AddActivityButton
+          onClick={() => Activity.operations.openNewActivityModal()}
+        />
       }
       activityModal={
         <Modal
           opened={Activity.models.opened}
           onClose={Activity.operations.closeActivityModal}
         >
-          <ActivityForm models={{ activity: Activity.models.activity }} />
+          <ActivityForm
+            activity={Activity.models.activity}
+            actions={{
+              createActivity: Activity.operations.createActivity,
+            }}
+          />
         </Modal>
       }
     />
