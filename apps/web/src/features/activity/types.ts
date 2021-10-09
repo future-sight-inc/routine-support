@@ -1,11 +1,14 @@
-import { ImageUrl, DateString, TimeString, Id } from "../../types/main";
+import { Moment } from "moment";
 
-export type ActivityTitle = string;
+import { ImageUrl, Id } from "../../types/main";
+
+export type ActivityName = string;
 
 export type Activity = {
   id?: Id;
-  title: ActivityTitle;
+  name: ActivityName;
   pictogram: ImageUrl;
-  date: DateString;
-  time: TimeString;
+  date: Moment;
+  start: Moment;
+  end: Moment;
 };

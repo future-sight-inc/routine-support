@@ -2,14 +2,14 @@ import React from "react";
 
 import { Activity } from "features/activity/types";
 import { Week } from "features/week/types";
-import { isDateStringToday } from "utils/isDateStringToday";
+import { isToday } from "utils/isToday";
 
 import * as S from "./styled";
-import { getActivitiesArray, getTimeRange } from "./utils";
+import { getTimeRange } from "./utils";
 
 export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
-  openNewActivityModal: () => void;
+  openNewActivityModal: (activity?: Partial<Activity>) => void;
 }
 interface WeekCalendarProps {
   week: Week;
@@ -30,13 +30,12 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
         ))}
       </S.TimeColumn>
       {week?.days.map((day, index) => (
-        <S.Column
-          today={isDateStringToday(day.date)}
-          weekend={index >= 5 && index <= 6}
-        >
-          {getActivitiesArray(week).map((activity) => (
-            <S.Cell onClick={actions.openNewActivityModal}>
-              {activity?.title || ""}
+        <S.Column today={isToday(day.date)} weekend={index >= 5 && index <= 6}>
+          {day.activities.map((activity) => (
+            <S.Cell
+              onClick={() => actions.openNewActivityModal({ ...activity })}
+            >
+              {activity?.name || ""}
             </S.Cell>
           ))}
         </S.Column>

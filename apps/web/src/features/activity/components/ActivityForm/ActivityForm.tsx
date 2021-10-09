@@ -4,6 +4,7 @@ import { ActivityNameInput } from "components/FormFields/ActivityNameInput";
 import { DatePicker } from "components/FormFields/DatePicker";
 import { PictogramPicker } from "components/FormFields/PictogramPicker";
 import { TimePicker } from "components/FormFields/TimePicker";
+import { Activity } from "features/activity/types";
 import { Button } from "styled/components/Button";
 
 import { useActivityFormComponent } from "./hooks";
@@ -11,12 +12,16 @@ import * as S from "./styled";
 
 export interface ActivityFormActions {}
 
+export interface ActivityFormModels {
+  activity: Partial<Activity> | null;
+}
+
 export interface ActivityFormProps {
-  // activity: Activity | null;
+  models: ActivityFormModels;
   // actions: ActivityFormActions;
 }
 
-export const ActivityForm: React.FC<ActivityFormProps> = () =>
+export const ActivityForm: React.FC<ActivityFormProps> = ({ models }) =>
   // {
   // activity,
   // actions,
@@ -26,13 +31,13 @@ export const ActivityForm: React.FC<ActivityFormProps> = () =>
       models: {
         control,
         minDate,
-        minStartTime,
-        startDisabled,
-        minEndTime,
-        endDisabled,
+        // minStartTime,
+        // startDisabled,
+        // minEndTime,
+        // endDisabled,
       },
       operations: { onSubmit },
-    } = useActivityFormComponent();
+    } = useActivityFormComponent(models);
 
     return (
       <form onSubmit={onSubmit}>
@@ -56,16 +61,16 @@ export const ActivityForm: React.FC<ActivityFormProps> = () =>
               control={control}
               label="From"
               required
-              minTime={minStartTime}
-              disabled={startDisabled}
+              // minTime={minStartTime}
+              // disabled={startDisabled}
             />
             <TimePicker
               name="end"
               control={control}
               label="To"
               required
-              minTime={minEndTime}
-              disabled={endDisabled}
+              // minTime={minEndTime}
+              // disabled={endDisabled}
             />
           </S.Row>
           <PictogramPicker name="pictogram" control={control} required />

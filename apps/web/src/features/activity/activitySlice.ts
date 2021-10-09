@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Activity } from "./types";
 
 export interface ActivityState {
-  activity: Activity | null;
+  activity: Partial<Activity> | null;
 }
 
 const initialState: ActivityState = {
@@ -14,7 +14,7 @@ export const activitySlice = createSlice({
   name: "activity",
   initialState,
   reducers: {
-    setActivity: (state, action: PayloadAction<Activity | null>) => {
+    setActivity: (state, action: PayloadAction<Partial<Activity> | null>) => {
       state.activity = action.payload;
     },
   },

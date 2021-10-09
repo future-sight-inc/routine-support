@@ -11,8 +11,8 @@ export const useActivity = () => {
   const { activity } = useAppSelector((state) => state.activity);
   const dispatch = useAppDispatch();
 
-  const setActivity = (activity: Activity | null) => {
-    dispatch(activityActions.setActivity(activity));
+  const setActivity = (activity?: Partial<Activity>) => {
+    dispatch(activityActions.setActivity(activity || null));
   };
 
   const createActivity = () => {};
@@ -26,13 +26,13 @@ export const useActivity = () => {
     setOpened(true);
   };
 
-  const openNewActivityModal = () => {
-    setActivity(null);
+  const openNewActivityModal = (activity?: Partial<Activity>) => {
+    setActivity(activity);
     setOpened(true);
   };
 
   const closeActivityModal = () => {
-    setActivity(null);
+    setActivity();
     setOpened(false);
   };
 

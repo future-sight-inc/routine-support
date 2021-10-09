@@ -44,7 +44,7 @@ export const Week: React.FC = () => {
           opened={Activity.models.opened}
           onClose={Activity.operations.closeActivityModal}
         >
-          <ActivityForm />
+          <ActivityForm models={{ activity: Activity.models.activity }} />
         </Modal>
       }
     />

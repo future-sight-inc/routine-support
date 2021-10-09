@@ -1,7 +1,8 @@
-import { DateString, TimeString } from "../../types/main";
+import { Moment } from "moment";
+
 import { Activity } from "../activity/types";
 
 export type Day = {
-  date: DateString;
-  activities: { [time in TimeString]: Activity };
+  date: Moment;
+  activities: Activity[];
 };
