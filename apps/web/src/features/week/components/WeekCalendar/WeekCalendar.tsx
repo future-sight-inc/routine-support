@@ -2,7 +2,6 @@ import React from "react";
 
 import { Activity } from "features/activity/types";
 import { Week } from "features/week/types";
-import { isToday } from "utils/isToday";
 
 import * as S from "./styled";
 import { getTimeRange } from "./utils";
@@ -29,7 +28,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
           </S.Cell>
         ))}
       </S.TimeColumn>
-      {week?.days.map((day, index) => (
+      {/* {week?.days.map((day, index) => (
         <S.Column today={isToday(day.date)} weekend={index >= 5 && index <= 6}>
           {day.activities.map((activity) => (
             <S.Cell
@@ -39,7 +38,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
             </S.Cell>
           ))}
         </S.Column>
-      ))}
+      ))} */}
     </S.Wrapper>
   );
 };

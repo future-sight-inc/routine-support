@@ -1,6 +1,5 @@
+import { Activity } from "features/activity/types";
 import { Moment } from "moment";
-
-import { Activity } from "../activity/types";
 
 export type Day = {
   date: Moment;
