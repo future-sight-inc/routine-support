@@ -64,5 +64,8 @@ export const Pictogram = styled.img<{ active?: boolean }>`
   box-sizing: border-box;
 
   ${({ active, theme }) =>
-    active && `border: 1px solid ${theme.palette.primary.main}`}
+    active &&
+    css`
+      border: 4px solid ${theme.palette.primary.main};
+    `}
 `;

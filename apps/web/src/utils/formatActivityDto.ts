@@ -1,12 +1,14 @@
 import { ActivityDto } from "dtos/ActivityDto";
 import { Activity } from "features/activity/types";
-import moment from "moment";
+
+import { parseDate } from "./parseDate";
+import { parseTime } from "./parseTime";
 
 export const formatActivityDto = (activityDto: ActivityDto): Activity => {
   return {
     ...activityDto,
-    date: moment(),
-    start: moment(),
-    end: moment(),
+    date: parseDate(activityDto.date),
+    start: parseTime(activityDto.start),
+    end: parseTime(activityDto.end),
   };
 };

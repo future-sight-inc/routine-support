@@ -2,8 +2,10 @@ import React from "react";
 
 import { Activity } from "features/activity/types";
 import { Week } from "features/week/types";
+import { formatDate } from "utils/formatDate";
 import { isToday } from "utils/isToday";
 
+import { ActivityCard } from "./components/ActivityCard";
 import * as S from "./styled";
 
 export interface WeekCalendarActions {
@@ -40,6 +42,14 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               }
             ></S.Cell>
           ))}
+          {week.days
+            .find((item) => formatDate(item.date) === formatDate(day))
+            ?.activities.map((activity) => (
+              <ActivityCard
+                onClick={() => actions.openActivityModal(activity)}
+                activity={activity}
+              />
+            ))}
         </S.Column>
       ))}
     </S.Wrapper>
