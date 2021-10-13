@@ -20,6 +20,8 @@ export const Theme: DefaultTheme = {
       grey: "#F3F3F3",
       lightgrey: "#F9F9F9",
       lightblue: "#F5FCFF",
+      green: "#95E19B",
+      blue: "#A0DBFD",
     },
   },
   borderRadius: 4,

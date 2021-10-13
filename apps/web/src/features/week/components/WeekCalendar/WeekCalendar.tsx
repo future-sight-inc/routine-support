@@ -42,14 +42,32 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               }
             ></S.Cell>
           ))}
-          {week.days
-            .find((item) => formatDate(item.date) === formatDate(day))
-            ?.activities.map((activity) => (
-              <ActivityCard
-                onClick={() => actions.openActivityModal(activity)}
-                activity={activity}
-              />
-            ))}
+
+          <S.AbsoluteColumn
+            rowsCount={week?.weekInfo.timeRange.length}
+            onClick={(evt) => {
+              console.log(evt.currentTarget.offsetTop);
+            }}
+          >
+            {week.days
+              .find((item) => formatDate(item.date) === formatDate(day))
+              ?.activities.map((activity) => (
+                <ActivityCard
+                  rowStart={
+                    week.weekInfo.timeRange.indexOf(
+                      `${activity.start.get("hours")}:00`
+                    ) + 1
+                  }
+                  rowEnd={
+                    week.weekInfo.timeRange.indexOf(
+                      `${activity.end.get("hours")}:00`
+                    ) + 1
+                  }
+                  onClick={() => actions.openActivityModal(activity)}
+                  activity={activity}
+                />
+              ))}
+          </S.AbsoluteColumn>
         </S.Column>
       ))}
     </S.Wrapper>

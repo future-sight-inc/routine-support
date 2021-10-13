@@ -29,6 +29,8 @@ export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
   grid-row-gap: 1px;
   height: 100%;
 
+  position: relative;
+
   &:first-child ${Cell}:first-child {
     border-radius: 8px 0 0 0;
   }
@@ -60,6 +62,19 @@ export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
         background: ${({ theme }) => theme.palette.common.grey};
       }
     `}
+`;
+
+export const AbsoluteColumn = styled(Box)<{ rowsCount: number }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  display: grid;
+  grid-template-rows: repeat(${({ rowsCount }) => rowsCount}, 1fr);
+
+  pointer-events: none;
 `;
 
 export const TimeColumn = styled(Column)`

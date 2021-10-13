@@ -8,7 +8,7 @@ export const Wrapper = styled(Box)<{ backgroundImage?: ImageUrl }>`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 378px;
+  height: 300px;
   background-color: ${({ theme }) => theme.palette.common.black};
 
   ${({ theme, backgroundImage }) =>
@@ -26,8 +26,8 @@ export const Wrapper = styled(Box)<{ backgroundImage?: ImageUrl }>`
 
   background-repeat: no-repeat;
   background-position-x: center;
-  background-position-y: 32px;
-  background-size: auto 260px;
+  background-position-y: 24px;
+  background-size: auto 200px;
   margin-left: -32px;
   margin-right: -32px;
 
