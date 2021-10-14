@@ -1,3 +1,4 @@
+import { IconButton } from "@mui/material";
 import Card from "@mui/material/Card";
 import DefaultModal from "@mui/material/Modal";
 import styled from "styled-components";
@@ -10,4 +11,11 @@ export const ModalContent = styled(Card)`
   ${({ theme }) => theme.position.absoluteCenter}
   outline: none;
   padding: 32px;
+`;
+
+export const IconWrapper = styled(IconButton)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
 `;

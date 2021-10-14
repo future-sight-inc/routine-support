@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
+import { Button } from "styled/components/Button";
 
 export const Wrapper = styled(Box)`
   display: flex;
@@ -14,6 +15,19 @@ export const NameInput = styled.input`
 `;
 
 export const Row = styled(Box)`
+  display: flex;
+  gap: 16px;
+`;
+
+export const SubmitButton = styled(Button).attrs(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+}))``;
+
+export const DeleteButton = styled(Button).attrs(({ theme }) => ({
+  backgroundColor: theme.palette.error.main,
+}))``;
+
+export const ButtonsWrapper = styled(Box)`
   display: flex;
   gap: 16px;
 `;

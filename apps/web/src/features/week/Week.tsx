@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Modal } from "components/Modal";
 import { ActivityForm } from "features/activity/components/ActivityForm";
@@ -14,6 +14,10 @@ import { useWeek } from "./hooks/useWeek";
 export const Week: React.FC = () => {
   const Week = useWeek();
   const Activity = useActivity();
+
+  useEffect(() => {
+    Week.operations.getWeek();
+  }, []);
 
   return (
     <WeekLayout
@@ -51,6 +55,9 @@ export const Week: React.FC = () => {
             loading={Activity.models.loading}
             actions={{
               createActivity: Activity.operations.createActivity,
+              updateActivity: Activity.operations.updateActivity,
+              deleteActivity: Activity.operations.deleteActivity,
+              getWeek: Week.operations.getWeek,
             }}
           />
         </Modal>

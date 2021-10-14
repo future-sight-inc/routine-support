@@ -8,7 +8,7 @@ export const useActivityFormComponent = (
   activity: Partial<Activity> | null,
   actions: ActivityFormActions
 ) => {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, formState, getValues } = useForm({
     defaultValues: {
       date: moment(),
       start: moment(),
@@ -17,15 +17,31 @@ export const useActivityFormComponent = (
     },
   });
 
-  const onSubmit = handleSubmit((values: Activity) => {
-    actions.createActivity(values);
+  const onSubmit = handleSubmit(async (values: Activity) => {
+    if (values._id) {
+      await actions.updateActivity(values);
+    } else {
+      await actions.createActivity(values);
+    }
+
+    actions.getWeek();
   });
+
+  const onDelete = async () => {
+    const id = getValues()._id;
+    if (window.confirm("Confirm your action") && id) {
+      await actions.deleteActivity(id);
+
+      actions.getWeek();
+    }
+  };
 
   return {
     models: {
       control,
       minDate: moment(),
+      isDirty: formState.isDirty,
     },
-    operations: { onSubmit },
+    operations: { onSubmit, onDelete },
   };
 };

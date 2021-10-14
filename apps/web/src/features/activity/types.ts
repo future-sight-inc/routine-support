@@ -5,7 +5,7 @@ import { ImageUrl, Id } from "../../types/main";
 export type ActivityName = string;
 
 export type Activity = {
-  id?: Id;
+  _id?: Id;
   name: ActivityName;
   pictogram: ImageUrl;
   date: Moment;

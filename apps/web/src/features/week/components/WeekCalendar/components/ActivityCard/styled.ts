@@ -5,8 +5,6 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled(Box)<{
   rowStart: number;
   rowEnd: number;
-  height: number;
-  marginTop: number;
 }>`
   box-sizing: border-box;
   width: 95%;
@@ -26,16 +24,9 @@ export const Wrapper = styled(Box)<{
     background: ${theme.palette.common.green};
   `}
 
-  ${({ rowStart, rowEnd, height, marginTop }) => css`
+  ${({ rowStart, rowEnd }) => css`
     grid-row-start: ${rowStart};
     grid-row-end: ${rowEnd};
-    height: ${height}%;
-    margin-top: ${marginTop}%;
-    ${marginTop
-      ? css`
-          transform: translateY(-100%);
-        `
-      : ""}
   `}
 
   pointer-events: all;

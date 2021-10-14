@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import { toast } from "react-toastify";
+import { Id } from "types/main";
 
 import { activityAPI } from "../activityAPI";
 import { activityActions } from "../activitySlice";
@@ -33,9 +34,37 @@ export const useActivity = () => {
     }
   };
 
-  const updateActivity = () => {};
+  const updateActivity = async (activity: Activity) => {
+    try {
+      setLoading(true);
 
-  const deleteActivity = () => {};
+      await activityAPI.updateActivity(activity);
+
+      setOpened(false);
+
+      toast.success("Activity updated!");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteActivity = async (id: Id) => {
+    try {
+      setLoading(true);
+
+      await activityAPI.deleteActivity(id);
+
+      setOpened(false);
+
+      toast.success("Activity deleted!");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const openActivityModal = (activity: Activity) => {
     setActivity(activity);

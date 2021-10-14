@@ -17,3 +17,8 @@ export type WeekInfo = {
   timeRange: TimeRange;
   days: Moment[];
 };
+
+export type DateInfo = {
+  year: YearNumber;
+  week: WeekNumber;
+};
