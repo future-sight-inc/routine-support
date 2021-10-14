@@ -1,6 +1,7 @@
 import React from "react";
 
-import CancelIcon from "@mui/icons-material/Cancel";
+// import CancelIcon from "@mui/icons-material/Cancel";
+import CloseIcon from "@mui/icons-material/Close";
 
 import * as S from "./styled";
 
@@ -14,7 +15,7 @@ export const Modal: React.FC<ModalProps> = ({ opened, onClose, children }) => {
     <S.Modal open={opened} onClose={onClose}>
       <S.ModalContent>
         <S.IconWrapper onClick={onClose}>
-          <CancelIcon />
+          <CloseIcon />
         </S.IconWrapper>
         {children}
       </S.ModalContent>

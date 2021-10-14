@@ -17,5 +17,5 @@ export const IconWrapper = styled(IconButton)`
   position: absolute;
   top: 0;
   right: 0;
-  padding: 5px;
+  padding: 8px;
 `;
