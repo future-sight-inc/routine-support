@@ -8,7 +8,7 @@ export const Theme: DefaultTheme = {
     },
     secondary: {
       main: "#F3F3F3",
-      contrastText: "#B9B9B9",
+      contrastText: "#838383",
     },
     error: {
       main: "#d32f2f",

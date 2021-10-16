@@ -7,7 +7,9 @@ export const Wrapper = styled(Box)<{
   rowEnd: number;
 }>`
   box-sizing: border-box;
-  width: 95%;
+  width: 100%;
+  height: calc(100% - 8px);
+  align-self: center;
 
   overflow: hidden;
 

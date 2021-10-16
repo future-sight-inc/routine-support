@@ -37,6 +37,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
       models: {
         control,
         minDate,
+        minTime,
         isDirty,
         // minStartTime,
         // startDisabled,
@@ -68,6 +69,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
               control={control}
               label="From"
               required
+              minTime={minTime}
               // minTime={minStartTime}
               // disabled={startDisabled}
             />

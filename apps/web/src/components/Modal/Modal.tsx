@@ -1,6 +1,5 @@
 import React from "react";
 
-// import CancelIcon from "@mui/icons-material/Cancel";
 import CloseIcon from "@mui/icons-material/Close";
 
 import * as S from "./styled";

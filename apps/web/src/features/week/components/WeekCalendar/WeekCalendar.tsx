@@ -3,10 +3,13 @@ import React from "react";
 import { Activity } from "features/activity/types";
 import { Week } from "features/week/types";
 import { formatDate } from "utils/formatDate";
+import { indexOfTimeRange } from "utils/indexOfTimeRange";
 import { isToday } from "utils/isToday";
+import { parseTime } from "utils/parseTime";
 
-import { ActivityCard } from "./components/ActivityCard";
+import { ActivityGroup } from "./components/ActivityGroup";
 import * as S from "./styled";
+import { groupActivities } from "./utils";
 
 export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
@@ -37,7 +40,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               onClick={() =>
                 actions.openNewActivityModal({
                   date: day,
-                  start: day.add(time.split(":")[0], "hours"),
+                  start: parseTime(time, day),
                 })
               }
             ></S.Cell>
@@ -49,24 +52,27 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               console.log(evt.currentTarget.offsetTop);
             }}
           >
-            {week.days
-              .find((item) => formatDate(item.date) === formatDate(day))
-              ?.activities.map((activity) => (
-                <ActivityCard
-                  rowStart={
-                    week.weekInfo.timeRange.indexOf(
-                      `${activity.start.get("hours")}:00`
-                    ) + 1
-                  }
-                  rowEnd={
-                    week.weekInfo.timeRange.indexOf(
-                      `${activity.end.get("hours")}:00`
-                    ) + 1
-                  }
-                  onClick={() => actions.openActivityModal(activity)}
-                  activity={activity}
-                />
-              ))}
+            {groupActivities(
+              week.days.find(
+                (item) => formatDate(item.date) === formatDate(day)
+              )?.activities || []
+            ).map((group) => (
+              <ActivityGroup
+                timeRange={week.weekInfo.timeRange.slice(
+                  indexOfTimeRange(week.weekInfo.timeRange, group.start),
+                  indexOfTimeRange(week.weekInfo.timeRange, group.end) + 1
+                )}
+                rowStart={
+                  indexOfTimeRange(week.weekInfo.timeRange, group.start) + 1
+                }
+                rowEnd={
+                  indexOfTimeRange(week.weekInfo.timeRange, group.end) + 1
+                }
+                start={group.start}
+                end={group.end}
+                activities={group.activities}
+              />
+            ))}
           </S.AbsoluteColumn>
         </S.Column>
       ))}

@@ -9,12 +9,13 @@ export const Wrapper = styled(Box)`
   border: 1px solid ${({ theme }) => theme.border.main};
   grid-column-gap: 1px;
   border-radius: 8px;
-  height: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
 `;
 
 export const Cell = styled(Box)`
   padding: 8px;
-  min-height: 40px;
+  min-height: 150px;
   box-sizing: border-box;
   background: white;
   cursor: pointer;

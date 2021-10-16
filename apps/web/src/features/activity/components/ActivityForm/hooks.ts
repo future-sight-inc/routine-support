@@ -8,7 +8,7 @@ export const useActivityFormComponent = (
   activity: Partial<Activity> | null,
   actions: ActivityFormActions
 ) => {
-  const { control, handleSubmit, formState, getValues } = useForm({
+  const { control, handleSubmit, formState, getValues, watch } = useForm({
     defaultValues: {
       date: moment(),
       start: moment(),
@@ -40,6 +40,7 @@ export const useActivityFormComponent = (
     models: {
       control,
       minDate: moment(),
+      minTime: moment(),
       isDirty: formState.isDirty,
     },
     operations: { onSubmit, onDelete },
