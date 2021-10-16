@@ -15,6 +15,7 @@ interface ActivityGroupProps {
   start: Moment;
   end: Moment;
   activities: Activity[];
+  onActivityClick: (activity: Activity) => void;
 }
 
 export const ActivityGroup: React.FC<ActivityGroupProps> = ({
@@ -22,6 +23,7 @@ export const ActivityGroup: React.FC<ActivityGroupProps> = ({
   rowStart,
   rowEnd,
   activities,
+  onActivityClick,
 }) => {
   return (
     <S.Wrapper
@@ -33,7 +35,7 @@ export const ActivityGroup: React.FC<ActivityGroupProps> = ({
         <ActivityCard
           rowStart={indexOfTimeRange(timeRange, activity.start) + 1}
           rowEnd={indexOfTimeRange(timeRange, activity.end) + 1}
-          onClick={() => console.log(activity)}
+          onClick={onActivityClick}
           activity={activity}
         />
       ))}

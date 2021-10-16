@@ -9,7 +9,7 @@ interface ActivityCardProps {
   rowStart: number;
   rowEnd: number;
   activity: Activity;
-  onClick: () => void;
+  onClick: (activity: Activity) => void;
 }
 
 export const ActivityCard: React.FC<ActivityCardProps> = ({
@@ -29,7 +29,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
       //   (((getMinutes(activity.end) - getMinutes(activity.start)) / 60) * 100) /
       //   (rowEnd - rowStart || 1)
       // }
-      onClick={onClick}
+      onClick={() => onClick(activity)}
     >
       <S.Time>
         {stringifyTime(activity.start)} - {stringifyTime(activity.end)}

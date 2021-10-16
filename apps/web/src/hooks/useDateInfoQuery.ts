@@ -8,8 +8,6 @@ export const useDateInfoQuery = (): DateInfo | undefined => {
   const week = query.get("week");
 
   if (year && week) {
-    console.log(year, week);
-
     return {
       year: Number(year),
       week: Number(week),

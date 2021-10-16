@@ -45,7 +45,6 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               }
             ></S.Cell>
           ))}
-
           <S.AbsoluteColumn
             rowsCount={week?.weekInfo.timeRange.length}
             onClick={(evt) => {
@@ -71,6 +70,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
                 start={group.start}
                 end={group.end}
                 activities={group.activities}
+                onActivityClick={actions.openActivityModal}
               />
             ))}
           </S.AbsoluteColumn>
