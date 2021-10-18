@@ -4,7 +4,10 @@ import styled, { css } from "styled-components";
 
 export const Wrapper = styled(Box)`
   display: grid;
-  grid-template-columns: 140px repeat(7, 1fr);
+  grid-template-columns: 140px repeat(
+      7,
+      ${({ theme }) => theme.size.cellHeight}
+    );
   background: ${({ theme }) => theme.border.color};
   border: 1px solid ${({ theme }) => theme.border.main};
   grid-column-gap: 1px;
@@ -15,7 +18,7 @@ export const Wrapper = styled(Box)`
 
 export const Cell = styled(Box)`
   padding: 8px;
-  min-height: 150px;
+  min-height: ${({ theme }) => theme.size.cellHeight};
   box-sizing: border-box;
   background: white;
   cursor: pointer;
@@ -27,6 +30,7 @@ export const Cell = styled(Box)`
 
 export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
   display: grid;
+  grid-template-columns: repeat(auto, ${({ theme }) => theme.size.cellHeight});
   grid-row-gap: 1px;
   height: 100%;
 
@@ -73,7 +77,6 @@ export const AbsoluteColumn = styled(Box)<{ rowsCount: number }>`
   right: 0;
 
   display: grid;
-  grid-template-rows: repeat(${({ rowsCount }) => rowsCount}, 1fr);
 
   pointer-events: none;
 `;

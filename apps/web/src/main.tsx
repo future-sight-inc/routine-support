@@ -18,7 +18,7 @@ ReactDOM.render(
     <Router>
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={Theme}>
-          <LocalizationProvider dateAdapter={AdapterMoment}>
+          <LocalizationProvider dateAdapter={AdapterMoment} locale={"ru"}>
             <Provider store={store}>
               <App />
               <ToastContainer />

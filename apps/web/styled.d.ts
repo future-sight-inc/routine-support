@@ -30,5 +30,8 @@ declare module "styled-components" {
     position: {
       absoluteCenter: FlattenSimpleInterpolation;
     };
+    size: {
+      cellHeight: string;
+    };
   }
 }

@@ -1,34 +1,33 @@
 import React from "react";
 
 import { Activity } from "features/activity/types";
+import { getMinutes } from "utils/getMinutes";
 import { stringifyTime } from "utils/stringifyTime";
 
 import * as S from "./styled";
 
 interface ActivityCardProps {
   rowStart: number;
-  rowEnd: number;
   activity: Activity;
+  index: number;
+  count: number;
   onClick: (activity: Activity) => void;
 }
 
 export const ActivityCard: React.FC<ActivityCardProps> = ({
   rowStart,
-  rowEnd,
   activity,
+  index,
+  count,
   onClick,
 }) => {
   return (
     <S.Wrapper
       rowStart={rowStart}
-      rowEnd={rowEnd}
-      // marginTop={
-      //   (activity.start.get("minutes") / ((rowEnd - rowStart || 1) * 60)) * 100
-      // }
-      // height={
-      //   (((getMinutes(activity.end) - getMinutes(activity.start)) / 60) * 100) /
-      //   (rowEnd - rowStart || 1)
-      // }
+      marginTop={activity.start.get("minutes") / 60}
+      height={(getMinutes(activity.end) - getMinutes(activity.start)) / 60}
+      index={index}
+      count={count}
       onClick={() => onClick(activity)}
     >
       <S.Time>

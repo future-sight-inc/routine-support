@@ -3,7 +3,6 @@ import React from "react";
 import { Activity } from "features/activity/types";
 import { Week } from "features/week/types";
 import { formatDate } from "utils/formatDate";
-import { indexOfTimeRange } from "utils/indexOfTimeRange";
 import { isToday } from "utils/isToday";
 import { parseTime } from "utils/parseTime";
 
@@ -45,35 +44,16 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               }
             ></S.Cell>
           ))}
-          <S.AbsoluteColumn
-            rowsCount={week?.weekInfo.timeRange.length}
-            onClick={(evt) => {
-              console.log(evt.currentTarget.offsetTop);
-            }}
-          >
-            {groupActivities(
-              week.days.find(
-                (item) => formatDate(item.date) === formatDate(day)
-              )?.activities || []
-            ).map((group) => (
-              <ActivityGroup
-                timeRange={week.weekInfo.timeRange.slice(
-                  indexOfTimeRange(week.weekInfo.timeRange, group.start),
-                  indexOfTimeRange(week.weekInfo.timeRange, group.end) + 1
-                )}
-                rowStart={
-                  indexOfTimeRange(week.weekInfo.timeRange, group.start) + 1
-                }
-                rowEnd={
-                  indexOfTimeRange(week.weekInfo.timeRange, group.end) + 1
-                }
-                start={group.start}
-                end={group.end}
-                activities={group.activities}
-                onActivityClick={actions.openActivityModal}
-              />
-            ))}
-          </S.AbsoluteColumn>
+          {groupActivities(
+            week.days.find((item) => formatDate(item.date) === formatDate(day))
+              ?.activities || []
+          ).map((group) => (
+            <ActivityGroup
+              timeRange={week.weekInfo.timeRange}
+              activities={group.activities}
+              onActivityClick={actions.openActivityModal}
+            />
+          ))}
         </S.Column>
       ))}
     </S.Wrapper>

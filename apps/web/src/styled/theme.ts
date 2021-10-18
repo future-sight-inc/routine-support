@@ -26,7 +26,7 @@ export const Theme: DefaultTheme = {
   },
   borderRadius: 4,
   border: {
-    main: "1 px solid #DEDEDE",
+    main: "1px solid #DEDEDE",
     width: 1,
     color: "#DEDEDE",
   },
@@ -37,5 +37,8 @@ export const Theme: DefaultTheme = {
       left: 50%;
       transform: translate(-50%, -50%);
     `,
+  },
+  size: {
+    cellHeight: "150px",
   },
 };

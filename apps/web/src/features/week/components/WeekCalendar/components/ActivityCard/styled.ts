@@ -4,21 +4,21 @@ import styled, { css } from "styled-components";
 
 export const Wrapper = styled(Box)<{
   rowStart: number;
-  rowEnd: number;
+  marginTop: number;
+  count: number;
+  index: number;
+  height: number;
 }>`
   box-sizing: border-box;
-  width: 100%;
-  height: calc(100% - 8px);
-  align-self: center;
-
   overflow: hidden;
 
   background: grey;
-  justify-self: center;
 
+  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin: 0;
 
   ${({ theme }) => css`
     border-radius: ${theme.borderRadius}px;
@@ -26,9 +26,14 @@ export const Wrapper = styled(Box)<{
     background: ${theme.palette.common.green};
   `}
 
-  ${({ rowStart, rowEnd }) => css`
-    grid-row-start: ${rowStart};
-    grid-row-end: ${rowEnd};
+  ${({ rowStart, marginTop, count, index, height, theme }) => css`
+    top: calc(
+      ${rowStart} * ${theme.size.cellHeight} + ${marginTop} *
+        ${theme.size.cellHeight} + 1px * ${rowStart}
+    );
+    height: calc(${height} * ${theme.size.cellHeight});
+    width: calc(100% / ${count} - 4px);
+    left: calc(100% / ${count} * ${index} + 2px);
   `}
 
   pointer-events: all;
@@ -36,7 +41,7 @@ export const Wrapper = styled(Box)<{
 `;
 
 export const Time = styled(Typography)`
-  font-weight: medium;
+  font-weight: bold;
 `;
 
 export const Name = styled(Typography)`
