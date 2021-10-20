@@ -54,9 +54,9 @@ export const PictogramPicker: React.FC<PictogramPickerProps> = ({
           <S.PictogramsWrapper>
             {pictograms.map((item) => (
               <S.Pictogram
-                src={item}
-                active={selectedPictogram === item}
-                onClick={() => onPictogramClick(item)}
+                src={item.url}
+                active={selectedPictogram === item.url}
+                onClick={() => onPictogramClick(item.url)}
               />
             ))}
           </S.PictogramsWrapper>

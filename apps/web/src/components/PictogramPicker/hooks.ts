@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from "react";
 
-import { ImageUrl } from "types/main";
+import { Pictogram } from "types/main";
 
+import { PICTOGRAMS } from "./constants";
 import { PictogramPickerActions } from "./PictogramPicker";
 
 export const usePictogramPickerComponent = (
@@ -9,15 +10,21 @@ export const usePictogramPickerComponent = (
 ) => {
   const [opened, setOpened] = useState(false);
   const [searchString, setSearchString] = useState("");
-  const [pictograms, setPictograms] = useState<ImageUrl[]>([
-    "https://www.sclera.be/resources/pictos/bloemschikken.png",
-    "https://www.sclera.be/resources/pictos/barbeque.png",
-    "https://www.sclera.be/resources/pictos/zee.png",
-    "https://www.sclera.be/resources/pictos/fietsen.png",
-  ]);
+  const [pictograms, setPictograms] = useState<Pictogram[]>(PICTOGRAMS);
 
   const onSearchStringChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    setSearchString(evt.target.value);
+    const { value } = evt.target;
+    const regexp = new RegExp(`^${value}`);
+
+    setSearchString(value);
+    setPictograms(
+      PICTOGRAMS.filter(
+        (pictogram) =>
+          regexp.test(pictogram.en) ||
+          regexp.test(pictogram.be) ||
+          regexp.test(pictogram.be)
+      )
+    );
   };
 
   const onSearchStringClear = () => {
