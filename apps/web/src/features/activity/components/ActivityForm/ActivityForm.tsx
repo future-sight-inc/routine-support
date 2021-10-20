@@ -34,16 +34,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
   // }
   {
     const {
-      models: {
-        control,
-        minDate,
-        minTime,
-        isDirty,
-        // minStartTime,
-        // startDisabled,
-        // minEndTime,
-        // endDisabled,
-      },
+      models: { control, minDate, minStartTime, minEndTime, isDirty },
       operations: { onSubmit, onDelete },
     } = useActivityFormComponent(activity, actions);
 
@@ -69,17 +60,14 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
               control={control}
               label="From"
               required
-              minTime={minTime}
-              // minTime={minStartTime}
-              // disabled={startDisabled}
+              minTime={minStartTime}
             />
             <TimePicker
               name="end"
               control={control}
               label="To"
               required
-              // minTime={minEndTime}
-              // disabled={endDisabled}
+              minTime={minEndTime}
             />
           </S.Row>
           <PictogramPicker name="pictogram" control={control} required />

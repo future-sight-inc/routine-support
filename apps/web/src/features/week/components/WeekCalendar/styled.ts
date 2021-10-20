@@ -4,10 +4,7 @@ import styled, { css } from "styled-components";
 
 export const Wrapper = styled(Box)`
   display: grid;
-  grid-template-columns: 140px repeat(
-      7,
-      ${({ theme }) => theme.size.cellHeight}
-    );
+  grid-template-columns: 140px repeat(7, 1fr);
   background: ${({ theme }) => theme.border.color};
   border: 1px solid ${({ theme }) => theme.border.main};
   grid-column-gap: 1px;
@@ -16,16 +13,22 @@ export const Wrapper = styled(Box)`
   overflow-y: scroll;
 `;
 
-export const Cell = styled(Box)`
+export const Cell = styled(Box)<{ passed?: boolean }>`
   padding: 8px;
   min-height: ${({ theme }) => theme.size.cellHeight};
   box-sizing: border-box;
-  background: white;
-  cursor: pointer;
+  background: ${({ theme }) => theme.palette.common.grey};
 
-  &:hover {
-    border: 1px solid ${({ theme }) => theme.palette.primary.main};
-  }
+  ${({ passed }) =>
+    passed &&
+    css`
+      cursor: pointer;
+      background: white;
+
+      &:hover {
+        border: 1px solid ${({ theme }) => theme.palette.primary.main};
+      }
+    `}
 `;
 
 export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`

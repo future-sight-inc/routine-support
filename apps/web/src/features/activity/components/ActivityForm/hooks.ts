@@ -1,27 +1,56 @@
+import { useEffect, useState } from "react";
+
 import { Activity } from "features/activity/types";
-import moment from "moment";
+import moment, { Moment } from "moment";
 import { useForm } from "react-hook-form";
 
 import { ActivityFormActions } from "./ActivityForm";
+import { isToday } from "utils/isToday";
 
 export const useActivityFormComponent = (
   activity: Partial<Activity> | null,
   actions: ActivityFormActions
 ) => {
-  const { control, handleSubmit, formState, getValues, watch } = useForm({
-    defaultValues: {
-      date: moment(),
-      start: moment(),
-      end: null,
-      ...activity,
-    },
-  });
+  const defaultValues = {
+    date: moment(),
+    start: moment(),
+    end: moment(),
+    ...activity,
+  };
 
-  const onSubmit = handleSubmit(async (values: Activity) => {
+  const { control, handleSubmit, formState, watch, getValues, setValue } =
+    useForm({
+      defaultValues,
+      // ! Баг с типизацией
+    } as any);
+
+  const [minStartTime, setMinStartTime] = useState<Moment | undefined>(
+    moment()
+  );
+  useEffect(() => {
+    if (activity?.start) {
+      setMinStartTime(activity?.start);
+    }
+  }, [activity]);
+
+  const [minEndTime, setMinEndTime] = useState<Moment | undefined>();
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) => {
+      switch (name) {
+        case "start":
+          setMinEndTime(value.start);
+          setValue("end", value.start);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  const onSubmit = handleSubmit(async (values) => {
     if (values._id) {
-      await actions.updateActivity(values);
+      await actions.updateActivity(values as Activity);
     } else {
-      await actions.createActivity(values);
+      await actions.createActivity(values as Activity);
     }
 
     actions.getWeek();
@@ -40,7 +69,8 @@ export const useActivityFormComponent = (
     models: {
       control,
       minDate: moment(),
-      minTime: moment(),
+      minStartTime,
+      minEndTime,
       isDirty: formState.isDirty,
     },
     operations: { onSubmit, onDelete },

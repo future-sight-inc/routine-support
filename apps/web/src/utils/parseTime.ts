@@ -13,9 +13,10 @@ export const parseTime = (
   }
 
   const [hours, minutes] = time.split(":");
+  const newDate = moment(basisDate).set({
+    hours: Number(hours),
+    minutes: Number(minutes),
+  });
 
-  basisDate.set("hours", Number(hours));
-  basisDate.set("minutes", Number(minutes));
-
-  return basisDate;
+  return newDate;
 };
