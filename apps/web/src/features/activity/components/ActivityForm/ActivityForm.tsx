@@ -45,12 +45,14 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
             name="name"
             control={control}
             required
-            placeholder="Add name of the activity"
+            // ! Добавить локализацию
+            placeholder="Название события"
           />
           <DatePicker
             name="date"
             control={control}
-            label="Date"
+            // ! Добавить локализацию
+            label="Дата"
             minDate={minDate}
             required
           />
@@ -58,26 +60,36 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
             <TimePicker
               name="start"
               control={control}
-              label="From"
+              // ! Добавить локализацию
+              label="Начало"
               required
               minTime={minStartTime}
             />
             <TimePicker
               name="end"
               control={control}
-              label="To"
+              // ! Добавить локализацию
+              label="Окончание"
               required
               minTime={minEndTime}
             />
           </S.Row>
           <PictogramPicker name="pictogram" control={control} required />
           <S.ButtonsWrapper>
-            <S.SubmitButton type="submit" loading={loading} disabled={!isDirty}>
-              {activity?._id ? "Update" : "Create"}
+            <S.SubmitButton
+              type="submit"
+              loading={loading}
+              disabled={!isDirty} // ! Добавить локализацию
+            >
+              {activity?._id ? "Обновить" : "Создать"}
             </S.SubmitButton>
             {activity?._id && (
-              <S.DeleteButton color="error" onClick={onDelete}>
-                Delete
+              <S.DeleteButton
+                color="error"
+                onClick={onDelete}
+                // ! Добавить локализацию
+              >
+                Удалить
               </S.DeleteButton>
             )}
           </S.ButtonsWrapper>

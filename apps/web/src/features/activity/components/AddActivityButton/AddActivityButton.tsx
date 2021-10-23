@@ -9,5 +9,6 @@ interface AddActivityButtonProps {
 export const AddActivityButton: React.FC<AddActivityButtonProps> = ({
   onClick,
 }) => {
-  return <S.Button onClick={onClick}>+ Activity</S.Button>;
+  // ! Добавить локализацию
+  return <S.Button onClick={onClick}>+ Событие</S.Button>;
 };

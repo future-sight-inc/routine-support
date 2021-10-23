@@ -31,7 +31,8 @@ export const Controller: React.FC<ControllerProps> = ({
     <FormController
       name={name}
       control={control}
-      rules={{ required: required && `Required field` }}
+      // ! Добавить локализацию
+      rules={{ required: required && `Обязательное поле` }}
       render={({ field, fieldState, formState }) => (
         <S.Wrapper>
           {label && (

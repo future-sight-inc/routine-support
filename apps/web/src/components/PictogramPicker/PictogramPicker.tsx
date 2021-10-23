@@ -31,15 +31,16 @@ export const PictogramPicker: React.FC<PictogramPickerProps> = ({
     },
   } = usePictogramPickerComponent({ onChange });
 
+  // ! Добавить локализацию
   return (
     <S.Wrapper backgroundImage={selectedPictogram}>
       <S.OpenButton onClick={onModalOpen}>
-        {selectedPictogram ? "Change pictogram" : "Choose pictogram"}
+        {selectedPictogram ? "Изменить пиктограмму" : "Выбрать пиктограмму"}
       </S.OpenButton>
       <Modal opened={opened} onClose={onModalClose}>
         <S.ModalContent>
           <TextField
-            placeholder="Search..."
+            placeholder="Поиск..."
             fullWidth
             value={searchString}
             onChange={onSearchStringChange}
