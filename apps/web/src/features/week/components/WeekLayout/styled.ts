@@ -4,9 +4,11 @@ import styled from "styled-components";
 
 export const Wrapper = styled(Box)`
   display: grid;
-  grid-template-rows: 40px 1fr;
+  /* 100vh - высота шапки - отступ контейнера - высота выбора недели - отступ между колонками */
+  grid-template-rows: 40px calc(100vh - 60px - 64px - 40px - 16px);
   grid-template-columns: 200px 1fr;
   gap: 16px;
+  overflow: hidden;
 `;
 
 export const Head = styled(Box)`

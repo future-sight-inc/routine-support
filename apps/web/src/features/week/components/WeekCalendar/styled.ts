@@ -9,7 +9,7 @@ export const Wrapper = styled(Box)`
   border: 1px solid ${({ theme }) => theme.border.main};
   grid-column-gap: 1px;
   border-radius: 8px;
-  max-height: 100%;
+  max-height: calc(100vh - 60px - 32px - 40px - 48px);
   overflow-y: scroll;
 `;
 
