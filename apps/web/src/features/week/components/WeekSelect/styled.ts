@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import styled from "styled-components";
 import { Button } from "styled/components/Button";
 
-export const Wrapper = styled(Box)``;
+export const Wrapper = styled.div``;
 
 export const SelectButton = styled(Button).attrs(() => ({
   backgroundColor: "black",

@@ -2,13 +2,13 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled(Box)`
+export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 1px;
 `;
 
-export const Day = styled(Box)<{ today?: boolean }>`
+export const Day = styled.div<{ today?: boolean }>`
   background: black;
   height: 40px;
   color: white;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 
 import { Activity } from "features/activity/types";
 import { Week } from "features/week/types";
@@ -25,12 +25,15 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
   week,
   actions,
 }) => {
+  const wrapperRef = createRef<HTMLDivElement>();
+
   const {
+    models: { timelineTopOffset },
     operations: { onCellClick },
-  } = useWeekCalendarComponent(actions);
+  } = useWeekCalendarComponent(wrapperRef, actions);
 
   return (
-    <S.Wrapper>
+    <S.Wrapper ref={wrapperRef}>
       <S.TimeColumn>
         {week.weekInfo.timeRange.map((time) => (
           <S.Cell>
@@ -58,6 +61,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
           ))}
         </S.Column>
       ))}
+      <S.TimeLine top={timelineTopOffset} />
     </S.Wrapper>
   );
 };

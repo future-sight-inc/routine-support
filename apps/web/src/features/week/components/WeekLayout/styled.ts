@@ -2,35 +2,35 @@ import { CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
 import styled from "styled-components";
 
-export const Wrapper = styled(Box)`
+export const Wrapper = styled.div`
   display: grid;
   /* 100vh - высота шапки - отступ контейнера - высота выбора недели - отступ между колонками */
   grid-template-rows: 40px calc(100vh - 60px - 64px - 40px - 16px);
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: auto 1fr;
   gap: 16px;
   overflow: hidden;
 `;
 
-export const Head = styled(Box)`
+export const Head = styled.div`
   height: 40px;
   display: grid;
   grid-template-columns: 140px 7fr;
   gap: 1px;
 `;
 
-export const Column = styled(Box)`
+export const Column = styled.div`
   height: 100vh;
   display: grid;
   gap: 16px;
   grid-template-rows: 40px calc(100vh - 40px - 16px);
 `;
 
-export const ButtonWrapper = styled(Box)`
+export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
 
-export const Body = styled(Box)`
+export const Body = styled.div`
   position: relative;
 `;
 

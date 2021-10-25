@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled(Box)`
+export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 140px repeat(7, 1fr);
   background: ${({ theme }) => theme.border.color};
@@ -11,9 +11,10 @@ export const Wrapper = styled(Box)`
   border-radius: 8px;
   max-height: calc(100vh - 60px - 32px - 40px - 48px);
   overflow-y: scroll;
+  position: relative;
 `;
 
-export const Cell = styled(Box)<{ passed?: boolean }>`
+export const Cell = styled.div<{ passed?: boolean }>`
   padding: 8px;
   min-height: ${({ theme }) => theme.size.cellHeight};
   box-sizing: border-box;
@@ -31,7 +32,7 @@ export const Cell = styled(Box)<{ passed?: boolean }>`
     `}
 `;
 
-export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
+export const Column = styled.div<{ today?: boolean; weekend?: boolean }>`
   display: grid;
   grid-template-columns: repeat(auto, ${({ theme }) => theme.size.cellHeight});
   grid-row-gap: 1px;
@@ -55,14 +56,6 @@ export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
     border-radius: 0 0 8px 0;
   }
 
-  ${({ weekend }) =>
-    weekend &&
-    css`
-      & ${Cell} {
-        background: ${({ theme }) => theme.palette.common.lightblue};
-      }
-    `}
-
   ${({ today }) =>
     today &&
     css`
@@ -70,9 +63,17 @@ export const Column = styled(Box)<{ today?: boolean; weekend?: boolean }>`
         background: ${({ theme }) => theme.palette.common.grey};
       }
     `}
+
+  ${({ weekend }) =>
+    weekend &&
+    css`
+      & ${Cell} {
+        background: ${({ theme }) => theme.palette.common.lightblue};
+      }
+    `}
 `;
 
-export const AbsoluteColumn = styled(Box)<{ rowsCount: number }>`
+export const AbsoluteColumn = styled.div<{ rowsCount: number }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -101,3 +102,12 @@ export const TimeColumn = styled(Column)`
 `;
 
 export const Time = styled(Typography).attrs(() => ({ variant: "body2" }))``;
+
+export const TimeLine = styled.div<{ top: number }>`
+  position: absolute;
+  top: ${({ top }) => top}px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: ${({ theme }) => theme.palette.primary.main};
+`;

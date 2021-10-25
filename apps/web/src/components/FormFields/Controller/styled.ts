@@ -1,7 +1,7 @@
 import { Box, Typography, FormHelperText } from "@mui/material";
 import styled from "styled-components";
 
-export const Wrapper = styled(Box)``;
+export const Wrapper = styled.div``;
 
 export const Label = styled(Typography).attrs(() => ({
   variant: "body1",

@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import { Button } from "styled/components/Button";
 
-export const Wrapper = styled(Box)`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -14,7 +14,7 @@ export const NameInput = styled.input`
   outline: none;
 `;
 
-export const Row = styled(Box)`
+export const Row = styled.div`
   display: flex;
   gap: 16px;
 `;
@@ -28,7 +28,7 @@ export const DeleteButton = styled(Button).attrs(({ theme }) => ({
   fontColor: theme.palette.secondary.contrastText,
 }))``;
 
-export const ButtonsWrapper = styled(Box)`
+export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 16px;
 `;

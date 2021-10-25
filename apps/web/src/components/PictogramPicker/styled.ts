@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { Button } from "styled/components/Button";
 import { ImageUrl } from "types/main";
 
-export const Wrapper = styled(Box)<{ backgroundImage?: ImageUrl }>`
+export const Wrapper = styled.div<{ backgroundImage?: ImageUrl }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -43,12 +43,12 @@ export const OpenButton = styled(Button).attrs(() => ({
   transform: translate(-50%, calc(-100% - 32px));
 `;
 
-export const ModalContent = styled(Box)`
+export const ModalContent = styled.div`
   display: grid;
   gap: 16px;
 `;
 
-export const PictogramsWrapper = styled(Box)`
+export const PictogramsWrapper = styled.div`
   max-height: 500px;
   overflow-y: scroll;
 

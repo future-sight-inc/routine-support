@@ -11,4 +11,8 @@ export const Header = styled.div`
 
 export const Content = styled.div`
   padding: 32px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1900px;
+  margin: 0 auto;
 `;

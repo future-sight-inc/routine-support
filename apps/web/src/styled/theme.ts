@@ -39,6 +39,6 @@ export const Theme: DefaultTheme = {
     `,
   },
   size: {
-    cellHeight: "150px",
+    cellHeight: "80px",
   },
 };
