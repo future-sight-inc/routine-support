@@ -25,7 +25,7 @@ export const useWeekSelectComponent = (actions: WeekSelectActions) => {
   };
 
   const onSubmit = handleSubmit((values: FieldValues) => {
-    actions.getWeek(values.year, values.week);
+    actions.getWeek(values.year, values.week, true);
   });
 
   const onPrevClick = (values: FieldValues) => {

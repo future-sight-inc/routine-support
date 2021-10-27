@@ -18,9 +18,13 @@ export const useWeek = () => {
   const currentDateInfo = getCurrentDateInfo();
   const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
 
-  const getWeek = async (year?: YearNumber, weekNumber?: WeekNumber) => {
+  const getWeek = async (
+    year?: YearNumber,
+    weekNumber?: WeekNumber,
+    silent?: boolean
+  ) => {
     try {
-      setLoading(true);
+      !silent && setLoading(true);
 
       const date: DateInfo = {
         year: year || dateInfoQuery?.year || currentDateInfo.year,
@@ -36,7 +40,7 @@ export const useWeek = () => {
       // todo: Добавить сервис исключений
       console.error(error);
     } finally {
-      setLoading(false);
+      !silent && setLoading(false);
     }
   };
 

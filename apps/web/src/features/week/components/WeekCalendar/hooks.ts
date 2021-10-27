@@ -12,16 +12,20 @@ export const useWeekCalendarComponent = (
   actions: WeekCalendarActions
 ) => {
   const [timelineTopOffset, setTimelineTopOffset] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const checkOffset = () => {
       const frame = containerRef?.current?.scrollHeight!;
       const minutes = getMinutes(moment());
       const offsetTop = (minutes / (24 * 60)) * frame;
 
-      setTimelineTopOffset(offsetTop);
-      containerRef?.current?.scrollTo({
-        top: offsetTop - pxToNumber(Theme.size.cellHeight),
-      });
+      if (!scrolled) {
+        setTimelineTopOffset(offsetTop);
+        containerRef?.current?.scrollTo({
+          top: offsetTop - pxToNumber(Theme.size.cellHeight),
+        });
+        setScrolled(true);
+      }
     };
 
     checkOffset();
