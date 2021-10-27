@@ -1,6 +1,4 @@
-import { DayDto } from "dtos/DayDto";
-import { Day } from "features/day/types";
-
+import { DayDto, Day } from "features/week/types";
 import { formatActivityDto } from "./formatActivityDto";
 import { parseDate } from "./parseDate";
 

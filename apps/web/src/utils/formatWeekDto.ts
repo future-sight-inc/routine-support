@@ -1,5 +1,4 @@
-import { WeekDto } from "dtos/WeekDto";
-import { Week } from "features/week/types";
+import { Week, WeekDto } from "features/week/types";
 
 import { formatDayDto } from "./formatDayDto";
 import { formatWeekInfo } from "./formatWeekInfo";

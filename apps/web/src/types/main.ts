@@ -7,8 +7,11 @@ export type TimeRange = TimeString[];
 export type ImageUrl = string;
 
 export type Pictogram = {
-  url: string;
+  url: ImageUrl;
   en: string;
   be: string;
   ru: string;
 };
+
+export type Email = string;
+export type Password = string;

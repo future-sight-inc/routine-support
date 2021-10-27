@@ -1,5 +1,4 @@
-import { WeekInfoDto } from "dtos/WeekInfoDto";
-import { WeekInfo } from "features/week/types";
+import { WeekInfo, WeekInfoDto } from "features/week/types";
 
 import { parseDate } from "./parseDate";
 

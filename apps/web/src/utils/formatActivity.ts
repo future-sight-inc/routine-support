@@ -1,5 +1,4 @@
-import { ActivityDto } from "dtos/ActivityDto";
-import { Activity } from "features/activity/types";
+import { Activity, ActivityDto } from "features/activity/types";
 
 import { stringifyDate } from "./stringifyDate";
 import { stringifyTime } from "./stringifyTime";

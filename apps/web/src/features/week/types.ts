@@ -1,17 +1,31 @@
+import { Activity, ActivityDto } from "features/activity/types";
 import { Moment } from "moment";
-import { TimeRange } from "types/main";
-
-import { Day } from "../day/types";
+import { DateString, TimeRange } from "types/main";
 
 export type YearNumber = number;
 export type WeekNumber = number;
 
-export type Week = {
-  days: Day[];
+export type Day = {
+  date: Moment;
+  activities: Activity[];
+};
+
+export type DayDto = {
+  date: DateString;
+  activities: ActivityDto[];
+};
+
+export interface WeekDto {
+  days: DayDto[];
   year: YearNumber;
   weekNumber: WeekNumber;
-  weekInfo: WeekInfo;
-};
+  weekInfo: WeekInfoDto;
+}
+
+export interface WeekInfoDto {
+  timeRange: TimeRange;
+  days: DateString[];
+}
 
 export type WeekInfo = {
   timeRange: TimeRange;
@@ -21,4 +35,11 @@ export type WeekInfo = {
 export type DateInfo = {
   year: YearNumber;
   week: WeekNumber;
+};
+
+export type Week = {
+  days: Day[];
+  year: YearNumber;
+  weekNumber: WeekNumber;
+  weekInfo: WeekInfo;
 };
