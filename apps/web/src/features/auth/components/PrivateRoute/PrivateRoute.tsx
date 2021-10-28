@@ -1,22 +1,19 @@
-import { useAuth } from "features/auth/hooks/useAuth";
-import React, { useEffect } from "react";
-import { Route, RouteProps, Redirect } from "react-router-dom";
+import React from "react";
+import { Redirect, Route, RouteProps } from "react-router-dom";
 import { LinkService } from "services/LinkService";
 
-interface Props extends RouteProps {}
+interface Props extends RouteProps {
+  loading: boolean;
+  isLogged: boolean;
+  isChecked: boolean;
+}
 
-export const PrivateRoute: React.FC<Props> = (props) => {
-  const {
-    models: { loading, isLogged, isChecked },
-    operations,
-  } = useAuth();
-
-  useEffect(() => {
-    if (!isLogged && !isChecked) {
-      operations.getUser();
-    }
-  }, [isLogged, isChecked]);
-
+export const PrivateRoute: React.FC<Props> = ({
+  loading,
+  isLogged,
+  isChecked,
+  ...routeProps
+}) => {
   if (loading) {
     // ! Сделать нормальный лоадер
     return <p>loading</p>;
@@ -26,5 +23,5 @@ export const PrivateRoute: React.FC<Props> = (props) => {
     return <Redirect to={LinkService.login()} />;
   }
 
-  return <Route {...props} />;
+  return <Route {...routeProps} />;
 };

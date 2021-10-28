@@ -18,8 +18,9 @@ export const useAuth = () => {
       const user = await authAPI.login(data);
 
       dispatch(authActions.setUser(user));
-    } catch {
+    } catch (error) {
       dispatch(authActions.setUser(null));
+      throw error;
     } finally {
       setIsChecked(true);
       setLoading(false);
@@ -46,8 +47,9 @@ export const useAuth = () => {
       const user = await authAPI.register(data);
 
       dispatch(authActions.setUser(user));
-    } catch {
+    } catch (error) {
       dispatch(authActions.setUser(null));
+      throw error;
     } finally {
       setIsChecked(true);
       setLoading(false);

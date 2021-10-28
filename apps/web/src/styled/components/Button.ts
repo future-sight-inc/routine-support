@@ -12,7 +12,6 @@ export const Button = styled(LoadingButton)<{
     }) =>
       css`
         height: 40px;
-        width: calc(50% - 0.5px);
         box-sizing: border-box;
         background: ${backgroundColor};
         color: ${fontColor};
