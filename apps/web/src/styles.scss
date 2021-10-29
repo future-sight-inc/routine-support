@@ -4,3 +4,11 @@ body {
   // todo: Использовать тему из настроек
   background: #cccccc;
 }
+
+a {
+  font-family: Roboto;
+
+  &:visited {
+    color: initial;
+  }
+}
