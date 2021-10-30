@@ -30,7 +30,31 @@
     "api": {
       "tags": []
     },
+    "api-client": {
+      "tags": []
+    },
     "api-interfaces": {
+      "tags": []
+    },
+    "constants": {
+      "tags": []
+    },
+    "models": {
+      "tags": []
+    },
+    "sample": {
+      "tags": []
+    },
+    "sample2": {
+      "tags": []
+    },
+    "sample3": {
+      "tags": []
+    },
+    "types": {
+      "tags": []
+    },
+    "utils": {
       "tags": []
     },
     "web": {
