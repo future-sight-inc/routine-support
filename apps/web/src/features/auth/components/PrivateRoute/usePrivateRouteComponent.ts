@@ -1,5 +1,5 @@
-import { useAuth } from "features/auth/hooks/useAuth";
 import { useEffect } from "react";
+import { useAuth } from "../../useAuth";
 
 export const usePrivateRouteComponent = () => {
   const {

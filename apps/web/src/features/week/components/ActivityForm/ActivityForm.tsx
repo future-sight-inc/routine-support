@@ -1,11 +1,10 @@
+import { Activity } from "@routine-support/models";
+import { Id } from "@routine-support/types";
+import { ActivityNameInput } from "apps/web/src/components/FormFields/ActivityNameInput";
+import { DatePicker } from "apps/web/src/components/FormFields/DatePicker";
+import { TimePicker } from "apps/web/src/components/FormFields/TimePicker";
+import { PictogramPicker } from "apps/web/src/components/FormFields/PictogramPicker";
 import React from "react";
-
-import { ActivityNameInput } from "components/FormFields/ActivityNameInput";
-import { DatePicker } from "components/FormFields/DatePicker";
-import { PictogramPicker } from "components/FormFields/PictogramPicker";
-import { TimePicker } from "components/FormFields/TimePicker";
-import { Activity } from "features/activity/types";
-import { Id } from "types/main";
 
 import { useActivityFormComponent } from "./hooks";
 import * as S from "./styled";

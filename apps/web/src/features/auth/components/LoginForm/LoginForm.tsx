@@ -1,16 +1,17 @@
-import { Card } from "components/Card";
-import { TextField } from "components/FormFields/TextField";
-import { UserLoginDto } from "features/auth/types";
-import { Button } from "features/week/components/AddActivityButton/styled";
 import React from "react";
 import * as S from "./styled";
 import { useLoginFormComponent } from "./useLoginFormComponent";
 import InputAdornment from "@mui/material/InputAdornment";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
-import { ErrorText } from "components/ErrorText";
+
 import { Link } from "react-router-dom";
-import { LinkService } from "services/LinkService";
+import { Card } from "apps/web/src/components/Card";
+import { TextField } from "apps/web/src/components/FormFields/TextField";
+import { ErrorText } from "apps/web/src/components/ErrorText";
+import { LinkService } from "apps/web/src/services/LinkService";
+import { UserLoginDto } from "@routine-support/models";
+import { Button } from "apps/web/src/styled/components/Button";
 
 export interface LoginFormActions {
   login: (data: UserLoginDto) => void;
@@ -63,7 +64,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
         />
         <Button type="submit">Отправить</Button>
         {submitError && <ErrorText>{submitError}</ErrorText>}
-        <Link to={LinkService.register()}>Нет аккаунта? Зарегистрироваться</Link>
+        <Link to={LinkService.register()}>
+          Нет аккаунта? Зарегистрироваться
+        </Link>
       </S.Form>
     </Card>
   );

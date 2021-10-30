@@ -2,16 +2,18 @@ import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import PersonIcon from "@mui/icons-material/Person";
 import InputAdornment from "@mui/material/InputAdornment";
-import { Card } from "components/Card";
-import { ErrorText } from "components/ErrorText";
-import { TextField } from "components/FormFields/TextField";
-import { UserRegisterDto } from "features/auth/types";
-import { Button } from "features/week/components/AddActivityButton/styled";
+import { ErrorText } from "apps/web/src/components/ErrorText";
+
 import React from "react";
 import { Link } from "react-router-dom";
-import { LinkService } from "services/LinkService";
+
 import * as S from "./styled";
 import { useRegisterFormComponent } from "./useRegisterFormComponent";
+import { UserRegisterDto } from "@routine-support/models";
+import { LinkService } from "apps/web/src/services/LinkService";
+import { TextField } from "apps/web/src/components/FormFields/TextField";
+import { Card } from "apps/web/src/components/Card";
+import { Button } from "apps/web/src/styled/components/Button";
 
 export interface RegisterFormActions {
   register: (data: UserRegisterDto) => void;

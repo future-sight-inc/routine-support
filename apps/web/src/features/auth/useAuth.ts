@@ -1,8 +1,12 @@
-import { useAppDispatch, useAppSelector } from "app/hooks";
 import { useState } from "react";
-import { authAPI } from "../authAPI";
-import { authActions } from "../authSlice";
-import { UserLoginDto, UserRegisterDto, UserUpdateDto } from "../types";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  UserLoginDto,
+  authAPI,
+  authActions,
+  UserRegisterDto,
+  UserUpdateDto,
+} from "@routine-support/models";
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();

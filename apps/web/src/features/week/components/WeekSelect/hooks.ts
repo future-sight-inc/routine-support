@@ -1,11 +1,13 @@
-import { DateInfo } from "features/week/types";
-import { useDateInfoQuery } from "hooks/useDateInfoQuery";
+import {
+  DateInfo,
+  getCurrentDateInfo,
+  getDateInfoFromMoment,
+} from "@routine-support/models";
+import { useDateInfoQuery } from "apps/web/src/hooks/useDateInfoQuery";
+
 import { Moment } from "moment";
 import { useForm } from "react-hook-form";
-import { getCurrentDateInfo } from "utils/getCurrentDateInfo";
-import { getDateInfoFromMoment } from "utils/getDateInfoFromMoment";
 
-import { FieldValues } from "./types";
 import { addWeeks } from "./utils";
 import { WeekSelectActions } from "./WeekSelect";
 
@@ -24,17 +26,17 @@ export const useWeekSelectComponent = (actions: WeekSelectActions) => {
     setValue("week", dateInfo.week);
   };
 
-  const onSubmit = handleSubmit((values: FieldValues) => {
+  const onSubmit = handleSubmit((values: DateInfo) => {
     actions.getWeek(values.year, values.week, true);
   });
 
-  const onPrevClick = (values: FieldValues) => {
+  const onPrevClick = (values: DateInfo) => {
     const newDate = addWeeks(values, -1);
     updateCurrentDateInfo(newDate);
     onSubmit();
   };
 
-  const onNextClick = (values: FieldValues) => {
+  const onNextClick = (values: DateInfo) => {
     const newDate = addWeeks(values, 1);
     updateCurrentDateInfo(newDate);
     onSubmit();

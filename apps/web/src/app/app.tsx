@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Layout } from "components/Layout/Layout";
-import { Week } from "features/week";
-import { PrivateRoute } from "features/auth/components/PrivateRoute";
-import { LinkService } from "services/LinkService";
 import { Route } from "react-router-dom";
-import { LoginForm } from "features/auth/components/LoginForm";
-import { RegisterForm } from "features/auth/components/RegisterForm";
+import { Layout } from "../components/Layout/Layout";
+import { LoginForm } from "../features/auth/components/LoginForm";
+import { PrivateRoute } from "../features/auth/components/PrivateRoute";
+import { RegisterForm } from "../features/auth/components/RegisterForm";
+import { Week } from "../features/week";
+import { LinkService } from "../services/LinkService";
 
 export const App = () => {
   return (

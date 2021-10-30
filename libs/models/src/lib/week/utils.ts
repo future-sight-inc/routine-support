@@ -1,5 +1,4 @@
 import { parseDate, serialize } from "@routine-support/utils";
-import { Moment } from "moment";
 import { formatActivityDto } from "../activity/utils";
 import {
   DateInfo,
@@ -10,7 +9,7 @@ import {
   WeekInfo,
   WeekInfoDto,
 } from "./types";
-import moment = require("moment");
+import moment from "moment";
 
 export const formatDayDto = (dayDto: DayDto): Day => {
   const day: Day = {
@@ -49,7 +48,7 @@ export const getCurrentDateInfo = (): DateInfo => {
   };
 };
 
-export const getDateInfoFromMoment = (moment: Moment): DateInfo => {
+export const getDateInfoFromMoment = (moment: moment.Moment): DateInfo => {
   return {
     year: Number(moment.get("year")),
     week: Number(moment.get("week")),

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { Activity } from "features/activity/types";
 import moment, { Moment } from "moment";
 import { useForm } from "react-hook-form";
 
 import { ActivityFormActions } from "./ActivityForm";
-import { isToday } from "utils/isToday";
+import { Activity } from "@routine-support/models";
 
 export const useActivityFormComponent = (
   activity: Partial<Activity> | null,

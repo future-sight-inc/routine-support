@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import { Button } from "styled/components/Button";
+import { Button } from "apps/web/src/styled/components/Button";
 
 export const Wrapper = styled.div`
   display: flex;

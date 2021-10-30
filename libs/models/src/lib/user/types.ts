@@ -1,3 +1,5 @@
+import { Email } from "@routine-support/types";
+
 export type UserDto = {
   _id: string;
   email: Email;

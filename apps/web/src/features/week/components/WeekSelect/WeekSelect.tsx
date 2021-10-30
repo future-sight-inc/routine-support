@@ -1,6 +1,5 @@
+import { YearNumber, WeekNumber } from "@routine-support/models";
 import React from "react";
-
-import { YearNumber, WeekNumber } from "features/week/types";
 
 import { useWeekSelectComponent } from "./hooks";
 import * as S from "./styled";

@@ -1,7 +1,6 @@
 import { TIME_FORMAT, DATE_FORMAT } from "@routine-support/constants";
 import { TimeString, DateString, TimeRange } from "@routine-support/types";
-import { Moment } from "moment";
-import moment = require("moment");
+import moment, { Moment } from "moment";
 
 export const stringifyTime = (time: Moment): string => {
   return time.format(TIME_FORMAT);

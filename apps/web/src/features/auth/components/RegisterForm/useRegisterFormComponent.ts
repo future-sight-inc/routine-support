@@ -1,4 +1,4 @@
-import { UserRegisterDto } from "features/auth/types";
+import { UserRegisterDto } from "@routine-support/models";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 

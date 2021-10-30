@@ -1,13 +1,12 @@
-import { useState } from "react";
-
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { toast } from "react-toastify";
 import {
   Activity,
   activityActions,
   activityAPI,
 } from "@routine-support/models";
 import { Id } from "@routine-support/types";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 export const useActivity = () => {
   const [loading, setLoading] = useState(false);

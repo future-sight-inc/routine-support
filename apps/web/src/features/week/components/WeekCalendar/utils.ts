@@ -1,4 +1,4 @@
-import { Activity } from "features/activity/types";
+import { Activity } from "@routine-support/models";
 import moment from "moment";
 import { Moment } from "moment";
 

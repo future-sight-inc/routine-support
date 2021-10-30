@@ -1,6 +1,5 @@
+import { apiClient } from "@routine-support/api-client";
 import { AxiosResponse } from "axios";
-
-import { apiClient } from "services/apiClient";
 
 import {
   User,

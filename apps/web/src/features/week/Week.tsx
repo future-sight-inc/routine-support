@@ -1,7 +1,7 @@
-import { Modal } from "components/Modal";
-import { useActivity } from "features/activity/useActivity";
-import { ActivityForm } from "features/week/components/ActivityForm";
 import React, { useEffect } from "react";
+import { Modal } from "../../components/Modal";
+import { useActivity } from "../activity/useActivity";
+import { ActivityForm } from "./components/ActivityForm";
 import { AddActivityButton } from "./components/AddActivityButton";
 import { WeekCalendar } from "./components/WeekCalendar";
 import { WeekLayout } from "./components/WeekLayout";

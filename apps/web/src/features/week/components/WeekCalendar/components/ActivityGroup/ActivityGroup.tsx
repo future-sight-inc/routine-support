@@ -1,8 +1,7 @@
+import { Activity } from "@routine-support/models";
+import { TimeString } from "@routine-support/types";
+import { indexOfTimeRange } from "@routine-support/utils";
 import React from "react";
-
-import { Activity } from "features/activity/types";
-import { TimeString } from "types/main";
-import { indexOfTimeRange } from "utils/indexOfTimeRange";
 
 import { ActivityCard } from "../ActivityCard";
 

@@ -1,4 +1,4 @@
-import { Id } from "types/main";
+import { Id } from "@routine-support/types";
 import { PathEnum } from "./types";
 
 export const LinkService = {

@@ -1,16 +1,13 @@
 import React, { createRef } from "react";
 
-import { Activity } from "features/activity/types";
-import { Week } from "features/week/types";
 import moment from "moment";
-import { formatDate } from "utils/formatDate";
-import { isToday } from "utils/isToday";
-import { parseTime } from "utils/parseTime";
 
 import { ActivityGroup } from "./components/ActivityGroup";
 import { useWeekCalendarComponent } from "./hooks";
 import * as S from "./styled";
 import { groupActivities } from "./utils";
+import { Activity, Week } from "@routine-support/models";
+import { isToday, parseTime, stringifyDate } from "@routine-support/utils";
 
 export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
@@ -50,7 +47,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
             ></S.Cell>
           ))}
           {groupActivities(
-            week.days.find((item) => formatDate(item.date) === formatDate(day))
+            week.days.find((item) => stringifyDate(item.date) === stringifyDate(day))
               ?.activities || []
           ).map((group) => (
             <ActivityGroup

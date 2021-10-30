@@ -1,10 +1,16 @@
-import { weekActions, weekAPI } from "@routine-support/models";
-import { DateInfo, WeekNumber, YearNumber } from "@routine-support/types";
-import { getCurrentDateInfo } from "@routine-support/utils";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { useDateInfoQuery } from "hooks/useDateInfoQuery";
-import { useUpdateCurrentDateInfoQuery } from "hooks/useUpdateCurrentDateInfoQuery";
+import {
+  DateInfo,
+  getCurrentDateInfo,
+  weekActions,
+  weekAPI,
+  WeekNumber,
+  YearNumber,
+} from "@routine-support/models";
+
 import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
+import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";
 
 export const useWeek = () => {
   const [loading, setLoading] = useState(false);
