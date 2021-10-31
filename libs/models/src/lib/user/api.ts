@@ -12,22 +12,19 @@ import {
 export const authAPI = {
   login: async (data: UserLoginDto): Promise<User> => {
     const request: AxiosResponse<UserDto> = await apiClient.post(
-      "/auth/login",
+      "/user/login",
       data
     );
 
     return request.data as User;
   },
   logout: async () => {
-    const request: AxiosResponse = await apiClient.get("/auth/logout");
+    const request: AxiosResponse = await apiClient.get("/user/logout");
 
     return request.data;
   },
   register: async (data: UserRegisterDto): Promise<User> => {
-    const request: AxiosResponse<UserDto> = await apiClient.post(
-      "/auth/register",
-      data
-    );
+    const request: AxiosResponse<UserDto> = await apiClient.post("/user", data);
 
     return request.data as User;
   },
@@ -37,7 +34,7 @@ export const authAPI = {
     return request.data as User;
   },
   updateUser: async (data: UserUpdateDto): Promise<User> => {
-    const request: AxiosResponse<UserDto> = await apiClient.put("/auth", data);
+    const request: AxiosResponse<UserDto> = await apiClient.put("/user", data);
 
     return request.data as User;
   },

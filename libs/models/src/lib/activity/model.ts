@@ -2,11 +2,26 @@ import { Schema, model } from "mongoose";
 import { Activity } from "./types";
 
 const activitySchema = new Schema({
-  name: String,
-  pictogram: String,
-  date: String,
-  start: String,
-  end: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  pictogram: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+  start: {
+    type: String,
+    required: true,
+  },
+  end: {
+    type: String,
+    required: true,
+  },
 });
 
 export const ActivityModel = model<Activity>("activity", activitySchema);

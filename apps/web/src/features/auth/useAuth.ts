@@ -66,6 +66,8 @@ export const useAuth = () => {
 
       const user = await authAPI.getUser();
 
+      console.log(user);
+
       dispatch(authActions.setUser(user));
     } catch {
       dispatch(authActions.setUser(null));
