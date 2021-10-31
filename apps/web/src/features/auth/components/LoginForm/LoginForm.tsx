@@ -1,17 +1,16 @@
-import React from "react";
-import * as S from "./styled";
-import { useLoginFormComponent } from "./useLoginFormComponent";
-import InputAdornment from "@mui/material/InputAdornment";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
-
-import { Link } from "react-router-dom";
-import { Card } from "apps/web/src/components/Card";
-import { TextField } from "apps/web/src/components/FormFields/TextField";
-import { ErrorText } from "apps/web/src/components/ErrorText";
-import { LinkService } from "apps/web/src/services/LinkService";
+import InputAdornment from "@mui/material/InputAdornment";
 import { UserLoginDto } from "@routine-support/models";
+import { Card } from "apps/web/src/components/Card";
+import { ErrorText } from "apps/web/src/components/ErrorText";
+import { TextField } from "apps/web/src/components/FormFields/TextField";
+import { LinkService } from "apps/web/src/services/LinkService";
 import { Button } from "apps/web/src/styled/components/Button";
+import React from "react";
+import { Link } from "react-router-dom";
+import { useLoginFormComponent } from "./hooks";
+import * as S from "./styled";
 
 export interface LoginFormActions {
   login: (data: UserLoginDto) => void;
@@ -24,11 +23,11 @@ interface LoginFormProps {
 export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
   const {
     models: { isSubmitting, submitError, control },
-    operations: { onSubmit },
+    operations: { handleSubmit },
   } = useLoginFormComponent(actions);
   return (
     <Card absoluteCenter>
-      <S.Form onSubmit={onSubmit}>
+      <S.Form onSubmit={handleSubmit}>
         <S.Title>Вход</S.Title>
         <TextField
           name="email"

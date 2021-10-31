@@ -28,6 +28,6 @@ export const useLoginFormComponent = (actions: LoginFormActions) => {
 
   return {
     models: { isSubmitting, submitError, control },
-    operations: { register, onSubmit },
+    operations: { register, handleSubmit: onSubmit },
   };
 };

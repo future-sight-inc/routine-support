@@ -47,8 +47,9 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
             ></S.Cell>
           ))}
           {groupActivities(
-            week.days.find((item) => stringifyDate(item.date) === stringifyDate(day))
-              ?.activities || []
+            week.days.find(
+              (item) => stringifyDate(item.date) === stringifyDate(day)
+            )?.activities || []
           ).map((group) => (
             <ActivityGroup
               timeRange={week.weekInfo.timeRange}

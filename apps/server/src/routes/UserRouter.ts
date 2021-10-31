@@ -1,7 +1,6 @@
 import { UserModel } from "@routine-support/models";
 import { Router } from "express";
 import { authorization } from "../middleware/authorization";
-import { AuthorizedRequest } from "../types/AuthorizedRequest";
 import { getAuthCookie } from "../utils/getAuthCookie";
 
 export const userRouter = Router();
@@ -34,5 +33,5 @@ userRouter.get("/", authorization, (req, res) => {
 });
 
 userRouter.get("/logout", (__, res) => {
-  return res.clearCookie("access_token").status(200);
+  return res.clearCookie("access_token").sendStatus(200);
 });

@@ -1,6 +1,6 @@
 import { RouteProps } from "react-router-dom";
+import { usePrivateRouteComponent } from "./hooks";
 import { PrivateRoute as UncontrolledPrivateRoute } from "./PrivateRoute";
-import { usePrivateRouteComponent } from "./usePrivateRouteComponent";
 
 export const PrivateRoute: React.FC<RouteProps> = (props) => {
   const {

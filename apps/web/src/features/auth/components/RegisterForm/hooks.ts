@@ -26,6 +26,6 @@ export const useRegisterFormComponent = (actions: RegisterFormActions) => {
 
   return {
     models: { isSubmitting, submitError, control },
-    operations: { register, onSubmit },
+    operations: { register, handleSubmit: onSubmit },
   };
 };

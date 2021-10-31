@@ -40,5 +40,6 @@ export const Theme: DefaultTheme = {
   },
   size: {
     cellHeight: "80px",
+    maxWidth: "1900px",
   },
 };

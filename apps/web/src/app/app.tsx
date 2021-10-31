@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Route } from "react-router-dom";
-import { Layout } from "../components/Layout/Layout";
+import { Layout } from "../features/auth/components/Layout";
 import { LoginForm } from "../features/auth/components/LoginForm";
 import { PrivateRoute } from "../features/auth/components/PrivateRoute";
 import { RegisterForm } from "../features/auth/components/RegisterForm";

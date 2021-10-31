@@ -29,11 +29,11 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
 }) => {
   const {
     models: { control, minDate, minStartTime, minEndTime, isDirty },
-    operations: { onSubmit, onDelete },
+    operations: { handleSubmit, onDelete },
   } = useActivityFormComponent(activity, actions);
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <S.Wrapper>
         <ActivityNameInput
           name="name"

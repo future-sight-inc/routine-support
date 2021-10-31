@@ -72,6 +72,6 @@ export const useActivityFormComponent = (
       minEndTime,
       isDirty: formState.isDirty,
     },
-    operations: { onSubmit, onDelete },
+    operations: { handleSubmit: onSubmit, onDelete },
   };
 };
