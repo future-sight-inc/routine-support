@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { Activity } from "../models/Activity";
+import { ActivityModel } from "@routine-support/models";
 
 export const activityRouter = Router();
 
 activityRouter.get("/:id", async (req, res) => {
-  const activity = await Activity.findById(req.params.id);
+  const activity = await ActivityModel.findById(req.params.id);
 
   if (activity) {
     res.status(200).send(activity);
@@ -14,7 +14,7 @@ activityRouter.get("/:id", async (req, res) => {
 });
 
 activityRouter.post("/", (req, res) => {
-  Activity.create({
+  ActivityModel.create({
     ...req.body,
   });
   res.status(200).send("Activity is added");
@@ -23,7 +23,7 @@ activityRouter.post("/", (req, res) => {
 activityRouter.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
-  Activity.findByIdAndDelete(id, function (err) {
+  ActivityModel.findByIdAndDelete(id, function (err) {
     if (err) return console.log(err);
 
     res.status(200).send("Activity deleted");
@@ -35,7 +35,7 @@ activityRouter.put("/:id", (req, res) => {
   const { _v, ...data } = req.body;
   const id = req.params.id;
 
-  Activity.findByIdAndUpdate(
+  ActivityModel.findByIdAndUpdate(
     id,
     {
       ...data,

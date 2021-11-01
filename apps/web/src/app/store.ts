@@ -1,12 +1,15 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { activityReducer } from "features/activity/activitySlice";
-
-import { weekReducer } from "../features/week/weekSlice";
+import {
+  weekReducer,
+  activityReducer,
+  authReducer,
+} from "@routine-support/models";
 
 export const store = configureStore({
   reducer: {
     week: weekReducer,
     activity: activityReducer,
+    auth: authReducer,
   },
 });
 

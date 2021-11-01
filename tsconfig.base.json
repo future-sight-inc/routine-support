@@ -15,8 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@routine-support/api-interfaces": ["libs/api-interfaces/src/index.ts"]
-    }
+      "@routine-support/api-client": ["libs/api-client/src/index.ts"],
+      "@routine-support/constants": ["libs/constants/src/index.ts"],
+      "@routine-support/models": ["libs/models/src/index.ts"],
+      "@routine-support/types": ["libs/types/src/index.ts"],
+      "@routine-support/utils": ["libs/utils/src/index.ts"]
+    },
+    "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules", "tmp"]
 }

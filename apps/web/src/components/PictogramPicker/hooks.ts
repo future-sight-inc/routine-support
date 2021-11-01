@@ -1,7 +1,5 @@
+import { Pictogram } from "@routine-support/types";
 import { ChangeEvent, useState } from "react";
-
-import { Pictogram } from "types/main";
-
 import { PICTOGRAMS } from "./constants";
 import { PictogramPickerActions } from "./PictogramPicker";
 

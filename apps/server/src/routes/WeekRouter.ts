@@ -1,5 +1,5 @@
+import { ActivityModel } from "@routine-support/models";
 import { Router } from "express";
-import { Activity } from "../models/Activity";
 import { getDateRangeFromWeek } from "../utils/getDateRangeFromWeek";
 import { getTimeRange } from "../utils/getTimeRange";
 
@@ -9,7 +9,7 @@ export const weekRouter = Router();
 
 weekRouter.get("/:year/:week", async (req, res) => {
   const { params } = req;
-  const activities = await Activity.find();
+  const activities = await ActivityModel.find();
   const year = Number(params.year);
   const week = Number(params.week);
 

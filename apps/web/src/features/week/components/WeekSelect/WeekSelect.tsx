@@ -1,12 +1,11 @@
+import { YearNumber, WeekNumber } from "@routine-support/models";
 import React from "react";
-
-import { YearNumber, WeekNumber } from "features/week/types";
 
 import { useWeekSelectComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface WeekSelectActions {
-  getWeek: (year: YearNumber, week: WeekNumber) => void;
+  getWeek: (year: YearNumber, week: WeekNumber, silent: boolean) => void;
 }
 
 export interface WeekSelectProps {

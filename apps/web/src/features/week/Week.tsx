@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
-
-import { Modal } from "components/Modal";
-import { ActivityForm } from "features/activity/components/ActivityForm";
-import { AddActivityButton } from "features/activity/components/AddActivityButton";
-import { useActivity } from "features/activity/hooks/useActivity";
-
+import { Modal } from "../../components/Modal";
+import { useActivity } from "../activity/useActivity";
+import { ActivityForm } from "./components/ActivityForm";
+import { AddActivityButton } from "./components/AddActivityButton";
 import { WeekCalendar } from "./components/WeekCalendar";
 import { WeekLayout } from "./components/WeekLayout";
 import { WeekRange } from "./components/WeekRange";
 import { WeekSelect } from "./components/WeekSelect";
-import { useWeek } from "./hooks/useWeek";
+import { useWeek } from "./useWeek";
 
 export const Week: React.FC = () => {
   const Week = useWeek();

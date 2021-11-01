@@ -1,6 +1,4 @@
-import { DateInfo } from "features/week/types";
-
-import { getDateInfoQuery } from "./getDateInfoQuery";
+import { DateInfo, getDateInfoQuery } from "@routine-support/models";
 
 export const updateCurrentDateInfoQuery = (
   dateInfo: DateInfo,

@@ -1,7 +1,6 @@
-import { Box } from "@mui/material";
+import { ImageUrl } from "@routine-support/types";
 import styled, { css } from "styled-components";
-import { Button } from "styled/components/Button";
-import { ImageUrl } from "types/main";
+import { Button } from "../../styled/components/Button";
 
 export const Wrapper = styled.div<{ backgroundImage?: ImageUrl }>`
   position: relative;

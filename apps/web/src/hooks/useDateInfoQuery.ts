@@ -1,5 +1,4 @@
-import { DateInfo } from "features/week/types";
-
+import { DateInfo } from "@routine-support/models";
 import { useQueryParams } from "./useQueryParams";
 
 export const useDateInfoQuery = (): DateInfo | undefined => {

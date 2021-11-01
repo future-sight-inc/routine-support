@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PictogramPicker as UncontrolledPictogramPicker } from "components/PictogramPicker";
+import { PictogramPicker as UncontrolledPictogramPicker } from "../../PictogramPicker";
 
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";

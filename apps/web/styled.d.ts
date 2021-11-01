@@ -32,6 +32,7 @@ declare module "styled-components" {
     };
     size: {
       cellHeight: string;
+      maxWidth: string;
     };
   }
 }

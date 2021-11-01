@@ -1,8 +1,6 @@
+import { Activity } from "@routine-support/models";
+import { getMinutes, stringifyTime } from "@routine-support/utils";
 import React from "react";
-
-import { Activity } from "features/activity/types";
-import { getMinutes } from "utils/getMinutes";
-import { stringifyTime } from "utils/stringifyTime";
 
 import * as S from "./styled";
 

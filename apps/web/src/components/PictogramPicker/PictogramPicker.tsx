@@ -2,11 +2,11 @@ import React from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment, TextField } from "@mui/material";
-import { Modal } from "components/Modal";
-import { ImageUrl } from "types/main";
 
 import { usePictogramPickerComponent } from "./hooks";
 import * as S from "./styled";
+import { ImageUrl } from "@routine-support/types";
+import { Modal } from "../Modal";
 
 interface PictogramPickerProps {
   value?: ImageUrl;
