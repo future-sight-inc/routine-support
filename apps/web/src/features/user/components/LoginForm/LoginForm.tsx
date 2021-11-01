@@ -1,3 +1,5 @@
+import React from "react";
+
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -7,8 +9,8 @@ import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { LinkService } from "apps/web/src/services/LinkService";
 import { Button } from "apps/web/src/styled/components/Button";
-import React from "react";
 import { Link } from "react-router-dom";
+
 import { useLoginFormComponent } from "./hooks";
 import * as S from "./styled";
 

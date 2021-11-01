@@ -1,21 +1,23 @@
-import { LinkService } from "apps/web/src/services/LinkService";
 import { useEffect } from "react";
+
+import { LinkService } from "apps/web/src/services/LinkService";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "../../useAuth";
+
+import { useUser } from "../../useUser";
 import { LoginForm as UncontrolledLoginForm } from "./LoginForm";
 
 export const LoginForm: React.FC = () => {
   const {
     models: { isLogged },
     operations: { login },
-  } = useAuth();
+  } = useUser();
 
   const history = useHistory();
   useEffect(() => {
     if (isLogged) {
       return history.push(LinkService.home());
     }
-  }, [isLogged]);
+  }, [isLogged, history]);
 
   return <UncontrolledLoginForm actions={{ login }} />;
 };

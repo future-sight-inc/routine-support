@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+
 import {
   UserLoginDto,
-  authAPI,
-  authActions,
+  userAPI,
+  userActions,
   UserRegisterDto,
   UserUpdateDto,
 } from "@routine-support/models";
 
-export const useAuth = () => {
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+
+export const useUser = () => {
   const dispatch = useAppDispatch();
 
-  const { user, isLogged } = useAppSelector((state) => state.auth);
+  const { user, isLogged } = useAppSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
@@ -19,11 +21,11 @@ export const useAuth = () => {
     try {
       setLoading(true);
 
-      const user = await authAPI.login(data);
+      const user = await userAPI.login(data);
 
-      dispatch(authActions.setUser(user));
+      dispatch(userActions.setUser(user));
     } catch (error) {
-      dispatch(authActions.setUser(null));
+      dispatch(userActions.setUser(null));
       throw error;
     } finally {
       setIsChecked(true);
@@ -35,10 +37,11 @@ export const useAuth = () => {
     try {
       setLoading(true);
 
-      await authAPI.logout();
-    } catch {
+      await userAPI.logout();
+    } catch (error) {
+      console.error(error);
     } finally {
-      dispatch(authActions.setUser(null));
+      dispatch(userActions.setUser(null));
       setIsChecked(true);
       setLoading(false);
     }
@@ -48,11 +51,11 @@ export const useAuth = () => {
     try {
       setLoading(true);
 
-      const user = await authAPI.register(data);
+      const user = await userAPI.register(data);
 
-      dispatch(authActions.setUser(user));
+      dispatch(userActions.setUser(user));
     } catch (error) {
-      dispatch(authActions.setUser(null));
+      dispatch(userActions.setUser(null));
       throw error;
     } finally {
       setIsChecked(true);
@@ -64,13 +67,13 @@ export const useAuth = () => {
     try {
       setLoading(true);
 
-      const user = await authAPI.getUser();
+      const user = await userAPI.getUser();
 
       console.log(user);
 
-      dispatch(authActions.setUser(user));
+      dispatch(userActions.setUser(user));
     } catch {
-      dispatch(authActions.setUser(null));
+      dispatch(userActions.setUser(null));
     } finally {
       setIsChecked(true);
       setLoading(false);
@@ -81,11 +84,11 @@ export const useAuth = () => {
     try {
       setLoading(true);
 
-      const user = await authAPI.updateUser(data);
+      const user = await userAPI.updateUser(data);
 
-      dispatch(authActions.setUser(user));
+      dispatch(userActions.setUser(user));
     } catch {
-      dispatch(authActions.setUser(null));
+      dispatch(userActions.setUser(null));
     } finally {
       setIsChecked(true);
       setLoading(false);

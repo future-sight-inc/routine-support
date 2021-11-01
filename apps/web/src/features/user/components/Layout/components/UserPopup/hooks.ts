@@ -1,4 +1,5 @@
 import { useState, MouseEvent } from "react";
+
 import { UserPopupActions } from "./UserPopup";
 
 export const useUserPopupComponent = (actions: UserPopupActions) => {

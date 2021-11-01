@@ -9,7 +9,7 @@ import {
   UserUpdateDto,
 } from "./types";
 
-export const authAPI = {
+export const userAPI = {
   login: async (data: UserLoginDto): Promise<User> => {
     const request: AxiosResponse<UserDto> = await apiClient.post(
       "/user/login",

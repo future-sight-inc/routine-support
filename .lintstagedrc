@@ -1,14 +1,5 @@
 {
-  "apps/**/*.{ts,tsx}": [
-    "yarn lint:write"
-  ],
-  "libs/**/*.{ts,tsx}": [
-    "yarn lint:write"
-  ],
-  "apps/**/*.{css,scss}": [
-    "yarn stylelint:write"
-  ],
-  "libs/**/*.{css,scss}": [
-    "yarn stylelint:write"
+  "{apps,libs}/**/*.{ts,tsx,scss}": [
+    "eslint --fix"
   ]
 }

@@ -1,11 +1,11 @@
-import { useAuth } from "../../useAuth";
+import { useUser } from "../../useUser";
 import { Layout as UncontrolledLayout } from "./Layout";
 
 export const Layout: React.FC = ({ children }) => {
   const {
     models: { user },
     operations: { logout },
-  } = useAuth();
+  } = useUser();
 
   if (!user) {
     return null;

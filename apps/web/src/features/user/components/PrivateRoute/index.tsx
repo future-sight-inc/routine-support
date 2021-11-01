@@ -1,4 +1,5 @@
 import { RouteProps } from "react-router-dom";
+
 import { usePrivateRouteComponent } from "./hooks";
 import { PrivateRoute as UncontrolledPrivateRoute } from "./PrivateRoute";
 

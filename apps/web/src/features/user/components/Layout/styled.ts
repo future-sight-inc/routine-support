@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -23,4 +24,21 @@ export const Content = styled.div`
   box-sizing: border-box;
   max-width: ${({ theme }) => theme.size.maxWidth};
   margin: 0 auto;
+`;
+
+export const Links = styled.div`
+  display: flex;
+  gap: 12px;
+`;
+
+export const Link = styled(RouterLink)`
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: ${({ theme }) => theme.palette.common.white};
+  }
 `;

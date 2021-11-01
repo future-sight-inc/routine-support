@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Student } from "./types";
 
-export interface AuthState {
+export interface StudentState {
   user: Student | null;
   isLogged: boolean;
 }
 
-const initialState: AuthState = {
+const initialState: StudentState = {
   user: null,
   isLogged: false,
 };

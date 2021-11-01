@@ -1,6 +1,8 @@
+import React from "react";
+
 import { Menu, MenuItem } from "@mui/material";
 import { User } from "@routine-support/models";
-import React from "react";
+
 import { useUserPopupComponent } from "./hooks";
 import * as S from "./styled";
 

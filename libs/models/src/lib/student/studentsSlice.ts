@@ -13,7 +13,7 @@ export const studentsSlice = createSlice({
   name: "students",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<Student[]>) => {
+    setStudents: (state, action: PayloadAction<Student[]>) => {
       state.students = action.payload;
     },
   },
