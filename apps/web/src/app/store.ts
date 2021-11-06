@@ -4,6 +4,7 @@ import {
   activityReducer,
   userReducer,
   studentsReducer,
+  studentReducer,
 } from "@routine-support/models";
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     week: weekReducer,
     activity: activityReducer,
     user: userReducer,
+    student: studentReducer,
     students: studentsReducer,
   },
 });

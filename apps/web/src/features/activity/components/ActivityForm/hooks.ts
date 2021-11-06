@@ -71,6 +71,7 @@ export const useActivityFormComponent = (
       minStartTime,
       minEndTime,
       isDirty: formState.isDirty,
+      isSubmitting: formState.isSubmitting,
     },
     operations: { handleSubmit: onSubmit, onDelete },
   };

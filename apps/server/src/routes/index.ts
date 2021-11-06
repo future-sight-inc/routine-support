@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { activityRouter } from "./ActivityRouter";
 import { dayRouter } from "./DayRouter";
+import { studentRouter } from "./StudentRouter";
 import { userRouter } from "./UserRouter";
 import { weekRouter } from "./WeekRouter";
 
@@ -13,5 +14,6 @@ router.use("/activity", activityRouter);
 router.use("/week", weekRouter);
 router.use("/day", dayRouter);
 router.use("/user", userRouter);
+router.use("/student", studentRouter);
 
 export default router;

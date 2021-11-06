@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Modal } from "../../components/Modal";
 import { useActivity } from "../activity/useActivity";
-import { ActivityForm } from "./components/ActivityForm";
+import { ActivityForm } from "../../features/activity/components/ActivityForm";
 import { AddActivityButton } from "./components/AddActivityButton";
 import { WeekCalendar } from "./components/WeekCalendar";
 import { WeekLayout } from "./components/WeekLayout";
@@ -50,7 +50,6 @@ export const Week: React.FC = () => {
         >
           <ActivityForm
             activity={Activity.models.activity}
-            loading={Activity.models.loading}
             actions={{
               createActivity: Activity.operations.createActivity,
               updateActivity: Activity.operations.updateActivity,

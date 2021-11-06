@@ -1,9 +1,41 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { Modal } from "../../components/Modal";
+import { StudentForm } from "../student/components/StudentForm/StudentForm";
+import { useStudent } from "../student/useStudent";
+import { Layout } from "../students/components/Layout";
+import { AddStudentButton } from "./components/AddStudentButton";
 import { useStudents } from "./useStudents";
 
 export const Students: React.FC = () => {
-  const { models, operations } = useStudents();
+  const Students = useStudents();
+  const Student = useStudent();
 
-  return <p>Here will be students</p>;
+  useEffect(() => {
+    Students.operations.getStudents();
+  }, []);
+
+  return (
+    <Layout
+      addStudentButton={
+        <AddStudentButton
+          onClick={() => Student.operations.openNewStudentModal()}
+        />
+      }
+    >
+      <Modal
+        opened={Student.models.opened}
+        onClose={Student.operations.closeStudentModal}
+      >
+        <StudentForm
+          student={Student.models.student}
+          actions={{
+            createStudent: Student.operations.createStudent,
+            updateStudent: Student.operations.updateStudent,
+            deleteStudent: Student.operations.deleteStudent,
+            getStudents: Students.operations.getStudents,
+          }}
+        />
+      </Modal>
+    </Layout>
+  );
 };

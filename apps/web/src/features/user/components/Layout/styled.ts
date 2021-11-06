@@ -16,6 +16,7 @@ export const HeaderInner = styled.div`
   max-width: ${({ theme }) => theme.size.maxWidth};
   padding: 0 32px;
   box-sizing: border-box;
+  margin: 0 auto;
 `;
 
 export const Content = styled.div`

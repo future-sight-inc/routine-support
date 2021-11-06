@@ -3,11 +3,12 @@ import { Router } from "express";
 import { authorization } from "../middleware/authorization";
 import { studentAuthorization } from "../middleware/studentAuthorization";
 import { getAuthCookie } from "../utils/getAuthCookie";
+import { getRandomColor } from "../utils/getRandomColor";
 
 export const studentRouter = Router();
 
 studentRouter.post("/", authorization, async (req, res) => {
-  StudentModel.create(req.body, (err) => {
+  StudentModel.create({ ...req.body, color: getRandomColor() }, (err) => {
     if (err) {
       console.log(err);
       return;
@@ -36,7 +37,7 @@ studentRouter.get("/", studentAuthorization, (__, res) => {
   return res.status(200).send(res.locals.student);
 });
 
-studentRouter.get("/coach/:id", studentAuthorization, (req, res) => {
+studentRouter.get("/coach/:id", authorization, (req, res) => {
   StudentModel.find({ coachId: req.params.id }, (err, result) => {
     if (err) {
       return res.status(401).send(err);

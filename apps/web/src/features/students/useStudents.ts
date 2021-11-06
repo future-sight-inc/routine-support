@@ -1,10 +1,6 @@
 import { useState } from "react";
 
-import {
-  studentAPI,
-  StudentDto,
-  studentsActions,
-} from "@routine-support/models";
+import { studentAPI, studentsActions } from "@routine-support/models";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
@@ -30,32 +26,8 @@ export const useStudents = () => {
     }
   };
 
-  const createStudent = async (data: StudentDto) => {
-    try {
-      setLoading(true);
-
-      await studentAPI.createStudent(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const updateStudent = async (data: StudentDto) => {
-    try {
-      setLoading(true);
-
-      await studentAPI.updateStudent(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return {
     models: { students, loading },
-    operations: { getStudents, createStudent, updateStudent },
+    operations: { getStudents },
   };
 };

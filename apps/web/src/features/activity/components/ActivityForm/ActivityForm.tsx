@@ -18,17 +18,22 @@ export interface ActivityFormActions {
 
 export interface ActivityFormProps {
   activity: Partial<Activity> | null;
-  loading: boolean;
   actions: ActivityFormActions;
 }
 
 export const ActivityForm: React.FC<ActivityFormProps> = ({
   activity,
-  loading,
   actions,
 }) => {
   const {
-    models: { control, minDate, minStartTime, minEndTime, isDirty },
+    models: {
+      control,
+      minDate,
+      minStartTime,
+      minEndTime,
+      isDirty,
+      isSubmitting,
+    },
     operations: { handleSubmit, onDelete },
   } = useActivityFormComponent(activity, actions);
 
@@ -72,7 +77,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"
-            loading={loading}
+            loading={isSubmitting}
             disabled={!isDirty} // ! Добавить локализацию
           >
             {activity?._id ? "Обновить" : "Создать"}

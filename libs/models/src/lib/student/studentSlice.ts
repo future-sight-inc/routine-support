@@ -2,22 +2,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Student } from "./types";
 
 export interface StudentState {
-  user: Student | null;
-  isLogged: boolean;
+  student: Partial<Student> | null;
 }
 
 const initialState: StudentState = {
-  user: null,
-  isLogged: false,
+  student: null,
 };
 
 export const studentSlice = createSlice({
   name: "student",
   initialState,
   reducers: {
-    setStudent: (state, action: PayloadAction<Student | null>) => {
-      state.user = action.payload;
-      state.isLogged = Boolean(action.payload);
+    setStudent: (state, action: PayloadAction<Partial<Student> | null>) => {
+      state.student = action.payload;
     },
   },
 });

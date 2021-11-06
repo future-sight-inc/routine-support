@@ -10,6 +10,11 @@ export type Student = {
   color: string;
 };
 
+export type NewStudentDto = {
+  name: string;
+  coachId: CoachId;
+};
+
 export type StudentDto = Student;
 
 export type StudentLoginDto = {
