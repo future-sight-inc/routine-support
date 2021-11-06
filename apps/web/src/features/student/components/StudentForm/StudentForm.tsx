@@ -1,11 +1,9 @@
+import React from "react";
+
 import { Student } from "@routine-support/models";
 import { Id } from "@routine-support/types";
-import React from "react";
-import { ActivityNameInput } from "apps/web/src/components/FormFields/ActivityNameInput";
-import { DatePicker } from "apps/web/src/components/FormFields/DatePicker";
-import { TimePicker } from "apps/web/src/components/FormFields/TimePicker";
-import { PictogramPicker } from "apps/web/src/components/FormFields/PictogramPicker";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
+
 import { useStudentFormComponent } from "./hooks";
 import * as S from "./styled";
 
@@ -33,6 +31,9 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   return (
     <form onSubmit={handleSubmit}>
       <S.Wrapper>
+        <S.Title>
+          {student?._id ? "Редактирование студента" : "Создание студента"}
+        </S.Title>
         <TextField
           name="name"
           control={control}

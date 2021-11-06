@@ -4,7 +4,7 @@ export type Token = string;
 export type CoachId = Id;
 
 export type Student = {
-  _id?: Id;
+  _id: Id;
   name: string;
   coachId: CoachId;
   color: string;

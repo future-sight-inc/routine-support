@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`

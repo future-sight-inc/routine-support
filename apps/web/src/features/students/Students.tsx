@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+
 import { Modal } from "../../components/Modal";
 import { StudentForm } from "../student/components/StudentForm/StudentForm";
 import { useStudent } from "../student/useStudent";
 import { Layout } from "../students/components/Layout";
 import { AddStudentButton } from "./components/AddStudentButton";
+import { StudentList } from "./components/StudentList";
 import { useStudents } from "./useStudents";
 
 export const Students: React.FC = () => {
@@ -22,6 +24,14 @@ export const Students: React.FC = () => {
         />
       }
     >
+      <StudentList
+        students={Students.models.students}
+        actions={{
+          openStudentModal: Student.operations.openStudentModal,
+          deleteStudent: Student.operations.deleteStudent,
+          getStudents: Students.operations.getStudents,
+        }}
+      />
       <Modal
         opened={Student.models.opened}
         onClose={Student.operations.closeStudentModal}

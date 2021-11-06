@@ -23,7 +23,7 @@ activityRouter.post("/", (req, res) => {
 activityRouter.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
-  ActivityModel.findByIdAndDelete(id, function (err) {
+  ActivityModel.findByIdAndDelete(id, (err) => {
     if (err) return console.log(err);
 
     res.status(200).send("Activity deleted");
@@ -40,7 +40,7 @@ activityRouter.put("/:id", (req, res) => {
     {
       ...data,
     },
-    function (err) {
+    (err) => {
       if (err) return console.log(err);
 
       res.status(200).send("Activity is updated");

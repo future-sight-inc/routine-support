@@ -37,6 +37,34 @@ studentRouter.get("/", studentAuthorization, (__, res) => {
   return res.status(200).send(res.locals.student);
 });
 
+studentRouter.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  StudentModel.findByIdAndDelete(id, (err) => {
+    if (err) return console.log(err);
+
+    res.status(200).send("Activity deleted");
+  });
+});
+
+studentRouter.put("/:id", (req, res) => {
+  // ! _v - мусор, который летит из бд, починить !
+  const { _v, ...data } = req.body;
+  const id = req.params.id;
+
+  StudentModel.findByIdAndUpdate(
+    id,
+    {
+      ...data,
+    },
+    (err) => {
+      if (err) return console.log(err);
+
+      res.status(200).send("Activity is updated");
+    }
+  );
+});
+
 studentRouter.get("/coach/:id", authorization, (req, res) => {
   StudentModel.find({ coachId: req.params.id }, (err, result) => {
     if (err) {
