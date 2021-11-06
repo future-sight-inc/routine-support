@@ -1,32 +1,70 @@
 import React from "react";
 
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import ListIcon from "@mui/icons-material/List";
+import { List, ListItemButton, ListItemText } from "@mui/material";
+import { ListItem } from "@mui/material";
+import { ListItemIcon } from "@mui/material";
 import { User } from "@routine-support/models";
 import { LinkService } from "apps/web/src/services/LinkService";
+import { NavLink } from "react-router-dom";
 
-import { UserPopup } from "./components/UserPopup";
 import * as S from "./styled";
+import { useLayoutComponent } from "./useLayoutComponent";
 
-interface UserPopupActions {
+export interface LayoutActions {
   logout: () => void;
 }
 
 interface LayoutProps {
   user: User;
-  actions: UserPopupActions;
+  actions: LayoutActions;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
+  const {
+    operations: { handleLogout },
+  } = useLayoutComponent(actions);
+
   return (
     <S.Wrapper>
       <S.Header>
-        <S.HeaderInner>
-          <S.Links>
-            <S.Link to={LinkService.home()}>Календарь</S.Link>
-            <S.Link to={LinkService.students()}>Студенты</S.Link>
-          </S.Links>
-          <UserPopup actions={actions} user={user} />
-        </S.HeaderInner>
+        <S.UserWrapper>
+          <S.UserIcon />
+          <S.Email>{user.email}</S.Email>
+        </S.UserWrapper>
       </S.Header>
+      <S.Sidebar>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton
+              component={NavLink}
+              exact
+              to={LinkService.home()}
+              activeClassName="active"
+            >
+              <ListItemIcon>
+                <CalendarTodayIcon />
+              </ListItemIcon>
+              <ListItemText primary="Календарь" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              component={NavLink}
+              exact
+              to={LinkService.students()}
+              activeClassName="active"
+            >
+              <ListItemIcon>
+                <ListIcon />
+              </ListItemIcon>
+              <ListItemText primary="Студенты" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <S.LogoutButton onClick={handleLogout}>Выйти</S.LogoutButton>
+      </S.Sidebar>
       <S.Content>{children}</S.Content>
     </S.Wrapper>
   );

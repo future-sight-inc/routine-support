@@ -23,6 +23,7 @@ export const Students: React.FC = () => {
           onClick={() => Student.operations.openNewStudentModal()}
         />
       }
+      loading={Students.models.loading}
     >
       <StudentList
         students={Students.models.students}

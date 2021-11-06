@@ -36,22 +36,17 @@ export const StudentList: React.FC<StudentListProps> = ({
   return (
     <S.List>
       {students.map((student) => (
-        <ListItem
-          divider
-          disablePadding
-          secondaryAction={
-            <>
+        <ListItem divider>
+          <ListItemButton onClick={() => onStudentClick(student)}>
+            <ListItemText primary={student.name} />
+            <div>
               <IconButton onClick={() => onQrOpen(student._id)}>
                 <QrCodeIcon />
               </IconButton>
               <IconButton onClick={() => onStudentDelete(student._id)}>
                 <DeleteIcon />
               </IconButton>
-            </>
-          }
-        >
-          <ListItemButton onClick={() => onStudentClick(student)}>
-            <ListItemText primary={student.name} />
+            </div>
           </ListItemButton>
         </ListItem>
       ))}
