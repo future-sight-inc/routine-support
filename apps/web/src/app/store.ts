@@ -2,14 +2,18 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import {
   weekReducer,
   activityReducer,
-  authReducer,
+  userReducer,
+  studentsReducer,
+  studentReducer,
 } from "@routine-support/models";
 
 export const store = configureStore({
   reducer: {
     week: weekReducer,
     activity: activityReducer,
-    auth: authReducer,
+    user: userReducer,
+    student: studentReducer,
+    students: studentsReducer,
   },
 });
 

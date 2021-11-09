@@ -19,6 +19,10 @@ export const WeekLayout: React.FC<WeekLayoutProps> = ({
   activityModal,
   loading,
 }) => {
+  if (loading) {
+    return <S.Spinner />;
+  }
+
   return (
     <S.Wrapper>
       <S.Column>
@@ -29,7 +33,7 @@ export const WeekLayout: React.FC<WeekLayoutProps> = ({
           {weekSelect}
           {weekRange}
         </S.Head>
-        <S.Body>{loading ? <S.Spinner /> : calendar}</S.Body>
+        <S.Body>{calendar}</S.Body>
       </S.Column>
       {activityModal}
     </S.Wrapper>

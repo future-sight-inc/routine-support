@@ -22,6 +22,8 @@ export const Theme: DefaultTheme = {
       lightblue: "#F5FCFF",
       green: "#95E19B",
       blue: "#A0DBFD",
+      darkblue: "#2C5082",
+      activeSidebarLink: "rgba(255, 255, 255, 0.2)",
     },
   },
   borderRadius: 4,

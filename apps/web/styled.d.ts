@@ -17,6 +17,8 @@ declare module "styled-components" {
         lightblue: string;
         green: string;
         blue: string;
+        darkblue: string;
+        activeSidebarLink: string;
       };
       primary: Palette;
       secondary: Palette;
