@@ -49,3 +49,4 @@ npm-debug.*
 *.orig.*
 web-build/
 apps/mobile/node_modules
+apps/mobile/node_modules
