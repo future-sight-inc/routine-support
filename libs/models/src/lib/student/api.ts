@@ -1,11 +1,17 @@
-import { apiClient } from "@routine-support/api-client";
+import { apiClient, mobileApiClient } from "@routine-support/api-client";
 import { Id } from "@routine-support/types";
 import { AxiosResponse } from "axios";
-import { CoachId, NewStudentDto, Student, StudentDto, StudentLoginDto } from "./types";
+import {
+  CoachId,
+  NewStudentDto,
+  Student,
+  StudentDto,
+  StudentLoginDto,
+} from "./types";
 
 export const studentAPI = {
   login: async (data: StudentLoginDto): Promise<Student> => {
-    const request: AxiosResponse<StudentDto> = await apiClient.post(
+    const request: AxiosResponse<StudentDto> = await mobileApiClient.post(
       "/student/login",
       data
     );
@@ -13,12 +19,12 @@ export const studentAPI = {
     return request.data as Student;
   },
   logout: async () => {
-    const request: AxiosResponse = await apiClient.get("/student/logout");
+    const request: AxiosResponse = await mobileApiClient.get("/student/logout");
 
     return request.data;
   },
   getStudent: async (): Promise<Student> => {
-    const request: AxiosResponse<StudentDto> = await apiClient.get("/student");
+    const request: AxiosResponse<StudentDto> = await mobileApiClient.get("/student");
 
     return request.data as Student;
   },

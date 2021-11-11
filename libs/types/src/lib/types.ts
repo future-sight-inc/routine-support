@@ -15,3 +15,11 @@ export type Pictogram = {
 
 export type Email = string;
 export type Password = string;
+
+export type AuthQrCodeData = {
+  token: string;
+};
+
+export type AuthQrCode = {
+  data: AuthQrCodeData;
+};

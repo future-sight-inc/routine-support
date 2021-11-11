@@ -10,8 +10,8 @@ import { Student } from "@routine-support/models";
 import { Id } from "@routine-support/types";
 import { Modal } from "apps/web/src/components/Modal";
 
+import { useStudentListComponent } from "./hooks";
 import * as S from "./styled";
-import { useStudentListComponent } from "./useStudentListComponent";
 
 export interface StudentListActions {
   openStudentModal: (student: Student) => void;

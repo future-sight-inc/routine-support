@@ -20,8 +20,13 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bearerToken());
-app.use(cors());
-app.use(morgan('tiny'));
+app.use(
+  cors({
+    preflightContinue: true,
+    credentials: true,
+  })
+);
+app.use(morgan("tiny"));
 
 app.use("/api", BaseRouter);
 

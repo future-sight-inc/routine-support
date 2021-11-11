@@ -19,13 +19,16 @@ studentRouter.post("/", authorization, async (req, res) => {
 });
 
 studentRouter.post("/login", async (req, res) => {
-  StudentModel.findOne(req.body, (err, result) => {
+  StudentModel.findById(req.body.id, (err, result) => {
     if (err || !result) {
       return res.status(401).send(err);
     }
 
     const cookie = getAuthCookie(result);
-    return res.status(200).cookie(cookie.name, cookie.token).send(result);
+    return res
+      .status(200)
+      .cookie(cookie.name, cookie.token)
+      .send(result);
   });
 });
 
