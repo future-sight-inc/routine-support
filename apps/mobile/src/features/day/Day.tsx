@@ -1,17 +1,47 @@
+import {
+  Divider,
+  Icon,
+  Layout,
+  TopNavigation,
+  TopNavigationAction,
+} from "@ui-kitten/components";
 import React from "react";
-import { Layout, Text, Button } from "@ui-kitten/components";
-import { useStudent } from "../student/useStudent";
+import { StyleSheet } from "react-native";
+import { useDayComponent } from "./hooks";
 
 export const Day: React.FC = () => {
   const {
-    models: { student },
-    operations: { logout },
-  } = useStudent();
+    operations: { handleForwardPress },
+  } = useDayComponent();
 
   return (
-    <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Logged as {student!.name}!</Text>
-      <Button onPress={logout}>Logout</Button>
+    <Layout
+      style={{
+        flex: 1,
+        alignItems: "center",
+        padding: 32,
+        paddingTop: 64,
+        ...StyleSheet.absoluteFillObject,
+      }}
+    >
+      <Layout style={{ width: "100%" }}>
+        <TopNavigation
+          alignment="center"
+          title="10:00"
+          accessoryRight={
+            <TopNavigationAction
+              icon={(props) => (
+                <Icon
+                  {...props}
+                  name="person-outline"
+                  onPress={handleForwardPress}
+                />
+              )}
+            />
+          }
+        />
+        <Divider />
+      </Layout>
     </Layout>
   );
 };

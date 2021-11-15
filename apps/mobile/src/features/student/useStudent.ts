@@ -24,7 +24,8 @@ export const useStudent = () => {
       dispatch(studentActions.setStudent(student));
     } catch (error) {
       dispatch(studentActions.setStudent(null));
-      console.log(error)
+      console.log(error);
+
       throw error;
     } finally {
       setIsChecked(true);
@@ -51,8 +52,6 @@ export const useStudent = () => {
       setLoading(true);
 
       const student = await studentAPI.getStudent();
-
-      console.log(student);
 
       dispatch(studentActions.setStudent(student));
     } catch {
