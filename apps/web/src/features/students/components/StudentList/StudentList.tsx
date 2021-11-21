@@ -40,7 +40,12 @@ export const StudentList: React.FC<StudentListProps> = ({
           <ListItemButton onClick={() => onStudentClick(student)}>
             <ListItemText primary={student.name} />
             <div>
-              <IconButton onClick={() => onQrOpen(student._id)}>
+              <IconButton
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onQrOpen(student._id);
+                }}
+              >
                 <QrCodeIcon />
               </IconButton>
               <IconButton onClick={() => onStudentDelete(student._id)}>
@@ -51,7 +56,7 @@ export const StudentList: React.FC<StudentListProps> = ({
         </ListItem>
       ))}
       <Modal opened={Boolean(qr)} onClose={onQrClose}>
-        <S.Qr src={qr!} />
+        {qr && <S.Qr src={qr} />}
         <S.QrTitle>
           Отсканируйте в приложении
           <br />
