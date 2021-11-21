@@ -13,7 +13,7 @@
     "lint:write": "eslint --debug */ --fix",
     "stylelint": "stylelint */** --max-warnings",
     "stylelint:write": "stylelint */** --fix --max-warnings",
-    "prepare": "husky install",
+    "prepare": "npx husky install",
     "pre-commit": "lint-staged",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -o docs-build"
