@@ -11,5 +11,3 @@ jobs:
         with:
           cmd: install --ignore-engines
       - uses: stefanoeb/eslint-action@1.0.2
-        with:
-          files: "{apps,libs}/"
