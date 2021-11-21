@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
+import { Activity, User } from "@routine-support/models";
 import moment, { Moment } from "moment";
 import { useForm } from "react-hook-form";
 
 import { ActivityFormActions } from "./ActivityForm";
-import { Activity } from "@routine-support/models";
 
 export const useActivityFormComponent = (
+  user: User,
   activity: Partial<Activity> | null,
   actions: ActivityFormActions
 ) => {
@@ -47,9 +48,15 @@ export const useActivityFormComponent = (
 
   const onSubmit = handleSubmit(async (values) => {
     if (values._id) {
-      await actions.updateActivity(values as Activity);
+      await actions.updateActivity({
+        ...values,
+        coachId: user._id,
+      } as Activity);
     } else {
-      await actions.createActivity(values as Activity);
+      await actions.createActivity({
+        ...values,
+        coachId: user._id,
+      } as Activity);
     }
 
     actions.getWeek();

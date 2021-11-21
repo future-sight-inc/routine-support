@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   DateInfo,
   getCurrentDateInfo,
@@ -7,7 +9,6 @@ import {
   YearNumber,
 } from "@routine-support/models";
 
-import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
 import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";

@@ -1,11 +1,12 @@
+import { useState } from "react";
+
 import {
   Activity,
   activityActions,
   activityAPI,
 } from "@routine-support/models";
 import { Id } from "@routine-support/types";
-import { useState } from "react";
-import { toast } from "react-toastify";
+
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 export const useActivity = () => {
@@ -25,8 +26,6 @@ export const useActivity = () => {
       await activityAPI.createActivity(activity);
 
       setOpened(false);
-
-      toast.success("Activity added!");
     } catch (error) {
       console.log(error);
     } finally {
@@ -41,8 +40,6 @@ export const useActivity = () => {
       await activityAPI.updateActivity(activity);
 
       setOpened(false);
-
-      toast.success("Activity updated!");
     } catch (error) {
       console.log(error);
     } finally {
@@ -57,8 +54,6 @@ export const useActivity = () => {
       await activityAPI.deleteActivity(id);
 
       setOpened(false);
-
-      toast.success("Activity deleted!");
     } catch (error) {
       console.log(error);
     } finally {

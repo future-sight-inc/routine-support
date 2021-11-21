@@ -22,6 +22,10 @@ const activitySchema = new Schema({
     type: String,
     required: true,
   },
+  coachId: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
 });
 
 export const ActivityModel = model<Activity>("activity", activitySchema);

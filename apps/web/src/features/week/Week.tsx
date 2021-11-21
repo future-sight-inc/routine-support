@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+
 import { Modal } from "../../components/Modal";
-import { useActivity } from "../activity/useActivity";
 import { ActivityForm } from "../../features/activity/components/ActivityForm";
+import { useActivity } from "../activity/useActivity";
+import { useUser } from "../user/useUser";
 import { AddActivityButton } from "./components/AddActivityButton";
 import { WeekCalendar } from "./components/WeekCalendar";
 import { WeekLayout } from "./components/WeekLayout";
@@ -12,10 +14,17 @@ import { useWeek } from "./useWeek";
 export const Week: React.FC = () => {
   const Week = useWeek();
   const Activity = useActivity();
+  const User = useUser();
 
   useEffect(() => {
-    Week.operations.getWeek();
-  }, []);
+    if (User.models.user) {
+      Week.operations.getWeek();
+    }
+  }, [User.models.user]);
+
+  if (!User.models.user) {
+    return null;
+  }
 
   return (
     <WeekLayout
@@ -49,6 +58,7 @@ export const Week: React.FC = () => {
           onClose={Activity.operations.closeActivityModal}
         >
           <ActivityForm
+            user={User.models.user}
             activity={Activity.models.activity}
             actions={{
               createActivity: Activity.operations.createActivity,
