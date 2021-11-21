@@ -26,18 +26,11 @@ userRouter.post("/login", async (req, res) => {
     console.log(req.hostname, req.get("port"));
 
     const cookie = getAuthCookie(result);
-    return res
-      .status(200)
-      .cookie(cookie.name, cookie.token, {
-        domain: req.hostname + ":4200",
-        sameSite: "none",
-        secure: true,
-      })
-      .send(result);
+    return res.status(200).cookie(cookie.name, cookie.token).send(result);
   });
 });
 
-userRouter.get("/", authorization, (req, res) => {
+userRouter.get("/", authorization, (__, res) => {
   return res.status(200).send(res.locals.user);
 });
 

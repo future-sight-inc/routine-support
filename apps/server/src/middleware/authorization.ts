@@ -4,6 +4,8 @@ import * as jwt from "jsonwebtoken";
 export const authorization = (req, res, next) => {
   const token = req.cookies.access_token;
 
+  console.log(req.cookies)
+
   if (!token) {
     return res.sendStatus(403);
   }
