@@ -22,6 +22,7 @@ export const useActivityFormComponent = (
     useForm({
       defaultValues,
       // ! Баг с типизацией
+      // eslint-disable-next-line
     } as any);
 
   const [minStartTime, setMinStartTime] = useState<Moment | undefined>(
@@ -59,7 +60,7 @@ export const useActivityFormComponent = (
       } as Activity);
     }
 
-    actions.getWeek();
+    actions.getWeek(undefined, { silent: true });
   });
 
   const onDelete = async () => {
@@ -67,7 +68,7 @@ export const useActivityFormComponent = (
     if (window.confirm("Confirm your action") && id) {
       await actions.deleteActivity(id);
 
-      actions.getWeek();
+      actions.getWeek(undefined, { silent: true });
     }
   };
 

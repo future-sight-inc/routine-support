@@ -1,6 +1,7 @@
+import React from "react";
+
 import { Week } from "@routine-support/models";
 import { isToday } from "@routine-support/utils";
-import React from "react";
 
 import * as S from "./styled";
 
@@ -14,7 +15,7 @@ export const WeekRange: React.FC<WeekRangeProps> = ({ week }) => {
       {week?.weekInfo.days.map((day) => (
         <S.Day today={isToday(day)}>
           <S.DayName>{day.format("dd")},</S.DayName>
-          <S.Date>{day.format("DD MMM")}</S.Date>
+          <S.Date>{day.locale("ru").format("DD MMM")}</S.Date>
         </S.Day>
       ))}
     </S.Wrapper>

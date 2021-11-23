@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Activity, User } from "@routine-support/models";
+import { Activity, User, WeekNumber, YearNumber } from "@routine-support/models";
 import { Id } from "@routine-support/types";
 
 import { ActivityNameInput } from "../../../../components/FormFields/ActivityNameInput";
@@ -14,7 +14,10 @@ export interface ActivityFormActions {
   createActivity: (activity: Activity) => Promise<void>;
   updateActivity: (activity: Activity) => Promise<void>;
   deleteActivity: (id: Id) => Promise<void>;
-  getWeek: () => void;
+  getWeek: (
+    params?: { year: YearNumber; week: WeekNumber },
+    config?: { silent: boolean }
+  ) => void;
 }
 
 export interface ActivityFormProps {
