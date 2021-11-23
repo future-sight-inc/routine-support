@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Student } from "./types";
 
 export interface StudentAuthState {
-  student: Partial<Student> | null;
+  student: Student | null;
   isLogged: boolean;
 }
 

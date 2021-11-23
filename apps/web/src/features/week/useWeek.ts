@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   DateInfo,
   getCurrentDateInfo,
@@ -7,7 +9,6 @@ import {
   YearNumber,
 } from "@routine-support/models";
 
-import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
 import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";
@@ -22,16 +23,20 @@ export const useWeek = () => {
   const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
 
   const getWeek = async (
-    year?: YearNumber,
-    weekNumber?: WeekNumber,
-    silent?: boolean
+    params?: {
+      year?: YearNumber;
+      weekNumber?: WeekNumber;
+    },
+    config?: {
+      silent?: boolean;
+    }
   ) => {
     try {
-      !silent && setLoading(true);
+      !config?.silent && setLoading(true);
 
       const date: DateInfo = {
-        year: year || dateInfoQuery?.year || currentDateInfo.year,
-        week: weekNumber || dateInfoQuery?.week || currentDateInfo.week,
+        year: params?.year || dateInfoQuery?.year || currentDateInfo.year,
+        week: params?.weekNumber || dateInfoQuery?.week || currentDateInfo.week,
       };
 
       updateCurrentDateInfoQuery(date);
@@ -43,7 +48,7 @@ export const useWeek = () => {
       // todo: Добавить сервис исключений
       console.error(error);
     } finally {
-      !silent && setLoading(false);
+      !config?.silent && setLoading(false);
     }
   };
 

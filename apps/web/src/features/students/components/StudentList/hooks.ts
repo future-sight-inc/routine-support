@@ -21,7 +21,7 @@ export const useStudentListComponent = (actions: StudentListActions) => {
     try {
       setQrLoading(true);
 
-      const qr = await QRCode.toDataURL(String(id));
+      const qr = await QRCode.toDataURL(JSON.stringify({ id }));
 
       setQR(qr);
     } catch (error) {

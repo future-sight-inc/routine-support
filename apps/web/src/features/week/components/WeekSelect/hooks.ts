@@ -4,7 +4,6 @@ import {
   getDateInfoFromMoment,
 } from "@routine-support/models";
 import { useDateInfoQuery } from "apps/web/src/hooks/useDateInfoQuery";
-
 import { Moment } from "moment";
 import { useForm } from "react-hook-form";
 
@@ -26,8 +25,8 @@ export const useWeekSelectComponent = (actions: WeekSelectActions) => {
     setValue("week", dateInfo.week);
   };
 
-  const onSubmit = handleSubmit((values: DateInfo) => {
-    actions.getWeek(values.year, values.week, true);
+  const onSubmit = handleSubmit(({ year, week }: DateInfo) => {
+    actions.getWeek({ year, week }, { silent: true });
   });
 
   const onPrevClick = (values: DateInfo) => {

@@ -18,5 +18,5 @@ export type NewStudentDto = {
 export type StudentDto = Student;
 
 export type StudentLoginDto = {
-  token: Token;
+  id: Id;
 };

@@ -69,8 +69,6 @@ export const useUser = () => {
 
       const user = await userAPI.getUser();
 
-      console.log(user);
-
       dispatch(userActions.setUser(user));
     } catch {
       dispatch(userActions.setUser(null));

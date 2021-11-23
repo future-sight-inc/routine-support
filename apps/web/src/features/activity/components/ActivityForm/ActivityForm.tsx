@@ -1,11 +1,12 @@
-import { Activity } from "@routine-support/models";
-import { Id } from "@routine-support/types";
-import { ActivityNameInput } from "apps/web/src/components/FormFields/ActivityNameInput";
-import { DatePicker } from "apps/web/src/components/FormFields/DatePicker";
-import { TimePicker } from "apps/web/src/components/FormFields/TimePicker";
-import { PictogramPicker } from "apps/web/src/components/FormFields/PictogramPicker";
 import React from "react";
 
+import { Activity, User, WeekNumber, YearNumber } from "@routine-support/models";
+import { Id } from "@routine-support/types";
+
+import { ActivityNameInput } from "../../../../components/FormFields/ActivityNameInput";
+import { DatePicker } from "../../../../components/FormFields/DatePicker";
+import { PictogramPicker } from "../../../../components/FormFields/PictogramPicker";
+import { TimePicker } from "../../../../components/FormFields/TimePicker";
 import { useActivityFormComponent } from "./hooks";
 import * as S from "./styled";
 
@@ -13,15 +14,20 @@ export interface ActivityFormActions {
   createActivity: (activity: Activity) => Promise<void>;
   updateActivity: (activity: Activity) => Promise<void>;
   deleteActivity: (id: Id) => Promise<void>;
-  getWeek: () => void;
+  getWeek: (
+    params?: { year: YearNumber; week: WeekNumber },
+    config?: { silent: boolean }
+  ) => void;
 }
 
 export interface ActivityFormProps {
+  user: User;
   activity: Partial<Activity> | null;
   actions: ActivityFormActions;
 }
 
 export const ActivityForm: React.FC<ActivityFormProps> = ({
+  user,
   activity,
   actions,
 }) => {
@@ -35,7 +41,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
       isSubmitting,
     },
     operations: { handleSubmit, onDelete },
-  } = useActivityFormComponent(activity, actions);
+  } = useActivityFormComponent(user, activity, actions);
 
   return (
     <form onSubmit={handleSubmit}>

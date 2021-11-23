@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bearerToken());
 app.use(cors());
-app.use(morgan('tiny'));
+app.use(morgan("tiny"));
 
 app.use("/api", BaseRouter);
 

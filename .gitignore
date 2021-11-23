@@ -39,3 +39,16 @@ testem.log
 Thumbs.db
 .DS_Store
 .DS_Store
+.expo*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+apps/mobile/node_modules
+apps/mobile/node_modules
+.env
+.DS_Store
