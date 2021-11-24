@@ -1,14 +1,15 @@
 import React from "react";
 
-import { PictogramPicker as UncontrolledPictogramPicker } from "../../PictogramPicker";
+import { RepeatTypePicker as UncontrolledRepeatTypePicker } from "../../RepeatTypePicker";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-export const PictogramPicker: React.FC<FormFieldProps> = ({
+export const RepeatTypePicker: React.FC<FormFieldProps> = ({
   name,
   control,
   required,
   disabled,
+  label,
 }) => {
   return (
     <Controller
@@ -16,8 +17,9 @@ export const PictogramPicker: React.FC<FormFieldProps> = ({
       control={control}
       required={required}
       disabled={disabled}
+      label={label}
       render={({ field }) => (
-        <UncontrolledPictogramPicker
+        <UncontrolledRepeatTypePicker
           value={field.value}
           onChange={field.onChange}
         />

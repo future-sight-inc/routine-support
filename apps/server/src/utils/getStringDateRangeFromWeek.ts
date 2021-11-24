@@ -1,6 +1,7 @@
 import moment = require("moment");
+import { DATE_FORMAT } from "../constants/DateFormat";
 
-export const getDateRangeFromWeek = (weekNumber: number, year: number) => {
+export const getStringDateRangeFromWeek = (weekNumber: number, year: number) => {
   const MONDAY = moment().day("Monday").year(year).isoWeek(weekNumber);
   const DAYS = [MONDAY];
 
@@ -9,5 +10,5 @@ export const getDateRangeFromWeek = (weekNumber: number, year: number) => {
     DAYS.push(DAY);
   }
 
-  return DAYS;
+  return DAYS.map((day) => day.format(DATE_FORMAT));
 };

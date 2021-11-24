@@ -13,9 +13,9 @@ dayRouter.get("/:date", async (req, res) => {
   const year = moment(date, DATE_FORMAT).year();
   const activities = await ActivityModel.find();
 
-  const day = getWeek(activities, week, year).find(
-    (item) => item.date === date
-  );
-
-  return res.status(200).send(day);
+  // ! Будет делаться в #27
+  // const day = getWeek(activities, week, year).find(
+  //   (item) => item.date === date
+  // );
+  // return res.status(200).send(day);
 });

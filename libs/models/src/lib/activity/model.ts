@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Activity } from "./types";
+import { Activity, RepeatTypeEnum } from "./types";
 
 const activitySchema = new Schema({
   name: {
@@ -25,6 +25,10 @@ const activitySchema = new Schema({
   coachId: {
     type: Schema.Types.ObjectId,
     required: true,
+  },
+  repeat: {
+    type: Number,
+    default: RepeatTypeEnum.None,
   },
 });
 
