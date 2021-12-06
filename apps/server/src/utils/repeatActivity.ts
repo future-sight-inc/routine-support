@@ -1,6 +1,6 @@
 import { DATE_FORMAT } from "@routine-support/constants";
 import { Activity, RepeatTypeEnum } from "@routine-support/models";
-import moment, { Moment } from "moment";
+import moment = require("moment");
 import { getDateRangeFromWeek } from "./getDateRangeFromWeek";
 
 export const repeatActivity = (
@@ -23,12 +23,16 @@ export const repeatActivity = (
   }
 };
 
-export const repeatActivityEveryDay = (activity: Activity, week: Moment[]) => {
+export const repeatActivityEveryDay = (
+  // ! Баг в mongoose
+  activity: any,
+  week: moment.Moment[]
+) => {
   const result = [];
 
   for (let i = 0; i <= 6; i++) {
     const newActivity = {
-      ...activity,
+      ...activity._doc,
       date: week[i],
     };
 
@@ -41,13 +45,14 @@ export const repeatActivityEveryDay = (activity: Activity, week: Moment[]) => {
 };
 
 export const repeatActivityEveryWeek = (
-  activity: Activity,
-  week: Moment[],
+  // ! Баг в mongoose
+  activity: any,
+  week: moment.Moment[],
   weekNumber: number,
   yearNumber: number
 ) => {
   const newActivity = {
-    ...activity,
+    ...activity._doc,
     date: moment(activity.date, DATE_FORMAT),
   };
   // ! Внутренняя магия библиотеки
@@ -65,12 +70,13 @@ export const repeatActivityEveryWeek = (
 };
 
 export const repeatActivityEveryMonth = (
-  activity: Activity,
-  week: Moment[]
+  // ! Баг в mongoose
+  activity: any,
+  week: moment.Moment[]
 ) => {
   for (let i = 0; i <= 6; i++) {
     const newActivity = {
-      ...activity,
+      ...activity._doc,
       date: moment(activity.date, DATE_FORMAT),
     };
     newActivity.date.set("month", week[i].get("month"));

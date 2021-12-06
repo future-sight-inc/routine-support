@@ -1,13 +1,13 @@
 import React, { createRef } from "react";
 
+import { Activity, Week } from "@routine-support/models";
+import { isToday, parseTime, stringifyDate } from "@routine-support/utils";
 import moment from "moment";
 
 import { ActivityGroup } from "./components/ActivityGroup";
 import { useWeekCalendarComponent } from "./hooks";
 import * as S from "./styled";
 import { groupActivities } from "./utils";
-import { Activity, Week } from "@routine-support/models";
-import { isToday, parseTime, stringifyDate } from "@routine-support/utils";
 
 export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
@@ -32,8 +32,8 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
   return (
     <S.Wrapper ref={wrapperRef}>
       <S.TimeColumn>
-        {week.weekInfo.timeRange.map((time) => (
-          <S.Cell>
+        {week.weekInfo.timeRange.map((time, index) => (
+          <S.Cell key={index}>
             <S.Time>{time}</S.Time>
           </S.Cell>
         ))}
