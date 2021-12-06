@@ -13,7 +13,7 @@ import { useDayComponent } from "./hooks";
 
 export const Day: React.FC = () => {
   const {
-    operations: { handleForwardPress },
+    operations: { handleBackPress, handleForwardPress },
   } = useDayComponent();
 
   return (
@@ -22,15 +22,22 @@ export const Day: React.FC = () => {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        padding: 32,
         paddingTop: 64,
+        paddingBottom: 8,
         ...StyleSheet.absoluteFillObject,
       }}
     >
       <Layout style={{ width: "100%" }}>
         <TopNavigation
           alignment="center"
-          title="10:00"
+          title="9:00"
+          accessoryLeft={
+            <TopNavigationAction
+              icon={(props) => (
+                <Icon {...props} name="arrow-back" onPress={handleBackPress} />
+              )}
+            />
+          }
           accessoryRight={
             <TopNavigationAction
               icon={(props) => (
@@ -50,20 +57,24 @@ export const Day: React.FC = () => {
           Breakfast
         </Text>
         <Text category="h6" style={{ textAlign: "center", marginBottom: 16 }}>
-          10:00 – 10:30
+          9:00 – 9:30
         </Text>
         <Image
           source={{ uri: "https://www.sclera.be/resources/pictos/ontbijt.png" }}
           style={{ width: 320, height: 320 }}
         />
       </Layout>
-      <Button
-        style={{ marginTop: "auto", width: "100%" }}
-        accessoryLeft={(props) => <Icon {...props} name="checkmark-outline" />}
-        size="giant"
-      >
-        Check
-      </Button>
+      <Layout style={{ padding: 16, width: "100%" }}>
+        <Button
+          style={{ width: "100%" }}
+          accessoryLeft={(props) => (
+            <Icon {...props} name="checkmark-outline" />
+          )}
+          size="giant"
+        >
+          Check
+        </Button>
+      </Layout>
     </Layout>
   );
 };

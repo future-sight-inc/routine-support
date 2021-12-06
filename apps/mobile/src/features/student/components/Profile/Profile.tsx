@@ -31,9 +31,8 @@ export const Profile: React.FC<ProfileProps> = ({ student, actions }) => {
       style={{
         flex: 1,
         alignItems: "center",
-
-        padding: 32,
         paddingTop: 64,
+        paddingBottom: 8,
         ...StyleSheet.absoluteFillObject,
       }}
     >
@@ -60,15 +59,16 @@ export const Profile: React.FC<ProfileProps> = ({ student, actions }) => {
           {student.name}
         </Text>
       </Layout>
-
-      <Button
-        onPress={handleLogout}
-        size="giant"
-        style={{ width: "100%", marginTop: "auto" }}
-        accessoryLeft={(props) => <Icon {...props} name="log-out" />}
-      >
-        Logout
-      </Button>
+      <Layout style={{ padding: 16, width: "100%", marginTop: "auto" }}>
+        <Button
+          onPress={handleLogout}
+          size="giant"
+          style={{ width: "100%" }}
+          accessoryLeft={(props) => <Icon {...props} name="log-out" />}
+        >
+          Logout
+        </Button>
+      </Layout>
     </Layout>
   );
 };
