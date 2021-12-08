@@ -36,7 +36,7 @@ export const StudentList: React.FC<StudentListProps> = ({
   return (
     <S.List>
       {students.map((student) => (
-        <ListItem divider>
+        <ListItem disablePadding>
           <ListItemButton onClick={() => onStudentClick(student)}>
             <ListItemText primary={student.name} />
             <div>

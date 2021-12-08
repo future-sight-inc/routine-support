@@ -31,7 +31,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
       <S.Header>
         <S.UserWrapper>
           <S.UserIcon />
-          <S.Email>{user.email}</S.Email>
+          <S.Name>{user.name}</S.Name>
         </S.UserWrapper>
       </S.Header>
       <S.Sidebar>

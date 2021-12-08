@@ -1,5 +1,6 @@
 import { ImageUrl } from "@routine-support/types";
 import styled, { css } from "styled-components";
+
 import { Button } from "../../styled/components/Button";
 
 export const Wrapper = styled.div<{ backgroundImage?: ImageUrl }>`
@@ -43,12 +44,14 @@ export const OpenButton = styled(Button).attrs(() => ({
 `;
 
 export const ModalContent = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
+  height: 500px;
+  max-height: 500px;
 `;
 
 export const PictogramsWrapper = styled.div`
-  max-height: 500px;
   overflow-y: scroll;
 
   display: grid;

@@ -1,9 +1,11 @@
 import { Email } from "@routine-support/types";
 
+export type UserName = string;
+
 export type UserDto = {
   _id: string;
+  name: UserName;
   email: Email;
-  name: string;
 };
 
 export type User = UserDto;

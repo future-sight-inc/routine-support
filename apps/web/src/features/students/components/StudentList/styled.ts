@@ -6,6 +6,8 @@ export const List = styled(BasicList)`
   position: static;
   max-height: calc(100vh - 60px - 32px - 40px - 64px);
   overflow-y: scroll;
+  border: 1px solid ${({ theme }) => theme.border.color};
+  border-radius: 8px;
 `;
 
 export const EmptyInfo = styled(Typography)`

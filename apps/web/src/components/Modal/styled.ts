@@ -11,6 +11,8 @@ export const ModalContent = styled(Card)`
   ${({ theme }) => theme.position.absoluteCenter}
   outline: none;
   padding: 32px;
+  max-height: 80vh;
+  overflow: scroll;
 `;
 
 export const IconWrapper = styled(IconButton)`

@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import styled, { css } from "styled-components";
 
@@ -29,6 +28,10 @@ export const Day = styled.div<{ today?: boolean }>`
     css`
       background: white;
       color: black;
+      border: 1px solid ${({ theme }) => theme.border.color};
+      box-sizing: border-box;
+      margin-left: -1px;
+      margin-right: -1px;
     `}
 `;
 
@@ -36,10 +39,9 @@ export const DayName = styled(Typography).attrs(() => ({
   variant: "body2",
 }))`
   margin-right: 4px;
+  color: ${({ theme }) => theme.palette.secondary.contrastText};
 `;
 
 export const Date = styled(Typography).attrs(() => ({
   variant: "body2",
-}))`
-  color: ${({ theme }) => theme.palette.secondary.contrastText};
-`;
+}))``;

@@ -25,7 +25,7 @@ export const useWeek = () => {
   const getWeek = async (
     params?: {
       year?: YearNumber;
-      weekNumber?: WeekNumber;
+      week?: WeekNumber;
     },
     config?: {
       silent?: boolean;
@@ -34,9 +34,11 @@ export const useWeek = () => {
     try {
       !config?.silent && setLoading(true);
 
+      console.log(params)
+
       const date: DateInfo = {
         year: params?.year || dateInfoQuery?.year || currentDateInfo.year,
-        week: params?.weekNumber || dateInfoQuery?.week || currentDateInfo.week,
+        week: params?.week || dateInfoQuery?.week || currentDateInfo.week,
       };
 
       updateCurrentDateInfoQuery(date);

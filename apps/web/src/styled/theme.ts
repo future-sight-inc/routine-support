@@ -41,7 +41,7 @@ export const Theme: DefaultTheme = {
     `,
   },
   size: {
-    cellHeight: "80px",
+    cellHeight: "160px",
     maxWidth: "1900px",
   },
 };

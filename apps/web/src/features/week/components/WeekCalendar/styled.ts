@@ -5,10 +5,10 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 140px repeat(7, 1fr);
   background: ${({ theme }) => theme.border.color};
-  border: 1px solid ${({ theme }) => theme.border.main};
+  border: 1px solid ${({ theme }) => theme.border.color};
   grid-column-gap: 1px;
-  border-radius: 8px;
-  max-height: calc(100vh - 60px - 32px - 40px - 48px);
+  border-radius: ${({ theme }) => theme.borderRadius}px;
+  max-height: calc(100vh - 60px - 32px - 40px - 52px);
   overflow-y: scroll;
   position: relative;
 `;
@@ -18,17 +18,13 @@ export const Cell = styled.div<{ passed?: boolean }>`
   min-height: ${({ theme }) => theme.size.cellHeight};
   box-sizing: border-box;
   background: ${({ theme }) => theme.palette.common.grey};
+  background: white;
 
-  ${({ passed }) =>
-    passed &&
-    css`
-      cursor: pointer;
-      background: white;
+  cursor: pointer;
 
-      &:hover {
-        border: 1px solid ${({ theme }) => theme.palette.primary.main};
-      }
-    `}
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.palette.primary.main};
+  }
 `;
 
 export const Column = styled.div<{ today?: boolean; weekend?: boolean }>`
@@ -38,22 +34,6 @@ export const Column = styled.div<{ today?: boolean; weekend?: boolean }>`
   height: 100%;
 
   position: relative;
-
-  &:first-child ${Cell}:first-child {
-    border-radius: 8px 0 0 0;
-  }
-
-  &:first-child ${Cell}:last-child {
-    border-radius: 0 0 0 8px;
-  }
-
-  &:last-child ${Cell}:first-child {
-    border-radius: 0 8px 0 0;
-  }
-
-  &:last-child ${Cell}:last-child {
-    border-radius: 0 0 8px 0;
-  }
 
   ${({ today }) =>
     today &&
