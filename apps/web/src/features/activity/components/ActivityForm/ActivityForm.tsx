@@ -8,12 +8,12 @@ import {
 } from "@routine-support/models";
 import { Id } from "@routine-support/types";
 
-
 import { ActivityNameInput } from "../../../../components/FormFields/ActivityNameInput";
 import { DatePicker } from "../../../../components/FormFields/DatePicker";
 import { PictogramPicker } from "../../../../components/FormFields/PictogramPicker";
 import { RepeatTypePicker } from "../../../../components/FormFields/RepeatTypePicker";
 import { TimePicker } from "../../../../components/FormFields/TimePicker";
+import { StudentsPicker } from "../../../students/components/StudentsPicker";
 import { useActivityFormComponent } from "./hooks";
 import * as S from "./styled";
 
@@ -87,7 +87,11 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           />
         </S.Row>
         <PictogramPicker name="pictogram" control={control} required />
+
         <RepeatTypePicker control={control} name="repeat" label="Повторять" />
+
+        <StudentsPicker name="students" control={control} />
+
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"
