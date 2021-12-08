@@ -9,7 +9,7 @@ export type ImageUrl = string;
 export type Pictogram = {
   url: ImageUrl;
   en: string;
-  be: string;
+  nl: string;
   ru: string;
 };
 
