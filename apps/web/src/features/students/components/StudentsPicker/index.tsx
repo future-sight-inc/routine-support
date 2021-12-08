@@ -24,6 +24,7 @@ export const StudentsPicker: React.FC<StudentsPickerProps> = ({
       control={control}
       render={({ field }) => (
         <UncontrolledStudentsPicker
+          value={field.value}
           opened={field.value?.length}
           students={students}
           actions={{ getStudents, onChange: field.onChange }}

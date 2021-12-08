@@ -30,6 +30,10 @@ const activitySchema = new Schema({
     type: Number,
     default: RepeatTypeEnum.None,
   },
+  students: {
+    type: Schema.Types.Array,
+    default: undefined,
+  },
 });
 
 export const ActivityModel = model<Activity>("activity", activitySchema);

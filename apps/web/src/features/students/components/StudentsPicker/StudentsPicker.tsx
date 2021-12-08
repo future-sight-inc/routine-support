@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Checkbox,
   FormControlLabel,
@@ -7,8 +9,7 @@ import {
 import { Student } from "@routine-support/models";
 import { Id } from "@routine-support/types";
 import { Select } from "apps/web/src/components/Select";
-import React from "react";
-import { Control } from "react-hook-form";
+
 import { useStudentsPickerComponent } from "./hooks";
 import * as S from "./styled";
 
@@ -19,6 +20,7 @@ export interface StudentsPickerActions {
 
 interface StudentsPickerProps {
   opened?: boolean;
+  value?: Id[];
   students: Student[];
   actions: StudentsPickerActions;
   // ! Не знаем конечного типа
@@ -26,6 +28,7 @@ interface StudentsPickerProps {
 
 export const StudentsPicker: React.FC<StudentsPickerProps> = ({
   opened: defaultOpened,
+  value,
   students,
   actions,
 }) => {
@@ -44,7 +47,12 @@ export const StudentsPicker: React.FC<StudentsPickerProps> = ({
           <Typography variant="body2">
             Выберите студента или студентов
           </Typography>
-          <Select multiple onChange={handleChange} defaultValue={[]}>
+          <Select
+            value={value}
+            multiple
+            onChange={handleChange}
+            defaultValue={[]}
+          >
             {students.map((student) => (
               <MenuItem value={student._id}>{student.name}</MenuItem>
             ))}
