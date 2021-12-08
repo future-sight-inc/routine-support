@@ -1,8 +1,7 @@
 import React, { createRef } from "react";
 
 import { Activity, Week } from "@routine-support/models";
-import { isToday, parseTime, stringifyDate } from "@routine-support/utils";
-import moment from "moment";
+import { isToday, stringifyDate } from "@routine-support/utils";
 
 import { ActivityGroup } from "./components/ActivityGroup";
 import { useWeekCalendarComponent } from "./hooks";
@@ -41,10 +40,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
       {week?.weekInfo.days.map((day, index) => (
         <S.Column today={isToday(day)} weekend={index >= 5 && index <= 6}>
           {week.weekInfo.timeRange.map((time) => (
-            <S.Cell
-              onClick={() => onCellClick(time, day)}
-              passed={parseTime(time, day) > moment()}
-            ></S.Cell>
+            <S.Cell onClick={() => onCellClick(time, day)}></S.Cell>
           ))}
           {groupActivities(
             week.days.find(

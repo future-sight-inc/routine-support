@@ -6,7 +6,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 200px 1fr;
   height: 100vh;
 `;
 
@@ -69,16 +69,15 @@ export const UserWrapper = styled.div`
   margin-right: auto;
 `;
 
-export const Email = styled(Typography)`
-  margin-right: 8px;
-  max-width: 150px;
+export const Name = styled(Typography)`
+  max-width: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
 export const UserIcon = styled(PersonIcon)`
   font-size: 32px;
-  margin-right: 24px;
+  margin-right: 8px;
 `;
 
 export const LogoutButton = styled(Button)`
