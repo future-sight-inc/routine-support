@@ -1,6 +1,6 @@
 import React, { createRef } from "react";
 
-import { Activity, Week } from "@routine-support/models";
+import { Activity, Student, Week } from "@routine-support/models";
 import { isToday, stringifyDate } from "@routine-support/utils";
 
 import { ActivityGroup } from "./components/ActivityGroup";
@@ -14,11 +14,13 @@ export interface WeekCalendarActions {
 }
 interface WeekCalendarProps {
   week: Week;
+  students: Student[];
   actions: WeekCalendarActions;
 }
 
 export const WeekCalendar: React.FC<WeekCalendarProps> = ({
   week,
+  students,
   actions,
 }) => {
   const wrapperRef = createRef<HTMLDivElement>();
@@ -48,6 +50,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
             )?.activities || []
           ).map((group) => (
             <ActivityGroup
+              students={students}
               timeRange={week.weekInfo.timeRange}
               activities={group.activities}
               onActivityClick={actions.openActivityModal}

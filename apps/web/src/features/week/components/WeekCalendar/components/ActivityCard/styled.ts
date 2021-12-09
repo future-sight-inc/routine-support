@@ -8,11 +8,12 @@ export const Wrapper = styled(Box)<{
   count: number;
   index: number;
   height: number;
+  backgroundColor: string;
 }>`
   box-sizing: border-box;
   overflow: hidden;
 
-  background: grey;
+  background: ${({ backgroundColor }) => backgroundColor};
 
   position: absolute;
   display: flex;
@@ -23,7 +24,6 @@ export const Wrapper = styled(Box)<{
   ${({ theme }) => css`
     border-radius: ${theme.borderRadius}px;
     padding: 8px;
-    background: ${theme.palette.common.green};
   `}
 
   ${({ rowStart, marginTop, count, index, height, theme }) => css`
@@ -44,8 +44,4 @@ export const Time = styled(Typography)`
   font-weight: bold;
 `;
 
-export const Name = styled(Typography)`
-  /* overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; */
-`;
+export const Name = styled(Typography)``;
