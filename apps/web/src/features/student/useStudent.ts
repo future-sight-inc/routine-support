@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import { Student, studentActions, studentAPI } from "@routine-support/models";
 import { Id } from "@routine-support/types";
-import { toast } from "react-toastify";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
@@ -25,8 +24,6 @@ export const useStudent = () => {
         await studentAPI.createStudent({ ...student, coachId });
 
         setOpened(false);
-
-        toast.success("Student added!");
       } catch (error) {
         console.log(error);
       } finally {
@@ -42,8 +39,6 @@ export const useStudent = () => {
       await studentAPI.updateStudent(student);
 
       setOpened(false);
-
-      toast.success("Student updated!");
     } catch (error) {
       console.log(error);
     } finally {
@@ -58,8 +53,6 @@ export const useStudent = () => {
       await studentAPI.deleteStudent(id);
 
       setOpened(false);
-
-      toast.success("Student deleted!");
     } catch (error) {
       console.log(error);
     } finally {

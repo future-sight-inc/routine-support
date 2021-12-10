@@ -33,39 +33,45 @@ export const StudentList: React.FC<StudentListProps> = ({
     operations: { onStudentClick, onStudentDelete, onQrOpen, onQrClose },
   } = useStudentListComponent(actions);
 
-  return (
-    <S.List>
-      {students.map((student) => (
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => onStudentClick(student)}>
-            <ListItemText primary={student.name} />
-            <div>
-              <IconButton
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onQrOpen(student._id);
-                }}
-              >
-                <QrCodeIcon />
-              </IconButton>
-              <IconButton onClick={() => onStudentDelete(student._id)}>
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          </ListItemButton>
-        </ListItem>
-      ))}
-      <Modal opened={Boolean(qr)} onClose={onQrClose}>
-        {qr && <S.Qr src={qr} />}
-        <S.QrTitle>
-          Отсканируйте в приложении
-          <br />
-          Routine Support, чтобы войти
-        </S.QrTitle>
-      </Modal>
-      {!students.length && (
-        <S.EmptyInfo>Пока нет ни одного студента</S.EmptyInfo>
-      )}
-    </S.List>
-  );
+  if (students.length) {
+    return (
+      <S.List>
+        {students.map((student) => (
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => onStudentClick(student)}>
+              <ListItemText primary={student.name} />
+              <div>
+                <IconButton
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onQrOpen(student._id);
+                  }}
+                >
+                  <QrCodeIcon />
+                </IconButton>
+                <IconButton
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onStudentDelete(student._id);
+                  }}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </div>
+            </ListItemButton>
+          </ListItem>
+        ))}
+        <Modal opened={Boolean(qr)} onClose={onQrClose}>
+          {qr && <S.Qr src={qr} />}
+          <S.QrTitle>
+            Отсканируйте в приложении
+            <br />
+            Routine Support, чтобы войти
+          </S.QrTitle>
+        </Modal>
+      </S.List>
+    );
+  }
+
+  return <S.EmptyInfo>Пока нет ни одного студента</S.EmptyInfo>;
 };

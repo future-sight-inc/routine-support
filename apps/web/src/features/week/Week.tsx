@@ -5,6 +5,7 @@ import { ActivityForm } from "../../features/activity/components/ActivityForm";
 import { useActivity } from "../activity/useActivity";
 import { useStudents } from "../students/useStudents";
 import { useUser } from "../user/useUser";
+import { ActivityFilter } from "./components/ActivityFilter";
 import { AddActivityButton } from "./components/AddActivityButton";
 import { WeekCalendar } from "./components/WeekCalendar";
 import { WeekLayout } from "./components/WeekLayout";
@@ -54,6 +55,12 @@ export const Week: React.FC = () => {
       addActivityButton={
         <AddActivityButton
           onClick={() => Activity.operations.openNewActivityModal()}
+        />
+      }
+      activityFilter={
+        <ActivityFilter
+          students={Students.models.students}
+          actions={{ getWeek: Week.operations.getWeek }}
         />
       }
       activityModal={

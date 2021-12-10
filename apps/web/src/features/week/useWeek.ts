@@ -8,6 +8,7 @@ import {
   WeekNumber,
   YearNumber,
 } from "@routine-support/models";
+import { Id } from "@routine-support/types";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
@@ -26,6 +27,10 @@ export const useWeek = () => {
     params?: {
       year?: YearNumber;
       week?: WeekNumber;
+      filter?: {
+        students?: Id[];
+        common?: boolean;
+      };
     },
     config?: {
       silent?: boolean;
@@ -34,7 +39,7 @@ export const useWeek = () => {
     try {
       !config?.silent && setLoading(true);
 
-      console.log(params)
+      console.log(params);
 
       const date: DateInfo = {
         year: params?.year || dateInfoQuery?.year || currentDateInfo.year,
