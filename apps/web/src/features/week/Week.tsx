@@ -58,10 +58,12 @@ export const Week: React.FC = () => {
         />
       }
       activityFilter={
-        <ActivityFilter
-          students={Students.models.students}
-          actions={{ getWeek: Week.operations.getWeek }}
-        />
+        !Students.models.loading && (
+          <ActivityFilter
+            students={Students.models.students}
+            actions={{ getWeek: Week.operations.getWeek }}
+          />
+        )
       }
       activityModal={
         <Modal

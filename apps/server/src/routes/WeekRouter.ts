@@ -1,5 +1,6 @@
 import { ActivityModel, RepeatTypeEnum } from "@routine-support/models";
 import { Router } from "express";
+import { filterActivities } from "../utils/filterActivities";
 import { getStringDateRangeFromWeek } from "../utils/getStringDateRangeFromWeek";
 import { getTimeRange } from "../utils/getTimeRange";
 import { getWeek } from "../utils/getWeek";
@@ -41,25 +42,12 @@ weekRouter.get("/:year/:week", async (req, res) => {
           const weekNumber = Number(params.week);
 
           let activities = [].concat(pureActivities);
+          activities = filterActivities(activities, parsedFilter);
 
-          if (parsedFilter) {
-            activities = activities.filter((activity) => {
-              if (!activity.students && parsedFilter.includes("common")) {
-                return true;
-              }
-
-              if (activity.students) {
-                activity.students.forEach((student) => {
-                  if (parsedFilter.includes(student)) {
-                    return true;
-                  }
-                });
-              }
-
-              return false;
-            });
-          }
-
+          activitiesToRepeat = filterActivities(
+            activitiesToRepeat,
+            parsedFilter
+          );
           activitiesToRepeat
             .map((activity) =>
               repeatActivity(activity, activity.repeat, weekNumber, yearNumber)

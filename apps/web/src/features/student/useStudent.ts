@@ -27,6 +27,8 @@ export const useStudent = () => {
       } catch (error) {
         console.log(error);
       } finally {
+        // * Чистим сохраненный фильтр после добавления студента
+        localStorage.removeItem("filter");
         setLoading(false);
       }
     }
@@ -56,6 +58,8 @@ export const useStudent = () => {
     } catch (error) {
       console.log(error);
     } finally {
+      // * Чистим сохраненный фильтр после удаления студента
+      localStorage.removeItem("filter");
       setLoading(false);
     }
   };

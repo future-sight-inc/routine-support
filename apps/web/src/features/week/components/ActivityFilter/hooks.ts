@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { ActivityFilter } from "@routine-support/models";
+import { ActivityFilter, Student } from "@routine-support/models";
 import { useSavedActivityFilter } from "apps/web/src/hooks/useSavedActivityFilter";
 
 import { ActivityFilterActions } from "./ActivityFilter";
 
-export const useActivityFilterComponent = (actions: ActivityFilterActions) => {
+export const useActivityFilterComponent = (
+  students: Student[],
+  actions: ActivityFilterActions
+) => {
   const savedActivityFilter = useSavedActivityFilter();
   const [activityFilter, setActivityFilter] = useState<ActivityFilter>(
     savedActivityFilter || {}
@@ -22,8 +25,28 @@ export const useActivityFilterComponent = (actions: ActivityFilterActions) => {
     localStorage.setItem("filter", JSON.stringify(newActivityFilter));
     setActivityFilter(newActivityFilter);
 
-    actions.getWeek({ activityFilter, config: { silent: true } });
+    actions.getWeek({
+      activityFilter: newActivityFilter,
+      config: { silent: true },
+    });
   };
+
+  useEffect(() => {
+    if (!savedActivityFilter) {
+      let ids = ["common"];
+
+      if (students.length) {
+        ids = ids.concat(students.map((student) => student._id as string));
+      }
+
+      const defaultFilter: ActivityFilter = {};
+
+      ids.forEach((id) => (defaultFilter[id] = true));
+
+      localStorage.setItem("filter", JSON.stringify(defaultFilter));
+      setActivityFilter(defaultFilter);
+    }
+  }, [savedActivityFilter, students]);
 
   return { models: { activityFilter }, operations: { handleChange } };
 };

@@ -27,7 +27,11 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
   const {
     models: { activityFilter },
     operations: { handleChange },
-  } = useActivityFilterComponent(actions);
+  } = useActivityFilterComponent(students, actions);
+
+  if (!Object.keys(activityFilter).length) {
+    return null;
+  }
 
   return (
     <S.Wrapper>
