@@ -2,14 +2,17 @@ import React from "react";
 
 import { FormControlLabel } from "@mui/material";
 import { Student } from "@routine-support/models";
+import { ActivityFilter as ActivityFilterType } from "@routine-support/models";
 import { Theme } from "apps/web/src/styled/theme";
 
 import { useActivityFilterComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface ActivityFilterActions {
-  // ! стоит объединить все в один объект для удобства и использовать типизацию
-  getWeek: (params: undefined, config: { silent: boolean }) => void;
+  getWeek: (data: {
+    activityFilter: ActivityFilterType;
+    config: { silent: boolean };
+  }) => void;
 }
 
 interface ActivityFilterProps {

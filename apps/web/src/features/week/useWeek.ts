@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import {
+  ActivityFilter,
   DateInfo,
   getCurrentDateInfo,
   weekActions,
@@ -24,21 +25,22 @@ export const useWeek = () => {
   const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
   const savedActivityFilter = useSavedActivityFilter();
 
-  const getWeek = async (
+  const getWeek = async (data?: {
     params?: {
       year?: YearNumber;
       week?: WeekNumber;
-    },
+    };
+    activityFilter?: ActivityFilter;
     config?: {
       silent?: boolean;
-    }
-  ) => {
+    };
+  }) => {
     try {
-      !config?.silent && setLoading(true);
+      !data?.config?.silent && setLoading(true);
 
       const date: DateInfo = {
-        year: params?.year || dateInfoQuery?.year || currentDateInfo.year,
-        week: params?.week || dateInfoQuery?.week || currentDateInfo.week,
+        year: data?.params?.year || dateInfoQuery?.year || currentDateInfo.year,
+        week: data?.params?.week || dateInfoQuery?.week || currentDateInfo.week,
       };
 
       updateCurrentDateInfoQuery(date);
@@ -46,14 +48,14 @@ export const useWeek = () => {
       const week = await weekAPI.getWeek(
         date.year,
         date.week,
-        savedActivityFilter
+        data?.activityFilter || savedActivityFilter
       );
 
       dispatch(weekActions.setWeek(week));
     } catch (error) {
       console.error(error);
     } finally {
-      !config?.silent && setLoading(false);
+      !data?.config?.silent && setLoading(false);
     }
   };
 

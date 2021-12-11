@@ -21,10 +21,10 @@ export interface ActivityFormActions {
   createActivity: (activity: Activity) => Promise<void>;
   updateActivity: (activity: Activity) => Promise<void>;
   deleteActivity: (id: Id) => Promise<void>;
-  getWeek: (
-    params?: { year: YearNumber; week: WeekNumber },
-    config?: { silent: boolean }
-  ) => void;
+  getWeek: (data: {
+    params?: { year: YearNumber; week: WeekNumber };
+    config?: { silent: boolean };
+  }) => void;
 }
 
 export interface ActivityFormProps {

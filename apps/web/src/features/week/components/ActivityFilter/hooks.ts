@@ -22,7 +22,7 @@ export const useActivityFilterComponent = (actions: ActivityFilterActions) => {
     localStorage.setItem("filter", JSON.stringify(newActivityFilter));
     setActivityFilter(newActivityFilter);
 
-    actions.getWeek(undefined, { silent: true });
+    actions.getWeek({ activityFilter, config: { silent: true } });
   };
 
   return { models: { activityFilter }, operations: { handleChange } };
