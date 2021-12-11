@@ -1,41 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
+import { ActivityFilter } from "@routine-support/models";
 import { useSavedActivityFilter } from "apps/web/src/hooks/useSavedActivityFilter";
-import { useForm } from "react-hook-form";
 
 import { ActivityFilterActions } from "./ActivityFilter";
 
 export const useActivityFilterComponent = (actions: ActivityFilterActions) => {
-  const { control, setValue, watch } = useForm();
   const savedActivityFilter = useSavedActivityFilter();
-  const [activityFilter, setActivityFilter] = useState(savedActivityFilter);
+  const [activityFilter, setActivityFilter] = useState<ActivityFilter>(
+    savedActivityFilter || {}
+  );
 
-  useEffect(() => {
-    const subscription = watch((value, { name, type }) => {
-      localStorage.setItem("filter", JSON.stringify(value));
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => {
+    const newActivityFilter = activityFilter;
 
-      if (JSON.stringify(value) !== JSON.stringify(activityFilter)) {
-        console.log("updated");
-        setActivityFilter(value);
-      }
-    });
+    newActivityFilter[event.target.name] = checked;
 
-    return () => subscription.unsubscribe();
-  }, [activityFilter]);
+    localStorage.setItem("filter", JSON.stringify(newActivityFilter));
+    setActivityFilter(newActivityFilter);
 
-  useEffect(() => {
-    if (savedActivityFilter) {
-      for (const key in savedActivityFilter) {
-        setValue(key, savedActivityFilter[key]);
-      }
-    }
-  }, [savedActivityFilter]);
+    actions.getWeek(undefined, { silent: true });
+  };
 
-  useEffect(() => {
-    if (activityFilter) {
-      actions.getWeek(undefined, { silent: true });
-    }
-  }, [activityFilter]);
-
-  return { operations: { control } };
+  return { models: { activityFilter }, operations: { handleChange } };
 };

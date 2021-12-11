@@ -9,6 +9,14 @@ export const weekRouter = Router();
 
 weekRouter.get("/:year/:week", async (req, res) => {
   const { params } = req;
+  const { filter } = req.query;
+
+  let parsedFilter = undefined;
+
+  if (filter) {
+    parsedFilter = (filter as string).split(",");
+  }
+
   ActivityModel.find(
     {
       coachId: res.locals.user._id,
@@ -33,6 +41,24 @@ weekRouter.get("/:year/:week", async (req, res) => {
           const weekNumber = Number(params.week);
 
           let activities = [].concat(pureActivities);
+
+          if (parsedFilter) {
+            activities = activities.filter((activity) => {
+              if (!activity.students && parsedFilter.includes("common")) {
+                return true;
+              }
+
+              if (activity.students) {
+                activity.students.forEach((student) => {
+                  if (parsedFilter.includes(student)) {
+                    return true;
+                  }
+                });
+              }
+
+              return false;
+            });
+          }
 
           activitiesToRepeat
             .map((activity) =>

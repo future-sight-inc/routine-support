@@ -3,13 +3,13 @@ import React from "react";
 import { FormControlLabel } from "@mui/material";
 import { Student } from "@routine-support/models";
 import { Theme } from "apps/web/src/styled/theme";
-import { Controller } from "react-hook-form";
 
 import { useActivityFilterComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface ActivityFilterActions {
-  getWeek: (params: void, config: { silent: boolean }) => void;
+  // ! стоит объединить все в один объект для удобства и использовать типизацию
+  getWeek: (params: undefined, config: { silent: boolean }) => void;
 }
 
 interface ActivityFilterProps {
@@ -22,24 +22,19 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
   actions,
 }) => {
   const {
-    operations: { control },
+    models: { activityFilter },
+    operations: { handleChange },
   } = useActivityFilterComponent(actions);
 
   return (
     <S.Wrapper>
       <FormControlLabel
         control={
-          <Controller
-            name="common"
-            control={control}
-            defaultValue={true}
-            render={({ field }) => (
-              <S.FilterCheckbox
-                checkboxColor={Theme.palette.common.green}
-                checked={field.value}
-                {...field}
-              />
-            )}
+          <S.FilterCheckbox
+            checkboxColor={Theme.palette.common.green}
+            name={"common"}
+            checked={activityFilter.common}
+            onChange={handleChange}
           />
         }
         label="Общие"
@@ -48,17 +43,11 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
       {students.map((student) => (
         <FormControlLabel
           control={
-            <Controller
+            <S.FilterCheckbox
+              checkboxColor={student.color}
               name={student._id as string}
-              control={control}
-              defaultValue={true}
-              render={({ field }) => (
-                <S.FilterCheckbox
-                  checkboxColor={student.color}
-                  checked={field.value}
-                  {...field}
-                />
-              )}
+              checked={activityFilter[student._id]}
+              onChange={handleChange}
             />
           }
           label={<S.FilterName>{student.name}</S.FilterName>}
