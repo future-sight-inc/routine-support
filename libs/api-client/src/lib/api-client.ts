@@ -1,4 +1,13 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+
+axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error: AxiosError) {
+    return Promise.reject(error);
+  }
+);
 
 export const apiClient = axios.create({
   baseURL: "http://localhost:5000/api",

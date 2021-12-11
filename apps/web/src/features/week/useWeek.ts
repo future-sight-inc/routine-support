@@ -39,8 +39,6 @@ export const useWeek = () => {
     try {
       !config?.silent && setLoading(true);
 
-      console.log(params);
-
       const date: DateInfo = {
         year: params?.year || dateInfoQuery?.year || currentDateInfo.year,
         week: params?.week || dateInfoQuery?.week || currentDateInfo.week,
@@ -52,7 +50,6 @@ export const useWeek = () => {
 
       dispatch(weekActions.setWeek(week));
     } catch (error) {
-      // todo: Добавить сервис исключений
       console.error(error);
     } finally {
       !config?.silent && setLoading(false);
