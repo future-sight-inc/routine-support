@@ -1,4 +1,4 @@
-import { StudentModel } from "@routine-support/models";
+import { ActivityModel, StudentModel } from "@routine-support/models";
 import { Router } from "express";
 import { authorization } from "../middleware/authorization";
 import { studentAuthorization } from "../middleware/studentAuthorization";
@@ -25,10 +25,7 @@ studentRouter.post("/login", async (req, res) => {
     }
 
     const cookie = getAuthCookie(result);
-    return res
-      .status(200)
-      .cookie(cookie.name, cookie.token)
-      .send(result);
+    return res.status(200).cookie(cookie.name, cookie.token).send(result);
   });
 });
 
@@ -48,17 +45,26 @@ studentRouter.delete("/:id", async (req, res) => {
 
     res.status(200).send("Activity deleted");
   });
+
+  // ! If no students retain, drop activity
+  ActivityModel.find({ students: { $in: [id] } }, (__, result) => {
+    result.forEach(({ _id, students }) => {
+      const filteredStudents = students.filter((studentId) => studentId !== id);
+
+      ActivityModel.findByIdAndUpdate(_id, {
+        students: filteredStudents.length ? filteredStudents : undefined,
+      });
+    });
+  });
 });
 
 studentRouter.put("/:id", (req, res) => {
-  // ! _v - мусор, который летит из бд, починить !
-  const { _v, ...data } = req.body;
   const id = req.params.id;
 
   StudentModel.findByIdAndUpdate(
     id,
     {
-      ...data,
+      ...req.body,
     },
     (err) => {
       if (err) return console.log(err);

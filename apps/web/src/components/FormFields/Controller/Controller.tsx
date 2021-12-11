@@ -24,8 +24,6 @@ export const Controller: React.FC<ControllerProps> = ({
   render,
   label,
   required,
-  // todo: Пока не нашлось применения в контроллере
-  // disabled,
 }) => {
   return (
     <FormController

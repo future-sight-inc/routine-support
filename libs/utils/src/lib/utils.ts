@@ -10,8 +10,9 @@ export const stringifyDate = (date: Moment): string => {
   return date.format(DATE_FORMAT);
 };
 
-// ! Сделать нормальную типизацию
-export const serialize = (obj: any) => {
+export const serialize = (obj: {
+  [key: string]: string | number | boolean;
+}): string => {
   const str: string[] = [];
 
   for (const p in obj) {
