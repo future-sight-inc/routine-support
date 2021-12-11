@@ -8,10 +8,10 @@ import {
   WeekNumber,
   YearNumber,
 } from "@routine-support/models";
-import { Id } from "@routine-support/types";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
+import { useSavedActivityFilter } from "../../hooks/useSavedActivityFilter";
 import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";
 
 export const useWeek = () => {
@@ -22,15 +22,12 @@ export const useWeek = () => {
   const dateInfoQuery = useDateInfoQuery();
   const currentDateInfo = getCurrentDateInfo();
   const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
+  const savedActivityFilter = useSavedActivityFilter();
 
   const getWeek = async (
     params?: {
       year?: YearNumber;
       week?: WeekNumber;
-      filter?: {
-        students?: Id[];
-        common?: boolean;
-      };
     },
     config?: {
       silent?: boolean;
@@ -46,7 +43,11 @@ export const useWeek = () => {
 
       updateCurrentDateInfoQuery(date);
 
-      const week = await weekAPI.getWeek(date.year, date.week);
+      const week = await weekAPI.getWeek(
+        date.year,
+        date.week,
+        savedActivityFilter
+      );
 
       dispatch(weekActions.setWeek(week));
     } catch (error) {
