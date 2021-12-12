@@ -1,3 +1,4 @@
+import { Day } from "@routine-support/models";
 import {
   Button,
   Divider,
@@ -11,29 +12,23 @@ import {
 import React from "react";
 import { Image, StyleSheet } from "react-native";
 import { useScheduleComponent } from "./hooks";
+import { stringifyTime } from "@routine-support/utils";
 
-const data = [
-  {
-    id: "1",
-    name: "Breakfast",
-    pictogram: "https://www.sclera.be/resources/pictos/ontbijt.png",
-    time: "9:00 - 9:30",
-  },
-  {
-    id: "1",
-    name: "Morning walk",
-    pictogram: "https://www.sclera.be/resources/pictos/wandelen%202.png",
-    time: "10:00 - 11:00",
-  },
-  {
-    id: "1",
-    name: "Painting",
-    pictogram: "https://www.sclera.be/resources/pictos/waterverf.png",
-    time: "11:00 – 12:00",
-  },
-];
+interface ScheduleActions {
+  getDay: () => void;
+}
 
-export const Schedule: React.FC = () => {
+interface ScheduleProps {
+  actions: ScheduleActions;
+  loading: boolean;
+  day: Day;
+}
+
+export const Schedule: React.FC<ScheduleProps> = ({
+  day,
+  loading,
+  actions,
+}) => {
   const {
     operations: { handleActivityOpen, handleForwardPress },
   } = useScheduleComponent();
@@ -52,7 +47,6 @@ export const Schedule: React.FC = () => {
       <Layout style={{ width: "100%" }}>
         <TopNavigation
           alignment="center"
-          title="9:00"
           accessoryRight={
             <TopNavigationAction
               icon={(props) => (
@@ -69,12 +63,14 @@ export const Schedule: React.FC = () => {
       </Layout>
       <Layout style={{ marginTop: 16, marginBottom: "auto" }}>
         <List
+          onRefresh={() => actions.getDay()}
+          refreshing={loading}
           style={{
             minWidth: "100%",
             height: "100%",
           }}
           ItemSeparatorComponent={Divider}
-          data={data}
+          data={day.activities}
           renderItem={({ item, index }) => (
             <Layout
               style={{
@@ -95,7 +91,7 @@ export const Schedule: React.FC = () => {
                   {item.name}
                 </Text>
                 <Text category="s1" appearance="hint">
-                  {item.time}
+                  {stringifyTime(item.start)}-{stringifyTime(item.end)}
                 </Text>
                 <Button
                   style={{ marginTop: "auto", width: 120 }}

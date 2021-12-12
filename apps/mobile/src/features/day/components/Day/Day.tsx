@@ -10,8 +10,13 @@ import {
 import React from "react";
 import { StyleSheet, Image } from "react-native";
 import { useDayComponent } from "./hooks";
+import { Day as DayType } from "@routine-support/models";
 
-export const Day: React.FC = () => {
+interface DayProps {
+  day: DayType;
+}
+
+export const Day: React.FC<DayProps> = ({ day }) => {
   const {
     operations: { handleBackPress, handleForwardPress },
   } = useDayComponent();
@@ -30,7 +35,6 @@ export const Day: React.FC = () => {
       <Layout style={{ width: "100%" }}>
         <TopNavigation
           alignment="center"
-          title="9:00"
           accessoryLeft={
             <TopNavigationAction
               icon={(props) => (

@@ -1,19 +1,9 @@
 import { Moment } from "moment";
-import { Activity, ActivityDto } from "../activity/types";
 import { DateString, TimeRange } from "@routine-support/types";
+import { Day, DayDto } from "../day";
 
 export type YearNumber = number;
 export type WeekNumber = number;
-
-export type Day = {
-  date: Moment;
-  activities: Activity[];
-};
-
-export type DayDto = {
-  date: DateString;
-  activities: ActivityDto[];
-};
 
 export interface WeekDto {
   days: DayDto[];
