@@ -24,12 +24,17 @@ export const studentAPI = {
     return request.data;
   },
   getStudent: async (): Promise<Student> => {
-    const request: AxiosResponse<StudentDto> = await mobileApiClient.get("/student");
+    const request: AxiosResponse<StudentDto> = await mobileApiClient.get(
+      "/student"
+    );
 
     return request.data as Student;
   },
   createStudent: async (data: NewStudentDto) => {
-    const request: AxiosResponse = await apiClient.post("/student", data);
+    const request: AxiosResponse<StudentDto> = await apiClient.post(
+      "/student",
+      data
+    );
 
     return request;
   },

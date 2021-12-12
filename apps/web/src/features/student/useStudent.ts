@@ -4,6 +4,7 @@ import { Student, studentActions, studentAPI } from "@routine-support/models";
 import { Id } from "@routine-support/types";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { ActivityFilterService } from "../../services/ActivityFilterService";
 
 export const useStudent = () => {
   const [loading, setLoading] = useState(false);
@@ -21,14 +22,17 @@ export const useStudent = () => {
       try {
         setLoading(true);
 
-        await studentAPI.createStudent({ ...student, coachId });
+        const response = await studentAPI.createStudent({
+          ...student,
+          coachId,
+        });
+
+        ActivityFilterService.addStudent(response.data._id);
 
         setOpened(false);
       } catch (error) {
         console.log(error);
       } finally {
-        // * Чистим сохраненный фильтр после добавления студента
-        localStorage.removeItem("filter");
         setLoading(false);
       }
     }
@@ -54,12 +58,12 @@ export const useStudent = () => {
 
       await studentAPI.deleteStudent(id);
 
+      ActivityFilterService.removeStudent(id);
+
       setOpened(false);
     } catch (error) {
       console.log(error);
     } finally {
-      // * Чистим сохраненный фильтр после удаления студента
-      localStorage.removeItem("filter");
       setLoading(false);
     }
   };

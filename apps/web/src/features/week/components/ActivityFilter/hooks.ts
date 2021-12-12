@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { ActivityFilter, Student } from "@routine-support/models";
-import { useSavedActivityFilter } from "apps/web/src/hooks/useSavedActivityFilter";
+import { ActivityFilterService } from "apps/web/src/services/ActivityFilterService";
 
 import { ActivityFilterActions } from "./ActivityFilter";
 
@@ -9,7 +9,7 @@ export const useActivityFilterComponent = (
   students: Student[],
   actions: ActivityFilterActions
 ) => {
-  const savedActivityFilter = useSavedActivityFilter();
+  const savedActivityFilter = ActivityFilterService.getFilter();
   const [activityFilter, setActivityFilter] = useState<ActivityFilter>(
     savedActivityFilter || {}
   );
@@ -22,7 +22,7 @@ export const useActivityFilterComponent = (
 
     newActivityFilter[event.target.name] = checked;
 
-    localStorage.setItem("filter", JSON.stringify(newActivityFilter));
+    ActivityFilterService.setFilter(newActivityFilter);
     setActivityFilter(newActivityFilter);
 
     actions.getWeek({
@@ -43,7 +43,7 @@ export const useActivityFilterComponent = (
 
       ids.forEach((id) => (defaultFilter[id] = true));
 
-      localStorage.setItem("filter", JSON.stringify(defaultFilter));
+      ActivityFilterService.setFilter(defaultFilter);
       setActivityFilter(defaultFilter);
     }
   }, [savedActivityFilter, students]);
