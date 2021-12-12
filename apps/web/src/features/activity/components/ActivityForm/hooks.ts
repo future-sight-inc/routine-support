@@ -60,7 +60,7 @@ export const useActivityFormComponent = (
       } as Activity);
     }
 
-    actions.getWeek(undefined, { silent: true });
+    actions.getWeek({ config: { silent: true } });
   });
 
   const onDelete = async () => {
@@ -68,7 +68,7 @@ export const useActivityFormComponent = (
     if (window.confirm("Confirm your action") && id) {
       await actions.deleteActivity(id);
 
-      actions.getWeek(undefined, { silent: true });
+      actions.getWeek({ config: { silent: true } });
     }
   };
 

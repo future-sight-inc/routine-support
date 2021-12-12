@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import {
+  ActivityFilter,
   DateInfo,
   getCurrentDateInfo,
   weekActions,
@@ -11,6 +12,7 @@ import {
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
+import { useSavedActivityFilter } from "../../hooks/useSavedActivityFilter";
 import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";
 
 export const useWeek = () => {
@@ -21,36 +23,39 @@ export const useWeek = () => {
   const dateInfoQuery = useDateInfoQuery();
   const currentDateInfo = getCurrentDateInfo();
   const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
+  const savedActivityFilter = useSavedActivityFilter();
 
-  const getWeek = async (
+  const getWeek = async (data?: {
     params?: {
       year?: YearNumber;
       week?: WeekNumber;
-    },
+    };
+    activityFilter?: ActivityFilter;
     config?: {
       silent?: boolean;
-    }
-  ) => {
+    };
+  }) => {
     try {
-      !config?.silent && setLoading(true);
-
-      console.log(params)
+      !data?.config?.silent && setLoading(true);
 
       const date: DateInfo = {
-        year: params?.year || dateInfoQuery?.year || currentDateInfo.year,
-        week: params?.week || dateInfoQuery?.week || currentDateInfo.week,
+        year: data?.params?.year || dateInfoQuery?.year || currentDateInfo.year,
+        week: data?.params?.week || dateInfoQuery?.week || currentDateInfo.week,
       };
 
       updateCurrentDateInfoQuery(date);
 
-      const week = await weekAPI.getWeek(date.year, date.week);
+      const week = await weekAPI.getWeek(
+        date.year,
+        date.week,
+        data?.activityFilter || savedActivityFilter
+      );
 
       dispatch(weekActions.setWeek(week));
     } catch (error) {
-      // todo: Добавить сервис исключений
       console.error(error);
     } finally {
-      !config?.silent && setLoading(false);
+      !data?.config?.silent && setLoading(false);
     }
   };
 

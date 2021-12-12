@@ -26,7 +26,7 @@ export const useWeekSelectComponent = (actions: WeekSelectActions) => {
   };
 
   const onSubmit = handleSubmit(({ year, week }: DateInfo) => {
-    actions.getWeek({ year, week }, { silent: true });
+    actions.getWeek({ params: { year, week }, config: { silent: true } });
   });
 
   const onPrevClick = (values: DateInfo) => {

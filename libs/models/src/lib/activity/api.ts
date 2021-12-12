@@ -6,7 +6,6 @@ import { formatActivity } from "./utils";
 import { Id } from "@routine-support/types";
 import { apiClient } from "@routine-support/api-client";
 
-// todo: Обработку ошибок вынести в отдельный сервис и использовать в интерсепторе
 export const activityAPI = {
   createActivity: async (data: Activity): Promise<AxiosResponse> => {
     const request: AxiosResponse = await apiClient.post(

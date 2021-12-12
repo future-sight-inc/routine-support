@@ -5,7 +5,8 @@ import { studentAPI, studentsActions } from "@routine-support/models";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 export const useStudents = () => {
-  const [loading, setLoading] = useState(false);
+  // * Необходимо состояние без скачков при рендере с false на true
+  const [loading, setLoading] = useState(true);
   const { students } = useAppSelector((state) => state.students);
   const coachId = useAppSelector((state) => state.user.user?._id);
   const dispatch = useAppDispatch();

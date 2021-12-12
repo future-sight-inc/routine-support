@@ -15,10 +15,9 @@ import morgan = require("morgan");
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bearerToken());
 app.use(cors());
 app.use(morgan("tiny"));

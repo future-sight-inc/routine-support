@@ -3,7 +3,9 @@ import React, { useEffect } from "react";
 import { Modal } from "../../components/Modal";
 import { ActivityForm } from "../../features/activity/components/ActivityForm";
 import { useActivity } from "../activity/useActivity";
+import { useStudents } from "../students/useStudents";
 import { useUser } from "../user/useUser";
+import { ActivityFilter } from "./components/ActivityFilter";
 import { AddActivityButton } from "./components/AddActivityButton";
 import { WeekCalendar } from "./components/WeekCalendar";
 import { WeekLayout } from "./components/WeekLayout";
@@ -14,11 +16,13 @@ import { useWeek } from "./useWeek";
 export const Week: React.FC = () => {
   const Week = useWeek();
   const Activity = useActivity();
+  const Students = useStudents();
   const User = useUser();
 
   useEffect(() => {
     if (User.models.user) {
       Week.operations.getWeek();
+      Students.operations.getStudents();
     }
   }, [User.models.user]);
 
@@ -40,6 +44,7 @@ export const Week: React.FC = () => {
         Week.models.week && (
           <WeekCalendar
             week={Week.models.week}
+            students={Students.models.students}
             actions={{
               openActivityModal: Activity.operations.openActivityModal,
               openNewActivityModal: Activity.operations.openNewActivityModal,
@@ -51,6 +56,14 @@ export const Week: React.FC = () => {
         <AddActivityButton
           onClick={() => Activity.operations.openNewActivityModal()}
         />
+      }
+      activityFilter={
+        !Students.models.loading && (
+          <ActivityFilter
+            students={Students.models.students}
+            actions={{ getWeek: Week.operations.getWeek }}
+          />
+        )
       }
       activityModal={
         <Modal

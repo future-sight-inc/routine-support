@@ -1,4 +1,4 @@
-import { StudentModel } from "@routine-support/models";
+import { ActivityModel, StudentModel } from "@routine-support/models";
 import { Router } from "express";
 import { authorization } from "../middleware/authorization";
 import { studentAuthorization } from "../middleware/studentAuthorization";
@@ -8,14 +8,17 @@ import { getRandomColor } from "../utils/getRandomColor";
 export const studentRouter = Router();
 
 studentRouter.post("/", authorization, async (req, res) => {
-  StudentModel.create({ ...req.body, color: getRandomColor() }, (err) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
+  StudentModel.create(
+    { ...req.body, color: getRandomColor() },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
 
-    return res.sendStatus(200);
-  });
+      return res.status(200).send(result);
+    }
+  );
 });
 
 studentRouter.post("/login", async (req, res) => {
@@ -25,10 +28,7 @@ studentRouter.post("/login", async (req, res) => {
     }
 
     const cookie = getAuthCookie(result);
-    return res
-      .status(200)
-      .cookie(cookie.name, cookie.token)
-      .send(result);
+    return res.status(200).cookie(cookie.name, cookie.token).send(result);
   });
 });
 
@@ -44,21 +44,40 @@ studentRouter.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
   StudentModel.findByIdAndDelete(id, (err) => {
-    if (err) return console.log(err);
-
-    res.status(200).send("Activity deleted");
+    if (err) {
+      console.log(err);
+      return;
+    }
   });
+
+  ActivityModel.find({ students: { $in: [id] } }, (__, activities) => {
+    console.log(activities);
+
+    activities.forEach(({ _id: activityId, students }) => {
+      const filteredStudents = students.filter((studentId) => studentId !== id);
+
+      console.log(filteredStudents);
+
+      if (!filteredStudents.length) {
+        ActivityModel.findByIdAndDelete(activityId);
+      } else {
+        ActivityModel.findByIdAndUpdate(activityId, {
+          students: filteredStudents.length ? filteredStudents : undefined,
+        });
+      }
+    });
+  });
+
+  res.status(200).send("Student deleted");
 });
 
 studentRouter.put("/:id", (req, res) => {
-  // ! _v - мусор, который летит из бд, починить !
-  const { _v, ...data } = req.body;
   const id = req.params.id;
 
   StudentModel.findByIdAndUpdate(
     id,
     {
-      ...data,
+      ...req.body,
     },
     (err) => {
       if (err) return console.log(err);

@@ -6,10 +6,10 @@ import { useWeekSelectComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface WeekSelectActions {
-  getWeek: (
-    params: { year: YearNumber; week: WeekNumber },
-    config: { silent: boolean }
-  ) => void;
+  getWeek: (data: {
+    params: { year: YearNumber; week: WeekNumber };
+    config: { silent: boolean };
+  }) => void;
 }
 
 export interface WeekSelectProps {

@@ -31,14 +31,12 @@ activityRouter.delete("/:id", async (req, res) => {
 });
 
 activityRouter.put("/:id", (req, res) => {
-  // ! _v - мусор, который летит из бд, починить !
-  const { _v, ...data } = req.body;
   const id = req.params.id;
 
   ActivityModel.findByIdAndUpdate(
     id,
     {
-      ...data,
+      ...req.body,
     },
     (err) => {
       if (err) return console.log(err);

@@ -1,6 +1,6 @@
 import { Moment } from "moment";
 import { Activity, ActivityDto } from "../activity/types";
-import { DateString, TimeRange } from '@routine-support/types'
+import { DateString, TimeRange } from "@routine-support/types";
 
 export type YearNumber = number;
 export type WeekNumber = number;
@@ -43,3 +43,5 @@ export type Week = {
   weekNumber: WeekNumber;
   weekInfo: WeekInfo;
 };
+
+export type ActivityFilter = { [key: string]: boolean };

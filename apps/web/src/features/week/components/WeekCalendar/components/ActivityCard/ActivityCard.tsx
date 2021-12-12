@@ -1,6 +1,7 @@
+import React from "react";
+
 import { Activity } from "@routine-support/models";
 import { getMinutes, stringifyTime } from "@routine-support/utils";
-import React from "react";
 
 import * as S from "./styled";
 
@@ -10,6 +11,7 @@ interface ActivityCardProps {
   index: number;
   count: number;
   onClick: (activity: Activity) => void;
+  backgroundColor: string;
 }
 
 export const ActivityCard: React.FC<ActivityCardProps> = ({
@@ -17,10 +19,12 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
   activity,
   index,
   count,
+  backgroundColor,
   onClick,
 }) => {
   return (
     <S.Wrapper
+      backgroundColor={backgroundColor}
       rowStart={rowStart}
       marginTop={activity.start.get("minutes") / 60}
       height={(getMinutes(activity.end) - getMinutes(activity.start)) / 60}

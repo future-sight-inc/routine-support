@@ -31,7 +31,8 @@
             }
           }
         ],
-        "unused-imports/no-unused-imports": "error"
+        "unused-imports/no-unused-imports": "error",
+        "no-console": "warn"
       }
     },
     {

@@ -20,7 +20,6 @@ export const useRegisterFormComponent = (actions: RegisterFormActions) => {
 
       await actions.register(data);
     } catch (error) {
-      // ! Добавить уже наконец exception service
       setSubmitError(error.message);
     }
   });

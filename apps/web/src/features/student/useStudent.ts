@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import { Student, studentActions, studentAPI } from "@routine-support/models";
 import { Id } from "@routine-support/types";
-import { toast } from "react-toastify";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { ActivityFilterService } from "../../services/ActivityFilterService";
 
 export const useStudent = () => {
   const [loading, setLoading] = useState(false);
@@ -22,11 +22,14 @@ export const useStudent = () => {
       try {
         setLoading(true);
 
-        await studentAPI.createStudent({ ...student, coachId });
+        const response = await studentAPI.createStudent({
+          ...student,
+          coachId,
+        });
+
+        ActivityFilterService.addStudent(response.data._id);
 
         setOpened(false);
-
-        toast.success("Student added!");
       } catch (error) {
         console.log(error);
       } finally {
@@ -42,8 +45,6 @@ export const useStudent = () => {
       await studentAPI.updateStudent(student);
 
       setOpened(false);
-
-      toast.success("Student updated!");
     } catch (error) {
       console.log(error);
     } finally {
@@ -57,9 +58,9 @@ export const useStudent = () => {
 
       await studentAPI.deleteStudent(id);
 
-      setOpened(false);
+      ActivityFilterService.removeStudent(id);
 
-      toast.success("Student deleted!");
+      setOpened(false);
     } catch (error) {
       console.log(error);
     } finally {

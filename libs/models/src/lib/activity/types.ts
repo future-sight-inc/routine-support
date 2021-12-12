@@ -19,6 +19,7 @@ export type Activity = {
   start: Moment;
   end: Moment;
   repeat: RepeatTypeEnum;
+  students?: Id[];
 };
 
 export type ActivityDto = {
@@ -30,4 +31,5 @@ export type ActivityDto = {
   start: TimeString;
   end: TimeString;
   repeat: RepeatTypeEnum;
+  students?: Id[];
 };
