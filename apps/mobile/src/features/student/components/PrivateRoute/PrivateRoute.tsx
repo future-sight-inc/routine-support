@@ -1,7 +1,8 @@
-import { Button, Layout, Text, Spinner } from "@ui-kitten/components";
 import React from "react";
+
+import { Layout, Spinner } from "@ui-kitten/components";
 import { Redirect, Route, RouteProps } from "react-router-native";
-import { useStudent } from "../../useStudent";
+
 
 interface Props extends RouteProps {
   loading: boolean;

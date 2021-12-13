@@ -1,15 +1,15 @@
+import React from "react";
+
 import { Student } from "@routine-support/models";
 import {
   Button,
-  Divider,
   Icon,
   Layout,
   Text,
-  TopNavigation,
   TopNavigationAction,
 } from "@ui-kitten/components";
-import React from "react";
-import { StyleSheet } from "react-native";
+
+import { MainLayout } from "../../../../components/MainLayout";
 import { useProfileComponent } from "./hooks";
 
 export interface ProfileActions {
@@ -27,30 +27,21 @@ export const Profile: React.FC<ProfileProps> = ({ student, actions }) => {
   } = useProfileComponent(actions);
 
   return (
-    <Layout
-      style={{
-        flex: 1,
-        alignItems: "center",
-        paddingTop: 64,
-        paddingBottom: 8,
-        ...StyleSheet.absoluteFillObject,
-      }}
-    >
-      <Layout style={{ width: "100%" }}>
-        <TopNavigation
-          alignment="center"
-          title="Profile"
-          accessoryLeft={
-            <TopNavigationAction
-              icon={(props) => (
-                <Icon {...props} name="arrow-back" onPress={handleBackPress} />
-              )}
+    <MainLayout
+      title="Profile"
+      accessoryLeft={
+        <TopNavigationAction
+          icon={(props) => (
+            <Icon
+              {...props}
+              name="arrow-back"
+              onPress={handleBackPress}
+              fill="white"
             />
-          }
+          )}
         />
-        <Divider />
-      </Layout>
-
+      }
+    >
       <Layout style={{ marginTop: 32 }}>
         <Text category="h6" style={{ textAlign: "center" }} appearance="hint">
           You logged as:
@@ -69,6 +60,6 @@ export const Profile: React.FC<ProfileProps> = ({ student, actions }) => {
           Logout
         </Button>
       </Layout>
-    </Layout>
+    </MainLayout>
   );
 };

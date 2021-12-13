@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useDay } from "../../useDay";
 import { Schedule as UncontrolledSchedule } from "./Schedule";
 

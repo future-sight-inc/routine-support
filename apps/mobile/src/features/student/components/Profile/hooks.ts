@@ -1,6 +1,7 @@
-import { useHistory } from "react-router-native";
-import { ProfileActions } from "./Profile";
 import { Alert } from "react-native";
+import { useHistory } from "react-router-native";
+
+import { ProfileActions } from "./Profile";
 
 export const useProfileComponent = (actions: ProfileActions) => {
   const history = useHistory();

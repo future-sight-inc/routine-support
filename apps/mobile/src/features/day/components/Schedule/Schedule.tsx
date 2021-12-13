@@ -1,18 +1,19 @@
+import React from "react";
+
 import { Day } from "@routine-support/models";
+import { stringifyTime } from "@routine-support/utils";
 import {
-  Button,
   Divider,
   Icon,
   Layout,
   List,
   Text,
-  TopNavigation,
   TopNavigationAction,
 } from "@ui-kitten/components";
-import React from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image } from "react-native";
+
+import { MainLayout } from "../../../../components/MainLayout";
 import { useScheduleComponent } from "./hooks";
-import { stringifyTime } from "@routine-support/utils";
 
 interface ScheduleActions {
   getDay: () => void;
@@ -34,40 +35,27 @@ export const Schedule: React.FC<ScheduleProps> = ({
   } = useScheduleComponent();
 
   return (
-    <Layout
-      style={{
-        // todo Создать компоненту обертки страницы
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        paddingTop: 64,
-        ...StyleSheet.absoluteFillObject,
-      }}
-    >
-      <Layout style={{ width: "100%" }}>
-        <TopNavigation
-          alignment="center"
-          accessoryRight={
-            <TopNavigationAction
-              icon={(props) => (
-                <Icon
-                  {...props}
-                  name="person-outline"
-                  onPress={handleForwardPress}
-                />
-              )}
+    <MainLayout
+      title="Schedule"
+      accessoryRight={
+        <TopNavigationAction
+          icon={(props) => (
+            <Icon
+              {...props}
+              name="person-outline"
+              onPress={handleForwardPress}
+              fill="white"
             />
-          }
+          )}
         />
-        <Divider />
-      </Layout>
+      }
+    >
       <Layout style={{ marginTop: 16, marginBottom: "auto" }}>
         <List
           onRefresh={() => actions.getDay()}
           refreshing={loading}
           style={{
             minWidth: "100%",
-            height: "100%",
           }}
           ItemSeparatorComponent={Divider}
           data={day.activities}
@@ -93,17 +81,11 @@ export const Schedule: React.FC<ScheduleProps> = ({
                 <Text category="s1" appearance="hint">
                   {stringifyTime(item.start)}-{stringifyTime(item.end)}
                 </Text>
-                <Button
-                  style={{ marginTop: "auto", width: 120 }}
-                  onPress={handleActivityOpen}
-                >
-                  Open
-                </Button>
               </Layout>
             </Layout>
           )}
         />
       </Layout>
-    </Layout>
+    </MainLayout>
   );
 };

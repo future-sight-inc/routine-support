@@ -16,7 +16,7 @@ dayRouter.get("/:date", async (req, res) => {
         return true;
       }
 
-      return activity.students.includes(res.locals.user._id);
+      return activity.students.includes(res.locals.student._id);
     });
 
     return res.status(200).send({ date, activities: filteredActivities });
