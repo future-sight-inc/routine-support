@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Activity, RepeatTypeEnum } from "./types";
+import { ActivitySchema, RepeatTypeEnum } from "./types";
 
 const activitySchema = new Schema(
   {
@@ -39,4 +39,4 @@ const activitySchema = new Schema(
   { versionKey: false }
 );
 
-export const ActivityModel = model<Activity>("activity", activitySchema);
+export const ActivityModel = model<ActivitySchema>("activity", activitySchema);

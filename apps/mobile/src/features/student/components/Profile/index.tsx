@@ -1,6 +1,7 @@
+import React from "react";
+
 import { useStudent } from "../../useStudent";
 import { Profile as UncontrolledProfile } from "./Profile";
-import React from "react";
 
 export const Profile: React.FC = () => {
   const {

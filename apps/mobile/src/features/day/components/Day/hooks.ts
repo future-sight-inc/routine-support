@@ -7,9 +7,5 @@ export const useDayComponent = () => {
     history.push("/profile");
   };
 
-  const handleBackPress = () => {
-    history.push("/");
-  };
-
-  return { operations: { handleBackPress, handleForwardPress } };
+  return { operations: { handleForwardPress } };
 };

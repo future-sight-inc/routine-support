@@ -10,6 +10,20 @@ export enum RepeatTypeEnum {
   EveryMonth,
 }
 
+// * Приходится хранить отдельный тип для схемы из-за того
+// * что дата/время в БД хранится в строковом виде
+export type ActivitySchema = {
+  _id: Id;
+  coachId: Id;
+  name: ActivityName;
+  pictogram: ImageUrl;
+  date: DateString;
+  start: TimeString;
+  end: TimeString;
+  repeat: RepeatTypeEnum;
+  students?: Id[];
+};
+
 export type Activity = {
   _id?: Id;
   coachId: Id;

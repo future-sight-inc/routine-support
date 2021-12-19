@@ -24,7 +24,7 @@ export const weekAPI = {
       filterParam = filterParam.join(",");
     }
 
-    const request: AxiosResponse<WeekDto> = await apiClient.get(
+    const response: AxiosResponse<WeekDto> = await apiClient.get(
       `/week/${year}/${week}`,
       {
         params: {
@@ -33,6 +33,6 @@ export const weekAPI = {
       }
     );
 
-    return formatWeekDto(request.data);
+    return formatWeekDto(response.data);
   },
 };

@@ -1,6 +1,9 @@
-import { Activity } from "@routine-support/models";
+import { ActivitySchema } from "@routine-support/models";
 
-export const filterActivities = (activities: Activity[], filter?: string[]) => {
+export const filterActivities = (
+  activities: ActivitySchema[],
+  filter?: string[]
+) => {
   if (!filter) {
     return [];
   }

@@ -1,10 +1,10 @@
 import { DATE_FORMAT } from "@routine-support/constants";
-import { Activity, RepeatTypeEnum } from "@routine-support/models";
-import moment = require("moment");
+import { ActivitySchema, RepeatTypeEnum } from "@routine-support/models";
 import { getDateRangeFromWeek } from "./getDateRangeFromWeek";
+import moment = require("moment");
 
 export const repeatActivity = (
-  activity: Activity,
+  activity: ActivitySchema,
   repeatType: RepeatTypeEnum,
   weekNumber: number,
   yearNumber: number

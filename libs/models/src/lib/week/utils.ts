@@ -1,24 +1,7 @@
 import { parseDate, serialize } from "@routine-support/utils";
-import { formatActivityDto } from "../activity/utils";
-import {
-  DateInfo,
-  Day,
-  DayDto,
-  Week,
-  WeekDto,
-  WeekInfo,
-  WeekInfoDto,
-} from "./types";
 import moment from "moment";
-
-export const formatDayDto = (dayDto: DayDto): Day => {
-  const day: Day = {
-    date: parseDate(dayDto.date),
-    activities: dayDto.activities.map(formatActivityDto),
-  };
-
-  return day;
-};
+import { formatDayDto } from "../day";
+import { DateInfo, Week, WeekDto, WeekInfo, WeekInfoDto } from "./types";
 
 export const formatWeekDto = (weekDto: WeekDto): Week => {
   const week: Week = {

@@ -1,80 +1,78 @@
+import React from "react";
+
+import { Day as DayType } from "@routine-support/models";
 import {
-  Button,
   Divider,
   Icon,
   Layout,
-  TopNavigation,
+  List,
   TopNavigationAction,
-  Text,
 } from "@ui-kitten/components";
-import React from "react";
-import { StyleSheet, Image } from "react-native";
+import moment from "moment";
+
+import { MainLayout } from "../../../../components/MainLayout";
+import { Activity } from "./components/Activity";
+import { CurrentActivity } from "./components/CurrentActivity";
 import { useDayComponent } from "./hooks";
 
-export const Day: React.FC = () => {
+interface DayActions {
+  getDay: () => void;
+}
+
+interface DayProps {
+  actions: DayActions;
+  loading: boolean;
+  day: DayType;
+}
+
+export const Day: React.FC<DayProps> = ({ day, loading, actions }) => {
   const {
-    operations: { handleBackPress, handleForwardPress },
+    operations: { handleForwardPress },
   } = useDayComponent();
 
   return (
-    <Layout
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        paddingTop: 64,
-        paddingBottom: 8,
-        ...StyleSheet.absoluteFillObject,
-      }}
-    >
-      <Layout style={{ width: "100%" }}>
-        <TopNavigation
-          alignment="center"
-          title="9:00"
-          accessoryLeft={
-            <TopNavigationAction
-              icon={(props) => (
-                <Icon {...props} name="arrow-back" onPress={handleBackPress} />
-              )}
+    <MainLayout
+      title="Day"
+      accessoryRight={
+        <TopNavigationAction
+          icon={(props) => (
+            <Icon
+              {...props}
+              name="person-outline"
+              onPress={handleForwardPress}
+              fill="white"
             />
-          }
-          accessoryRight={
-            <TopNavigationAction
-              icon={(props) => (
-                <Icon
-                  {...props}
-                  name="person-outline"
-                  onPress={handleForwardPress}
-                />
-              )}
-            />
-          }
-        />
-        <Divider />
-      </Layout>
-      <Layout style={{ marginTop: "auto", marginBottom: "auto" }}>
-        <Text category="h4" style={{ textAlign: "center", marginBottom: 16 }}>
-          Breakfast
-        </Text>
-        <Text category="h6" style={{ textAlign: "center", marginBottom: 16 }}>
-          9:00 – 9:30
-        </Text>
-        <Image
-          source={{ uri: "https://www.sclera.be/resources/pictos/ontbijt.png" }}
-          style={{ width: 320, height: 320 }}
-        />
-      </Layout>
-      <Layout style={{ padding: 16, width: "100%" }}>
-        <Button
-          style={{ width: "100%" }}
-          accessoryLeft={(props) => (
-            <Icon {...props} name="checkmark-outline" />
           )}
-          size="giant"
-        >
-          Check
-        </Button>
+        />
+      }
+    >
+      <Layout style={{ marginBottom: "auto" }}>
+        <List
+          onRefresh={() => actions.getDay()}
+          refreshing={loading}
+          style={{
+            minWidth: "100%",
+          }}
+          ItemSeparatorComponent={Divider}
+          data={day.activities}
+          renderItem={({ item, index }) => {
+            const currentTime = moment();
+
+            if (item.end.isBefore(currentTime)) {
+              return null;
+            }
+
+            if (
+              item.start.isSameOrBefore(currentTime) &&
+              currentTime.isSameOrBefore(item.end)
+            ) {
+              return <CurrentActivity activity={item} key={index} />;
+            }
+
+            return <Activity activity={item} key={index} />;
+          }}
+        />
       </Layout>
-    </Layout>
+    </MainLayout>
   );
 };
