@@ -6,7 +6,7 @@ import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { Provider } from "react-redux";
 import { NativeRouter, Route } from "react-router-native";
 
-import { Schedule } from "../features/day/components/Schedule";
+import { Day } from "../features/day/components/Day";
 import { Login } from "../features/student/components/Login";
 import { PrivateRoute } from "../features/student/components/PrivateRoute";
 import { Profile } from "../features/student/components/Profile";
@@ -24,7 +24,7 @@ export const App = () => {
             </Route>
             <PrivateRoute>
               <Route exact path="/">
-                <Schedule />
+                <Day />
               </Route>
               <Route exact path="/profile">
                 <Profile />

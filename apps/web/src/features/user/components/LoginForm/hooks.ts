@@ -20,7 +20,6 @@ export const useLoginFormComponent = (actions: LoginFormActions) => {
 
       await actions.login(data);
     } catch (error) {
-      // ! Добавить уже наконец exception service
       setSubmitError(error.message);
     }
   });

@@ -23,7 +23,6 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
       style={{
         flex: 1,
         alignItems: "center",
-
         paddingBottom: 8,
         ...StyleSheet.absoluteFillObject,
       }}
@@ -39,19 +38,21 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
             backgroundColor: "#275DF0",
           }}
         />
-        <Text
-          style={{
-            position: "absolute",
-            top: 66,
-            left: 120,
-            right: 120,
-            textAlign: "center",
-            color: "white",
-          }}
-          category="h6"
-        >
-          {title}
-        </Text>
+        {title && (
+          <Text
+            style={{
+              position: "absolute",
+              top: 66,
+              left: 120,
+              right: 120,
+              textAlign: "center",
+              color: "white",
+            }}
+            category="h6"
+          >
+            {title}
+          </Text>
+        )}
         <Divider />
       </Layout>
       {children}

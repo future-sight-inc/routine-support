@@ -1,9 +1,9 @@
 import React from "react";
 
 import { useDay } from "../../useDay";
-import { Schedule as UncontrolledSchedule } from "./Schedule";
+import { Day as UncontrolledDay } from "./Day";
 
-export const Schedule: React.FC = () => {
+export const Day: React.FC = () => {
   const {
     models: { day, loading },
     operations: { getDay },
@@ -14,7 +14,5 @@ export const Schedule: React.FC = () => {
     return null;
   }
 
-  return (
-    <UncontrolledSchedule day={day} loading={loading} actions={{ getDay }} />
-  );
+  return <UncontrolledDay day={day} loading={loading} actions={{ getDay }} />;
 };

@@ -8,6 +8,7 @@ export const List = styled(BasicList)`
   overflow-y: scroll;
   border: 1px solid ${({ theme }) => theme.border.color};
   border-radius: 8px;
+  background: 25px;
 `;
 
 export const EmptyInfo = styled(Typography)`
