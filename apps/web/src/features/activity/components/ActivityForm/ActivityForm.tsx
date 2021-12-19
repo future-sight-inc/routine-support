@@ -5,7 +5,7 @@ import {
   User,
   WeekNumber,
   YearNumber,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 import { ActivityNameInput } from "../../../../components/FormFields/ActivityNameInput";

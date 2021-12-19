@@ -1,4 +1,4 @@
-import { ActivityModel, RepeatTypeEnum } from "@routine-support/models";
+import { ActivityModel, RepeatTypeEnum } from "@routine-support/domains";
 import { Router } from "express";
 import { filterActivities } from "../utils/filterActivities";
 import { getStringDateRangeFromWeek } from "../utils/getStringDateRangeFromWeek";

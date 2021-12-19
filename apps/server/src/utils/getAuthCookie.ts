@@ -1,4 +1,4 @@
-import { User } from "@routine-support/models";
+import { User } from "@routine-support/domains";
 import * as jwt from "jsonwebtoken";
 
 export const getAuthCookie = (user: User) => {

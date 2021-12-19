@@ -1,4 +1,4 @@
-import { DateInfo } from "@routine-support/models";
+import { DateInfo } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
 

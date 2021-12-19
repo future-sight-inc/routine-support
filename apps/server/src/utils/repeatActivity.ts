@@ -1,5 +1,5 @@
 import { DATE_FORMAT } from "@routine-support/constants";
-import { ActivitySchema, RepeatTypeEnum } from "@routine-support/models";
+import { ActivitySchema, RepeatTypeEnum } from "@routine-support/domains";
 import { getDateRangeFromWeek } from "./getDateRangeFromWeek";
 import moment = require("moment");
 

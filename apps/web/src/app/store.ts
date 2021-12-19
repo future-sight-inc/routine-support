@@ -5,7 +5,7 @@ import {
   userReducer,
   studentsReducer,
   studentReducer,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 
 export const store = configureStore({
   reducer: {

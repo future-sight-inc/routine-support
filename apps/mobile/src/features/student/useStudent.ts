@@ -4,7 +4,7 @@ import {
   StudentLoginDto,
   studentAPI,
   studentActions,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 

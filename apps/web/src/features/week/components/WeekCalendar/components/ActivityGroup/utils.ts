@@ -1,4 +1,4 @@
-import { Activity, Student } from "@routine-support/models";
+import { Activity, Student } from "@routine-support/domains";
 import { Theme } from "apps/web/src/styled/theme";
 
 export const getActivityColor = (activity: Activity, students: Student[]) => {

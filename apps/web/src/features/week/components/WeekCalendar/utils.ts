@@ -1,4 +1,4 @@
-import { Activity } from "@routine-support/models";
+import { Activity } from "@routine-support/domains";
 import moment from "moment";
 import { Moment } from "moment";
 

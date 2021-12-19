@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Day as DayType } from "@routine-support/models";
+import { Day as DayType } from "@routine-support/domains";
 import {
   Divider,
   Icon,

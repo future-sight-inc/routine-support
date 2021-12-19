@@ -1,5 +1,6 @@
-import { Student } from "@routine-support/models";
+import { Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
+
 import { StudentFormActions } from "./StudentForm";
 
 export const useStudentFormComponent = (

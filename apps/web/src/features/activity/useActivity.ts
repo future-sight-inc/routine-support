@@ -4,7 +4,7 @@ import {
   Activity,
   activityActions,
   activityAPI,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";

@@ -1,4 +1,4 @@
-import { DateInfo, getDateInfoQuery } from "@routine-support/models";
+import { DateInfo, getDateInfoQuery } from "@routine-support/domains";
 
 export const updateCurrentDateInfoQuery = (
   dateInfo: DateInfo,

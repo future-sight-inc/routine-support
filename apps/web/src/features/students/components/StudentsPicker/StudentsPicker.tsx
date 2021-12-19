@@ -6,7 +6,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import { Student } from "@routine-support/models";
+import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { Select } from "apps/web/src/components/Select";
 

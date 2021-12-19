@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Student } from "@routine-support/models";
+import { Student } from "@routine-support/domains";
 import {
   Button,
   Icon,

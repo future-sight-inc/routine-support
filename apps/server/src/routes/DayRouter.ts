@@ -1,4 +1,4 @@
-import { ActivityModel } from "@routine-support/models";
+import { ActivityModel } from "@routine-support/domains";
 import { Router } from "express";
 
 export const dayRouter = Router();

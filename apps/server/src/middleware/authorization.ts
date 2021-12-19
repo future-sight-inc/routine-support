@@ -1,4 +1,4 @@
-import { User, UserModel } from "@routine-support/models";
+import { User, UserModel } from "@routine-support/domains";
 import * as jwt from "jsonwebtoken";
 
 export const authorization = (req, res, next) => {

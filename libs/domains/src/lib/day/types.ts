@@ -1,4 +1,4 @@
-import { Activity, ActivityDto } from "@routine-support/models";
+import { Activity, ActivityDto } from "@routine-support/domains";
 import { DateString } from "@routine-support/types";
 import { Moment } from "moment";
 

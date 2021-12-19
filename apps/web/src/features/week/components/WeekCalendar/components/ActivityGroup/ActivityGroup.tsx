@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Activity, Student } from "@routine-support/models";
+import { Activity, Student } from "@routine-support/domains";
 import { TimeString } from "@routine-support/types";
 import { indexOfTimeRange } from "@routine-support/utils";
 

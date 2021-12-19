@@ -1,7 +1,7 @@
 import React from "react";
 
 import { MenuItem, SelectProps } from "@mui/material";
-import { RepeatTypeEnum } from "@routine-support/models";
+import { RepeatTypeEnum } from "@routine-support/domains";
 
 import { Select } from "../Select";
 

@@ -6,7 +6,7 @@ import { ListItemText } from "@mui/material";
 import { ListItemButton } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import ListItem from "@mui/material/ListItem";
-import { Student } from "@routine-support/models";
+import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { Modal } from "apps/web/src/components/Modal";
 

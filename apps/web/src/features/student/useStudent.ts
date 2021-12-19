@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Student, studentActions, studentAPI } from "@routine-support/models";
+import { Student, studentActions, studentAPI } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";

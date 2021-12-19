@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Activity, User } from "@routine-support/models";
+import { Activity, User } from "@routine-support/domains";
 import moment, { Moment } from "moment";
 import { useForm } from "react-hook-form";
 

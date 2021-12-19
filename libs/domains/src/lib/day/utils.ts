@@ -1,4 +1,4 @@
-import { formatActivityDto } from "@routine-support/models";
+import { formatActivityDto } from "@routine-support/domains";
 import { parseDate } from "@routine-support/utils";
 import { DayDto, Day } from "./types";
 

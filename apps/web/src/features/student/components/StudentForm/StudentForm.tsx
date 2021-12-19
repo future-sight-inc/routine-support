@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Student } from "@routine-support/models";
+import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 

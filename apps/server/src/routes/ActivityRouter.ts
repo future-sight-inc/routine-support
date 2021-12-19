@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ActivityModel } from "@routine-support/models";
+import { ActivityModel } from "@routine-support/domains";
 
 export const activityRouter = Router();
 

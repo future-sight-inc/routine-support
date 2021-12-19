@@ -5,7 +5,7 @@ import ListIcon from "@mui/icons-material/List";
 import { List, ListItemButton, ListItemText } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { ListItemIcon } from "@mui/material";
-import { User } from "@routine-support/models";
+import { User } from "@routine-support/domains";
 import { LinkService } from "apps/web/src/services/LinkService";
 import { NavLink } from "react-router-dom";
 

@@ -1,4 +1,4 @@
-import { ActivityModel, StudentModel } from "@routine-support/models";
+import { ActivityModel, StudentModel } from "@routine-support/domains";
 import { Router } from "express";
 import { authorization } from "../middleware/authorization";
 import { studentAuthorization } from "../middleware/studentAuthorization";

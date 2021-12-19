@@ -2,7 +2,7 @@ import {
   DateInfo,
   getCurrentDateInfo,
   getDateInfoFromMoment,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 import { useDateInfoQuery } from "apps/web/src/hooks/useDateInfoQuery";
 import { Moment } from "moment";
 import { useForm } from "react-hook-form";

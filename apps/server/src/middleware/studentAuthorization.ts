@@ -1,4 +1,4 @@
-import { User, StudentModel } from "@routine-support/models";
+import { User, StudentModel } from "@routine-support/domains";
 import * as jwt from "jsonwebtoken";
 
 export const studentAuthorization = (req, res, next) => {
