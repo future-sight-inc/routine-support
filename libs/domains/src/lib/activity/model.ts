@@ -35,6 +35,10 @@ const activitySchema = new Schema(
       type: Schema.Types.Array,
       default: undefined,
     },
+    confirmation: {
+      type: Object,
+      default: {},
+    },
   },
   { versionKey: false }
 );
