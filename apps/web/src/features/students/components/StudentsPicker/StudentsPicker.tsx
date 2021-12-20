@@ -23,7 +23,6 @@ interface StudentsPickerProps {
   value?: Id[];
   students: Student[];
   actions: StudentsPickerActions;
-  // ! Не знаем конечного типа
 }
 
 export const StudentsPicker: React.FC<StudentsPickerProps> = ({

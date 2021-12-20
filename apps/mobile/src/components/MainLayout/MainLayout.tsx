@@ -5,7 +5,6 @@ import { RenderProp } from "@ui-kitten/components/devsupport";
 import { StyleSheet } from "react-native";
 
 interface MainLayoutProps {
-  // ! Прокинуть в качестве кнопок можно любой элемент
   accessoryLeft?: RenderProp<unknown>;
   accessoryRight?: RenderProp<unknown>;
   title?: string;
