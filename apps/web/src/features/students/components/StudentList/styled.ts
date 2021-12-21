@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import BasicList from "@mui/material/List";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const List = styled(BasicList)`
   position: static;
@@ -9,19 +9,6 @@ export const List = styled(BasicList)`
   border: 1px solid ${({ theme }) => theme.border.color};
   border-radius: 8px;
   background: 25px;
-`;
-
-export const EmptyInfo = styled(Typography)`
-  padding: 16px;
-
-  ${({ theme }) =>
-    css`
-      ${theme.position.absoluteCenter}
-      border-radius: ${theme.borderRadius}px;
-      background: ${theme.palette.common.grey};
-      color: ${theme.palette.secondary.contrastText};
-      border: ${theme.border.main};
-    `};
 `;
 
 export const QrTitle = styled(Typography).attrs(() => ({ variant: "h6" }))`

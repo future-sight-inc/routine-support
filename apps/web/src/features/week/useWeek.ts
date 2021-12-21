@@ -25,6 +25,8 @@ export const useWeek = () => {
   const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
   const savedActivityFilter = useSavedActivityFilter();
 
+  const [error, setError] = useState<string | null>(null);
+
   const getWeek = async (data?: {
     params?: {
       year?: YearNumber;
@@ -53,7 +55,7 @@ export const useWeek = () => {
 
       dispatch(weekActions.setWeek(week));
     } catch (error) {
-      console.error(error);
+      setError(error.message);
     } finally {
       !data?.config?.silent && setLoading(false);
     }
@@ -63,6 +65,7 @@ export const useWeek = () => {
     models: {
       week,
       loading,
+      error,
     },
     operations: {
       getWeek,

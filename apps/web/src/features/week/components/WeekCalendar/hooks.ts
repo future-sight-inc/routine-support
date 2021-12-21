@@ -13,6 +13,7 @@ export const useWeekCalendarComponent = (
 ) => {
   const [timelineTopOffset, setTimelineTopOffset] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     const checkOffset = () => {
       const frame = containerRef?.current?.scrollHeight;

@@ -2,6 +2,7 @@ import { DateInfo } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
 
+// ! Перенести в utils
 export const addWeeks = (values: DateInfo, amount: number) => {
   const newDate = moment()
     .year(values.year)
@@ -12,6 +13,7 @@ export const addWeeks = (values: DateInfo, amount: number) => {
 };
 
 export const getDateRange = (values: DateInfo) => {
+  // ! Локализация
   const date = moment().locale("ru").year(values.year).weeks(values.week);
 
   return {

@@ -11,16 +11,20 @@ export const useStudents = () => {
   const coachId = useAppSelector((state) => state.user.user?._id);
   const dispatch = useAppDispatch();
 
+  const [error, setError] = useState<string | null>(null);
+
   const getStudents = async () => {
     if (coachId) {
       try {
+        setError(null);
+
         setLoading(true);
 
         const students = await studentAPI.getStudents(coachId);
 
         dispatch(studentsActions.setStudents(students));
       } catch (error) {
-        console.error(error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -28,7 +32,7 @@ export const useStudents = () => {
   };
 
   return {
-    models: { students, loading },
+    models: { students, loading, error },
     operations: { getStudents },
   };
 };

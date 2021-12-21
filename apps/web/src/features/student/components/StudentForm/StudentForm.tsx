@@ -4,6 +4,7 @@ import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 
+import { ErrorText } from "../../../../components/ErrorText";
 import { useStudentFormComponent } from "./hooks";
 import * as S from "./styled";
 
@@ -24,7 +25,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   actions,
 }) => {
   const {
-    models: { control, isDirty, isSubmitting },
+    models: { control, isDirty, isSubmitting, submitError },
     operations: { handleSubmit, onDelete },
   } = useStudentFormComponent(student, actions);
 
@@ -59,6 +60,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             </S.DeleteButton>
           )}
         </S.ButtonsWrapper>
+        {submitError && <ErrorText>{submitError}</ErrorText>}
       </S.Wrapper>
     </form>
   );

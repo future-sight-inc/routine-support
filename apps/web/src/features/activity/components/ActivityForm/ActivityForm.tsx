@@ -8,6 +8,7 @@ import {
 } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
+import { ErrorText } from "../../../../components/ErrorText";
 import { ActivityNameInput } from "../../../../components/FormFields/ActivityNameInput";
 import { DatePicker } from "../../../../components/FormFields/DatePicker";
 import { PictogramPicker } from "../../../../components/FormFields/PictogramPicker";
@@ -46,6 +47,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
       minEndTime,
       isDirty,
       isSubmitting,
+      submitError,
     },
     operations: { handleSubmit, onDelete },
   } = useActivityFormComponent(user, activity, actions);
@@ -110,6 +112,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
             </S.DeleteButton>
           )}
         </S.ButtonsWrapper>
+        {submitError && <ErrorText>{submitError}</ErrorText>}
       </S.Wrapper>
     </form>
   );

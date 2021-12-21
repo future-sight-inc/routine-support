@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
@@ -10,15 +12,22 @@ export const useStudentFormComponent = (
   const { control, handleSubmit, formState, getValues } = useForm({
     defaultValues: student ? student : {},
   });
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const onSubmit = handleSubmit(async (values) => {
-    if (values._id) {
-      await actions.updateStudent(values as Student);
-    } else {
-      await actions.createStudent(values as Student);
-    }
+    try {
+      setSubmitError(null);
 
-    actions.getStudents();
+      if (values._id) {
+        await actions.updateStudent(values as Student);
+      } else {
+        await actions.createStudent(values as Student);
+      }
+
+      actions.getStudents();
+    } catch (error) {
+      setSubmitError(error.message);
+    }
   });
 
   const onDelete = async () => {
@@ -35,6 +44,7 @@ export const useStudentFormComponent = (
       control,
       isDirty: formState.isDirty,
       isSubmitting: formState.isSubmitting,
+      submitError,
     },
     operations: { handleSubmit: onSubmit, onDelete },
   };

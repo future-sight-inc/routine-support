@@ -30,8 +30,6 @@ export const useStudent = () => {
         ActivityFilterService.addStudent(response.data._id);
 
         setOpened(false);
-      } catch (error) {
-        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -45,8 +43,6 @@ export const useStudent = () => {
       await studentAPI.updateStudent(student);
 
       setOpened(false);
-    } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -61,8 +57,6 @@ export const useStudent = () => {
       ActivityFilterService.removeStudent(id);
 
       setOpened(false);
-    } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }

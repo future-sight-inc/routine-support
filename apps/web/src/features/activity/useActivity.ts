@@ -26,8 +26,6 @@ export const useActivity = () => {
       await activityAPI.createActivity(activity);
 
       setOpened(false);
-    } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -40,8 +38,6 @@ export const useActivity = () => {
       await activityAPI.updateActivity(activity);
 
       setOpened(false);
-    } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -54,8 +50,6 @@ export const useActivity = () => {
       await activityAPI.deleteActivity(id);
 
       setOpened(false);
-    } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }
