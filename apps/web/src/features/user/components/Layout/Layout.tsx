@@ -7,6 +7,7 @@ import { ListItem } from "@mui/material";
 import { ListItemIcon } from "@mui/material";
 import { User } from "@routine-support/domains";
 import { LinkService } from "apps/web/src/services/LinkService";
+import moment from "moment";
 import { NavLink } from "react-router-dom";
 
 import * as S from "./styled";
@@ -43,9 +44,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
               to={LinkService.home()}
               activeClassName="active"
             >
-              <ListItemIcon>
+              <S.HomeItemIcon>
                 <CalendarTodayIcon />
-              </ListItemIcon>
+                <S.DayNumber>{moment().date()}</S.DayNumber>
+              </S.HomeItemIcon>
               <ListItemText primary="Календарь" />
             </ListItemButton>
           </ListItem>

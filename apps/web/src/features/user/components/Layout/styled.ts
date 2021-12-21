@@ -1,5 +1,6 @@
 import PersonIcon from "@mui/icons-material/Person";
 import { Button, Typography } from "@mui/material";
+import { ListItemIcon } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -59,6 +60,19 @@ export const Link = styled(RouterLink)`
   &:visited {
     color: ${({ theme }) => theme.palette.common.white};
   }
+`;
+
+export const HomeItemIcon = styled(ListItemIcon)`
+  position: relative;
+`;
+
+export const DayNumber = styled(Typography)`
+  font-size: 10px;
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 24px;
+  text-align: center;
 `;
 
 export const UserWrapper = styled.div`
