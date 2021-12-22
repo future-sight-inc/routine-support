@@ -31,12 +31,14 @@ export const useWeekSelectComponent = (actions: WeekSelectActions) => {
 
   const onPrevClick = (values: DateInfo) => {
     const newDate = addWeeks(values, -1);
+
     updateCurrentDateInfo(newDate);
     onSubmit();
   };
 
   const onNextClick = (values: DateInfo) => {
     const newDate = addWeeks(values, 1);
+
     updateCurrentDateInfo(newDate);
     onSubmit();
   };
