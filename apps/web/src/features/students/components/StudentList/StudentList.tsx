@@ -33,10 +33,14 @@ export const StudentList: React.FC<StudentListProps> = ({
     operations: { onStudentClick, onStudentDelete, onQrOpen, onQrClose },
   } = useStudentListComponent(actions);
 
+  if (!students.length) {
+    return <S.EmptyText>Пока нет ни одного студента</S.EmptyText>;
+  }
+
   return (
     <S.List>
-      {students.map((student) => (
-        <ListItem disablePadding>
+      {students.map((student, index) => (
+        <ListItem disablePadding divider={index < students.length - 1}>
           <ListItemButton onClick={() => onStudentClick(student)}>
             <ListItemText primary={student.name} />
             <div>

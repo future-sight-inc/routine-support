@@ -21,8 +21,6 @@ export const Students: React.FC = () => {
     <ContentWrapper
       loading={Students.models.loading}
       error={Students.models.error}
-      empty={!Students.models.students.length}
-      emptyText={"Пока нет ни одного студента"}
       onReload={Students.operations.getStudents}
     >
       <Layout
