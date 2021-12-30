@@ -1,5 +1,5 @@
 import { parseDate, serialize } from "@routine-support/utils";
-import moment from "moment";
+import moment, { Moment } from "moment";
 import { formatDayDto } from "../day";
 import { DateInfo, Week, WeekDto, WeekInfo, WeekInfoDto } from "./types";
 
@@ -28,6 +28,10 @@ export const getDateInfoFromMoment = (moment: moment.Moment): DateInfo => {
     year: Number(moment.clone().get("year")),
     week: Number(moment.clone().format("W")),
   };
+};
+
+export const dateInfoToMoment = (dateInfo: DateInfo): Moment => {
+  return moment().set("year", dateInfo.year).set("W", dateInfo.week);
 };
 
 export const getCurrentDateInfo = (): DateInfo => {

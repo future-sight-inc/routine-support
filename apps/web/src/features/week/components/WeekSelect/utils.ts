@@ -1,30 +1,23 @@
-import { DateInfo } from "@routine-support/domains";
-import { stringifyDate } from "@routine-support/utils";
-import moment from "moment";
+import moment, { Moment } from "moment";
 
-// ! Перенести в utils
-export const addWeeks = (values: DateInfo, amount: number) => {
-  const date = moment().year(values.year).weeks(values.week);
+export const addWeekToMoment = (date: Moment) => {
+  if (date.get("W") === date.weeksInYear()) {
+    const newDate = moment()
+      .set("year", date.get("year") + 1)
+      .set("W", 1);
 
-  const newDate = moment()
-    .year(values.year)
-    .weeks(values.week)
-    .add(amount, "w");
-
-  // ! библиотека не умеет обновлять год после добавления недели
-  if (newDate.get("week") === 1 && newDate.get("week") < date.get("week")) {
-    return moment([values.year + 1, 0, 1]);
+    return newDate;
   }
 
-  return newDate;
+  return date.clone().set("W", date.get("W") + 1);
 };
 
-export const getDateRange = (values: DateInfo) => {
-  // ! Локализация
-  const date = moment().locale("ru").year(values.year).weeks(values.week);
+export const removeWeekFromMoment = (date: Moment) => {
+  if (date.get("W") === 1) {
+    const newDate = moment().set("year", date.get("year") - 1);
 
-  return {
-    start: stringifyDate(date.startOf("w")),
-    end: stringifyDate(date.endOf("w")),
-  };
+    return newDate;
+  }
+
+  return date.clone().set("W", date.get("W") - 1);
 };
