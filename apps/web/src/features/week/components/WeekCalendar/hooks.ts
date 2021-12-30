@@ -18,7 +18,7 @@ export const useWeekCalendarComponent = (
     const checkOffset = () => {
       const frame = containerRef?.current?.scrollHeight;
       const minutes = getMinutes(moment());
-      const offsetTop = (minutes / (24 * 60)) * frame!;
+      const offsetTop = (minutes / (24 * 60)) * (frame || 0);
 
       if (!scrolled) {
         setTimelineTopOffset(offsetTop);

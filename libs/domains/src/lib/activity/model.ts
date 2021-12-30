@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
 import { ActivitySchema, RepeatTypeEnum } from "./types";
 
 const activitySchema = new Schema(

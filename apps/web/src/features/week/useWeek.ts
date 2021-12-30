@@ -10,7 +10,7 @@ import {
   YearNumber,
 } from "@routine-support/domains";
 
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
 import { useSavedActivityFilter } from "../../hooks/useSavedActivityFilter";
 import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";

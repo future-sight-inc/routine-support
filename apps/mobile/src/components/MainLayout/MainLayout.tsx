@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-import { Layout, TopNavigation, Divider, Text } from "@ui-kitten/components";
+import { Divider, Layout, Text, TopNavigation } from "@ui-kitten/components";
 import { RenderProp } from "@ui-kitten/components/devsupport";
 import { StyleSheet } from "react-native";
 

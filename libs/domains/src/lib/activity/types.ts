@@ -1,5 +1,5 @@
 import { Moment } from "moment";
-import { Id, ImageUrl, TimeString, DateString } from "@routine-support/types";
+import { DateString, Id, ImageUrl, TimeString } from "@routine-support/types";
 
 export type ActivityName = string;
 

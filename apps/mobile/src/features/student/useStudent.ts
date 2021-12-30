@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import {
-  StudentLoginDto,
-  studentAPI,
   studentActions,
+  studentAPI,
+  StudentLoginDto,
 } from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -24,7 +24,7 @@ export const useStudent = () => {
       dispatch(studentActions.setStudent(student));
     } catch (error) {
       dispatch(studentActions.setStudent(null));
-      console.log(error);
+      console.error(error);
 
       throw error;
     } finally {

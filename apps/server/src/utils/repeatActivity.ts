@@ -25,6 +25,7 @@ export const repeatActivity = (
 
 export const repeatActivityEveryDay = (
   // ! Баг в mongoose
+  // eslint-disable-next-line
   activity: any,
   week: moment.Moment[]
 ) => {
@@ -46,6 +47,7 @@ export const repeatActivityEveryDay = (
 
 export const repeatActivityEveryWeek = (
   // ! Баг в mongoose
+  // eslint-disable-next-line
   activity: any,
   week: moment.Moment[],
   weekNumber: number,
@@ -71,6 +73,7 @@ export const repeatActivityEveryWeek = (
 
 export const repeatActivityEveryMonth = (
   // ! Баг в mongoose
+  // eslint-disable-next-line
   activity: any,
   week: moment.Moment[]
 ) => {

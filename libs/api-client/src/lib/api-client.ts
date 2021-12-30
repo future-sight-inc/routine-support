@@ -10,7 +10,7 @@ axios.interceptors.response.use(
 );
 
 export const apiClient = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "http://localhost:3000/api",
   timeout: 30 * 1000,
   withCredentials: true,
   headers: {
@@ -21,7 +21,7 @@ export const apiClient = axios.create({
 });
 
 export const mobileApiClient = axios.create({
-  baseURL: "http://192.168.0.119:5000/api",
+  baseURL: "http://192.168.0.119:3000/api",
   timeout: 30 * 1000,
   withCredentials: true,
   headers: {

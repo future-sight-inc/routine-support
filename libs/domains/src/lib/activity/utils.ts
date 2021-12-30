@@ -1,9 +1,9 @@
 import { Activity, ActivityDto } from "./types";
 import {
-  stringifyTime,
-  stringifyDate,
   parseDate,
   parseTime,
+  stringifyDate,
+  stringifyTime,
 } from "@routine-support/utils";
 
 export const formatActivity = (activity: Activity): ActivityDto => {
