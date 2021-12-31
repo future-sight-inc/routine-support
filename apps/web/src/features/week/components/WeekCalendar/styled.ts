@@ -80,7 +80,7 @@ export const TimeColumn = styled(Column)`
     cursor: default;
 
     &:hover {
-      border: none;
+      box-shadow: none;
     }
   }
 `;
