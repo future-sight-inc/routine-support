@@ -13,17 +13,22 @@ export const Wrapper = styled.div`
   position: relative;
 `;
 
+
 export const Cell = styled.div<{ passed?: boolean }>`
   padding: 8px;
   min-height: ${({ theme }) => theme.size.cellHeight};
   box-sizing: border-box;
   background: ${({ theme }) => theme.palette.common.grey};
   background: white;
-
+  transition: box-shadow 0.2s;
   cursor: pointer;
 
   &:hover {
-    border: 1px solid ${({ theme }) => theme.palette.primary.main};
+    ${({ theme }) =>
+      css`
+        box-shadow: inset ${theme.palette.primary.main} 0px 1px 1px,
+          inset ${theme.palette.primary.main} 0px 0px 0px 1px;
+      `}
   }
 `;
 

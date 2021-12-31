@@ -7,6 +7,12 @@ export const CheckedButton = styled(Button)`
   bottom: 4px;
   right: 8px;
   color: black;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: black 0px 1px 1px, black 0px 0px 0px 1px;
+    background: none;
+  }
 `;
 
 export const CheckedIcon = styled(CheckIcon)`
