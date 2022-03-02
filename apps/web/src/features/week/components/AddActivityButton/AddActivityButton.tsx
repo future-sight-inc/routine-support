@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useTranslation } from 'react-i18next';
+
 import * as S from "./styled";
 
 interface AddActivityButtonProps {
@@ -9,6 +11,7 @@ interface AddActivityButtonProps {
 export const AddActivityButton: React.FC<AddActivityButtonProps> = ({
   onClick,
 }) => {
-  // ! Добавить локализацию
-  return <S.Button onClick={onClick}>+ Событие</S.Button>;
+  const { t } = useTranslation()
+
+  return <S.Button onClick={onClick}>+ {t("Activity")}</S.Button>;
 };

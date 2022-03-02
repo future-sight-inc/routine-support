@@ -3,6 +3,7 @@ import React from "react";
 import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
+import { useTranslation } from 'react-i18next';
 
 import { ErrorText } from "../../../../components/ErrorText";
 import { useStudentFormComponent } from "./hooks";
@@ -29,16 +30,18 @@ export const StudentForm: React.FC<StudentFormProps> = ({
     operations: { handleSubmit, onDelete },
   } = useStudentFormComponent(student, actions);
 
+  const { t } = useTranslation()
+
   return (
     <form onSubmit={handleSubmit}>
       <S.Wrapper>
         <S.Title>
-          {student?._id ? "Редактирование студента" : "Создание студента"}
+          {student?._id ? t("Modify student") : t("Add student")}
         </S.Title>
         <TextField
           name="name"
           control={control}
-          placeholder="Имя"
+          placeholder={t("Name")}
           fullWidth
           required
         />
@@ -46,17 +49,16 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           <S.SubmitButton
             type="submit"
             loading={isSubmitting}
-            disabled={!isDirty} // ! Добавить локализацию
+            disabled={!isDirty}
           >
-            {student?._id ? "Обновить" : "Создать"}
+            {student?._id ? t("Update") : t("Create")}
           </S.SubmitButton>
           {student?._id && (
             <S.DeleteButton
               color="error"
               onClick={onDelete}
-              // ! Добавить локализацию
             >
-              Удалить
+              {t("Delete")}
             </S.DeleteButton>
           )}
         </S.ButtonsWrapper>

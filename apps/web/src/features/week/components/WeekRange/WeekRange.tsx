@@ -15,6 +15,7 @@ export const WeekRange: React.FC<WeekRangeProps> = ({ week }) => {
       {week?.weekInfo.days.map((day) => (
         <S.Day today={isToday(day)}>
           <S.DayName>{day.format("dd")},</S.DayName>
+          {/* todo add locale from localStorage */}
           <S.Date>{day.locale("ru").format("DD MMM")}</S.Date>
         </S.Day>
       ))}

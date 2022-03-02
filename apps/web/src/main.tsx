@@ -35,7 +35,7 @@ i18n
       },
     },
     // todo Брать текущий язык откуда-нибудь
-    lng: "ru", // if you're using a language detector, do not define the lng option
+    lng: "en", // if you're using a language detector, do not define the lng option
     fallbackLng: "en",
   });
 

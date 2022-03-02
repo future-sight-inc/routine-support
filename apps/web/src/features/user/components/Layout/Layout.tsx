@@ -8,6 +8,7 @@ import { ListItemIcon } from "@mui/material";
 import { User } from "@routine-support/domains";
 import { LinkService } from "apps/web/src/services/LinkService";
 import moment from "moment";
+import { useTranslation } from 'react-i18next';
 import { NavLink } from "react-router-dom";
 
 import * as S from "./styled";
@@ -26,6 +27,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
   const {
     operations: { handleLogout },
   } = useLayoutComponent(actions);
+
+  const { t } = useTranslation()
 
   return (
     <S.Wrapper>
@@ -48,7 +51,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
                 <CalendarTodayIcon />
                 <S.DayNumber>{moment().date()}</S.DayNumber>
               </S.HomeItemIcon>
-              <ListItemText primary="Календарь" />
+              <ListItemText primary={t("Calendar")} />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -61,11 +64,11 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
               <ListItemIcon>
                 <ListIcon />
               </ListItemIcon>
-              <ListItemText primary="Студенты" />
+              <ListItemText primary={t("Students")} />
             </ListItemButton>
           </ListItem>
         </List>
-        <S.LogoutButton onClick={handleLogout}>Выйти</S.LogoutButton>
+        <S.LogoutButton onClick={handleLogout}>{t("Logout")}</S.LogoutButton>
       </S.Sidebar>
       <S.Content>{children}</S.Content>
     </S.Wrapper>

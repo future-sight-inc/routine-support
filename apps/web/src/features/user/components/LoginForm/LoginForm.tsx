@@ -9,6 +9,7 @@ import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { LinkService } from "apps/web/src/services/LinkService";
 import { Button } from "apps/web/src/styled/components/Button";
+import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 
 import { useLoginFormComponent } from "./hooks";
@@ -27,18 +28,20 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
     models: { submitError, control },
     operations: { handleSubmit },
   } = useLoginFormComponent(actions);
+  
+  const { t } = useTranslation()
+
   return (
     <Card absoluteCenter>
       <S.Form onSubmit={handleSubmit}>
-        <S.Title>Вход</S.Title>
+        <S.Title>{t("Log in")}</S.Title>
         <TextField
           name="email"
           type="email"
           fullWidth
           control={control}
           required
-          // ! Локализация
-          placeholder="Почта"
+          placeholder={t("Email")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -53,8 +56,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
           fullWidth
           control={control}
           required
-          // ! Локализация
-          placeholder="Пароль"
+          placeholder={t("Password")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -63,10 +65,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
             ),
           }}
         />
-        <Button type="submit">Отправить</Button>
+        <Button type="submit">{t("Submit")}</Button>
         {submitError && <ErrorText>{submitError}</ErrorText>}
         <Link to={LinkService.register()}>
-          Нет аккаунта? Зарегистрироваться
+          {t("Link to register")}
         </Link>
       </S.Form>
     </Card>

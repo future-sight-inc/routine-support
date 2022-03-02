@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Button } from "apps/web/src/styled/components/Button";
+import { useTranslation } from 'react-i18next';
 
 interface AddStudentButtonProps {
   onClick: () => void;
@@ -9,5 +10,7 @@ interface AddStudentButtonProps {
 export const AddStudentButton: React.FC<AddStudentButtonProps> = ({
   onClick,
 }) => {
-  return <Button onClick={onClick}>+ Студент</Button>;
+  const { t } = useTranslation()
+
+  return <Button onClick={onClick}>+ {t("Student")}</Button>;
 };

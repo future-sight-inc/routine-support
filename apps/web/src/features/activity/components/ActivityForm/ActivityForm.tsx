@@ -7,6 +7,7 @@ import {
   YearNumber,
 } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
+import { useTranslation } from 'react-i18next';
 
 import { ErrorText } from "../../../../components/ErrorText";
 import { ActivityNameInput } from "../../../../components/FormFields/ActivityNameInput";
@@ -52,6 +53,8 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
     operations: { handleSubmit, onDelete },
   } = useActivityFormComponent(user, activity, actions);
 
+  const { t } = useTranslation()
+  
   return (
     <form onSubmit={handleSubmit}>
       <S.Wrapper>
@@ -59,14 +62,12 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           name="name"
           control={control}
           required
-          // ! Добавить локализацию
-          placeholder="Название события"
+          placeholder={t("Activity name")}
         />
         <DatePicker
           name="date"
           control={control}
-          // ! Добавить локализацию
-          label="Дата"
+          label={t("Activity date")}
           minDate={minDate}
           required
         />
@@ -74,23 +75,21 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           <TimePicker
             name="start"
             control={control}
-            // ! Добавить локализацию
-            label="Начало"
+            label={t("Activity start time")}
             required
             minTime={minStartTime}
           />
           <TimePicker
             name="end"
             control={control}
-            // ! Добавить локализацию
-            label="Окончание"
+            label={t("Activity end time")}
             required
             minTime={minEndTime}
           />
         </S.Row>
         <PictogramPicker name="pictogram" control={control} required />
 
-        <RepeatTypePicker control={control} name="repeat" label="Повторять" />
+        <RepeatTypePicker control={control} name="repeat" label={t("Repeat type")} />
 
         <StudentsPicker name="students" control={control} />
 
@@ -98,17 +97,16 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           <S.SubmitButton
             type="submit"
             loading={isSubmitting}
-            disabled={!isDirty} // ! Добавить локализацию
+            disabled={!isDirty}
           >
-            {activity?._id ? "Обновить" : "Создать"}
+            {activity?._id ? t("Update") : t("Create")}
           </S.SubmitButton>
           {activity?._id && (
             <S.DeleteButton
               color="error"
               onClick={onDelete}
-              // ! Добавить локализацию
             >
-              Удалить
+              {t("Delete")}
             </S.DeleteButton>
           )}
         </S.ButtonsWrapper>

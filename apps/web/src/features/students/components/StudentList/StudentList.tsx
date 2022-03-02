@@ -9,6 +9,7 @@ import ListItem from "@mui/material/ListItem";
 import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { Modal } from "apps/web/src/components/Modal";
+import { useTranslation } from 'react-i18next';
 
 import { useStudentListComponent } from "./hooks";
 import * as S from "./styled";
@@ -33,8 +34,10 @@ export const StudentList: React.FC<StudentListProps> = ({
     operations: { onStudentClick, onStudentDelete, onQrOpen, onQrClose },
   } = useStudentListComponent(actions);
 
+  const { t } = useTranslation()
+
   if (!students.length) {
-    return <S.EmptyText>Пока нет ни одного студента</S.EmptyText>;
+    return <S.EmptyText>{t("No students")}</S.EmptyText>;
   }
 
   return (
@@ -67,9 +70,9 @@ export const StudentList: React.FC<StudentListProps> = ({
       <Modal opened={Boolean(qr)} onClose={onQrClose}>
         {qr && <S.Qr src={qr} />}
         <S.QrTitle>
-          Отсканируйте в приложении
+          {t("QR instructions start")}
           <br />
-          Routine Support, чтобы войти
+          {t("QR instructions end")}
         </S.QrTitle>
       </Modal>
     </S.List>

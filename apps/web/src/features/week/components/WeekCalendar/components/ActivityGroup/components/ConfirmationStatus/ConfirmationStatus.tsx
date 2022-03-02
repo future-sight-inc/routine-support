@@ -3,6 +3,7 @@ import React, { MouseEvent } from "react";
 import { Typography } from "@mui/material";
 import { Activity, Student } from "@routine-support/domains";
 import { Modal } from "apps/web/src/components/Modal";
+import { useTranslation } from 'react-i18next';
 
 import { useConfirmationStatusComponent } from "./hooks";
 import * as S from "./styled";
@@ -21,6 +22,8 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
     operations: { handleModalOpen, handleModalClose },
   } = useConfirmationStatusComponent(activity, students);
 
+  const { t } = useTranslation()
+
   return (
     <div
       onClick={(event: MouseEvent<HTMLDivElement>) => event.stopPropagation()}
@@ -33,16 +36,16 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
       </S.CheckedButton>
 
       <Modal opened={modalOpened} onClose={handleModalClose}>
-        <S.ModalTitle>Статус прохождения</S.ModalTitle>
+        <S.ModalTitle>{t("Activity status")}</S.ModalTitle>
         <S.ModalContent>
           <S.List>
-            <S.ListHeading>Прошли</S.ListHeading>
+            <S.ListHeading>{t("Completed")}</S.ListHeading>
             {confirmedStudents.map((student) => (
               <Typography>{student.name}</Typography>
             ))}
           </S.List>
           <S.List>
-            <S.ListHeading>Ожидаются</S.ListHeading>
+            <S.ListHeading>{t("Pending")}</S.ListHeading>
             {assignedStudents.map((student) => (
               <Typography>{student.name}</Typography>
             ))}

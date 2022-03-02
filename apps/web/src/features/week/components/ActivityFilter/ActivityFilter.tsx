@@ -4,6 +4,7 @@ import { FormControlLabel } from "@mui/material";
 import { Student } from "@routine-support/domains";
 import { ActivityFilter as ActivityFilterType } from "@routine-support/domains";
 import { Theme } from "apps/web/src/styled/theme";
+import { useTranslation } from 'react-i18next';
 
 import { useActivityFilterComponent } from "./hooks";
 import * as S from "./styled";
@@ -29,6 +30,8 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
     operations: { handleChange },
   } = useActivityFilterComponent(students, actions);
 
+  const { t } = useTranslation()
+
   if (!Object.keys(activityFilter).length) {
     return null;
   }
@@ -44,7 +47,7 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
             onChange={handleChange}
           />
         }
-        label="Общие"
+        label={t("Common")}
       />
       {students.length > 0 && <S.Divider />}
       {students.map((student) => (
