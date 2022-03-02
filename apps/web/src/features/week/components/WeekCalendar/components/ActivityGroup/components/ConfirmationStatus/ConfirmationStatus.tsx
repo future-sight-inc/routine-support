@@ -17,7 +17,12 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
   students,
 }) => {
   const {
-    models: { modalOpened, confirmedStudents, assignedStudents },
+    models: {
+      modalOpened,
+      confirmedStudents,
+      assignedStudents,
+      pendingStudents,
+    },
     operations: { handleModalOpen, handleModalClose },
   } = useConfirmationStatusComponent(activity, students);
 
@@ -43,7 +48,7 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
           </S.List>
           <S.List>
             <S.ListHeading>Ожидаются</S.ListHeading>
-            {assignedStudents.map((student) => (
+            {pendingStudents.map((student) => (
               <Typography>{student.name}</Typography>
             ))}
           </S.List>
