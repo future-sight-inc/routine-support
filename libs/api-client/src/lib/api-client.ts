@@ -21,7 +21,8 @@ export const apiClient = axios.create({
 });
 
 export const mobileApiClient = axios.create({
-  baseURL: process.env.NX_MOBILE_API_ENDPOINT,
+  // todo Вынести в переменные окружения
+  baseURL: "http://192.168.2.7:3000/api",
   timeout: 30 * 1000,
   withCredentials: true,
   headers: {

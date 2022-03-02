@@ -10,14 +10,15 @@ activityRouter.get("/:id", async (req, res) => {
     res.status(200).send(activity);
   }
 
-  return res.status(404).send();
+  return res.sendStatus(404);
 });
 
 activityRouter.post("/", (req, res) => {
   ActivityModel.create({
     ...req.body,
   });
-  res.status(200).send("Activity is added");
+
+  return res.sendStatus(200);
 });
 
 activityRouter.delete("/:id", async (req, res) => {
@@ -26,7 +27,7 @@ activityRouter.delete("/:id", async (req, res) => {
   ActivityModel.findByIdAndDelete(id, (err) => {
     if (err) return console.log(err);
 
-    res.status(200).send("Activity deleted");
+    return res.sendStatus(200);
   });
 });
 
@@ -39,9 +40,36 @@ activityRouter.put("/:id", (req, res) => {
       ...req.body,
     },
     (err) => {
-      if (err) return console.log(err);
+      if (err) {
+        console.log(err);
 
-      res.status(200).send("Activity is updated");
+        return;
+      }
+
+      return res.sendStatus(200);
     }
   );
+});
+
+activityRouter.put("/confirm/:id/:date/", async (req, res) => {
+  const { id, date } = req.params;
+  const { _id: studentId } = res.locals.student;
+
+  const updatedActivity = await ActivityModel.findById(id);
+
+  if (!updatedActivity.confirmation[date]) {
+    updatedActivity.confirmation[date] = [];
+  }
+
+  updatedActivity.confirmation[date].push(studentId);
+
+  ActivityModel.findByIdAndUpdate(id, { ...updatedActivity }, (err) => {
+    if (err) {
+      console.log(err);
+
+      return;
+    }
+
+    return res.sendStatus(200);
+  });
 });

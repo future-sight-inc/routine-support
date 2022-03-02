@@ -3,7 +3,7 @@ import { AxiosResponse } from "axios";
 import { Activity } from "./types";
 import { formatActivity } from "./utils";
 
-import { Id } from "@routine-support/types";
+import { DateString, Id } from "@routine-support/types";
 import { apiClient } from "@routine-support/api-client";
 
 export const activityAPI = {
@@ -28,6 +28,13 @@ export const activityAPI = {
   },
   deleteActivity: async (id: Id): Promise<AxiosResponse> => {
     const request: AxiosResponse = await apiClient.delete(`/activity/${id}`);
+
+    return request;
+  },
+  confirmActivity: async ({ id, date }: { id: Id; date: DateString }) => {
+    const request: AxiosResponse = await apiClient.put(
+      `/activity/${id}/${date}`
+    );
 
     return request;
   },
