@@ -13,6 +13,8 @@ export const authorization = (req, res, next) => {
 
     UserModel.findOne({ email: data.email }, (err, result) => {
       if (err || !result) {
+        res.clearCookie("access_token");
+
         return res.status(401).send(err);
       }
 

@@ -13,6 +13,8 @@ export const studentAuthorization = (req, res, next) => {
 
     StudentModel.findById(data._id, (err, result) => {
       if (err || !result) {
+        res.clearCookie("access_token");
+
         return res.status(401).send(err);
       }
 
