@@ -80,7 +80,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
             ),
           }}
         />
-        <Button type="submit">Отправить</Button>
+        <Button type="submit" loading={isSubmitting}>
+          Отправить
+        </Button>
         {submitError && <ErrorText>{submitError}</ErrorText>}
         <Link to={LinkService.login()}>Уже есть аккаунт? Вход</Link>
       </S.Form>

@@ -24,7 +24,7 @@ interface LoginFormProps {
 
 export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
   const {
-    models: { submitError, control },
+    models: { submitError, control, isSubmitting },
     operations: { handleSubmit },
   } = useLoginFormComponent(actions);
   return (
@@ -63,7 +63,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
             ),
           }}
         />
-        <Button type="submit">Отправить</Button>
+        <Button type="submit" loading={isSubmitting}>
+          Отправить
+        </Button>
         {submitError && <ErrorText>{submitError}</ErrorText>}
         <Link to={LinkService.register()}>
           Нет аккаунта? Зарегистрироваться
