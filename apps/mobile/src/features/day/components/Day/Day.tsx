@@ -32,7 +32,12 @@ interface DayProps {
   studentId?: string;
 }
 
-export const Day: React.FC<DayProps> = ({ studentId, day, loading, actions }) => {
+export const Day: React.FC<DayProps> = ({
+  studentId,
+  day,
+  loading,
+  actions,
+}) => {
   const {
     operations: { handleForwardPress },
   } = useDayComponent();
@@ -70,10 +75,6 @@ export const Day: React.FC<DayProps> = ({ studentId, day, loading, actions }) =>
           renderItem={({ item, index }) => {
             const currentTime = moment();
 
-            if (item.end.isBefore(currentTime)) {
-              return null;
-            }
-
             if (
               item.start.isSameOrBefore(currentTime) &&
               currentTime.isSameOrBefore(item.end)
@@ -88,7 +89,13 @@ export const Day: React.FC<DayProps> = ({ studentId, day, loading, actions }) =>
               );
             }
 
-            return <Activity activity={item} key={index} />;
+            return (
+              <Activity
+                activity={item}
+                passed={item.end.isBefore(currentTime)}
+                key={index}
+              />
+            );
           }}
         />
       </Layout>
