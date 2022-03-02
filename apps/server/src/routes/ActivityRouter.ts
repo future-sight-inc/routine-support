@@ -1,9 +1,14 @@
 import { Router } from "express";
 import { ActivityModel } from "@routine-support/domains";
+import { authorization } from "../middleware/authorization";
+import { studentAuthorization } from "../middleware/studentAuthorization";
+import { stringifyDate } from "@routine-support/utils";
+
+import moment = require("moment");
 
 export const activityRouter = Router();
 
-activityRouter.get("/:id", async (req, res) => {
+activityRouter.get("/:id", authorization, async (req, res) => {
   const activity = await ActivityModel.findById(req.params.id);
 
   if (activity) {
@@ -13,7 +18,7 @@ activityRouter.get("/:id", async (req, res) => {
   return res.sendStatus(404);
 });
 
-activityRouter.post("/", (req, res) => {
+activityRouter.post("/", authorization, (req, res) => {
   ActivityModel.create({
     ...req.body,
   });
@@ -21,7 +26,7 @@ activityRouter.post("/", (req, res) => {
   return res.sendStatus(200);
 });
 
-activityRouter.delete("/:id", async (req, res) => {
+activityRouter.delete("/:id", authorization, async (req, res) => {
   const id = req.params.id;
 
   ActivityModel.findByIdAndDelete(id, (err) => {
@@ -31,7 +36,7 @@ activityRouter.delete("/:id", async (req, res) => {
   });
 });
 
-activityRouter.put("/:id", (req, res) => {
+activityRouter.put("/:id", authorization, (req, res) => {
   const id = req.params.id;
 
   ActivityModel.findByIdAndUpdate(
@@ -51,25 +56,30 @@ activityRouter.put("/:id", (req, res) => {
   );
 });
 
-activityRouter.put("/confirm/:id/:date/", async (req, res) => {
-  const { id, date } = req.params;
-  const { _id: studentId } = res.locals.student;
+activityRouter.put(
+  "/confirm/:id/:timestamp",
+  studentAuthorization,
+  async (req, res) => {
+    const { id, timestamp } = req.params;
+    const { _id: studentId } = res.locals.student;
+    const dateString = stringifyDate(moment.unix(Number(timestamp)));
 
-  const updatedActivity = await ActivityModel.findById(id);
+    const updatedActivity = await ActivityModel.findById(id);
 
-  if (!updatedActivity.confirmation[date]) {
-    updatedActivity.confirmation[date] = [];
-  }
-
-  updatedActivity.confirmation[date].push(studentId);
-
-  ActivityModel.findByIdAndUpdate(id, { ...updatedActivity }, (err) => {
-    if (err) {
-      console.log(err);
-
-      return;
+    if (!updatedActivity.confirmation[dateString]) {
+      updatedActivity.confirmation[dateString] = [];
     }
 
-    return res.sendStatus(200);
-  });
-});
+    updatedActivity.confirmation[dateString].push(studentId);
+
+    ActivityModel.findByIdAndUpdate(id, { ...updatedActivity }, (err) => {
+      if (err) {
+        console.log(err);
+
+        return;
+      }
+
+      return res.sendStatus(200);
+    });
+  }
+);

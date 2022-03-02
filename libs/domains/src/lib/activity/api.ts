@@ -4,7 +4,7 @@ import { Activity } from "./types";
 import { formatActivity } from "./utils";
 
 import { DateString, Id } from "@routine-support/types";
-import { apiClient } from "@routine-support/api-client";
+import { apiClient, mobileApiClient } from "@routine-support/api-client";
 
 export const activityAPI = {
   createActivity: async (data: Activity): Promise<AxiosResponse> => {
@@ -31,9 +31,9 @@ export const activityAPI = {
 
     return request;
   },
-  confirmActivity: async ({ id, date }: { id: Id; date: DateString }) => {
-    const request: AxiosResponse = await apiClient.put(
-      `/activity/${id}/${date}`
+  confirmActivity: async ({ id, timestamp }: { id: Id; timestamp: number }) => {
+    const request: AxiosResponse = await mobileApiClient.put(
+      `/activity/confirm/${id}/${timestamp}`
     );
 
     return request;

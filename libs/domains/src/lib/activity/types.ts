@@ -40,7 +40,7 @@ export type Activity = {
   end: Moment;
   repeat: RepeatTypeEnum;
   students?: Id[];
-  confirmation?: ConfirmationInfo;
+  confirmation: ConfirmationInfo;
 };
 
 export type ActivityDto = {
@@ -53,5 +53,5 @@ export type ActivityDto = {
   end: TimeString;
   repeat: RepeatTypeEnum;
   students?: Id[];
-  confirmation?: ConfirmationInfo;
+  confirmation: ConfirmationInfo;
 };

@@ -1,11 +1,15 @@
 import React from "react";
 
-import { Day as DayType } from "@routine-support/domains";
+import {
+  Activity as ActivityType,
+  Day as DayType,
+} from "@routine-support/domains";
 import {
   Divider,
   Icon,
   Layout,
   List,
+  Text,
   TopNavigationAction,
 } from "@ui-kitten/components";
 import moment from "moment";
@@ -14,18 +18,21 @@ import { MainLayout } from "../../../../components/MainLayout";
 import { Activity } from "./components/Activity";
 import { CurrentActivity } from "./components/CurrentActivity";
 import { useDayComponent } from "./hooks";
+import { isActivityConfirmed } from "./utils";
 
 interface DayActions {
   getDay: () => void;
+  confirmActivity: (activity: ActivityType) => void;
 }
 
 interface DayProps {
   actions: DayActions;
   loading: boolean;
   day: DayType;
+  studentId?: string;
 }
 
-export const Day: React.FC<DayProps> = ({ day, loading, actions }) => {
+export const Day: React.FC<DayProps> = ({ studentId, day, loading, actions }) => {
   const {
     operations: { handleForwardPress },
   } = useDayComponent();
@@ -54,6 +61,11 @@ export const Day: React.FC<DayProps> = ({ day, loading, actions }) => {
             minWidth: "100%",
           }}
           ItemSeparatorComponent={Divider}
+          ListEmptyComponent={
+            <Text category="s1" style={{ textAlign: "center", marginTop: 16 }}>
+              No activities for today...
+            </Text>
+          }
           data={day.activities}
           renderItem={({ item, index }) => {
             const currentTime = moment();
@@ -66,7 +78,14 @@ export const Day: React.FC<DayProps> = ({ day, loading, actions }) => {
               item.start.isSameOrBefore(currentTime) &&
               currentTime.isSameOrBefore(item.end)
             ) {
-              return <CurrentActivity activity={item} key={index} />;
+              return (
+                <CurrentActivity
+                  activity={item}
+                  confirmed={isActivityConfirmed({ studentId, activity: item })}
+                  onConfirm={actions.confirmActivity}
+                  key={index}
+                />
+              );
             }
 
             return <Activity activity={item} key={index} />;
