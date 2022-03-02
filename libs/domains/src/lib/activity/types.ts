@@ -22,10 +22,11 @@ export type ActivitySchema = {
   end: TimeString;
   repeat: RepeatTypeEnum;
   students?: Id[];
-  confirmation?: ConfirmationInfo;
+  confirmation: ConfirmationInfo;
 };
 
 export type ConfirmationInfo = {
+  // * key: DateString - проблема в TS
   [key: string]: Id[];
 };
 
