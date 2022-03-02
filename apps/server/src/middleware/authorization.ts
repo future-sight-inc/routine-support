@@ -9,7 +9,7 @@ export const authorization = (req, res, next) => {
   }
 
   try {
-    const data = jwt.verify(token, process.env.SECRET_KEY) as User;
+    const data = jwt.verify(token, process.env.NX_SECRET_KEY) as User;
 
     UserModel.findOne({ email: data.email }, (err, result) => {
       if (err || !result) {
