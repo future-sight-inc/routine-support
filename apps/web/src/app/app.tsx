@@ -1,19 +1,13 @@
 import React from "react";
 
-import { Route } from "react-router-dom";
-
-import { Students } from "../features/students/Students";
-import { Layout } from "../features/user/components/Layout";
-import { LoginForm } from "../features/user/components/LoginForm";
-import { PrivateRoute } from "../features/user/components/PrivateRoute";
-import { RegisterForm } from "../features/user/components/RegisterForm";
-import { Week } from "../features/week";
-import { LinkService } from "../services/LinkService";
+import { useTranslation } from "react-i18next";
 
 export const App = () => {
+  const { t } = useTranslation();
+
   return (
     <>
-      <Route path={LinkService.login()}>
+      {/* <Route path={LinkService.login()}>
         <LoginForm />
       </Route>
       <Route path={LinkService.register()}>
@@ -28,7 +22,8 @@ export const App = () => {
             <Students />
           </Route>
         </Layout>
-      </PrivateRoute>
+      </PrivateRoute> */}
+      {t("Welcome to React")}
     </>
   );
 };
