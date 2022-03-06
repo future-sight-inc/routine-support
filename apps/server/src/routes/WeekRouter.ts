@@ -1,13 +1,8 @@
-import {
-  ActivityModel,
-  formatActivity,
-  formatActivityDto,
-  RepeatTypeEnum,
-} from "@routine-support/domains";
+import { ActivityModel, RepeatTypeEnum } from "@routine-support/domains";
 import { Router } from "express";
 import { filterActivities } from "../utils/filterActivities";
-import { getDaysOfWeek } from "../utils/getDaysOfWeek";
 import { getDateStringRangeFromWeek } from "../utils/getDateStringRangeFromWeek";
+import { getDaysOfWeek } from "../utils/getDaysOfWeek";
 import { getTimeRange } from "../utils/getTimeRange";
 import { getWeek } from "../utils/getWeek";
 import { parseWeekFilter } from "../utils/parseWeekFilter";
@@ -24,32 +19,25 @@ weekRouter.get("/:year/:week", async (req, res) => {
   const { filter } = req.query;
   const parsedFilter = parseWeekFilter(filter as string);
 
-  let activitiesWithoutRepeat = (await ActivityModel.find({
+  let activitiesWithoutRepeat = await ActivityModel.find({
     coachId: res.locals.user._id,
     repeat: RepeatTypeEnum.None,
-  })) as any;
+  }).lean();
   activitiesWithoutRepeat = filterActivities(
     activitiesWithoutRepeat,
     parsedFilter
   );
 
-  let activitiesWithRepeat = (await ActivityModel.find({
+  let activitiesWithRepeat = await ActivityModel.find({
     coachId: res.locals.user._id,
-    repeat: RepeatTypeEnum.None,
-  })) as any;
-  activitiesWithRepeat = filterActivities(
-    activitiesWithRepeat as any,
-    parsedFilter
-  ) as any;
-  activitiesWithRepeat = repeatActivities(
-    activitiesWithRepeat.map(formatActivityDto),
-    currentWeek
-  );
-  activitiesWithRepeat = activitiesWithRepeat.map(formatActivity);
+    repeat: { $gt: RepeatTypeEnum.None },
+  }).lean();
+  activitiesWithRepeat = filterActivities(activitiesWithRepeat, parsedFilter);
+  activitiesWithRepeat = repeatActivities(activitiesWithRepeat, currentWeek);
 
   res.status(200).send({
     days: getWeek(
-      [activitiesWithoutRepeat, ...activitiesWithRepeat],
+      [...activitiesWithoutRepeat, ...activitiesWithRepeat],
       weekNumber,
       yearNumber
     ),
