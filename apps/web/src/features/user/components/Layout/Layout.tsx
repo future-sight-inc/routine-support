@@ -32,13 +32,13 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
 
   return (
     <S.Wrapper>
-      <S.Header>
-        <S.UserWrapper>
-          <S.UserIcon />
-          <S.Name>{user.name}</S.Name>
-        </S.UserWrapper>
-      </S.Header>
       <S.Sidebar>
+        <S.Header>
+          <S.UserWrapper>
+            <S.UserIcon />
+            <S.Name>{user.name}</S.Name>
+          </S.UserWrapper>
+        </S.Header>
         <List>
           <ListItem disablePadding>
             <ListItemButton
@@ -71,6 +71,15 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
         <S.LogoutButton onClick={handleLogout}>{t("Logout")}</S.LogoutButton>
       </S.Sidebar>
       <S.Content>{children}</S.Content>
+      <S.Footer>
+        <S.Rights>{t("Rights info")}</S.Rights>
+        <S.LanguageWrapper>
+          {/* todo: remove current language depending on locale */}
+          <S.LanguageLink>Nederlands</S.LanguageLink>
+          <S.LanguageLink>English</S.LanguageLink>
+          <S.LanguageLink>Русский</S.LanguageLink>
+        </S.LanguageWrapper>
+      </S.Footer>
     </S.Wrapper>
   );
 };
