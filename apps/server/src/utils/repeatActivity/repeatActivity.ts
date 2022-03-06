@@ -1,4 +1,4 @@
-import { getDateRangeFromWeek } from "../getDateRangeFromWeek";
+import { getDaysOfWeek } from "../getDaysOfWeek";
 import { Activity, RepeatTypeEnum } from "@routine-support/models";
 import { repeatActivityEveryDay } from "../repeatActivity";
 import { repeatActivityThisWeek } from "./repeatActivityThisWeek";
@@ -9,7 +9,7 @@ export const repeatActivity = (
   weekNumber: number,
   yearNumber: number
 ) => {
-  const currentWeek = getDateRangeFromWeek({ weekNumber, yearNumber });
+  const currentWeek = getDaysOfWeek({ weekNumber, yearNumber });
 
   switch (activity.repeat) {
     case RepeatTypeEnum.EveryDay:

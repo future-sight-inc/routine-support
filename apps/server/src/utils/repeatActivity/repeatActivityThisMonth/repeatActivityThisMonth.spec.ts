@@ -1,5 +1,5 @@
 import { stringifyDate } from "@routine-support/utils";
-import { WEEK_OF_MONTH } from "../mocks";
+import { WEEK_OF_MONTH } from "../../mocks";
 import {
   createMockActivityByDateString,
   createMockWeekFormDateStringArray,

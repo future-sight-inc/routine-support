@@ -1,6 +1,6 @@
 import { DATE_FORMAT } from "@routine-support/constants";
 import { ActivitySchema, RepeatTypeEnum } from "@routine-support/models";
-import { getDateRangeFromWeek } from "./getDateRangeFromWeek";
+import { getDaysOfWeek } from "./getDaysOfWeek";
 import moment = require("moment");
 
 export const repeatActivity = (
@@ -9,7 +9,7 @@ export const repeatActivity = (
   weekNumber: number,
   yearNumber: number
 ) => {
-  const week = getDateRangeFromWeek({ weekNumber, yearNumber });
+  const week = getDaysOfWeek({ weekNumber, yearNumber });
 
   switch (repeatType) {
     case RepeatTypeEnum.EveryDay:

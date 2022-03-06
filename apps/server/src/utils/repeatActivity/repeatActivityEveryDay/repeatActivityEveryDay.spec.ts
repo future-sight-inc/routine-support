@@ -2,12 +2,12 @@ import {
   WEEK_BETWEEN_MONTHS,
   WEEK_BETWEEN_YEARS,
   WEEK_OF_MONTH,
-} from "../mocks";
-import { repeatActivityEveryDay } from "./repeatActivityEveryDay";
+} from "../../mocks";
 import {
   createMockActivityByDateString,
   createMockWeekFormDateStringArray,
 } from "../testUtils";
+import { repeatActivityEveryDay } from "./repeatActivityEveryDay";
 
 describe("repeatActivityEveryDay: start of the week. Should repeat 7 times", () => {
   it("Week of month", () => {

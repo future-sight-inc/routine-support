@@ -27,3 +27,18 @@ export const WEEK_BETWEEN_YEARS = [
   "01.01.2022",
   "02.01.2022",
 ];
+
+export const WEEK_OF_MONTH_INFO = {
+  weekNumber: 10,
+  yearNumber: 2022,
+};
+
+export const WEEK_BETWEEN_MONTHS_INFO = {
+  weekNumber: 9,
+  yearNumber: 2022,
+};
+
+export const WEEK_BETWEEN_YEARS_INFO = {
+  weekNumber: 52,
+  yearNumber: 2021,
+};

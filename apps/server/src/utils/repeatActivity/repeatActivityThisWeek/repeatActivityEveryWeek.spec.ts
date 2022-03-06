@@ -2,7 +2,7 @@ import {
   WEEK_BETWEEN_MONTHS,
   WEEK_BETWEEN_YEARS,
   WEEK_OF_MONTH,
-} from "../mocks";
+} from "../../mocks";
 import {
   createMockActivityByDateString,
   createMockWeekFormDateStringArray,
