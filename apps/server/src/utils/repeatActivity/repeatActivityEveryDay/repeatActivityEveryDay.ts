@@ -2,11 +2,11 @@ import { Activity } from "@routine-support/models";
 
 export const repeatActivityEveryDay = (
   activity: Activity,
-  daysOfWeek: moment.Moment[]
+  daysOfCurrentWeek: moment.Moment[]
 ): Activity[] => {
   const repeatedActivity: Activity[] = [];
 
-  daysOfWeek.forEach((day) => {
+  daysOfCurrentWeek.forEach((day) => {
     const shouldRepeatActivity = day.isSameOrAfter(activity.date);
 
     if (shouldRepeatActivity) {
