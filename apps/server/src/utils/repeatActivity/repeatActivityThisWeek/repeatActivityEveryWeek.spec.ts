@@ -1,4 +1,3 @@
-import { Activity } from "@routine-support/models";
 import {
   WEEK_BETWEEN_MONTHS,
   WEEK_BETWEEN_YEARS,
@@ -9,25 +8,7 @@ import {
   createMockWeekFormDateStringArray,
   getDayNameFromActivity,
 } from "../testUtils";
-
-export const repeatActivityThisWeek = (
-  activity: Activity,
-  daysOfWeek: moment.Moment[]
-): Activity | undefined => {
-  // todo Решить проблемы с локалью в 22 задаче
-  const dayOfWeekIndex = activity.date.locale("ru").weekday();
-  const repeatedActivityDate = daysOfWeek[dayOfWeekIndex];
-
-  const shouldRepeatActivity = repeatedActivityDate.isSameOrAfter(
-    activity.date
-  );
-
-  if (shouldRepeatActivity) {
-    return { ...activity, date: repeatedActivityDate };
-  }
-
-  return undefined;
-};
+import { repeatActivityThisWeek } from "./repeatActivityThisWeek";
 
 describe("repeatActivityThisWeek: day of the current week. Should be Monday", () => {
   it("Week of month", () => {
@@ -200,5 +181,92 @@ describe("repeatActivityThisWeek: Sunday of the previous week. Should be Sunday"
     );
 
     expect(getDayNameFromActivity(activity)).toBe("Sunday");
+  });
+});
+
+describe("repeatActivityThisWeek: Monday of the next week. Should be undefined", () => {
+  it("Week of month", () => {
+    const activity = repeatActivityThisWeek(
+      createMockActivityByDateString("14.03.2022"),
+      createMockWeekFormDateStringArray(WEEK_OF_MONTH)
+    );
+
+    expect(activity).toBe(undefined);
+  });
+
+  it("Week between months", () => {
+    const activity = repeatActivityThisWeek(
+      createMockActivityByDateString("07.03.2022"),
+      createMockWeekFormDateStringArray(WEEK_BETWEEN_MONTHS)
+    );
+
+    expect(activity).toBe(undefined);
+  });
+
+  it("Week between years", () => {
+    const activity = repeatActivityThisWeek(
+      createMockActivityByDateString("03.01.2022"),
+      createMockWeekFormDateStringArray(WEEK_BETWEEN_YEARS)
+    );
+
+    expect(activity).toBe(undefined);
+  });
+});
+
+describe("repeatActivityThisWeek: Wednesday of the next week. Should be undefined", () => {
+  it("Week of month", () => {
+    const activity = repeatActivityThisWeek(
+      createMockActivityByDateString("16.03.2022"),
+      createMockWeekFormDateStringArray(WEEK_OF_MONTH)
+    );
+
+    expect(activity).toBe(undefined);
+  });
+
+  it("Week between months", () => {
+    const activity = repeatActivityThisWeek(
+      createMockActivityByDateString("09.03.2022"),
+      createMockWeekFormDateStringArray(WEEK_BETWEEN_MONTHS)
+    );
+
+    expect(activity).toBe(undefined);
+  });
+
+  it("Week between years", () => {
+    const activity = repeatActivityThisWeek(
+      createMockActivityByDateString("05.01.2022"),
+      createMockWeekFormDateStringArray(WEEK_BETWEEN_YEARS)
+    );
+
+    expect(activity).toBe(undefined);
+  });
+});
+
+describe("repeatActivityThisWeek: Sunday of the next week. Should be undefined", () => {
+  it("Week of month", () => {
+    const activity = repeatActivityThisWeek(
+      createMockActivityByDateString("20.03.2022"),
+      createMockWeekFormDateStringArray(WEEK_OF_MONTH)
+    );
+
+    expect(activity).toBe(undefined);
+  });
+
+  it("Week between months", () => {
+    const activity = repeatActivityThisWeek(
+      createMockActivityByDateString("13.03.2022"),
+      createMockWeekFormDateStringArray(WEEK_BETWEEN_MONTHS)
+    );
+
+    expect(activity).toBe(undefined);
+  });
+
+  it("Week between years", () => {
+    const activity = repeatActivityThisWeek(
+      createMockActivityByDateString("09.01.2022"),
+      createMockWeekFormDateStringArray(WEEK_BETWEEN_YEARS)
+    );
+
+    expect(activity).toBe(undefined);
   });
 });
