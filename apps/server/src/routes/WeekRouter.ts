@@ -1,72 +1,63 @@
-import { ActivityModel, RepeatTypeEnum } from "@routine-support/models";
+import {
+  ActivityModel,
+  formatActivity,
+  formatActivityDto,
+  RepeatTypeEnum,
+} from "@routine-support/models";
 import { Router } from "express";
 import { filterActivities } from "../utils/filterActivities";
+import { getDaysOfWeek } from "../utils/getDaysOfWeek";
 import { getStringDateRangeFromWeek } from "../utils/getStringDateRangeFromWeek";
 import { getTimeRange } from "../utils/getTimeRange";
 import { getWeek } from "../utils/getWeek";
-import { repeatActivity } from "../utils/repeatActivity";
+import { parseWeekFilter } from "../utils/parseWeekFilter";
+import { repeatActivities } from "../utils/repeatActivities";
 
 export const weekRouter = Router();
 
 weekRouter.get("/:year/:week", async (req, res) => {
-  const { params } = req;
+  const { week, year } = req.params;
+  const yearNumber = Number(year);
+  const weekNumber = Number(week);
+  const currentWeek = getDaysOfWeek({ yearNumber, weekNumber });
+
   const { filter } = req.query;
+  const parsedFilter = parseWeekFilter(filter as string);
 
-  let parsedFilter = undefined;
-
-  if (filter) {
-    parsedFilter = (filter as string).split(",");
-  }
-
-  ActivityModel.find(
-    {
-      coachId: res.locals.user._id,
-      repeat: RepeatTypeEnum.None,
-    },
-    (err, pureActivities) => {
-      if (err) {
-        return res.sendStatus(400);
-      }
-
-      ActivityModel.find(
-        {
-          coachId: res.locals.user._id,
-          repeat: { $gt: RepeatTypeEnum.None },
-        },
-        (err, activitiesToRepeat) => {
-          if (err) {
-            return res.sendStatus(400);
-          }
-
-          const yearNumber = Number(params.year);
-          const weekNumber = Number(params.week);
-
-          let activities = [].concat(pureActivities);
-          activities = filterActivities(activities, parsedFilter);
-
-          activitiesToRepeat = filterActivities(
-            activitiesToRepeat,
-            parsedFilter
-          );
-          activitiesToRepeat
-            .map((activity) =>
-              repeatActivity(activity, activity.repeat, weekNumber, yearNumber)
-            )
-            .forEach((subActivities) => {
-              activities = activities.concat(subActivities);
-            });
-
-          res.status(200).send({
-            days: getWeek(activities, weekNumber, yearNumber),
-            year: yearNumber,
-            week: weekNumber,
-            weekInfo: {
-              days: getStringDateRangeFromWeek(weekNumber, yearNumber),
-              timeRange: getTimeRange(),
-            },
-          });
-        }
-      );
-    }
+  let activitiesWithoutRepeat = (await ActivityModel.find({
+    coachId: res.locals.user._id,
+    repeat: RepeatTypeEnum.None,
+  })) as any;
+  activitiesWithoutRepeat = filterActivities(
+    activitiesWithoutRepeat,
+    parsedFilter
   );
+
+  let activitiesWithRepeat = (await ActivityModel.find({
+    coachId: res.locals.user._id,
+    repeat: RepeatTypeEnum.None,
+  })) as any;
+  activitiesWithRepeat = filterActivities(
+    activitiesWithRepeat as any,
+    parsedFilter
+  ) as any;
+  activitiesWithRepeat = repeatActivities(
+    activitiesWithRepeat.map(formatActivityDto),
+    currentWeek
+  );
+  activitiesWithRepeat = activitiesWithRepeat.map(formatActivity);
+
+  res.status(200).send({
+    days: getWeek(
+      [activitiesWithoutRepeat, ...activitiesWithRepeat],
+      weekNumber,
+      yearNumber
+    ),
+    year: yearNumber,
+    week: weekNumber,
+    weekInfo: {
+      days: getStringDateRangeFromWeek(weekNumber, yearNumber),
+      timeRange: getTimeRange(),
+    },
+  });
 });

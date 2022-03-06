@@ -1,8 +1,3 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import * as express from "express";
 import BaseRouter from "./routes";
 import cookieParser = require("cookie-parser");
@@ -24,7 +19,7 @@ app.use(morgan("tiny"));
 
 app.use("/api", BaseRouter);
 
-const port = process.env.port || 5000;
+const port = process.env.PORT;
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api 🚀`);
 });

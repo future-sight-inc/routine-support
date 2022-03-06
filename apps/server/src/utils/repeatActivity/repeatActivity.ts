@@ -1,16 +1,12 @@
-import { getDaysOfWeek } from "../getDaysOfWeek";
 import { Activity, RepeatTypeEnum } from "@routine-support/models";
-import { repeatActivityEveryDay } from "../repeatActivity";
-import { repeatActivityThisWeek } from "./repeatActivityThisWeek";
+import { repeatActivityEveryDay } from "./repeatActivityEveryDay";
 import { repeatActivityThisMonth } from "./repeatActivityThisMonth";
+import { repeatActivityThisWeek } from "./repeatActivityThisWeek";
 
 export const repeatActivity = (
   activity: Activity,
-  weekNumber: number,
-  yearNumber: number
+  currentWeek: moment.Moment[]
 ) => {
-  const currentWeek = getDaysOfWeek({ weekNumber, yearNumber });
-
   switch (activity.repeat) {
     case RepeatTypeEnum.EveryDay:
       return repeatActivityEveryDay(activity, currentWeek);
