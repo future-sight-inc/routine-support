@@ -1,12 +1,12 @@
 import { TIME_FORMAT, DATE_FORMAT } from "@routine-support/constants";
 import { TimeString, DateString, TimeRange } from "@routine-support/types";
-import moment, { Moment } from "moment";
+import * as moment from "moment";
 
-export const stringifyTime = (time: Moment): string => {
+export const stringifyTime = (time: moment.Moment): string => {
   return time.format(TIME_FORMAT);
 };
 
-export const stringifyDate = (date: Moment): string => {
+export const stringifyDate = (date: moment.Moment): string => {
   return date.format(DATE_FORMAT);
 };
 
@@ -29,8 +29,9 @@ export const parseDate = (date: DateString) => moment(date, DATE_FORMAT);
 
 export const parseTime = (
   time: TimeString,
-  basisDate: Moment | DateString = moment()
-): Moment => {
+  basisDate: moment.Moment | DateString = moment()
+): moment.Moment => {
+  // ! Грязная функция, убрать преобразование
   if (typeof basisDate === "string") {
     basisDate = parseDate(basisDate);
   }
@@ -44,17 +45,17 @@ export const parseTime = (
   return newDate;
 };
 
-export const isToday = (date: Moment) => {
+export const isToday = (date: moment.Moment) => {
   return stringifyDate(moment()) === stringifyDate(date);
 };
 
-export const getMinutes = (time: Moment): number => {
+export const getMinutes = (time: moment.Moment): number => {
   return time.get("hours") * 60 + time.get("minutes");
 };
 
 export const indexOfTimeRange = (
   timeRange: TimeRange,
-  time: Moment
+  time: moment.Moment
 ): number => {
   return timeRange.findIndex((timeString) =>
     new RegExp(`^${time.get("hours")}:00`).test(timeString)

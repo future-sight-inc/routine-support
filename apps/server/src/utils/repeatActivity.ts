@@ -9,7 +9,7 @@ export const repeatActivity = (
   weekNumber: number,
   yearNumber: number
 ) => {
-  const week = getDateRangeFromWeek(weekNumber, yearNumber);
+  const week = getDateRangeFromWeek({ weekNumber, yearNumber });
 
   switch (repeatType) {
     case RepeatTypeEnum.EveryDay:
