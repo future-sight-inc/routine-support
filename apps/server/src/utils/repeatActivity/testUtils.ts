@@ -1,6 +1,6 @@
 import { DateString } from "@routine-support/types";
 import { parseDate } from "@routine-support/utils";
-import { Activity, RepeatTypeEnum } from "@routine-support/models";
+import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 
 export const createMockActivityByDateString = (date: DateString): Activity => {
   const parsedDate = parseDate(date);
@@ -13,6 +13,7 @@ export const createMockActivityByDateString = (date: DateString): Activity => {
     end: parsedDate,
     name: "",
     repeat: RepeatTypeEnum.None,
+    confirmation: {},
   };
 };
 

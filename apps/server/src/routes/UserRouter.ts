@@ -1,4 +1,4 @@
-import { UserModel } from "@routine-support/models";
+import { UserModel } from "@routine-support/domains";
 import { Router } from "express";
 import { authorization } from "../middleware/authorization";
 import { getAuthCookie } from "../utils/getAuthCookie";

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Week } from "@routine-support/models";
+import { Week } from "@routine-support/domains";
 import { isToday } from "@routine-support/utils";
 
 import * as S from "./styled";

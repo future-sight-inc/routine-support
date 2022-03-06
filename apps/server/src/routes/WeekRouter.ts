@@ -3,11 +3,11 @@ import {
   formatActivity,
   formatActivityDto,
   RepeatTypeEnum,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 import { Router } from "express";
 import { filterActivities } from "../utils/filterActivities";
 import { getDaysOfWeek } from "../utils/getDaysOfWeek";
-import { getStringDateRangeFromWeek } from "../utils/getStringDateRangeFromWeek";
+import { getDateStringRangeFromWeek } from "../utils/getDateStringRangeFromWeek";
 import { getTimeRange } from "../utils/getTimeRange";
 import { getWeek } from "../utils/getWeek";
 import { parseWeekFilter } from "../utils/parseWeekFilter";
@@ -56,7 +56,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
     year: yearNumber,
     week: weekNumber,
     weekInfo: {
-      days: getStringDateRangeFromWeek(weekNumber, yearNumber),
+      days: getDateStringRangeFromWeek(weekNumber, yearNumber),
       timeRange: getTimeRange(),
     },
   });

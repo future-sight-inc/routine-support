@@ -8,9 +8,9 @@ import {
   weekAPI,
   WeekNumber,
   YearNumber,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
 import { useSavedActivityFilter } from "../../hooks/useSavedActivityFilter";
 import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";
@@ -24,6 +24,8 @@ export const useWeek = () => {
   const currentDateInfo = getCurrentDateInfo();
   const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
   const savedActivityFilter = useSavedActivityFilter();
+
+  const [error, setError] = useState<string | null>(null);
 
   const getWeek = async (data?: {
     params?: {
@@ -53,7 +55,7 @@ export const useWeek = () => {
 
       dispatch(weekActions.setWeek(week));
     } catch (error) {
-      console.error(error);
+      setError(error.message);
     } finally {
       !data?.config?.silent && setLoading(false);
     }
@@ -63,6 +65,7 @@ export const useWeek = () => {
     models: {
       week,
       loading,
+      error,
     },
     operations: {
       getWeek,

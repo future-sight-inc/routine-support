@@ -1,8 +1,8 @@
 import React from "react";
 
 import { FormControlLabel } from "@mui/material";
-import { Student } from "@routine-support/models";
-import { ActivityFilter as ActivityFilterType } from "@routine-support/models";
+import { Student } from "@routine-support/domains";
+import { ActivityFilter as ActivityFilterType } from "@routine-support/domains";
 import { Theme } from "apps/web/src/styled/theme";
 
 import { useActivityFilterComponent } from "./hooks";

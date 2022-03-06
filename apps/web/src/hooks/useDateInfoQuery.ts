@@ -1,4 +1,5 @@
-import { DateInfo } from "@routine-support/models";
+import { DateInfo } from "@routine-support/domains";
+
 import { useQueryParams } from "./useQueryParams";
 
 export const useDateInfoQuery = (): DateInfo | undefined => {

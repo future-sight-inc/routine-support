@@ -1,5 +1,5 @@
 {
-  "{apps,libs}/**/*.{ts,tsx,scss}": [
+  "{apps,libs}/**": [
     "eslint --fix"
   ]
 }

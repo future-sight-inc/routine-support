@@ -22,11 +22,13 @@ export const useStudentsPickerComponent = (
   };
 
   // ! Баг в TS
+  // eslint-disable-next-line
   const handleOpenChange = (event: ChangeEvent<any>) => {
     event.target.checked ? handleOpen() : handleClose();
   };
 
   // ! Баг в Material
+  // eslint-disable-next-line
   const handleChange = (event: any) => {
     actions.onChange(event.target.value);
   };

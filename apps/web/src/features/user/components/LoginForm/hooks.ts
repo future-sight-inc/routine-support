@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { UserLoginDto } from "@routine-support/models";
+import { UserLoginDto } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
 import { LoginFormActions } from "./LoginForm";

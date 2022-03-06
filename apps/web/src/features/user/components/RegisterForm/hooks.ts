@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { UserRegisterDto } from "@routine-support/models";
+import { UserRegisterDto } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
 import { RegisterFormActions } from "./RegisterForm";

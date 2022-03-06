@@ -1,4 +1,4 @@
-import { CircularProgress, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
@@ -23,8 +23,4 @@ export const Content = styled.div`
     background: ${theme.palette.common.white};
     border-radius: ${theme.borderRadius}px;
   `}
-`;
-
-export const Spinner = styled(CircularProgress)`
-  ${({ theme }) => theme.position.absoluteCenter};
 `;

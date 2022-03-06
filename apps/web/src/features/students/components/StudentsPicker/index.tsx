@@ -5,6 +5,7 @@ import { StudentsPicker as UncontrolledStudentsPicker } from "./StudentsPicker";
 
 interface StudentsPickerProps {
   // ! Не знаем конечного типа
+  // eslint-disable-next-line
   control: Control<any>;
   name: string;
 }

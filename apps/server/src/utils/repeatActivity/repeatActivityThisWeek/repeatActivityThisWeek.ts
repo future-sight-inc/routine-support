@@ -1,4 +1,4 @@
-import { Activity } from "@routine-support/models";
+import { Activity } from "@routine-support/domains";
 
 export const repeatActivityThisWeek = (
   activity: Activity,

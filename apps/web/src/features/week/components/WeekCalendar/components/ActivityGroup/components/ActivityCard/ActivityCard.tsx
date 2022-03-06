@@ -1,6 +1,6 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-import { Activity } from "@routine-support/models";
+import { Activity } from "@routine-support/domains";
 import { getMinutes, stringifyTime } from "@routine-support/utils";
 
 import * as S from "./styled";
@@ -12,6 +12,7 @@ interface ActivityCardProps {
   count: number;
   onClick: (activity: Activity) => void;
   backgroundColor: string;
+  confirmationStatus: ReactNode;
 }
 
 export const ActivityCard: React.FC<ActivityCardProps> = ({
@@ -21,6 +22,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
   count,
   backgroundColor,
   onClick,
+  confirmationStatus,
 }) => {
   return (
     <S.Wrapper
@@ -36,6 +38,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
         {stringifyTime(activity.start)} - {stringifyTime(activity.end)}
       </S.Time>
       <S.Name>{activity.name}</S.Name>
+      {confirmationStatus}
     </S.Wrapper>
   );
 };

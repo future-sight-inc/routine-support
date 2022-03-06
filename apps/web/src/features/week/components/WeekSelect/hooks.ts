@@ -1,13 +1,14 @@
 import {
   DateInfo,
+  dateInfoToMoment,
   getCurrentDateInfo,
   getDateInfoFromMoment,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 import { useDateInfoQuery } from "apps/web/src/hooks/useDateInfoQuery";
 import { Moment } from "moment";
 import { useForm } from "react-hook-form";
 
-import { addWeeks } from "./utils";
+import { addWeekToMoment, subtractWeekFromMoment } from "./utils";
 import { WeekSelectActions } from "./WeekSelect";
 
 export const useWeekSelectComponent = (actions: WeekSelectActions) => {
@@ -30,13 +31,15 @@ export const useWeekSelectComponent = (actions: WeekSelectActions) => {
   });
 
   const onPrevClick = (values: DateInfo) => {
-    const newDate = addWeeks(values, -1);
+    const newDate = subtractWeekFromMoment(dateInfoToMoment(values));
+
     updateCurrentDateInfo(newDate);
     onSubmit();
   };
 
   const onNextClick = (values: DateInfo) => {
-    const newDate = addWeeks(values, 1);
+    const newDate = addWeekToMoment(dateInfoToMoment(values));
+
     updateCurrentDateInfo(newDate);
     onSubmit();
   };

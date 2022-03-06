@@ -1,17 +1,25 @@
 import React from "react";
 
-import { Activity as ActivityType } from "@routine-support/models";
+import { Activity, Activity as ActivityType } from "@routine-support/domains";
 import { stringifyTime } from "@routine-support/utils";
 import { Button, Layout, Text } from "@ui-kitten/components";
 import { Image } from "react-native";
 
 interface CurrentActivityProps {
   activity: ActivityType;
+  onConfirm: (activity: Activity) => void;
+  confirmed: boolean;
 }
 
 export const CurrentActivity: React.FC<CurrentActivityProps> = ({
   activity,
+  onConfirm,
+  confirmed,
 }) => {
+  const handleConfirmActivity = () => {
+    onConfirm(activity);
+  };
+
   return (
     <Layout
       style={{
@@ -37,7 +45,13 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
         >
           {stringifyTime(activity.start)}-{stringifyTime(activity.end)}
         </Text>
-        <Button style={{ marginTop: "auto" }}>Confirm</Button>
+        <Button
+          style={{ marginTop: "auto" }}
+          onPress={handleConfirmActivity}
+          disabled={confirmed}
+        >
+          {confirmed ? "Confirm" : "Confirmed"}
+        </Button>
       </Layout>
     </Layout>
   );

@@ -1,5 +1,5 @@
 import { mobileApiClient } from "@routine-support/api-client";
-import { formatDayDto } from "@routine-support/models";
+import { formatDayDto } from "@routine-support/domains";
 import { DateString } from "@routine-support/types";
 import { AxiosResponse } from "axios";
 import { Day, DayDto } from "./types";

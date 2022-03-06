@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import {
-  StudentLoginDto,
-  studentAPI,
   studentActions,
-} from "@routine-support/models";
+  studentAPI,
+  StudentLoginDto,
+} from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
@@ -24,7 +24,7 @@ export const useStudent = () => {
       dispatch(studentActions.setStudent(student));
     } catch (error) {
       dispatch(studentActions.setStudent(null));
-      console.log(error);
+      console.error(error);
 
       throw error;
     } finally {
@@ -50,6 +50,8 @@ export const useStudent = () => {
   const getStudent = async () => {
     try {
       setLoading(true);
+
+      console.log("get");
 
       const student = await studentAPI.getStudent();
 

@@ -1,4 +1,4 @@
-import { Activity, RepeatTypeEnum } from "@routine-support/models";
+import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 import { repeatActivityEveryDay } from "./repeatActivityEveryDay";
 import { repeatActivityThisMonth } from "./repeatActivityThisMonth";
 import { repeatActivityThisWeek } from "./repeatActivityThisWeek";

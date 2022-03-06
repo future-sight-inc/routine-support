@@ -1,6 +1,6 @@
 import React, { createRef } from "react";
 
-import { Activity, Student, Week } from "@routine-support/models";
+import { Activity, Student, Week } from "@routine-support/domains";
 import { isToday, stringifyDate } from "@routine-support/utils";
 
 import { ActivityGroup } from "./components/ActivityGroup";

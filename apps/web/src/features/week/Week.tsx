@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 
+import { ContentWrapper } from "../../components/ContentWrapper/ContentWrapper";
 import { Modal } from "../../components/Modal";
 import { ActivityForm } from "../../features/activity/components/ActivityForm";
 import { useActivity } from "../activity/useActivity";
@@ -31,57 +32,62 @@ export const Week: React.FC = () => {
   }
 
   return (
-    <WeekLayout
+    <ContentWrapper
       loading={Week.models.loading}
-      weekSelect={
-        <WeekSelect
-          loading={Week.models.loading}
-          actions={{ getWeek: Week.operations.getWeek }}
-        />
-      }
-      weekRange={<WeekRange week={Week.models.week} />}
-      calendar={
-        Week.models.week && (
-          <WeekCalendar
-            week={Week.models.week}
-            students={Students.models.students}
-            actions={{
-              openActivityModal: Activity.operations.openActivityModal,
-              openNewActivityModal: Activity.operations.openNewActivityModal,
-            }}
-          />
-        )
-      }
-      addActivityButton={
-        <AddActivityButton
-          onClick={() => Activity.operations.openNewActivityModal()}
-        />
-      }
-      activityFilter={
-        !Students.models.loading && (
-          <ActivityFilter
-            students={Students.models.students}
+      error={Week.models.error}
+      onReload={Week.operations.getWeek}
+    >
+      <WeekLayout
+        weekSelect={
+          <WeekSelect
+            loading={Week.models.loading}
             actions={{ getWeek: Week.operations.getWeek }}
           />
-        )
-      }
-      activityModal={
-        <Modal
-          opened={Activity.models.opened}
-          onClose={Activity.operations.closeActivityModal}
-        >
-          <ActivityForm
-            user={User.models.user}
-            activity={Activity.models.activity}
-            actions={{
-              createActivity: Activity.operations.createActivity,
-              updateActivity: Activity.operations.updateActivity,
-              deleteActivity: Activity.operations.deleteActivity,
-              getWeek: Week.operations.getWeek,
-            }}
+        }
+        weekRange={<WeekRange week={Week.models.week} />}
+        calendar={
+          Week.models.week && (
+            <WeekCalendar
+              week={Week.models.week}
+              students={Students.models.students}
+              actions={{
+                openActivityModal: Activity.operations.openActivityModal,
+                openNewActivityModal: Activity.operations.openNewActivityModal,
+              }}
+            />
+          )
+        }
+        addActivityButton={
+          <AddActivityButton
+            onClick={() => Activity.operations.openNewActivityModal()}
           />
-        </Modal>
-      }
-    />
+        }
+        activityFilter={
+          !Students.models.loading && (
+            <ActivityFilter
+              students={Students.models.students}
+              actions={{ getWeek: Week.operations.getWeek }}
+            />
+          )
+        }
+        activityModal={
+          <Modal
+            opened={Activity.models.opened}
+            onClose={Activity.operations.closeActivityModal}
+          >
+            <ActivityForm
+              user={User.models.user}
+              activity={Activity.models.activity}
+              actions={{
+                createActivity: Activity.operations.createActivity,
+                updateActivity: Activity.operations.updateActivity,
+                deleteActivity: Activity.operations.deleteActivity,
+                getWeek: Week.operations.getWeek,
+              }}
+            />
+          </Modal>
+        }
+      />
+    </ContentWrapper>
   );
 };

@@ -1,5 +1,5 @@
-import { TIME_FORMAT, DATE_FORMAT } from "@routine-support/constants";
-import { TimeString, DateString, TimeRange } from "@routine-support/types";
+import { DATE_FORMAT, TIME_FORMAT } from "@routine-support/constants";
+import { DateString, TimeRange, TimeString } from "@routine-support/types";
 import * as moment from "moment";
 
 export const stringifyTime = (time: moment.Moment): string => {
@@ -25,11 +25,12 @@ export const serialize = (obj: {
   return str.join("&");
 };
 
-export const parseDate = (date: DateString) => moment(date, DATE_FORMAT);
+export const parseDate = (date: DateString) =>
+  (moment as any)(date, DATE_FORMAT);
 
 export const parseTime = (
   time: TimeString,
-  basisDate: moment.Moment | DateString = moment()
+  basisDate: moment.Moment | DateString = (moment as any)()
 ): moment.Moment => {
   // ! Грязная функция, убрать преобразование
   if (typeof basisDate === "string") {
@@ -37,7 +38,7 @@ export const parseTime = (
   }
 
   const [hours, minutes] = time.split(":");
-  const newDate = moment(basisDate).set({
+  const newDate = (moment as any)(basisDate).set({
     hours: Number(hours),
     minutes: Number(minutes),
   });
@@ -46,7 +47,7 @@ export const parseTime = (
 };
 
 export const isToday = (date: moment.Moment) => {
-  return stringifyDate(moment()) === stringifyDate(date);
+  return stringifyDate((moment as any)()) === stringifyDate(date);
 };
 
 export const getMinutes = (time: moment.Moment): number => {
