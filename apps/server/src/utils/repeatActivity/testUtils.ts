@@ -21,3 +21,7 @@ export const createMockWeekFormDateStringArray = (
 ): moment.Moment[] => {
   return dates.map(parseDate);
 };
+
+export const getDayNameFromActivity = (activity: Activity): string => {
+  return activity.date.format("dddd");
+};
