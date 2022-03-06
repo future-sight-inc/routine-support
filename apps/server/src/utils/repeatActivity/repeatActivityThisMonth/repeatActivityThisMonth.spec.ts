@@ -1,27 +1,10 @@
-import { Activity } from "@routine-support/models";
 import { stringifyDate } from "@routine-support/utils";
 import { WEEK_OF_MONTH } from "../mocks";
 import {
   createMockActivityByDateString,
   createMockWeekFormDateStringArray,
 } from "../testUtils";
-import { getDayNumbersFromWeek } from "../utils/getDayNumbersFromWeek";
-
-export const repeatActivityThisMonth = (
-  activity: Activity,
-  daysOfCurrentWeek: moment.Moment[]
-): Activity | undefined => {
-  const dayNumbersOfWeek = getDayNumbersFromWeek(daysOfCurrentWeek);
-  const activityDayNumber = activity.date.date();
-  const repeatActivityDayIndex = dayNumbersOfWeek.indexOf(activityDayNumber);
-  const shouldRepeatActivity = repeatActivityDayIndex !== -1;
-
-  if (shouldRepeatActivity) {
-    return { ...activity, date: daysOfCurrentWeek[repeatActivityDayIndex] };
-  }
-
-  return undefined;
-};
+import { repeatActivityThisMonth } from "./repeatActivityThisMonth";
 
 describe("repeatActivityThisMonth", () => {
   it("Current week includes original date - Monday. Should return 07.03.2022", () => {
