@@ -7,7 +7,7 @@ import {
   createMockActivityByDateString,
   createMockWeekFormDateStringArray,
   getDayNameFromActivity,
-} from "../testUtils";
+} from "../../testUtils";
 import { repeatActivityThisWeek } from "./repeatActivityThisWeek";
 
 describe("repeatActivityThisWeek: day of the current week. Should be Monday", () => {

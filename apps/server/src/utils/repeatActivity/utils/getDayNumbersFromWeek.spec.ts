@@ -3,7 +3,7 @@ import {
   WEEK_BETWEEN_YEARS,
   WEEK_OF_MONTH,
 } from "../../mocks";
-import { createMockWeekFormDateStringArray } from "../testUtils";
+import { createMockWeekFormDateStringArray } from "../../testUtils";
 import { getDayNumbersFromWeek } from "./getDayNumbersFromWeek";
 
 describe("getMonthsOfWeek", () => {
