@@ -27,7 +27,7 @@ const activitySchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
     },
-    repeat: {
+    repeatType: {
       type: Number,
       default: RepeatTypeEnum.None,
     },

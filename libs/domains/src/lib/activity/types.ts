@@ -20,7 +20,7 @@ export type ActivitySchema = {
   date: DateString;
   start: TimeString;
   end: TimeString;
-  repeat: RepeatTypeEnum;
+  repeatType: RepeatTypeEnum;
   students?: Id[];
   confirmation: ConfirmationInfo;
 };
@@ -38,7 +38,7 @@ export type Activity = {
   date: Moment;
   start: Moment;
   end: Moment;
-  repeat: RepeatTypeEnum;
+  repeatType: RepeatTypeEnum;
   students?: Id[];
   confirmation: ConfirmationInfo;
 };

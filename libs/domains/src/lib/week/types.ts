@@ -1,5 +1,5 @@
 import { Moment } from "moment";
-import { DateString, TimeRange } from "@routine-support/types";
+import { DateString, Id, TimeRange } from "@routine-support/types";
 import { Day, DayDto } from "../day";
 
 export type YearNumber = number;
@@ -35,3 +35,5 @@ export type Week = {
 };
 
 export type ActivityFilter = { [key: string]: boolean };
+
+export type ActivityFilterQuery = (Id | "common")[];

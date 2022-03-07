@@ -5,7 +5,7 @@ import { repeatActivityThisMonth } from "./repeatActivityThisMonth";
 import { repeatActivityThisWeek } from "./repeatActivityThisWeek";
 
 export const repeatActivity = (activity: Activity, currentWeek: Moment[]) => {
-  switch (activity.repeat) {
+  switch (activity.repeatType) {
     case RepeatTypeEnum.EveryDay:
       return repeatActivityEveryDay(activity, currentWeek);
     case RepeatTypeEnum.EveryWeek:
