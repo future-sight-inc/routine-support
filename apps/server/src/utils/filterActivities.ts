@@ -1,21 +1,19 @@
-import { ActivitySchema } from "@routine-support/domains";
+import { ActivityFilterQuery, ActivitySchema } from "@routine-support/domains";
 
 export const filterActivities = (
   activities: ActivitySchema[],
-  filter?: string[]
+  filter: ActivityFilterQuery = []
 ) => {
-  if (!filter) {
-    return [];
-  }
-
   return activities.filter((activity) => {
-    if (!activity.students && filter.includes("common")) {
+    const isCommonActivity = !activity.students && filter.includes("common");
+
+    if (isCommonActivity) {
       return true;
     }
 
     if (activity.students) {
       for (const student of activity.students) {
-        if (filter.includes(student as string)) {
+        if (filter.includes(student)) {
           return true;
         }
       }

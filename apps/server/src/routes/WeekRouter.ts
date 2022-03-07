@@ -5,7 +5,7 @@ import { getDateStringRangeFromWeek } from "../utils/getDateStringRangeFromWeek"
 import { getDaysOfWeek } from "../utils/getDaysOfWeek";
 import { getTimeRange } from "../utils/getTimeRange";
 import { getWeek } from "../utils/getWeek";
-import { parseWeekFilter } from "../utils/parseWeekFilter";
+import { parseActivitiesFilter } from "../utils/parseActivitiesFilter";
 import { repeatActivities } from "../utils/repeatActivities";
 
 export const weekRouter = Router();
@@ -17,7 +17,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
   const currentWeek = getDaysOfWeek({ yearNumber, weekNumber });
 
   const { filter } = req.query;
-  const parsedFilter = parseWeekFilter(filter as string);
+  const parsedFilter = parseActivitiesFilter(filter as string);
 
   let activitiesWithoutRepeat = await ActivityModel.find({
     coachId: res.locals.user._id,
