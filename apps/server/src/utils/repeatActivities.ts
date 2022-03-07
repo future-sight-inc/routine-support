@@ -3,12 +3,12 @@ import {
   formatActivity,
   formatActivityDto,
 } from "@routine-support/domains";
-import moment from "moment";
+import { Moment } from "moment";
 import { repeatActivity } from "./repeatActivity";
 
 export const repeatActivities = (
   activities: ActivitySchema[],
-  currentWeek: moment.Moment[]
+  currentWeek: Moment[]
 ): ActivitySchema[] => {
   let repeatedActivities = [];
 

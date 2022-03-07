@@ -1,6 +1,7 @@
+import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 import { DateString } from "@routine-support/types";
 import { parseDate } from "@routine-support/utils";
-import { Activity, RepeatTypeEnum } from "@routine-support/domains";
+import { Moment } from "moment";
 
 export const createMockActivityByDateString = (date: DateString): Activity => {
   const parsedDate = parseDate(date);
@@ -19,7 +20,7 @@ export const createMockActivityByDateString = (date: DateString): Activity => {
 
 export const createMockWeekFormDateStringArray = (
   dates: DateString[]
-): moment.Moment[] => {
+): Moment[] => {
   return dates.map(parseDate);
 };
 

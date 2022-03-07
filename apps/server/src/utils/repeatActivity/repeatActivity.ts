@@ -1,12 +1,10 @@
 import { Activity, RepeatTypeEnum } from "@routine-support/domains";
+import { Moment } from "moment";
 import { repeatActivityEveryDay } from "./repeatActivityEveryDay";
 import { repeatActivityThisMonth } from "./repeatActivityThisMonth";
 import { repeatActivityThisWeek } from "./repeatActivityThisWeek";
 
-export const repeatActivity = (
-  activity: Activity,
-  currentWeek: moment.Moment[]
-) => {
+export const repeatActivity = (activity: Activity, currentWeek: Moment[]) => {
   switch (activity.repeat) {
     case RepeatTypeEnum.EveryDay:
       return repeatActivityEveryDay(activity, currentWeek);

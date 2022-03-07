@@ -1,4 +1,4 @@
-import moment = require("moment");
+import moment from "moment";
 import { DATE_FORMAT } from "../constants/DateFormat";
 
 export const getDateStringRangeFromWeek = (weekNumber = 1, year: number) => {

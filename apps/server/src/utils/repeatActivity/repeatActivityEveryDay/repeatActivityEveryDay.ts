@@ -1,8 +1,9 @@
 import { Activity } from "@routine-support/domains";
+import { Moment } from "moment";
 
 export const repeatActivityEveryDay = (
   activity: Activity,
-  daysOfCurrentWeek: moment.Moment[]
+  daysOfCurrentWeek: Moment[]
 ): Activity[] => {
   const repeatedActivity: Activity[] = [];
 

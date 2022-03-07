@@ -1,11 +1,11 @@
 import * as express from "express";
 import BaseRouter from "./routes";
-import cookieParser = require("cookie-parser");
-import cors = require("cors");
-import bodyParser = require("body-parser");
-import bearerToken = require("express-bearer-token");
+import * as cookieParser from "cookie-parser";
+import * as cors from "cors";
+import * as bodyParser from "body-parser";
+import * as bearerToken from "express-bearer-token";
 import "./db/mongodb";
-import morgan = require("morgan");
+import * as morgan from "morgan";
 
 const app = express();
 
