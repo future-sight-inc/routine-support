@@ -33,7 +33,7 @@ const activitySchema = new Schema(
     },
     students: {
       type: Schema.Types.Array,
-      default: undefined,
+      default: [],
     },
     confirmation: {
       type: Object,
