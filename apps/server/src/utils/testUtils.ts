@@ -72,6 +72,10 @@ export const createMockWeekFormDateStringArray = (
   return dates.map(parseDate);
 };
 
-export const getDayNameFromActivity = (activity: Activity): string => {
+export const getDayNameFromActivity = (activity?: Activity): string => {
+  if (!activity) {
+    return "";
+  }
+
   return activity.date.format("dddd");
 };
