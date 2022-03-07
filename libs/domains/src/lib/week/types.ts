@@ -7,17 +7,19 @@ export type WeekNumber = number;
 
 export interface WeekDto {
   days: DayDto[];
-  year: YearNumber;
-  weekNumber: WeekNumber;
   weekInfo: WeekInfoDto;
 }
 
 export interface WeekInfoDto {
+  year: YearNumber;
+  weekNumber: WeekNumber;
   timeRange: TimeRange;
   days: DateString[];
 }
 
 export type WeekInfo = {
+  year: YearNumber;
+  weekNumber: WeekNumber;
   timeRange: TimeRange;
   days: Moment[];
 };
@@ -29,8 +31,6 @@ export type DateInfo = {
 
 export type Week = {
   days: Day[];
-  year: YearNumber;
-  weekNumber: WeekNumber;
   weekInfo: WeekInfo;
 };
 
