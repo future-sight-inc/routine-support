@@ -1,4 +1,4 @@
-import { ActivitySchema } from "@routine-support/models";
+import { ActivitySchema } from "@routine-support/domains";
 
 export const filterActivities = (
   activities: ActivitySchema[],

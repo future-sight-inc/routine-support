@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
 import { ActivitySchema, RepeatTypeEnum } from "./types";
 
 const activitySchema = new Schema(
@@ -34,6 +34,10 @@ const activitySchema = new Schema(
     students: {
       type: Schema.Types.Array,
       default: undefined,
+    },
+    confirmation: {
+      type: Object,
+      default: {},
     },
   },
   { versionKey: false }

@@ -1,4 +1,5 @@
 declare module "*.json" {
-  const value: any;
+  // ! Не можем знать содержимое файла
+  const value: unknown;
   export default value;
 }

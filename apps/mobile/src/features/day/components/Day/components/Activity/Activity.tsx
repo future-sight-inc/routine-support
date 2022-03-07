@@ -1,21 +1,26 @@
 import React from "react";
 
-import { Activity as ActivityType } from "@routine-support/models";
+import { Activity as ActivityType } from "@routine-support/domains";
 import { stringifyTime } from "@routine-support/utils";
 import { Layout, Text } from "@ui-kitten/components";
 import { Image } from "react-native";
 
 interface ActivityProps {
   activity: ActivityType;
+  passed: boolean;
 }
 
-export const Activity: React.FC<ActivityProps> = ({ activity }) => {
+export const Activity: React.FC<ActivityProps> = ({
+  activity,
+  passed = true,
+}) => {
   return (
     <Layout
       style={{
         padding: 16,
         flex: 1,
         flexDirection: "row",
+        opacity: passed ? 0.3 : undefined,
       }}
     >
       <Image

@@ -4,7 +4,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import PersonIcon from "@mui/icons-material/Person";
 import InputAdornment from "@mui/material/InputAdornment";
-import { UserRegisterDto } from "@routine-support/models";
+import { UserRegisterDto } from "@routine-support/domains";
 import { Card } from "apps/web/src/components/Card";
 import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
@@ -80,7 +80,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
             ),
           }}
         />
-        <Button type="submit">Отправить</Button>
+        <Button type="submit" loading={isSubmitting}>
+          Отправить
+        </Button>
         {submitError && <ErrorText>{submitError}</ErrorText>}
         <Link to={LinkService.login()}>Уже есть аккаунт? Вход</Link>
       </S.Form>

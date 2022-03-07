@@ -155,23 +155,23 @@
         }
       }
     },
-    "models": {
-      "root": "libs/models",
-      "sourceRoot": "libs/models/src",
+    "domains": {
+      "root": "libs/domains",
+      "sourceRoot": "libs/domains/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/models/**/*.ts"]
+            "lintFilePatterns": ["libs/domains/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/models"],
+          "outputs": ["coverage/libs/domains"],
           "options": {
-            "jestConfig": "libs/models/jest.config.js",
+            "jestConfig": "libs/domains/jest.config.js",
             "passWithNoTests": true
           }
         }

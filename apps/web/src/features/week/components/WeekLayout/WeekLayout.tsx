@@ -9,7 +9,6 @@ interface WeekLayoutProps {
   addActivityButton: ReactNode;
   activityModal: ReactNode;
   activityFilter: ReactNode;
-  loading: boolean;
 }
 
 export const WeekLayout: React.FC<WeekLayoutProps> = ({
@@ -19,12 +18,7 @@ export const WeekLayout: React.FC<WeekLayoutProps> = ({
   addActivityButton,
   activityModal,
   activityFilter,
-  loading,
 }) => {
-  if (loading) {
-    return <S.Spinner />;
-  }
-
   return (
     <S.Wrapper>
       <S.Column>

@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 
 import {
-  Controller as FormController,
   ControllerFieldState,
   ControllerRenderProps,
+  Controller as FormController,
   UseFormStateReturn,
 } from "react-hook-form";
 

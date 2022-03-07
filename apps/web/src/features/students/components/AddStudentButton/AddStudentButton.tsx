@@ -1,5 +1,6 @@
-import { Button } from "apps/web/src/styled/components/Button";
 import React from "react";
+
+import { Button } from "apps/web/src/styled/components/Button";
 
 interface AddStudentButtonProps {
   onClick: () => void;

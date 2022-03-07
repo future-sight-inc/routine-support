@@ -11,7 +11,19 @@ export const List = styled(BasicList)`
   background: 25px;
 `;
 
-export const EmptyInfo = styled(Typography)`
+export const QrTitle = styled(Typography).attrs(() => ({ variant: "h6" }))`
+  text-align: center;
+`;
+
+export const Qr = styled.img`
+  width: 100%;
+  max-width: 250px;
+  display: block;
+  margin: 0 auto;
+  height: auto;
+`;
+
+export const EmptyText = styled(Typography)`
   padding: 16px;
 
   ${({ theme }) =>
@@ -22,13 +34,4 @@ export const EmptyInfo = styled(Typography)`
       color: ${theme.palette.secondary.contrastText};
       border: ${theme.border.main};
     `};
-`;
-
-export const QrTitle = styled(Typography).attrs(() => ({ variant: "h6" }))`
-  text-align: center;
-`;
-
-export const Qr = styled.img`
-  width: 100%;
-  height: auto;
 `;

@@ -4,7 +4,7 @@ import {
   Activity,
   activityActions,
   activityAPI,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -26,8 +26,6 @@ export const useActivity = () => {
       await activityAPI.createActivity(activity);
 
       setOpened(false);
-    } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -40,8 +38,6 @@ export const useActivity = () => {
       await activityAPI.updateActivity(activity);
 
       setOpened(false);
-    } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -54,8 +50,6 @@ export const useActivity = () => {
       await activityAPI.deleteActivity(id);
 
       setOpened(false);
-    } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { ActivityFilter, Student } from "@routine-support/models";
+import { ActivityFilter, Student } from "@routine-support/domains";
 import { ActivityFilterService } from "apps/web/src/services/ActivityFilterService";
 
 import { ActivityFilterActions } from "./ActivityFilter";

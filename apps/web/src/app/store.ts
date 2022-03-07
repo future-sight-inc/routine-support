@@ -1,11 +1,11 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import {
-  weekReducer,
   activityReducer,
-  userReducer,
-  studentsReducer,
   studentReducer,
-} from "@routine-support/models";
+  studentsReducer,
+  userReducer,
+  weekReducer,
+} from "@routine-support/domains";
 
 export const store = configureStore({
   reducer: {

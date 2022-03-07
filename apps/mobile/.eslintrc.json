@@ -5,5 +5,5 @@
     "../web/.eslintrc.json"
   ],
   "plugins": ["react", "react-native"],
-  "ignorePatterns": ["!**/*"]
+  "ignorePatterns": ["!**/*", "node_modules"]
 }

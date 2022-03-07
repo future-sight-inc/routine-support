@@ -1,9 +1,11 @@
-import { Student, StudentLoginDto } from "@routine-support/models";
+import React from "react";
+
+import { Student, StudentLoginDto } from "@routine-support/domains";
 import { Button, Icon, Layout, Spinner, Text } from "@ui-kitten/components";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import React from "react";
 import { Image, StyleSheet } from "react-native";
 import { Redirect } from "react-router-native";
+
 import qrImage from "../../../../../assets/qr.png";
 import { useLoginComponent } from "./hooks";
 

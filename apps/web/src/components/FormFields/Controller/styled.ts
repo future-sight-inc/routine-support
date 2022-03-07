@@ -1,4 +1,4 @@
-import { Box, Typography, FormHelperText } from "@mui/material";
+import { FormHelperText, Typography } from "@mui/material";
 import styled from "styled-components";
 
 export const Wrapper = styled.div``;

@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 import {
-  UserLoginDto,
-  userAPI,
   userActions,
+  userAPI,
+  UserLoginDto,
   UserRegisterDto,
   UserUpdateDto,
-} from "@routine-support/models";
+} from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 

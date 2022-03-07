@@ -1,18 +1,22 @@
-import { User, StudentModel } from "@routine-support/models";
+import { StudentModel, User } from "@routine-support/domains";
 import * as jwt from "jsonwebtoken";
 
 export const studentAuthorization = (req, res, next) => {
   const token = req.cookies.access_token;
+
+  console.log(token);
 
   if (!token) {
     return res.sendStatus(403);
   }
 
   try {
-    const data = jwt.verify(token, process.env.SECRET_KEY) as User;
+    const data = jwt.verify(token, process.env.NX_SECRET_KEY) as User;
 
     StudentModel.findById(data._id, (err, result) => {
       if (err || !result) {
+        res.clearCookie("access_token");
+
         return res.status(401).send(err);
       }
 
