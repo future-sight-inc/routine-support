@@ -4,7 +4,7 @@ import { filterActivities } from "../utils/filterActivities";
 import { getDateStringRangeFromWeek } from "../utils/getDateStringRangeFromWeek";
 import { getDaysOfWeek } from "../utils/getDaysOfWeek";
 import { getTimeRange } from "../utils/getTimeRange";
-import { getWeek } from "../utils/getWeek";
+import { getCalendarWeek } from "../utils/getCalendarWeek";
 import { parseActivitiesFilter } from "../utils/parseActivitiesFilter";
 import { repeatActivities } from "../utils/repeatActivities";
 
@@ -36,7 +36,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
   activitiesWithRepeat = repeatActivities(activitiesWithRepeat, currentWeek);
 
   res.status(200).send({
-    days: getWeek(
+    days: getCalendarWeek(
       [...activitiesWithoutRepeat, ...activitiesWithRepeat],
       weekNumber,
       yearNumber
@@ -44,7 +44,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
     year: yearNumber,
     week: weekNumber,
     weekInfo: {
-      days: getDateStringRangeFromWeek(weekNumber, yearNumber),
+      days: getDateStringRangeFromWeek({ weekNumber, yearNumber }),
       timeRange: getTimeRange(),
     },
   });
