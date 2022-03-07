@@ -52,6 +52,7 @@ studentRouter.delete("/:id", async (req, res) => {
     }
   });
 
+  // todo use async await
   ActivityModel.find({ students: { $in: [id] } }, (__, activities) => {
     activities.forEach(({ _id: activityId, students }) => {
       const filteredStudents = students.filter((studentId) => studentId !== id);
@@ -84,7 +85,7 @@ studentRouter.put("/:id", (req, res) => {
         return;
       }
 
-      res.status(200).send("Activity is updated");
+      res.sendStatus(200);
     }
   );
 });
