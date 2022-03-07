@@ -2,6 +2,7 @@ import { Activity, Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { Theme } from "apps/web/src/styled/theme";
 
+// todo add tests and refactor
 export const getActivityColor = (activity: Activity, students: Student[]) => {
   if (activity.students && activity.students.length) {
     return students.find(
