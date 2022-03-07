@@ -1,5 +1,10 @@
-import { Activity, RepeatTypeEnum } from "@routine-support/domains";
-import { DateString } from "@routine-support/types";
+import {
+  Activity,
+  ActivityFilterQuery,
+  ActivitySchema,
+  RepeatTypeEnum,
+} from "@routine-support/domains";
+import { DateString, Id } from "@routine-support/types";
 import { parseDate } from "@routine-support/utils";
 import moment from "moment";
 import { Moment } from "moment";
@@ -16,22 +21,49 @@ export const createMockActivityByDateString = (date: DateString): Activity => {
     name: "",
     repeatType: RepeatTypeEnum.None,
     confirmation: {},
+    students: [],
   };
 };
 
-export const createMockActivityByRepeatType = (repeatType: RepeatTypeEnum) => {
-  const mockedDate = moment();
-
+export const createMockActivitySchema = (): ActivitySchema => {
   return {
-    date: mockedDate,
+    date: "",
     coachId: "",
     pictogram: "",
-    start: mockedDate,
-    end: mockedDate,
+    start: "",
+    end: "",
     name: "",
-    repeatType,
+    repeatType: RepeatTypeEnum.None,
     confirmation: {},
+    students: [],
   };
+};
+
+export const createMockFilter = ({
+  students = [],
+  isCommon = false,
+}: {
+  students?: Id[];
+  isCommon?: boolean;
+}): ActivityFilterQuery => {
+  let activityFilterQuery: ActivityFilterQuery = [];
+  activityFilterQuery = activityFilterQuery.concat(students);
+
+  if (isCommon) {
+    activityFilterQuery.push("common");
+  }
+
+  return activityFilterQuery;
+};
+
+export const addStudentToActivity = (
+  activity: ActivitySchema,
+  studentId: Id
+) => {
+  const updatedStudents = activity.students;
+  updatedStudents.push(studentId);
+
+  return { ...activity, students: updatedStudents };
 };
 
 export const createMockWeekFormDateStringArray = (
