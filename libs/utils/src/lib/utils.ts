@@ -1,6 +1,6 @@
 import { DATE_FORMAT, TIME_FORMAT } from "@routine-support/constants";
 import { DateString, TimeRange, TimeString } from "@routine-support/types";
-import * as moment from "moment";
+import moment from "moment";
 
 export const stringifyTime = (time: moment.Moment): string => {
   return time.format(TIME_FORMAT);
