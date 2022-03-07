@@ -90,7 +90,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
         </S.Row>
         <PictogramPicker name="pictogram" control={control} required />
 
-        <RepeatTypePicker control={control} name="repeat" label="Повторять" />
+        <RepeatTypePicker control={control} name="repeatType" label="Повторять" />
 
         <StudentsPicker name="students" control={control} />
 

@@ -21,7 +21,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
 
   let activitiesWithoutRepeat = await ActivityModel.find({
     coachId: res.locals.user._id,
-    repeat: RepeatTypeEnum.None,
+    repeatType: RepeatTypeEnum.None,
   }).lean();
   activitiesWithoutRepeat = filterActivities(
     activitiesWithoutRepeat,
@@ -30,7 +30,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
 
   let activitiesWithRepeat = await ActivityModel.find({
     coachId: res.locals.user._id,
-    repeat: { $gt: RepeatTypeEnum.None },
+    repeatType: { $gt: RepeatTypeEnum.None },
   }).lean();
   activitiesWithRepeat = filterActivities(activitiesWithRepeat, parsedFilter);
   activitiesWithRepeat = repeatActivities(activitiesWithRepeat, currentWeek);
