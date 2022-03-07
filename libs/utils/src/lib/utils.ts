@@ -1,12 +1,13 @@
 import { DATE_FORMAT, TIME_FORMAT } from "@routine-support/constants";
 import { DateString, TimeRange, TimeString } from "@routine-support/types";
-import moment, { Moment } from "moment";
+import * as moment from "moment";
 
-export const stringifyTime = (time: Moment): string => {
+// todo Resolve moment and commonjs issue
+export const stringifyTime = (time: moment.Moment): string => {
   return time.format(TIME_FORMAT);
 };
 
-export const stringifyDate = (date: Moment): string => {
+export const stringifyDate = (date: moment.Moment): string => {
   return date.format(DATE_FORMAT);
 };
 
@@ -25,19 +26,20 @@ export const serialize = (obj: {
   return str.join("&");
 };
 
-export const parseDate = (date: DateString) => moment(date, DATE_FORMAT);
+export const parseDate = (date: DateString) =>
+  (moment as any)(date, DATE_FORMAT);
 
 export const parseTime = (
   time: TimeString,
-  basisDate: Moment | DateString = moment()
-): Moment => {
+  basisDate: moment.Moment | DateString = (moment as any)()
+): moment.Moment => {
   // ! Грязная функция, убрать преобразование
   if (typeof basisDate === "string") {
     basisDate = parseDate(basisDate);
   }
 
   const [hours, minutes] = time.split(":");
-  const newDate = moment(basisDate).set({
+  const newDate = (moment as any)(basisDate).set({
     hours: Number(hours),
     minutes: Number(minutes),
   });
@@ -45,17 +47,17 @@ export const parseTime = (
   return newDate;
 };
 
-export const isToday = (date: Moment) => {
-  return stringifyDate(moment()) === stringifyDate(date);
+export const isToday = (date: moment.Moment) => {
+  return stringifyDate((moment as any)()) === stringifyDate(date);
 };
 
-export const getMinutes = (time: Moment): number => {
+export const getMinutes = (time: moment.Moment): number => {
   return time.get("hours") * 60 + time.get("minutes");
 };
 
 export const indexOfTimeRange = (
   timeRange: TimeRange,
-  time: Moment
+  time: moment.Moment
 ): number => {
   return timeRange.findIndex((timeString) =>
     new RegExp(`^${time.get("hours")}:00`).test(timeString)
