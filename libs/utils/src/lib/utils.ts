@@ -31,13 +31,8 @@ export const parseDate = (date: DateString) =>
 
 export const parseTime = (
   time: TimeString,
-  basisDate: moment.Moment | DateString = (moment as any)()
+  basisDate: moment.Moment = (moment as any)()
 ): moment.Moment => {
-  // ! Грязная функция, убрать преобразование
-  if (typeof basisDate === "string") {
-    basisDate = parseDate(basisDate);
-  }
-
   const [hours, minutes] = time.split(":");
   const newDate = (moment as any)(basisDate).set({
     hours: Number(hours),
