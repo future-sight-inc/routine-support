@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Activity, User } from "@routine-support/models";
+import { Activity, User } from "@routine-support/domains";
 import moment, { Moment } from "moment";
 import { useForm } from "react-hook-form";
 
@@ -28,6 +28,8 @@ export const useActivityFormComponent = (
   const [minStartTime, setMinStartTime] = useState<Moment | undefined>(
     moment()
   );
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   useEffect(() => {
     if (activity?.start) {
       setMinStartTime(activity?.start);
@@ -48,19 +50,25 @@ export const useActivityFormComponent = (
   }, [watch]);
 
   const onSubmit = handleSubmit(async (values) => {
-    if (values._id) {
-      await actions.updateActivity({
-        ...values,
-        coachId: user._id,
-      } as Activity);
-    } else {
-      await actions.createActivity({
-        ...values,
-        coachId: user._id,
-      } as Activity);
-    }
+    try {
+      setSubmitError(null);
 
-    actions.getWeek({ config: { silent: true } });
+      if (values._id) {
+        await actions.updateActivity({
+          ...values,
+          coachId: user._id,
+        } as Activity);
+      } else {
+        await actions.createActivity({
+          ...values,
+          coachId: user._id,
+        } as Activity);
+      }
+
+      actions.getWeek({ config: { silent: true } });
+    } catch (error) {
+      setSubmitError(error.message);
+    }
   });
 
   const onDelete = async () => {
@@ -80,6 +88,7 @@ export const useActivityFormComponent = (
       minEndTime,
       isDirty: formState.isDirty,
       isSubmitting: formState.isSubmitting,
+      submitError,
     },
     operations: { handleSubmit: onSubmit, onDelete },
   };

@@ -1,4 +1,4 @@
-import { ActivityFilter } from "@routine-support/models";
+import { ActivityFilter } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 export const ActivityFilterService = {

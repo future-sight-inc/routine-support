@@ -1,4 +1,4 @@
-import { User, UserModel } from "@routine-support/models";
+import { User, UserModel } from "@routine-support/domains";
 import * as jwt from "jsonwebtoken";
 
 export const authorization = (req, res, next) => {
@@ -9,10 +9,12 @@ export const authorization = (req, res, next) => {
   }
 
   try {
-    const data = jwt.verify(token, process.env.SECRET_KEY) as User;
+    const data = jwt.verify(token, process.env.NX_SECRET_KEY) as User;
 
     UserModel.findOne({ email: data.email }, (err, result) => {
       if (err || !result) {
+        res.clearCookie("access_token");
+
         return res.status(401).send(err);
       }
 

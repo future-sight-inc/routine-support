@@ -5,18 +5,12 @@ import * as S from "./styled";
 interface LayoutProps {
   addStudentButton: ReactNode;
   children: ReactNode;
-  loading: boolean;
 }
 
 export const Layout: React.FC<LayoutProps> = ({
   addStudentButton,
   children,
-  loading,
 }) => {
-  if (loading) {
-    return <S.Spinner />;
-  }
-
   return (
     <S.Wrapper>
       <S.Header>

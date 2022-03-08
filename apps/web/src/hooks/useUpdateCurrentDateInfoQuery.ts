@@ -1,5 +1,6 @@
-import { DateInfo } from "@routine-support/models";
+import { DateInfo } from "@routine-support/domains";
 import { useHistory } from "react-router-dom";
+
 import { updateCurrentDateInfoQuery } from "../utils/updateCurrentDateInfoQuery";
 
 export const useUpdateCurrentDateInfoQuery = () => {

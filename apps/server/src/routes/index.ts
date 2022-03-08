@@ -12,7 +12,7 @@ import { weekRouter } from "./WeekRouter";
 const router = Router();
 
 // Add sub-routes
-router.use("/activity", authorization, activityRouter);
+router.use("/activity", activityRouter);
 router.use("/week", authorization, weekRouter);
 router.use("/day", studentAuthorization, dayRouter);
 router.use("/user", userRouter);

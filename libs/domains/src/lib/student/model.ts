@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
 import { Student } from "./types";
 
 const studentSchema = new Schema(

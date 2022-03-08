@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { dayActions, dayAPI } from "@routine-support/models";
+import {
+  Activity,
+  activityAPI,
+  dayActions,
+  dayAPI,
+} from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 import { useDispatch } from "react-redux";
@@ -31,5 +36,22 @@ export const useDay = () => {
     }
   };
 
-  return { models: { loading, day }, operations: { getDay } };
+  const confirmActivity = async (activity: Activity) => {
+    try {
+      setLoading(true);
+
+      await activityAPI.confirmActivity({
+        id: activity._id as string,
+        timestamp: activity.date.unix(),
+      });
+
+      getDay();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { models: { loading, day }, operations: { getDay, confirmActivity } };
 };

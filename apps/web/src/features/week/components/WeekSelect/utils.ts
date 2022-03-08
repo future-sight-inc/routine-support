@@ -1,21 +1,10 @@
-import { DateInfo } from "@routine-support/models";
-import { stringifyDate } from "@routine-support/utils";
-import moment from "moment";
+import { Moment } from "moment";
 
-export const addWeeks = (values: DateInfo, amount: number) => {
-  const newDate = moment()
-    .year(values.year)
-    .weeks(values.week)
-    .add(amount, "w");
-
-  return newDate;
+export const addWeekToMoment = (date: Moment) => {
+  return date.clone().add(1, "weeks");
 };
 
-export const getDateRange = (values: DateInfo) => {
-  const date = moment().locale("ru").year(values.year).weeks(values.week);
-
-  return {
-    start: stringifyDate(date.startOf("w")),
-    end: stringifyDate(date.endOf("w")),
-  };
+// ! Если от 1 недели 2022 отнять одну неделю, то сделает 52 неделю 2022
+export const subtractWeekFromMoment = (date: Moment) => {
+  return date.clone().subtract(1, "weeks");
 };

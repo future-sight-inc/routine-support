@@ -1,5 +1,7 @@
-import { BarCodeEvent, BarCodeScanner } from "expo-barcode-scanner";
 import { useEffect, useState } from "react";
+
+import { BarCodeEvent, BarCodeScanner } from "expo-barcode-scanner";
+
 import { LoginActions } from "./Login";
 
 export const useLoginComponent = (actions: LoginActions) => {

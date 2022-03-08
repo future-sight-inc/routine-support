@@ -1,10 +1,11 @@
 import React from "react";
 
-import { Activity, Student } from "@routine-support/models";
+import { Activity, Student } from "@routine-support/domains";
 import { TimeString } from "@routine-support/types";
 import { indexOfTimeRange } from "@routine-support/utils";
 
-import { ActivityCard } from "../ActivityCard";
+import { ActivityCard } from "./components/ActivityCard";
+import { ConfirmationStatus } from "./components/ConfirmationStatus";
 import { getActivityColor } from "./utils";
 
 interface ActivityGroupProps {
@@ -30,6 +31,7 @@ export const ActivityGroup: React.FC<ActivityGroupProps> = ({
           rowStart={indexOfTimeRange(timeRange, activity.start)}
           onClick={onActivityClick}
           activity={activity}
+          confirmationStatus={<ConfirmationStatus students={students} activity={activity} />}
         />
       ))}
     </>

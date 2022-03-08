@@ -1,6 +1,6 @@
 import mongoose = require("mongoose");
 
-mongoose.connect(process.env.CONNECTION_STRING || "");
+mongoose.connect(process.env.NX_DB_CONNECTION_STRING || "");
 
 export const db = mongoose.connection;
 
