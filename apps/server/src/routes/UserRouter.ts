@@ -23,9 +23,8 @@ userRouter.post("/login", async (req, res) => {
       return res.status(401).send(err);
     }
 
-    console.log(req.hostname, req.get("port"));
-
     const cookie = getAuthCookie(result);
+
     return res.status(200).cookie(cookie.name, cookie.token).send(result);
   });
 });

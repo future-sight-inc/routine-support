@@ -6,7 +6,7 @@ import {
 import {
   createMockActivityByDateString,
   createMockWeekFromDateStringArray,
-} from "../testUtils";
+} from "../../testUtils";
 import { repeatActivityEveryDay } from "./repeatActivityEveryDay";
 
 describe("repeatActivityEveryDay: start of the week. Should repeat 7 times", () => {

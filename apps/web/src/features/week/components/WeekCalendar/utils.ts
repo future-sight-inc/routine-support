@@ -8,6 +8,7 @@ interface ActivityGroup {
   activities: Activity[];
 }
 
+// todo refactor and add tests
 export const groupActivities = (activities: Activity[]): ActivityGroup[] => {
   const groups: ActivityGroup[] = [];
 

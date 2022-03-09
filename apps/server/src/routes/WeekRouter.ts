@@ -4,8 +4,8 @@ import { filterActivities } from "../utils/filterActivities";
 import { getDateStringRangeFromWeek } from "../utils/getDateStringRangeFromWeek";
 import { getDaysOfWeek } from "../utils/getDaysOfWeek";
 import { getTimeRange } from "../utils/getTimeRange";
-import { getWeek } from "../utils/getWeek";
-import { parseWeekFilter } from "../utils/parseWeekFilter";
+import { getDaysOfCalendarWeek } from "../utils/getDaysOfCalendarWeek";
+import { parseActivitiesFilter } from "../utils/parseActivitiesFilter";
 import { repeatActivities } from "../utils/repeatActivities";
 
 export const weekRouter = Router();
@@ -17,11 +17,11 @@ weekRouter.get("/:year/:week", async (req, res) => {
   const currentWeek = getDaysOfWeek({ yearNumber, weekNumber });
 
   const { filter } = req.query;
-  const parsedFilter = parseWeekFilter(filter as string);
+  const parsedFilter = parseActivitiesFilter(filter as string);
 
   let activitiesWithoutRepeat = await ActivityModel.find({
     coachId: res.locals.user._id,
-    repeat: RepeatTypeEnum.None,
+    repeatType: RepeatTypeEnum.None,
   }).lean();
   activitiesWithoutRepeat = filterActivities(
     activitiesWithoutRepeat,
@@ -30,21 +30,20 @@ weekRouter.get("/:year/:week", async (req, res) => {
 
   let activitiesWithRepeat = await ActivityModel.find({
     coachId: res.locals.user._id,
-    repeat: { $gt: RepeatTypeEnum.None },
+    repeatType: { $gt: RepeatTypeEnum.None },
   }).lean();
   activitiesWithRepeat = filterActivities(activitiesWithRepeat, parsedFilter);
   activitiesWithRepeat = repeatActivities(activitiesWithRepeat, currentWeek);
 
   res.status(200).send({
-    days: getWeek(
+    days: getDaysOfCalendarWeek(
       [...activitiesWithoutRepeat, ...activitiesWithRepeat],
-      weekNumber,
-      yearNumber
+      { weekNumber, yearNumber }
     ),
     year: yearNumber,
     week: weekNumber,
     weekInfo: {
-      days: getDateStringRangeFromWeek(weekNumber, yearNumber),
+      days: getDateStringRangeFromWeek({ weekNumber, yearNumber }),
       timeRange: getTimeRange(),
     },
   });

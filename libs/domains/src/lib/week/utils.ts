@@ -6,8 +6,6 @@ import { DateInfo, Week, WeekDto, WeekInfo, WeekInfoDto } from "./types";
 export const formatWeekDto = (weekDto: WeekDto): Week => {
   const week: Week = {
     days: weekDto.days.map(formatDayDto),
-    weekNumber: weekDto.weekNumber,
-    year: weekDto.year,
     weekInfo: formatWeekInfo(weekDto.weekInfo),
   };
 
@@ -16,6 +14,7 @@ export const formatWeekDto = (weekDto: WeekDto): Week => {
 
 export const formatWeekInfo = (weekInfoDto: WeekInfoDto): WeekInfo => {
   const weekInfo: WeekInfo = {
+    ...weekInfoDto,
     days: weekInfoDto.days.map((day) => parseDate(day)),
     timeRange: weekInfoDto.timeRange,
   };

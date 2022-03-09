@@ -27,6 +27,7 @@ export const useWeek = () => {
 
   const [error, setError] = useState<string | null>(null);
 
+  // todo refactor args, add default config obj
   const getWeek = async (data?: {
     params?: {
       year?: YearNumber;

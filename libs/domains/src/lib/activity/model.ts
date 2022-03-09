@@ -27,13 +27,13 @@ const activitySchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
     },
-    repeat: {
+    repeatType: {
       type: Number,
       default: RepeatTypeEnum.None,
     },
     students: {
       type: Schema.Types.Array,
-      default: undefined,
+      default: [],
     },
     confirmation: {
       type: Object,
