@@ -1,7 +1,8 @@
 import {
+  Activity,
   ActivitySchema,
   formatActivity,
-  formatActivityDto,
+  formatActivityDto
 } from "@routine-support/domains";
 import { Moment } from "moment";
 import { repeatActivity } from "./repeatActivity";
@@ -10,7 +11,7 @@ export const repeatActivities = (
   activities: ActivitySchema[],
   currentWeek: Moment[]
 ): ActivitySchema[] => {
-  let repeatedActivities = [];
+  let repeatedActivities: Activity[] = [];
 
   activities.map(formatActivityDto).forEach((activity) => {
     const repeatedActivity = repeatActivity(activity, currentWeek);

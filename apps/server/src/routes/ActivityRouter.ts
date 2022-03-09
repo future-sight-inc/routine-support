@@ -65,11 +65,12 @@ activityRouter.put(
 
     const updatedActivity = await ActivityModel.findById(id);
 
-    if (!updatedActivity.confirmation[dateString]) {
-      updatedActivity.confirmation[dateString] = [];
+    // todo resolve type
+    if (!updatedActivity!.confirmation[dateString]) {
+      updatedActivity!.confirmation[dateString] = [];
     }
 
-    updatedActivity.confirmation[dateString].push(studentId);
+    updatedActivity!.confirmation[dateString].push(studentId);
 
     ActivityModel.findByIdAndUpdate(id, { ...updatedActivity }, (err) => {
       if (err) {

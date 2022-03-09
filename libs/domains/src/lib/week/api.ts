@@ -10,7 +10,8 @@ export const weekAPI = {
     week: WeekNumber,
     filter?: ActivityFilter
   ): Promise<Week> => {
-    let filterParam = undefined;
+    // todo resolve type
+    let filterParam: any = undefined;
 
     if (filter) {
       filterParam = [];
