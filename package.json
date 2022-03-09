@@ -9,14 +9,10 @@
     "start:mobile": "npx nx start mobile",
     "build": "nx build",
     "test": "nx test",
-    "lint": "eslint --debug {apps,libs}/**",
-    "lint:write": "eslint --debug {apps,libs}/** --fix",
-    "stylelint": "stylelint */** --max-warnings",
-    "stylelint:write": "stylelint */** --fix --max-warnings",
+    "lint": "eslint -c='./.eslintrc.json'",
+    "lint:write": "eslint -c='./.eslintrc.json' --fix",
     "prepare": "npx husky install",
-    "pre-commit": "lint-staged",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -o docs-build"
+    "pre-commit": "lint-staged"
   },
   "private": true,
   "dependencies": {

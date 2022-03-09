@@ -5,7 +5,7 @@ import {
 } from "../../mocks";
 import {
   createMockActivityByDateString,
-  createMockWeekFormDateStringArray,
+  createMockWeekFromDateStringArray,
 } from "../../testUtils";
 import { repeatActivityEveryDay } from "./repeatActivityEveryDay";
 
@@ -13,7 +13,7 @@ describe("repeatActivityEveryDay: start of the week. Should repeat 7 times", () 
   it("Week of month", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("07.03.2022"),
-      createMockWeekFormDateStringArray(WEEK_OF_MONTH)
+      createMockWeekFromDateStringArray(WEEK_OF_MONTH)
     );
 
     expect(activities).toHaveLength(7);
@@ -22,7 +22,7 @@ describe("repeatActivityEveryDay: start of the week. Should repeat 7 times", () 
   it("Week between months", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("28.02.2022"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_MONTHS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_MONTHS)
     );
 
     expect(activities).toHaveLength(7);
@@ -31,7 +31,7 @@ describe("repeatActivityEveryDay: start of the week. Should repeat 7 times", () 
   it("Week between years", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("27.12.2021"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_YEARS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_YEARS)
     );
 
     expect(activities).toHaveLength(7);
@@ -42,7 +42,7 @@ describe("repeatActivityEveryDay: 3rd day of the week. Should repeat 5 times", (
   it("Week of month", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("09.03.2022"),
-      createMockWeekFormDateStringArray(WEEK_OF_MONTH)
+      createMockWeekFromDateStringArray(WEEK_OF_MONTH)
     );
 
     expect(activities).toHaveLength(5);
@@ -51,7 +51,7 @@ describe("repeatActivityEveryDay: 3rd day of the week. Should repeat 5 times", (
   it("Week between months", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("02.03.2022"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_MONTHS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_MONTHS)
     );
 
     expect(activities).toHaveLength(5);
@@ -60,7 +60,7 @@ describe("repeatActivityEveryDay: 3rd day of the week. Should repeat 5 times", (
   it("Week between years", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("29.12.2021"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_YEARS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_YEARS)
     );
 
     expect(activities).toHaveLength(5);
@@ -71,7 +71,7 @@ describe("repeatActivityEveryDay: last day of the week. Should repeat 1 time", (
   it("Week of month", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("13.03.2022"),
-      createMockWeekFormDateStringArray(WEEK_OF_MONTH)
+      createMockWeekFromDateStringArray(WEEK_OF_MONTH)
     );
 
     expect(activities).toHaveLength(1);
@@ -80,7 +80,7 @@ describe("repeatActivityEveryDay: last day of the week. Should repeat 1 time", (
   it("Week between months", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("06.03.2022"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_MONTHS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_MONTHS)
     );
 
     expect(activities).toHaveLength(1);
@@ -89,7 +89,7 @@ describe("repeatActivityEveryDay: last day of the week. Should repeat 1 time", (
   it("Week between years", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("02.01.2022"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_YEARS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_YEARS)
     );
 
     expect(activities).toHaveLength(1);
@@ -100,7 +100,7 @@ describe("repeatActivityEveryDay: day before the week. Should repeat 7 times", (
   it("Week of month", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("06.03.2022"),
-      createMockWeekFormDateStringArray(WEEK_OF_MONTH)
+      createMockWeekFromDateStringArray(WEEK_OF_MONTH)
     );
 
     expect(activities).toHaveLength(7);
@@ -109,7 +109,7 @@ describe("repeatActivityEveryDay: day before the week. Should repeat 7 times", (
   it("Week between months", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("27.02.2022"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_MONTHS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_MONTHS)
     );
 
     expect(activities).toHaveLength(7);
@@ -118,7 +118,7 @@ describe("repeatActivityEveryDay: day before the week. Should repeat 7 times", (
   it("Week between years", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("26.12.2021"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_YEARS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_YEARS)
     );
 
     expect(activities).toHaveLength(7);
@@ -129,7 +129,7 @@ describe("repeatActivityEveryDay: day after the week. Should repeat 0 times", ()
   it("Week of month", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("14.03.2022"),
-      createMockWeekFormDateStringArray(WEEK_OF_MONTH)
+      createMockWeekFromDateStringArray(WEEK_OF_MONTH)
     );
 
     expect(activities).toHaveLength(0);
@@ -138,7 +138,7 @@ describe("repeatActivityEveryDay: day after the week. Should repeat 0 times", ()
   it("Week between months", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("07.03.2022"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_MONTHS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_MONTHS)
     );
 
     expect(activities).toHaveLength(0);
@@ -147,7 +147,7 @@ describe("repeatActivityEveryDay: day after the week. Should repeat 0 times", ()
   it("Week between years", () => {
     const activities = repeatActivityEveryDay(
       createMockActivityByDateString("03.01.2022"),
-      createMockWeekFormDateStringArray(WEEK_BETWEEN_YEARS)
+      createMockWeekFromDateStringArray(WEEK_BETWEEN_YEARS)
     );
 
     expect(activities).toHaveLength(0);
