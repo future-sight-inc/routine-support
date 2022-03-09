@@ -1,6 +1,6 @@
 import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 import { DateString } from "@routine-support/types";
-import { parseDate } from "@routine-support/utils";
+import { parseDate, stringifyDate } from "@routine-support/utils";
 import { Moment } from "moment";
 
 export const createMockActivityByDateString = (date: DateString): Activity => {
@@ -24,6 +24,6 @@ export const createMockWeekFromDateStringArray = (
   return dates.map(parseDate);
 };
 
-export const getDayNameFromActivity = (activity: Activity): string => {
-  return activity.date.format("dddd");
+export const getDateStringFromActivity = (activity: Activity): string => {
+  return stringifyDate(activity.date);
 };
