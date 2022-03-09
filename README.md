@@ -5,7 +5,7 @@
 <!-- todo Поправить текст про запуск, добавить информацию про открытие хрома без защиты -->
 
 ```bash
-open -a Google\ Chrome --args --disable-web-security --user-data-dir
+open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security
 ```
 
 ## Стек технологий
@@ -28,7 +28,7 @@ yarn install
 2. Запросить файл с переменными окружения (.env)
 3. Разместить файл в директории apps/server
 4. Открыть Google Chrome в специальном режиме:
-  Для Windows:
+   Для Windows:
 
 ```shell
 chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
