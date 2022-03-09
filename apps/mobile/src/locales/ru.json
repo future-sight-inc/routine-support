@@ -1,0 +1,19 @@
+{
+  "No activities": "Сегодня активностей нет",
+
+  "Camera permission request": "Запрашиваю разрешение на использование камеры",
+  "No camera permission": "Нет доступа к камере",
+
+  "You need to login": "Войдите, чтобы продолжить",
+  "Scan QR instructions": "Отсканируйте QR код студента на странице администратора в веб-приложении",
+
+  "Open scanner": "Открыть сканер",
+  "Close": "Закрыть",
+
+  "You are logged in as": "Вы зашли как",
+  "Logout": "Выйти",
+
+  "Confirm your action": "Подтвердите действие",
+  "Cancel": "Отмена",
+  "Confirm": "Подтвердить"
+}

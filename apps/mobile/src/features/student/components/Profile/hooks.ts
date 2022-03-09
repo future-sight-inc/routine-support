@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Alert } from "react-native";
 import { useHistory } from "react-router-native";
 
@@ -5,6 +6,7 @@ import { ProfileActions } from "./Profile";
 
 export const useProfileComponent = (actions: ProfileActions) => {
   const history = useHistory();
+  const { t } = useTranslation()
 
   const handleBackPress = () => {
     history.push("/");
@@ -12,15 +14,15 @@ export const useProfileComponent = (actions: ProfileActions) => {
 
   const handleLogout = () => {
     Alert.alert(
-      "Confirm your action",
+      t<string>("Confirm your action"),
       "",
       [
         {
-          text: "Cancel",
+          text: t<string>("Cancel"),
           style: "cancel",
         },
         {
-          text: "Confirm",
+          text: t<string>("Confirm"),
           onPress: () => actions.logout(),
         },
       ],

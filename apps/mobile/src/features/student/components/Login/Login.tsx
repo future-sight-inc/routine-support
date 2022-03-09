@@ -3,6 +3,7 @@ import React from "react";
 import { Student, StudentLoginDto } from "@routine-support/domains";
 import { Button, Icon, Layout, Spinner, Text } from "@ui-kitten/components";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import { useTranslation } from 'react-i18next';
 import { Image, StyleSheet } from "react-native";
 import { Redirect } from "react-router-native";
 
@@ -24,16 +25,17 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
     models: { hasPermission, scanning },
     operations: { handleQrScanned, handleScannerOpen, handleScannerClose },
   } = useLoginComponent(actions);
+  const { t } = useTranslation()
 
   if (student) {
     return <Redirect to="/" />;
   }
 
   if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
+    return <Text>{t<string>("Camera permission request")}</Text>;
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text>{t<string>("No camera permission")}</Text>;
   }
 
   if (loading) {
@@ -60,10 +62,10 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
       >
         <Layout style={{ marginTop: "auto" }}>
           <Text category="h4" style={{ textAlign: "center" }}>
-            You need to login
+          {t<string>("You need to login")}
           </Text>
           <Text category="s1" style={{ textAlign: "center", marginTop: 8 }}>
-            Scan QR code placed in your coach panel to login student
+          {t<string>("Scan QR instructions")}
           </Text>
           <Image
             source={qrImage}
@@ -83,7 +85,7 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
           style={{ width: "100%", marginTop: "auto" }}
           accessoryLeft={(props) => <Icon {...props} name="camera-outline" />}
         >
-          Open scanner
+          {t<string>("Open scanner")}
         </Button>
       </Layout>
     );
@@ -108,7 +110,7 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
         style={{ width: "100%" }}
         accessoryLeft={(props) => <Icon {...props} name="close-outline" />}
       >
-        Close
+        {t<string>("Close")}
       </Button>
     </Layout>
   );

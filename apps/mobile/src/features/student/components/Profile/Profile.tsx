@@ -8,6 +8,7 @@ import {
   Text,
   TopNavigationAction,
 } from "@ui-kitten/components";
+import { useTranslation } from 'react-i18next';
 
 import { MainLayout } from "../../../../components/MainLayout";
 import { useProfileComponent } from "./hooks";
@@ -25,6 +26,7 @@ export const Profile: React.FC<ProfileProps> = ({ student, actions }) => {
   const {
     operations: { handleBackPress, handleLogout },
   } = useProfileComponent(actions);
+  const { t } = useTranslation()
 
   return (
     <MainLayout
@@ -44,7 +46,7 @@ export const Profile: React.FC<ProfileProps> = ({ student, actions }) => {
     >
       <Layout style={{ marginTop: 32 }}>
         <Text category="h6" style={{ textAlign: "center" }} appearance="hint">
-          You logged as:
+          {t<string>("You are logged in as")}
         </Text>
         <Text category="h3" style={{ textAlign: "center", marginTop: 8 }}>
           {student.name}
@@ -57,7 +59,7 @@ export const Profile: React.FC<ProfileProps> = ({ student, actions }) => {
           style={{ width: "100%" }}
           accessoryLeft={(props) => <Icon {...props} name="log-out" />}
         >
-          Logout
+          {t<string>("Logout")}
         </Button>
       </Layout>
     </MainLayout>

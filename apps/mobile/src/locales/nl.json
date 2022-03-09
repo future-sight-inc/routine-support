@@ -1,0 +1,19 @@
+{
+  "No activities": "Geen activiteiten voor vandaag...",
+
+  "Camera permission request": "Verzoek om cameratoestemming",
+  "No camera permission": "Geen toegang tot camera",
+
+  "You need to login": "Je moet inloggen",
+  "Scan QR instructions": "Scan QR-code geplaatst in uw coachpaneel om in te loggen student",
+
+  "Open scanner": "Scanner openen",
+  "Close": "Sluiten",
+
+  "You are logged in as": "Je bent ingelogd als",
+  "Logout": "Uitloggen",
+
+  "Confirm your action": "Bevestig uw actie",
+  "Cancel": "Annuleren",
+  "Confirm": "Bevestigen"
+}

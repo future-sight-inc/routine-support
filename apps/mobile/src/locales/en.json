@@ -1,0 +1,19 @@
+{
+  "No activities": "No activities for today...",
+
+  "Camera permission request": "Requesting for camera permission",
+  "No camera permission": "No access to camera",
+
+  "You need to login": "You need to login",
+  "Scan QR instructions": "Scan QR code placed in your coach panel to login student",
+
+  "Open scanner": "Open scanner",
+  "Close": "Close",
+
+  "You are logged in as": "You are logged in as",
+  "Logout": "Logout",
+
+  "Confirm your action": "Confirm your action",
+  "Cancel": "Cancel",
+  "Confirm": "Confirm"
+}
