@@ -1,5 +1,5 @@
 {
-  "{apps,libs}/**/*.{ts,js,tsx}": [
-    "eslint --fix"
+  "{apps,libs}/**/*.{js,ts,tsx}": [
+    "yarn lint:write"
   ]
 }

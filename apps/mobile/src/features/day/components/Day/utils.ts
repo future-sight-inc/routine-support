@@ -11,7 +11,8 @@ export const isActivityConfirmed = ({
 }): boolean => {
   const dateString = stringifyDate(activity.date);
 
-  if (!activity.confirmation[dateString]) {
+  // todo Написать тесты, прокидывать пустой объект при создании активности
+  if (!(activity.confirmation || {})[dateString]) {
     return false;
   }
 

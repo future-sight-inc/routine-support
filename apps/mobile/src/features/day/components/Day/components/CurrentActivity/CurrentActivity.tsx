@@ -50,7 +50,7 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
           onPress={handleConfirmActivity}
           disabled={confirmed}
         >
-          {confirmed ? "Confirm" : "Confirmed"}
+          {confirmed ? "Confirmed" : "Confirm"}
         </Button>
       </Layout>
     </Layout>
