@@ -6,15 +6,14 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 1fr 48px;
   grid-template-columns: 200px 1fr;
   height: 100vh;
 `;
 
 export const Header = styled.div`
   background: ${({ theme }) => theme.palette.primary.main};
-  grid-column-start: 1;
-  grid-column-end: 3;
+  height: 56px;
   display: flex;
   align-items: center;
   padding: 0 12px;
@@ -23,9 +22,11 @@ export const Header = styled.div`
 
 export const Sidebar = styled.nav`
   background: ${({ theme }) => theme.palette.common.darkblue};
+  grid-column: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
 
   & * {
     color: ${({ theme }) => theme.palette.common.white};
@@ -43,6 +44,17 @@ export const Content = styled.div`
   max-width: ${({ theme }) => theme.size.maxWidth};
   margin: 0 auto;
   grid-column-start: 2;
+`;
+
+export const Footer = styled.div`
+  background: ${({ theme }) => theme.palette.common.grey};
+  grid-column: 2;
+  grid-row: 2;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Links = styled.div`
@@ -97,5 +109,26 @@ export const UserIcon = styled(PersonIcon)`
 export const LogoutButton = styled(Button)`
   background: rgba(0, 0, 0, 0.1);
   margin-top: auto;
-  height: 40px;
+  height: 48px;
+`;
+
+export const LanguageWrapper = styled.div`
+position: absolute;
+right: 32px;
+display: flex;
+justify-content: space-between;
+gap: 16px;
+`;
+
+export const LanguageLink = styled.a`
+  color: ${({ theme }) => theme.palette.secondary.contrastText};
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
+export const Rights = styled(Typography)`
+  color: ${({ theme }) => theme.palette.secondary.contrastText};
 `;
