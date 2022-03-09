@@ -29,7 +29,7 @@ export const useConfirmationStatusComponent = (
     );
   }
 
-  if (activity.students) {
+  if (activity.students.length) {
     assignedStudents = getStudentsByIds(students, activity.students);
   }
 

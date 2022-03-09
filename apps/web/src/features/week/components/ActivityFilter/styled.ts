@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 155px;
 `;
 
 export const FilterWrapper = styled.div`
@@ -36,8 +37,7 @@ export const FilterCheckbox = styled(Checkbox).attrs(
 export const FilterName = styled(Typography).attrs(() => ({}))`
   max-width: 80px;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  white-space: break-word;
 `;
 
 export const Divider = styled.div`

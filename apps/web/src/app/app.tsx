@@ -1,5 +1,8 @@
 import React from "react";
 
+import AdapterMoment from "@mui/lab/AdapterMoment";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { useTranslation } from "react-i18next";
 import { Route } from "react-router-dom";
 
 import { Students } from "../features/students/Students";
@@ -11,8 +14,10 @@ import { Week } from "../features/week";
 import { LinkService } from "../services/LinkService";
 
 export const App = () => {
+  const { i18n } = useTranslation();
+
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterMoment} locale={i18n.language}>
       <Route path={LinkService.login()}>
         <LoginForm />
       </Route>
@@ -29,7 +34,7 @@ export const App = () => {
           </Route>
         </Layout>
       </PrivateRoute>
-    </>
+    </LocalizationProvider>
   );
 };
 

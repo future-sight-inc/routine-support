@@ -1,4 +1,4 @@
-import mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 mongoose.connect(process.env.NX_DB_CONNECTION_STRING || "");
 

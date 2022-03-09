@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const Header = styled.div`
   background: ${({ theme }) => theme.palette.primary.main};
-  height: 56px;
+  height: 69px;
   display: flex;
   align-items: center;
   padding: 0 12px;
@@ -38,7 +38,7 @@ export const Sidebar = styled.nav`
 `;
 
 export const Content = styled.div`
-  padding: 32px;
+  padding: 16px;
   width: 100%;
   box-sizing: border-box;
   max-width: ${({ theme }) => theme.size.maxWidth};
@@ -48,6 +48,7 @@ export const Content = styled.div`
 
 export const Footer = styled.div`
   background: ${({ theme }) => theme.palette.common.grey};
+  color: ${({ theme }) => theme.palette.secondary.contrastText};
   grid-column: 2;
   grid-row: 2;
   padding: 0 32px;
@@ -113,22 +114,20 @@ export const LogoutButton = styled(Button)`
 `;
 
 export const LanguageWrapper = styled.div`
-position: absolute;
-right: 32px;
-display: flex;
-justify-content: space-between;
-gap: 16px;
+  position: absolute;
+  right: 32px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
 `;
 
 export const LanguageLink = styled.a`
-  color: ${({ theme }) => theme.palette.secondary.contrastText};
   text-decoration: underline;
+  cursor: pointer;
 
   &:hover {
     text-decoration: none;
   }
 `;
 
-export const Rights = styled(Typography)`
-  color: ${({ theme }) => theme.palette.secondary.contrastText};
-`;
+export const Rights = styled(Typography)``;

@@ -19,6 +19,7 @@ export const authorization = (req, res, next) => {
       }
 
       res.locals.user = result;
+
       return next();
     });
   } catch {

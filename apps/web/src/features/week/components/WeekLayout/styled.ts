@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  /* 100vh - высота шапки - отступ контейнера - высота выбора недели - отступ между колонками */
-  grid-template-rows: 40px calc(100vh - 60px - 64px - 40px - 16px);
+  grid-template-rows: 40px calc(100vh - 140px);
   grid-template-columns: auto 1fr;
   gap: 16px;
   overflow: hidden;

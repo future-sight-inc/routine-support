@@ -3,8 +3,7 @@ import { ActivityModel } from "@routine-support/domains";
 import { authorization } from "../middleware/authorization";
 import { studentAuthorization } from "../middleware/studentAuthorization";
 import { stringifyDate } from "@routine-support/utils";
-
-import moment = require("moment");
+import moment from "moment";
 
 export const activityRouter = Router();
 
