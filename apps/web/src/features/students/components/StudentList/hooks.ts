@@ -2,15 +2,17 @@ import { useState } from "react";
 
 import { Id } from "@routine-support/types";
 import QRCode from "qrcode";
+import { useTranslation } from 'react-i18next';
 
 import { StudentListActions } from "./StudentList";
 
 export const useStudentListComponent = (actions: StudentListActions) => {
   const [qr, setQR] = useState<string | null>(null);
   const [qrLoading, setQrLoading] = useState(false);
-
+  const { t } = useTranslation()
+  
   const onStudentDelete = async (id: Id) => {
-    if (window.confirm("Confirm your action")) {
+    if (window.confirm(t("Confirm student delete"))) {
       await actions.deleteStudent(id);
 
       actions.getStudents();

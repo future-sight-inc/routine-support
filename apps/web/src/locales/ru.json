@@ -1,0 +1,58 @@
+{
+  "Create": "Создать",
+  "Update": "Обновить",
+  "Delete": "Удалить",
+
+  "Log in": "Вход",
+  "Logout": "Выйти",
+  "Sign up": "Регистрация",
+
+  "Name": "Имя",
+  "Email": "Почта",
+  "Password": "Пароль",
+  "Submit": "Отправить",
+
+  "Link to register": "Нет аккаунта? Зарегистрироваться",
+  "Link to sign in": "Уже есть аккаунт? Вход",
+  "Logout confirm message": "Вы уверены, что хотите выйти?",
+  
+  "Calendar": "Календарь",
+
+  "Activity": "Событие",
+
+  "Activity status": "Статус прохождения",
+  "Completed": "Прошли",
+  "Pending": "Ожидаются",
+
+  "Activity name": "Название события",
+  "Activity date": "Дата",
+  "Activity start time": "Начало",
+  "Activity end time": "Окончание",
+
+  "Change pictogram": "Изменить пиктограмму",
+  "Choose pictogram": "Выбрать пиктограмму",
+  "Search": "Поиск...",
+
+  "Repeat type": "Повторять",
+  "Every day": "Каждый день",
+  "Every week": "Каждую неделю",
+  "Every month": "Каждый месяц",
+  "Never": "Никогда",
+
+  "Common": "Общие",
+  "Individual activity": "Индивидуальная активность",
+  "Choose students": "Выберите студента или студентов",
+
+  "Student": "Студент",
+  "Students": "Студенты",
+
+  "Modify student": "Редактирование студента",
+  "Add student": "Создание студента",
+  "Confirm student delete": "Подтвердите удаление",
+  "No students": "Пока нет ни одного студента",
+
+  "QR instructions start": "Отсканируйте в приложении",
+  "QR instructions end": "Routine Support, чтобы войти",
+
+  "Rights info": "Future Sight Inc. 2022. Все права защищены"
+}

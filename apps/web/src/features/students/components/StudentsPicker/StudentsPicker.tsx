@@ -9,6 +9,7 @@ import {
 import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { Select } from "apps/web/src/components/Select";
+import { useTranslation } from 'react-i18next';
 
 import { useStudentsPickerComponent } from "./hooks";
 import * as S from "./styled";
@@ -35,16 +36,19 @@ export const StudentsPicker: React.FC<StudentsPickerProps> = ({
     models: { opened },
     operations: { handleOpenChange, handleChange },
   } = useStudentsPickerComponent(defaultOpened, actions);
+  
+  const { t } = useTranslation()
+
   return (
     <S.Wrapper opened={opened}>
       <FormControlLabel
         control={<Checkbox onChange={handleOpenChange} checked={opened} />}
-        label="Индивидуальная активность"
+        label={t("Individual activity")}
       />
       {opened && (
         <>
           <Typography variant="body2">
-            Выберите студента или студентов
+            {t("Choose students")}
           </Typography>
           <Select
             value={value}

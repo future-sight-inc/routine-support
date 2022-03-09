@@ -1,0 +1,59 @@
+{ 
+  "Create": "Maken",
+  "Update": "Bijwerken",
+  "Delete": "Verwijderen",
+
+  "Log in": "Inloggen",
+  "Logout": "Uitloggen",
+  "Sign up": "Inschrijven",
+
+  "Name": "Naam",
+  "Email": "E-mail",
+  "Password": "Wachtwoord",
+  "Submit": "Verzenden",
+
+  "Link to register": "Nog geen account? Meld u hier aan",
+  "Link to sign in": "Heeft u al een account? Log hier in",
+  "Logout confirm message": "Weet u zeker dat u wilt uitloggen?",
+  
+  "Calendar": "Kalender",
+
+  "Activity": "Activiteit",
+
+  "Activity status": "Activiteitsstatus",
+  "Completed": "Voltooid",
+  "Pending": "In behandeling",
+
+  "Activity name": "Activiteitstitel",
+  "Activity date": "Datum",
+  "Activity start time": "Start",
+  "Activity end time": "Einde",
+
+  "Change pictogram": "Pictogram wijzigen",
+  "Choose pictogram": "Kies pictogram",
+  "Search": "Search...",
+
+  "Repeat type": "Herhaal",
+  "Every day": "Elke dag",
+  "Every week": "Elke week",
+  "Every month": "Elke maand",
+  "Never": "Nooit",
+
+  "Common": "Algemeen",
+  "Individual activity": "Individuele activiteit",
+  "Choose students": "Kies student(en)",
+
+  "Student": "Student",
+  "Students": "Studenten",
+
+  "Modify student": "Wijzig leerling",
+  "Add student": "Leerling toevoegen",
+  "Confirm student delete": "Bevestig je actie",
+  "No students": "Er zijn nog geen studenten",
+
+  "QR instructions start": "Gebruik QR-scanner in",
+  "QR instructions end": "de Routine Support-app om in te loggen",
+
+  "Rights info": "Future Sight Inc. 2022. Alle rechten voorbehouden"
+}
+

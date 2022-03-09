@@ -10,6 +10,7 @@ import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { LinkService } from "apps/web/src/services/LinkService";
 import { Button } from "apps/web/src/styled/components/Button";
+import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 
 import { useRegisterFormComponent } from "./hooks";
@@ -28,18 +29,20 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
     models: { isSubmitting, submitError, control },
     operations: { handleSubmit },
   } = useRegisterFormComponent(actions);
+
+  const { t } = useTranslation()
+
   return (
     <Card absoluteCenter>
       <S.Form onSubmit={handleSubmit}>
-        <S.Title>Регистрация</S.Title>
+        <S.Title>{t("Sign up")}</S.Title>
         <TextField
           name="name"
           type="text"
           fullWidth
           control={control}
           required
-          // ! Локализация
-          placeholder="Имя"
+          placeholder={t("Name")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -54,8 +57,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
           fullWidth
           control={control}
           required
-          // ! Локализация
-          placeholder="Почта"
+          placeholder={t("Email")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -70,8 +72,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
           fullWidth
           control={control}
           required
-          // ! Локализация
-          placeholder="Пароль"
+          placeholder={t("Password")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -80,11 +81,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
             ),
           }}
         />
-        <Button type="submit" loading={isSubmitting}>
-          Отправить
-        </Button>
+        <Button type="submit">{t("Submit")}</Button>
         {submitError && <ErrorText>{submitError}</ErrorText>}
-        <Link to={LinkService.login()}>Уже есть аккаунт? Вход</Link>
+        <Link to={LinkService.login()}>{t("Link to sign in")}</Link>
       </S.Form>
     </Card>
   );

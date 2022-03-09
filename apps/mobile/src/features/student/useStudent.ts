@@ -51,8 +51,6 @@ export const useStudent = () => {
     try {
       setLoading(true);
 
-      console.log("get");
-
       const student = await studentAPI.getStudent();
 
       dispatch(studentActions.setStudent(student));

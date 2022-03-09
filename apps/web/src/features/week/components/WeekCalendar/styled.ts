@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.border.color};
   grid-column-gap: 1px;
   border-radius: ${({ theme }) => theme.borderRadius}px;
-  max-height: calc(100vh - 60px - 32px - 40px - 52px);
+  max-height: calc(100vh - 150px);
   overflow-y: scroll;
   position: relative;
 `;

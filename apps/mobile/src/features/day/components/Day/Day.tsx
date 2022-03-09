@@ -13,6 +13,7 @@ import {
   TopNavigationAction,
 } from "@ui-kitten/components";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 import { MainLayout } from "../../../../components/MainLayout";
 import { Activity } from "./components/Activity";
@@ -41,10 +42,11 @@ export const Day: React.FC<DayProps> = ({
   const {
     operations: { handleForwardPress },
   } = useDayComponent();
+  const { t } = useTranslation();
 
   return (
     <MainLayout
-      title="Day"
+      title={t<string>("Day schedule")}
       accessoryRight={
         <TopNavigationAction
           icon={(props) => (
@@ -68,7 +70,7 @@ export const Day: React.FC<DayProps> = ({
           ItemSeparatorComponent={Divider}
           ListEmptyComponent={
             <Text category="s1" style={{ textAlign: "center", marginTop: 16 }}>
-              No activities for today...
+              {t<string>("No activities")}
             </Text>
           }
           data={day.activities}

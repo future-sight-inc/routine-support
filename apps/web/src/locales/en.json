@@ -1,0 +1,59 @@
+{ 
+  "Create": "Create",
+  "Update": "Update",
+  "Delete": "Delete",
+
+  "Log in": "Sign in",
+  "Logout": "Sign out",
+  "Sign up": "Sign up",
+
+  "Name": "Name",
+  "Email": "Email",
+  "Password": "Password",
+  "Submit": "Submit",
+
+  "Link to register": "No account yet? Sign up here",
+  "Link to sign in": "Already have an account? Sign in here",
+  "Logout confirm message": "Are you sure you want to log out?",
+  
+  "Calendar": "Calendar",
+
+  "Activity": "Activity",
+
+  "Activity status": "Activity status",
+  "Completed": "Completed",
+  "Pending": "Pending",
+
+  "Activity name": "Activity title",
+  "Activity date": "Date",
+  "Activity start time": "Start",
+  "Activity end time": "End",
+
+  "Change pictogram": "Change pictogram",
+  "Choose pictogram": "Choose pictogram",
+  "Search": "Search...",
+
+  "Repeat type": "Repeat",
+  "Every day": "Every day",
+  "Every week": "Every week",
+  "Every month": "Every month",
+  "Never": "Never",
+
+  "Common": "Common",
+  "Individual activity": "Individual activity",
+  "Choose students": "Choose student(s)",
+
+  "Student": "Student",
+  "Students": "Students",
+
+  "Modify student": "Modify student",
+  "Add student": "Add student",
+  "Confirm student delete": "Confirm your action",
+  "No students": "There are no students yet",
+
+  "QR instructions start": "Use QR scanner in",
+  "QR instructions end": "Routine Support app to sign in",
+
+  "Rights info": "Future Sight Inc. 2022. All rights reserved"
+}
+
