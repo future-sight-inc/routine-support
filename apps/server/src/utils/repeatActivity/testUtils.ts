@@ -18,7 +18,7 @@ export const createMockActivityByDateString = (date: DateString): Activity => {
   };
 };
 
-export const createMockWeekFormDateStringArray = (
+export const createMockWeekFromDateStringArray = (
   dates: DateString[]
 ): Moment[] => {
   return dates.map(parseDate);
