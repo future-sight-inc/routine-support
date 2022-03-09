@@ -29,6 +29,7 @@ describe("getMonthsOfWeek", () => {
 
   it("Week between two months", () => {
     const week = createMockWeekFromDateStringArray(WEEK_BETWEEN_YEARS);
+
     expect(getDayNumbersFromWeek(week)).toStrictEqual(
       DAY_NUMBERS_OF_WEEK_BETWEEN_YEARS
     );
