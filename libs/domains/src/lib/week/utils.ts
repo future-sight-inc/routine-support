@@ -23,7 +23,7 @@ export const formatWeekInfo = (weekInfoDto: WeekInfoDto): WeekInfo => {
   return weekInfo;
 };
 
-export const getDateInfoFromMoment = (moment: moment.Moment): DateInfo => {
+export const getDateInfoFromMoment = (moment: Moment): DateInfo => {
   return {
     year: Number(moment.clone().get("year")),
     week: Number(moment.clone().format("W")),

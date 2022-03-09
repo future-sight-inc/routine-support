@@ -31,6 +31,7 @@ export const parseTime = (
   time: TimeString,
   basisDate: Moment | DateString = moment()
 ): Moment => {
+  // ! Грязная функция, убрать преобразование
   if (typeof basisDate === "string") {
     basisDate = parseDate(basisDate);
   }
