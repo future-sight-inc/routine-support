@@ -3,7 +3,7 @@ import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment, TextField } from "@mui/material";
 import { ImageUrl } from "@routine-support/types";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import { Modal } from "../Modal";
 import { usePictogramPickerComponent } from "./hooks";
@@ -31,9 +31,8 @@ export const PictogramPicker: React.FC<PictogramPickerProps> = ({
       onSearchStringChange,
     },
   } = usePictogramPickerComponent({ onChange });
+  const { t } = useTranslation();
 
-  const { t } = useTranslation()
-  // ! Добавить локализацию
   return (
     <S.Wrapper backgroundImage={selectedPictogram}>
       <S.OpenButton onClick={onModalOpen}>
