@@ -34,10 +34,11 @@ export const FilterCheckbox = styled(Checkbox).attrs(
   color: black;
 `;
 
-export const FilterName = styled(Typography).attrs(() => ({}))`
+export const FilterName = styled(Typography)`
   max-width: 80px;
   overflow: hidden;
   white-space: break-word;
+  user-select: none;
 `;
 
 export const Divider = styled.div`

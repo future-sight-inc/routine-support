@@ -23,10 +23,13 @@ export const LanguageWrapper = styled.div`
 export const LanguageSwitch = styled(Typography)`
   text-decoration: underline;
   cursor: pointer;
+  font-size: 14px;
 
   &:hover {
     text-decoration: none;
   }
 `;
 
-export const Rights = styled(Typography)``;
+export const Rights = styled(Typography)`
+  font-size: 14px;
+`;

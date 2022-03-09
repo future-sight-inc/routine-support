@@ -1,7 +1,7 @@
 import React from "react";
 
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ListIcon from "@mui/icons-material/List";
+import GroupIcon from '@mui/icons-material/Group';
 import { List, ListItemButton, ListItemText } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { ListItemIcon } from "@mui/material";
@@ -63,7 +63,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
               activeClassName="active"
             >
               <ListItemIcon>
-                <ListIcon />
+                <GroupIcon />
               </ListItemIcon>
               <ListItemText primary={t("Students")} />
             </ListItemButton>
