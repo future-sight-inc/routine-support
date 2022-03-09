@@ -34,7 +34,7 @@ describe("repeatActivityThisMonth", () => {
     expect(stringifyDate(activity.date)).toBe("07.03.2022");
   });
 
-  it("Original date - 14.02.2022. Current week doesn't include 14.03.2022. Should return false", () => {
+  it("Original date - 14.02.2022. Current week doesn't include 14.03.2022. Should return undefined", () => {
     const activity = repeatActivityThisMonth(
       createMockActivityByDateString("14.03.2022"),
       createMockWeekFromDateStringArray(WEEK_OF_MONTH)
