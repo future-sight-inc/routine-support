@@ -5,8 +5,7 @@ import {
   RepeatTypeEnum,
 } from "@routine-support/domains";
 import { DateString, Id } from "@routine-support/types";
-import { parseDate } from "@routine-support/utils";
-import moment from "moment";
+import { parseDate, stringifyDate } from "@routine-support/utils";
 import { Moment } from "moment";
 
 export const createMockActivityByDateString = (date: DateString): Activity => {
@@ -66,16 +65,12 @@ export const addStudentToActivity = (
   return { ...activity, students: updatedStudents };
 };
 
-export const createMockWeekFormDateStringArray = (
+export const createMockWeekFromDateStringArray = (
   dates: DateString[]
 ): Moment[] => {
   return dates.map(parseDate);
 };
 
-export const getDayNameFromActivity = (activity?: Activity): string => {
-  if (!activity) {
-    return "";
-  }
-
-  return activity.date.format("dddd");
+export const getDateStringFromActivity = (activity?: Activity): string => {
+  return activity ? stringifyDate(activity.date) : "";
 };
