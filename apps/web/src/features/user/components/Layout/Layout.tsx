@@ -6,6 +6,7 @@ import { List, ListItemButton, ListItemText } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { ListItemIcon } from "@mui/material";
 import { User } from "@routine-support/domains";
+import { Footer } from "apps/web/src/components/Footer";
 import { LinkService } from "apps/web/src/services/LinkService";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
@@ -25,8 +26,7 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
   const {
-    models: { showRussianLink, showEnglishLink, showDutchLink },
-    operations: { handleLogout, handleLanguageChange },
+    operations: { handleLogout },
   } = useLayoutComponent(actions);
 
   const { t } = useTranslation();
@@ -72,26 +72,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
         <S.LogoutButton onClick={handleLogout}>{t("Logout")}</S.LogoutButton>
       </S.Sidebar>
       <S.Content>{children}</S.Content>
-      <S.Footer>
-        <S.Rights>{t("Rights info")}</S.Rights>
-        <S.LanguageWrapper>
-          {showDutchLink && (
-            <S.LanguageLink onClick={() => handleLanguageChange("nl")}>
-              Nederlands
-            </S.LanguageLink>
-          )}
-          {showEnglishLink && (
-            <S.LanguageLink onClick={() => handleLanguageChange("en")}>
-              English
-            </S.LanguageLink>
-          )}
-          {showRussianLink && (
-            <S.LanguageLink onClick={() => handleLanguageChange("ru")}>
-              Русский
-            </S.LanguageLink>
-          )}
-        </S.LanguageWrapper>
-      </S.Footer>
+      <S.FooterWrapper>
+        <Footer />
+      </S.FooterWrapper>
     </S.Wrapper>
   );
 };

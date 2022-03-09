@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 1fr 48px;
+  grid-template-rows: 1fr auto;
   grid-template-columns: 200px 1fr;
   height: 100vh;
 `;
@@ -46,16 +46,9 @@ export const Content = styled.div`
   grid-column-start: 2;
 `;
 
-export const Footer = styled.div`
-  background: ${({ theme }) => theme.palette.common.grey};
-  color: ${({ theme }) => theme.palette.secondary.contrastText};
+export const FooterWrapper = styled.div`
   grid-column: 2;
   grid-row: 2;
-  padding: 0 32px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const Links = styled.div`
@@ -113,21 +106,4 @@ export const LogoutButton = styled(Button)`
   height: 48px;
 `;
 
-export const LanguageWrapper = styled.div`
-  position: absolute;
-  right: 32px;
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-`;
 
-export const LanguageLink = styled.a`
-  text-decoration: underline;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: none;
-  }
-`;
-
-export const Rights = styled(Typography)``;
