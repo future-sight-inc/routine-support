@@ -7,7 +7,7 @@ import * as S from "./styled";
 
 export const Footer = () => {
   const {
-    models: { showRussianLink, showEnglishLink, showDutchLink },
+    models: { showRussianSwitch, showEnglishSwitch, showDutchSwitch },
     operations: { handleLanguageChange },
   } = useFooterComponent();
   const { t } = useTranslation();
@@ -16,17 +16,17 @@ export const Footer = () => {
     <S.Wrapper>
       <S.Rights>{t("Rights info")}</S.Rights>
       <S.LanguageWrapper>
-        {showDutchLink && (
+        {showDutchSwitch && (
           <S.LanguageSwitch onClick={() => handleLanguageChange("nl")}>
             Nederlands
           </S.LanguageSwitch>
         )}
-        {showEnglishLink && (
+        {showEnglishSwitch && (
           <S.LanguageSwitch onClick={() => handleLanguageChange("en")}>
             English
           </S.LanguageSwitch>
         )}
-        {showRussianLink && (
+        {showRussianSwitch && (
           <S.LanguageSwitch onClick={() => handleLanguageChange("ru")}>
             Русский
           </S.LanguageSwitch>
