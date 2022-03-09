@@ -17,6 +17,9 @@ export const QrTitle = styled(Typography).attrs(() => ({ variant: "h6" }))`
 
 export const Qr = styled.img`
   width: 100%;
+  max-width: 250px;
+  display: block;
+  margin: 0 auto;
   height: auto;
 `;
 

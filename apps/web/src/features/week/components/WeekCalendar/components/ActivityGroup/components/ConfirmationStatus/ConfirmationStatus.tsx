@@ -18,7 +18,12 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
   students,
 }) => {
   const {
-    models: { modalOpened, confirmedStudents, assignedStudents },
+    models: {
+      modalOpened,
+      confirmedStudents,
+      assignedStudents,
+      pendingStudents,
+    },
     operations: { handleModalOpen, handleModalClose },
   } = useConfirmationStatusComponent(activity, students);
 

@@ -1,7 +1,7 @@
-import { getStringDateRangeFromWeek } from "./getStringDateRangeFromWeek";
+import { getDateStringRangeFromWeek } from "./getDateStringRangeFromWeek";
 
 export function getWeek(activities, weekNumber, year) {
-  const DAYS = getStringDateRangeFromWeek(weekNumber, year);
+  const DAYS = getDateStringRangeFromWeek(weekNumber, year);
 
   const WEEK = DAYS.map((day) => {
     const DAY = {

@@ -3,10 +3,10 @@ import { Router } from "express";
 
 export const dayRouter = Router();
 
-dayRouter.get("/:date", async (req, res) => {
+dayRouter.get("/:date", (req, res) => {
   const { date } = req.params;
 
-  await ActivityModel.find({ date }, (err, activities) => {
+  ActivityModel.find({ date }, (err, activities) => {
     if (err) {
       return res.sendStatus(400);
     }

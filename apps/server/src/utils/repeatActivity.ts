@@ -4,36 +4,37 @@ import { getDateRangeFromWeek } from "./getDateRangeFromWeek";
 import moment = require("moment");
 
 export const repeatActivity = (
-  activity: ActivitySchema,
+  // todo resolve
+  activity: any,
   repeatType: RepeatTypeEnum,
   weekNumber: number,
   yearNumber: number
 ) => {
   const week = getDateRangeFromWeek(weekNumber, yearNumber);
 
+  const newActivity: ActivitySchema = { ...activity._doc };
+
   switch (repeatType) {
     case RepeatTypeEnum.EveryDay:
-      return repeatActivityEveryDay(activity, week);
+      return repeatActivityEveryDay(newActivity, week);
     case RepeatTypeEnum.EveryWeek:
-      return repeatActivityEveryWeek(activity, week, weekNumber, yearNumber);
+      return repeatActivityEveryWeek(newActivity, week, weekNumber, yearNumber);
     case RepeatTypeEnum.EveryMonth:
-      return repeatActivityEveryMonth(activity, week);
+      return repeatActivityEveryMonth(newActivity, week);
     default:
       return;
   }
 };
 
 export const repeatActivityEveryDay = (
-  // ! Баг в mongoose
-  // eslint-disable-next-line
-  activity: any,
+  activity: ActivitySchema,
   week: moment.Moment[]
-) => {
+): ActivitySchema[] => {
   const result = [];
 
   for (let i = 0; i <= 6; i++) {
     const newActivity = {
-      ...activity._doc,
+      ...activity,
       date: week[i],
     };
 
@@ -46,15 +47,13 @@ export const repeatActivityEveryDay = (
 };
 
 export const repeatActivityEveryWeek = (
-  // ! Баг в mongoose
-  // eslint-disable-next-line
-  activity: any,
+  activity: ActivitySchema,
   week: moment.Moment[],
   weekNumber: number,
   yearNumber: number
-) => {
+): ActivitySchema[] => {
   const newActivity = {
-    ...activity._doc,
+    ...activity,
     date: moment(activity.date, DATE_FORMAT),
   };
   // ! Внутренняя магия библиотеки
@@ -72,14 +71,12 @@ export const repeatActivityEveryWeek = (
 };
 
 export const repeatActivityEveryMonth = (
-  // ! Баг в mongoose
-  // eslint-disable-next-line
-  activity: any,
+  activity: ActivitySchema,
   week: moment.Moment[]
-) => {
+): ActivitySchema[] => {
   for (let i = 0; i <= 6; i++) {
     const newActivity = {
-      ...activity._doc,
+      ...activity,
       date: moment(activity.date, DATE_FORMAT),
     };
     newActivity.date.set("month", week[i].get("month"));

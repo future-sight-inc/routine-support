@@ -31,7 +31,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
   } = useRegisterFormComponent(actions);
 
   const { t } = useTranslation()
-  
+
   return (
     <Card absoluteCenter>
       <S.Form onSubmit={handleSubmit}>
