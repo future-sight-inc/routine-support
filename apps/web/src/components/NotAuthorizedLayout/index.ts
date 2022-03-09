@@ -1,0 +1,1 @@
+export { NotAuthorizedLayout } from "./NotAuthorizedLayout";

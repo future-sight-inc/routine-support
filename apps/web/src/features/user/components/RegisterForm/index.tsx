@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { NotAuthorizedLayout } from "apps/web/src/components/NotAuthorizedLayout";
 import { LinkService } from "apps/web/src/services/LinkService";
 import { useHistory } from "react-router-dom";
 
@@ -19,5 +20,9 @@ export const RegisterForm: React.FC = () => {
     }
   }, [isLogged, history]);
 
-  return <UncontrolledRegisterForm actions={{ register }} />;
+  return (
+    <NotAuthorizedLayout>
+      <UncontrolledRegisterForm actions={{ register }} />
+    </NotAuthorizedLayout>
+  );
 };

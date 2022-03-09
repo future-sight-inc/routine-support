@@ -9,7 +9,7 @@ import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { LinkService } from "apps/web/src/services/LinkService";
 import { Button } from "apps/web/src/styled/components/Button";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { useLoginFormComponent } from "./hooks";
@@ -29,7 +29,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
     operations: { handleSubmit },
   } = useLoginFormComponent(actions);
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Card absoluteCenter>
@@ -67,9 +67,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
         />
         <Button type="submit">{t("Submit")}</Button>
         {submitError && <ErrorText>{submitError}</ErrorText>}
-        <Link to={LinkService.register()}>
-          {t("Link to register")}
-        </Link>
+        <Link to={LinkService.register()}>{t("Link to register")}</Link>
       </S.Form>
     </Card>
   );
