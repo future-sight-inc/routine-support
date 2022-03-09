@@ -1,5 +1,8 @@
 {
+  "Day schedule": "Day schedule",
   "No activities": "Geen activiteiten voor vandaag...",
+  "Confirmed": "Bevestigd",
+  "Confirm": "Bevestigen",
 
   "Camera permission request": "Verzoek om cameratoestemming",
   "No camera permission": "Geen toegang tot camera",
@@ -10,10 +13,11 @@
   "Open scanner": "Scanner openen",
   "Close": "Sluiten",
 
+  "Profile": "Profiel",
+  "Languages": "Talen",
   "You are logged in as": "Je bent ingelogd als",
   "Logout": "Uitloggen",
 
   "Confirm your action": "Bevestig uw actie",
-  "Cancel": "Annuleren",
-  "Confirm": "Bevestigen"
+  "Cancel": "Annuleren"
 }

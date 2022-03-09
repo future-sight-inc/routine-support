@@ -3,6 +3,7 @@ import React from "react";
 import { Activity, Activity as ActivityType } from "@routine-support/domains";
 import { stringifyTime } from "@routine-support/utils";
 import { Button, Layout, Text } from "@ui-kitten/components";
+import { useTranslation } from "react-i18next";
 import { Image } from "react-native";
 
 interface CurrentActivityProps {
@@ -19,6 +20,7 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
   const handleConfirmActivity = () => {
     onConfirm(activity);
   };
+  const { t } = useTranslation();
 
   return (
     <Layout
@@ -50,7 +52,7 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
           onPress={handleConfirmActivity}
           disabled={confirmed}
         >
-          {confirmed ? "Confirmed" : "Confirm"}
+          {confirmed ? t<string>("Confirmed") : t<string>("Confirm")}
         </Button>
       </Layout>
     </Layout>

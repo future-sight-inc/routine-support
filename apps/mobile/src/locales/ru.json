@@ -1,5 +1,8 @@
 {
+  "Day schedule": "Расписание",
   "No activities": "Сегодня активностей нет",
+  "Confirmed": "Пройдено",
+  "Confirm": "Подтвердить",
 
   "Camera permission request": "Запрашиваю разрешение на использование камеры",
   "No camera permission": "Нет доступа к камере",
@@ -10,10 +13,11 @@
   "Open scanner": "Открыть сканер",
   "Close": "Закрыть",
 
+  "Profile": "Профиль",
+  "Languages": "Языки",
   "You are logged in as": "Вы зашли как",
   "Logout": "Выйти",
 
   "Confirm your action": "Подтвердите действие",
-  "Cancel": "Отмена",
-  "Confirm": "Подтвердить"
+  "Cancel": "Отмена"
 }

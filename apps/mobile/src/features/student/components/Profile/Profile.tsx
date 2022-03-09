@@ -8,7 +8,7 @@ import {
   Text,
   TopNavigationAction,
 } from "@ui-kitten/components";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import { MainLayout } from "../../../../components/MainLayout";
 import { useProfileComponent } from "./hooks";
@@ -24,13 +24,14 @@ interface ProfileProps {
 
 export const Profile: React.FC<ProfileProps> = ({ student, actions }) => {
   const {
-    operations: { handleBackPress, handleLogout },
+    models: { isRussianChecked, isEnglishChecked, isDutchChecked },
+    operations: { handleLanguageChange, handleBackPress, handleLogout },
   } = useProfileComponent(actions);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <MainLayout
-      title="Profile"
+      title={t<string>("Profile")}
       accessoryLeft={
         <TopNavigationAction
           icon={(props) => (
@@ -51,6 +52,34 @@ export const Profile: React.FC<ProfileProps> = ({ student, actions }) => {
         <Text category="h3" style={{ textAlign: "center", marginTop: 8 }}>
           {student.name}
         </Text>
+        <Text
+          category="h6"
+          style={{ textAlign: "center", marginTop: 32 }}
+          appearance="hint"
+        >
+          {t<string>("Languages")}
+        </Text>
+        <Layout style={{ flexDirection: "row", marginTop: 8 }}>
+          <Button
+            onPress={() => handleLanguageChange("nl")}
+            disabled={isDutchChecked}
+          >
+            {t<string>("Nederlands")}
+          </Button>
+          <Button
+            onPress={() => handleLanguageChange("en")}
+            style={{ marginLeft: 8, marginRight: 8 }}
+            disabled={isEnglishChecked}
+          >
+            {t<string>("English")}
+          </Button>
+          <Button
+            onPress={() => handleLanguageChange("ru")}
+            disabled={isRussianChecked}
+          >
+            {t<string>("Русский")}
+          </Button>
+        </Layout>
       </Layout>
       <Layout style={{ padding: 16, width: "100%", marginTop: "auto" }}>
         <Button
