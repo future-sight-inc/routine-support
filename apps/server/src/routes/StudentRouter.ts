@@ -21,13 +21,14 @@ studentRouter.post("/", authorization, async (req, res) => {
   );
 });
 
-studentRouter.post("/login", async (req, res) => {
+studentRouter.post("/login", (req, res) => {
   StudentModel.findById(req.body.id, (err, result) => {
     if (err || !result) {
       return res.status(401).send(err);
     }
 
     const cookie = getAuthCookie(result);
+
     return res.status(200).cookie(cookie.name, cookie.token).send(result);
   });
 });
@@ -36,7 +37,7 @@ studentRouter.get("/logout", (__, res) => {
   return res.clearCookie("access_token").sendStatus(200);
 });
 
-studentRouter.get("/", studentAuthorization, (__, res) => {
+studentRouter.get("/", studentAuthorization, (req, res) => {
   return res.status(200).send(res.locals.student);
 });
 
@@ -46,17 +47,14 @@ studentRouter.delete("/:id", async (req, res) => {
   StudentModel.findByIdAndDelete(id, (err) => {
     if (err) {
       console.log(err);
+
       return;
     }
   });
 
   ActivityModel.find({ students: { $in: [id] } }, (__, activities) => {
-    console.log(activities);
-
     activities.forEach(({ _id: activityId, students }) => {
       const filteredStudents = students.filter((studentId) => studentId !== id);
-
-      console.log(filteredStudents);
 
       if (!filteredStudents.length) {
         ActivityModel.findByIdAndDelete(activityId);
@@ -80,7 +78,11 @@ studentRouter.put("/:id", (req, res) => {
       ...req.body,
     },
     (err) => {
-      if (err) return console.log(err);
+      if (err) {
+        console.log(err);
+
+        return;
+      }
 
       res.status(200).send("Activity is updated");
     }

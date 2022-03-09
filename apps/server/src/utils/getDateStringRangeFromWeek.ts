@@ -1,15 +1,12 @@
 import moment = require("moment");
 import { DATE_FORMAT } from "../constants/DateFormat";
 
-export const getStringDateRangeFromWeek = (
-  weekNumber: number,
-  year: number
-) => {
+export const getDateStringRangeFromWeek = (weekNumber = 1, year: number) => {
   const result = [];
 
   const date = moment()
     .year(year)
-    .isoWeek(weekNumber || 1)
+    .isoWeek(weekNumber)
     .locale("ru")
     .startOf("week");
 

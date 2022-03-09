@@ -7,15 +7,20 @@ import { Image } from "react-native";
 
 interface ActivityProps {
   activity: ActivityType;
+  passed: boolean;
 }
 
-export const Activity: React.FC<ActivityProps> = ({ activity }) => {
+export const Activity: React.FC<ActivityProps> = ({
+  activity,
+  passed = true,
+}) => {
   return (
     <Layout
       style={{
         padding: 16,
         flex: 1,
         flexDirection: "row",
+        opacity: passed ? 0.3 : undefined,
       }}
     >
       <Image

@@ -17,3 +17,12 @@ export const getStudentsByIds = (
 
   return [];
 };
+
+export const getPendingStudents = (
+  assignedStudents: Student[] = [],
+  confirmedStudents: Student[] = []
+) => {
+  return assignedStudents.filter(
+    (student) => !confirmedStudents.includes(student)
+  );
+};

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Activity, Student } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 
-import { getStudentsByIds } from "./utils";
+import { getPendingStudents, getStudentsByIds } from "./utils";
 
 export const useConfirmationStatusComponent = (
   activity: Activity,
@@ -34,7 +34,12 @@ export const useConfirmationStatusComponent = (
   }
 
   return {
-    models: { modalOpened, confirmedStudents, assignedStudents },
+    models: {
+      modalOpened,
+      confirmedStudents,
+      assignedStudents,
+      pendingStudents: getPendingStudents(assignedStudents, confirmedStudents),
+    },
     operations: { handleModalOpen, handleModalClose },
   };
 };

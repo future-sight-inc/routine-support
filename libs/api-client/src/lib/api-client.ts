@@ -10,7 +10,7 @@ axios.interceptors.response.use(
 );
 
 export const apiClient = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: process.env.NX_WEB_API_ENDPOINT,
   timeout: 30 * 1000,
   withCredentials: true,
   headers: {
@@ -21,7 +21,8 @@ export const apiClient = axios.create({
 });
 
 export const mobileApiClient = axios.create({
-  baseURL: "http://192.168.0.119:3000/api",
+  // todo Вынести в переменные окружения
+  baseURL: "http://192.168.2.7:3000/api",
   timeout: 30 * 1000,
   withCredentials: true,
   headers: {
