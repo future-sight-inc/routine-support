@@ -8,7 +8,7 @@ import { ListItemIcon } from "@mui/material";
 import { User } from "@routine-support/domains";
 import { LinkService } from "apps/web/src/services/LinkService";
 import moment from "moment";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
 import * as S from "./styled";
@@ -25,10 +25,11 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
   const {
-    operations: { handleLogout },
+    models: { showRussianLink, showEnglishLink, showDutchLink },
+    operations: { handleLogout, handleLanguageChange },
   } = useLayoutComponent(actions);
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <S.Wrapper>
@@ -74,10 +75,21 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
       <S.Footer>
         <S.Rights>{t("Rights info")}</S.Rights>
         <S.LanguageWrapper>
-          {/* todo: remove current language depending on locale */}
-          <S.LanguageLink>Nederlands</S.LanguageLink>
-          <S.LanguageLink>English</S.LanguageLink>
-          <S.LanguageLink>Русский</S.LanguageLink>
+          {showDutchLink && (
+            <S.LanguageLink onClick={() => handleLanguageChange("nl")}>
+              Nederlands
+            </S.LanguageLink>
+          )}
+          {showEnglishLink && (
+            <S.LanguageLink onClick={() => handleLanguageChange("en")}>
+              English
+            </S.LanguageLink>
+          )}
+          {showRussianLink && (
+            <S.LanguageLink onClick={() => handleLanguageChange("ru")}>
+              Русский
+            </S.LanguageLink>
+          )}
         </S.LanguageWrapper>
       </S.Footer>
     </S.Wrapper>
