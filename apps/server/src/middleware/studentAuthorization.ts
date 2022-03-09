@@ -4,8 +4,6 @@ import * as jwt from "jsonwebtoken";
 export const studentAuthorization = (req, res, next) => {
   const token = req.cookies.access_token;
 
-  console.log(token);
-
   if (!token) {
     return res.sendStatus(403);
   }
@@ -21,6 +19,7 @@ export const studentAuthorization = (req, res, next) => {
       }
 
       res.locals.student = result;
+
       return next();
     });
   } catch {

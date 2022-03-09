@@ -42,31 +42,28 @@ studentRouter.get("/", studentAuthorization, (req, res) => {
 });
 
 studentRouter.delete("/:id", async (req, res) => {
-  const id = req.params.id;
+  const studentId = req.params.id;
 
-  StudentModel.findByIdAndDelete(id, (err) => {
-    if (err) {
-      console.log(err);
+  await StudentModel.findByIdAndDelete(studentId);
 
-      return;
+  const studentsActivities = await ActivityModel.find({
+    students: { $in: [studentId] },
+  }).lean();
+
+  studentsActivities.forEach(({ _id: activityId, students }) => {
+    const filteredStudents = students.filter((id) => id !== studentId);
+    const shouldDeleteStudentActivity = !filteredStudents.length;
+
+    if (shouldDeleteStudentActivity) {
+      ActivityModel.findByIdAndDelete(activityId);
+    } else {
+      ActivityModel.findByIdAndUpdate(activityId, {
+        students: filteredStudents,
+      });
     }
   });
 
-  ActivityModel.find({ students: { $in: [id] } }, (__, activities) => {
-    activities.forEach(({ _id: activityId, students }) => {
-      const filteredStudents = students.filter((studentId) => studentId !== id);
-
-      if (!filteredStudents.length) {
-        ActivityModel.findByIdAndDelete(activityId);
-      } else {
-        ActivityModel.findByIdAndUpdate(activityId, {
-          students: filteredStudents.length ? filteredStudents : undefined,
-        });
-      }
-    });
-  });
-
-  res.status(200).send("Student deleted");
+  res.sendStatus(200);
 });
 
 studentRouter.put("/:id", (req, res) => {
@@ -84,7 +81,7 @@ studentRouter.put("/:id", (req, res) => {
         return;
       }
 
-      res.status(200).send("Activity is updated");
+      res.sendStatus(200);
     }
   );
 });

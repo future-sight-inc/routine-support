@@ -44,6 +44,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
           {week.weekInfo.timeRange.map((time) => (
             <S.Cell onClick={() => onCellClick(time, day)}></S.Cell>
           ))}
+          {/* todo вынести в отдельную функцию, протестировать */}
           {groupActivities(
             week.days.find(
               (item) => stringifyDate(item.date) === stringifyDate(day)
