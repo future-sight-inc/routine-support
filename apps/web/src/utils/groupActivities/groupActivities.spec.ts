@@ -78,6 +78,25 @@ describe("groupActivities", () => {
     expect(groups.length).toBe(1);
   });
 
+  it("First crosses third, second crosses third", () => {
+    const activity1 = createMockActivityFromTimePeriod({
+      start: "11:00",
+      end: "12:00",
+    });
+    const activity2 = createMockActivityFromTimePeriod({
+      start: "13:00",
+      end: "14:00",
+    });
+    const activity3 = createMockActivityFromTimePeriod({
+      start: "11:30",
+      end: "13:30",
+    });
+    const activities = [activity1, activity2, activity3];
+    const groups = groupActivities(activities);
+
+    expect(groups.length).toBe(1);
+  });
+
   it("Activities start one after another. Should be different groups (design requirement)", () => {
     const activity1 = createMockActivityFromTimePeriod({
       start: "11:00",
