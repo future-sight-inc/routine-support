@@ -1,6 +1,7 @@
 import { Activity, RepeatTypeEnum, Student } from "@routine-support/domains";
 import { parseTime } from "@routine-support/utils";
 import moment from "moment";
+import * as uuid from "uuid";
 
 // todo move testUtils into module
 export const createMockActivity = (): Activity => {
@@ -60,8 +61,10 @@ export const createGroupFromTimePeriod = ({
 };
 
 export const createMockStudent = (): Student => {
+  const studentId = uuid.v4();
+
   return {
-    _id: "",
+    _id: studentId,
     name: "",
     coachId: "",
     color: "#bebebe",
