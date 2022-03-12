@@ -2,9 +2,9 @@ import { DateInfo, getDateInfoQuery } from "@routine-support/domains";
 
 export const updateCurrentDateInfoQuery = (
   dateInfo: DateInfo,
-  // todo Нет типа
-  // eslint-disable-next-line
-  history: any
+  history: {
+    push: (url: string) => void;
+  }
 ) => {
   const dateInfoQuery = getDateInfoQuery(dateInfo);
 
