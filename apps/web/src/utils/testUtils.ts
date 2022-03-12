@@ -1,7 +1,8 @@
-import { Activity, RepeatTypeEnum } from "@routine-support/domains";
+import { Activity, RepeatTypeEnum, Student } from "@routine-support/domains";
 import { parseTime } from "@routine-support/utils";
 import moment from "moment";
 
+// todo move testUtils into module
 export const createMockActivity = (): Activity => {
   const mockDate = moment();
 
@@ -56,4 +57,22 @@ export const createGroupFromTimePeriod = ({
     end: parseTime(end, mockDate),
     activities: [],
   };
+};
+
+export const createMockStudent = (): Student => {
+  return {
+    _id: "",
+    name: "",
+    coachId: "",
+    color: "#bebebe",
+  };
+};
+
+export const addStudentToActivity = (
+  activity: Activity,
+  student: Student
+): Activity => {
+  activity.students.push(student._id);
+
+  return activity;
 };
