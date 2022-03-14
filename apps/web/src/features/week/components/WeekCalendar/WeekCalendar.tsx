@@ -1,12 +1,13 @@
 import React, { createRef } from "react";
 
 import { Activity, Student, Week } from "@routine-support/domains";
-import { isToday, stringifyDate } from "@routine-support/utils";
+import { stringifyDate } from "@routine-support/utils";
 import { groupActivities } from "apps/web/src/utils/groupActivities";
 
 import { ActivityGroup } from "./components/ActivityGroup";
 import { useWeekCalendarComponent } from "./hooks";
 import * as S from "./styled";
+import { isWeekend } from "./utils";
 
 export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
@@ -40,7 +41,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
         ))}
       </S.TimeColumn>
       {week?.weekInfo.days.map((day, index) => (
-        <S.Column today={isToday(day)} weekend={index >= 5 && index <= 6}>
+        <S.Column isWeekend={isWeekend(day)}>
           {week.weekInfo.timeRange.map((time) => (
             <S.Cell onClick={() => onCellClick(time, day)}></S.Cell>
           ))}
