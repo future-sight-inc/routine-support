@@ -40,16 +40,15 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
           </S.Cell>
         ))}
       </S.TimeColumn>
-      {week?.weekInfo.days.map((day, index) => (
+      {week.weekInfo.days.map((day) => (
         <S.Column isWeekend={isWeekend(day)}>
           {week.weekInfo.timeRange.map((time) => (
             <S.Cell onClick={() => onCellClick(time, day)}></S.Cell>
           ))}
-          {/* todo вынести в отдельную функцию, протестировать */}
           {groupActivities(
             week.days.find(
               (item) => stringifyDate(item.date) === stringifyDate(day)
-            )?.activities || []
+            )?.activities
           ).map((group) => (
             <ActivityGroup
               students={students}

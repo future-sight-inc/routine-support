@@ -5,7 +5,9 @@ import { makeGroupFromActivity } from "./makeGroupFromActivity";
 import { mergeGroups } from "./mergeGroups";
 import { shouldAddActivityToGroup } from "./shouldAddActivityToGroup";
 
-export const groupActivities = (activities: Activity[]): ActivitiesGroup[] => {
+export const groupActivities = (
+  activities: Activity[] = []
+): ActivitiesGroup[] => {
   let groups: ActivitiesGroup[] = [];
 
   activities.forEach((activity) => {
