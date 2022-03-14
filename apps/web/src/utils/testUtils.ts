@@ -1,6 +1,6 @@
 import { Activity, RepeatTypeEnum, Student } from "@routine-support/domains";
 import { parseTime } from "@routine-support/utils";
-import moment from "moment";
+import moment, { Moment } from "moment";
 import * as uuid from "uuid";
 
 // todo move testUtils into module
@@ -78,4 +78,16 @@ export const addStudentToActivity = (
   activity.students.push(student._id);
 
   return activity;
+};
+
+export const getMondayFromWeekInfo = ({
+  weekNumber,
+  year,
+}: {
+  weekNumber: number;
+  year: number;
+}): Moment => {
+  const monday = moment().year(year).day("Monday").isoWeek(weekNumber);
+
+  return monday;
 };
