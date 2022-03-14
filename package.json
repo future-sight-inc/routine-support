@@ -9,6 +9,8 @@
     "start:mobile": "npx nx start mobile",
     "build": "nx build",
     "test": "nx test",
+    "test:server": "nx test server",
+    "test:web": "nx test web",
     "lint": "eslint -c='./.eslintrc.json'",
     "lint:write": "eslint -c='./.eslintrc.json' --fix",
     "prepare": "npx husky install",
