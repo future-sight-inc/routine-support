@@ -8,7 +8,7 @@ module.exports = {
   },
   testEnvironment: "node",
   transform: {
-    "^.+\\.[tj]sx?$": "ts-jest",
+    "^.+\\.[t|j]sx?$": "babel-jest",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   coverageDirectory: "../../coverage/libs/models",

@@ -44,3 +44,9 @@ export type Activity = {
 };
 
 export type ActivityDto = ActivitySchema;
+
+export interface ActivitiesGroup {
+  start: Moment;
+  end: Moment;
+  activities: Activity[];
+}

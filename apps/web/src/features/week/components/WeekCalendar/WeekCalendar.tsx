@@ -2,11 +2,11 @@ import React, { createRef } from "react";
 
 import { Activity, Student, Week } from "@routine-support/domains";
 import { isToday, stringifyDate } from "@routine-support/utils";
+import { groupActivities } from "apps/web/src/utils/groupActivities";
 
 import { ActivityGroup } from "./components/ActivityGroup";
 import { useWeekCalendarComponent } from "./hooks";
 import * as S from "./styled";
-import { groupActivities } from "./utils";
 
 export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
