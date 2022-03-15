@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
   position: relative;
 `;
 
-
 export const Cell = styled.div<{ passed?: boolean }>`
   padding: 8px;
   min-height: ${({ theme }) => theme.size.cellHeight};
@@ -32,7 +31,7 @@ export const Cell = styled.div<{ passed?: boolean }>`
   }
 `;
 
-export const Column = styled.div<{ today?: boolean; weekend?: boolean }>`
+export const Column = styled.div<{ isWeekend?: boolean }>`
   display: grid;
   grid-template-columns: repeat(auto, ${({ theme }) => theme.size.cellHeight});
   grid-row-gap: 1px;
@@ -40,16 +39,8 @@ export const Column = styled.div<{ today?: boolean; weekend?: boolean }>`
 
   position: relative;
 
-  ${({ today }) =>
-    today &&
-    css`
-      & ${Cell} {
-        background: ${({ theme }) => theme.palette.common.grey};
-      }
-    `}
-
-  ${({ weekend }) =>
-    weekend &&
+  ${({ isWeekend }) =>
+    isWeekend &&
     css`
       & ${Cell} {
         background: ${({ theme }) => theme.palette.common.lightblue};

@@ -2,26 +2,26 @@ import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 export const getStudentsByIds = (
-  students?: Student[],
-  ids?: Id[]
+  students: Student[] = [],
+  ids: Id[] = []
 ): Student[] => {
-  if (students?.length && ids?.length) {
-    return (
-      ids
-        // ! Идентификаторы студентов соотносятся со списком, нет смысла в проверке
-        // eslint-disable-next-line
-        .map((id) => students.find((student) => student._id === id)!)
-        .filter(Boolean)
-    );
-  }
+  const result: Student[] = [];
 
-  return [];
+  ids.forEach((id) => {
+    const student = students.find((student) => student._id === id);
+
+    if (student) {
+      result.push(student);
+    }
+  });
+
+  return result;
 };
 
 export const getPendingStudents = (
   assignedStudents: Student[] = [],
   confirmedStudents: Student[] = []
-) => {
+): Student[] => {
   return assignedStudents.filter(
     (student) => !confirmedStudents.includes(student)
   );
