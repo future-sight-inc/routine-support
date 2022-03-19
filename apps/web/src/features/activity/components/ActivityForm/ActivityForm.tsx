@@ -64,14 +64,15 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           required
           placeholder={t("Activity name")}
         />
-        <DatePicker
-          name="date"
-          control={control}
-          label={t("Activity date")}
-          minDate={minDate}
-          required
-        />
+
         <S.Row>
+          <DatePicker
+            name="date"
+            control={control}
+            label={t("Activity date")}
+            minDate={minDate}
+            required
+          />
           <TimePicker
             name="start"
             control={control}
