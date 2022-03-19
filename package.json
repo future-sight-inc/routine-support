@@ -11,8 +11,8 @@
     "test": "nx test",
     "test:server": "nx test server",
     "test:web": "nx test web",
-    "lint": "eslint -c='./.eslintrc.json'",
-    "lint:write": "eslint -c='./.eslintrc.json' --fix",
+    "lint": "eslint",
+    "lint:write": "eslint --fix",
     "prepare": "npx husky install",
     "pre-commit": "lint-staged"
   },
