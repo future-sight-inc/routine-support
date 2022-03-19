@@ -65,7 +65,7 @@ activityRouter.put("/:id", authorization, (req, res) => {
     );
   }
 
-  return res.status(422);
+  return res.status(422).send(validationData);
 });
 
 activityRouter.put(
