@@ -87,7 +87,7 @@ export const getMondayFromWeekInfo = ({
   weekNumber: number;
   year: number;
 }): Moment => {
-  const monday = moment().year(year).isoWeek(weekNumber).day("Monday");
+  const monday = moment().year(year).week(weekNumber + 1).day("Monday");
 
   return monday;
 };
