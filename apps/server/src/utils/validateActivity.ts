@@ -1,4 +1,4 @@
-import { ActivityModel, ActivitySchema } from "@routine-support/domains";
+import { ActivitySchema } from "@routine-support/domains";
 
 export interface ActivityValidationData {
   isValid: boolean;
