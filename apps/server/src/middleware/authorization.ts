@@ -1,7 +1,12 @@
 import { User, UserModel } from "@routine-support/domains";
+import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
 
-export const authorization = (req, res, next) => {
+export const authorization = (
+  req: Request,
+  res: Response,
+  next: () => unknown
+) => {
   const token = req.cookies.access_token;
 
   if (!token) {
@@ -10,7 +15,7 @@ export const authorization = (req, res, next) => {
 
   try {
     // todo resolve type
-    const data = jwt.verify(token, process.env.NX_SECRET_KEY || "") as any;
+    const data = jwt.verify(token, process.env.NX_SECRET_KEY || "") as User;
 
     UserModel.findOne({ email: data.email }, (err, result) => {
       if (err || !result) {

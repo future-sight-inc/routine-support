@@ -1,12 +1,20 @@
 {
   "root": true,
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "unused-imports"],
   "ignorePatterns": ["!**/*", "node_modules"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-unused-vars": ["off"],
+        "@typescript-eslint/explicit-module-boundary-types": ["off"]
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
@@ -24,6 +32,8 @@
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
         "allowSeparatedGroups": false
       }
-    ]
+    ],
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": "error"
   }
 }

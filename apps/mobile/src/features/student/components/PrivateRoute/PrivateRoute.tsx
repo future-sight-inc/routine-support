@@ -3,7 +3,6 @@ import React from "react";
 import { Layout, Spinner } from "@ui-kitten/components";
 import { Redirect, Route, RouteProps } from "react-router-native";
 
-
 interface Props extends RouteProps {
   loading: boolean;
   isLogged: boolean;
@@ -15,7 +14,6 @@ export const PrivateRoute: React.FC<Props> = ({
   loading,
   isLogged,
   isChecked,
-  onLogout,
   ...routeProps
 }) => {
   if (loading) {

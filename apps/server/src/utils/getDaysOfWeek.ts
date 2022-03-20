@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment, { Moment } from "moment";
 
 export const getDaysOfWeek = ({
   weekNumber,
@@ -6,7 +6,7 @@ export const getDaysOfWeek = ({
 }: {
   weekNumber: number;
   yearNumber: number;
-}) => {
+}): Moment[] => {
   const monday = moment().year(yearNumber).day("Monday").isoWeek(weekNumber);
   const days = [monday];
 

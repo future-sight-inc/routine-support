@@ -1,10 +1,8 @@
+import { apiClient, mobileApiClient } from "@routine-support/api-client";
+import { Id } from "@routine-support/types";
 import { AxiosResponse } from "axios";
-
 import { Activity } from "./types";
 import { formatActivity } from "./utils";
-
-import { DateString, Id } from "@routine-support/types";
-import { apiClient, mobileApiClient } from "@routine-support/api-client";
 
 export const activityAPI = {
   createActivity: async (data: Activity): Promise<AxiosResponse> => {

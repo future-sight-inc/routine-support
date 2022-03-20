@@ -38,7 +38,7 @@ export const useActivityFormComponent = (
 
   const [minEndTime, setMinEndTime] = useState<Moment | undefined>();
   useEffect(() => {
-    const subscription = watch((value, { name, type }) => {
+    const subscription = watch((value, { name }) => {
       switch (name) {
         case "start":
           setMinEndTime(value.start);
