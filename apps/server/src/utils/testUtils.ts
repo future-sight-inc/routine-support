@@ -58,7 +58,7 @@ export const createMockFilter = ({
 export const addStudentToActivity = (
   activity: ActivitySchema,
   studentId: Id
-) => {
+): ActivitySchema => {
   const updatedStudents = activity.students;
   updatedStudents.push(studentId);
 

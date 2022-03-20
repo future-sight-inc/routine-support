@@ -25,7 +25,7 @@ interface LoginFormProps {
 
 export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
   const {
-    models: { submitError, control, isSubmitting },
+    models: { submitError, control },
     operations: { handleSubmit },
   } = useLoginFormComponent(actions);
 

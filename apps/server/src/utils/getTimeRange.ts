@@ -1,4 +1,6 @@
-export const getTimeRange = () => [
+import { TimeString } from "@routine-support/types";
+
+export const getTimeRange = (): TimeString[] => [
   "0:00",
   "1:00",
   "2:00",

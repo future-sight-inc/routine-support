@@ -10,7 +10,7 @@ import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { LinkService } from "apps/web/src/services/LinkService";
 import { Button } from "apps/web/src/styled/components/Button";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { useRegisterFormComponent } from "./hooks";
@@ -26,11 +26,11 @@ interface RegisterFormProps {
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
   const {
-    models: { isSubmitting, submitError, control },
+    models: { submitError, control },
     operations: { handleSubmit },
   } = useRegisterFormComponent(actions);
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Card absoluteCenter>
