@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { Activity, User } from "@routine-support/domains";
+import { setFormErrors } from "apps/web/src/utils/setFormErrors";
+import { AxiosError } from "axios";
 import moment, { Moment } from "moment";
 import { useForm } from "react-hook-form";
 
@@ -18,12 +20,19 @@ export const useActivityFormComponent = (
     ...activity,
   };
 
-  const { control, handleSubmit, formState, watch, getValues, setValue } =
-    useForm({
-      defaultValues,
-      // ! Баг с типизацией
-      // eslint-disable-next-line
-    } as any);
+  const {
+    control,
+    handleSubmit,
+    formState,
+    watch,
+    getValues,
+    setError,
+    setValue,
+  } = useForm({
+    defaultValues,
+    // ! Баг с типизацией
+    // eslint-disable-next-line
+  } as any);
 
   const [minStartTime, setMinStartTime] = useState<Moment | undefined>(
     moment()
@@ -38,7 +47,7 @@ export const useActivityFormComponent = (
 
   const [minEndTime, setMinEndTime] = useState<Moment | undefined>();
   useEffect(() => {
-    const subscription = watch((value, { name, type }) => {
+    const subscription = watch((value, { name }) => {
       switch (name) {
         case "start":
           setMinEndTime(value.start);
@@ -67,6 +76,9 @@ export const useActivityFormComponent = (
 
       actions.getWeek({ config: { silent: true } });
     } catch (error) {
+      const data = (error as AxiosError).response?.data;
+
+      setFormErrors(data?.errors, setError);
       setSubmitError(error.message);
     }
   });

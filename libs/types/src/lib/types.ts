@@ -23,3 +23,8 @@ export type AuthQrCodeData = {
 export type AuthQrCode = {
   data: AuthQrCodeData;
 };
+
+export interface FormError {
+  message: string;
+  type: string;
+}
