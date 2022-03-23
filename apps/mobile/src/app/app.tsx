@@ -28,7 +28,6 @@ i18n.use(initReactI18next).init({
       translation: nlLocale,
     },
   },
-  fallbackLng: "en",
 });
 
 export const App = () => {
