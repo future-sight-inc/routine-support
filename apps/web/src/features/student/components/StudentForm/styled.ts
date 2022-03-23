@@ -1,4 +1,3 @@
-
 import { Typography } from "@mui/material";
 import { Button } from "apps/web/src/styled/components/Button";
 import styled from "styled-components";
@@ -13,12 +12,16 @@ export const Title = styled(Typography).attrs(() => ({ variant: "h5" }))``;
 
 export const SubmitButton = styled(Button).attrs(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
-}))``;
+}))`
+  width: 120px;
+`;
 
 export const DeleteButton = styled(Button).attrs(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
   fontColor: theme.palette.secondary.contrastText,
-}))``;
+}))`
+  width: 120px;
+`;
 
 export const ButtonsWrapper = styled.div`
   display: flex;
