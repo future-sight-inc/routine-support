@@ -18802,6 +18802,11 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-clock-analog@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-clock-analog/-/react-native-clock-analog-0.0.3.tgz#0f7b6460bc151fcf6870c461bf85d53652d4cc1b"
+  integrity sha512-XVTiYLy1IGBwaNBXZZcgIbeRyoQ/RZiYNLM7oUi9kifmKyN7HtUmxga6+lOvTlfmYGqjqX7tkIylGa/9YaYCOQ==
+
 react-native-codegen@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.6.tgz#b3173faa879cf71bfade8d030f9c4698388f6909"

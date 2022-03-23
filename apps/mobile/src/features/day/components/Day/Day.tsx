@@ -81,6 +81,7 @@ export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
               return (
                 <CurrentActivity
                   activity={item}
+                  clockType={student.clockType}
                   confirmed={isActivityConfirmed({
                     studentId: student._id,
                     activity: item,
@@ -95,6 +96,7 @@ export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
               <Activity
                 activity={item}
                 passed={item.end.isBefore(currentTime)}
+                clockType={student.clockType}
                 key={index}
               />
             );

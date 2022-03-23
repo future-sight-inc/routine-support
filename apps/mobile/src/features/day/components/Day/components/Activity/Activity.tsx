@@ -1,18 +1,24 @@
 import React from "react";
 
-import { Activity as ActivityType } from "@routine-support/domains";
+import {
+  Activity as ActivityType,
+  ClockTypeEnum,
+} from "@routine-support/domains";
 import { stringifyTime } from "@routine-support/utils";
 import { Layout, Text } from "@ui-kitten/components";
 import { Image } from "react-native";
+import AnalogClock from "react-native-clock-analog";
 
 interface ActivityProps {
   activity: ActivityType;
   passed: boolean;
+  clockType: ClockTypeEnum;
 }
 
 export const Activity: React.FC<ActivityProps> = ({
   activity,
   passed = true,
+  clockType,
 }) => {
   return (
     <Layout
@@ -33,9 +39,21 @@ export const Activity: React.FC<ActivityProps> = ({
         <Text category="h6" style={{ marginBottom: 8 }}>
           {activity.name}
         </Text>
-        <Text category="s1" appearance="hint">
-          {stringifyTime(activity.start)}-{stringifyTime(activity.end)}
-        </Text>
+        {clockType === ClockTypeEnum.Digital && (
+          <Text category="s1" appearance="hint">
+            {stringifyTime(activity.start)}-{stringifyTime(activity.end)}
+          </Text>
+        )}
+        {clockType === ClockTypeEnum.Analog && (
+          <AnalogClock
+            colorClock="#F3F3F3"
+            colorHour="#000000"
+            colorMinutes="#000000"
+            hour={activity.start.hours()}
+            minutes={activity.start.minutes()}
+            size={90}
+          />
+        )}
       </Layout>
     </Layout>
   );
