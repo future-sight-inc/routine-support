@@ -1,11 +1,29 @@
-import { useHistory } from "react-router-native";
+import { useState } from "react";
 
-export const useDayComponent = () => {
-  const history = useHistory();
+import { DayActions } from "./Day";
 
-  const handleForwardPress = () => {
-    history.push("/profile");
+export const useDayComponent = (actions: DayActions) => {
+  const [isPinCodeInputVisible, setPinCodeVisible] = useState(false);
+
+  const handleLogoutPress = () => {
+    setPinCodeVisible(true);
   };
 
-  return { operations: { handleForwardPress } };
+  const handlePinCodeSuccessInput = () => {
+    setPinCodeVisible(false);
+    actions.logout();
+  };
+
+  const handlePinCodeInputClose = () => {
+    setPinCodeVisible(true);
+  };
+
+  return {
+    models: { isPinCodeInputVisible },
+    operations: {
+      handleLogoutPress,
+      handlePinCodeSuccessInput,
+      handlePinCodeInputClose,
+    },
+  };
 };

@@ -3,6 +3,7 @@ import React from "react";
 import {
   Activity as ActivityType,
   Day as DayType,
+  Student,
 } from "@routine-support/domains";
 import {
   Divider,
@@ -21,27 +22,23 @@ import { CurrentActivity } from "./components/CurrentActivity";
 import { useDayComponent } from "./hooks";
 import { isActivityConfirmed } from "./utils";
 
-interface DayActions {
+export interface DayActions {
   getDay: () => void;
   confirmActivity: (activity: ActivityType) => void;
+  logout: () => void;
 }
 
 interface DayProps {
   actions: DayActions;
   loading: boolean;
   day: DayType;
-  studentId?: string;
+  student: Student;
 }
 
-export const Day: React.FC<DayProps> = ({
-  studentId,
-  day,
-  loading,
-  actions,
-}) => {
+export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
   const {
-    operations: { handleForwardPress },
-  } = useDayComponent();
+    operations: { handleLogoutPress },
+  } = useDayComponent(actions);
   const { t } = useTranslation();
 
   return (
@@ -52,8 +49,8 @@ export const Day: React.FC<DayProps> = ({
           icon={(props) => (
             <Icon
               {...props}
-              name="person-outline"
-              onPress={handleForwardPress}
+              name="log-out-outline"
+              onPress={handleLogoutPress}
               fill="white"
             />
           )}
@@ -84,7 +81,10 @@ export const Day: React.FC<DayProps> = ({
               return (
                 <CurrentActivity
                   activity={item}
-                  confirmed={isActivityConfirmed({ studentId, activity: item })}
+                  confirmed={isActivityConfirmed({
+                    studentId: student._id,
+                    activity: item,
+                  })}
                   onConfirm={actions.confirmActivity}
                   key={index}
                 />

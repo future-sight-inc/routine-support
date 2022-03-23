@@ -11,7 +11,6 @@ import { NativeRouter, Route } from "react-router-native";
 import { Day } from "../features/day/components/Day";
 import { Login } from "../features/student/components/Login";
 import { PrivateRoute } from "../features/student/components/PrivateRoute";
-import { Profile } from "../features/student/components/Profile";
 import enLocale from "../locales/en.json";
 import nlLocale from "../locales/nl.json";
 import ruLocale from "../locales/ru.json";
@@ -45,9 +44,6 @@ export const App = () => {
             <PrivateRoute>
               <Route exact path="/">
                 <Day />
-              </Route>
-              <Route exact path="/profile">
-                <Profile />
               </Route>
             </PrivateRoute>
           </NativeRouter>
