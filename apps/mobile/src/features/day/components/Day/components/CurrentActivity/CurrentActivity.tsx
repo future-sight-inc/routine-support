@@ -6,8 +6,7 @@ import {
   ClockTypeEnum,
 } from "@routine-support/domains";
 import { stringifyTime } from "@routine-support/utils";
-import { Button, Layout, Text } from "@ui-kitten/components";
-import { useTranslation } from "react-i18next";
+import { Button, Icon, Layout, Text } from "@ui-kitten/components";
 import { Image } from "react-native";
 import AnalogClock from "react-native-clock-analog";
 
@@ -27,7 +26,6 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
   const handleConfirmActivity = () => {
     onConfirm(activity);
   };
-  const { t } = useTranslation();
 
   return (
     <Layout
@@ -59,7 +57,6 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
         {clockType === ClockTypeEnum.Analog && (
           <Layout style={{ flexDirection: "row", justifyContent: "center" }}>
             <AnalogClock
-              colorClock="#F3F3F3"
               colorHour="#000000"
               colorMinutes="#000000"
               hour={activity.start.hours()}
@@ -72,9 +69,13 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
           style={{ marginTop: "auto" }}
           onPress={handleConfirmActivity}
           disabled={confirmed}
-        >
-          {confirmed ? t<string>("Confirmed") : t<string>("Confirm")}
-        </Button>
+          accessoryLeft={
+            <Icon
+              fill={confirmed ? "lightgrey" : "white"}
+              name="checkmark-outline"
+            />
+          }
+        ></Button>
       </Layout>
     </Layout>
   );

@@ -46,7 +46,6 @@ export const Activity: React.FC<ActivityProps> = ({
         )}
         {clockType === ClockTypeEnum.Analog && (
           <AnalogClock
-            colorClock="#F3F3F3"
             colorHour="#000000"
             colorMinutes="#000000"
             hour={activity.start.hours()}
