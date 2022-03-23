@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-import { Student, studentActions, studentAPI } from "@routine-support/domains";
+import {
+  NewStudentDto,
+  Student,
+  studentActions,
+  studentAPI,
+} from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -17,7 +22,7 @@ export const useStudent = () => {
     dispatch(studentActions.setStudent(student || null));
   };
 
-  const createStudent = async (student: { name: string }) => {
+  const createStudent = async (student: NewStudentDto) => {
     if (coachId) {
       try {
         setLoading(true);

@@ -2,8 +2,10 @@ import React from "react";
 
 import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
+import { ClockPicker } from "apps/web/src/components/FormFields/ClockPicker";
+import { LanguagePicker } from "apps/web/src/components/FormFields/LanguagePicker";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import { ErrorText } from "../../../../components/ErrorText";
 import { useStudentFormComponent } from "./hooks";
@@ -30,7 +32,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
     operations: { handleSubmit, onDelete },
   } = useStudentFormComponent(student, actions);
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -45,6 +47,23 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           fullWidth
           required
         />
+        <LanguagePicker
+          name="language"
+          control={control}
+          label={t("Preferred language")}
+        />
+        <ClockPicker
+          name="clockType"
+          control={control}
+          label={t("Clock type")}
+        />
+        <TextField
+          name="pinCode"
+          control={control}
+          placeholder={t("PIN code")}
+          fullWidth
+          required
+        />
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"
@@ -54,10 +73,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             {student?._id ? t("Update") : t("Create")}
           </S.SubmitButton>
           {student?._id && (
-            <S.DeleteButton
-              color="error"
-              onClick={onDelete}
-            >
+            <S.DeleteButton color="error" onClick={onDelete}>
               {t("Delete")}
             </S.DeleteButton>
           )}

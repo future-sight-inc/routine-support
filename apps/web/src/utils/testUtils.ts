@@ -68,6 +68,9 @@ export const createMockStudent = (): Student => {
     name: "",
     coachId: "",
     color: "#bebebe",
+    pinCode: "",
+    clockType: 0,
+    language: 0,
   };
 };
 
@@ -87,7 +90,10 @@ export const getMondayFromWeekInfo = ({
   weekNumber: number;
   year: number;
 }): Moment => {
-  const monday = moment().year(year).week(weekNumber + 1).day("Monday");
+  const monday = moment()
+    .year(year)
+    .week(weekNumber + 1)
+    .day("Monday");
 
   return monday;
 };
