@@ -43,7 +43,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         <TextField
           name="name"
           control={control}
-          placeholder={t("Name")}
+          label={t("Name")}
           fullWidth
           required
         />
@@ -60,7 +60,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         <TextField
           name="pinCode"
           control={control}
-          placeholder={t("PIN code")}
+          label={t("PIN code")}
           fullWidth
           required
         />
