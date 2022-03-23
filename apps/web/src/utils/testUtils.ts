@@ -1,4 +1,5 @@
 import { Activity, RepeatTypeEnum, Student } from "@routine-support/domains";
+import { LanguageEnum } from "@routine-support/types";
 import { parseTime } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 import * as uuid from "uuid";
@@ -70,7 +71,7 @@ export const createMockStudent = (): Student => {
     color: "#bebebe",
     pinCode: "",
     clockType: 0,
-    language: 0,
+    language: LanguageEnum.En,
   };
 };
 

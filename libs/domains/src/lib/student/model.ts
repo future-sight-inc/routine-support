@@ -27,7 +27,7 @@ const studentSchema = new Schema(
       default: ClockTypeEnum.Analog,
     },
     language: {
-      type: Number,
+      type: String,
       required: true,
       default: LanguageEnum.En,
     },

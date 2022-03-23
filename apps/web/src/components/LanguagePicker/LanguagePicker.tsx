@@ -7,10 +7,10 @@ import { useTranslation } from "react-i18next";
 import { Select } from "../Select";
 
 export const LanguagePicker: React.FC<SelectProps> = ({ ...props }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
-    <Select {...props} defaultValue={LanguageEnum.En}>
+    <Select {...props} defaultValue={i18n.language}>
       <MenuItem value={LanguageEnum.En}>{t("English")}</MenuItem>
       <MenuItem value={LanguageEnum.Nl}>{t("Nederlands")}</MenuItem>
       <MenuItem value={LanguageEnum.Ru}>{t("Русский")}</MenuItem>
