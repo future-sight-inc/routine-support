@@ -37,7 +37,7 @@ studentRouter.get("/logout", (__, res) => {
   return res.clearCookie("access_token").sendStatus(200);
 });
 
-studentRouter.get("/", studentAuthorization, (req, res) => {
+studentRouter.get("/", studentAuthorization, (__, res) => {
   return res.status(200).send(res.locals.student);
 });
 
