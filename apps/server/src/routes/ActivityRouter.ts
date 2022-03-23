@@ -20,7 +20,7 @@ activityRouter.get("/:id", authorization, async (req, res) => {
 
 activityRouter.post("/", authorization, async (req, res) => {
   const validationData = validateActivity(req.body);
-
+  
   if (validationData.isValid) {
     await ActivityModel.create({
       ...req.body,
@@ -42,27 +42,17 @@ activityRouter.delete("/:id", authorization, async (req, res) => {
   });
 });
 
-activityRouter.put("/:id", authorization, (req, res) => {
+activityRouter.put("/:id", authorization, async (req, res) => {
   const id = req.params.id;
 
   const validationData = validateActivity(req.body);
 
   if (validationData.isValid) {
-    ActivityModel.findByIdAndUpdate(
-      id,
-      {
-        ...req.body,
-      },
-      (err) => {
-        if (err) {
-          console.log(err);
-
-          return;
-        }
-
-        return res.sendStatus(200);
-      }
-    );
+    await ActivityModel.findByIdAndUpdate(id, {
+      ...req.body,
+    });
+    
+    return res.sendStatus(200);
   }
 
   return res.status(422).send(validationData);

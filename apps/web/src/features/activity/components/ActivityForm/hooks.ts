@@ -77,7 +77,7 @@ export const useActivityFormComponent = (
       actions.getWeek({ config: { silent: true } });
     } catch (error) {
       const data = (error as AxiosError).response?.data;
-
+      
       setFormErrors(data?.errors, setError);
       setSubmitError(error.message);
     }

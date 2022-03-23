@@ -1,10 +1,9 @@
 import { ActivitySchema } from "@routine-support/domains";
+import { FormError } from "@routine-support/types";
 
 export interface ActivityValidationData {
-  isValid: boolean;
-  errors?: {
-    endTime: boolean;
-  };
+  isValid: boolean,
+  errors?: { [key: string]: FormError };
 }
 
 export const validateActivity = (
@@ -14,7 +13,9 @@ export const validateActivity = (
   const endTime = activity.end;
 
   if (startTime >= endTime) {
-    return { isValid: false, errors: { endTime: true } };
+    const error: FormError = {message: 'Invalid time', type: 'server'};
+
+    return { isValid: false, errors: { error }  };
   }
 
   return { isValid: true };
