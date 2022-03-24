@@ -10,12 +10,12 @@ export const useDayComponent = (actions: DayActions) => {
   };
 
   const handlePinCodeSuccessInput = () => {
-    setPinCodeVisible(false);
     actions.logout();
+    setPinCodeVisible(false);
   };
 
   const handlePinCodeInputClose = () => {
-    setPinCodeVisible(true);
+    setPinCodeVisible(false);
   };
 
   return {

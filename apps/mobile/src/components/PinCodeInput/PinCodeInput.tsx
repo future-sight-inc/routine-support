@@ -5,30 +5,35 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 const MAX_PIN_LENGTH = 4;
 interface pinCodeInputProps {
-    pinCode: string;
+  pinCode: string;
+  onSuccessInput: () => void;
+  onClose: () => void;
 }
-export const PinCodeInput: React.FC<pinCodeInputProps> = ({ pinCode }) => {
+export const PinCodeInput: React.FC<pinCodeInputProps> = ({
+  pinCode,
+  onSuccessInput,
+  onClose,
+}) => {
   const [value, setValue] = useState("");
 
   const onNumberBtnPress = (digit: number) => {
     setValue(value + digit);
-  }
+  };
 
   const onBackspaceBtnPress = () => {
     setValue(value.slice(0, -1));
-  }
+  };
 
   useEffect(() => {
-      if (value.length === MAX_PIN_LENGTH) {
-        if (value === pinCode) {
-            // log out
-        } else {
-            setTimeout(() => setValue(""), 300);
-            // todo: freeze buttons
-        }
+    if (value.length === MAX_PIN_LENGTH) {
+      if (value === pinCode) {
+        onSuccessInput();
+      } else {
+        setTimeout(() => setValue(""), 300);
+        // todo: freeze buttons
       }
-  }, 
-  [pinCode, value])
+    }
+  }, [pinCode, value]);
 
   return (
     <Layout style={styles.container}>
@@ -36,11 +41,17 @@ export const PinCodeInput: React.FC<pinCodeInputProps> = ({ pinCode }) => {
         {Array(MAX_PIN_LENGTH)
           .fill("")
           .map((__, index) =>
-            index < value.length ?
-            <View style={styles.activeDot}></View> :
-            <View style={styles.dot}></View> )}
+            index < value.length ? (
+              <View style={styles.activeDot}></View>
+            ) : (
+              <View style={styles.dot}></View>
+            )
+          )}
 
-        <TouchableOpacity style={styles.backspace} onPress={onBackspaceBtnPress}>
+        <TouchableOpacity
+          style={styles.backspace}
+          onPress={onBackspaceBtnPress}
+        >
           <Icon
             style={styles.backspaceIcon}
             fill="#8F9BB3"
@@ -50,10 +61,21 @@ export const PinCodeInput: React.FC<pinCodeInputProps> = ({ pinCode }) => {
       </Layout>
       <Layout style={styles.keyboard}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((i) => (
-          <TouchableOpacity style={styles.button} onPress={() => onNumberBtnPress(i)}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => onNumberBtnPress(i)}
+          >
             <Text category="h2">{i}</Text>
           </TouchableOpacity>
         ))}
+      </Layout>
+      <Layout style={{ flexDirection: "row", justifyContent: "center" }}>
+        <Icon
+          onPress={onClose}
+          style={{ width: 64, height: 64, marginTop: 96 }}
+          name="close-square-outline"
+          fill="#8F9BB3"
+        />
       </Layout>
     </Layout>
   );
@@ -61,7 +83,11 @@ export const PinCodeInput: React.FC<pinCodeInputProps> = ({ pinCode }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: "40%",
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    paddingTop: 120,
+    backgroundColor: "white",
   },
   dotsContainer: {
     justifyContent: "center",
@@ -105,6 +131,6 @@ const styles = StyleSheet.create({
 
     borderRadius: 50,
     margin: 5,
-    backgroundColor: "lightgrey",
+    backgroundColor: "#eeeeee",
   },
 });
