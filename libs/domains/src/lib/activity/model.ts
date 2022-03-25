@@ -36,11 +36,11 @@ const activitySchema = new Schema(
       default: [],
     },
     confirmation: {
-      type: Object,
+      type: Schema.Types.Mixed,
       default: {},
     },
   },
-  { versionKey: false }
+  { versionKey: false, minimize: false }
 );
 
 export const ActivityModel = model<ActivitySchema>("activity", activitySchema);
