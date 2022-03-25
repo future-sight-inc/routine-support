@@ -1,13 +1,14 @@
 import React from "react";
 
 import { Student, StudentLoginDto } from "@routine-support/domains";
-import { Button, Icon, Layout, Spinner, Text } from "@ui-kitten/components";
+import { Button, Icon, Layout, Text } from "@ui-kitten/components";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { Image, StyleSheet } from "react-native";
 import { Redirect } from "react-router-native";
 
 import qrImage from "../../../../../assets/qr.png";
+import { Spinner } from "../../../../components/Spinner";
 import { useLoginComponent } from "./hooks";
 
 export interface LoginActions {
@@ -25,7 +26,7 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
     models: { hasPermission, scanning },
     operations: { handleQrScanned, handleScannerOpen, handleScannerClose },
   } = useLoginComponent(actions);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   if (student) {
     return <Redirect to="/" />;
@@ -39,13 +40,7 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
   }
 
   if (loading) {
-    return (
-      <Layout
-        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-      >
-        <Spinner />
-      </Layout>
-    );
+    return <Spinner />;
   }
 
   if (!scanning) {
@@ -62,10 +57,10 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
       >
         <Layout style={{ marginTop: "auto" }}>
           <Text category="h4" style={{ textAlign: "center" }}>
-          {t<string>("You need to login")}
+            {t<string>("You need to login")}
           </Text>
           <Text category="s1" style={{ textAlign: "center", marginTop: 8 }}>
-          {t<string>("Scan QR instructions")}
+            {t<string>("Scan QR instructions")}
           </Text>
           <Image
             source={qrImage}
