@@ -4,56 +4,56 @@ import {
   Activity as ActivityType,
   ClockTypeEnum,
 } from "@routine-support/domains";
-import { stringifyTime } from "@routine-support/utils";
 import { Layout, Text } from "@ui-kitten/components";
-import { Image } from "react-native";
-import AnalogClock from "react-native-clock-analog";
+import { Image, StyleSheet } from "react-native";
+
+import { Clock, ClockSizeEnum } from "../../../../../../components/Clock";
 
 interface ActivityProps {
   activity: ActivityType;
-  passed: boolean;
+  isPassed: boolean;
   clockType: ClockTypeEnum;
 }
 
 export const Activity: React.FC<ActivityProps> = ({
   activity,
-  passed = true,
+  isPassed = true,
   clockType,
 }) => {
+  const styles = createStyles({ isPassed });
+
   return (
-    <Layout
-      style={{
-        padding: 16,
-        flex: 1,
-        flexDirection: "row",
-        opacity: passed ? 0.3 : undefined,
-      }}
-    >
+    <Layout style={styles.wrapper}>
       <Image
         source={{
           uri: activity.pictogram,
         }}
-        style={{ width: 120, height: 120 }}
+        style={styles.image}
       />
-      <Layout style={{ marginLeft: 16 }}>
-        <Text category="h6" style={{ marginBottom: 8 }}>
+      <Layout style={styles.infoWrapper}>
+        <Text category="h6" style={styles.activityName}>
           {activity.name}
         </Text>
-        {clockType === ClockTypeEnum.Digital && (
-          <Text category="s1" appearance="hint">
-            {stringifyTime(activity.start)}-{stringifyTime(activity.end)}
-          </Text>
-        )}
-        {clockType === ClockTypeEnum.Analog && (
-          <AnalogClock
-            colorHour="#000000"
-            colorMinutes="#000000"
-            hour={activity.start.hours()}
-            minutes={activity.start.minutes()}
-            size={90}
-          />
-        )}
+        <Clock
+          start={activity.start}
+          end={activity.end}
+          type={clockType}
+          size={ClockSizeEnum.Small}
+        />
       </Layout>
     </Layout>
   );
 };
+
+const createStyles = (props: { isPassed: boolean }) =>
+  StyleSheet.create({
+    wrapper: {
+      padding: 16,
+      flex: 1,
+      flexDirection: "row",
+      opacity: props.isPassed ? 0.3 : undefined,
+    },
+    image: { width: 120, height: 120 },
+    infoWrapper: { marginLeft: 16 },
+    activityName: { marginBottom: 8 },
+  });
