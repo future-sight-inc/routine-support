@@ -1,6 +1,13 @@
 import React, { ReactNode } from "react";
 
-import { Divider, Layout, Text, TopNavigation } from "@ui-kitten/components";
+import {
+  Divider,
+  Layout,
+  StyleService,
+  Text,
+  TopNavigation,
+  useStyleSheet,
+} from "@ui-kitten/components";
 import { RenderProp } from "@ui-kitten/components/devsupport";
 import { StyleSheet } from "react-native";
 
@@ -17,38 +24,19 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
   title,
   children,
 }) => {
+  const styles = useStyleSheet(themedStyles);
+
   return (
-    <Layout
-      style={{
-        flex: 1,
-        alignItems: "center",
-        paddingBottom: 8,
-        ...StyleSheet.absoluteFillObject,
-      }}
-    >
-      <Layout style={{ width: "100%" }}>
+    <Layout style={styles.wrapper}>
+      <Layout style={styles.navigationWrapper}>
         <TopNavigation
           alignment="center"
           accessoryLeft={accessoryLeft}
           accessoryRight={accessoryRight}
-          style={{
-            paddingTop: 64,
-            paddingBottom: 16,
-            backgroundColor: "#275DF0",
-          }}
+          style={styles.navigation}
         />
         {title && (
-          <Text
-            style={{
-              position: "absolute",
-              top: 66,
-              left: 120,
-              right: 120,
-              textAlign: "center",
-              color: "white",
-            }}
-            category="h6"
-          >
+          <Text style={styles.title} category="h6">
             {title}
           </Text>
         )}
@@ -58,3 +46,26 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
     </Layout>
   );
 };
+
+const themedStyles = StyleService.create({
+  wrapper: {
+    flex: 1,
+    alignItems: "center",
+    paddingBottom: 8,
+    ...StyleSheet.absoluteFillObject,
+  },
+  navigationWrapper: { width: "100%" },
+  navigation: {
+    paddingTop: 64,
+    paddingBottom: 16,
+    backgroundColor: "color-primary-500",
+  },
+  title: {
+    position: "absolute",
+    top: 66,
+    left: 120,
+    right: 120,
+    textAlign: "center",
+    color: "white",
+  },
+});
