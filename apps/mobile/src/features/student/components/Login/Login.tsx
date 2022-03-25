@@ -35,6 +35,7 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
   if (hasPermission === null) {
     return <Text>{t<string>("Camera permission request")}</Text>;
   }
+
   if (hasPermission === false) {
     return <Text>{t<string>("No camera permission")}</Text>;
   }
@@ -45,39 +46,20 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
 
   if (!scanning) {
     return (
-      <Layout
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 32,
-          paddingTop: 64,
-          ...StyleSheet.absoluteFillObject,
-        }}
-      >
-        <Layout style={{ marginTop: "auto" }}>
-          <Text category="h4" style={{ textAlign: "center" }}>
+      <Layout style={styles.previewWrapper}>
+        <Layout style={styles.previewTextWrapper}>
+          <Text category="h4" style={styles.previewTitle}>
             {t<string>("You need to login")}
           </Text>
-          <Text category="s1" style={{ textAlign: "center", marginTop: 8 }}>
+          <Text category="s1" style={styles.previewCaption}>
             {t<string>("Scan QR instructions")}
           </Text>
-          <Image
-            source={qrImage}
-            style={{
-              width: 250,
-              height: 250,
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginTop: 16,
-            }}
-          />
+          <Image source={qrImage} style={styles.previewImage} />
         </Layout>
-
         <Button
           onPress={handleScannerOpen}
           size="giant"
-          style={{ width: "100%", marginTop: "auto" }}
+          style={styles.openScannerButton}
           accessoryLeft={(props) => <Icon {...props} name="camera-outline" />}
         >
           {t<string>("Open scanner")}
@@ -87,14 +69,7 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
   }
 
   return (
-    <Layout
-      style={{
-        flex: 1,
-        justifyContent: "flex-end",
-        alignItems: "center",
-        padding: 32,
-      }}
-    >
+    <Layout style={styles.scannerWrapper}>
       <BarCodeScanner
         onBarCodeScanned={handleQrScanned}
         style={StyleSheet.absoluteFillObject}
@@ -102,7 +77,7 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
       <Button
         onPress={handleScannerClose}
         size="giant"
-        style={{ width: "100%" }}
+        style={styles.closeScannerButton}
         accessoryLeft={(props) => <Icon {...props} name="close-outline" />}
       >
         {t<string>("Close")}
@@ -110,3 +85,44 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
     </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  previewWrapper: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 32,
+    paddingTop: 64,
+    ...StyleSheet.absoluteFillObject,
+  },
+  previewTextWrapper: {
+    marginTop: "auto",
+  },
+  previewImage: {
+    width: 250,
+    height: 250,
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 16,
+  },
+  previewTitle: {
+    textAlign: "center",
+  },
+  previewCaption: {
+    textAlign: "center",
+    marginTop: 8,
+  },
+  scannerWrapper: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    padding: 32,
+  },
+  openScannerButton: {
+    width: "100%",
+    marginTop: "auto",
+  },
+  closeScannerButton: {
+    width: "100%",
+  },
+});
