@@ -4,12 +4,12 @@ import {
   NewStudentDto,
   Student,
   studentActions,
-  studentAPI,
 } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { ActivityFilterService } from "../../services/ActivityFilterService";
+import { studentAPI } from "../../services/ApiService";
 
 export const useStudent = () => {
   const [loading, setLoading] = useState(false);

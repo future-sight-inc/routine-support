@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
 const createConfig = (baseURL: string) => {
   return {
@@ -21,12 +21,9 @@ const onRejected = (error: AxiosError) => {
   return Promise.reject(error);
 };
 
-export const apiClient = axios.create(
-  createConfig(process.env.NX_WEB_API_ENDPOINT || "")
-);
-apiClient.interceptors.response.use(onFulfilled, onRejected);
+export const createClient = (baseUrl: string): AxiosInstance => {
+  const client = axios.create(createConfig(baseUrl));
+  client.interceptors.response.use(onFulfilled, onRejected);
 
-export const mobileApiClient = axios.create(
-  createConfig("http://192.168.2.7:3000/api")
-);
-mobileApiClient.interceptors.response.use(onFulfilled, onRejected);
+  return client;
+};

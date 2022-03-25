@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 
 import {
   studentActions,
-  studentAPI,
   StudentLoginDto,
 } from "@routine-support/domains";
 import { LanguageEnum } from "@routine-support/types";
 import { useTranslation } from "react-i18next";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { studentAPI } from "../../services/ApiService";
 
 export const useStudent = () => {
   const dispatch = useAppDispatch();

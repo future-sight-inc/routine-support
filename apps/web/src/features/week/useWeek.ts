@@ -5,7 +5,6 @@ import {
   DateInfo,
   getCurrentDateInfo,
   weekActions,
-  weekAPI,
   WeekNumber,
   YearNumber,
 } from "@routine-support/domains";
@@ -14,6 +13,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
 import { useSavedActivityFilter } from "../../hooks/useSavedActivityFilter";
 import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";
+import { weekAPI } from "../../services/ApiService";
 
 export const useWeek = () => {
   const [loading, setLoading] = useState(false);
