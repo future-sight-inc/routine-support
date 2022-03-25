@@ -5,10 +5,10 @@ import {
   Activity as ActivityType,
   ClockTypeEnum,
 } from "@routine-support/domains";
-import { stringifyTime } from "@routine-support/utils";
 import { Button, Icon, Layout, Text } from "@ui-kitten/components";
-import { Image } from "react-native";
-import AnalogClock from "react-native-clock-analog";
+import { Image, StyleSheet } from "react-native";
+
+import { Clock, ClockSizeEnum } from "../../../../../../components/Clock";
 
 interface CurrentActivityProps {
   activity: ActivityType;
@@ -28,45 +28,27 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
   };
 
   return (
-    <Layout
-      style={{
-        padding: 16,
-        flex: 1,
-        flexDirection: "row",
-      }}
-    >
+    <Layout style={styles.wrapper}>
       <Image
         source={{
           uri: activity.pictogram,
         }}
-        style={{ width: "50%", height: 200 }}
+        style={styles.image}
       />
-      <Layout style={{ marginLeft: 16, width: "50%", paddingRight: 16 }}>
-        <Text category="h5" style={{ marginBottom: 8, textAlign: "center" }}>
+      <Layout style={styles.infoWrapper}>
+        <Text category="h5" style={styles.name}>
           {activity.name}
         </Text>
-        {clockType === ClockTypeEnum.Digital && (
-          <Text
-            category="s1"
-            appearance="hint"
-            style={{ textAlign: "center", fontSize: 18 }}
-          >
-            {stringifyTime(activity.start)}-{stringifyTime(activity.end)}
-          </Text>
-        )}
-        {clockType === ClockTypeEnum.Analog && (
-          <Layout style={{ flexDirection: "row", justifyContent: "center" }}>
-            <AnalogClock
-              colorHour="#000000"
-              colorMinutes="#000000"
-              hour={activity.start.hours()}
-              minutes={activity.start.minutes()}
-              size={110}
-            />
-          </Layout>
-        )}
+        <Layout style={styles.clockWrapper}>
+          <Clock
+            start={activity.start}
+            end={activity.end}
+            type={clockType}
+            size={ClockSizeEnum.Large}
+          />
+        </Layout>
         <Button
-          style={{ marginTop: "auto" }}
+          style={styles.confirmButton}
           onPress={handleConfirmActivity}
           disabled={confirmed}
           accessoryLeft={
@@ -75,8 +57,21 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
               name="checkmark-outline"
             />
           }
-        ></Button>
+        />
       </Layout>
     </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    padding: 16,
+    flex: 1,
+    flexDirection: "row",
+  },
+  image: { width: "50%", height: 200 },
+  infoWrapper: { marginLeft: 16, width: "50%", paddingRight: 16 },
+  name: { marginBottom: 8, textAlign: "center" },
+  clockWrapper: { flexDirection: "row", justifyContent: "center" },
+  confirmButton: { marginTop: "auto" },
+});
