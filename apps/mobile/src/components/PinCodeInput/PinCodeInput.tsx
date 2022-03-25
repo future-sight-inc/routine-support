@@ -1,26 +1,41 @@
 import React, { useEffect, useState } from "react";
 
-import { Icon, Layout, Text } from "@ui-kitten/components";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Icon,
+  Layout,
+  StyleService,
+  Text,
+  useStyleSheet,
+  useTheme,
+} from "@ui-kitten/components";
+import { useTranslation } from "react-i18next";
+import { TouchableOpacity, View } from "react-native";
 
 const MAX_PIN_LENGTH = 4;
+const DIGITS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
 interface pinCodeInputProps {
   pinCode: string;
   onSuccessInput: () => void;
   onClose: () => void;
 }
+
 export const PinCodeInput: React.FC<pinCodeInputProps> = ({
   pinCode,
   onSuccessInput,
   onClose,
 }) => {
+  const theme = useTheme();
+  const styles = useStyleSheet(themedStyles);
+  const { t } = useTranslation();
+
   const [value, setValue] = useState("");
 
-  const onNumberBtnPress = (digit: number) => {
+  const onNumberButtonPress = (digit: number) => {
     setValue(value + digit);
   };
 
-  const onBackspaceBtnPress = () => {
+  const onBackspaceButtonPress = () => {
     setValue(value.slice(0, -1));
   };
 
@@ -37,58 +52,63 @@ export const PinCodeInput: React.FC<pinCodeInputProps> = ({
 
   return (
     <Layout style={styles.container}>
+      <Text category="h4" style={styles.title}>
+        {t<string>("Enter PIN to log out")}
+      </Text>
       <Layout style={styles.dotsContainer}>
         {Array(MAX_PIN_LENGTH)
           .fill("")
-          .map((__, index) =>
-            index < value.length ? (
-              <View style={styles.activeDot}></View>
-            ) : (
-              <View style={styles.dot}></View>
-            )
-          )}
-
+          .map((__, index) => (
+            <View
+              style={{
+                ...styles.dot,
+                backgroundColor:
+                  index < value.length ? "black" : theme["color-basic-600"],
+              }}
+            />
+          ))}
         <TouchableOpacity
           style={styles.backspace}
-          onPress={onBackspaceBtnPress}
+          onPress={onBackspaceButtonPress}
         >
           <Icon
             style={styles.backspaceIcon}
-            fill="#8F9BB3"
+            fill={theme["color-basic-600"]}
             name="backspace-outline"
           />
         </TouchableOpacity>
       </Layout>
       <Layout style={styles.keyboard}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((i) => (
+        {DIGITS.map((digit) => (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => onNumberBtnPress(i)}
+            onPress={() => onNumberButtonPress(digit)}
           >
-            <Text category="h2">{i}</Text>
+            <Text category="h2">{digit}</Text>
           </TouchableOpacity>
         ))}
       </Layout>
-      <Layout style={{ flexDirection: "row", justifyContent: "center" }}>
+      <Layout style={styles.closeIconWrapper}>
         <Icon
           onPress={onClose}
-          style={{ width: 64, height: 64, marginTop: 96 }}
+          style={styles.closeIcon}
           name="close-square-outline"
-          fill="#8F9BB3"
+          fill={theme["color-basic-600"]}
         />
       </Layout>
     </Layout>
   );
 };
 
-const styles = StyleSheet.create({
+const themedStyles = StyleService.create({
   container: {
     position: "absolute",
     top: 0,
     bottom: 0,
-    paddingTop: 120,
+    paddingTop: 100,
     backgroundColor: "white",
   },
+  title: { width: "100%", textAlign: "center", marginBottom: 16 },
   dotsContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -96,14 +116,6 @@ const styles = StyleSheet.create({
     marginBottom: 48,
   },
   dot: {
-    backgroundColor: "#8F9BB3",
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    margin: 10,
-  },
-  activeDot: {
-    backgroundColor: "black",
     width: 24,
     height: 24,
     borderRadius: 12,
@@ -131,6 +143,8 @@ const styles = StyleSheet.create({
 
     borderRadius: 50,
     margin: 5,
-    backgroundColor: "#eeeeee",
+    backgroundColor: "color-basic-300",
   },
+  closeIconWrapper: { flexDirection: "row", justifyContent: "center" },
+  closeIcon: { width: 64, height: 64, marginTop: 96 },
 });
