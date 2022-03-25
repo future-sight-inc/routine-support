@@ -1,5 +1,6 @@
+import { LanguageEnum } from "@routine-support/types";
 import { model, Schema } from "mongoose";
-import { Student } from "./types";
+import { ClockTypeEnum, Student } from "./types";
 
 const studentSchema = new Schema(
   {
@@ -14,6 +15,21 @@ const studentSchema = new Schema(
     color: {
       type: String,
       required: true,
+    },
+    pinCode: {
+      type: String,
+      required: true,
+      default: "0000",
+    },
+    clockType: {
+      type: Number,
+      required: true,
+      default: ClockTypeEnum.Analog,
+    },
+    language: {
+      type: String,
+      required: true,
+      default: LanguageEnum.En,
     },
   },
   { versionKey: false }

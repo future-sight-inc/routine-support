@@ -1,4 +1,5 @@
 import { Activity, RepeatTypeEnum, Student } from "@routine-support/domains";
+import { LanguageEnum } from "@routine-support/types";
 import { parseTime } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 import * as uuid from "uuid";
@@ -68,6 +69,9 @@ export const createMockStudent = (): Student => {
     name: "",
     coachId: "",
     color: "#bebebe",
+    pinCode: "",
+    clockType: 0,
+    language: LanguageEnum.En,
   };
 };
 
@@ -87,7 +91,10 @@ export const getMondayFromWeekInfo = ({
   weekNumber: number;
   year: number;
 }): Moment => {
-  const monday = moment().year(year).week(weekNumber + 1).day("Monday");
+  const monday = moment()
+    .year(year)
+    .week(weekNumber + 1)
+    .day("Monday");
 
   return monday;
 };

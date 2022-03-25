@@ -23,3 +23,9 @@ export type AuthQrCodeData = {
 export type AuthQrCode = {
   data: AuthQrCodeData;
 };
+
+export enum LanguageEnum {
+  En = "en",
+  Nl = "nl",
+  Ru = "ru",
+}

@@ -27,6 +27,6 @@ export const apiClient = axios.create(
 apiClient.interceptors.response.use(onFulfilled, onRejected);
 
 export const mobileApiClient = axios.create(
-  createConfig(process.env.NX_MOBILE_API_ENDPOINT || "")
+  createConfig("http://192.168.2.7:3000/api")
 );
 mobileApiClient.interceptors.response.use(onFulfilled, onRejected);

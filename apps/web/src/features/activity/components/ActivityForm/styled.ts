@@ -20,12 +20,16 @@ export const Row = styled.div`
 
 export const SubmitButton = styled(Button).attrs(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
-}))``;
+}))`
+  width: 120px;
+`;
 
 export const DeleteButton = styled(Button).attrs(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
   fontColor: theme.palette.secondary.contrastText,
-}))``;
+}))`
+  width: 120px;
+`;
 
 export const ButtonsWrapper = styled.div`
   display: flex;

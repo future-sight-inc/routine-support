@@ -11,19 +11,20 @@ export const Day: React.FC = () => {
   } = useDay();
   const {
     models: { student },
+    operations: { logout },
   } = useStudent();
 
-  if (!day) {
+  if (!day || !student) {
     // ! add loader
     return null;
   }
 
   return (
     <UncontrolledDay
-      studentId={student?._id}
+      student={student}
       day={day}
       loading={loading}
-      actions={{ getDay, confirmActivity }}
+      actions={{ getDay, confirmActivity, logout }}
     />
   );
 };
