@@ -16,6 +16,7 @@ describe("getActivityColor", () => {
   it("Activity has assigned student", () => {
     const activity = createMockActivity();
     const student = createMockStudent();
+
     addStudentToActivity(activity, student);
 
     expect(getActivityColor(activity, [student])).toBe(student.color);

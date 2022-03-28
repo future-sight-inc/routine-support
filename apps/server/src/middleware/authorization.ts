@@ -16,7 +16,7 @@ export const authorization = (
   try {
     const data = jwt.verify(token, process.env.SECRET_KEY || "") as User;
 
-    return UserModel.findOne({ email: data.email }, (err, result) => {
+    return UserModel.findOne({email: data.email}, (err, result) => {
       if (err || !result) {
         res.clearCookie("access_token");
 

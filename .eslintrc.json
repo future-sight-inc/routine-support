@@ -34,6 +34,18 @@
       }
     ],
     "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": "error"
+    "unused-imports/no-unused-vars": "error",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": ["const", "let"], "next": "*" },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let"],
+        "next": ["const", "let"]
+      }
+    ],
+    "newline-before-return": "error",
+    "object-curly-spacing": ["error", "never"],
+    "indent": ["error", 2]
   }
 }

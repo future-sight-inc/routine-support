@@ -23,6 +23,7 @@ const onRejected = (error: AxiosError) => {
 
 export const createClient = (baseUrl: string): AxiosInstance => {
   const client = axios.create(createConfig(baseUrl));
+
   client.interceptors.response.use(onFulfilled, onRejected);
 
   return client;

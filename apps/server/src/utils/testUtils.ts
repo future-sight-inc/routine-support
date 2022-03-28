@@ -46,6 +46,7 @@ export const createMockFilter = ({
   isCommon?: boolean;
 }): ActivityFilterQuery => {
   let activityFilterQuery: ActivityFilterQuery = [];
+
   activityFilterQuery = activityFilterQuery.concat(students);
 
   if (isCommon) {
@@ -60,6 +61,7 @@ export const addStudentToActivity = (
   studentId: Id
 ): ActivitySchema => {
   const updatedStudents = activity.students;
+
   updatedStudents.push(studentId);
 
   return { ...activity, students: updatedStudents };

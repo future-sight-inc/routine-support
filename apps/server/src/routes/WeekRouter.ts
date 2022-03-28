@@ -23,6 +23,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
     coachId: res.locals.user._id,
     repeatType: RepeatTypeEnum.None,
   }).lean();
+
   activitiesWithoutRepeat = filterActivities(
     activitiesWithoutRepeat,
     parsedFilter
@@ -32,6 +33,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
     coachId: res.locals.user._id,
     repeatType: { $gt: RepeatTypeEnum.None },
   }).lean();
+
   activitiesWithRepeat = filterActivities(activitiesWithRepeat, parsedFilter);
   activitiesWithRepeat = repeatActivities(activitiesWithRepeat, currentWeek);
 

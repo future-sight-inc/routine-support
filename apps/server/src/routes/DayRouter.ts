@@ -8,6 +8,7 @@ dayRouter.get("/:date", async (req, res) => {
   const { date } = req.params;
 
   let activities = await ActivityModel.find({ date }).lean();
+
   activities = filterActivitiesForStudent(activities, res.locals.student._id);
 
   return res.status(200).send({ date, activities });
