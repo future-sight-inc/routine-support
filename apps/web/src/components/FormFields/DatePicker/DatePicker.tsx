@@ -1,23 +1,17 @@
 import React from "react";
 
 import { TextField } from "@mui/material";
-import { Moment } from "moment";
 import moment from "moment";
 
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-interface DatePickerProps extends FormFieldProps {
-  minDate?: Moment;
-}
-
-export const DatePicker: React.FC<DatePickerProps> = ({
+export const DatePicker: React.FC<FormFieldProps> = ({
   name,
   label,
   control,
   required,
   disabled,
-  minDate,
 }) => {
   return (
     <Controller

@@ -2,22 +2,16 @@ import React from "react";
 
 import { TextField } from "@mui/material";
 import { parseTime, stringifyTime } from "@routine-support/utils";
-import { Moment } from "moment";
 
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-interface TimePickerProps extends FormFieldProps {
-  minTime?: Moment;
-}
-
-export const TimePicker: React.FC<TimePickerProps> = ({
+export const TimePicker: React.FC<FormFieldProps> = ({
   name,
   control,
   label,
   required,
   disabled,
-  minTime,
 }) => {
   return (
     <Controller
