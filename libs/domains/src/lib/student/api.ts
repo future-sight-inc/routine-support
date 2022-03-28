@@ -1,6 +1,5 @@
-import { apiClient, mobileApiClient } from "@routine-support/api-client";
 import { Id } from "@routine-support/types";
-import { AxiosResponse } from "axios";
+import { AxiosInstance, AxiosResponse } from "axios";
 import {
   CoachId,
   NewStudentDto,
@@ -9,9 +8,9 @@ import {
   StudentLoginDto,
 } from "./types";
 
-export const studentAPI = {
+export const createStudentAPI = (client: AxiosInstance) => ({
   login: async (data: StudentLoginDto): Promise<Student> => {
-    const request: AxiosResponse<StudentDto> = await mobileApiClient.post(
+    const request: AxiosResponse<StudentDto> = await client.post(
       "/student/login",
       data
     );
@@ -19,19 +18,17 @@ export const studentAPI = {
     return request.data as Student;
   },
   logout: async () => {
-    const request: AxiosResponse = await mobileApiClient.get("/student/logout");
+    const request: AxiosResponse = await client.get("/student/logout");
 
     return request.data;
   },
   getStudent: async (): Promise<Student> => {
-    const request: AxiosResponse<StudentDto> = await mobileApiClient.get(
-      "/student"
-    );
+    const request: AxiosResponse<StudentDto> = await client.get("/student");
 
     return request.data as Student;
   },
   createStudent: async (data: NewStudentDto) => {
-    const request: AxiosResponse<StudentDto> = await apiClient.post(
+    const request: AxiosResponse<StudentDto> = await client.post(
       "/student",
       data
     );
@@ -39,7 +36,7 @@ export const studentAPI = {
     return request;
   },
   updateStudent: async ({ _id, ...data }: StudentDto): Promise<Student> => {
-    const request: AxiosResponse<StudentDto> = await apiClient.put(
+    const request: AxiosResponse<StudentDto> = await client.put(
       `/student/${_id}`,
       data
     );
@@ -47,15 +44,15 @@ export const studentAPI = {
     return request.data as Student;
   },
   deleteStudent: async (id: Id): Promise<AxiosResponse> => {
-    const request = await apiClient.delete(`/student/${id}`);
+    const request = await client.delete(`/student/${id}`);
 
     return request;
   },
   getStudents: async (coachId: CoachId): Promise<Student[]> => {
-    const request: AxiosResponse<StudentDto[]> = await apiClient.get(
+    const request: AxiosResponse<StudentDto[]> = await client.get(
       `/student/coach/${coachId}`
     );
 
     return request.data as Student[];
   },
-};
+});

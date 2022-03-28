@@ -50,7 +50,7 @@ export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
   return (
     <>
       <MainLayout
-        title={t<string>("Day schedule")}
+        title={t<string>("Today")}
         accessoryRight={
           <TopNavigationAction
             icon={(props) => (
@@ -105,7 +105,7 @@ export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
               return (
                 <Activity
                   activity={item}
-                  passed={item.end.isBefore(currentTime)}
+                  isPassed={item.end.isBefore(currentTime)}
                   clockType={student.clockType}
                   key={index}
                 />

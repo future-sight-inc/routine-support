@@ -2,13 +2,13 @@ import { useState } from "react";
 
 import {
   userActions,
-  userAPI,
   UserLoginDto,
   UserRegisterDto,
   UserUpdateDto,
 } from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { userAPI } from "../../services/ApiService";
 
 export const useUser = () => {
   const dispatch = useAppDispatch();

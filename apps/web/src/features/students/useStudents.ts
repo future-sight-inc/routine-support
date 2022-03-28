@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-import { studentAPI, studentsActions } from "@routine-support/domains";
+import { studentsActions } from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { studentAPI } from "../../services/ApiService";
 
 export const useStudents = () => {
   // * Необходимо состояние без скачков при рендере с false на true

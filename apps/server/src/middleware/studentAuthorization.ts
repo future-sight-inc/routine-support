@@ -15,7 +15,7 @@ export const studentAuthorization = (
   }
 
   try {
-    const data = jwt.verify(token, process.env.NX_SECRET_KEY || "") as User;
+    const data = jwt.verify(token, process.env.SECRET_KEY || "") as User;
 
     return StudentModel.findById(data._id, (err, result) => {
       if (err || !result) {

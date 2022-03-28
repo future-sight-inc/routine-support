@@ -4,6 +4,6 @@ import * as jwt from "jsonwebtoken";
 export const getAuthCookie = (user: User): { name: string; token: string } => {
   return {
     name: "access_token",
-    token: jwt.sign(JSON.stringify(user), process.env.NX_SECRET_KEY || ""),
+    token: jwt.sign(JSON.stringify(user), process.env.SECRET_KEY || ""),
   };
 };

@@ -1,12 +1,11 @@
-import { apiClient, mobileApiClient } from "@routine-support/api-client";
 import { Id } from "@routine-support/types";
-import { AxiosResponse } from "axios";
+import { AxiosInstance, AxiosResponse } from "axios";
 import { Activity } from "./types";
 import { formatActivity } from "./utils";
 
-export const activityAPI = {
+export const createActivityAPI = (client: AxiosInstance) => ({
   createActivity: async (data: Activity): Promise<AxiosResponse> => {
-    const request: AxiosResponse = await apiClient.post(
+    const request: AxiosResponse = await client.post(
       "/activity",
       formatActivity(data)
     );
@@ -17,7 +16,7 @@ export const activityAPI = {
     _id,
     ...data
   }: Activity): Promise<AxiosResponse> => {
-    const request: AxiosResponse = await apiClient.put(
+    const request: AxiosResponse = await client.put(
       `/activity/${_id}`,
       formatActivity(data)
     );
@@ -25,15 +24,15 @@ export const activityAPI = {
     return request;
   },
   deleteActivity: async (id: Id): Promise<AxiosResponse> => {
-    const request: AxiosResponse = await apiClient.delete(`/activity/${id}`);
+    const request: AxiosResponse = await client.delete(`/activity/${id}`);
 
     return request;
   },
   confirmActivity: async ({ id, timestamp }: { id: Id; timestamp: number }) => {
-    const request: AxiosResponse = await mobileApiClient.put(
+    const request: AxiosResponse = await client.put(
       `/activity/confirm/${id}/${timestamp}`
     );
 
     return request;
   },
-};
+});

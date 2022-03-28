@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 
 import {
   Activity,
-  activityAPI,
   dayActions,
-  dayAPI,
 } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 import { useDispatch } from "react-redux";
 
 import { useAppSelector } from "../../app/hooks";
+import { activityAPI, dayAPI } from "../../services/ApiService";
 
 export const useDay = () => {
   const dispatch = useDispatch();
