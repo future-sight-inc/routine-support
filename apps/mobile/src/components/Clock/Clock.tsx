@@ -20,23 +20,23 @@ interface ClockProps {
 
 export const Clock: React.FC<ClockProps> = ({ start, end, type, size }) => {
   switch (type) {
-    case ClockTypeEnum.Digital:
-      return (
-        <Text category="s1" appearance="hint">
-          {stringifyTime(start)}-{stringifyTime(end)}
-        </Text>
-      );
-    case ClockTypeEnum.Analog:
-      return (
-        <AnalogClock
-          colorHour="black"
-          colorMinutes="black"
-          hour={start.hours()}
-          minutes={start.minutes()}
-          size={size}
-        />
-      );
-    default:
-      return null;
+  case ClockTypeEnum.Digital:
+    return (
+      <Text category="s1" appearance="hint">
+        {stringifyTime(start)}-{stringifyTime(end)}
+      </Text>
+    );
+  case ClockTypeEnum.Analog:
+    return (
+      <AnalogClock
+        colorHour="black"
+        colorMinutes="black"
+        hour={start.hours()}
+        minutes={start.minutes()}
+        size={size}
+      />
+    );
+  default:
+    return null;
   }
 };
