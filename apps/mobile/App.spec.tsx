@@ -14,5 +14,6 @@ import App from "./App.tsx";
 it("renders correctly", () => {
   renderer.create(<App />);
   const { getByTestId } = render(<App />);
+
   expect(getByTestId("heading")).toHaveTextContent("Welcome");
 });

@@ -14,10 +14,12 @@ userRouter.post("/", async (req, res) => {
     (err, result) => {
       if (err) {
         console.log(err);
+
         return;
       }
 
       const cookie = getAuthCookie(result);
+
       return res.status(200).cookie(cookie.name, cookie.token).send(result);
     }
   );

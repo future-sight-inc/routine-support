@@ -14,6 +14,7 @@ export const useLoginComponent = (actions: LoginActions) => {
 
   const checkPermission = async () => {
     const { status } = await BarCodeScanner.requestPermissionsAsync();
+
     setHasPermission(status === "granted");
   };
 

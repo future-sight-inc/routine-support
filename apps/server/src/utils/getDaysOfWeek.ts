@@ -12,6 +12,7 @@ export const getDaysOfWeek = ({
 
   for (let i = 1; i < 7; i++) {
     const day = moment(monday).add(i, "days");
+
     days.push(day);
   }
 

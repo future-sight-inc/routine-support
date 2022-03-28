@@ -32,6 +32,7 @@ export const groupActivities = (
       addActivityToGroup(groupOfActivity, activity);
     } else {
       const newGroup = makeGroupFromActivity(activity);
+
       groups.push(newGroup);
     }
   });

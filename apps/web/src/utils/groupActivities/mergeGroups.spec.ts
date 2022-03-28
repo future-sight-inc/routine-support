@@ -15,6 +15,7 @@ describe("mergeGroups", () => {
       start: "13:00",
       end: "15:00",
     });
+
     addActivityToGroup(group, activity);
     const groups = [group];
 
@@ -30,6 +31,7 @@ describe("mergeGroups", () => {
       start: "13:00",
       end: "15:00",
     });
+
     addActivityToGroup(group1, activity1);
 
     const activity2 = createMockActivityFromTimePeriod({
@@ -40,6 +42,7 @@ describe("mergeGroups", () => {
       start: "13:00",
       end: "15:00",
     });
+
     addActivityToGroup(group2, activity2);
 
     const groups = [group1, group2];

@@ -36,7 +36,7 @@ export const StudentsPicker: React.FC<StudentsPickerProps> = ({
     models: { opened },
     operations: { handleOpenChange, handleChange },
   } = useStudentsPickerComponent(defaultOpened, actions);
-  
+
   const { t } = useTranslation()
 
   return (

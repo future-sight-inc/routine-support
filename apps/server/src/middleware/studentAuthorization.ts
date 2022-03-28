@@ -5,8 +5,7 @@ import * as jwt from "jsonwebtoken";
 export const studentAuthorization = (
   req: Request,
   res: Response,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  next: Function
+  next: () => unknown
 ) => {
   const token = req.cookies.access_token;
 

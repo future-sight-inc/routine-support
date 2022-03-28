@@ -6,7 +6,7 @@ import styled from "styled-components";
 export const Modal = styled(DefaultModal)``;
 
 export const ModalContent = styled(Card)`
-  width: 400px;
+  width: 420px;
   min-height: 80px;
   ${({ theme }) => theme.position.absoluteCenter}
   outline: none;

@@ -32,6 +32,7 @@ export const useStudentFormComponent = (
 
   const onDelete = async () => {
     const id = getValues()._id;
+
     if (window.confirm("Confirm your action") && id) {
       await actions.deleteStudent(id);
 

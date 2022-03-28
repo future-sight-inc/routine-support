@@ -14,6 +14,7 @@ export const LoginForm: React.FC = () => {
   } = useUser();
 
   const history = useHistory();
+
   useEffect(() => {
     if (isLogged) {
       return history.push(LinkService.home());

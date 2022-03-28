@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Activity, User } from "@routine-support/domains";
-import moment, { Moment } from "moment";
+import moment from "moment";
 import { useForm } from "react-hook-form";
 
 import { ActivityFormActions } from "./ActivityForm";
@@ -14,40 +14,13 @@ export const useActivityFormComponent = (
   const defaultValues = {
     date: moment(),
     start: moment(),
-    end: moment().add(1, "hours"),
     ...activity,
   };
+  const { control, handleSubmit, formState, getValues } = useForm<Activity>({
+    defaultValues,
+  });
 
-  const { control, handleSubmit, formState, watch, getValues, setValue } =
-    useForm({
-      defaultValues,
-      // ! Баг с типизацией
-      // eslint-disable-next-line
-    } as any);
-
-  const [minStartTime, setMinStartTime] = useState<Moment | undefined>(
-    moment()
-  );
   const [submitError, setSubmitError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (activity?.start) {
-      setMinStartTime(activity?.start);
-    }
-  }, [activity]);
-
-  const [minEndTime, setMinEndTime] = useState<Moment | undefined>();
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      switch (name) {
-        case "start":
-          setMinEndTime(value.start);
-          setValue("end", value.start);
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [watch]);
 
   const onSubmit = handleSubmit(async (values) => {
     try {
@@ -73,6 +46,7 @@ export const useActivityFormComponent = (
 
   const onDelete = async () => {
     const id = getValues()._id;
+
     if (window.confirm("Confirm your action") && id) {
       await actions.deleteActivity(id);
 
@@ -83,9 +57,6 @@ export const useActivityFormComponent = (
   return {
     models: {
       control,
-      minDate: moment(),
-      minStartTime,
-      minEndTime,
       isDirty: formState.isDirty,
       isSubmitting: formState.isSubmitting,
       submitError,

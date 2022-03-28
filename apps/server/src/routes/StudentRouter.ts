@@ -13,6 +13,7 @@ studentRouter.post("/", authorization, async (req, res) => {
     (err, result) => {
       if (err) {
         console.log(err);
+
         return;
       }
 

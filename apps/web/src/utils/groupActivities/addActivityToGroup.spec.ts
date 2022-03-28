@@ -18,6 +18,7 @@ describe("addActivityToGroup", () => {
       start: GROUP_START,
       end: GROUP_END,
     });
+
     addActivityToGroup(group, activity);
 
     expect(stringifyTime(group.start)).toBe(GROUP_START);
@@ -34,6 +35,7 @@ describe("addActivityToGroup", () => {
       start: "13:30",
       end: "15:00",
     });
+
     addActivityToGroup(group, activity);
 
     expect(stringifyTime(group.start)).toBe(stringifyTime(activity.start));
@@ -49,6 +51,7 @@ describe("addActivityToGroup", () => {
       start: "13:00",
       end: "15:00",
     });
+
     addActivityToGroup(group, activity);
 
     expect(stringifyTime(group.end)).toBe(stringifyTime(activity.end));
@@ -64,6 +67,7 @@ describe("addActivityToGroup", () => {
       start: "13:00",
       end: "15:00",
     });
+
     addActivityToGroup(group, activity);
 
     expect(stringifyTime(group.start)).toBe(stringifyTime(activity.start));

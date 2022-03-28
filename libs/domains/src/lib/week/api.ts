@@ -26,11 +26,7 @@ export const createWeekAPI = (client: AxiosInstance) => ({
 
     const response: AxiosResponse<WeekDto> = await client.get(
       `/week/${year}/${week}`,
-      {
-        params: {
-          filter: filterParam,
-        },
-      }
+      { params: { filter: filterParam } }
     );
 
     return formatWeekDto(response.data);
