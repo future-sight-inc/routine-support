@@ -6,6 +6,8 @@ import moment from "moment";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
+const HTML_DATE_FORMAT = "YYYY-MM-DD";
+
 export const DatePicker: React.FC<FormFieldProps> = ({
   name,
   label,
@@ -27,10 +29,9 @@ export const DatePicker: React.FC<FormFieldProps> = ({
             shrink: true,
           }}
           {...field}
-          // todo make more clear
-          value={value.format("YYYY-MM-DD")}
+          value={value.format(HTML_DATE_FORMAT)}
           onChange={(event) =>
-            onChange(moment(event.target.value, "YYYY-MM-DD"))
+            onChange(moment(event.target.value, HTML_DATE_FORMAT))
           }
           error={Boolean(fieldState.error)}
         />
