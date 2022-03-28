@@ -14,7 +14,8 @@
       "extends": ["plugin:@nrwl/nx/typescript"],
       "rules": {
         "@typescript-eslint/no-unused-vars": ["off"],
-        "@typescript-eslint/explicit-module-boundary-types": ["off"]
+        "@typescript-eslint/explicit-module-boundary-types": ["off"],
+        "object-curly-spacing": ["error", "always"]
       }
     },
     {
@@ -45,8 +46,6 @@
         "next": ["const", "let"]
       }
     ],
-    "newline-before-return": "error",
-    "object-curly-spacing": ["error", "never"],
-    "indent": ["error", 2]
+    "newline-before-return": "error"
   }
 }
