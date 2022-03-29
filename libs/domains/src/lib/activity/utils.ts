@@ -19,7 +19,7 @@ export const formatActivityDto = (activityDto: ActivityDto): Activity => {
   return {
     ...activityDto,
     date: parseDate(activityDto.date),
-    start: parseTime(activityDto.start, parseDate(activityDto.date)),
-    end: parseTime(activityDto.end, parseDate(activityDto.date)),
+    start: parseTime(activityDto.start),
+    end: parseTime(activityDto.end),
   };
 };

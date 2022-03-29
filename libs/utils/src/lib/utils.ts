@@ -27,12 +27,9 @@ export const serialize = (obj: {
 
 export const parseDate = (date: DateString) => moment(date, DATE_FORMAT);
 
-export const parseTime = (
-  time: TimeString,
-  basisDate: Moment = moment()
-): Moment => {
+export const parseTime = (time: TimeString): Moment => {
   const [hours, minutes] = time.split(":");
-  const newDate = moment(basisDate).set({
+  const newDate = moment().set({
     hours: Number(hours),
     minutes: Number(minutes),
   });

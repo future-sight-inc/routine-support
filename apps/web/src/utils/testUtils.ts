@@ -35,8 +35,8 @@ export const createMockActivityFromTimePeriod = ({
     name: "",
     pictogram: "",
     date: MOCK_DATE,
-    start: parseTime(start, MOCK_DATE),
-    end: parseTime(end, MOCK_DATE),
+    start: parseTime(start),
+    end: parseTime(end),
     repeatType: RepeatTypeEnum.None,
     students: [],
     confirmation: {},
@@ -51,8 +51,8 @@ export const createGroupFromTimePeriod = ({
   end: string;
 }) => {
   return {
-    start: parseTime(start, MOCK_DATE),
-    end: parseTime(end, MOCK_DATE),
+    start: parseTime(start),
+    end: parseTime(end),
     activities: [],
   };
 };
