@@ -28,6 +28,16 @@ export const WEEK_BETWEEN_YEARS = [
   "02.01.2022",
 ];
 
+export const WEEK_INCLUDES_SPECIAL_DATE = [
+  "26.02.2024",
+  "27.02.2024",
+  "28.02.2024",
+  "29.02.2024",
+  "01.02.2024",
+  "02.3.2024",
+  "03.3.2024",
+];
+
 export const WEEK_OF_MONTH_INFO = {
   weekNumber: 10,
   yearNumber: 2022,

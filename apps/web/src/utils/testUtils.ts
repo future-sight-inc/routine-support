@@ -1,21 +1,21 @@
 import { Activity, RepeatTypeEnum, Student } from "@routine-support/domains";
 import { LanguageEnum } from "@routine-support/types";
-import { parseTime } from "@routine-support/utils";
+import { parseDate, parseTime } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 import * as uuid from "uuid";
 
+const MOCK_DATE = parseDate("19.06.1999");
+
 // todo move testUtils into module
 export const createMockActivity = (): Activity => {
-  const mockDate = moment();
-
   return {
     _id: "",
     coachId: "",
     name: "",
     pictogram: "",
-    date: mockDate,
-    start: mockDate,
-    end: mockDate,
+    date: MOCK_DATE,
+    start: MOCK_DATE,
+    end: MOCK_DATE,
     repeatType: RepeatTypeEnum.None,
     students: [],
     confirmation: {},
@@ -29,16 +29,14 @@ export const createMockActivityFromTimePeriod = ({
   start: string;
   end: string;
 }) => {
-  const mockDate = moment();
-
   return {
     _id: "",
     coachId: "",
     name: "",
     pictogram: "",
-    date: mockDate,
-    start: parseTime(start, mockDate),
-    end: parseTime(end, mockDate),
+    date: MOCK_DATE,
+    start: parseTime(start),
+    end: parseTime(end),
     repeatType: RepeatTypeEnum.None,
     students: [],
     confirmation: {},
@@ -52,11 +50,9 @@ export const createGroupFromTimePeriod = ({
   start: string;
   end: string;
 }) => {
-  const mockDate = moment();
-
   return {
-    start: parseTime(start, mockDate),
-    end: parseTime(end, mockDate),
+    start: parseTime(start),
+    end: parseTime(end),
     activities: [],
   };
 };

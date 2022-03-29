@@ -3,6 +3,7 @@ import { Moment } from "moment";
 import { repeatActivityEveryDay } from "./repeatActivityEveryDay";
 import { repeatActivityThisMonth } from "./repeatActivityThisMonth";
 import { repeatActivityThisWeek } from "./repeatActivityThisWeek";
+import { repeatActivityThisYear } from "./repeatActivityThisYear";
 
 export const repeatActivity = (
   activity: Activity,
@@ -15,6 +16,8 @@ export const repeatActivity = (
       return repeatActivityThisWeek(activity, currentWeek);
     case RepeatTypeEnum.EveryMonth:
       return repeatActivityThisMonth(activity, currentWeek);
+    case RepeatTypeEnum.EveryYear:
+      return repeatActivityThisYear(activity, currentWeek);
     default:
       return;
   }

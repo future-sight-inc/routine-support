@@ -8,6 +8,7 @@ export enum RepeatTypeEnum {
   EveryDay,
   EveryWeek,
   EveryMonth,
+  EveryYear,
 }
 
 // * Приходится хранить отдельный тип для схемы из-за того
