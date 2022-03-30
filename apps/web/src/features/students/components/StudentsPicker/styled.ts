@@ -1,13 +1,8 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const Wrapper = styled.div<{ opened?: boolean }>`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  ${({ opened }) =>
-    opened &&
-    css`
-      padding-bottom: 16px;
-    `}
+  padding-top: 8px;
 `;
