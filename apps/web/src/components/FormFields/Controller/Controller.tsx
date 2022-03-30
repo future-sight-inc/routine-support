@@ -6,6 +6,7 @@ import {
   Controller as FormController,
   UseFormStateReturn,
 } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { FormFieldProps } from "../types";
 import * as S from "./styled";
@@ -25,12 +26,13 @@ export const Controller: React.FC<ControllerProps> = ({
   label,
   required,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <FormController
       name={name}
       control={control}
-      // ! Добавить локализацию
-      rules={{ required: required && `Обязательное поле` }}
+      rules={{ required: required && t<string>("Required field") }}
       render={({ field, fieldState, formState }) => (
         <S.Wrapper>
           {label && (

@@ -24,6 +24,8 @@
   "Completed": "Прошли",
   "Pending": "Ожидаются",
 
+  "Required field": "Обязательное поле",
+
   "Activity name": "Название события",
   "Activity date": "Дата",
   "Activity start time": "Начало",

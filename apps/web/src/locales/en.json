@@ -24,6 +24,8 @@
   "Completed": "Completed",
   "Pending": "Pending",
 
+  "Required field": "Required field",
+
   "Activity name": "Activity title",
   "Activity date": "Date",
   "Activity start time": "Start",
