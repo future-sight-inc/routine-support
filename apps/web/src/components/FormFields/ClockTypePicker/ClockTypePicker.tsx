@@ -1,10 +1,10 @@
 import React from "react";
 
-import { ClockPicker as UncontrolledClockPicker } from "../../ClockPicker";
+import { ClockTypePicker as UncontrolledClockTypePicker } from "../../ClockTypePicker";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-export const ClockPicker: React.FC<FormFieldProps> = ({
+export const ClockTypePicker: React.FC<FormFieldProps> = ({
   name,
   control,
   required,
@@ -21,7 +21,7 @@ export const ClockPicker: React.FC<FormFieldProps> = ({
       label={label}
       helperText={helperText}
       render={({ field }) => (
-        <UncontrolledClockPicker
+        <UncontrolledClockTypePicker
           value={field.value}
           onChange={field.onChange}
         />

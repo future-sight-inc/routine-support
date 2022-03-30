@@ -9,7 +9,7 @@ import {
 import { ClockTypeEnum } from "@routine-support/domains";
 import { useTranslation } from "react-i18next";
 
-export const ClockPicker: React.FC<RadioGroupProps> = ({ ...props }) => {
+export const ClockTypePicker: React.FC<RadioGroupProps> = ({ ...props }) => {
   const { t } = useTranslation();
 
   return (

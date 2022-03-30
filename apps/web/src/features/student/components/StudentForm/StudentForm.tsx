@@ -2,7 +2,7 @@ import React from "react";
 
 import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
-import { ClockPicker } from "apps/web/src/components/FormFields/ClockPicker";
+import { ClockTypePicker } from "apps/web/src/components/FormFields/ClockTypePicker";
 import { LanguagePicker } from "apps/web/src/components/FormFields/LanguagePicker";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { useTranslation } from "react-i18next";
@@ -52,7 +52,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           control={control}
           label={t("Preferred language")}
         />
-        <ClockPicker
+        <ClockTypePicker
           name="clockType"
           control={control}
           label={t("Clock type")}
