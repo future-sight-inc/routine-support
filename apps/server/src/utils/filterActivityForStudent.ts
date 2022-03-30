@@ -5,9 +5,7 @@ export const filterActivityForStudent = (
   activity: ActivitySchema,
   studentId: Id
 ): boolean => {
-  const isCommonActivity = !activity.students.length;
-
-  if (isCommonActivity) {
+  if (activity.isCommon) {
     return true;
   }
 

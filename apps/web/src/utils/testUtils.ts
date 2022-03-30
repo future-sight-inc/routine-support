@@ -17,6 +17,7 @@ export const createMockActivity = (): Activity => {
     start: MOCK_DATE,
     end: MOCK_DATE,
     repeatType: RepeatTypeEnum.None,
+    isCommon: true,
     students: [],
     confirmation: {},
   };
@@ -28,7 +29,7 @@ export const createMockActivityFromTimePeriod = ({
 }: {
   start: string;
   end: string;
-}) => {
+}): Activity => {
   return {
     _id: "",
     coachId: "",
@@ -38,6 +39,7 @@ export const createMockActivityFromTimePeriod = ({
     start: parseTime(start),
     end: parseTime(end),
     repeatType: RepeatTypeEnum.None,
+    isCommon: true,
     students: [],
     confirmation: {},
   };
@@ -74,10 +76,9 @@ export const createMockStudent = (): Student => {
 export const addStudentToActivity = (
   activity: Activity,
   student: Student
-): Activity => {
+): void => {
   activity.students.push(student._id);
-
-  return activity;
+  activity.isCommon = false;
 };
 
 export const getMondayFromWeekInfo = ({

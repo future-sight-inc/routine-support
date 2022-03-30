@@ -29,7 +29,13 @@ const activitySchema = new Schema(
     },
     repeatType: {
       type: Number,
+      required: true,
       default: RepeatTypeEnum.None,
+    },
+    isCommon: {
+      type: Schema.Types.Boolean,
+      required: true,
+      default: false,
     },
     students: {
       type: Schema.Types.Array,
