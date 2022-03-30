@@ -61,7 +61,6 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           name="pinCode"
           control={control}
           label={t("PIN code")}
-          defaultValue="0000"
           inputProps={{ inputMode: "numeric", pattern: "[0-9]{4}" }}
           fullWidth
           required
