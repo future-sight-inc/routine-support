@@ -1,4 +1,4 @@
-{ 
+{
   "Create": "Create",
   "Update": "Update",
   "Delete": "Delete",
@@ -15,7 +15,7 @@
   "Link to register": "No account yet? Sign up here",
   "Link to sign in": "Already have an account? Sign in here",
   "Logout confirm message": "Are you sure you want to log out?",
-  
+
   "Calendar": "Calendar",
 
   "Activity": "Activity",
@@ -34,6 +34,7 @@
   "Search": "Search...",
 
   "Repeat type": "Repeat",
+  "Activity type": "Activity type",
   "Every day": "Every day",
   "Every week": "Every week",
   "Every month": "Every month",
@@ -56,4 +57,3 @@
 
   "Rights info": "Future Sight Inc. 2022. All rights reserved"
 }
-

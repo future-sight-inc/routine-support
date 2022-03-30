@@ -15,7 +15,7 @@
   "Link to register": "Нет аккаунта? Зарегистрироваться",
   "Link to sign in": "Уже есть аккаунт? Вход",
   "Logout confirm message": "Вы уверены, что хотите выйти?",
-  
+
   "Calendar": "Календарь",
 
   "Activity": "Событие",
@@ -34,6 +34,7 @@
   "Search": "Поиск...",
 
   "Repeat type": "Повторять",
+  "Activity type": "Тип активности",
   "Every day": "Каждый день",
   "Every week": "Каждую неделю",
   "Every month": "Каждый месяц",

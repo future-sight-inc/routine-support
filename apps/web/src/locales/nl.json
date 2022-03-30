@@ -1,4 +1,4 @@
-{ 
+{
   "Create": "Maken",
   "Update": "Bijwerken",
   "Delete": "Verwijderen",
@@ -15,7 +15,7 @@
   "Link to register": "Nog geen account? Meld u hier aan",
   "Link to sign in": "Heeft u al een account? Log hier in",
   "Logout confirm message": "Weet u zeker dat u wilt uitloggen?",
-  
+
   "Calendar": "Kalender",
 
   "Activity": "Activiteit",
@@ -34,6 +34,7 @@
   "Search": "Search...",
 
   "Repeat type": "Herhaal",
+  "Activity type": "Activiteitstype",
   "Every day": "Elke dag",
   "Every week": "Elke week",
   "Every month": "Elke maand",
