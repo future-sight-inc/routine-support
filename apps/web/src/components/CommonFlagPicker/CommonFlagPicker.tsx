@@ -13,11 +13,11 @@ export const CommonFlagPicker: React.FC<RadioGroupProps> = ({ ...props }) => {
 
   return (
     <RadioGroup {...props} defaultValue={true} row>
-      <FormControlLabel value={true} control={<Radio />} label={t("Common")} />
+      <FormControlLabel value={true} control={<Radio />} label={t("Common activity")} />
       <FormControlLabel
         value={false}
         control={<Radio />}
-        label={t("Individual")}
+        label={t("Individual activity")}
       />
     </RadioGroup>
   );

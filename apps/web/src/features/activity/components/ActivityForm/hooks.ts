@@ -14,6 +14,7 @@ export const useActivityFormComponent = (
   const defaultValues = {
     date: moment(),
     start: moment(),
+    end: moment().add("hours", 1),
     isCommon: true,
     ...activity,
   };

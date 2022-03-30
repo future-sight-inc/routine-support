@@ -41,14 +41,15 @@
   "Never": "Никогда",
 
   "Common": "Общие",
-  "Individual activity": "Индивидуальная активность",
+  "Common activity": "Общая",
+  "Individual activity": "Индивидуальная",
   "Choose students": "Выберите студента или студентов",
 
   "Student": "Студент",
   "Students": "Студенты",
 
   "Modify student": "Редактирование студента",
-  "Add student": "Создание студента",
+  "Add student": "Добавить студента",
   "Confirm student delete": "Подтвердите удаление",
   "No students": "Пока нет ни одного студента",
 
