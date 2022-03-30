@@ -25,7 +25,7 @@ export const useActivityFormComponent = (
     setValue,
     setError,
     watch,
-  } = useForm<Activity>({
+  } = useForm({
     defaultValues,
   });
 
@@ -36,12 +36,15 @@ export const useActivityFormComponent = (
   );
 
   useEffect(() => {
+    // ! баг в react-hook-form
     const subscription = (watch as any)((value, { name }) => {
       if (name === "isCommon") {
         setShouldShowStudent(!value.isCommon);
+        // ! баг в react-hook-form
         (setError as any)("students", null);
 
         if (value.isCommon) {
+          // ! баг в react-hook-form
           (setValue as any)("students", []);
         }
       }
