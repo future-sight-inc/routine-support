@@ -10,7 +10,7 @@ export const useStudentFormComponent = (
   actions: StudentFormActions
 ) => {
   const { control, handleSubmit, formState, getValues } = useForm({
-    defaultValues: student ? student : {},
+    defaultValues: { pinCode: "0000", ...student },
   });
   const [submitError, setSubmitError] = useState<string | null>(null);
 

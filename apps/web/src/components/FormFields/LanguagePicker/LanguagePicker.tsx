@@ -10,6 +10,7 @@ export const LanguagePicker: React.FC<FormFieldProps> = ({
   required,
   disabled,
   label,
+  helperText,
 }) => {
   return (
     <Controller
@@ -18,6 +19,7 @@ export const LanguagePicker: React.FC<FormFieldProps> = ({
       required={required}
       disabled={disabled}
       label={label}
+      helperText={helperText}
       render={({ field }) => (
         <UncontrolledLanguagePicker
           value={field.value}

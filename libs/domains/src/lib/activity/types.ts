@@ -22,6 +22,7 @@ export type ActivitySchema = {
   start: TimeString;
   end: TimeString;
   repeatType: RepeatTypeEnum;
+  isCommon: boolean;
   students: Id[];
   confirmation: ConfirmationInfo;
 };
@@ -40,6 +41,7 @@ export type Activity = {
   start: Moment;
   end: Moment;
   repeatType: RepeatTypeEnum;
+  isCommon: boolean;
   students: Id[];
   confirmation: ConfirmationInfo;
 };

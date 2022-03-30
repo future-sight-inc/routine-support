@@ -1,4 +1,4 @@
-{ 
+{
   "Create": "Maken",
   "Update": "Bijwerken",
   "Delete": "Verwijderen",
@@ -15,7 +15,7 @@
   "Link to register": "Nog geen account? Meld u hier aan",
   "Link to sign in": "Heeft u al een account? Log hier in",
   "Logout confirm message": "Weet u zeker dat u wilt uitloggen?",
-  
+
   "Calendar": "Kalender",
 
   "Activity": "Activiteit",
@@ -23,6 +23,8 @@
   "Activity status": "Activiteitsstatus",
   "Completed": "Voltooid",
   "Pending": "In behandeling",
+
+  "Required field": "Verplicht veld",
 
   "Activity name": "Activiteitstitel",
   "Activity date": "Datum",
@@ -34,17 +36,23 @@
   "Search": "Search...",
 
   "Repeat type": "Herhaal",
+  "Activity type": "Activiteitstype",
   "Every day": "Elke dag",
   "Every week": "Elke week",
   "Every month": "Elke maand",
   "Never": "Nooit",
 
   "Common": "Algemeen",
-  "Individual activity": "Individuele activiteit",
+  "Common activity": "Algemeen",
+  "Individual activity": "Individuele",
   "Choose students": "Kies student(en)",
 
   "Student": "Student",
   "Students": "Studenten",
+  "Clock type": "Kloktype",
+  "Digital": "Digitaal",
+  "Analog": "Analoog",
+  "PIN code": "PIN code",
 
   "Modify student": "Wijzig leerling",
   "Add student": "Leerling toevoegen",
@@ -56,4 +64,3 @@
 
   "Rights info": "Future Sight Inc. 2022. Alle rechten voorbehouden"
 }
-

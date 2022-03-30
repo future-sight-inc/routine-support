@@ -18,6 +18,7 @@ export const createMockActivityByDateString = (date: DateString): Activity => {
     start: parsedDate,
     end: parsedDate,
     name: "",
+    isCommon: true,
     repeatType: RepeatTypeEnum.None,
     confirmation: {},
     students: [],
@@ -32,6 +33,7 @@ export const createMockActivitySchema = (): ActivitySchema => {
     start: "",
     end: "",
     name: "",
+    isCommon: true,
     repeatType: RepeatTypeEnum.None,
     confirmation: {},
     students: [],
@@ -59,12 +61,11 @@ export const createMockFilter = ({
 export const addStudentToActivity = (
   activity: ActivitySchema,
   studentId: Id
-): ActivitySchema => {
+): void => {
   const updatedStudents = activity.students;
 
   updatedStudents.push(studentId);
-
-  return { ...activity, students: updatedStudents };
+  activity.isCommon = false;
 };
 
 export const createMockWeekFromDateStringArray = (

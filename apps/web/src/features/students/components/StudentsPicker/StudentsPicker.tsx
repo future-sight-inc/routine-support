@@ -1,15 +1,10 @@
 import React from "react";
 
-import {
-  Checkbox,
-  FormControlLabel,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { Chip, Menu } from "@mui/material";
 import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
-import { Select } from "apps/web/src/components/Select";
-import { useTranslation } from 'react-i18next';
+import { getStudentsByIds } from "apps/web/src/utils/getStudentsByIds";
+import { useTranslation } from "react-i18next";
 
 import { useStudentsPickerComponent } from "./hooks";
 import * as S from "./styled";
@@ -20,48 +15,62 @@ export interface StudentsPickerActions {
 }
 
 interface StudentsPickerProps {
-  opened?: boolean;
-  value?: Id[];
+  value: Id[];
   students: Student[];
   actions: StudentsPickerActions;
 }
 
 export const StudentsPicker: React.FC<StudentsPickerProps> = ({
-  opened: defaultOpened,
-  value,
+  value = [],
   students,
   actions,
 }) => {
   const {
-    models: { opened },
-    operations: { handleOpenChange, handleChange },
-  } = useStudentsPickerComponent(defaultOpened, actions);
+    models: { anchorEl, isMenuOpen },
+    operations: {
+      handleStudentAdd,
+      handleStudentDelete,
+      handleMenuOpen,
+      handleMenuClose,
+    },
+  } = useStudentsPickerComponent(value, actions);
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
-    <S.Wrapper opened={opened}>
-      <FormControlLabel
-        control={<Checkbox onChange={handleOpenChange} checked={opened} />}
-        label={t("Individual activity")}
-      />
-      {opened && (
-        <>
-          <Typography variant="body2">
-            {t("Choose students")}
-          </Typography>
-          <Select
-            value={value}
-            multiple
-            onChange={handleChange}
-            defaultValue={[]}
+    <S.Wrapper>
+      <S.OpenButton
+        onClick={handleMenuOpen}
+        disabled={value.length === students.length}
+      >
+        {t("Add student")}
+      </S.OpenButton>
+      <Menu anchorEl={anchorEl} open={isMenuOpen} onClose={handleMenuClose}>
+        {students.map((student) => (
+          <S.MenuItem
+            value={student._id}
+            selected={value.some((studentId) => studentId === student._id)}
+            onClick={() => handleStudentAdd(student._id)}
           >
-            {students.map((student) => (
-              <MenuItem value={student._id}>{student.name}</MenuItem>
-            ))}
-          </Select>
-        </>
-      )}
+            {student.name}
+          </S.MenuItem>
+        ))}
+      </Menu>
+      <S.StudentsWrapper>
+        {getStudentsByIds(students, value).map((student) => {
+          return (
+            <Chip
+              variant="outlined"
+              onDelete={(event) => {
+                event.stopPropagation();
+                handleStudentDelete(student._id);
+              }}
+              key={student._id}
+              label={student.name}
+            />
+          );
+        })}
+      </S.StudentsWrapper>
     </S.Wrapper>
   );
 };

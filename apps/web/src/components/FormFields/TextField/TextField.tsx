@@ -16,6 +16,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   control,
   required,
   disabled,
+  helperText,
   ...props
 }) => {
   return (
@@ -25,6 +26,7 @@ export const TextField: React.FC<TextFieldProps> = ({
       label={label}
       required={required}
       disabled={disabled}
+      helperText={helperText}
       render={({ field, fieldState }) => (
         <UncontrolledTextField
           error={Boolean(fieldState.error)}

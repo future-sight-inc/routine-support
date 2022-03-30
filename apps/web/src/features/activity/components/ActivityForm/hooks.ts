@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Activity, User } from "@routine-support/domains";
 import moment from "moment";
@@ -14,13 +14,45 @@ export const useActivityFormComponent = (
   const defaultValues = {
     date: moment(),
     start: moment(),
+    end: moment().add("hours", 1),
+    isCommon: true,
     ...activity,
   };
-  const { control, handleSubmit, formState, getValues } = useForm<Activity>({
+  const {
+    control,
+    handleSubmit,
+    formState,
+    getValues,
+    setValue,
+    setError,
+    watch,
+  } = useForm({
     defaultValues,
   });
 
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const [shouldShowStudents, setShouldShowStudent] = useState(
+    !defaultValues.isCommon
+  );
+
+  useEffect(() => {
+    // ! баг в react-hook-form
+    const subscription = (watch as any)((value, { name }) => {
+      if (name === "isCommon") {
+        setShouldShowStudent(!value.isCommon);
+        // ! баг в react-hook-form
+        (setError as any)("students", null);
+
+        if (value.isCommon) {
+          // ! баг в react-hook-form
+          (setValue as any)("students", []);
+        }
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   const onSubmit = handleSubmit(async (values) => {
     try {
@@ -60,6 +92,7 @@ export const useActivityFormComponent = (
       isDirty: formState.isDirty,
       isSubmitting: formState.isSubmitting,
       submitError,
+      shouldShowStudents,
     },
     operations: { handleSubmit: onSubmit, onDelete },
   };

@@ -1,22 +1,16 @@
 import React from "react";
 
-import { Select as UncontrolledSelect } from "../../Select";
+import { CommonFlagPicker as UncontrolledCommonFlagPicker } from "../../CommonFlagPicker";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-interface SelectProps extends FormFieldProps {
-  multiple?: boolean;
-}
-
-export const Select: React.FC<SelectProps> = ({
+export const CommonFlagPicker: React.FC<FormFieldProps> = ({
   name,
   control,
   required,
   disabled,
   label,
-  children,
-  multiple,
-  helperText
+  helperText,
 }) => {
   return (
     <Controller
@@ -27,13 +21,10 @@ export const Select: React.FC<SelectProps> = ({
       label={label}
       helperText={helperText}
       render={({ field }) => (
-        <UncontrolledSelect
+        <UncontrolledCommonFlagPicker
           value={field.value}
-          onChange={field.onChange}
-          multiple={multiple}
-        >
-          {children}
-        </UncontrolledSelect>
+          onChange={(event) => field.onChange(event.target.value === "true")}
+        />
       )}
     />
   );

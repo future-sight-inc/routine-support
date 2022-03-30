@@ -1,4 +1,4 @@
-{ 
+{
   "Create": "Create",
   "Update": "Update",
   "Delete": "Delete",
@@ -15,7 +15,7 @@
   "Link to register": "No account yet? Sign up here",
   "Link to sign in": "Already have an account? Sign in here",
   "Logout confirm message": "Are you sure you want to log out?",
-  
+
   "Calendar": "Calendar",
 
   "Activity": "Activity",
@@ -23,6 +23,8 @@
   "Activity status": "Activity status",
   "Completed": "Completed",
   "Pending": "Pending",
+
+  "Required field": "Required field",
 
   "Activity name": "Activity title",
   "Activity date": "Date",
@@ -34,17 +36,23 @@
   "Search": "Search...",
 
   "Repeat type": "Repeat",
+  "Activity type": "Activity type",
   "Every day": "Every day",
   "Every week": "Every week",
   "Every month": "Every month",
   "Never": "Never",
 
   "Common": "Common",
-  "Individual activity": "Individual activity",
+  "Common activity": "Common",
+  "Individual activity": "Individual",
   "Choose students": "Choose student(s)",
 
   "Student": "Student",
   "Students": "Students",
+  "Clock type": "Clock type",
+  "Digital": "Digital",
+  "Analog": "Analog",
+  "PIN code": "PIN code",
 
   "Modify student": "Modify student",
   "Add student": "Add student",
@@ -56,4 +64,3 @@
 
   "Rights info": "Future Sight Inc. 2022. All rights reserved"
 }
-
