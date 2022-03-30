@@ -9,4 +9,5 @@ export interface FormFieldProps {
   required?: boolean;
   disabled?: boolean;
   placeholder?: string;
+  helperText?: string;
 }

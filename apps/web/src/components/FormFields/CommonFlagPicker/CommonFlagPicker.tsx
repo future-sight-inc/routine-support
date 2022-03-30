@@ -10,6 +10,7 @@ export const CommonFlagPicker: React.FC<FormFieldProps> = ({
   required,
   disabled,
   label,
+  helperText,
 }) => {
   return (
     <Controller
@@ -18,6 +19,7 @@ export const CommonFlagPicker: React.FC<FormFieldProps> = ({
       required={required}
       disabled={disabled}
       label={label}
+      helperText={helperText}
       render={({ field }) => (
         <UncontrolledCommonFlagPicker
           value={field.value}

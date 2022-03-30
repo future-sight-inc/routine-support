@@ -51,6 +51,7 @@
     "i18next-browser-languagedetector": "^6.1.4",
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^11.2.6",
+    "material-ui-popup-state": "^2.0.0",
     "moment": "^2.29.1",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",

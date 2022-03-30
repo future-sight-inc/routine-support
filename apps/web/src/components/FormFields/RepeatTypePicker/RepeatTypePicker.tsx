@@ -10,6 +10,7 @@ export const RepeatTypePicker: React.FC<FormFieldProps> = ({
   required,
   disabled,
   label,
+  helperText,
 }) => {
   return (
     <Controller
@@ -18,6 +19,7 @@ export const RepeatTypePicker: React.FC<FormFieldProps> = ({
       required={required}
       disabled={disabled}
       label={label}
+      helperText={helperText}
       render={({ field }) => (
         <UncontrolledRepeatTypePicker
           value={field.value}

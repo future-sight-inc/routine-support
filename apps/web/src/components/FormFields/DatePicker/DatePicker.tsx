@@ -14,6 +14,7 @@ export const DatePicker: React.FC<FormFieldProps> = ({
   control,
   required,
   disabled,
+  helperText,
 }) => {
   return (
     <Controller
@@ -22,6 +23,7 @@ export const DatePicker: React.FC<FormFieldProps> = ({
       label={label}
       required={required}
       disabled={disabled}
+      helperText={helperText}
       render={({ field: { value, onChange, ...field }, fieldState }) => (
         <TextField
           type="date"
