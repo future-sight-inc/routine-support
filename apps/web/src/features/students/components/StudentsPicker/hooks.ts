@@ -1,17 +1,42 @@
-import { useEffect } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 
 import { StudentsPickerActions } from "./StudentsPicker";
 
-export const useStudentsPickerComponent = (actions: StudentsPickerActions) => {
+export const useStudentsPickerComponent = (
+  studentIds: string[],
+  actions: StudentsPickerActions
+) => {
   useEffect(() => {
     actions.getStudents();
   }, []);
 
-  // ! Баг в Material
-  // eslint-disable-next-line
-  const handleChange = (event: any) => {
-    actions.onChange(event.target.value);
+  const handleStudentDelete = (idToDelete: string) => {
+    const updatedIds = studentIds.filter((id) => id !== idToDelete);
+
+    actions.onChange(updatedIds);
+  };
+  const handleStudentAdd = (idToAdd: string) => {
+    studentIds.push(idToAdd);
+    actions.onChange(studentIds);
+    handleMenuClose();
   };
 
-  return { operations: { handleChange } };
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const isMenuOpen = Boolean(anchorEl);
+  const handleMenuOpen = (event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  return {
+    models: { anchorEl, isMenuOpen },
+    operations: {
+      handleStudentDelete,
+      handleStudentAdd,
+      handleMenuOpen,
+      handleMenuClose,
+    },
+  };
 };
