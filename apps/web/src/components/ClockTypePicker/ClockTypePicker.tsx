@@ -1,29 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 
-import {
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  RadioGroupProps,
-} from "@mui/material";
 import { ClockTypeEnum } from "@routine-support/domains";
 import { useTranslation } from "react-i18next";
 
-export const ClockTypePicker: React.FC<RadioGroupProps> = ({ ...props }) => {
+import analogIcon from "./analog.png";
+import digitalIcon from "./digital.png";
+import * as S from "./styled";
+
+interface ClockTypePickerProps {
+  value: ClockTypeEnum;
+  onChange: (value: ClockTypeEnum) => void;
+}
+
+export const ClockTypePicker: React.FC<ClockTypePickerProps> = ({
+  value: defaultValue,
+  onChange,
+}) => {
   const { t } = useTranslation();
+  const [value, setValue] = useState(defaultValue || ClockTypeEnum.Analog);
+
+  const handleSelect = (value: ClockTypeEnum) => {
+    setValue(value);
+    onChange(value);
+  };
 
   return (
-    <RadioGroup {...props} defaultValue={ClockTypeEnum.Digital} row>
-      <FormControlLabel
-        value={ClockTypeEnum.Digital}
-        control={<Radio />}
-        label={t("Digital")}
-      />
-      <FormControlLabel
-        value={ClockTypeEnum.Analog}
-        control={<Radio />}
-        label={t("Analog")}
-      />
-    </RadioGroup>
+    <S.Wrapper>
+      <S.LabelWrapper
+        isChecked={value === ClockTypeEnum.Analog}
+        onClick={() => handleSelect(ClockTypeEnum.Analog)}
+      >
+        <S.LabelText>{t("Digital")}</S.LabelText>
+        <S.LabelIcon src={digitalIcon} />
+      </S.LabelWrapper>
+      <S.LabelWrapper
+        isChecked={value === ClockTypeEnum.Digital}
+        onClick={() => handleSelect(ClockTypeEnum.Digital)}
+      >
+        <S.LabelText>{t("Analog")}</S.LabelText>
+        <S.LabelIcon src={analogIcon} />
+      </S.LabelWrapper>
+    </S.Wrapper>
   );
 };

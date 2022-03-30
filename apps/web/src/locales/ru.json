@@ -49,6 +49,10 @@
 
   "Student": "Студент",
   "Students": "Студенты",
+  "Clock type": "Тип часов",
+  "Digital": "Цифровые",
+  "Analog": "Со стрелками",
+  "PIN code": "PIN код",
 
   "Modify student": "Редактирование студента",
   "Add student": "Добавить студента",

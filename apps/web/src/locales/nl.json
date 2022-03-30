@@ -49,6 +49,10 @@
 
   "Student": "Student",
   "Students": "Studenten",
+  "Clock type": "Kloktype",
+  "Digital": "Digitaal",
+  "Analog": "Analoog",
+  "PIN code": "PIN code",
 
   "Modify student": "Wijzig leerling",
   "Add student": "Leerling toevoegen",
@@ -60,4 +64,3 @@
 
   "Rights info": "Future Sight Inc. 2022. Alle rechten voorbehouden"
 }
-
