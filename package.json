@@ -48,6 +48,7 @@
     "express": "4.17.1",
     "express-bearer-token": "^2.4.0",
     "i18next": "^21.6.12",
+    "i18next-browser-languagedetector": "^6.1.4",
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^11.2.6",
     "moment": "^2.29.1",
