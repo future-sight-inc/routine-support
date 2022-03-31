@@ -2,8 +2,6 @@
 
 Веб-приложение программного комплекса **Routine Support**
 
-<!-- todo Поправить текст про запуск, добавить информацию про открытие хрома без защиты -->
-
 ```bash
 open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security
 ```

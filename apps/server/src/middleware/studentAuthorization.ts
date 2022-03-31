@@ -23,7 +23,8 @@ export const studentAuthorization = (
         return res.status(401).send(err);
       }
 
-      res.locals.student = result;
+      // todo Вынести в функцию
+      res.locals.student = { ...result, _id: String(result._id) };
 
       return next();
     });

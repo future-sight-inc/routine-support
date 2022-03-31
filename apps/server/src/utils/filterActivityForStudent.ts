@@ -2,7 +2,7 @@ import { ActivitySchema, Student } from "@routine-support/domains";
 
 export const filterActivityForStudent = (
   activity: ActivitySchema,
-  student: Student
+  student: Pick<Student, "_id">
 ): boolean => {
   if (activity.isCommon) {
     return true;

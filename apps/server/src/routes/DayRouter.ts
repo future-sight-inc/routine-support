@@ -1,15 +1,36 @@
-import { ActivityModel } from "@routine-support/domains";
+import {
+  ActivityModel,
+  formatActivity,
+  formatActivityDto,
+} from "@routine-support/domains";
 import { Router } from "express";
+import { getDayScheduleActivities } from "../utils/getDayScheduleActivities";
 import { filterActivitiesForStudent } from "../utils/filterActivitiesForStudent";
 
 export const dayRouter = Router();
 
 dayRouter.get("/:date", async (req, res) => {
   const { date } = req.params;
+  const studentId = res.locals.student._id;
 
-  let activities = await ActivityModel.find({ date }).lean();
+  console.log(studentId);
 
-  activities = filterActivitiesForStudent(activities, res.locals.student._id);
+  const activities = await ActivityModel.find({ date }).lean();
 
-  return res.status(200).send({ date, activities });
+  console.log(activities.length);
+
+  const studentActivities = filterActivitiesForStudent(activities, {
+    _id: studentId,
+  });
+
+  console.log(studentActivities.length);
+
+  const parsedActivities = studentActivities.map(formatActivityDto);
+  const dayScheduleActivities = getDayScheduleActivities(parsedActivities);
+
+  console.log(dayScheduleActivities.length);
+
+  return res
+    .status(200)
+    .send({ date, activities: dayScheduleActivities.map(formatActivity) });
 });

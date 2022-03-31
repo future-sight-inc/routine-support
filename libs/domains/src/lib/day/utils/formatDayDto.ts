@@ -1,6 +1,5 @@
-import { formatActivityDto } from "@routine-support/domains";
+import { Day, DayDto, formatActivityDto } from "@routine-support/domains";
 import { parseDate } from "@routine-support/utils";
-import { Day, DayDto } from "./types";
 
 export const formatDayDto = (dayDto: DayDto): Day => {
   const day: Day = {

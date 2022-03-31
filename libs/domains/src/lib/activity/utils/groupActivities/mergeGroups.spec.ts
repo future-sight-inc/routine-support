@@ -1,9 +1,8 @@
 import {
-  createGroupFromTimePeriod,
+  createActivitiesGroupFromTimePeriod,
   createMockActivityFromTimePeriod,
 } from "@routine-support/test-utils";
-
-import { addActivityToGroup } from "./addActivityToGroup";
+import { addActivityToGroup } from "../addActivityToGroup";
 import { mergeGroups } from "./mergeGroups";
 
 describe("mergeGroups", () => {
@@ -12,7 +11,7 @@ describe("mergeGroups", () => {
       start: "12:00",
       end: "16:00",
     });
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "13:00",
       end: "15:00",
     });
@@ -28,7 +27,7 @@ describe("mergeGroups", () => {
       start: "12:00",
       end: "16:00",
     });
-    const group1 = createGroupFromTimePeriod({
+    const group1 = createActivitiesGroupFromTimePeriod({
       start: "13:00",
       end: "15:00",
     });
@@ -39,7 +38,7 @@ describe("mergeGroups", () => {
       start: "12:00",
       end: "16:00",
     });
-    const group2 = createGroupFromTimePeriod({
+    const group2 = createActivitiesGroupFromTimePeriod({
       start: "13:00",
       end: "15:00",
     });

@@ -9,5 +9,15 @@ export const shouldAddActivityToGroup = (
   const isActivityEndInGroupPeriod =
     group.start < activity.end && activity.end <= group.end;
 
-  return isActivityStartInGroupPeriod || isActivityEndInGroupPeriod;
+  const isGroupStartInActivityPeriod =
+    activity.start <= group.start && group.start < activity.end;
+  const isGroupEndInActivityPeriod =
+    activity.start < group.end && group.end <= activity.end;
+
+  return (
+    isActivityStartInGroupPeriod ||
+    isActivityEndInGroupPeriod ||
+    isGroupStartInActivityPeriod ||
+    isGroupEndInActivityPeriod
+  );
 };
