@@ -1,17 +1,20 @@
 import CheckIcon from "@mui/icons-material/Check";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import styled from "styled-components";
 
-export const CheckedButton = styled(Button)`
+export const CheckedWrapper = styled.div`
   position: absolute;
   bottom: 4px;
-  right: 8px;
+  right: 4px;
   color: black;
   transition: box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  border-radius: 5px;
 
   &:hover {
     box-shadow: black 0px 1px 1px, black 0px 0px 0px 1px;
-    background: none;
   }
 `;
 

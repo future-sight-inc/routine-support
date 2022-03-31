@@ -28,12 +28,12 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
     <div
       onClick={(event: MouseEvent<HTMLDivElement>) => event.stopPropagation()}
     >
-      <S.CheckedButton onClick={handleModalOpen}>
+      <S.CheckedWrapper onClick={handleModalOpen}>
         <S.CheckedIcon />
         <S.Checked>
           {confirmedStudents.length}/{assignedStudents.length}
         </S.Checked>
-      </S.CheckedButton>
+      </S.CheckedWrapper>
 
       <Modal opened={modalOpened} onClose={handleModalClose}>
         <S.ModalTitle>{t("Activity status")}</S.ModalTitle>
