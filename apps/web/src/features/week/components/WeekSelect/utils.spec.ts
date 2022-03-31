@@ -1,4 +1,4 @@
-import { getMondayFromWeekInfo } from "apps/web/src/utils/testUtils";
+import { getMondayFromWeekInfo } from "@routine-support/test-utils";
 
 import { addWeekToMoment, subtractWeekFromMoment } from "./utils";
 

@@ -51,17 +51,29 @@ export const Time = styled(Typography)`
 
   &:container(max-width: 100px) {
     visibility: hidden;
+    height: 0;
   }
 
-  &:container(min-width: 160px) {
-    font-size: 16px;
+  &:container(max-height: 100px) {
+    visibility: hidden;
+    height: 0;
+  }
+
+  &:container(min-width: 140px) {
+    visibility: visible;
   }
 `;
 
 export const Name = styled(Typography)`
   font-weight: bold;
 
-  &:container(max-width: 160px) {
+  &:container(max-width: 140px) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &:container(max-height: 100px) {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

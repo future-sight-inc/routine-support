@@ -1,7 +1,8 @@
 import {
   createGroupFromTimePeriod,
   createMockActivityFromTimePeriod,
-} from "../testUtils";
+} from "@routine-support/test-utils";
+
 import { shouldAddActivityToGroup } from "./shouldAddActivityToGroup";
 
 describe("shouldAddActivityToGroup", () => {

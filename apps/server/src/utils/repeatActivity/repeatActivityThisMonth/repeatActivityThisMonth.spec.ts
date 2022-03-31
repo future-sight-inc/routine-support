@@ -1,9 +1,9 @@
-import { stringifyDate } from "@routine-support/utils";
-import { WEEK_OF_MONTH } from "../../mocks";
 import {
   createMockActivityByDateString,
   createMockWeekFromDateStringArray,
-} from "../../testUtils";
+} from "@routine-support/test-utils";
+import { stringifyDate } from "@routine-support/utils";
+import { WEEK_OF_MONTH } from "../../mocks";
 import { repeatActivityThisMonth } from "./repeatActivityThisMonth";
 
 describe("repeatActivityThisMonth", () => {
