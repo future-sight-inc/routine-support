@@ -1,30 +1,58 @@
 import CheckIcon from "@mui/icons-material/Check";
 import { Typography } from "@mui/material";
-import styled from "styled-components";
+import styled from "styled-container-query";
 
-export const CheckedWrapper = styled.div`
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  color: black;
-  transition: box-shadow 0.2s;
-  display: flex;
-  align-items: center;
-  padding: 2px 4px;
-  border-radius: 5px;
-
-  &:hover {
-    box-shadow: black 0px 1px 1px, black 0px 0px 0px 1px;
-  }
-`;
+export const ConfirmedNumber = styled(Typography)``;
 
 export const CheckedIcon = styled(CheckIcon)`
   font-size: 18px;
   margin-right: 2px;
 `;
 
-export const Checked = styled(Typography)`
-  font-size: 16px;
+export const ConfirmationWrapper = styled.div`
+  color: ${({ theme }) => theme.palette.common.black};
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  border-radius: ${({ theme }) => theme.borderRadius}px;
+  overflow: hidden;
+  width: auto;
+
+  background: rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: rgba(0, 0, 0, 0);
+  }
+`;
+
+export const Wrapper = styled.div`
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+  &:container(max-width: 50px) {
+    margin-left: auto;
+    box-sizing: auto;
+
+    & ${ConfirmationWrapper} {
+      width: 24px;
+      height: 18px;
+      justify-content: center;
+    }
+
+    & ${ConfirmedNumber} {
+      font-size: 0px;
+      width: 0px;
+    }
+
+    & ${CheckedIcon} {
+      margin: 0;
+      order: 2;
+      font-size: 14px;
+    }
+  }
 `;
 
 export const ModalContent = styled.div`
@@ -35,7 +63,9 @@ export const ModalContent = styled.div`
   border-radius: 5px;
 `;
 
-export const ModalTitle = styled(Typography).attrs(() => ({ variant: "h5" }))`
+export const ModalTitle = styled(Typography)`
+  font-size: 24px;
+  font-weight: medium;
   margin-bottom: 16px;
 `;
 
@@ -54,6 +84,5 @@ export const ListHeading = styled(Typography)`
   margin-bottom: 4px;
   font-weight: bold;
   background: ${({ theme }) => theme.palette.common.grey};
-  /* border-bottom: 1px solid ${({ theme }) => theme.border.color}; */
   padding: 8px;
 `;
