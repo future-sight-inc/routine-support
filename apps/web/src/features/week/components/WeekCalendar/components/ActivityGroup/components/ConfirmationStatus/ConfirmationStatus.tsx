@@ -25,15 +25,15 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div
+    <S.Wrapper
       onClick={(event: MouseEvent<HTMLDivElement>) => event.stopPropagation()}
     >
-      <S.CheckedButton onClick={handleModalOpen}>
+      <S.ConfirmationWrapper onClick={handleModalOpen}>
         <S.CheckedIcon />
-        <S.Checked>
+        <S.ConfirmedNumber>
           {confirmedStudents.length}/{assignedStudents.length}
-        </S.Checked>
-      </S.CheckedButton>
+        </S.ConfirmedNumber>
+      </S.ConfirmationWrapper>
 
       <Modal opened={modalOpened} onClose={handleModalClose}>
         <S.ModalTitle>{t("Activity status")}</S.ModalTitle>
@@ -52,6 +52,6 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
           </S.List>
         </S.ModalContent>
       </Modal>
-    </div>
+    </S.Wrapper>
   );
 };

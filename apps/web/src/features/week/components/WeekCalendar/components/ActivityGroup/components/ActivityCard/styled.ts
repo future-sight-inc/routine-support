@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import styled, { css } from "styled-components";
+import { css } from "styled-components";
+import styled from "styled-container-query";
 
 export const Wrapper = styled(Box)<{
   rowStart: number;
@@ -18,12 +19,17 @@ export const Wrapper = styled(Box)<{
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   margin: 0;
+
+  padding: 8px;
+
+  &:container(max-width: 100px) {
+    padding: 4px;
+  }
 
   ${({ theme }) => css`
     border-radius: ${theme.borderRadius}px;
-    padding: 8px;
   `}
 
   ${({ rowStart, marginTop, count, index, height, theme }) => css`
@@ -41,7 +47,23 @@ export const Wrapper = styled(Box)<{
 `;
 
 export const Time = styled(Typography)`
-  font-weight: bold;
+  font-size: 14px;
+
+  &:container(max-width: 100px) {
+    visibility: hidden;
+  }
+
+  &:container(min-width: 160px) {
+    font-size: 16px;
+  }
 `;
 
-export const Name = styled(Typography)``;
+export const Name = styled(Typography)`
+  font-weight: bold;
+
+  &:container(max-width: 160px) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+`;
