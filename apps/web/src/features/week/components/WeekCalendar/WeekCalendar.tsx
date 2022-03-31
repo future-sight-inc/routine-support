@@ -1,8 +1,7 @@
 import React, { createRef } from "react";
 
 import { Activity, Student, Week } from "@routine-support/domains";
-import { stringifyDate } from "@routine-support/utils";
-import { groupActivities } from "apps/web/src/utils/groupActivities";
+import { groupActivities, stringifyDate } from "@routine-support/utils";
 
 import { ActivityGroup } from "./components/ActivityGroup";
 import { useWeekCalendarComponent } from "./hooks";

@@ -1,5 +1,6 @@
 export { addStudentToActivity } from "./addStudentToActivity";
-export { createGroupFromTimePeriod } from "./createGroupFromTimePeriod";
+export { createActivitiesGroupFromTimePeriod } from "./createActivitiesGroupFromTimePeriod";
+export { createMockActivitiesGroup } from "./createMockActivitiesGroup";
 export { createMockActivity } from "./createMockActivity";
 export { createMockActivityByDateString } from "./createMockActivityByDateString";
 export { createMockActivityFromTimePeriod } from "./createMockActivityFromTimePeriod";

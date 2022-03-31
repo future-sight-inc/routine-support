@@ -1,5 +1,5 @@
 import {
-  createGroupFromTimePeriod,
+  createActivitiesGroupFromTimePeriod,
   createMockActivityFromTimePeriod,
 } from "@routine-support/test-utils";
 import { stringifyTime } from "@routine-support/utils";
@@ -14,7 +14,7 @@ describe("addActivityToGroup", () => {
     });
     const GROUP_START = "12:00";
     const GROUP_END = "15:00";
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: GROUP_START,
       end: GROUP_END,
     });
@@ -31,7 +31,7 @@ describe("addActivityToGroup", () => {
       start: "13:00",
       end: "14:00",
     });
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "13:30",
       end: "15:00",
     });
@@ -47,7 +47,7 @@ describe("addActivityToGroup", () => {
       start: "13:00",
       end: "16:00",
     });
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "13:00",
       end: "15:00",
     });
@@ -63,7 +63,7 @@ describe("addActivityToGroup", () => {
       start: "12:00",
       end: "16:00",
     });
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "13:00",
       end: "15:00",
     });

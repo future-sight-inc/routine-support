@@ -1,5 +1,5 @@
 import {
-  createGroupFromTimePeriod,
+  createActivitiesGroupFromTimePeriod,
   createMockActivityFromTimePeriod,
 } from "@routine-support/test-utils";
 
@@ -7,7 +7,7 @@ import { shouldAddActivityToGroup } from "./shouldAddActivityToGroup";
 
 describe("shouldAddActivityToGroup", () => {
   it("Group period includes start of activity", () => {
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "12:00",
       end: "15:00",
     });
@@ -20,7 +20,7 @@ describe("shouldAddActivityToGroup", () => {
   });
 
   it("End of group period equals start of activity. Should be falsy (design requirement)", () => {
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "12:00",
       end: "15:00",
     });
@@ -33,7 +33,7 @@ describe("shouldAddActivityToGroup", () => {
   });
 
   it("Group period includes end of activity", () => {
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "15:00",
       end: "17:00",
     });
@@ -46,7 +46,7 @@ describe("shouldAddActivityToGroup", () => {
   });
 
   it("Start of group period equals end of activity. Should be falsy (design requirement)", () => {
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "12:00",
       end: "15:00",
     });
@@ -59,7 +59,7 @@ describe("shouldAddActivityToGroup", () => {
   });
 
   it("Group period includes whole activity period", () => {
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "12:00",
       end: "16:00",
     });
@@ -72,7 +72,7 @@ describe("shouldAddActivityToGroup", () => {
   });
 
   it("Activity doesn't cross group period", () => {
-    const group = createGroupFromTimePeriod({
+    const group = createActivitiesGroupFromTimePeriod({
       start: "12:00",
       end: "13:00",
     });

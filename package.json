@@ -11,6 +11,7 @@
     "test": "nx test",
     "test:server": "nx test server",
     "test:web": "nx test web",
+    "test:utils": "nx test utils",
     "lint": "eslint '**/*.{ts,tsx}' --ignore-pattern node_modules/",
     "lint:write": "eslint '**/*.{ts,tsx}' --ignore-pattern node_modules/ --fix",
     "prepare": "npx husky install",

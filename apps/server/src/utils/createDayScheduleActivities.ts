@@ -3,6 +3,7 @@ import {
   ActivitySchema,
   formatActivityDto,
 } from "@routine-support/domains";
+import { groupActivities } from "@routine-support/utils";
 import { getHighPriorityActivityFromGroup } from "./getHighPriorityActivityFromGroup";
 
 export const createDayScheduleActivities = (
@@ -11,5 +12,7 @@ export const createDayScheduleActivities = (
   const parsedActivities: Activity[] = activities.map(formatActivityDto);
   const groups = groupActivities(parsedActivities);
 
-  return groups.map(getHighPriorityActivityFromGroup);
+  return groups
+    .map(getHighPriorityActivityFromGroup)
+    .filter(Boolean) as Activity[];
 };
