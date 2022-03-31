@@ -3,7 +3,7 @@ import { filterActivityForStudent } from "./filterActivityForStudent";
 
 export const filterActivitiesForStudent = (
   activities: ActivitySchema[],
-  student: Student
+  student: Pick<Student, "_id">
 ): ActivitySchema[] => {
   return activities.filter((activity) =>
     filterActivityForStudent(activity, student)

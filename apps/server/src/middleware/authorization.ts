@@ -2,6 +2,7 @@ import { User, UserModel } from "@routine-support/domains";
 import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
 
+// todo Сделать функцию создания middleware для авторизации
 export const authorization = (
   req: Request,
   res: Response,
@@ -23,7 +24,8 @@ export const authorization = (
         return res.status(401).send(err);
       }
 
-      res.locals.user = result;
+      // todo Вынести в функцию
+      res.locals.user = { ...result, _id: String(result._id) };
 
       return next();
     });
