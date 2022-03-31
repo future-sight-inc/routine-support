@@ -1,4 +1,3 @@
-export { groupActivities } from "./groupActivities";
 export { getMinutes } from "./getMinutes";
 export { indexOfTimeRange } from "./indexOfTimeRange";
 export { isToday } from "./isToday";

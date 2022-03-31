@@ -1,6 +1,6 @@
 import { ActivitiesGroup, Activity } from "@routine-support/domains";
+import { addActivityToGroup } from "../addActivityToGroup";
 
-import { addActivityToGroup } from "./addActivityToGroup";
 import { makeGroupFromActivity } from "./makeGroupFromActivity";
 import { mergeGroups } from "./mergeGroups";
 import { shouldAddActivityToGroup } from "./shouldAddActivityToGroup";

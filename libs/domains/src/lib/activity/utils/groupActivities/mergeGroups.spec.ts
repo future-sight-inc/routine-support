@@ -2,8 +2,7 @@ import {
   createActivitiesGroupFromTimePeriod,
   createMockActivityFromTimePeriod,
 } from "@routine-support/test-utils";
-
-import { addActivityToGroup } from "./addActivityToGroup";
+import { addActivityToGroup } from "../addActivityToGroup";
 import { mergeGroups } from "./mergeGroups";
 
 describe("mergeGroups", () => {

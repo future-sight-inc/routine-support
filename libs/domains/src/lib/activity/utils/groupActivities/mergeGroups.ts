@@ -1,6 +1,6 @@
 import { ActivitiesGroup } from "@routine-support/domains";
 
-import { addActivityToGroup } from "./addActivityToGroup";
+import { addActivityToGroup } from "../addActivityToGroup";
 
 export const mergeGroups = (groups: ActivitiesGroup[]) => {
   const baseGroup = groups[0];

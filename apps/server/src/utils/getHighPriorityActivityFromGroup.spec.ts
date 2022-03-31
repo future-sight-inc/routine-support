@@ -1,10 +1,10 @@
+import { addActivityToGroup } from "@routine-support/domains";
 import {
   addStudentToActivity,
   createMockActivitiesGroup,
   createMockActivity,
   createMockStudent,
 } from "@routine-support/test-utils";
-import { addActivityToGroup } from "libs/utils/src/lib/groupActivities/addActivityToGroup";
 import { getHighPriorityActivityFromGroup } from "./getHighPriorityActivityFromGroup";
 
 describe("getHighPriorityActivityFromGroup", () => {

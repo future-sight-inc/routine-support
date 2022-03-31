@@ -2,8 +2,8 @@ import {
   Activity,
   ActivitySchema,
   formatActivityDto,
+  groupActivities,
 } from "@routine-support/domains";
-import { groupActivities } from "@routine-support/utils";
 import { getHighPriorityActivityFromGroup } from "./getHighPriorityActivityFromGroup";
 
 export const createDayScheduleActivities = (
