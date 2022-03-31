@@ -1,4 +1,5 @@
-import { createMockActivityFromTimePeriod } from "../testUtils";
+import { createMockActivityFromTimePeriod } from "@routine-support/test-utils";
+
 import { groupActivities } from "./groupActivities";
 
 describe("groupActivities", () => {

@@ -33,10 +33,13 @@
     "constants": {
       "tags": []
     },
+    "domains": {
+      "tags": []
+    },
     "mobile": {
       "tags": []
     },
-    "domains": {
+    "test-utils": {
       "tags": []
     },
     "types": {

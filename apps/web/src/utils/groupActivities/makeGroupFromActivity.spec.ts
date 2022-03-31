@@ -1,4 +1,5 @@
-import { createMockActivity } from "../testUtils";
+import { createMockActivity } from "@routine-support/test-utils";
+
 import { makeGroupFromActivity } from "./makeGroupFromActivity";
 
 describe("makeGroupFromActivity", () => {

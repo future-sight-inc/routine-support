@@ -1,5 +1,6 @@
+import { createMockStudent } from "@routine-support/test-utils";
+
 import { getStudentsByIds } from "./getStudentsByIds";
-import { createMockStudent } from "./testUtils";
 
 describe("getStudentsByIds", () => {
   it("Can get all students", () => {

@@ -1,4 +1,4 @@
-import { createMockStudent } from "apps/web/src/utils/testUtils";
+import { createMockStudent } from "@routine-support/test-utils";
 
 import { getPendingStudents } from "./utils";
 

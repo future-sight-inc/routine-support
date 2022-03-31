@@ -1,12 +1,11 @@
-import { ActivitySchema } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
+import { ActivitySchema, Student } from "@routine-support/domains";
 import { filterActivityForStudent } from "./filterActivityForStudent";
 
 export const filterActivitiesForStudent = (
   activities: ActivitySchema[],
-  studentId: Id
+  student: Student
 ): ActivitySchema[] => {
   return activities.filter((activity) =>
-    filterActivityForStudent(activity, studentId)
+    filterActivityForStudent(activity, student)
   );
 };

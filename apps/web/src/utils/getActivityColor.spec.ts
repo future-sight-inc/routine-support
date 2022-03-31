@@ -1,10 +1,11 @@
-import { DEFAULT_ACTIVITY_COLOR } from "../constants/defaultActivityColor";
-import { getActivityColor } from "./getActivityColor";
 import {
   addStudentToActivity,
   createMockActivity,
   createMockStudent,
-} from "./testUtils";
+} from "@routine-support/test-utils";
+
+import { DEFAULT_ACTIVITY_COLOR } from "../constants/defaultActivityColor";
+import { getActivityColor } from "./getActivityColor";
 
 describe("getActivityColor", () => {
   it("Common activity", () => {

@@ -1,12 +1,12 @@
 import {
+  createMockActivityByDateString,
+  createMockWeekFromDateStringArray,
+} from "@routine-support/test-utils";
+import {
   WEEK_BETWEEN_MONTHS,
   WEEK_BETWEEN_YEARS,
   WEEK_OF_MONTH,
 } from "../../mocks";
-import {
-  createMockActivityByDateString,
-  createMockWeekFromDateStringArray,
-} from "../../testUtils";
 import { repeatActivityEveryDay } from "./repeatActivityEveryDay";
 
 describe("repeatActivityEveryDay: start of the week. Should repeat 7 times", () => {

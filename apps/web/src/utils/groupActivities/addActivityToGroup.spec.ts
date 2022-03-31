@@ -1,9 +1,9 @@
-import { stringifyTime } from "@routine-support/utils";
-
 import {
   createGroupFromTimePeriod,
   createMockActivityFromTimePeriod,
-} from "../testUtils";
+} from "@routine-support/test-utils";
+import { stringifyTime } from "@routine-support/utils";
+
 import { addActivityToGroup } from "./addActivityToGroup";
 
 describe("addActivityToGroup", () => {
