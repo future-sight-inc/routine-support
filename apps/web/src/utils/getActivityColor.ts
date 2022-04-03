@@ -1,13 +1,21 @@
 import { Activity, Student } from "@routine-support/domains";
 
-import { DEFAULT_ACTIVITY_COLOR } from "../constants/defaultActivityColor";
+import {
+  COMMON_ACTIVITY_COLOR,
+  GROUP_ACTIVITY_COLOR,
+} from "../constants/defaultActivityColor";
+import { getStudentsByIds } from "./getStudentsByIds";
 
 export const getActivityColor = (activity: Activity, students: Student[]) => {
-  const firstFoundStudentId: string | undefined = activity.students[0];
-  const firstFoundStudent: Student | undefined = students.find(
-    (student) => student._id === firstFoundStudentId
-  );
-  const firstFoundColor: string | undefined = firstFoundStudent?.color;
+  if (activity.students.length === 1) {
+    const student = getStudentsByIds(students, activity.students)[0];
 
-  return firstFoundColor || DEFAULT_ACTIVITY_COLOR;
+    return student.color;
+  }
+
+  if (activity.students.length > 1) {
+    return GROUP_ACTIVITY_COLOR;
+  }
+
+  return COMMON_ACTIVITY_COLOR;
 };

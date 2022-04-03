@@ -21,6 +21,8 @@ export const ActivityGroup: React.FC<ActivityGroupProps> = ({
   students,
   onActivityClick,
 }) => {
+  console.log(students);
+
   return (
     <>
       {activities.map((activity, index) => (
@@ -31,7 +33,9 @@ export const ActivityGroup: React.FC<ActivityGroupProps> = ({
           rowStart={indexOfTimeRange(timeRange, activity.start)}
           onClick={onActivityClick}
           activity={activity}
-          confirmationStatus={<ConfirmationStatus students={students} activity={activity} />}
+          confirmationStatus={
+            <ConfirmationStatus students={students} activity={activity} />
+          }
         />
       ))}
     </>
