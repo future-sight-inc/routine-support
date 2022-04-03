@@ -2,11 +2,12 @@ import React from "react";
 
 import {
   Activity,
-  User,
+  Coach,
   WeekNumber,
   YearNumber,
 } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
+import { CommonFlagPicker } from "apps/web/src/components/FormFields/CommonFlagPicker";
 import { useTranslation } from "react-i18next";
 
 import { ErrorText } from "../../../../components/ErrorText";
@@ -30,28 +31,20 @@ export interface ActivityFormActions {
 }
 
 export interface ActivityFormProps {
-  user: User;
+  coach: Coach;
   activity: Partial<Activity> | null;
   actions: ActivityFormActions;
 }
 
 export const ActivityForm: React.FC<ActivityFormProps> = ({
-  user,
+  coach,
   activity,
   actions,
 }) => {
   const {
-    models: {
-      control,
-      minDate,
-      minStartTime,
-      minEndTime,
-      isDirty,
-      isSubmitting,
-      submitError,
-    },
+    models: { control, isDirty, isSubmitting, submitError, shouldShowStudents },
     operations: { handleSubmit, onDelete },
-  } = useActivityFormComponent(user, activity, actions);
+  } = useActivityFormComponent(coach, activity, actions);
 
   const { t } = useTranslation();
 
@@ -64,39 +57,42 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           required
           placeholder={t("Activity name")}
         />
-        <DatePicker
-          name="date"
-          control={control}
-          label={t("Activity date")}
-          minDate={minDate}
-          required
-        />
         <S.Row>
+          <DatePicker
+            name="date"
+            control={control}
+            label={t("Activity date")}
+            required
+          />
           <TimePicker
             name="start"
             control={control}
             label={t("Activity start time")}
             required
-            minTime={minStartTime}
           />
           <TimePicker
             name="end"
             control={control}
             label={t("Activity end time")}
             required
-            minTime={minEndTime}
           />
         </S.Row>
         <PictogramPicker name="pictogram" control={control} required />
-
         <RepeatTypePicker
           control={control}
           name="repeatType"
           label={t("Repeat type")}
         />
-
-        <StudentsPicker name="students" control={control} />
-
+        <div>
+          <CommonFlagPicker
+            label={t("Activity type")}
+            control={control}
+            name="isCommon"
+          />
+          {shouldShowStudents && (
+            <StudentsPicker name="students" required control={control} />
+          )}
+        </div>
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"

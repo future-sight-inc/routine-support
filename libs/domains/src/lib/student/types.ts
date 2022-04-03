@@ -1,4 +1,4 @@
-import { Id } from "@routine-support/types";
+import { Id, LanguageEnum } from "@routine-support/types";
 
 export type Token = string;
 export type CoachId = Id;
@@ -8,15 +8,24 @@ export type Student = {
   name: string;
   coachId: CoachId;
   color: string;
+  pinCode: string;
+  clockType: ClockTypeEnum;
+  language: LanguageEnum;
 };
 
-export type NewStudentDto = {
+export type CreateStudentDto = {
   name: string;
   coachId: CoachId;
+  pinCode: string;
+  clockType: ClockTypeEnum;
+  language: LanguageEnum;
 };
 
-export type StudentDto = Student;
-
-export type StudentLoginDto = {
+export type LoginStudentDto = {
   id: Id;
 };
+
+export enum ClockTypeEnum {
+  Analog,
+  Digital,
+}

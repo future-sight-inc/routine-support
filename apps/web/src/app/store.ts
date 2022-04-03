@@ -1,9 +1,9 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import {
   activityReducer,
+  coachReducer,
   studentReducer,
   studentsReducer,
-  userReducer,
   weekReducer,
 } from "@routine-support/domains";
 
@@ -11,7 +11,7 @@ export const store = configureStore({
   reducer: {
     week: weekReducer,
     activity: activityReducer,
-    user: userReducer,
+    coach: coachReducer,
     student: studentReducer,
     students: studentsReducer,
   },
@@ -20,8 +20,8 @@ export const store = configureStore({
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
+ReturnType,
+RootState,
+unknown,
+Action<string>
 >;

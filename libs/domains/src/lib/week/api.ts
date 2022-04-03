@@ -1,10 +1,15 @@
-import { apiClient } from "@routine-support/api-client";
-import { AxiosResponse } from "axios";
+import { AxiosInstance, AxiosResponse } from "axios";
 
-import { ActivityFilter, Week, WeekDto, WeekNumber, YearNumber } from "./types";
-import { formatWeekDto } from "./utils";
+import {
+  ActivityFilter,
+  Week,
+  WeekNumber,
+  WeekSchema,
+  YearNumber,
+} from "./types";
+import { createWeekFromSchema } from "./utils";
 
-export const weekAPI = {
+export const createWeekAPI = (client: AxiosInstance) => ({
   getWeek: async (
     year: YearNumber,
     week: WeekNumber,
@@ -25,15 +30,11 @@ export const weekAPI = {
       filterParam = filterParam.join(",");
     }
 
-    const response: AxiosResponse<WeekDto> = await apiClient.get(
+    const response: AxiosResponse<WeekSchema> = await client.get(
       `/week/${year}/${week}`,
-      {
-        params: {
-          filter: filterParam,
-        },
-      }
+      { params: { filter: filterParam } }
     );
 
-    return formatWeekDto(response.data);
+    return createWeekFromSchema(response.data);
   },
-};
+});

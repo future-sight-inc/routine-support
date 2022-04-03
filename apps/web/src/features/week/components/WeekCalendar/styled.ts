@@ -24,7 +24,7 @@ export const Cell = styled.div<{ passed?: boolean }>`
 
   &:hover {
     ${({ theme }) =>
-      css`
+    css`
         box-shadow: inset ${theme.palette.primary.main} 0px 1px 1px,
           inset ${theme.palette.primary.main} 0px 0px 0px 1px;
       `}

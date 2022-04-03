@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: "models",
+  displayName: "domains",
   preset: "../../jest.preset.js",
   globals: {
     "ts-jest": {

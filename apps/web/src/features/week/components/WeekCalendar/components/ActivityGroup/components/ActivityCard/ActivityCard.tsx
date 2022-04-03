@@ -34,10 +34,10 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
       count={count}
       onClick={() => onClick(activity)}
     >
+      <S.Name>{activity.name}</S.Name>
       <S.Time>
         {stringifyTime(activity.start)} - {stringifyTime(activity.end)}
       </S.Time>
-      <S.Name>{activity.name}</S.Name>
       {confirmationStatus}
     </S.Wrapper>
   );

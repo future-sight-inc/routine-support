@@ -29,18 +29,24 @@ const activitySchema = new Schema(
     },
     repeatType: {
       type: Number,
+      required: true,
       default: RepeatTypeEnum.None,
+    },
+    isCommon: {
+      type: Schema.Types.Boolean,
+      required: true,
+      default: false,
     },
     students: {
       type: Schema.Types.Array,
       default: [],
     },
     confirmation: {
-      type: Object,
+      type: Schema.Types.Mixed,
       default: {},
     },
   },
-  { versionKey: false }
+  { versionKey: false, minimize: false }
 );
 
 export const ActivityModel = model<ActivitySchema>("activity", activitySchema);

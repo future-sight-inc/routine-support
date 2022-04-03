@@ -3,6 +3,7 @@ import React from "react";
 import {
   Activity as ActivityType,
   Day as DayType,
+  Student,
 } from "@routine-support/domains";
 import {
   Divider,
@@ -16,91 +17,110 @@ import moment from "moment";
 import { useTranslation } from "react-i18next";
 
 import { MainLayout } from "../../../../components/MainLayout";
+import { PinCodeInput } from "../../../../components/PinCodeInput";
 import { Activity } from "./components/Activity";
 import { CurrentActivity } from "./components/CurrentActivity";
 import { useDayComponent } from "./hooks";
 import { isActivityConfirmed } from "./utils";
 
-interface DayActions {
+export interface DayActions {
   getDay: () => void;
   confirmActivity: (activity: ActivityType) => void;
+  logout: () => void;
 }
 
 interface DayProps {
   actions: DayActions;
   loading: boolean;
   day: DayType;
-  studentId?: string;
+  student: Student;
 }
 
-export const Day: React.FC<DayProps> = ({
-  studentId,
-  day,
-  loading,
-  actions,
-}) => {
+export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
   const {
-    operations: { handleForwardPress },
-  } = useDayComponent();
+    models: { isPinCodeInputVisible },
+    operations: {
+      handleLogoutPress,
+      handlePinCodeSuccessInput,
+      handlePinCodeInputClose,
+    },
+  } = useDayComponent(actions);
   const { t } = useTranslation();
 
   return (
-    <MainLayout
-      title={t<string>("Day schedule")}
-      accessoryRight={
-        <TopNavigationAction
-          icon={(props) => (
-            <Icon
-              {...props}
-              name="person-outline"
-              onPress={handleForwardPress}
-              fill="white"
-            />
-          )}
-        />
-      }
-    >
-      <Layout style={{ marginBottom: "auto" }}>
-        <List
-          onRefresh={() => actions.getDay()}
-          refreshing={loading}
-          style={{
-            minWidth: "100%",
-          }}
-          ItemSeparatorComponent={Divider}
-          ListEmptyComponent={
-            <Text category="s1" style={{ textAlign: "center", marginTop: 16 }}>
-              {t<string>("No activities")}
-            </Text>
-          }
-          data={day.activities}
-          renderItem={({ item, index }) => {
-            const currentTime = moment();
+    <>
+      <MainLayout
+        title={t<string>("Today")}
+        accessoryRight={
+          <TopNavigationAction
+            icon={(props) => (
+              <Icon
+                {...props}
+                name="log-out-outline"
+                onLongPress={handleLogoutPress}
+                fill="white"
+              />
+            )}
+          />
+        }
+      >
+        <Layout style={{ marginBottom: "auto" }}>
+          <List
+            onRefresh={() => actions.getDay()}
+            refreshing={loading}
+            style={{
+              minWidth: "100%",
+            }}
+            ItemSeparatorComponent={Divider}
+            ListEmptyComponent={
+              <Text
+                category="s1"
+                style={{ textAlign: "center", marginTop: 16 }}
+              >
+                {t<string>("No activities")}
+              </Text>
+            }
+            data={day.activities}
+            renderItem={({ item, index }) => {
+              const currentTime = moment();
 
-            if (
-              item.start.isSameOrBefore(currentTime) &&
-              currentTime.isSameOrBefore(item.end)
-            ) {
+              if (
+                item.start.isSameOrBefore(currentTime) &&
+                currentTime.isSameOrBefore(item.end)
+              ) {
+                return (
+                  <CurrentActivity
+                    activity={item}
+                    clockType={student.clockType}
+                    confirmed={isActivityConfirmed({
+                      studentId: student._id,
+                      activity: item,
+                    })}
+                    onConfirm={actions.confirmActivity}
+                    key={index}
+                  />
+                );
+              }
+
               return (
-                <CurrentActivity
+                <Activity
                   activity={item}
-                  confirmed={isActivityConfirmed({ studentId, activity: item })}
-                  onConfirm={actions.confirmActivity}
+                  isPassed={item.end.isBefore(currentTime)}
+                  clockType={student.clockType}
                   key={index}
                 />
               );
-            }
-
-            return (
-              <Activity
-                activity={item}
-                passed={item.end.isBefore(currentTime)}
-                key={index}
-              />
-            );
-          }}
+            }}
+          />
+        </Layout>
+      </MainLayout>
+      {isPinCodeInputVisible && (
+        <PinCodeInput
+          pinCode={student.pinCode}
+          onSuccessInput={handlePinCodeSuccessInput}
+          onClose={handlePinCodeInputClose}
         />
-      </Layout>
-    </MainLayout>
+      )}
+    </>
   );
 };

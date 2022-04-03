@@ -28,3 +28,9 @@ export interface FormError {
   message: string;
   type: string;
 }
+
+export enum LanguageEnum {
+  En = "en",
+  Nl = "nl",
+  Ru = "ru",
+}

@@ -15,7 +15,7 @@
   "Link to register": "Нет аккаунта? Зарегистрироваться",
   "Link to sign in": "Уже есть аккаунт? Вход",
   "Logout confirm message": "Вы уверены, что хотите выйти?",
-  
+
   "Calendar": "Календарь",
 
   "Activity": "Событие",
@@ -23,6 +23,8 @@
   "Activity status": "Статус прохождения",
   "Completed": "Прошли",
   "Pending": "Ожидаются",
+
+  "Required field": "Обязательное поле",
 
   "Activity name": "Название события",
   "Activity date": "Дата",
@@ -34,20 +36,26 @@
   "Search": "Поиск...",
 
   "Repeat type": "Повторять",
+  "Activity type": "Тип активности",
   "Every day": "Каждый день",
   "Every week": "Каждую неделю",
   "Every month": "Каждый месяц",
   "Never": "Никогда",
 
   "Common": "Общие",
-  "Individual activity": "Индивидуальная активность",
+  "Common activity": "Общая",
+  "Individual activity": "Индивидуальная",
   "Choose students": "Выберите студента или студентов",
 
   "Student": "Студент",
   "Students": "Студенты",
+  "Clock type": "Тип часов",
+  "Digital": "Цифровые",
+  "Analog": "Со стрелками",
+  "PIN code": "PIN код",
 
   "Modify student": "Редактирование студента",
-  "Add student": "Создание студента",
+  "Add student": "Добавить студента",
   "Confirm student delete": "Подтвердите удаление",
   "No students": "Пока нет ни одного студента",
 

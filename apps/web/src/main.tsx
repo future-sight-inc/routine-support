@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 
 import { StyledEngineProvider } from "@material-ui/core/styles";
 import i18n from "i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 import * as ReactDOM from "react-dom";
 import { initReactI18next } from "react-i18next";
 import { Provider } from "react-redux";
@@ -17,20 +18,23 @@ import nlLocale from "./locales/nl.json";
 import ruLocale from "./locales/ru.json";
 import { Theme } from "./styled/theme";
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: {
-      translation: enLocale,
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: enLocale,
+      },
+      ru: {
+        translation: ruLocale,
+      },
+      nl: {
+        translation: nlLocale,
+      },
     },
-    ru: {
-      translation: ruLocale,
-    },
-    nl: {
-      translation: nlLocale,
-    },
-  },
-  fallbackLng: "en",
-});
+    fallbackLng: "en",
+  });
 
 ReactDOM.render(
   <StrictMode>

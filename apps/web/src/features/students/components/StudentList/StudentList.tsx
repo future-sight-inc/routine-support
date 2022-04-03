@@ -9,7 +9,7 @@ import ListItem from "@mui/material/ListItem";
 import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { Modal } from "apps/web/src/components/Modal";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import { useStudentListComponent } from "./hooks";
 import * as S from "./styled";
@@ -30,11 +30,11 @@ export const StudentList: React.FC<StudentListProps> = ({
   actions,
 }) => {
   const {
-    models: { qr },
+    models: { qr, currentStudent },
     operations: { onStudentClick, onStudentDelete, onQrOpen, onQrClose },
   } = useStudentListComponent(actions);
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   if (!students.length) {
     return <S.EmptyText>{t("No students")}</S.EmptyText>;
@@ -50,7 +50,7 @@ export const StudentList: React.FC<StudentListProps> = ({
               <IconButton
                 onClick={(event) => {
                   event.stopPropagation();
-                  onQrOpen(student._id);
+                  onQrOpen(student);
                 }}
               >
                 <QrCodeIcon />
@@ -68,6 +68,9 @@ export const StudentList: React.FC<StudentListProps> = ({
         </ListItem>
       ))}
       <Modal opened={Boolean(qr)} onClose={onQrClose}>
+        <S.QrTitle>
+          {t("QR code for")} {currentStudent?.name}
+        </S.QrTitle>
         {qr && <S.Qr src={qr} />}
         <S.QrTitle>
           {t("QR instructions start")}

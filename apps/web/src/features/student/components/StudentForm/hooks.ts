@@ -10,7 +10,7 @@ export const useStudentFormComponent = (
   actions: StudentFormActions
 ) => {
   const { control, handleSubmit, formState, getValues } = useForm({
-    defaultValues: student ? student : {},
+    defaultValues: { pinCode: "0000", ...student },
   });
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -32,6 +32,7 @@ export const useStudentFormComponent = (
 
   const onDelete = async () => {
     const id = getValues()._id;
+
     if (window.confirm("Confirm your action") && id) {
       await actions.deleteStudent(id);
 

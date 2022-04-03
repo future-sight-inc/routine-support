@@ -3,11 +3,11 @@ import { useState } from "react";
 import {
   Activity,
   activityActions,
-  activityAPI,
 } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { activityAPI } from "../../services/ApiService";
 
 export const useActivity = () => {
   const [loading, setLoading] = useState(false);

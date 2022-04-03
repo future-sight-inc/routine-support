@@ -3,7 +3,7 @@ import React, { MouseEvent } from "react";
 import { Typography } from "@mui/material";
 import { Activity, Student } from "@routine-support/domains";
 import { Modal } from "apps/web/src/components/Modal";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import { useConfirmationStatusComponent } from "./hooks";
 import * as S from "./styled";
@@ -18,27 +18,22 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
   students,
 }) => {
   const {
-    models: {
-      modalOpened,
-      confirmedStudents,
-      assignedStudents,
-      pendingStudents,
-    },
+    models: { modalOpened, confirmedStudents, assignedStudents },
     operations: { handleModalOpen, handleModalClose },
   } = useConfirmationStatusComponent(activity, students);
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
-    <div
+    <S.Wrapper
       onClick={(event: MouseEvent<HTMLDivElement>) => event.stopPropagation()}
     >
-      <S.CheckedButton onClick={handleModalOpen}>
+      <S.ConfirmationWrapper onClick={handleModalOpen}>
         <S.CheckedIcon />
-        <S.Checked>
+        <S.ConfirmedNumber>
           {confirmedStudents.length}/{assignedStudents.length}
-        </S.Checked>
-      </S.CheckedButton>
+        </S.ConfirmedNumber>
+      </S.ConfirmationWrapper>
 
       <Modal opened={modalOpened} onClose={handleModalClose}>
         <S.ModalTitle>{t("Activity status")}</S.ModalTitle>
@@ -57,6 +52,6 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
           </S.List>
         </S.ModalContent>
       </Modal>
-    </div>
+    </S.Wrapper>
   );
 };

@@ -2,12 +2,12 @@ import React from "react";
 
 import { MenuItem, SelectProps } from "@mui/material";
 import { RepeatTypeEnum } from "@routine-support/domains";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import { Select } from "../Select";
 
 export const RepeatTypePicker: React.FC<SelectProps> = ({ ...props }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Select {...props} defaultValue={RepeatTypeEnum.None}>
@@ -15,6 +15,7 @@ export const RepeatTypePicker: React.FC<SelectProps> = ({ ...props }) => {
       <MenuItem value={RepeatTypeEnum.EveryDay}>{t("Every day")}</MenuItem>
       <MenuItem value={RepeatTypeEnum.EveryWeek}>{t("Every week")}</MenuItem>
       <MenuItem value={RepeatTypeEnum.EveryMonth}>{t("Every month")}</MenuItem>
+      <MenuItem value={RepeatTypeEnum.EveryYear}>{t("Every year")}</MenuItem>
     </Select>
   );
 };

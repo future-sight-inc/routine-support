@@ -8,30 +8,11 @@ export enum RepeatTypeEnum {
   EveryDay,
   EveryWeek,
   EveryMonth,
+  EveryYear,
 }
 
-// * Приходится хранить отдельный тип для схемы из-за того
-// * что дата/время в БД хранится в строковом виде
-export type ActivitySchema = {
-  _id?: Id;
-  coachId: Id;
-  name: ActivityName;
-  pictogram: ImageUrl;
-  date: DateString;
-  start: TimeString;
-  end: TimeString;
-  repeatType: RepeatTypeEnum;
-  students: Id[];
-  confirmation: ConfirmationInfo;
-};
-
-export type ConfirmationInfo = {
-  // * key: DateString - проблема в TS
-  [key: string]: Id[];
-};
-
 export type Activity = {
-  _id?: Id;
+  _id: Id;
   coachId: Id;
   name: ActivityName;
   pictogram: ImageUrl;
@@ -39,11 +20,28 @@ export type Activity = {
   start: Moment;
   end: Moment;
   repeatType: RepeatTypeEnum;
+  isCommon: boolean;
   students: Id[];
   confirmation: ConfirmationInfo;
 };
 
-export type ActivityDto = ActivitySchema;
+export type ActivitySchema = {
+  _id: Id;
+  coachId: Id;
+  name: ActivityName;
+  pictogram: ImageUrl;
+  date: DateString;
+  start: TimeString;
+  end: TimeString;
+  repeatType: RepeatTypeEnum;
+  isCommon: boolean;
+  students: Id[];
+  confirmation: ConfirmationInfo;
+};
+
+export type ConfirmationInfo = {
+  [key in DateString]: Id[];
+};
 
 export interface ActivitiesGroup {
   start: Moment;

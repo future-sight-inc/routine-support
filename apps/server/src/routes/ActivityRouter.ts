@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { ActivityModel } from "@routine-support/domains";
-import { authorization } from "../middleware/authorization";
 import { studentAuthorization } from "../middleware/studentAuthorization";
 import { stringifyDate } from "@routine-support/utils";
 import { validateActivity } from "../utils/validateActivity";
 import moment from "moment";
+import { coachAuthorization } from "../middleware/coachAuthorization";
 
 export const activityRouter = Router();
 
-activityRouter.get("/:id", authorization, async (req, res) => {
+activityRouter.get("/:id", coachAuthorization, async (req, res) => {
   const activity = await ActivityModel.findById(req.params.id);
 
   if (activity) {
@@ -18,9 +18,9 @@ activityRouter.get("/:id", authorization, async (req, res) => {
   return res.sendStatus(404);
 });
 
-activityRouter.post("/", authorization, async (req, res) => {
+activityRouter.post("/", coachAuthorization, async (req, res) => {
   const validationData = validateActivity(req.body);
-  
+
   if (validationData.isValid) {
     await ActivityModel.create({
       ...req.body,
@@ -32,7 +32,7 @@ activityRouter.post("/", authorization, async (req, res) => {
   return res.status(422).send(validationData);
 });
 
-activityRouter.delete("/:id", authorization, async (req, res) => {
+activityRouter.delete("/:id", coachAuthorization, async (req, res) => {
   const id = req.params.id;
 
   ActivityModel.findByIdAndDelete(id, (err) => {
@@ -42,7 +42,7 @@ activityRouter.delete("/:id", authorization, async (req, res) => {
   });
 });
 
-activityRouter.put("/:id", authorization, async (req, res) => {
+activityRouter.put("/:id", coachAuthorization, async (req, res) => {
   const id = req.params.id;
 
   const validationData = validateActivity(req.body);
@@ -51,7 +51,7 @@ activityRouter.put("/:id", authorization, async (req, res) => {
     await ActivityModel.findByIdAndUpdate(id, {
       ...req.body,
     });
-    
+
     return res.sendStatus(200);
   }
 

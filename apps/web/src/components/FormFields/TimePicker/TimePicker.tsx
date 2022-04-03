@@ -1,23 +1,17 @@
 import React from "react";
 
-import DefaultTimePicker from "@mui/lab/TimePicker";
 import { TextField } from "@mui/material";
-import { Moment } from "moment";
+import { parseTime, stringifyTime } from "@routine-support/utils";
 
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-interface TimePickerProps extends FormFieldProps {
-  minTime?: Moment;
-}
-
-export const TimePicker: React.FC<TimePickerProps> = ({
+export const TimePicker: React.FC<FormFieldProps> = ({
   name,
   control,
   label,
   required,
   disabled,
-  minTime,
 }) => {
   return (
     <Controller
@@ -26,14 +20,16 @@ export const TimePicker: React.FC<TimePickerProps> = ({
       label={label}
       required={required}
       disabled={disabled}
-      render={({ field, fieldState }) => (
-        <DefaultTimePicker
-          renderInput={(props) => (
-            <TextField {...props} error={Boolean(fieldState.error)} />
-          )}
-          minTime={minTime}
-          disabled={disabled}
+      render={({ field: { value, onChange, ...field }, fieldState }) => (
+        <TextField
+          type="time"
+          InputLabelProps={{
+            shrink: true,
+          }}
           {...field}
+          value={stringifyTime(value)}
+          onChange={(event) => onChange(parseTime(event.target.value))}
+          error={Boolean(fieldState.error)}
         />
       )}
     />

@@ -38,8 +38,8 @@ export const useWeekCalendarComponent = (
   const onCellClick = (time: TimeString, day: Moment) => {
     actions.openNewActivityModal({
       date: day,
-      start: parseTime(time, day),
-      end: parseTime(time, day).add(1, "hours"),
+      start: parseTime(time),
+      end: parseTime(time).add(1, "hours"),
     });
   };
 

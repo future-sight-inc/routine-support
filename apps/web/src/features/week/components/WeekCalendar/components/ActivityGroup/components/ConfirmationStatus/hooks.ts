@@ -2,8 +2,9 @@ import { useState } from "react";
 
 import { Activity, Student } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
+import { getStudentsByIds } from "apps/web/src/utils/getStudentsByIds";
 
-import { getPendingStudents, getStudentsByIds } from "./utils";
+import { getPendingStudents } from "./utils";
 
 export const useConfirmationStatusComponent = (
   activity: Activity,

@@ -16,6 +16,7 @@ export const Select: React.FC<SelectProps> = ({
   label,
   children,
   multiple,
+  helperText
 }) => {
   return (
     <Controller
@@ -24,6 +25,7 @@ export const Select: React.FC<SelectProps> = ({
       required={required}
       disabled={disabled}
       label={label}
+      helperText={helperText}
       render={({ field }) => (
         <UncontrolledSelect
           value={field.value}

@@ -1,57 +1,55 @@
 import { useEffect, useState } from "react";
 
-import { Activity, User } from "@routine-support/domains";
+import { Activity, Coach } from "@routine-support/domains";
 import { setFormErrors } from "apps/web/src/utils/setFormErrors";
 import { AxiosError } from "axios";
-import moment, { Moment } from "moment";
+import moment from "moment";
 import { useForm } from "react-hook-form";
 
 import { ActivityFormActions } from "./ActivityForm";
 
 export const useActivityFormComponent = (
-  user: User,
+  coach: Coach,
   activity: Partial<Activity> | null,
   actions: ActivityFormActions
 ) => {
   const defaultValues = {
     date: moment(),
     start: moment(),
-    end: moment().add(1, "hours"),
+    end: moment().add("hours", 1),
+    isCommon: true,
     ...activity,
   };
-
   const {
     control,
     handleSubmit,
     formState,
-    watch,
     getValues,
-    setError,
     setValue,
+    setError,
+    watch,
   } = useForm({
     defaultValues,
-    // ! Баг с типизацией
-    // eslint-disable-next-line
-  } as any);
+  });
 
-  const [minStartTime, setMinStartTime] = useState<Moment | undefined>(
-    moment()
-  );
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (activity?.start) {
-      setMinStartTime(activity?.start);
-    }
-  }, [activity]);
+  const [shouldShowStudents, setShouldShowStudent] = useState(
+    !defaultValues.isCommon
+  );
 
-  const [minEndTime, setMinEndTime] = useState<Moment | undefined>();
   useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      switch (name) {
-        case "start":
-          setMinEndTime(value.start);
-          setValue("end", value.start);
+    // ! баг в react-hook-form
+    const subscription = (watch as any)((value, { name }) => {
+      if (name === "isCommon") {
+        setShouldShowStudent(!value.isCommon);
+        // ! баг в react-hook-form
+        (setError as any)("students", null);
+
+        if (value.isCommon) {
+          // ! баг в react-hook-form
+          (setValue as any)("students", []);
+        }
       }
     });
 
@@ -65,26 +63,27 @@ export const useActivityFormComponent = (
       if (values._id) {
         await actions.updateActivity({
           ...values,
-          coachId: user._id,
+          coachId: coach._id,
         } as Activity);
       } else {
         await actions.createActivity({
           ...values,
-          coachId: user._id,
+          coachId: coach._id,
         } as Activity);
       }
 
       actions.getWeek({ config: { silent: true } });
     } catch (error) {
       const data = (error as AxiosError).response?.data;
-      
-      setFormErrors(data?.errors, setError);
+
+      setFormErrors(data?.errors, setError as any);
       setSubmitError(error.message);
     }
   });
 
   const onDelete = async () => {
     const id = getValues()._id;
+
     if (window.confirm("Confirm your action") && id) {
       await actions.deleteActivity(id);
 
@@ -95,12 +94,10 @@ export const useActivityFormComponent = (
   return {
     models: {
       control,
-      minDate: moment(),
-      minStartTime,
-      minEndTime,
       isDirty: formState.isDirty,
       isSubmitting: formState.isSubmitting,
       submitError,
+      shouldShowStudents,
     },
     operations: { handleSubmit: onSubmit, onDelete },
   };

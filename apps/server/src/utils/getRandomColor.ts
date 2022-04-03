@@ -1,5 +1,5 @@
 import { COLORS } from "../constants/Colors";
 
-export const getRandomColor = () => {
+export const getRandomColor = (): string => {
   return COLORS[Math.floor(Math.random() * COLORS.length)];
 };

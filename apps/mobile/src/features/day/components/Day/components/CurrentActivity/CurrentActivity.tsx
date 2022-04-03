@@ -1,60 +1,77 @@
 import React from "react";
 
-import { Activity, Activity as ActivityType } from "@routine-support/domains";
-import { stringifyTime } from "@routine-support/utils";
-import { Button, Layout, Text } from "@ui-kitten/components";
-import { useTranslation } from "react-i18next";
-import { Image } from "react-native";
+import {
+  Activity,
+  Activity as ActivityType,
+  ClockTypeEnum,
+} from "@routine-support/domains";
+import { Button, Icon, Layout, Text } from "@ui-kitten/components";
+import { Image, StyleSheet } from "react-native";
+
+import { Clock, ClockSizeEnum } from "../../../../../../components/Clock";
 
 interface CurrentActivityProps {
   activity: ActivityType;
+  clockType: ClockTypeEnum;
   onConfirm: (activity: Activity) => void;
   confirmed: boolean;
 }
 
 export const CurrentActivity: React.FC<CurrentActivityProps> = ({
   activity,
+  clockType,
   onConfirm,
   confirmed,
 }) => {
   const handleConfirmActivity = () => {
     onConfirm(activity);
   };
-  const { t } = useTranslation();
 
   return (
-    <Layout
-      style={{
-        padding: 16,
-        flex: 1,
-        flexDirection: "row",
-      }}
-    >
+    <Layout style={styles.wrapper}>
       <Image
         source={{
           uri: activity.pictogram,
         }}
-        style={{ width: "50%", height: 200 }}
+        style={styles.image}
       />
-      <Layout style={{ marginLeft: 16, width: "50%", paddingRight: 16 }}>
-        <Text category="h5" style={{ marginBottom: 8, textAlign: "center" }}>
+      <Layout style={styles.infoWrapper}>
+        <Text category="h5" style={styles.name}>
           {activity.name}
         </Text>
-        <Text
-          category="s1"
-          appearance="hint"
-          style={{ textAlign: "center", fontSize: 18 }}
-        >
-          {stringifyTime(activity.start)}-{stringifyTime(activity.end)}
-        </Text>
+        <Layout style={styles.clockWrapper}>
+          <Clock
+            start={activity.start}
+            end={activity.end}
+            type={clockType}
+            size={ClockSizeEnum.Large}
+          />
+        </Layout>
         <Button
-          style={{ marginTop: "auto" }}
+          style={styles.confirmButton}
           onPress={handleConfirmActivity}
           disabled={confirmed}
-        >
-          {confirmed ? t<string>("Confirmed") : t<string>("Confirm")}
-        </Button>
+          accessoryLeft={
+            <Icon
+              fill={confirmed ? "lightgrey" : "white"}
+              name="checkmark-outline"
+            />
+          }
+        />
       </Layout>
     </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    padding: 16,
+    flex: 1,
+    flexDirection: "row",
+  },
+  image: { width: "50%", height: 200 },
+  infoWrapper: { marginLeft: 16, width: "50%", paddingRight: 16 },
+  name: { marginBottom: 8, textAlign: "center" },
+  clockWrapper: { flexDirection: "row", justifyContent: "center" },
+  confirmButton: { marginTop: "auto" },
+});

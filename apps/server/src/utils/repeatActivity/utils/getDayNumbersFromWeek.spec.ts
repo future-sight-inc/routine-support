@@ -1,9 +1,9 @@
+import { createMockWeekFromDateStringArray } from "@routine-support/test-utils";
 import {
   WEEK_BETWEEN_MONTHS,
   WEEK_BETWEEN_YEARS,
   WEEK_OF_MONTH,
 } from "../../mocks";
-import { createMockWeekFromDateStringArray } from "../../testUtils";
 import { getDayNumbersFromWeek } from "./getDayNumbersFromWeek";
 
 const DAY_NUMBERS_OF_WEEK_OF_MONTH = [7, 8, 9, 10, 11, 12, 13];
