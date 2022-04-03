@@ -4,8 +4,8 @@ import { ContentWrapper } from "../../components/ContentWrapper/ContentWrapper";
 import { Modal } from "../../components/Modal";
 import { ActivityForm } from "../../features/activity/components/ActivityForm";
 import { useActivity } from "../activity/useActivity";
+import { useCoach } from "../coach/useCoach";
 import { useStudents } from "../students/useStudents";
-import { useUser } from "../user/useUser";
 import { ActivityFilter } from "./components/ActivityFilter";
 import { AddActivityButton } from "./components/AddActivityButton";
 import { WeekCalendar } from "./components/WeekCalendar";
@@ -18,16 +18,16 @@ export const Week: React.FC = () => {
   const Week = useWeek();
   const Activity = useActivity();
   const Students = useStudents();
-  const User = useUser();
+  const Coach = useCoach();
 
   useEffect(() => {
-    if (User.models.user) {
+    if (Coach.models.coach) {
       Week.operations.getWeek();
       Students.operations.getStudents();
     }
-  }, [User.models.user]);
+  }, [Coach.models.coach]);
 
-  if (!User.models.user) {
+  if (!Coach.models.coach) {
     return null;
   }
 
@@ -76,7 +76,7 @@ export const Week: React.FC = () => {
             onClose={Activity.operations.closeActivityModal}
           >
             <ActivityForm
-              user={User.models.user}
+              coach={Coach.models.coach}
               activity={Activity.models.activity}
               actions={{
                 createActivity: Activity.operations.createActivity,

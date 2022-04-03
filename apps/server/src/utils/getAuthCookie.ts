@@ -1,5 +1,5 @@
-import { User } from "@routine-support/domains";
 import * as jwt from "jsonwebtoken";
+import { User } from "../types/User";
 
 export const getAuthCookie = (user: User): { name: string; token: string } => {
   return {

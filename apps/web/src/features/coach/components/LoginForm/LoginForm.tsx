@@ -2,9 +2,8 @@ import React from "react";
 
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
-import PersonIcon from "@mui/icons-material/Person";
 import InputAdornment from "@mui/material/InputAdornment";
-import { RegisterUserDto } from "@routine-support/domains";
+import { LoginCoachDto } from "@routine-support/domains";
 import { Card } from "apps/web/src/components/Card";
 import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
@@ -13,44 +12,29 @@ import { Button } from "apps/web/src/styled/components/Button";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-import { useRegisterFormComponent } from "./hooks";
+import { useLoginFormComponent } from "./hooks";
 import * as S from "./styled";
 
-export interface RegisterFormActions {
-  register: (data: RegisterUserDto) => void;
+export interface LoginFormActions {
+  login: (data: LoginCoachDto) => void;
 }
 
-interface RegisterFormProps {
-  actions: RegisterFormActions;
+interface LoginFormProps {
+  actions: LoginFormActions;
 }
 
-export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
   const {
     models: { submitError, control },
     operations: { handleSubmit },
-  } = useRegisterFormComponent(actions);
+  } = useLoginFormComponent(actions);
 
   const { t } = useTranslation();
 
   return (
     <Card absoluteCenter>
       <S.Form onSubmit={handleSubmit}>
-        <S.Title>{t("Sign up")}</S.Title>
-        <TextField
-          name="name"
-          type="text"
-          fullWidth
-          control={control}
-          required
-          placeholder={t("Name")}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <PersonIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
+        <S.Title>{t("Log in")}</S.Title>
         <TextField
           name="email"
           type="email"
@@ -83,7 +67,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
         />
         <Button type="submit">{t("Submit")}</Button>
         {submitError && <ErrorText>{submitError}</ErrorText>}
-        <Link to={LinkService.login()}>{t("Link to sign in")}</Link>
+        <Link to={LinkService.register()}>{t("Link to register")}</Link>
       </S.Form>
     </Card>
   );

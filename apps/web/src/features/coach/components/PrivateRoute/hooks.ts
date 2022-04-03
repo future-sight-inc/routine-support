@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 
-import { useUser } from "../../useUser";
+import { useCoach } from "../../useCoach";
 
 export const usePrivateRouteComponent = () => {
   const {
     models: { loading, isLogged, isChecked },
     operations,
-  } = useUser();
+  } = useCoach();
 
   useEffect(() => {
     if (!isLogged && !isChecked) {
-      operations.getUser();
+      operations.getCoach();
     }
   }, [isLogged, isChecked, operations]);
 

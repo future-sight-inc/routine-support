@@ -15,7 +15,7 @@ export const useStudent = () => {
   const [loading, setLoading] = useState(false);
   const [opened, setOpened] = useState(false);
   const { student } = useAppSelector((state) => state.student);
-  const coachId = useAppSelector((state) => state.user.user?._id);
+  const coachId = useAppSelector((state) => state.coach.coach?._id);
   const dispatch = useAppDispatch();
 
   const setStudent = (student?: Partial<Student>) => {

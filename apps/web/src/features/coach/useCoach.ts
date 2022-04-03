@@ -1,31 +1,31 @@
 import { useState } from "react";
 
 import {
-  LoginUserDto,
-  RegisterUserDto,
-  UpdateUserDto,
-  userActions,
+  coachActions,
+  LoginCoachDto,
+  RegisterCoachDto,
+  UpdateCoachDto,
 } from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { userAPI } from "../../services/ApiService";
+import { coachAPI } from "../../services/ApiService";
 
-export const useUser = () => {
+export const useCoach = () => {
   const dispatch = useAppDispatch();
 
-  const { user, isLogged } = useAppSelector((state) => state.user);
+  const { coach, isLogged } = useAppSelector((state) => state.coach);
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
-  const login = async (data: LoginUserDto) => {
+  const login = async (data: LoginCoachDto) => {
     try {
       setLoading(true);
 
-      const user = await userAPI.login(data);
+      const user = await coachAPI.login(data);
 
-      dispatch(userActions.setUser(user));
+      dispatch(coachActions.setCoach(user));
     } catch (error) {
-      dispatch(userActions.setUser(null));
+      dispatch(coachActions.setCoach(null));
       throw error;
     } finally {
       setIsChecked(true);
@@ -37,25 +37,25 @@ export const useUser = () => {
     try {
       setLoading(true);
 
-      await userAPI.logout();
+      await coachAPI.logout();
     } catch (error) {
       console.error(error);
     } finally {
-      dispatch(userActions.setUser(null));
+      dispatch(coachActions.setCoach(null));
       setIsChecked(true);
       setLoading(false);
     }
   };
 
-  const register = async (data: RegisterUserDto) => {
+  const register = async (data: RegisterCoachDto) => {
     try {
       setLoading(true);
 
-      const user = await userAPI.register(data);
+      const user = await coachAPI.register(data);
 
-      dispatch(userActions.setUser(user));
+      dispatch(coachActions.setCoach(user));
     } catch (error) {
-      dispatch(userActions.setUser(null));
+      dispatch(coachActions.setCoach(null));
       throw error;
     } finally {
       setIsChecked(true);
@@ -63,30 +63,30 @@ export const useUser = () => {
     }
   };
 
-  const getUser = async () => {
+  const getCoach = async () => {
     try {
       setLoading(true);
 
-      const user = await userAPI.getUser();
+      const user = await coachAPI.getCoach();
 
-      dispatch(userActions.setUser(user));
+      dispatch(coachActions.setCoach(user));
     } catch {
-      dispatch(userActions.setUser(null));
+      dispatch(coachActions.setCoach(null));
     } finally {
       setIsChecked(true);
       setLoading(false);
     }
   };
 
-  const updateUser = async (data: UpdateUserDto) => {
+  const updateCoach = async (data: UpdateCoachDto) => {
     try {
       setLoading(true);
 
-      const user = await userAPI.updateUser(data);
+      const user = await coachAPI.updateCoach(data);
 
-      dispatch(userActions.setUser(user));
+      dispatch(coachActions.setCoach(user));
     } catch {
-      dispatch(userActions.setUser(null));
+      dispatch(coachActions.setCoach(null));
     } finally {
       setIsChecked(true);
       setLoading(false);
@@ -95,7 +95,7 @@ export const useUser = () => {
 
   return {
     models: {
-      user,
+      coach,
       isLogged,
       isChecked,
       loading,
@@ -104,8 +104,8 @@ export const useUser = () => {
       login,
       register,
       logout,
-      getUser,
-      updateUser,
+      getCoach,
+      updateCoach,
     },
   };
 };

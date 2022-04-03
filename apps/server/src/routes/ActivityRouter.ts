@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { ActivityModel } from "@routine-support/domains";
-import { authorization } from "../middleware/authorization";
 import { studentAuthorization } from "../middleware/studentAuthorization";
 import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
+import { coachAuthorization } from "../middleware/coachAuthorization";
 
 export const activityRouter = Router();
 
-activityRouter.get("/:id", authorization, async (req, res) => {
+activityRouter.get("/:id", coachAuthorization, async (req, res) => {
   const activity = await ActivityModel.findById(req.params.id);
 
   if (activity) {
@@ -17,7 +17,7 @@ activityRouter.get("/:id", authorization, async (req, res) => {
   return res.sendStatus(404);
 });
 
-activityRouter.post("/", authorization, (req, res) => {
+activityRouter.post("/", coachAuthorization, (req, res) => {
   ActivityModel.create({
     ...req.body,
   });
@@ -25,7 +25,7 @@ activityRouter.post("/", authorization, (req, res) => {
   return res.sendStatus(200);
 });
 
-activityRouter.delete("/:id", authorization, async (req, res) => {
+activityRouter.delete("/:id", coachAuthorization, async (req, res) => {
   const id = req.params.id;
 
   ActivityModel.findByIdAndDelete(id, (err) => {
@@ -35,7 +35,7 @@ activityRouter.delete("/:id", authorization, async (req, res) => {
   });
 });
 
-activityRouter.put("/:id", authorization, (req, res) => {
+activityRouter.put("/:id", coachAuthorization, (req, res) => {
   const id = req.params.id;
 
   ActivityModel.findByIdAndUpdate(

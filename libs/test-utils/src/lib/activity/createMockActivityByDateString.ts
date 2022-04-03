@@ -6,6 +6,7 @@ export const createMockActivityByDateString = (date: DateString): Activity => {
   const parsedDate = parseDate(date);
 
   return {
+    _id: "",
     date: parsedDate,
     coachId: "",
     pictogram: "",

@@ -1,15 +1,18 @@
-import { UserModel } from "@routine-support/domains";
+import { CoachModel } from "@routine-support/domains";
 import { Router } from "express";
-import { authorization } from "../middleware/authorization";
+import {
+  COACH_LOCALS_NAME,
+  coachAuthorization,
+} from "../middleware/coachAuthorization";
 import { getAuthCookie } from "../utils/getAuthCookie";
 import { hashPassword } from "../utils/hashPassword";
 
-export const userRouter = Router();
+export const coachRouter = Router();
 
-userRouter.post("/", async (req, res) => {
+coachRouter.post("/", async (req, res) => {
   const { password, ...data } = req.body;
 
-  UserModel.create(
+  CoachModel.create(
     { ...data, password: hashPassword(password) },
     (err, result) => {
       if (err) {
@@ -25,10 +28,10 @@ userRouter.post("/", async (req, res) => {
   );
 });
 
-userRouter.post("/login", async (req, res) => {
+coachRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  UserModel.findOne(
+  CoachModel.findOne(
     { email, password: hashPassword(password) },
     (err, result) => {
       if (err || !result) {
@@ -42,10 +45,10 @@ userRouter.post("/login", async (req, res) => {
   );
 });
 
-userRouter.get("/", authorization, (__, res) => {
-  return res.status(200).send(res.locals.user);
+coachRouter.get("/", coachAuthorization, (__, res) => {
+  return res.status(200).send(res.locals[COACH_LOCALS_NAME]);
 });
 
-userRouter.get("/logout", (__, res) => {
+coachRouter.get("/logout", (__, res) => {
   return res.clearCookie("access_token").sendStatus(200);
 });

@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   Activity,
-  User,
+  Coach,
   WeekNumber,
   YearNumber,
 } from "@routine-support/domains";
@@ -31,20 +31,20 @@ export interface ActivityFormActions {
 }
 
 export interface ActivityFormProps {
-  user: User;
+  coach: Coach;
   activity: Partial<Activity> | null;
   actions: ActivityFormActions;
 }
 
 export const ActivityForm: React.FC<ActivityFormProps> = ({
-  user,
+  coach,
   activity,
   actions,
 }) => {
   const {
     models: { control, isDirty, isSubmitting, submitError, shouldShowStudents },
     operations: { handleSubmit, onDelete },
-  } = useActivityFormComponent(user, activity, actions);
+  } = useActivityFormComponent(coach, activity, actions);
 
   const { t } = useTranslation();
 

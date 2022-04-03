@@ -7,6 +7,7 @@ import { getTimeRange } from "../utils/getTimeRange";
 import { getDaysOfCalendarWeek } from "../utils/getDaysOfCalendarWeek";
 import { parseActivitiesFilter } from "../utils/parseActivitiesFilter";
 import { repeatActivities } from "../utils/repeatActivities";
+import { COACH_LOCALS_NAME } from "../middleware/coachAuthorization";
 
 export const weekRouter = Router();
 
@@ -20,7 +21,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
   const parsedFilter = parseActivitiesFilter(filter as string);
 
   let activitiesWithoutRepeat = await ActivityModel.find({
-    coachId: res.locals.user._id,
+    coachId: res.locals[COACH_LOCALS_NAME]._id,
     repeatType: RepeatTypeEnum.None,
   }).lean();
 
@@ -30,7 +31,7 @@ weekRouter.get("/:year/:week", async (req, res) => {
   );
 
   let activitiesWithRepeat = await ActivityModel.find({
-    coachId: res.locals.user._id,
+    coachId: res.locals[COACH_LOCALS_NAME]._id,
     repeatType: { $gt: RepeatTypeEnum.None },
   }).lean();
 

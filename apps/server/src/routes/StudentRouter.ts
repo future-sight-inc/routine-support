@@ -1,13 +1,13 @@
 import { ActivityModel, StudentModel } from "@routine-support/domains";
 import { Router } from "express";
-import { authorization } from "../middleware/authorization";
-import { studentAuthorization } from "../middleware/studentAuthorization";
+import { coachAuthorization } from "../middleware/coachAuthorization";
+import { STUDENT_LOCALS_NAME, studentAuthorization } from "../middleware/studentAuthorization";
 import { getAuthCookie } from "../utils/getAuthCookie";
 import { getRandomColor } from "../utils/getRandomColor";
 
 export const studentRouter = Router();
 
-studentRouter.post("/", authorization, async (req, res) => {
+studentRouter.post("/", coachAuthorization, async (req, res) => {
   StudentModel.create(
     { ...req.body, color: getRandomColor() },
     (err, result) => {
@@ -39,7 +39,7 @@ studentRouter.get("/logout", (__, res) => {
 });
 
 studentRouter.get("/", studentAuthorization, (__, res) => {
-  return res.status(200).send(res.locals.student);
+  return res.status(200).send(res.locals[STUDENT_LOCALS_NAME]);
 });
 
 studentRouter.delete("/:id", async (req, res) => {
@@ -87,7 +87,7 @@ studentRouter.put("/:id", (req, res) => {
   );
 });
 
-studentRouter.get("/coach/:id", authorization, (req, res) => {
+studentRouter.get("/coach/:id", coachAuthorization, (req, res) => {
   StudentModel.find({ coachId: req.params.id }, (err, result) => {
     if (err) {
       return res.status(401).send(err);
