@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import {
-  NewStudentDto,
+  CreateStudentDto,
   Student,
   studentActions,
 } from "@routine-support/domains";
@@ -22,7 +22,7 @@ export const useStudent = () => {
     dispatch(studentActions.setStudent(student || null));
   };
 
-  const createStudent = async (student: NewStudentDto) => {
+  const createStudent = async (student: CreateStudentDto) => {
     if (coachId) {
       try {
         setLoading(true);

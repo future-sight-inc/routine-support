@@ -15,20 +15,17 @@ dayRouter.get("/:date", async (req, res) => {
 
   const activities = await ActivityModel.find({ date }).lean();
 
-  console.log(activities.length);
-
   const studentActivities = filterActivitiesForStudent(activities, {
     _id: studentId,
   });
 
-  console.log(studentActivities.length);
-
   const parsedActivities = studentActivities.map(createActivityFromSchema);
   const dayScheduleActivities = getDayScheduleActivities(parsedActivities);
 
-  console.log(dayScheduleActivities.length);
-
   return res
     .status(200)
-    .send({ date, activities: dayScheduleActivities.map(createSchemaFromActivity) });
+    .send({
+      date,
+      activities: dayScheduleActivities.map(createSchemaFromActivity),
+    });
 });

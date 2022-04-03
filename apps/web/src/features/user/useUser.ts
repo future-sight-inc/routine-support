@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import {
+  LoginUserDto,
+  RegisterUserDto,
+  UpdateUserDto,
   userActions,
-  UserLoginDto,
-  UserRegisterDto,
-  UserUpdateDto,
 } from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -17,7 +17,7 @@ export const useUser = () => {
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
-  const login = async (data: UserLoginDto) => {
+  const login = async (data: LoginUserDto) => {
     try {
       setLoading(true);
 
@@ -47,7 +47,7 @@ export const useUser = () => {
     }
   };
 
-  const register = async (data: UserRegisterDto) => {
+  const register = async (data: RegisterUserDto) => {
     try {
       setLoading(true);
 
@@ -78,7 +78,7 @@ export const useUser = () => {
     }
   };
 
-  const updateUser = async (data: UserUpdateDto) => {
+  const updateUser = async (data: UpdateUserDto) => {
     try {
       setLoading(true);
 

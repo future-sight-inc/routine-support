@@ -12,13 +12,10 @@ export const createActivityAPI = (client: AxiosInstance) => ({
 
     return request;
   },
-  updateActivity: async ({
-    _id,
-    ...data
-  }: Activity): Promise<AxiosResponse> => {
+  updateActivity: async (activity: Activity): Promise<AxiosResponse> => {
     const request: AxiosResponse = await client.put(
-      `/activity/${_id}`,
-      createSchemaFromActivity(data)
+      `/activity/${activity._id}`,
+      createSchemaFromActivity(activity)
     );
 
     return request;

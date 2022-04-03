@@ -13,7 +13,7 @@ export type Student = {
   language: LanguageEnum;
 };
 
-export type NewStudentDto = {
+export type CreateStudentDto = {
   name: string;
   coachId: CoachId;
   pinCode: string;
@@ -21,9 +21,7 @@ export type NewStudentDto = {
   language: LanguageEnum;
 };
 
-export type StudentDto = Student;
-
-export type StudentLoginDto = {
+export type LoginStudentDto = {
   id: Id;
 };
 
