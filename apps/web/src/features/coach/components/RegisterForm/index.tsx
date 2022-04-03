@@ -4,14 +4,14 @@ import { NotAuthorizedLayout } from "apps/web/src/components/NotAuthorizedLayout
 import { LinkService } from "apps/web/src/services/LinkService";
 import { useHistory } from "react-router-dom";
 
-import { useUser } from "../../useUser";
-import { LoginForm as UncontrolledLoginForm } from "./LoginForm";
+import { useCoach } from "../../useCoach";
+import { RegisterForm as UncontrolledRegisterForm } from "./RegisterForm";
 
-export const LoginForm: React.FC = () => {
+export const RegisterForm: React.FC = () => {
   const {
     models: { isLogged },
-    operations: { login },
-  } = useUser();
+    operations: { register },
+  } = useCoach();
 
   const history = useHistory();
 
@@ -23,7 +23,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <NotAuthorizedLayout>
-      <UncontrolledLoginForm actions={{ login }} />
+      <UncontrolledRegisterForm actions={{ register }} />
     </NotAuthorizedLayout>
   );
 };

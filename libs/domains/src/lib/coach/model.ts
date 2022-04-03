@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
-import { User } from "./types";
+import { Coach } from "./types";
 
-const userSchema = new Schema(
+const coachSchema = new Schema(
   {
     name: {
       type: String,
@@ -21,4 +21,4 @@ const userSchema = new Schema(
   { versionKey: false }
 );
 
-export const UserModel = model<User>("user", userSchema);
+export const CoachModel = model<Coach>("coach", coachSchema);

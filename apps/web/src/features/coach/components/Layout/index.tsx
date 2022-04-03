@@ -1,18 +1,18 @@
-import { useUser } from "../../useUser";
+import { useCoach } from "../../useCoach";
 import { Layout as UncontrolledLayout } from "./Layout";
 
 export const Layout: React.FC = ({ children }) => {
   const {
-    models: { user },
+    models: { coach },
     operations: { logout },
-  } = useUser();
+  } = useCoach();
 
-  if (!user) {
+  if (!coach) {
     return null;
   }
 
   return (
-    <UncontrolledLayout user={user} actions={{ logout }}>
+    <UncontrolledLayout user={coach} actions={{ logout }}>
       {children}
     </UncontrolledLayout>
   );

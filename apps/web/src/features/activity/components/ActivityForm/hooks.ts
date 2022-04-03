@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { Activity, User } from "@routine-support/domains";
+import { Activity, Coach } from "@routine-support/domains";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 
 import { ActivityFormActions } from "./ActivityForm";
 
 export const useActivityFormComponent = (
-  user: User,
+  coach: Coach,
   activity: Partial<Activity> | null,
   actions: ActivityFormActions
 ) => {
@@ -61,12 +61,12 @@ export const useActivityFormComponent = (
       if (values._id) {
         await actions.updateActivity({
           ...values,
-          coachId: user._id,
+          coachId: coach._id,
         } as Activity);
       } else {
         await actions.createActivity({
           ...values,
-          coachId: user._id,
+          coachId: coach._id,
         } as Activity);
       }
 

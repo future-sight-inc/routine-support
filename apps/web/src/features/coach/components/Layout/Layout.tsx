@@ -5,7 +5,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import { List, ListItemButton, ListItemText } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { ListItemIcon } from "@mui/material";
-import { User } from "@routine-support/domains";
+import { Coach } from "@routine-support/domains";
 import { Footer } from "apps/web/src/components/Footer";
 import { LinkService } from "apps/web/src/services/LinkService";
 import moment from "moment";
@@ -20,7 +20,7 @@ export interface LayoutActions {
 }
 
 interface LayoutProps {
-  user: User;
+  user: Coach;
   actions: LayoutActions;
 }
 

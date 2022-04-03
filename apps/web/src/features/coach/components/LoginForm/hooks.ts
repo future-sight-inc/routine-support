@@ -1,24 +1,24 @@
 import { useState } from "react";
 
-import { RegisterUserDto } from "@routine-support/domains";
+import { LoginCoachDto } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
-import { RegisterFormActions } from "./RegisterForm";
+import { LoginFormActions } from "./LoginForm";
 
-export const useRegisterFormComponent = (actions: RegisterFormActions) => {
+export const useLoginFormComponent = (actions: LoginFormActions) => {
   const {
     register,
     handleSubmit,
     control,
     formState: { isSubmitting },
-  } = useForm<RegisterUserDto>();
+  } = useForm<LoginCoachDto>();
   const [submitError, setSubmitError] = useState<string | undefined>();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitError(undefined);
 
-      await actions.register(data);
+      await actions.login(data);
     } catch (error) {
       setSubmitError(error.message);
     }
