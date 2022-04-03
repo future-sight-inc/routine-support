@@ -1,7 +1,7 @@
 import {
   ActivityModel,
-  formatActivity,
-  formatActivityDto,
+  createSchemaFromActivity,
+  createSchemaFromActivityDto,
 } from "@routine-support/domains";
 import { Router } from "express";
 import { getDayScheduleActivities } from "../utils/getDayScheduleActivities";
@@ -25,12 +25,12 @@ dayRouter.get("/:date", async (req, res) => {
 
   console.log(studentActivities.length);
 
-  const parsedActivities = studentActivities.map(formatActivityDto);
+  const parsedActivities = studentActivities.map(createSchemaFromActivityDto);
   const dayScheduleActivities = getDayScheduleActivities(parsedActivities);
 
   console.log(dayScheduleActivities.length);
 
   return res
     .status(200)
-    .send({ date, activities: dayScheduleActivities.map(formatActivity) });
+    .send({ date, activities: dayScheduleActivities.map(createSchemaFromActivity) });
 });

@@ -1,4 +1,4 @@
-import { Activity, ActivityDto } from "@routine-support/domains";
+import { Activity, ActivitySchema } from "@routine-support/domains";
 import { DateString } from "@routine-support/types";
 import { Moment } from "moment";
 
@@ -9,5 +9,5 @@ export type Day = {
 
 export type DayDto = {
   date: DateString;
-  activities: ActivityDto[];
+  activities: ActivitySchema[];
 };

@@ -46,8 +46,6 @@ export type Activity = {
   confirmation: ConfirmationInfo;
 };
 
-export type ActivityDto = ActivitySchema;
-
 export interface ActivitiesGroup {
   start: Moment;
   end: Moment;

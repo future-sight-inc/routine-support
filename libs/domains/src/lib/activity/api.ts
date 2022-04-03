@@ -1,13 +1,13 @@
 import { Id } from "@routine-support/types";
 import { AxiosInstance, AxiosResponse } from "axios";
 import { Activity } from "./types";
-import { formatActivity } from "./utils";
+import { createSchemaFromActivity } from "./utils";
 
 export const createActivityAPI = (client: AxiosInstance) => ({
   createActivity: async (data: Activity): Promise<AxiosResponse> => {
     const request: AxiosResponse = await client.post(
       "/activity",
-      formatActivity(data)
+      createSchemaFromActivity(data)
     );
 
     return request;
@@ -18,7 +18,7 @@ export const createActivityAPI = (client: AxiosInstance) => ({
   }: Activity): Promise<AxiosResponse> => {
     const request: AxiosResponse = await client.put(
       `/activity/${_id}`,
-      formatActivity(data)
+      createSchemaFromActivity(data)
     );
 
     return request;

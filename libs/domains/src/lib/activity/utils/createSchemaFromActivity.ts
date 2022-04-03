@@ -1,7 +1,9 @@
-import { Activity, ActivityDto } from "@routine-support/domains";
+import { Activity, ActivitySchema } from "@routine-support/domains";
 import { stringifyDate, stringifyTime } from "@routine-support/utils";
 
-export const formatActivity = (activity: Activity): ActivityDto => {
+export const createSchemaFromActivity = (
+  activity: Activity
+): ActivitySchema => {
   return {
     ...activity,
     date: stringifyDate(activity.date),
