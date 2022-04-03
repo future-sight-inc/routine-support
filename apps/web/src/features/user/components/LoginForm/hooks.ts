@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { UserLoginDto } from "@routine-support/domains";
+import { LoginUserDto } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
 import { LoginFormActions } from "./LoginForm";
@@ -11,7 +11,7 @@ export const useLoginFormComponent = (actions: LoginFormActions) => {
     handleSubmit,
     control,
     formState: { isSubmitting },
-  } = useForm<UserLoginDto>();
+  } = useForm<LoginUserDto>();
   const [submitError, setSubmitError] = useState<string | undefined>();
 
   const onSubmit = handleSubmit(async (data) => {

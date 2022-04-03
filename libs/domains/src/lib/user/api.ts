@@ -1,18 +1,9 @@
 import { AxiosInstance, AxiosResponse } from "axios";
-import {
-  User,
-  UserDto,
-  UserLoginDto,
-  UserRegisterDto,
-  UserUpdateDto,
-} from "./types";
+import { LoginUserDto, RegisterUserDto, UpdateUserDto, User } from "./types";
 
 export const createUserAPI = (client: AxiosInstance) => ({
-  login: async (data: UserLoginDto): Promise<User> => {
-    const request: AxiosResponse<UserDto> = await client.post(
-      "/user/login",
-      data
-    );
+  login: async (data: LoginUserDto): Promise<User> => {
+    const request: AxiosResponse<User> = await client.post("/user/login", data);
 
     return request.data as User;
   },
@@ -21,18 +12,18 @@ export const createUserAPI = (client: AxiosInstance) => ({
 
     return request.data;
   },
-  register: async (data: UserRegisterDto): Promise<User> => {
-    const request: AxiosResponse<UserDto> = await client.post("/user", data);
+  register: async (data: RegisterUserDto): Promise<User> => {
+    const request: AxiosResponse<User> = await client.post("/user", data);
 
     return request.data as User;
   },
   getUser: async (): Promise<User> => {
-    const request: AxiosResponse<UserDto> = await client.get("/user");
+    const request: AxiosResponse<User> = await client.get("/user");
 
     return request.data as User;
   },
-  updateUser: async (data: UserUpdateDto): Promise<User> => {
-    const request: AxiosResponse<UserDto> = await client.put("/user", data);
+  updateUser: async (data: UpdateUserDto): Promise<User> => {
+    const request: AxiosResponse<User> = await client.put("/user", data);
 
     return request.data as User;
   },

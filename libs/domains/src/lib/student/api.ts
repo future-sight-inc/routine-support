@@ -2,15 +2,14 @@ import { Id } from "@routine-support/types";
 import { AxiosInstance, AxiosResponse } from "axios";
 import {
   CoachId,
-  NewStudentDto,
+  CreateStudentDto,
+  LoginStudentDto,
   Student,
-  StudentDto,
-  StudentLoginDto,
 } from "./types";
 
 export const createStudentAPI = (client: AxiosInstance) => ({
-  login: async (data: StudentLoginDto): Promise<Student> => {
-    const request: AxiosResponse<StudentDto> = await client.post(
+  login: async (data: LoginStudentDto): Promise<Student> => {
+    const request: AxiosResponse<Student> = await client.post(
       "/student/login",
       data
     );
@@ -23,20 +22,20 @@ export const createStudentAPI = (client: AxiosInstance) => ({
     return request.data;
   },
   getStudent: async (): Promise<Student> => {
-    const request: AxiosResponse<StudentDto> = await client.get("/student");
+    const request: AxiosResponse<Student> = await client.get("/student");
 
     return request.data as Student;
   },
-  createStudent: async (data: NewStudentDto) => {
-    const request: AxiosResponse<StudentDto> = await client.post(
+  createStudent: async (data: CreateStudentDto) => {
+    const request: AxiosResponse<Student> = await client.post(
       "/student",
       data
     );
 
     return request;
   },
-  updateStudent: async ({ _id, ...data }: StudentDto): Promise<Student> => {
-    const request: AxiosResponse<StudentDto> = await client.put(
+  updateStudent: async ({ _id, ...data }: Student): Promise<Student> => {
+    const request: AxiosResponse<Student> = await client.put(
       `/student/${_id}`,
       data
     );
@@ -49,7 +48,7 @@ export const createStudentAPI = (client: AxiosInstance) => ({
     return request;
   },
   getStudents: async (coachId: CoachId): Promise<Student[]> => {
-    const request: AxiosResponse<StudentDto[]> = await client.get(
+    const request: AxiosResponse<Student[]> = await client.get(
       `/student/coach/${coachId}`
     );
 

@@ -1,7 +1,13 @@
 import { AxiosInstance, AxiosResponse } from "axios";
 
-import { ActivityFilter, Week, WeekDto, WeekNumber, YearNumber } from "./types";
-import { formatWeekDto } from "./utils";
+import {
+  ActivityFilter,
+  Week,
+  WeekNumber,
+  WeekSchema,
+  YearNumber,
+} from "./types";
+import { createWeekFromSchema } from "./utils";
 
 export const createWeekAPI = (client: AxiosInstance) => ({
   getWeek: async (
@@ -24,11 +30,11 @@ export const createWeekAPI = (client: AxiosInstance) => ({
       filterParam = filterParam.join(",");
     }
 
-    const response: AxiosResponse<WeekDto> = await client.get(
+    const response: AxiosResponse<WeekSchema> = await client.get(
       `/week/${year}/${week}`,
       { params: { filter: filterParam } }
     );
 
-    return formatWeekDto(response.data);
+    return createWeekFromSchema(response.data);
   },
 });

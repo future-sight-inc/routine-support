@@ -1,1 +1,1 @@
-export { formatDayDto } from "./formatDayDto";
+export { createDayFromSchema } from "./createDayFromSchema";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { UserRegisterDto } from "@routine-support/domains";
+import { RegisterUserDto } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
 import { RegisterFormActions } from "./RegisterForm";
@@ -11,7 +11,7 @@ export const useRegisterFormComponent = (actions: RegisterFormActions) => {
     handleSubmit,
     control,
     formState: { isSubmitting },
-  } = useForm<UserRegisterDto>();
+  } = useForm<RegisterUserDto>();
   const [submitError, setSubmitError] = useState<string | undefined>();
 
   const onSubmit = handleSubmit(async (data) => {

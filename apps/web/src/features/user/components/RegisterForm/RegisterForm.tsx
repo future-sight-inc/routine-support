@@ -4,7 +4,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import PersonIcon from "@mui/icons-material/Person";
 import InputAdornment from "@mui/material/InputAdornment";
-import { UserRegisterDto } from "@routine-support/domains";
+import { RegisterUserDto } from "@routine-support/domains";
 import { Card } from "apps/web/src/components/Card";
 import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
@@ -17,7 +17,7 @@ import { useRegisterFormComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface RegisterFormActions {
-  register: (data: UserRegisterDto) => void;
+  register: (data: RegisterUserDto) => void;
 }
 
 interface RegisterFormProps {

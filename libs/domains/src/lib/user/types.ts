@@ -2,23 +2,21 @@ import { Email } from "@routine-support/types";
 
 export type UserName = string;
 
-export type UserDto = {
+export type User = {
   _id: string;
   name: UserName;
   email: Email;
 };
 
-export type User = UserDto;
-
-export type UserLoginDto = {
+export type LoginUserDto = {
   email: Email;
   password: string;
 };
 
-export type UserRegisterDto = {
+export type RegisterUserDto = {
   name: string;
   email: Email;
   password: string;
 };
 
-export type UserUpdateDto = Partial<UserRegisterDto>;
+export type UpdateUserDto = Partial<RegisterUserDto>;
