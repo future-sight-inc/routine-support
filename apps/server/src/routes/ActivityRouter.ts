@@ -19,17 +19,23 @@ activityRouter.get("/:id", coachAuthorization, async (req, res) => {
 });
 
 activityRouter.post("/", coachAuthorization, async (req, res) => {
-  const validationData = validateActivity(req.body);
+  // ! hardcode
+  return res.status(422).send({
+    isValid: false,
+    error: "Invalid submission data",
+  });
 
-  if (validationData.isValid) {
-    await ActivityModel.create({
-      ...req.body,
-    });
+  // const validationData = validateActivity(req.body);
 
-    return res.sendStatus(200);
-  }
+  // if (validationData.isValid) {
+  //   await ActivityModel.create({
+  //     ...req.body,
+  //   });
 
-  return res.status(422).send(validationData);
+  //   return res.sendStatus(200);
+  // }
+
+  // return res.status(422).send(validationData);
 });
 
 activityRouter.delete("/:id", coachAuthorization, async (req, res) => {

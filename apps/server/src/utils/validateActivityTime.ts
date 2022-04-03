@@ -1,10 +1,9 @@
 import { ActivitySchema } from "@routine-support/domains";
-import { FormError } from "@routine-support/types";
-import { ActivityValidationData } from "./validateActivity";
+import { FormError, SubmitErrorData } from "@routine-support/types";
 
 export const validateActivityTime = (
   activity: ActivitySchema
-): ActivityValidationData => {
+): SubmitErrorData => {
   const startTime = activity.start;
   const endTime = activity.end;
 

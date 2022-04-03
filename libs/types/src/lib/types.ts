@@ -29,6 +29,12 @@ export interface FormError {
   type: string;
 }
 
+export interface SubmitErrorData {
+  isValid: boolean;
+  errors?: { [key: string]: FormError };
+  error?: string;
+}
+
 export enum LanguageEnum {
   En = "en",
   Nl = "nl",
