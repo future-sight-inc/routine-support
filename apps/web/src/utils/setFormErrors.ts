@@ -1,10 +1,12 @@
-import { FormError } from "@routine-support/types";
+import { FormError, SubmitErrorData } from "@routine-support/types";
 
 export const setFormErrors = (
-  errors: {
-    [key: string]: FormError;
-  } = {},
+  submitErrorData: SubmitErrorData = { isValid: true },
   setError: (name: string, error: FormError) => void
+  // setSubmitError
 ) => {
-  Object.keys(errors).forEach((key) => setError(key, errors[key]));
+  // если есть ошибка формы ()
+  // положи ошибку в submitError
+
+  submitErrorData.errors?.forEach((error) => setError(error.name, error));
 };

@@ -8,9 +8,13 @@ export const validateActivityTime = (
   const endTime = activity.end;
 
   if (startTime >= endTime) {
-    const end: FormError = { message: "Invalid time", type: "server" };
+    const endError: FormError = {
+      name: "end",
+      message: "Invalid time",
+      type: "server",
+    };
 
-    return { isValid: false, errors: { end } };
+    return { isValid: false, errors: [endError] };
   }
 
   return { isValid: true };

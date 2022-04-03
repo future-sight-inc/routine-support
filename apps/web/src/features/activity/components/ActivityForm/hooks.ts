@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Activity, Coach } from "@routine-support/domains";
+import { SubmitErrorData } from "@routine-support/types";
 import { setFormErrors } from "apps/web/src/utils/setFormErrors";
 import { AxiosError } from "axios";
 import moment from "moment";
@@ -74,10 +75,9 @@ export const useActivityFormComponent = (
 
       actions.getWeek({ config: { silent: true } });
     } catch (error) {
-      const data = (error as AxiosError).response?.data;
+      const data = (error as AxiosError<SubmitErrorData>).response?.data;
 
-      setFormErrors(data?.errors, setError as any);
-      setSubmitError(error.message);
+      setFormErrors(data, setError as any);
     }
   });
 

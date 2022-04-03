@@ -25,13 +25,14 @@ export type AuthQrCode = {
 };
 
 export interface FormError {
+  name: string;
   message: string;
   type: string;
 }
 
 export interface SubmitErrorData {
   isValid: boolean;
-  errors?: { [key: string]: FormError };
+  errors?: FormError[];
   error?: string;
 }
 
