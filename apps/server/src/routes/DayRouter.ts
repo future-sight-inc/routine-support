@@ -1,7 +1,7 @@
 import {
   ActivityModel,
+  createActivityFromSchema,
   createSchemaFromActivity,
-  createSchemaFromActivityDto,
 } from "@routine-support/domains";
 import { Router } from "express";
 import { getDayScheduleActivities } from "../utils/getDayScheduleActivities";
@@ -13,8 +13,6 @@ dayRouter.get("/:date", async (req, res) => {
   const { date } = req.params;
   const studentId = res.locals.student._id;
 
-  console.log(studentId);
-
   const activities = await ActivityModel.find({ date }).lean();
 
   console.log(activities.length);
@@ -25,7 +23,7 @@ dayRouter.get("/:date", async (req, res) => {
 
   console.log(studentActivities.length);
 
-  const parsedActivities = studentActivities.map(createSchemaFromActivityDto);
+  const parsedActivities = studentActivities.map(createActivityFromSchema);
   const dayScheduleActivities = getDayScheduleActivities(parsedActivities);
 
   console.log(dayScheduleActivities.length);

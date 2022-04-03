@@ -1,12 +1,12 @@
 import { Moment } from "moment";
 import { DateString, Id, TimeRange } from "@routine-support/types";
-import { Day, DayDto } from "../day";
+import { Day, DaySchema } from "../day";
 
 export type YearNumber = number;
 export type WeekNumber = number;
 
 export interface WeekDto {
-  days: DayDto[];
+  days: DaySchema[];
   weekInfo: WeekInfoDto;
 }
 

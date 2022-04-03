@@ -1,12 +1,12 @@
-import { formatDayDto } from "@routine-support/domains";
+import { createDayFromSchema } from "@routine-support/domains";
 import { DateString } from "@routine-support/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import { Day, DayDto } from "./types";
+import { Day, DaySchema } from "./types";
 
 export const createDayAPI = (client: AxiosInstance) => ({
   getDay: async (date: DateString): Promise<Day> => {
-    const response: AxiosResponse<DayDto> = await client.get(`/day/${date}`);
+    const response: AxiosResponse<DaySchema> = await client.get(`/day/${date}`);
 
-    return formatDayDto(response.data);
+    return createDayFromSchema(response.data);
   },
 });

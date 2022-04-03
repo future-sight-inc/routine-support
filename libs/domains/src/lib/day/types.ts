@@ -7,7 +7,7 @@ export type Day = {
   activities: Activity[];
 };
 
-export type DayDto = {
+export type DaySchema = {
   date: DateString;
   activities: ActivitySchema[];
 };
