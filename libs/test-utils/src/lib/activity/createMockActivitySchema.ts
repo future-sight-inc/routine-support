@@ -10,6 +10,7 @@ export const createMockActivitySchema = (): ActivitySchema => {
     end: "",
     name: "",
     isCommon: true,
+    isImportant: false,
     repeatType: RepeatTypeEnum.None,
     confirmation: {},
     students: [],

@@ -7,6 +7,7 @@ import {
   YearNumber,
 } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
+import { Checkbox } from "apps/web/src/components/FormFields/Checkbox";
 import { CommonFlagPicker } from "apps/web/src/components/FormFields/CommonFlagPicker";
 import { useTranslation } from "react-i18next";
 
@@ -93,6 +94,13 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
             <StudentsPicker name="students" required control={control} />
           )}
         </div>
+        <Checkbox
+          // todo translate
+          label={t("Is important")}
+          helperText={t("Important activity hint")}
+          control={control}
+          name="isImportant"
+        />
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"

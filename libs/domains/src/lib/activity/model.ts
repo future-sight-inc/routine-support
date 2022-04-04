@@ -37,6 +37,11 @@ const activitySchema = new Schema(
       required: true,
       default: false,
     },
+    isImportant: {
+      type: Schema.Types.Boolean,
+      required: true,
+      default: false,
+    },
     students: {
       type: Schema.Types.Array,
       default: [],

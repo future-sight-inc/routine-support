@@ -1,11 +1,5 @@
 import React, { ReactElement } from "react";
 
-import Popover from "@mui/material/Popover";
-import {
-  bindPopover,
-  bindTrigger,
-  usePopupState,
-} from "material-ui-popup-state/hooks";
 import {
   ControllerFieldState,
   ControllerRenderProps,
@@ -14,6 +8,7 @@ import {
 } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
+import { LabelWithHelper } from "../../LabelWithHelper";
 import { FormFieldProps } from "../types";
 import * as S from "./styled";
 export interface ControllerProps extends FormFieldProps {
@@ -22,6 +17,7 @@ export interface ControllerProps extends FormFieldProps {
     fieldState: ControllerFieldState;
     formState: UseFormStateReturn<unknown>;
   }) => ReactElement;
+  row?: boolean;
 }
 
 export const Controller: React.FC<ControllerProps> = ({
@@ -32,41 +28,29 @@ export const Controller: React.FC<ControllerProps> = ({
   required,
   helperText,
 }) => {
-  const popupState = usePopupState({ variant: "popover", popupId: "demoMenu" });
   const { t } = useTranslation();
 
   return (
-    <>
-      <FormController
-        name={name}
-        control={control}
-        rules={{ required: required && t<string>("Required field") }}
-        render={({ field, fieldState, formState }) => (
+    <FormController
+      name={name}
+      control={control}
+      rules={{ required: required && t<string>("Required field") }}
+      render={({ field, fieldState, formState }) => (
+        <>
           <S.Wrapper>
             {label && (
-              <S.Label ref={field.ref} error={Boolean(fieldState.error)}>
-                {label}
-                {helperText && <S.HelpIcon {...bindTrigger(popupState)} />}
-              </S.Label>
+              <LabelWithHelper
+                label={label}
+                ref={field.ref}
+                error={Boolean(fieldState.error)}
+                helperText={helperText}
+              />
             )}
             {render({ field, fieldState, formState })}
-            {fieldState.error && <S.Error>{fieldState.error.message}</S.Error>}
           </S.Wrapper>
-        )}
-      />
-      <Popover
-        {...bindPopover(popupState)}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-      >
-        <S.HelperText>{helperText}</S.HelperText>
-      </Popover>
-    </>
+          {fieldState.error && <S.Error>{fieldState.error.message}</S.Error>}
+        </>
+      )}
+    />
   );
 };

@@ -3,8 +3,6 @@ import { SubmitErrorData } from "@routine-support/types";
 
 import { validateActivityTime } from "./validateActivityTime";
 
-export const validateActivity = (
-  activity: ActivitySchema
-): SubmitErrorData => {
+export const validateActivity = (activity: ActivitySchema): SubmitErrorData => {
   return validateActivityTime(activity);
 };

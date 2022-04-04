@@ -11,6 +11,7 @@ export const createMockActivity = (): Activity => {
     start: MOCK_DATE,
     end: MOCK_DATE,
     repeatType: RepeatTypeEnum.None,
+    isImportant: false,
     isCommon: true,
     students: [],
     confirmation: {},
