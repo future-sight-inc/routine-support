@@ -77,7 +77,7 @@ export const useActivityFormComponent = (
     } catch (error) {
       const data = (error as AxiosError<SubmitErrorData>).response?.data;
 
-      setFormErrors(data, setError as any);
+      setFormErrors(data, setError as any, setSubmitError);
     }
   });
 
