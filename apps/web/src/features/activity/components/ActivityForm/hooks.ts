@@ -33,7 +33,7 @@ export const useActivityFormComponent = (
     defaultValues,
   });
 
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | undefined>();
 
   const [shouldShowStudents, setShouldShowStudent] = useState(
     !defaultValues.isCommon
@@ -59,7 +59,7 @@ export const useActivityFormComponent = (
 
   const onSubmit = handleSubmit(async (values) => {
     try {
-      setSubmitError(null);
+      setSubmitError(undefined);
 
       if (values._id) {
         await actions.updateActivity({
