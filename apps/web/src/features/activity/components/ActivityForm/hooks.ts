@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 
-import { Activity, Coach } from "@routine-support/domains";
+import { Activity, Coach, RepeatTypeEnum } from "@routine-support/domains";
+import { SubmitErrorData } from "@routine-support/types";
+import { setFormErrors } from "apps/web/src/utils/setFormErrors";
+import { AxiosError } from "axios";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 
@@ -30,10 +33,13 @@ export const useActivityFormComponent = (
     defaultValues,
   });
 
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | undefined>();
 
   const [shouldShowStudents, setShouldShowStudent] = useState(
     !defaultValues.isCommon
+  );
+  const [isRepeatTypeAvailable, setRepeatTypeAvailable] = useState(
+    !defaultValues.isImportant
   );
 
   useEffect(() => {
@@ -49,6 +55,16 @@ export const useActivityFormComponent = (
           (setValue as any)("students", []);
         }
       }
+
+      if (name === "isImportant") {
+        if (value.isImportant) {
+          setRepeatTypeAvailable(false);
+          // ! баг в react-hook-form
+          (setValue as any)("repeatType", RepeatTypeEnum.None);
+        } else {
+          setRepeatTypeAvailable(true);
+        }
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -56,7 +72,7 @@ export const useActivityFormComponent = (
 
   const onSubmit = handleSubmit(async (values) => {
     try {
-      setSubmitError(null);
+      setSubmitError(undefined);
 
       if (values._id) {
         await actions.updateActivity({
@@ -72,7 +88,9 @@ export const useActivityFormComponent = (
 
       actions.getWeek({ config: { silent: true } });
     } catch (error) {
-      setSubmitError(error.message);
+      const data = (error as AxiosError<SubmitErrorData>).response?.data;
+
+      setFormErrors(data, setError as any, setSubmitError);
     }
   });
 
@@ -93,6 +111,7 @@ export const useActivityFormComponent = (
       isSubmitting: formState.isSubmitting,
       submitError,
       shouldShowStudents,
+      isRepeatTypeAvailable,
     },
     operations: { handleSubmit: onSubmit, onDelete },
   };

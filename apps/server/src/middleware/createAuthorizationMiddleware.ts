@@ -22,7 +22,9 @@ export const createAuthorizationMiddleware =
             return res.status(401).send(err);
           }
 
-          res.locals[authName] = { ...result, _id: data._id };
+          // todo В отдельную функцию
+          res.locals[authName] = result;
+          res.locals[authName]._id = data._id;
 
           return next();
         });

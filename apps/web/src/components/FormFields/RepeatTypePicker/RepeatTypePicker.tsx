@@ -24,6 +24,7 @@ export const RepeatTypePicker: React.FC<FormFieldProps> = ({
         <UncontrolledRepeatTypePicker
           value={field.value}
           onChange={field.onChange}
+          disabled={disabled}
         />
       )}
     />

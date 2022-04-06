@@ -23,6 +23,7 @@ export const Theme: DefaultTheme = {
       green: "#95E19B",
       blue: "#A0DBFD",
       darkblue: "#2C5082",
+      yellow: "#FFD74A",
       activeSidebarLink: "rgba(255, 255, 255, 0.2)",
     },
   },

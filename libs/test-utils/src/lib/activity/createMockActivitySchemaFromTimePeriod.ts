@@ -1,4 +1,5 @@
-import { ActivitySchema, RepeatTypeEnum } from "@routine-support/domains";
+import { ActivitySchema } from "@routine-support/domains";
+import { createMockActivitySchema } from "@routine-support/test-utils";
 import { MOCK_DATE_STRING } from "./constants";
 
 export const createMockActivitySchemaFromTimePeriod = ({
@@ -8,17 +9,12 @@ export const createMockActivitySchemaFromTimePeriod = ({
   start: string;
   end: string;
 }): ActivitySchema => {
+  const activitySchema = createMockActivitySchema();
+
   return {
-    _id: "",
-    coachId: "",
-    name: "",
-    pictogram: "",
+    ...activitySchema,
     date: MOCK_DATE_STRING,
     start,
     end,
-    repeatType: RepeatTypeEnum.None,
-    isCommon: true,
-    students: [],
-    confirmation: {},
   };
 };

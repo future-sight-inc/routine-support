@@ -1,14 +1,16 @@
 import { ActivitiesGroup, Activity } from "@routine-support/domains";
+import { getActivityImportanceValue } from "./getActivityImportanceValue";
 
 export const getHighPriorityActivityFromGroup = (
   group: ActivitiesGroup
 ): Activity | undefined => {
-  const firstFindCommon = group.activities.find(
-    (activity) => activity.isCommon
-  );
-  const firstFindIndividual = group.activities.find(
-    (activity) => !activity.isCommon
+  const maxImportance = Math.max(
+    ...group.activities.map((activity) => getActivityImportanceValue(activity))
   );
 
-  return firstFindIndividual || firstFindCommon;
+  const firstMaxImportant = group.activities.find(
+    (activity) => getActivityImportanceValue(activity) === maxImportance
+  );
+
+  return firstMaxImportant;
 };

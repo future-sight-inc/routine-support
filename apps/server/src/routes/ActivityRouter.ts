@@ -2,6 +2,7 @@ import { Router } from "express";
 import { ActivityModel } from "@routine-support/domains";
 import { studentAuthorization } from "../middleware/studentAuthorization";
 import { stringifyDate } from "@routine-support/utils";
+import { validateActivity } from "../utils/validateActivity";
 import moment from "moment";
 import { coachAuthorization } from "../middleware/coachAuthorization";
 
@@ -17,8 +18,30 @@ activityRouter.get("/:id", coachAuthorization, async (req, res) => {
   return res.sendStatus(404);
 });
 
-activityRouter.post("/", coachAuthorization, (req, res) => {
-  ActivityModel.create({
+activityRouter.post("/", coachAuthorization, async (req, res) => {
+  const validationData = await validateActivity(req.body);
+
+  if (validationData && !validationData.isValid) {
+    return res.status(422).send(validationData);
+  }
+
+  await ActivityModel.create({
+    ...req.body,
+  });
+
+  return res.sendStatus(200);
+});
+
+activityRouter.put("/:id", coachAuthorization, async (req, res) => {
+  const id = req.params.id;
+
+  const validationData = await validateActivity(req.body);
+
+  if (validationData && !validationData.isValid) {
+    return res.status(422).send(validationData);
+  }
+
+  await ActivityModel.findByIdAndUpdate(id, {
     ...req.body,
   });
 
@@ -33,26 +56,6 @@ activityRouter.delete("/:id", coachAuthorization, async (req, res) => {
 
     return res.sendStatus(200);
   });
-});
-
-activityRouter.put("/:id", coachAuthorization, (req, res) => {
-  const id = req.params.id;
-
-  ActivityModel.findByIdAndUpdate(
-    id,
-    {
-      ...req.body,
-    },
-    (err) => {
-      if (err) {
-        console.log(err);
-
-        return;
-      }
-
-      return res.sendStatus(200);
-    }
-  );
 });
 
 activityRouter.put(
