@@ -10,7 +10,9 @@ export const getActivityColor = (activity: Activity, students: Student[]) => {
   if (activity.students.length === 1) {
     const student = getStudentsByIds(students, activity.students)[0];
 
-    return student.color;
+    if (student) {
+      return student.color;
+    }
   }
 
   if (activity.students.length > 1) {

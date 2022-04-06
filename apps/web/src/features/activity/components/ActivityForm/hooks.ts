@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Activity, Coach } from "@routine-support/domains";
+import { Activity, Coach, RepeatTypeEnum } from "@routine-support/domains";
 import { SubmitErrorData } from "@routine-support/types";
 import { setFormErrors } from "apps/web/src/utils/setFormErrors";
 import { AxiosError } from "axios";
@@ -38,6 +38,9 @@ export const useActivityFormComponent = (
   const [shouldShowStudents, setShouldShowStudent] = useState(
     !defaultValues.isCommon
   );
+  const [isRepeatTypeAvailable, setRepeatTypeAvailable] = useState(
+    !defaultValues.isImportant
+  );
 
   useEffect(() => {
     // ! баг в react-hook-form
@@ -50,6 +53,16 @@ export const useActivityFormComponent = (
         if (value.isCommon) {
           // ! баг в react-hook-form
           (setValue as any)("students", []);
+        }
+      }
+
+      if (name === "isImportant") {
+        if (value.isImportant) {
+          setRepeatTypeAvailable(false);
+          // ! баг в react-hook-form
+          (setValue as any)("repeatType", RepeatTypeEnum.None);
+        } else {
+          setRepeatTypeAvailable(true);
         }
       }
     });
@@ -98,6 +111,7 @@ export const useActivityFormComponent = (
       isSubmitting: formState.isSubmitting,
       submitError,
       shouldShowStudents,
+      isRepeatTypeAvailable,
     },
     operations: { handleSubmit: onSubmit, onDelete },
   };

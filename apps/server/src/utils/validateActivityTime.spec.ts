@@ -2,9 +2,20 @@ import {
   createMockActivitySchema,
   setActivityTime,
 } from "@routine-support/test-utils";
-import { validateActivity } from "./validateActivity";
+import { SubmitErrorData } from "@routine-support/types";
+import { validateActivityTime } from "./validateActivityTime";
 
-describe("validateActivity", () => {
+const TIME_VALIDATION_ERROR: SubmitErrorData = {
+  isValid: false,
+  errors: [
+    {
+      name: "end",
+      message: "Invalid time",
+    },
+  ],
+};
+
+describe("validateActivityTime", () => {
   it("Start time is greater then end time", () => {
     const activity = createMockActivitySchema();
 
@@ -15,9 +26,12 @@ describe("validateActivity", () => {
       },
       activity
     );
-    const validationData = validateActivity(activity);
 
-    expect(validationData.isValid).toBeFalsy();
+    try {
+      validateActivityTime(activity);
+    } catch (error) {
+      expect(error).toStrictEqual(TIME_VALIDATION_ERROR);
+    }
   });
 
   it("Start time is equals end time", () => {
@@ -30,9 +44,12 @@ describe("validateActivity", () => {
       },
       activity
     );
-    const validationData = validateActivity(activity);
 
-    expect(validationData.isValid).toBeFalsy();
+    try {
+      validateActivityTime(activity);
+    } catch (error) {
+      expect(error).toStrictEqual(TIME_VALIDATION_ERROR);
+    }
   });
 
   it("Start time is less then end time", () => {
@@ -45,7 +62,7 @@ describe("validateActivity", () => {
       },
       activity
     );
-    const validationData = validateActivity(activity);
+    const validationData = validateActivityTime(activity);
 
     expect(validationData.isValid).toBeTruthy();
   });
@@ -60,7 +77,7 @@ describe("validateActivity", () => {
       },
       activity
     );
-    const validationData = validateActivity(activity);
+    const validationData = validateActivityTime(activity);
 
     expect(validationData.isValid).toBeTruthy();
   });
@@ -75,8 +92,11 @@ describe("validateActivity", () => {
       },
       activity
     );
-    const validationData = validateActivity(activity);
 
-    expect(validationData.isValid).toBeFalsy();
+    try {
+      validateActivityTime(activity);
+    } catch (error) {
+      expect(error).toStrictEqual(TIME_VALIDATION_ERROR);
+    }
   });
 });

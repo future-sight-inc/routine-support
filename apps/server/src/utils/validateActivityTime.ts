@@ -12,10 +12,9 @@ export const validateActivityTime = (
     const endError: FormError = {
       name: "end",
       message: "Invalid time",
-      type: "server",
     };
 
-    return { isValid: false, errors: [endError] };
+    throw { isValid: false, errors: [endError] };
   }
 
   return { isValid: true };

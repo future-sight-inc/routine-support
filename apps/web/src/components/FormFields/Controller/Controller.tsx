@@ -36,20 +36,20 @@ export const Controller: React.FC<ControllerProps> = ({
       control={control}
       rules={{ required: required && t<string>("Required field") }}
       render={({ field, fieldState, formState }) => (
-        <>
-          <S.Wrapper>
-            {label && (
-              <LabelWithHelper
-                label={label}
-                ref={field.ref}
-                error={Boolean(fieldState.error)}
-                helperText={helperText}
-              />
-            )}
-            {render({ field, fieldState, formState })}
-          </S.Wrapper>
-          {fieldState.error && <S.Error>{fieldState.error.message}</S.Error>}
-        </>
+        <S.Wrapper>
+          {label && (
+            <LabelWithHelper
+              label={label}
+              ref={field.ref}
+              error={Boolean(fieldState.error)}
+              helperText={helperText}
+            />
+          )}
+          {render({ field, fieldState, formState })}
+          {fieldState.error?.message && (
+            <S.Error>{t(fieldState.error.message)}</S.Error>
+          )}
+        </S.Wrapper>
       )}
     />
   );

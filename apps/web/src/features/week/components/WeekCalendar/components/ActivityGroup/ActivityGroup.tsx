@@ -21,8 +21,6 @@ export const ActivityGroup: React.FC<ActivityGroupProps> = ({
   students,
   onActivityClick,
 }) => {
-  console.log(students);
-
   return (
     <>
       {activities.map((activity, index) => (

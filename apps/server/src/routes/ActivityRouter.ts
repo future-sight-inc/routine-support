@@ -19,17 +19,33 @@ activityRouter.get("/:id", coachAuthorization, async (req, res) => {
 });
 
 activityRouter.post("/", coachAuthorization, async (req, res) => {
-  const validationData = validateActivity(req.body);
+  const validationData = await validateActivity(req.body);
 
-  if (validationData.isValid) {
-    await ActivityModel.create({
-      ...req.body,
-    });
-
-    return res.sendStatus(200);
+  if (validationData && !validationData.isValid) {
+    return res.status(422).send(validationData);
   }
 
-  return res.status(422).send(validationData);
+  await ActivityModel.create({
+    ...req.body,
+  });
+
+  return res.sendStatus(200);
+});
+
+activityRouter.put("/:id", coachAuthorization, async (req, res) => {
+  const id = req.params.id;
+
+  const validationData = await validateActivity(req.body);
+
+  if (validationData && !validationData.isValid) {
+    return res.status(422).send(validationData);
+  }
+
+  await ActivityModel.findByIdAndUpdate(id, {
+    ...req.body,
+  });
+
+  return res.sendStatus(200);
 });
 
 activityRouter.delete("/:id", coachAuthorization, async (req, res) => {
@@ -40,22 +56,6 @@ activityRouter.delete("/:id", coachAuthorization, async (req, res) => {
 
     return res.sendStatus(200);
   });
-});
-
-activityRouter.put("/:id", coachAuthorization, async (req, res) => {
-  const id = req.params.id;
-
-  const validationData = validateActivity(req.body);
-
-  if (validationData.isValid) {
-    await ActivityModel.findByIdAndUpdate(id, {
-      ...req.body,
-    });
-
-    return res.sendStatus(200);
-  }
-
-  return res.status(422).send(validationData);
 });
 
 activityRouter.put(

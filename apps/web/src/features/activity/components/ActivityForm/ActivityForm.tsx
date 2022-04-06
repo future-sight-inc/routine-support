@@ -43,7 +43,14 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
   actions,
 }) => {
   const {
-    models: { control, isDirty, isSubmitting, submitError, shouldShowStudents },
+    models: {
+      control,
+      isDirty,
+      isSubmitting,
+      submitError,
+      shouldShowStudents,
+      isRepeatTypeAvailable,
+    },
     operations: { handleSubmit, onDelete },
   } = useActivityFormComponent(coach, activity, actions);
 
@@ -83,6 +90,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           control={control}
           name="repeatType"
           label={t("Repeat type")}
+          disabled={!isRepeatTypeAvailable}
         />
         <div>
           <CommonFlagPicker
