@@ -1,0 +1,17 @@
+name: Tests
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Test utils
+        run: yarn test:utils
+      - name: Test domains
+        run: yarn test:domains
+      - name: Test server
+        run: yarn test:server
+      - name: Test web
+        run: yarn test:web
