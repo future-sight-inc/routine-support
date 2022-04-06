@@ -129,6 +129,7 @@
     "eslint-plugin-react-native": "^4.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "expo-cli": "3.28.5",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
     "jest-react-native": "18.0.0",
     "nx-react-native-expo": "^0.0.9",
