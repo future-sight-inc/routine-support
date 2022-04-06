@@ -1,7 +1,7 @@
 import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 import { MOCK_DATE } from "./constants";
 
-export const createMockActivity = (): Activity => {
+export const createMockActivity = (activity?: Partial<Activity>): Activity => {
   return {
     _id: "",
     coachId: "",
@@ -15,5 +15,6 @@ export const createMockActivity = (): Activity => {
     isCommon: true,
     students: [],
     confirmation: {},
+    ...activity,
   };
 };

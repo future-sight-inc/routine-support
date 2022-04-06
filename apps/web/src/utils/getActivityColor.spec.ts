@@ -7,6 +7,7 @@ import {
 import {
   COMMON_ACTIVITY_COLOR,
   GROUP_ACTIVITY_COLOR,
+  IMPORTANT_ACTIVITY_COLOR,
 } from "../constants/defaultActivityColor";
 import { getActivityColor } from "./getActivityColor";
 
@@ -37,5 +38,11 @@ describe("getActivityColor", () => {
     expect(getActivityColor(activity, [student1, student2])).toBe(
       GROUP_ACTIVITY_COLOR
     );
+  });
+
+  it("Important activity", () => {
+    const activity = createMockActivity({ isImportant: true });
+
+    expect(getActivityColor(activity, [])).toBe(IMPORTANT_ACTIVITY_COLOR);
   });
 });
