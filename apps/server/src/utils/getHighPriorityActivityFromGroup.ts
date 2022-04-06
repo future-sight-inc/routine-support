@@ -4,10 +4,13 @@ import { getActivityImportanceValue } from "./getActivityImportanceValue";
 export const getHighPriorityActivityFromGroup = (
   group: ActivitiesGroup
 ): Activity | undefined => {
+  const maxImportance = Math.max(
+    ...group.activities.map((activity) => getActivityImportanceValue(activity))
+  );
 
-  const maxImportance = Math.max(...group.activities.map(activity => getActivityImportanceValue(activity)))
-
-  const firstMaxImportant = group.activities.find(activity => getActivityImportanceValue(activity) === maxImportance)
+  const firstMaxImportant = group.activities.find(
+    (activity) => getActivityImportanceValue(activity) === maxImportance
+  );
 
   return firstMaxImportant;
 };
