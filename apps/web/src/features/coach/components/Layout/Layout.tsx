@@ -2,7 +2,7 @@ import React from "react";
 
 import { Coach } from "@routine-support/domains";
 import { Footer } from "apps/web/src/components/Footer";
-import { useTranslation } from "react-i18next";
+import { Header } from "apps/web/src/components/Header";
 
 import * as S from "./styled";
 import { useLayoutComponent } from "./useLayoutComponent";
@@ -21,11 +21,11 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
     operations: { handleLogout },
   } = useLayoutComponent(actions);
 
-  const { t } = useTranslation();
-
   return (
     <S.Wrapper>
-      <S.HeaderWrapper></S.HeaderWrapper>
+      <S.HeaderWrapper>
+        <Header user={user} onLogout={handleLogout} />
+      </S.HeaderWrapper>
       <S.Content>{children}</S.Content>
       <S.FooterWrapper>
         <Footer />

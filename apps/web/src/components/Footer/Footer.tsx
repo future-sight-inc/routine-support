@@ -14,24 +14,26 @@ export const Footer = () => {
 
   return (
     <S.Wrapper>
-      <S.Rights>{t("Rights info")}</S.Rights>
-      <S.LanguageWrapper>
-        {showDutchSwitch && (
-          <S.LanguageSwitch onClick={() => handleLanguageChange("nl")}>
-            Nederlands
-          </S.LanguageSwitch>
-        )}
-        {showEnglishSwitch && (
-          <S.LanguageSwitch onClick={() => handleLanguageChange("en")}>
-            English
-          </S.LanguageSwitch>
-        )}
-        {showRussianSwitch && (
-          <S.LanguageSwitch onClick={() => handleLanguageChange("ru")}>
-            Русский
-          </S.LanguageSwitch>
-        )}
-      </S.LanguageWrapper>
+      <S.Content>
+        <S.Rights>{t("Rights info")}</S.Rights>
+        <S.LanguageWrapper>
+          {showDutchSwitch && (
+            <S.LanguageSwitch onClick={() => handleLanguageChange("nl")}>
+              Nederlands
+            </S.LanguageSwitch>
+          )}
+          {showEnglishSwitch && (
+            <S.LanguageSwitch onClick={() => handleLanguageChange("en")}>
+              English
+            </S.LanguageSwitch>
+          )}
+          {showRussianSwitch && (
+            <S.LanguageSwitch onClick={() => handleLanguageChange("ru")}>
+              Русский
+            </S.LanguageSwitch>
+          )}
+        </S.LanguageWrapper>
+      </S.Content>
     </S.Wrapper>
   );
 };

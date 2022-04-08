@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 import styled, { css } from "styled-components";
 
 import { Theme } from "../../theme";
@@ -16,6 +18,8 @@ type TypographyColor = "normal" | "secondary" | "primary";
 interface TypographyProps {
   variant?: TypographyVariant;
   color?: TypographyColor;
+  onClick?: (...args: any) => void;
+  children: ReactNode;
 }
 
 export const Typography: React.FC<TypographyProps> = ({
@@ -31,7 +35,10 @@ export const Typography: React.FC<TypographyProps> = ({
 const getStyledTypography = ({
   variant = "text2",
   color,
-}: Omit<TypographyProps, "children">) => {
+}: {
+  variant?: TypographyVariant;
+  color?: TypographyColor;
+}) => {
   const fontStyles = css`
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   `;

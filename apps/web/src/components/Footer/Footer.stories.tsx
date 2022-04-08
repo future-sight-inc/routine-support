@@ -1,0 +1,5 @@
+import { storiesOf } from "@storybook/react";
+
+import { Footer } from "./Footer";
+
+storiesOf("Components", module).add("Footer", () => <Footer />);

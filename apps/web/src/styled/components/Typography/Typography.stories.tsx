@@ -6,7 +6,7 @@ import { Typography } from "./Typography";
 
 const Layout = styled.div``;
 
-storiesOf("Typography", module)
+storiesOf("Style Kit/Typography", module)
   .add("Variations", () => (
     <Layout>
       <Typography variant="caption4">Caption4/20px/bold</Typography>
