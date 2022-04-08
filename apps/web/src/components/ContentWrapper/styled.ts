@@ -7,16 +7,22 @@ export const ErrorText = styled(Typography)`
 
   ${({ theme }) =>
     css`
-      ${theme.position.absoluteCenter}
-      border-radius: ${theme.borderRadius}px;
-      background: ${theme.palette.common.grey};
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: ${theme.borderRadius};
+      background: ${theme.palette.secondary.main};
       color: ${theme.palette.error.main};
-      border: ${theme.border.main};
+      border: ${theme.palette.border.main};
     `};
 `;
 
 export const Spinner = styled(CircularProgress)`
-  ${({ theme }) => theme.position.absoluteCenter};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const ReloadButton = styled(Button)`

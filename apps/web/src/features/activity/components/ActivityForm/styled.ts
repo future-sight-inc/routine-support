@@ -26,7 +26,7 @@ export const SubmitButton = styled(Button).attrs(({ theme }) => ({
 
 export const DeleteButton = styled(Button).attrs(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
-  fontColor: theme.palette.secondary.contrastText,
+  fontColor: theme.palette.secondary.text,
 }))`
   width: 120px;
 `;

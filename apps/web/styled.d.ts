@@ -2,37 +2,37 @@ import "styled-components";
 
 interface Palette {
   main: string;
-  contrastText: string;
+  hovered?: string;
+  clicked?: string;
+  text: string;
 }
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    borderRadius: 4;
     palette: {
       common: {
-        black: string;
         white: string;
-        grey: string;
-        lightgrey: string;
+        black: string;
         lightblue: string;
         green: string;
-        blue: string;
-        darkblue: string;
         yellow: string;
-        activeSidebarLink: string;
+        blue: string;
+        purple: string;
+        pink: string;
+        red: string;
+        mint: string;
+        orange: string;
+        brown: string;
+        darkgreen: string;
       };
       primary: Palette;
       secondary: Palette;
       error: Palette;
+      border: {
+        main: string;
+      };
     };
-    border: {
-      main: string;
-      width: number;
-      color: string;
-    };
-    position: {
-      absoluteCenter: FlattenSimpleInterpolation;
-    };
+    borderRadius: string;
     size: {
       cellHeight: string;
       maxWidth: string;

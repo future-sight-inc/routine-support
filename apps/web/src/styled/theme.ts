@@ -1,46 +1,44 @@
-import { css, DefaultTheme } from "styled-components";
+import { DefaultTheme } from "styled-components";
 
 export const Theme: DefaultTheme = {
   palette: {
     primary: {
       main: "#2F80ED",
-      contrastText: "#000",
+      hovered: "#0F43D2",
+      clicked: "#0030B6",
+      text: "#000000",
     },
     secondary: {
-      main: "#F3F3F3",
-      contrastText: "#838383",
+      main: "#EFEFEF",
+      hovered: "#D8D8D8",
+      clicked: "#C5C5C5",
+      text: "#9A9A9A",
     },
     error: {
       main: "#d32f2f",
-      contrastText: "#d32f2f",
+      text: "#d32f2f",
+    },
+    border: {
+      main: "#DEDEDE",
     },
     common: {
-      black: "#000",
-      white: "#fff",
-      grey: "#F3F3F3",
-      lightgrey: "#F9F9F9",
+      black: "#000000",
+      white: "#ffffff",
       lightblue: "#F5FCFF",
       green: "#95E19B",
-      blue: "#A0DBFD",
-      darkblue: "#2C5082",
       yellow: "#FFD74A",
-      activeSidebarLink: "rgba(255, 255, 255, 0.2)",
+      blue: "#A0DBFD",
+      purple: "#A08EFF",
+      pink: "#FFC1E6",
+      red: "#FF9191",
+      mint: "#7EF5F5",
+      orange: "#FF9A6F",
+      brown: "#B59388",
+      darkgreen: "#60B667",
     },
   },
-  borderRadius: 4,
-  border: {
-    main: "1px solid #DEDEDE",
-    width: 1,
-    color: "#DEDEDE",
-  },
-  position: {
-    absoluteCenter: css`
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    `,
-  },
+  borderRadius: "5px",
+  // todo разобраться в структуре, постараться выпилить
   size: {
     cellHeight: "160px",
     maxWidth: "1900px",

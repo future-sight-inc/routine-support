@@ -15,7 +15,7 @@ export const ConfirmationWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 2px 4px;
-  border-radius: ${({ theme }) => theme.borderRadius}px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   overflow: hidden;
   width: auto;
 
@@ -59,7 +59,7 @@ export const ModalContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow-y: scroll;
-  border: 1px solid ${({ theme }) => theme.border.color};
+  border: 1px solid ${({ theme }) => theme.palette.border.main};
   border-radius: 5px;
 `;
 
@@ -76,7 +76,7 @@ export const List = styled.div`
   text-align: center;
   padding-bottom: 8px;
   &:first-child {
-    border-right: 1px solid ${({ theme }) => theme.border.color};
+    border-right: 1px solid ${({ theme }) => theme.palette.border.main};
   }
 `;
 

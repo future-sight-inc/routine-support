@@ -1,4 +1,3 @@
-import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -30,8 +29,4 @@ export const ButtonWrapper = styled.div`
 
 export const Body = styled.div`
   position: relative;
-`;
-
-export const Spinner = styled(CircularProgress)`
-  ${({ theme }) => theme.position.absoluteCenter};
 `;

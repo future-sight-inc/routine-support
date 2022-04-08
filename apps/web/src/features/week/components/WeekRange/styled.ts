@@ -28,7 +28,7 @@ export const Day = styled.div<{ today?: boolean }>`
     css`
       background: white;
       color: black;
-      border: 1px solid ${({ theme }) => theme.border.color};
+      border: 1px solid ${({ theme }) => theme.palette.border.main};
       box-sizing: border-box;
       margin-left: -1px;
       margin-right: -1px;
@@ -39,7 +39,7 @@ export const DayName = styled(Typography).attrs(() => ({
   variant: "body2",
 }))`
   margin-right: 4px;
-  color: ${({ theme }) => theme.palette.secondary.contrastText};
+  color: ${({ theme }) => theme.palette.secondary.text};
 `;
 
 export const Date = styled(Typography).attrs(() => ({

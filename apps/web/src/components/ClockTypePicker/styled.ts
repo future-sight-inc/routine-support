@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 `;
 
 export const LabelWrapper = styled.div<{ isChecked: boolean }>`
-  box-shadow: ${({ theme }) => theme.border.color} 0px 0px 0px 1px;
+  box-shadow: ${({ theme }) => theme.palette.border.main} 0px 0px 0px 1px;
   padding: 4px;
   border-radius: 5px;
   text-align: center;

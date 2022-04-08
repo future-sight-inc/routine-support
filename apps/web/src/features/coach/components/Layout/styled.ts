@@ -21,7 +21,6 @@ export const Header = styled.div`
 `;
 
 export const Sidebar = styled.nav`
-  background: ${({ theme }) => theme.palette.common.darkblue};
   grid-column: 1;
   grid-row-start: 1;
   grid-row-end: 3;
@@ -33,7 +32,6 @@ export const Sidebar = styled.nav`
   }
 
   & .active {
-    background: ${({ theme }) => theme.palette.common.activeSidebarLink};
   }
 `;
 
@@ -105,5 +103,3 @@ export const LogoutButton = styled(Button)`
   margin-top: auto;
   height: 48px;
 `;
-
-

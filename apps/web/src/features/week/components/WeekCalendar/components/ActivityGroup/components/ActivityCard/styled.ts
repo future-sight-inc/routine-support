@@ -29,7 +29,7 @@ export const Wrapper = styled(Box)<{
   }
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius}px;
+    border-radius: ${theme.borderRadius};
   `}
 
   ${({ rowStart, marginTop, count, index, height, theme }) => css`

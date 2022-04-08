@@ -21,6 +21,6 @@ export const Content = styled.div`
 
   ${({ theme }) => css`
     background: ${theme.palette.common.white};
-    border-radius: ${theme.borderRadius}px;
+    border-radius: ${theme.borderRadius};
   `}
 `;

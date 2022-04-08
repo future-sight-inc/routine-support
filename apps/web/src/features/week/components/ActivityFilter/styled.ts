@@ -4,10 +4,10 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     align-self: flex-start;
-    border: 1px solid ${theme.border.color};
+    border: 1px solid ${theme.palette.border.main};
     padding: 16px;
-    border-radius: ${theme.borderRadius}px;
-    background: ${theme.palette.common.lightgrey};
+    border-radius: ${theme.borderRadius};
+    background: ${theme.palette.secondary.main};
   `}
 
   display: flex;
@@ -44,5 +44,5 @@ export const FilterName = styled(Typography)`
 export const Divider = styled.div`
   height: 1px;
   width: 100%;
-  background: ${({ theme }) => theme.border.color};
+  background: ${({ theme }) => theme.palette.border.main};
 `;

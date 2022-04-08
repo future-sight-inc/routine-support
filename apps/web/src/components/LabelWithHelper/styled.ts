@@ -22,7 +22,7 @@ export const Label = styled(Typography).attrs(() => ({
 
 export const HelpIcon = styled(UIHelpIcon)`
   font-size: 18px;
-  color: ${({ theme }) => theme.palette.secondary.contrastText};
+  color: ${({ theme }) => theme.palette.secondary.text};
   cursor: pointer;
 
   &:hover {

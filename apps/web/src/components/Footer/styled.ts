@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   height: 48px;
-  background: ${({ theme }) => theme.palette.common.grey};
-  color: ${({ theme }) => theme.palette.secondary.contrastText};
+  background: ${({ theme }) => theme.palette.secondary.main};
+  color: ${({ theme }) => theme.palette.secondary.text};
   padding: 0 32px;
   display: flex;
   flex-direction: row;

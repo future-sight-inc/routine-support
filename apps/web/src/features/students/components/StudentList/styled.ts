@@ -6,7 +6,7 @@ export const List = styled(BasicList)`
   position: static;
   max-height: calc(100vh - 60px - 32px - 40px - 64px);
   overflow-y: scroll;
-  border: 1px solid ${({ theme }) => theme.border.color};
+  border: 1px solid ${({ theme }) => theme.palette.border.main};
   border-radius: 8px;
   background: 25px;
 `;
@@ -28,10 +28,13 @@ export const EmptyText = styled(Typography)`
 
   ${({ theme }) =>
     css`
-      ${theme.position.absoluteCenter}
-      border-radius: ${theme.borderRadius}px;
-      background: ${theme.palette.common.grey};
-      color: ${theme.palette.secondary.contrastText};
-      border: ${theme.border.main};
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: ${theme.borderRadius};
+      background: ${theme.palette.secondary.main};
+      color: ${theme.palette.secondary.text};
+      border: ${theme.palette.border.main};
     `};
 `;

@@ -8,7 +8,10 @@ export const Modal = styled(DefaultModal)``;
 export const ModalContent = styled(Card)`
   width: 420px;
   min-height: 80px;
-  ${({ theme }) => theme.position.absoluteCenter}
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   outline: none;
   padding: 32px;
   max-height: 80vh;

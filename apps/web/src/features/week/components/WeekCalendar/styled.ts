@@ -4,10 +4,10 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 140px repeat(7, 1fr);
-  background: ${({ theme }) => theme.border.color};
-  border: 1px solid ${({ theme }) => theme.border.color};
+  background: ${({ theme }) => theme.palette.border.main};
+  border: 1px solid ${({ theme }) => theme.palette.border.main};
   grid-column-gap: 1px;
-  border-radius: ${({ theme }) => theme.borderRadius}px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   max-height: calc(100vh - 150px);
   overflow-y: scroll;
   position: relative;
@@ -17,7 +17,7 @@ export const Cell = styled.div<{ passed?: boolean }>`
   padding: 8px;
   min-height: ${({ theme }) => theme.size.cellHeight};
   box-sizing: border-box;
-  background: ${({ theme }) => theme.palette.common.grey};
+  background: ${({ theme }) => theme.palette.secondary.main};
   background: white;
   transition: box-shadow 0.2s;
   cursor: pointer;
@@ -64,7 +64,7 @@ export const TimeColumn = styled(Column)`
   text-align: center;
 
   & ${Cell} {
-    background: ${({ theme }) => theme.palette.common.lightgrey};
+    background: ${({ theme }) => theme.palette.secondary.main};
     display: flex;
     align-items: center;
     justify-content: center;
