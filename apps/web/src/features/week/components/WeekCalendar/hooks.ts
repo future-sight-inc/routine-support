@@ -2,9 +2,9 @@ import { RefObject, useEffect, useState } from "react";
 
 import { TimeString } from "@routine-support/types";
 import { getMinutes, parseTime, pxToNumber } from "@routine-support/utils";
-import { Theme } from "apps/web/src/styled/theme";
 import moment, { Moment } from "moment";
 
+import { Theme } from '../../../../styled/theme'
 import { WeekCalendarActions } from "./WeekCalendar";
 
 export const useWeekCalendarComponent = (

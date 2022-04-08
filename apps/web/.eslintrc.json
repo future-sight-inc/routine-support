@@ -33,7 +33,12 @@
           }
         ],
         "unused-imports/no-unused-imports": "error",
-        "no-console": ["warn", { "allow": ["error"] }]
+        "no-console": [
+          "warn",
+          {
+            "allow": ["error"]
+          }
+        ]
       }
     },
     {

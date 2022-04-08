@@ -6,33 +6,13 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 1fr auto;
-  grid-template-columns: 200px 1fr;
+  grid-template-row: repeat(3, auto);
+  gap: 24px;
   height: 100vh;
 `;
 
-export const Header = styled.div`
-  background: ${({ theme }) => theme.palette.primary.main};
-  height: 69px;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  box-sizing: border-box;
-`;
-
-export const Sidebar = styled.nav`
-  grid-column: 1;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  display: flex;
-  flex-direction: column;
-
-  & * {
-    color: ${({ theme }) => theme.palette.common.white};
-  }
-
-  & .active {
-  }
+export const HeaderWrapper = styled.div`
+  height: 50px;
 `;
 
 export const Content = styled.div`
@@ -41,13 +21,9 @@ export const Content = styled.div`
   box-sizing: border-box;
   max-width: ${({ theme }) => theme.size.maxWidth};
   margin: 0 auto;
-  grid-column-start: 2;
 `;
 
-export const FooterWrapper = styled.div`
-  grid-column: 2;
-  grid-row: 2;
-`;
+export const FooterWrapper = styled.div``;
 
 export const Links = styled.div`
   display: flex;

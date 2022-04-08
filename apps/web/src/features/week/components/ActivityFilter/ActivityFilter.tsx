@@ -3,9 +3,9 @@ import React from "react";
 import { FormControlLabel } from "@mui/material";
 import { Student } from "@routine-support/domains";
 import { ActivityFilter as ActivityFilterType } from "@routine-support/domains";
-import { Theme } from "apps/web/src/styled/theme";
 import { useTranslation } from "react-i18next";
 
+import { Theme } from '../../../../styled/theme'
 import { useActivityFilterComponent } from "./hooks";
 import * as S from "./styled";
 
