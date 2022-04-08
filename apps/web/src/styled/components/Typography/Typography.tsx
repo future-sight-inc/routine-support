@@ -33,7 +33,7 @@ const getStyledTypography = ({
   color,
 }: Omit<TypographyProps, "children">) => {
   const fontStyles = css`
-    font-family: 'Roboto';
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   `;
 
   const colorStyles = getColorStyles(color);

@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
 import { rgba } from "polished";
 import styled, { css } from "styled-components";
+
+import { Typography } from "../../styled/components/Typography";
 
 export const Wrapper = styled.div`
   padding: 0 16px;
@@ -26,10 +27,13 @@ export const Content = styled.div`
 export const UserWrapper = styled.div`
   width: 180px;
   display: flex;
+  align-items: center;
   gap: 8px;
 `;
 
-export const UserEmail = styled(Typography)`
+export const UserEmail = styled(Typography).attrs(() => ({
+  variant: "text2Bold",
+}))`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -40,6 +44,10 @@ export const Navigation = styled.nav`
   gap: 16px;
 `;
 
+export const LogoutText = styled(Typography).attrs(() => ({
+  variant: "text2Bold",
+}))``;
+
 export const LogoutWrapper = styled.div`
   display: flex;
   gap: 8px;
@@ -48,15 +56,13 @@ export const LogoutWrapper = styled.div`
   cursor: pointer;
   height: 50px;
 
-  & * {
+  ${LogoutText}, & * {
     color: ${({ theme }) => theme.palette.secondary.text};
   }
 
   &:hover {
-    & * {
+    ${LogoutText},& * {
       color: ${({ theme }) => theme.palette.common.black};
     }
   }
 `;
-
-export const LogoutText = styled(Typography)``;
