@@ -38,7 +38,7 @@ const getColorStyles = (color?: TypographyColor) => {
       `;
   default:
     return css`
-        color: ${Theme.palette.primary.text};
+        color: inherit;
       `;
   }
 };

@@ -1,10 +1,10 @@
+import { getDaysOfWeek } from "@routine-support/domains";
 import { DateString } from "@routine-support/types";
 import { stringifyDate } from "@routine-support/utils";
-import { getDaysOfWeek } from "./getDaysOfWeek";
 
 export const getDateStringRangeFromWeek = (weekInfo: {
-  weekNumber: number;
-  yearNumber: number;
+  week: number;
+  year: number;
 }): DateString[] => {
   const daysOfWeek = getDaysOfWeek(weekInfo);
 

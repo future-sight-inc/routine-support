@@ -1,6 +1,6 @@
 import { Activity } from "@routine-support/domains";
 import { Moment } from "moment";
-import { getDayNumbersFromWeek } from "../utils/getDayNumbersFromWeek";
+import { getDayNumbersFromWeek } from "./getDayNumbersFromWeek";
 
 export const repeatActivityThisMonth = (
   activity: Activity,

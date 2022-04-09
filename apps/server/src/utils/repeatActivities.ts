@@ -3,9 +3,9 @@ import {
   ActivitySchema,
   createActivityFromSchema,
   createSchemaFromActivity,
+  repeatActivity,
 } from "@routine-support/domains";
 import { Moment } from "moment";
-import { repeatActivity } from "./repeatActivity";
 
 export const repeatActivities = (
   activities: ActivitySchema[],

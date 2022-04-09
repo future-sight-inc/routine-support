@@ -39,16 +39,16 @@ export const WEEK_INCLUDES_SPECIAL_DATE = [
 ];
 
 export const WEEK_OF_MONTH_INFO = {
-  weekNumber: 10,
-  yearNumber: 2022,
+  week: 10,
+  year: 2022,
 };
 
 export const WEEK_BETWEEN_MONTHS_INFO = {
-  weekNumber: 9,
-  yearNumber: 2022,
+  week: 9,
+  year: 2022,
 };
 
 export const WEEK_BETWEEN_YEARS_INFO = {
-  weekNumber: 52,
-  yearNumber: 2021,
+  week: 52,
+  year: 2021,
 };
