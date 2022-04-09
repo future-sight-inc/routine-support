@@ -18,7 +18,11 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({
   children,
 }) => {
   if (loading) {
-    return <S.Spinner />;
+    return (
+      <S.SpinnerWrapper>
+        <S.Spinner />
+      </S.SpinnerWrapper>
+    );
   }
 
   if (error) {

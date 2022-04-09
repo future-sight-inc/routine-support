@@ -18,6 +18,11 @@ export const ErrorText = styled(Typography)`
     `};
 `;
 
+export const SpinnerWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
+
 export const Spinner = styled(CircularProgress)`
   position: absolute;
   top: 50%;

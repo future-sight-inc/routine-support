@@ -23,8 +23,12 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
           <S.UserEmail>{user.email}</S.UserEmail>
         </S.UserWrapper>
         <S.Navigation>
-          <NavigationLink icon={<CalendarTodayIcon />}>Calendar</NavigationLink>
-          <NavigationLink icon={<GroupIcon />}>Students</NavigationLink>
+          <NavigationLink icon={<CalendarTodayIcon />} to={"/"}>
+            Calendar
+          </NavigationLink>
+          <NavigationLink icon={<GroupIcon />} to={"/students"}>
+            Students
+          </NavigationLink>
         </S.Navigation>
         <S.LogoutWrapper onClick={onLogout}>
           <S.LogoutText>Logout</S.LogoutText>
