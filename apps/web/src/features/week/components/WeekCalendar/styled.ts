@@ -81,9 +81,25 @@ export const Time = styled(Typography).attrs(() => ({
 
 export const TimeLine = styled.div<{ top: number }>`
   position: absolute;
+
   top: ${({ top }) => top}px;
-  left: 60px;
+
+  left: 0;
   right: 0;
-  height: 1px;
+  height: 2px;
+
   background: ${({ theme }) => theme.palette.primary.main};
+
+  &::before {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: grey;
+    margin-top: -4px;
+    margin-left: -6px;
+    border-radius: 50%;
+    content: "";
+
+    background: ${({ theme }) => theme.palette.primary.main};
+  }
 `;

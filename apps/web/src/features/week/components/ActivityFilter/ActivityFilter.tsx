@@ -38,7 +38,7 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
 
   return (
     <S.Wrapper>
-      <S.Title>Filters</S.Title>
+      <S.Title>{t("Filters")}</S.Title>
       <S.FilterWrapper>
         <FormControlLabel
           control={

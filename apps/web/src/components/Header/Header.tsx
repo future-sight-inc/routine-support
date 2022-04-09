@@ -5,6 +5,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import { Coach } from "@routine-support/domains";
+import { useTranslation } from "react-i18next";
 
 import { NavigationLink } from "../NavigationLink";
 import * as S from "./styled";
@@ -15,6 +16,8 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
+  const { t } = useTranslation();
+
   return (
     <S.Wrapper>
       <S.Content>
@@ -24,14 +27,14 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
         </S.UserWrapper>
         <S.Navigation>
           <NavigationLink icon={<CalendarTodayIcon />} to={"/"}>
-            Calendar
+            {t("Calendar")}
           </NavigationLink>
           <NavigationLink icon={<GroupIcon />} to={"/students"}>
-            Students
+            {t("Students")}
           </NavigationLink>
         </S.Navigation>
         <S.LogoutWrapper onClick={onLogout}>
-          <S.LogoutText>Logout</S.LogoutText>
+          <S.LogoutText>{t("Logout")}</S.LogoutText>
           <LogoutIcon />
         </S.LogoutWrapper>
       </S.Content>

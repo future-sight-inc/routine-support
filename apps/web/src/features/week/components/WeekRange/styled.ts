@@ -11,7 +11,7 @@ export const DayName = styled(Typography).attrs(() => ({
   variant: "text1Bold",
   color: "secondary",
 }))`
-  color: ${({ theme }) => theme.palette.secondary.text};
+  text-transform: capitalize;
 `;
 
 export const Day = styled.div<{ today?: boolean }>`
