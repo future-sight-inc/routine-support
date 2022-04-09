@@ -3,11 +3,13 @@ import { useState } from "react";
 import {
   ActivityFilter,
   DateInfo,
+  dateInfoToMoment,
   getCurrentDateInfo,
   weekActions,
   WeekNumber,
   YearNumber,
 } from "@routine-support/domains";
+import moment from "moment";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
@@ -24,6 +26,10 @@ export const useWeek = () => {
   const currentDateInfo = getCurrentDateInfo();
   const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
   const savedActivityFilter = useSavedActivityFilter();
+
+  const currentDate = dateInfoQuery
+    ? dateInfoToMoment(dateInfoQuery)
+    : moment();
 
   const [error, setError] = useState<string | null>(null);
 
@@ -65,6 +71,7 @@ export const useWeek = () => {
   return {
     models: {
       week,
+      currentDate,
       loading,
       error,
     },

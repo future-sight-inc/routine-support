@@ -8,10 +8,10 @@ import { useCoach } from "../coach/useCoach";
 import { useStudents } from "../students/useStudents";
 import { ActivityFilter } from "./components/ActivityFilter";
 import { AddActivityButton } from "./components/AddActivityButton";
+import { MiniCalendar } from "./components/MiniCalendar";
 import { WeekCalendar } from "./components/WeekCalendar";
 import { WeekLayout } from "./components/WeekLayout";
 import { WeekRange } from "./components/WeekRange";
-import { WeekSelect } from "./components/WeekSelect";
 import { useWeek } from "./useWeek";
 
 export const Week: React.FC = () => {
@@ -38,9 +38,9 @@ export const Week: React.FC = () => {
       onReload={Week.operations.getWeek}
     >
       <WeekLayout
-        weekSelect={
-          <WeekSelect
-            loading={Week.models.loading}
+        miniCalendar={
+          <MiniCalendar
+            currentDate={Week.models.currentDate}
             actions={{ getWeek: Week.operations.getWeek }}
           />
         }

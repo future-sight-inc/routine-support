@@ -14,10 +14,17 @@ export const Head = styled.div`
   gap: 1px;
 `;
 
-export const Column = styled.div`
+export const ActionsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+export const CalendarWrapper = styled.div`
   height: 100vh;
-  display: grid;
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 `;
 
 export const ButtonWrapper = styled.div`

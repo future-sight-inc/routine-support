@@ -19,7 +19,7 @@ export const Wrapper = styled.div<{
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   margin: 0;
   padding: 8px;
 

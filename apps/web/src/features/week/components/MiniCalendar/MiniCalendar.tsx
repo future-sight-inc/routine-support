@@ -5,10 +5,9 @@ import ChevronRight from "@material-ui/icons/ChevronRight";
 import { getDateInfoFromMoment, getDaysOfWeek } from "@routine-support/domains";
 import { Moment } from "moment";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 import * as S from "./styled";
-
-const DAY_NAMES = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Sn"];
 
 interface MiniCalendarProps {
   currentDate: Moment;
@@ -19,8 +18,11 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
   currentDate: defaultCurrentDate,
   onWeekSelect,
 }) => {
+  const { t, i18n } = useTranslation();
+
   const [currentDate, setCurrentDate] = useState(defaultCurrentDate);
   const [displayedMonth, setDisplayedMonth] = useState(defaultCurrentDate);
+  const weeksOfCalendar = getWeeksOfCalendar(displayedMonth);
 
   const handleWeekSelect = (week: Moment) => {
     setCurrentDate(week);
@@ -49,7 +51,9 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
   return (
     <S.Wrapper>
       <S.CurrentMonthRow>
-        <S.CurrentMonth>{displayedMonth.format("MMM, YYYY")}</S.CurrentMonth>
+        <S.CurrentMonth>
+          {displayedMonth.locale(i18n.language).format("MMM YYYY")}
+        </S.CurrentMonth>
         <S.Buttons>
           <S.ButtonWrapper onClick={handlePrevMonthClick}>
             <ChevronLeft />
@@ -61,11 +65,11 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
       </S.CurrentMonthRow>
       <S.WeeksWrapper>
         <S.DayNames>
-          {DAY_NAMES.map((day) => (
-            <S.Day>{day}</S.Day>
+          {weeksOfCalendar[0].map((day) => (
+            <S.Day>{day.locale(i18n.language).format("dd")}</S.Day>
           ))}
         </S.DayNames>
-        {getWeeksOfCalendar(displayedMonth).map((week) => (
+        {weeksOfCalendar.map((week) => (
           <S.Week
             isCurrent={week[0].isoWeek() === currentDate.isoWeek()}
             onClick={() =>
@@ -81,7 +85,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
         ))}
       </S.WeeksWrapper>
       <S.TodayWrapper onClick={handleTodayClick}>
-        <S.Today>Today</S.Today>
+        <S.Today>{t("Today")}</S.Today>
       </S.TodayWrapper>
     </S.Wrapper>
   );

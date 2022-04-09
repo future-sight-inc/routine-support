@@ -18,7 +18,9 @@ export const CurrentMonthRow = styled.div`
 
 export const CurrentMonth = styled(Typography).attrs(() => ({
   variant: "text1Bold",
-}))``;
+}))`
+  text-transform: capitalize;
+`;
 
 export const Buttons = styled.div`
   display: flex;

@@ -14,12 +14,16 @@ interface NavigationLinkProps {
 export const NavigationLink: React.FC<NavigationLinkProps> = ({
   icon,
   isActive = false,
-  to = "",
+  to = "/",
   children,
 }) => {
   const history = useHistory();
 
   const handleClick = () => {
+    if (isActive) {
+      return;
+    }
+
     history.push(to);
   };
 

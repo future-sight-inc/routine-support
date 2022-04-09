@@ -9,6 +9,6 @@ export const Button = styled(DefaultButton).attrs(() => ({
 `;
 
 export const ButtonText = styled(Typography).attrs(() => ({
-  variant: "caption4",
+  variant: "text1Bold",
   color: "white",
 }))``;
