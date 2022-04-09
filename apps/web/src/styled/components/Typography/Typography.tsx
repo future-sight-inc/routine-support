@@ -13,7 +13,7 @@ type TypographyVariant =
   | "text2Bold"
   | "text3Bold";
 
-type TypographyColor = "normal" | "secondary" | "primary";
+type TypographyColor = "normal" | "secondary" | "primary" | "white";
 
 interface TypographyProps {
   variant?: TypographyVariant;
@@ -41,6 +41,7 @@ const getStyledTypography = ({
 }) => {
   const fontStyles = css`
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    margin: 0;
   `;
 
   const colorStyles = getColorStyles(color);
@@ -111,6 +112,10 @@ const getColorStyles = (color?: TypographyColor) => {
   case "primary":
     return css`
         color: ${Theme.palette.primary.main};
+      `;
+  case "white":
+    return css`
+        color: ${Theme.palette.common.white};
       `;
   default:
     return css`

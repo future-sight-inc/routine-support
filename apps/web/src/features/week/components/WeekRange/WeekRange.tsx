@@ -17,8 +17,9 @@ export const WeekRange: React.FC<WeekRangeProps> = ({ week }) => {
     <S.Wrapper>
       {week?.weekInfo.days.map((day) => (
         <S.Day today={isToday(day)}>
-          <S.DayName>{day.format("dd")},</S.DayName>
-          <S.Date>{day.locale(i18n.language).format("DD MMM")}</S.Date>
+          <S.DayName>
+            {day.locale(i18n.language).format("D")} {day.format("dddd")}
+          </S.DayName>
         </S.Day>
       ))}
     </S.Wrapper>

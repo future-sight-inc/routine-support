@@ -2,10 +2,6 @@
 
 Веб-приложение программного комплекса **Routine Support**
 
-```bash
-open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security
-```
-
 ## Стек технологий
 
 - React
@@ -35,7 +31,7 @@ chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
 Для MacOs:
 
 ```bash
-  open /Applications/Google\ Chrome.app --args --user-data-dir="/var/tmp/Chrome dev session" --disable-web-security
+open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security
 ```
 
 5. Запустить сервер:

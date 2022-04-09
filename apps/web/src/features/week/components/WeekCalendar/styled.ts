@@ -1,16 +1,11 @@
-import { Typography } from "@mui/material";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 140px repeat(7, 1fr);
+  grid-template-columns: 60px repeat(7, 1fr);
   background: ${({ theme }) => theme.palette.border.main};
-  border: 1px solid ${({ theme }) => theme.palette.border.main};
   grid-column-gap: 1px;
-  border-radius: ${({ theme }) => theme.borderRadius};
-  max-height: calc(100vh - 150px);
-  overflow-y: scroll;
-  position: relative;
 `;
 
 export const Cell = styled.div<{ passed?: boolean }>`
@@ -62,11 +57,14 @@ export const AbsoluteColumn = styled.div<{ rowsCount: number }>`
 
 export const TimeColumn = styled(Column)`
   text-align: center;
+  grid-row-gap: 0;
 
   & ${Cell} {
-    background: ${({ theme }) => theme.palette.secondary.main};
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    padding: 0;
+
+    background: white;
     justify-content: center;
     cursor: default;
 
@@ -76,12 +74,15 @@ export const TimeColumn = styled(Column)`
   }
 `;
 
-export const Time = styled(Typography).attrs(() => ({ variant: "body2" }))``;
+export const Time = styled(Typography).attrs(() => ({
+  variant: "text2Bold",
+  color: "secondary",
+}))``;
 
 export const TimeLine = styled.div<{ top: number }>`
   position: absolute;
   top: ${({ top }) => top}px;
-  left: 0;
+  left: 60px;
   right: 0;
   height: 1px;
   background: ${({ theme }) => theme.palette.primary.main};

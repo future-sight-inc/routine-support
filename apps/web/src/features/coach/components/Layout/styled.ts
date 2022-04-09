@@ -16,11 +16,12 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 16px;
+  padding: 0 16px;
   width: 100%;
   box-sizing: border-box;
   max-width: ${({ theme }) => theme.size.maxWidth};
   margin: 0 auto;
+  overflow: hidden;
 `;
 
 export const FooterWrapper = styled.div``;

@@ -17,7 +17,8 @@
     "lint:write": "eslint '**/*.{ts,tsx}' --ignore-pattern node_modules/ --fix",
     "format": "git-format-staged -f 'prettier --ignore-unknown --stdin --stdin-filepath \"{}\"' .",
     "prepare": "npx husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "storybook:web": "nx run web:storybook"
   },
   "private": true,
   "dependencies": {

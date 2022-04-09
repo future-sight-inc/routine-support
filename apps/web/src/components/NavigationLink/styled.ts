@@ -9,7 +9,6 @@ export const Wrapper = styled.div<{ isActive: boolean }>`
   cursor: pointer;
   height: 50px;
   width: auto;
-  padding: 0 8px;
 
   ${({ theme, isActive }) =>
     !isActive &&

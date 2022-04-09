@@ -14,7 +14,7 @@ export const Button = styled(LoadingButton)<{
         height: 40px;
         box-sizing: border-box;
         background: ${backgroundColor};
-        color: ${fontColor};
+
         transition: all 0.5s;
 
         &:first-child {
@@ -30,6 +30,11 @@ export const Button = styled(LoadingButton)<{
           background: ${backgroundColor};
           color: ${fontColor};
           opacity: 0.7;
+        }
+
+        & * {
+          text-transform: none;
+          color: ${fontColor};
         }
       `}
 `;

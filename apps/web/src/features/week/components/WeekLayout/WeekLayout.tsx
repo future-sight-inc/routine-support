@@ -12,7 +12,7 @@ interface WeekLayoutProps {
 }
 
 export const WeekLayout: React.FC<WeekLayoutProps> = ({
-  weekSelect,
+  // weekSelect,
   weekRange,
   calendar,
   addActivityButton,
@@ -26,10 +26,7 @@ export const WeekLayout: React.FC<WeekLayoutProps> = ({
         {activityFilter}
       </S.Column>
       <S.Column>
-        <S.Head>
-          {weekSelect}
-          {weekRange}
-        </S.Head>
+        <S.Head>{weekRange}</S.Head>
         <S.Body>{calendar}</S.Body>
       </S.Column>
       {activityModal}

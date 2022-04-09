@@ -1,24 +1,29 @@
-import { Checkbox, Typography } from "@mui/material";
+import { Checkbox } from "@mui/material";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    align-self: flex-start;
-    border: 1px solid ${theme.palette.border.main};
-    padding: 16px;
-    border-radius: ${theme.borderRadius};
-    background: ${theme.palette.secondary.main};
-  `}
-
+  align-self: flex-start;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  width: 155px;
+  gap: 8px;
 `;
 
+export const Title = styled(Typography).attrs(() => ({
+  variant: "text1Bold",
+}))``;
+
 export const FilterWrapper = styled.div`
-  display: flex;
-  align-items: center;
+  padding: 0 8px;
+
+  &:hover {
+    ${({ theme }) =>
+    css`
+        background: ${theme.palette.secondary.main};
+        border-radius: ${theme.borderRadius};
+      `};
+  }
 `;
 
 export const FilterCheckbox = styled(Checkbox).attrs(
@@ -31,18 +36,15 @@ export const FilterCheckbox = styled(Checkbox).attrs(
     },
   })
 )<{ checkboxColor: string }>`
-  color: black;
+  height: 30px;
 `;
 
-export const FilterName = styled(Typography)`
-  max-width: 80px;
+export const FilterName = styled(Typography).attrs(() => ({
+  variant: "text1",
+}))`
+  display: block;
+  width: 100%;
   overflow: hidden;
   white-space: break-word;
   user-select: none;
-`;
-
-export const Divider = styled.div`
-  height: 1px;
-  width: 100%;
-  background: ${({ theme }) => theme.palette.border.main};
 `;
