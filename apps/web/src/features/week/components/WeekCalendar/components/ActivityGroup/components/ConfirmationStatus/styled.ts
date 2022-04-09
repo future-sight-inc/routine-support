@@ -1,15 +1,20 @@
 import CheckIcon from "@mui/icons-material/Check";
-import { Typography } from "@mui/material";
+import { Typography } from "apps/web/src/styled/components/Typography";
+import styledComponents from "styled-components";
 import styled from "styled-container-query";
 
-export const ConfirmedNumber = styled(Typography)``;
+const ConfirmedNumberText = styledComponents(Typography).attrs(() => ({
+  variant: "text2",
+}))``;
 
-export const CheckedIcon = styled(CheckIcon)`
+export const ConfirmedNumber = styled(ConfirmedNumberText)``;
+
+export const CheckedIcon = styledComponents(CheckIcon)`
   font-size: 18px;
   margin-right: 2px;
 `;
 
-export const ConfirmationWrapper = styled.div`
+export const ConfirmationWrapper = styledComponents.div`
   color: ${({ theme }) => theme.palette.common.black};
   transition: background 0.2s;
   display: flex;
@@ -55,7 +60,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styledComponents.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow-y: scroll;
@@ -63,26 +68,28 @@ export const ModalContent = styled.div`
   border-radius: 5px;
 `;
 
-export const ModalTitle = styled(Typography)`
+export const ModalTitle = styledComponents(Typography)`
   font-size: 24px;
   font-weight: medium;
   margin-bottom: 16px;
 `;
 
-export const List = styled.div`
+export const List = styledComponents.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
   text-align: center;
   padding-bottom: 8px;
+
   &:first-child {
     border-right: 1px solid ${({ theme }) => theme.palette.border.main};
   }
 `;
 
-export const ListHeading = styled(Typography)`
+export const ListHeading = styledComponents(Typography)`
   margin-bottom: 4px;
   font-weight: bold;
-  background: ${({ theme }) => theme.palette.common.grey};
   padding: 8px;
+
+  background: ${({ theme }) => theme.palette.secondary.main};
 `;

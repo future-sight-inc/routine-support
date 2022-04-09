@@ -26,6 +26,6 @@ export const ButtonWrapper = styled.div`
 
 export const Body = styled.div`
   position: relative;
-  max-height: calc(100% - 140px);
+  max-height: calc(100% - 160px);
   overflow-y: scroll;
 `;

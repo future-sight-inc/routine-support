@@ -1,9 +1,9 @@
-import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import { css } from "styled-components";
+import styledComponents from "styled-components";
 import styled from "styled-container-query";
 
-export const Wrapper = styled(Box)<{
+export const Wrapper = styled.div<{
   rowStart: number;
   marginTop: number;
   count: number;
@@ -21,7 +21,6 @@ export const Wrapper = styled(Box)<{
   flex-direction: column;
   gap: 4px;
   margin: 0;
-
   padding: 8px;
 
   &:container(max-width: 100px) {
@@ -46,9 +45,11 @@ export const Wrapper = styled(Box)<{
   cursor: pointer;
 `;
 
-export const Time = styled(Typography)`
-  font-size: 14px;
+const TimeText = styledComponents(Typography).attrs(() => ({
+  variant: "text2",
+}))``;
 
+export const Time = styled(TimeText)`
   &:container(max-width: 100px) {
     visibility: hidden;
     height: 0;
@@ -64,9 +65,11 @@ export const Time = styled(Typography)`
   }
 `;
 
-export const Name = styled(Typography)`
-  font-weight: bold;
+const NameText = styledComponents(Typography).attrs(() => ({
+  variant: "text1Bold",
+}))``;
 
+export const Name = styled(NameText)`
   &:container(max-width: 140px) {
     overflow: hidden;
     white-space: nowrap;

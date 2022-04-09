@@ -4,7 +4,11 @@ import styled from "styled-components";
 
 import { Typography } from "./Typography";
 
-const Layout = styled.div``;
+const Layout = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 
 storiesOf("Style Kit/Typography", module)
   .add("Variations", () => (

@@ -15,7 +15,8 @@ export const Title = styled(Typography).attrs(() => ({
 }))``;
 
 export const FilterWrapper = styled.div`
-  padding: 0 8px;
+  padding-left: 8px;
+  box-sizing: border-box;
 
   &:hover {
     ${({ theme }) =>
@@ -42,9 +43,10 @@ export const FilterCheckbox = styled(Checkbox).attrs(
 export const FilterName = styled(Typography).attrs(() => ({
   variant: "text1",
 }))`
-  display: block;
-  width: 100%;
+  width: 118px;
   overflow: hidden;
   white-space: break-word;
   user-select: none;
+  padding-right: 8px;
+  box-sizing: border-box;
 `;
