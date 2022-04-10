@@ -4,18 +4,18 @@ export const Theme: DefaultTheme = {
   palette: {
     primary: {
       main: "#2F80ED",
-      hovered: "#0F43D2",
-      clicked: "#0030B6",
+      hovered: "#1A6EDE",
+      clicked: "#075DD0",
       text: "#000000",
     },
     secondary: {
       main: "#EFEFEF",
-      hovered: "#D8D8D8",
-      clicked: "#C5C5C5",
+      hovered: "#E3E3E3",
+      clicked: "#D7D7D7",
       text: "#9A9A9A",
     },
     error: {
-      main: "#d32f2f",
+      main: "#FFE8E8",
       text: "#d32f2f",
     },
     border: {

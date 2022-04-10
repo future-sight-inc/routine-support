@@ -1,6 +1,7 @@
 import { CircularProgress, Typography } from "@mui/material";
-import { Button } from "apps/web/src/styled/components/Button";
 import styled, { css } from "styled-components";
+
+import { Button } from "../../styled/components/Button";
 
 export const ErrorText = styled(Typography)`
   padding: 16px;

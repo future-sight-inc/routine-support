@@ -9,6 +9,7 @@ import i18n from "i18next";
 import enLocale from "../src/locales/en.json";
 import nlLocale from "../src/locales/nl.json";
 import ruLocale from "../src/locales/ru.json";
+import { BrowserRouter as Router } from "react-router-dom";
 
 i18n
   .use(LanguageDetector)
@@ -29,7 +30,9 @@ i18n
   });
 
 addDecorator((storyFn) => (
-  <StyledEngineProvider injectFirst>
-    <ThemeProvider theme={Theme}>{storyFn()}</ThemeProvider>
-  </StyledEngineProvider>
+  <Router>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={Theme}>{storyFn()}</ThemeProvider>
+    </StyledEngineProvider>
+  </Router>
 ));

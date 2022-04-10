@@ -112,7 +112,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"
-            loading={isSubmitting}
+            isLoading={isSubmitting}
             disabled={!isDirty}
           >
             {activity?._id ? t("Update") : t("Create")}

@@ -68,7 +68,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"
-            loading={isSubmitting}
+            isLoading={isSubmitting}
             disabled={!isDirty}
           >
             {student?._id ? t("Update") : t("Create")}
