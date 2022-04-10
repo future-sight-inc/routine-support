@@ -44,6 +44,24 @@ export const Navigation = styled.nav`
   gap: 16px;
 `;
 
+export const IconWrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CurrentDay = styled(Typography)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  padding-top: 4px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+`;
+
 export const LogoutText = styled(Typography).attrs(() => ({
   variant: "text2Bold",
 }))``;

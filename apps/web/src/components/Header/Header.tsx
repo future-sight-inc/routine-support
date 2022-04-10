@@ -5,6 +5,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import { Coach } from "@routine-support/domains";
+import moment from "moment";
 import { useTranslation } from "react-i18next";
 
 import { NavigationLink } from "../NavigationLink";
@@ -26,7 +27,15 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
           <S.UserEmail>{user.email}</S.UserEmail>
         </S.UserWrapper>
         <S.Navigation>
-          <NavigationLink icon={<CalendarTodayIcon />} to={"/"}>
+          <NavigationLink
+            icon={
+              <S.IconWrapper>
+                <S.CurrentDay>{moment().format("D")}</S.CurrentDay>
+                <CalendarTodayIcon />
+              </S.IconWrapper>
+            }
+            to={"/"}
+          >
             {t("Calendar")}
           </NavigationLink>
           <NavigationLink icon={<GroupIcon />} to={"/students"}>

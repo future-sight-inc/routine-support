@@ -3,6 +3,39 @@ import { css } from "styled-components";
 import styledComponents from "styled-components";
 import styled from "styled-container-query";
 
+const TimeText = styledComponents(Typography).attrs(() => ({
+  variant: "text2",
+}))``;
+
+export const Time = styled(TimeText)`
+  &:container(max-width: 100px) {
+    visibility: hidden;
+    height: 0;
+  }
+
+  &:container(min-width: 140px) {
+    visibility: visible;
+  }
+`;
+
+const NameText = styledComponents(Typography).attrs(() => ({
+  variant: "text1Bold",
+}))``;
+
+export const Name = styled(NameText)`
+  &:container(max-width: 140px) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &:container(max-height: 100px) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+`;
+
 export const Wrapper = styled.div<{
   rowStart: number;
   marginTop: number;
@@ -43,42 +76,10 @@ export const Wrapper = styled.div<{
 
   pointer-events: all;
   cursor: pointer;
-`;
-
-const TimeText = styledComponents(Typography).attrs(() => ({
-  variant: "text2",
-}))``;
-
-export const Time = styled(TimeText)`
-  &:container(max-width: 100px) {
-    visibility: hidden;
-    height: 0;
-  }
 
   &:container(max-height: 100px) {
-    visibility: hidden;
-    height: 0;
-  }
-
-  &:container(min-width: 140px) {
-    visibility: visible;
-  }
-`;
-
-const NameText = styledComponents(Typography).attrs(() => ({
-  variant: "text1Bold",
-}))``;
-
-export const Name = styled(NameText)`
-  &:container(max-width: 140px) {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  &:container(max-height: 100px) {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    ${Time} {
+      display: none;
+    }
   }
 `;

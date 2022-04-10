@@ -7,22 +7,35 @@ export const Wrapper = styled.div`
   gap: 1px;
 `;
 
-export const DayName = styled(Typography).attrs(() => ({
+export const DayNumber = styled(Typography).attrs(() => ({
   variant: "text1Bold",
-  color: "secondary",
+}))`
+  margin-right: 8px;
+`;
+
+export const DayName = styled(Typography).attrs(() => ({
+  variant: "text1",
 }))`
   text-transform: capitalize;
 `;
 
-export const Day = styled.div<{ today?: boolean }>`
+export const Day = styled.div<{ isToday?: boolean; isPassed?: boolean }>`
   height: 40px;
   display: flex;
   align-items: center;
 
-  ${({ today, theme }) =>
-    today &&
+  ${({ isPassed, theme }) =>
+    isPassed &&
     css`
-      ${DayName} {
+      ${DayNumber}, ${DayName} {
+        color: ${theme.palette.secondary.text};
+      }
+    `}
+
+  ${({ isToday, theme }) =>
+    isToday &&
+    css`
+      ${DayNumber}, ${DayName} {
         color: ${theme.palette.primary.main};
       }
     `}

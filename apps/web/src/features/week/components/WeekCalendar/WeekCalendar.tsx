@@ -6,8 +6,8 @@ import {
   Student,
   Week,
 } from "@routine-support/domains";
+import { isToday } from "@routine-support/utils";
 import { stringifyDate } from "@routine-support/utils";
-import moment from "moment";
 
 import { ActivityGroup } from "./components/ActivityGroup";
 import { useWeekCalendarComponent } from "./hooks";
@@ -45,6 +45,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
           </S.Cell>
         ))}
       </S.TimeColumn>
+
       {week.weekInfo.days.map((day) => (
         <S.Column isWeekend={isWeekend(day)}>
           {week.weekInfo.timeRange.map((time) => (
@@ -62,9 +63,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               onActivityClick={actions.openActivityModal}
             />
           ))}
-          {stringifyDate(moment()) === stringifyDate(day) && (
-            <S.TimeLine top={timelineTopOffset} />
-          )}
+          {isToday(day) && <S.TimeLine top={timelineTopOffset} />}
         </S.Column>
       ))}
     </S.Wrapper>

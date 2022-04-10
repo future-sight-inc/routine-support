@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   grid-template-row: repeat(3, auto);
   gap: 24px;
   height: 100vh;
+  cursor: default;
 `;
 
 export const HeaderWrapper = styled.div`

@@ -4,7 +4,7 @@ import { TimeString } from "@routine-support/types";
 import { getMinutes, parseTime, pxToNumber } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 
-import { Theme } from '../../../../styled/theme'
+import { Theme } from "../../../../styled/theme";
 import { WeekCalendarActions } from "./WeekCalendar";
 
 export const useWeekCalendarComponent = (

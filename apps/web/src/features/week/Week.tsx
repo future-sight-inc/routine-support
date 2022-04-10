@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 
+import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
+
 import { ContentWrapper } from "../../components/ContentWrapper/ContentWrapper";
 import { Modal } from "../../components/Modal";
 import { ActivityForm } from "../../features/activity/components/ActivityForm";
@@ -15,6 +18,8 @@ import { WeekRange } from "./components/WeekRange";
 import { useWeek } from "./useWeek";
 
 export const Week: React.FC = () => {
+  const { t } = useTranslation();
+
   const Week = useWeek();
   const Activity = useActivity();
   const Students = useStudents();
@@ -37,6 +42,9 @@ export const Week: React.FC = () => {
       error={Week.models.error}
       onReload={Week.operations.getWeek}
     >
+      <Helmet>
+        <title>{t("Calendar")}</title>
+      </Helmet>
       <WeekLayout
         miniCalendar={
           <MiniCalendar

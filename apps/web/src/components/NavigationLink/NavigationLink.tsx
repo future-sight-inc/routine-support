@@ -1,11 +1,10 @@
 import React, { ReactNode } from "react";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import * as S from "./styled";
 
 interface NavigationLinkProps {
-  isActive?: boolean;
   icon?: ReactNode;
   to?: string;
   children: ReactNode;
@@ -13,11 +12,12 @@ interface NavigationLinkProps {
 
 export const NavigationLink: React.FC<NavigationLinkProps> = ({
   icon,
-  isActive = false,
   to = "/",
   children,
 }) => {
   const history = useHistory();
+  const location = useLocation();
+  const isActive = to === location.pathname;
 
   const handleClick = () => {
     if (isActive) {

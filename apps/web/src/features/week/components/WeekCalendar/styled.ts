@@ -61,7 +61,7 @@ export const TimeColumn = styled(Column)`
 
   & ${Cell} {
     display: flex;
-    align-items: flex-end;
+
     padding: 0;
 
     background: white;
@@ -75,9 +75,11 @@ export const TimeColumn = styled(Column)`
 `;
 
 export const Time = styled(Typography).attrs(() => ({
-  variant: "text2Bold",
+  variant: "text2",
   color: "secondary",
-}))``;
+}))`
+  margin-top: -14px;
+`;
 
 export const TimeLine = styled.div<{ top: number }>`
   position: absolute;

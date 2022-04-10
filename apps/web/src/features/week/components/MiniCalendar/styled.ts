@@ -102,6 +102,7 @@ export const Day = styled(Typography)<{ isCurrentMonth?: boolean }>`
 `;
 
 export const DayNames = styled(Week)`
+  text-transform: capitalize;
   cursor: default;
 
   &:hover {
@@ -111,7 +112,6 @@ export const DayNames = styled(Week)`
 
 export const Today = styled(Typography).attrs(() => ({
   variant: "text2Bold",
-  color: "secondary",
 }))``;
 
 export const TodayWrapper = styled.div`

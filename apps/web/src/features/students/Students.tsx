@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 
+import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
+
 import { ContentWrapper } from "../../components/ContentWrapper";
 import { Modal } from "../../components/Modal";
 import { StudentForm } from "../student/components/StudentForm/StudentForm";
@@ -10,6 +13,8 @@ import { StudentList } from "./components/StudentList";
 import { useStudents } from "./useStudents";
 
 export const Students: React.FC = () => {
+  const { t } = useTranslation();
+
   const Students = useStudents();
   const Student = useStudent();
 
@@ -23,6 +28,9 @@ export const Students: React.FC = () => {
       error={Students.models.error}
       onReload={Students.operations.getStudents}
     >
+      <Helmet>
+        <title>{t("Students")}</title>
+      </Helmet>
       <Layout
         addStudentButton={
           <AddStudentButton

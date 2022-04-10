@@ -27,7 +27,7 @@ export const Theme: DefaultTheme = {
       lightblue: "#F5FCFF",
       green: "#95E19B",
       yellow: "#FFD74A",
-      blue: "#A0DBFD",
+      blue: "#D0ECFF",
       purple: "#A08EFF",
       pink: "#FFC1E6",
       red: "#FF9191",
@@ -40,7 +40,7 @@ export const Theme: DefaultTheme = {
   borderRadius: "5px",
   // todo разобраться в структуре, постараться выпилить
   size: {
-    cellHeight: "160px",
+    cellHeight: "140px",
     maxWidth: "1900px",
   },
 };
