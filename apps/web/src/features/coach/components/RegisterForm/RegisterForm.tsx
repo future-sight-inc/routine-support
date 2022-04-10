@@ -1,9 +1,5 @@
 import React from "react";
 
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import PersonIcon from "@mui/icons-material/Person";
-import InputAdornment from "@mui/material/InputAdornment";
 import { RegisterCoachDto } from "@routine-support/domains";
 import { Card } from "apps/web/src/components/Card";
 import { ErrorText } from "apps/web/src/components/ErrorText";
@@ -39,47 +35,47 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
         <TextField
           name="name"
           type="text"
-          fullWidth
+          // fullWidth
           control={control}
           required
           placeholder={t("Name")}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <PersonIcon />
-              </InputAdornment>
-            ),
-          }}
+          // InputProps={{
+          //   startAdornment: (
+          //     <InputAdornment position="start">
+          //       <PersonIcon />
+          //     </InputAdornment>
+          //   ),
+          // }}
         />
         <TextField
           name="email"
           type="email"
-          fullWidth
+          // fullWidth
           control={control}
           required
           placeholder={t("Email")}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <EmailIcon />
-              </InputAdornment>
-            ),
-          }}
+          // InputProps={{
+          //   startAdornment: (
+          //     <InputAdornment position="start">
+          //       <EmailIcon />
+          //     </InputAdornment>
+          //   ),
+          // }}
         />
         <TextField
           name="password"
           type="password"
-          fullWidth
+          // fullWidth
           control={control}
           required
           placeholder={t("Password")}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LockIcon />
-              </InputAdornment>
-            ),
-          }}
+          // InputProps={{
+          //   startAdornment: (
+          //     <InputAdornment position="start">
+          //       <LockIcon />
+          //     </InputAdornment>
+          //   ),
+          // }}
         />
         <Button type="submit">{t("Submit")}</Button>
         {submitError && <ErrorText>{submitError}</ErrorText>}

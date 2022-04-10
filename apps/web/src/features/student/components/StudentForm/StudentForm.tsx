@@ -44,7 +44,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           name="name"
           control={control}
           label={t("Name")}
-          fullWidth
+          // fullWidth
           required
         />
         <LanguagePicker
@@ -57,14 +57,14 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           control={control}
           label={t("Clock type")}
         />
-        <TextField
+        {/* <TextField
           name="pinCode"
           control={control}
           label={t("PIN code")}
           inputProps={{ inputMode: "numeric", pattern: "[0-9]{4}" }}
           fullWidth
           required
-        />
+        /> */}
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"

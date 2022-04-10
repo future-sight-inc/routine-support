@@ -43,4 +43,34 @@ export const Theme: DefaultTheme = {
     cellHeight: "140px",
     maxWidth: "1900px",
   },
+  fonts: {
+    caption4: {
+      size: "20px",
+      weight: "bold",
+    },
+    text1: {
+      size: "16px",
+      weight: "normal",
+    },
+    text2: {
+      size: "14px",
+      weight: "normal",
+    },
+    text3: {
+      size: "12px",
+      weight: "normal",
+    },
+    text1Bold: {
+      size: "16px",
+      weight: "bold",
+    },
+    text2Bold: {
+      size: "14px",
+      weight: "bold",
+    },
+    text3Bold: {
+      size: "12px",
+      weight: "bold",
+    },
+  },
 };

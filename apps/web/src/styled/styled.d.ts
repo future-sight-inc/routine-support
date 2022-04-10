@@ -7,6 +7,11 @@ interface Palette {
   text: string;
 }
 
+interface FontVariant {
+  size: string;
+  weight: string;
+}
+
 declare module "styled-components" {
   export interface DefaultTheme {
     palette: {
@@ -36,6 +41,15 @@ declare module "styled-components" {
     size: {
       cellHeight: string;
       maxWidth: string;
+    };
+    fonts: {
+      caption4: FontVariant;
+      text1: FontVariant;
+      text2: FontVariant;
+      text3: FontVariant;
+      text1Bold: FontVariant;
+      text2Bold: FontVariant;
+      text3Bold: FontVariant;
     };
   }
 }
