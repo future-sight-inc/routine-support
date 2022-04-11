@@ -47,7 +47,7 @@ export const Students: React.FC = () => {
           }}
         />
         <Modal
-          opened={Student.models.opened}
+          isOpened={Student.models.opened}
           onClose={Student.operations.closeStudentModal}
         >
           <StudentForm

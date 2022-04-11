@@ -35,7 +35,7 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
         </S.ConfirmedNumber>
       </S.ConfirmationWrapper>
 
-      <Modal opened={modalOpened} onClose={handleModalClose}>
+      <Modal isOpened={modalOpened} onClose={handleModalClose}>
         <S.ModalTitle>{t("Activity status")}</S.ModalTitle>
         <S.ModalContent>
           <S.List>

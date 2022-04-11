@@ -8,12 +8,13 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 340px;
+  width: 400px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
+  border-radius: ${({ theme }) => theme.borderRadius};
 `;
 
 export const Form = styled.form`

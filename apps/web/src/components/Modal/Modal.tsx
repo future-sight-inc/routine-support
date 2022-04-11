@@ -1,21 +1,21 @@
-import React from "react";
-
-import CloseIcon from "@mui/icons-material/Close";
+import React, { MouseEvent } from "react";
 
 import * as S from "./styled";
 
 interface ModalProps {
-  opened: boolean;
+  isOpened: boolean;
   onClose: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ opened, onClose, children }) => {
+export const Modal: React.FC<ModalProps> = ({
+  isOpened,
+  onClose,
+  children,
+}) => {
   return (
-    <S.Modal open={opened} onClose={onClose}>
-      <S.ModalContent>
-        <S.IconWrapper onClick={onClose}>
-          <CloseIcon />
-        </S.IconWrapper>
+    <S.Modal isOpened={isOpened} onClick={onClose}>
+      <S.ModalContent onClick={(event: MouseEvent) => event.stopPropagation()}>
+        <S.CloseIcon onClick={onClose} />
         {children}
       </S.ModalContent>
     </S.Modal>

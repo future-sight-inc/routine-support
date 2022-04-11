@@ -67,7 +67,7 @@ export const StudentList: React.FC<StudentListProps> = ({
           </ListItemButton>
         </ListItem>
       ))}
-      <Modal opened={Boolean(qr)} onClose={onQrClose}>
+      <Modal isOpened={Boolean(qr)} onClose={onQrClose}>
         <S.QrTitle>
           {t("QR code for")} {currentStudent?.name}
         </S.QrTitle>

@@ -38,7 +38,7 @@ export const PictogramPicker: React.FC<PictogramPickerProps> = ({
       <S.OpenButton onClick={onModalOpen}>
         {selectedPictogram ? t("Change pictogram") : t("Choose pictogram")}
       </S.OpenButton>
-      <Modal opened={opened} onClose={onModalClose}>
+      <Modal isOpened={opened} onClose={onModalClose}>
         <S.ModalContent>
           <TextField
             placeholder={t("Search")}

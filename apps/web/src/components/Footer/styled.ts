@@ -31,6 +31,10 @@ export const LanguageSwitch = styled(Typography).attrs(() => ({
   color: "secondary",
 }))`
   cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.palette.common.black};
+  }
 `;
 
 export const Rights = styled(Typography).attrs(() => ({

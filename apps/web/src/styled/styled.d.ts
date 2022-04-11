@@ -52,5 +52,8 @@ declare module "styled-components" {
       text3Bold: FontVariant;
     };
     fontFamily: string;
+    boxShadow: {
+      normal: string;
+    };
   }
 }

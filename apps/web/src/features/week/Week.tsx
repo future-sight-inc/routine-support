@@ -80,7 +80,7 @@ export const Week: React.FC = () => {
         }
         activityModal={
           <Modal
-            opened={Activity.models.opened}
+            isOpened={Activity.models.opened}
             onClose={Activity.operations.closeActivityModal}
           >
             <ActivityForm
