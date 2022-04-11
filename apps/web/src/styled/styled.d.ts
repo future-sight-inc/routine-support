@@ -51,5 +51,6 @@ declare module "styled-components" {
       text2Bold: FontVariant;
       text3Bold: FontVariant;
     };
+    fontFamily: string;
   }
 }

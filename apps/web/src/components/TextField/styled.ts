@@ -11,11 +11,13 @@ export const TextField = styled.input<{ error?: boolean }>`
   ${({ theme, error }) => css`
     border-color: ${theme.palette.border.main};
 
+    font-family: ${theme.fontFamily};
     font-size: ${theme.fonts.text2.size};
     font-weight: ${theme.fonts.text2.weight};
     border-radius: ${theme.borderRadius};
 
     &::placeholder {
+      font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text2.size};
       font-weight: ${theme.fonts.text2.weight};
       color: ${theme.palette.secondary.text};

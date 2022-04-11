@@ -43,79 +43,85 @@ const getColorStyles = (color?: TypographyColor) => {
   }
 };
 
-const FONT_FAMILY_STYLES = css`
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+const DEFAULT_STYLES = css`
   margin: 0;
 `;
 
 const Caption4 = styled.h6<{ color?: TypographyColor }>`
   ${({ color, theme }) =>
     css`
+      font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.caption4.size};
       font-weight: ${theme.fonts.caption4.weight};
       ${getColorStyles(color)}
     `}
-  ${FONT_FAMILY_STYLES}
+  ${DEFAULT_STYLES}
 `;
 
 const Text1 = styled.p<{ color?: TypographyColor }>`
   ${({ color, theme }) =>
     css`
+      font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text1.size};
       font-weight: ${theme.fonts.text1.weight};
       ${getColorStyles(color)}
     `}
-  ${FONT_FAMILY_STYLES}
+  ${DEFAULT_STYLES}
 `;
 
 const Text2 = styled.p<{ color?: TypographyColor }>`
   ${({ color, theme }) =>
     css`
+      font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text2.size};
       font-weight: ${theme.fonts.text2.weight};
       ${getColorStyles(color)}
     `}
-  ${FONT_FAMILY_STYLES}
+  ${DEFAULT_STYLES}
 `;
 
 const Text3 = styled.p<{ color?: TypographyColor }>`
   ${({ color, theme }) =>
     css`
+      font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text3.size};
       font-weight: ${theme.fonts.text3.weight};
       ${getColorStyles(color)}
     `}
-  ${FONT_FAMILY_STYLES}
+  ${DEFAULT_STYLES}
 `;
 
 const Text1Bold = styled.p<{ color?: TypographyColor }>`
   ${({ color, theme }) =>
     css`
+      font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text1Bold.size};
       font-weight: ${theme.fonts.text1Bold.weight};
       ${getColorStyles(color)}
     `}
-  ${FONT_FAMILY_STYLES}
+  ${DEFAULT_STYLES}
 `;
 
 const Text2Bold = styled.p<{ color?: TypographyColor }>`
   ${({ color, theme }) =>
     css`
+      font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text2Bold.size};
       font-weight: ${theme.fonts.text2Bold.weight};
       ${getColorStyles(color)}
     `}
-  ${FONT_FAMILY_STYLES}
+  ${DEFAULT_STYLES}
 `;
 
 const Text3Bold = styled.p<{ color?: TypographyColor }>`
   ${({ color, theme }) =>
     css`
+      font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text3Bold.size};
       font-weight: ${theme.fonts.text3Bold.weight};
       ${getColorStyles(color)}
     `}
-  ${FONT_FAMILY_STYLES}
+  ${DEFAULT_STYLES}
 `;
 
 export const Typography: React.FC<TypographyProps> = ({

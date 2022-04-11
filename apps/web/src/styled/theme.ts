@@ -73,4 +73,5 @@ export const Theme: DefaultTheme = {
       weight: "bold",
     },
   },
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
 };

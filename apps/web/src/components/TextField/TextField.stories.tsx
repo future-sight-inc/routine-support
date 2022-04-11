@@ -7,6 +7,7 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 200px;
 `;
 
 storiesOf("Components", module).add("TextField", () => (
@@ -15,5 +16,7 @@ storiesOf("Components", module).add("TextField", () => (
     <TextField placeholder="Place password here" type="password" />
     <TextField placeholder="Empty with error" error />
     <TextField value="Filled with error" error />
+    <TextField type="time" />
+    <TextField type="date" />
   </Layout>
 ));
