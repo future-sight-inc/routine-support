@@ -32,6 +32,7 @@
     "@mui/lab": "^5.0.0-alpha.50",
     "@mui/material": "^5.0.2",
     "@reduxjs/toolkit": "^1.6.1",
+    "@testing-library/jest-dom": "^5.16.4",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.12",
     "@types/jsonwebtoken": "^8.5.5",
