@@ -1,50 +1,34 @@
-import React, { RefCallback } from "react";
+import React, { ReactNode, RefCallback } from "react";
 
-import {
-  bindHover,
-  bindPopover,
-  usePopupState,
-} from "material-ui-popup-state/hooks";
-import HoverPopover from "material-ui-popup-state/HoverPopover";
-
+import { LabelWithHelperLocators } from "./locators";
 import * as S from "./styled";
 
 interface LabelWithHelperProps {
-  label: string;
-  error?: boolean;
   ref?: RefCallback<unknown>;
   helperText?: string;
+  children: ReactNode;
 }
 
 export const LabelWithHelper: React.FC<LabelWithHelperProps> = ({
-  label,
-  error,
-  ref,
+  children,
   helperText,
 }) => {
-  const popupState = usePopupState({ variant: "popper", popupId: "demoMenu" });
-
   return (
-    <>
-      <S.Wrapper>
-        <S.Label ref={ref} error={error}>
-          {label}
-        </S.Label>
-        {helperText && <S.HelpIcon {...bindHover(popupState)} />}
-      </S.Wrapper>
-      <HoverPopover
-        {...bindPopover(popupState)}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
+    <S.Wrapper>
+      <S.Label
+        data-testid={LabelWithHelperLocators.Label}
+        // ref={ref}
       >
-        <S.HelperText>{helperText}</S.HelperText>
-      </HoverPopover>
-    </>
+        {children}
+      </S.Label>
+      {helperText && (
+        <S.HelpIconWrapper data-testid={LabelWithHelperLocators.HelpIcon}>
+          <S.HelpIcon />
+          <S.HelperText data-testid={LabelWithHelperLocators.HelperText}>
+            {helperText}
+          </S.HelperText>
+        </S.HelpIconWrapper>
+      )}
+    </S.Wrapper>
   );
 };

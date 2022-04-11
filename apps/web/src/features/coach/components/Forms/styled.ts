@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: ${({ theme }) => theme.boxShadow.normal};
+  box-shadow: ${({ theme }) => theme.boxShadow.medium};
   border-radius: ${({ theme }) => theme.borderRadius};
 `;
 

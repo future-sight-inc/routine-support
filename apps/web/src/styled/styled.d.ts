@@ -53,7 +53,8 @@ declare module "styled-components" {
     };
     fontFamily: string;
     boxShadow: {
-      normal: string;
+      medium: string;
+      small: string;
     };
   }
 }

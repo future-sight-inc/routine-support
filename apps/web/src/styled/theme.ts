@@ -75,6 +75,7 @@ export const Theme: DefaultTheme = {
   },
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   boxShadow: {
-    normal: "0px 16px 24px rgba(0, 0, 0, 0.1)",
+    medium: "0px 16px 24px rgba(0, 0, 0, 0.1)",
+    small: " 0px 2px 5px 2px rgba(0, 0, 0, 0.1)",
   },
 };

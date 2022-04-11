@@ -1,7 +1,8 @@
 import "@testing-library/jest-dom";
 import React, { useState } from "react";
 
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { AppWrapper } from "../AppWrapper";
 import { ModalLocators } from "./locators";
@@ -49,7 +50,7 @@ describe("Modal", () => {
     expect(getByTestId(ModalLocators.Container)).not.toBeVisible();
   });
 
-  it("Open by click on button, close by click on close icon", () => {
+  it("Open by click on button, close by click on close icon", async () => {
     const { container, getByTestId } = render(
       <AppWrapper>
         <ConnectedModal />
@@ -59,11 +60,11 @@ describe("Modal", () => {
     container.querySelector("button")?.click();
     expect(getByTestId(ModalLocators.Container)).toBeVisible();
 
-    fireEvent.click(getByTestId(ModalLocators.CloseIcon));
+    await userEvent.click(getByTestId(ModalLocators.CloseIcon));
     expect(getByTestId(ModalLocators.Container)).not.toBeVisible();
   });
 
-  it("Open by click on button, close by click on background", () => {
+  it("Open by click on button, close by click on background", async () => {
     const { container, getByTestId } = render(
       <AppWrapper>
         <ConnectedModal />
@@ -73,7 +74,7 @@ describe("Modal", () => {
     container.querySelector("button")?.click();
     expect(getByTestId(ModalLocators.Container)).toBeVisible();
 
-    fireEvent.click(getByTestId(ModalLocators.Container));
+    await userEvent.click(getByTestId(ModalLocators.Container));
     expect(getByTestId(ModalLocators.Container)).not.toBeVisible();
   });
 });
