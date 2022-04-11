@@ -13,7 +13,7 @@ type TypographyVariant =
   | "text2Bold"
   | "text3Bold";
 
-type TypographyColor = "normal" | "secondary" | "primary" | "white";
+type TypographyColor = "normal" | "secondary" | "primary" | "white" | "error";
 
 interface TypographyProps {
   variant?: TypographyVariant;
@@ -35,6 +35,10 @@ const getColorStyles = (color?: TypographyColor) => {
   case "white":
     return css`
         color: ${Theme.palette.common.white};
+      `;
+  case "error":
+    return css`
+        color: ${Theme.palette.error.text};
       `;
   default:
     return css`

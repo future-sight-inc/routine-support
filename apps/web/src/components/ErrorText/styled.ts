@@ -17,8 +17,5 @@ export const Wrapper = styled.div`
 
 export const ErrorText = styled(Typography).attrs(() => ({
   variant: "text2",
-}))`
-  ${({ theme }) => css`
-    color: ${theme.palette.error.text};
-  `};
-`;
+  color: "error",
+}))``;

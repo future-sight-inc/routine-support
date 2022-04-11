@@ -17,9 +17,19 @@ storiesOf("Style Kit/Typography", module)
       <Typography variant="text1">Text1/16px/normal</Typography>
       <Typography variant="text2">Text2/14px/normal</Typography>
       <Typography variant="text3">Text3/12px/normal</Typography>
-      <Typography variant="text1Bold">Text1/16px/bold</Typography>
-      <Typography variant="text2Bold">Text2/14px/bold</Typography>
-      <Typography variant="text3Bold">Text3/12px/bold</Typography>
+      <Typography variant="text1Bold">Text1Bold/16px/bold</Typography>
+      <Typography variant="text2Bold">Text2Bold/14px/bold</Typography>
+      <Typography variant="text3Bold">Text3Bold/12px/bold</Typography>
+      <Typography variant="text2">Normal</Typography>
+      <Typography variant="text2" color="primary">
+        Primary
+      </Typography>
+      <Typography variant="text2" color="secondary">
+        Secondary
+      </Typography>
+      <Typography variant="text2" color="error">
+        Error
+      </Typography>
     </Layout>
   ))
   .add("Customize", () => (
