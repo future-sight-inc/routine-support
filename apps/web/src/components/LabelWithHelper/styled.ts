@@ -32,10 +32,6 @@ export const HelpIcon = styled(UIHelpIcon).attrs(() => ({
 
 export const HelperText = styled(Typography)`
   display: none;
-  padding: 12px;
-  width: 120px;
-  height: 40px;
-  box-sizing: border-box;
 
   ${({ theme }) => css`
     border-radius: ${theme.borderRadius};
@@ -55,6 +51,10 @@ export const HelpIconWrapper = styled.div`
       top: -4px;
       left: 4px;
       transform: translateY(-100%);
+      padding: 12px;
+      height: 40px;
+      box-sizing: border-box;
+      white-space: nowrap;
     }
   }
 `;

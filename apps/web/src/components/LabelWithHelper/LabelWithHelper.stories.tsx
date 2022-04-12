@@ -24,4 +24,12 @@ storiesOf("Components/LabelWithHelper", module)
       <LabelWithHelper helperText="Helper text">Text</LabelWithHelper>
       <TextField />
     </FieldWrapper>
+  ))
+  .add("Very long helper text", () => (
+    <FieldWrapper>
+      <LabelWithHelper helperText="Very long helper text with descriptions and detailed info">
+        Text
+      </LabelWithHelper>
+      <TextField />
+    </FieldWrapper>
   ));
