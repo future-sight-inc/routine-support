@@ -13,12 +13,12 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   children,
 }) => {
+  if (!isOpened) {
+    return null;
+  }
+
   return (
-    <S.Modal
-      isOpened={isOpened}
-      onClick={onClose}
-      data-testid={ModalLocators.Container}
-    >
+    <S.Modal onClick={onClose} data-testid={ModalLocators.Container}>
       <S.ModalContent
         onClick={(event: MouseEvent) => event.stopPropagation()}
         data-testid={ModalLocators.Content}

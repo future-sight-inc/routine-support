@@ -2,7 +2,7 @@ import UICloseIcon from "@mui/icons-material/Close";
 import { rgba } from "polished";
 import styled, { css } from "styled-components";
 
-export const Modal = styled.div<{ isOpened: boolean }>`
+export const Modal = styled.div`
   top: 0;
   bottom: 0;
   left: 0;
@@ -16,12 +16,6 @@ export const Modal = styled.div<{ isOpened: boolean }>`
   ${({ theme }) => css`
     background: ${rgba(theme.palette.common.black, 0.5)};
   `}
-
-  ${({ isOpened }) =>
-    !isOpened &&
-    css`
-      display: none;
-    `}
 `;
 
 export const ModalContent = styled.div`

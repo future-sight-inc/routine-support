@@ -1,5 +1,5 @@
 export enum LabelWithHelperLocators {
-  Label,
-  HelpIcon,
-  HelperText,
+  Label = "LabelWithHelperLabel",
+  HelpIcon = "LabelWithHelperHelpIcon",
+  HelperText = "LabelWithHelperHelperText",
 }

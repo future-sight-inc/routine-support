@@ -29,7 +29,9 @@ export const Checkbox: React.FC<FormFieldProps> = ({
           defaultChecked={false}
           control={<UICheckbox />}
           label={
-            label && <LabelWithHelper label={label} helperText={helperText} />
+            label && (
+              <LabelWithHelper helperText={helperText}>{label}</LabelWithHelper>
+            )
           }
         />
       )}

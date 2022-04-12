@@ -41,40 +41,40 @@ describe("Modal", () => {
   });
 
   it("Should be closed", () => {
-    const { getByTestId } = render(
+    const { queryByTestId } = render(
       <AppWrapper>
         <Modal isOpened={false} onClose={() => null} />
       </AppWrapper>
     );
 
-    expect(getByTestId(ModalLocators.Container)).not.toBeVisible();
+    expect(queryByTestId(ModalLocators.Container)).toBeFalsy();
   });
 
   it("Open by click on button, close by click on close icon", async () => {
-    const { container, getByTestId } = render(
+    const { container, queryByTestId, getByTestId } = render(
       <AppWrapper>
         <ConnectedModal />
       </AppWrapper>
     );
 
     container.querySelector("button")?.click();
-    expect(getByTestId(ModalLocators.Container)).toBeVisible();
+    expect(queryByTestId(ModalLocators.Container)).toBeTruthy();
 
     await userEvent.click(getByTestId(ModalLocators.CloseIcon));
-    expect(getByTestId(ModalLocators.Container)).not.toBeVisible();
+    expect(queryByTestId(ModalLocators.Container)).toBeFalsy();
   });
 
   it("Open by click on button, close by click on background", async () => {
-    const { container, getByTestId } = render(
+    const { container, getByTestId, queryByTestId } = render(
       <AppWrapper>
         <ConnectedModal />
       </AppWrapper>
     );
 
     container.querySelector("button")?.click();
-    expect(getByTestId(ModalLocators.Container)).toBeVisible();
+    expect(queryByTestId(ModalLocators.Container)).toBeTruthy();
 
     await userEvent.click(getByTestId(ModalLocators.Container));
-    expect(getByTestId(ModalLocators.Container)).not.toBeVisible();
+    expect(queryByTestId(ModalLocators.Container)).toBeFalsy();
   });
 });

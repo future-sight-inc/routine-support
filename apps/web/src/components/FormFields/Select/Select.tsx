@@ -1,12 +1,13 @@
 import React from "react";
 
-import { Select as UncontrolledSelect } from "../../Select";
+import {
+  Select as UncontrolledSelect,
+  SelectProps as UncontrolledSelectProps,
+} from "../../Select";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-interface SelectProps extends FormFieldProps {
-  multiple?: boolean;
-}
+type SelectProps = FormFieldProps & UncontrolledSelectProps;
 
 export const Select: React.FC<SelectProps> = ({
   name,
@@ -14,9 +15,8 @@ export const Select: React.FC<SelectProps> = ({
   required,
   disabled,
   label,
-  children,
-  multiple,
-  helperText
+  options,
+  helperText,
 }) => {
   return (
     <Controller
@@ -26,14 +26,13 @@ export const Select: React.FC<SelectProps> = ({
       disabled={disabled}
       label={label}
       helperText={helperText}
-      render={({ field }) => (
+      render={({ field, fieldState }) => (
         <UncontrolledSelect
+          error={Boolean(fieldState.error)}
           value={field.value}
           onChange={field.onChange}
-          multiple={multiple}
-        >
-          {children}
-        </UncontrolledSelect>
+          options={options}
+        />
       )}
     />
   );
