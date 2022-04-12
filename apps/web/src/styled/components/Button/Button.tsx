@@ -11,13 +11,14 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
 
 export const Button: React.FC<ButtonProps> = ({
   variant = "primary",
+  type = "button",
   isLoading,
   disabled,
   children,
   ...props
 }) => {
   return (
-    <S.Wrapper variant={variant} disabled={disabled} {...props}>
+    <S.Wrapper variant={variant} disabled={disabled} type={type} {...props}>
       {isLoading ? <S.Spinner /> : children}
     </S.Wrapper>
   );

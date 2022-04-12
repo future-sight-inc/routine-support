@@ -11,7 +11,7 @@ export const LanguagePicker: React.FC<SelectProps> = ({ ...props }) => {
   return (
     <Select
       {...props}
-      defaultValue={i18n.language}
+      defaultValue={LanguageEnum[i18n.language] || LanguageEnum.En}
       options={[
         { value: LanguageEnum.En, text: t("English") },
         { value: LanguageEnum.Nl, text: t("Nederlands") },

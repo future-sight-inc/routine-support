@@ -4,7 +4,7 @@ import { LabelWithHelperLocators } from "./locators";
 import * as S from "./styled";
 
 interface LabelWithHelperProps {
-  ref?: RefCallback<unknown>;
+  ref?: RefCallback<any>;
   helperText?: string;
   children: ReactNode;
 }
@@ -15,12 +15,7 @@ export const LabelWithHelper: React.FC<LabelWithHelperProps> = ({
 }) => {
   return (
     <S.Wrapper>
-      <S.Label
-        data-testid={LabelWithHelperLocators.Label}
-        // ref={ref}
-      >
-        {children}
-      </S.Label>
+      <S.Label data-testid={LabelWithHelperLocators.Label}>{children}</S.Label>
       {helperText && (
         <S.HelpIconWrapper data-testid={LabelWithHelperLocators.HelpIcon}>
           <S.HelpIcon />

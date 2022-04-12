@@ -25,7 +25,7 @@ export const Select: React.FC<SelectProps> = ({
   defaultValue,
   ...props
 }) => {
-  const [selected, setSelected] = useState<OptionValue>(defaultValue ?? value);
+  const [selected, setSelected] = useState<OptionValue>(value ?? defaultValue);
   const [isOpened, setIsOpened] = useState(false);
 
   const handleOpen = () => {

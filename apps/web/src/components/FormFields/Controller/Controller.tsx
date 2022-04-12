@@ -38,11 +38,7 @@ export const Controller: React.FC<ControllerProps> = ({
       render={({ field, fieldState, formState }) => (
         <S.Wrapper>
           {label && (
-            <LabelWithHelper
-              // ref={field.ref}
-              // error={Boolean(fieldState.error)}
-              helperText={helperText}
-            >
+            <LabelWithHelper ref={field.ref} helperText={helperText}>
               {label}
             </LabelWithHelper>
           )}
