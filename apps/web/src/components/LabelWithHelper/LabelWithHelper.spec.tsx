@@ -47,7 +47,7 @@ describe("LabelWithHelper", () => {
     );
   });
 
-  it("Show helper text on hover, hide on mouse over", async () => {
+  it("Show helper text on hover, hide on mouse leave", async () => {
     const { getByTestId } = render(
       <AppWrapper>
         <LabelWithHelper helperText="Helper text">Label</LabelWithHelper>

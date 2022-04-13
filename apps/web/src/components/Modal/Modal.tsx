@@ -1,5 +1,7 @@
 import React, { MouseEvent } from "react";
 
+import { Portal } from "react-portal";
+
 import { ModalLocators } from "./locators";
 import * as S from "./styled";
 
@@ -18,14 +20,19 @@ export const Modal: React.FC<ModalProps> = ({
   }
 
   return (
-    <S.Modal onClick={onClose} data-testid={ModalLocators.Container}>
-      <S.ModalContent
-        onClick={(event: MouseEvent) => event.stopPropagation()}
-        data-testid={ModalLocators.Content}
-      >
-        <S.CloseIcon onClick={onClose} data-testid={ModalLocators.CloseIcon} />
-        {children}
-      </S.ModalContent>
-    </S.Modal>
+    <Portal isOpen={isOpened} closePortal={onClose}>
+      <S.Modal onClick={onClose} data-testid={ModalLocators.Container}>
+        <S.ModalContent
+          onClick={(event: MouseEvent) => event.stopPropagation()}
+          data-testid={ModalLocators.Content}
+        >
+          <S.CloseIcon
+            onClick={onClose}
+            data-testid={ModalLocators.CloseIcon}
+          />
+          {children}
+        </S.ModalContent>
+      </S.Modal>
+    </Portal>
   );
 };
