@@ -6,16 +6,20 @@ import * as S from "./styled";
 interface LabelWithHelperProps {
   ref?: RefCallback<any>;
   helperText?: string;
+  color?: "secondary" | "normal";
   children: ReactNode;
 }
 
 export const LabelWithHelper: React.FC<LabelWithHelperProps> = ({
+  color = "secondary",
   children,
   helperText,
 }) => {
   return (
     <S.Wrapper>
-      <S.Label data-testid={LabelWithHelperLocators.Label}>{children}</S.Label>
+      <S.Label color={color} data-testid={LabelWithHelperLocators.Label}>
+        {children}
+      </S.Label>
       {helperText && (
         <S.HelpIconWrapper data-testid={LabelWithHelperLocators.HelpIcon}>
           <S.HelpIcon />

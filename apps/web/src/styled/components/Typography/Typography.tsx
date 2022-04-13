@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 
 import { Theme } from "../../theme";
 
-type TypographyVariant =
+export type TypographyVariant =
   | "caption4"
   | "text1"
   | "text2"
@@ -13,7 +13,12 @@ type TypographyVariant =
   | "text2Bold"
   | "text3Bold";
 
-type TypographyColor = "normal" | "secondary" | "primary" | "white" | "error";
+export type TypographyColor =
+  | "normal"
+  | "secondary"
+  | "primary"
+  | "white"
+  | "error";
 
 interface TypographyProps {
   variant?: TypographyVariant;
@@ -22,7 +27,7 @@ interface TypographyProps {
   children: ReactNode;
 }
 
-const getColorStyles = (color?: TypographyColor) => {
+export const getTypographyColorStyles = (color?: TypographyColor) => {
   switch (color) {
   case "secondary":
     return css`
@@ -57,7 +62,7 @@ const Caption4 = styled.h6<{ color?: TypographyColor }>`
       font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.caption4.size};
       font-weight: ${theme.fonts.caption4.weight};
-      ${getColorStyles(color)}
+      ${getTypographyColorStyles(color)}
     `}
   ${DEFAULT_STYLES}
 `;
@@ -68,7 +73,7 @@ const Text1 = styled.p<{ color?: TypographyColor }>`
       font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text1.size};
       font-weight: ${theme.fonts.text1.weight};
-      ${getColorStyles(color)}
+      ${getTypographyColorStyles(color)}
     `}
   ${DEFAULT_STYLES}
 `;
@@ -79,7 +84,7 @@ const Text2 = styled.p<{ color?: TypographyColor }>`
       font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text2.size};
       font-weight: ${theme.fonts.text2.weight};
-      ${getColorStyles(color)}
+      ${getTypographyColorStyles(color)}
     `}
   ${DEFAULT_STYLES}
 `;
@@ -90,7 +95,7 @@ const Text3 = styled.p<{ color?: TypographyColor }>`
       font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text3.size};
       font-weight: ${theme.fonts.text3.weight};
-      ${getColorStyles(color)}
+      ${getTypographyColorStyles(color)}
     `}
   ${DEFAULT_STYLES}
 `;
@@ -101,7 +106,7 @@ const Text1Bold = styled.p<{ color?: TypographyColor }>`
       font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text1Bold.size};
       font-weight: ${theme.fonts.text1Bold.weight};
-      ${getColorStyles(color)}
+      ${getTypographyColorStyles(color)}
     `}
   ${DEFAULT_STYLES}
 `;
@@ -112,7 +117,7 @@ const Text2Bold = styled.p<{ color?: TypographyColor }>`
       font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text2Bold.size};
       font-weight: ${theme.fonts.text2Bold.weight};
-      ${getColorStyles(color)}
+      ${getTypographyColorStyles(color)}
     `}
   ${DEFAULT_STYLES}
 `;
@@ -123,7 +128,7 @@ const Text3Bold = styled.p<{ color?: TypographyColor }>`
       font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.text3Bold.size};
       font-weight: ${theme.fonts.text3Bold.weight};
-      ${getColorStyles(color)}
+      ${getTypographyColorStyles(color)}
     `}
   ${DEFAULT_STYLES}
 `;

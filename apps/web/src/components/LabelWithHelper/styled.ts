@@ -1,20 +1,23 @@
 import UIHelpIcon from "@mui/icons-material/Help";
 import styled, { css } from "styled-components";
 
-import { Typography } from "../../styled/components/Typography";
+import {
+  getTypographyColorStyles,
+  Typography,
+  TypographyColor,
+} from "../../styled/components/Typography";
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const Label = styled(Typography).attrs(() => ({
-  variant: "text2",
-  color: "secondary",
-}))`
+export const Label = styled(Typography)<{ color: TypographyColor }>`
   display: flex;
   align-items: center;
   user-select: none;
+
+  ${({ color }) => getTypographyColorStyles(color)}
 `;
 
 export const HelpIcon = styled(UIHelpIcon).attrs(() => ({
