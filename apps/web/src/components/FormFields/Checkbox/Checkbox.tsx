@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Checkbox as UICheckbox } from "../../Checkbox/Checkbox";
+import { Checkbox as UICheckbox } from "../../Checkbox";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 

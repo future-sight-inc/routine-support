@@ -4,6 +4,7 @@ interface Palette {
   main: string;
   hovered?: string;
   clicked?: string;
+  message?: string;
   text: string;
 }
 

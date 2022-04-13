@@ -6,6 +6,7 @@ export const Theme: DefaultTheme = {
       main: "#2F80ED",
       hovered: "#1A6EDE",
       clicked: "#075DD0",
+      message: "#CFE4FF",
       text: "#000000",
     },
     secondary: {
