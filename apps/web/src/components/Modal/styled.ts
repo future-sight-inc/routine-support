@@ -25,7 +25,8 @@ export const ModalContent = styled.div`
   margin: 0 auto;
   margin-top: 20vh;
   margin-bottom: 32px;
-  padding: 24px;
+  padding: 16px;
+  padding-bottom: 24px;
   position: relative;
 
   ${({ theme }) => css`

@@ -1,62 +1,74 @@
+import UIEditIcon from "@mui/icons-material/Edit";
 import { ImageUrl } from "@routine-support/types";
 import styled, { css } from "styled-components";
 
 import { Button } from "../../styled/components/Button";
+import { Typography } from "../../styled/components/Typography";
 
 export const Wrapper = styled.div<{ backgroundImage?: ImageUrl }>`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 300px;
-  background-color: ${({ theme }) => theme.palette.common.black};
+  height: 184px;
+  width: 100%;
 
   ${({ theme, backgroundImage }) =>
-    !backgroundImage &&
     css`
-      background-color: ${theme.palette.secondary.main};
-
-      & ${OpenButton} {
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
+      background: ${backgroundImage
+    ? theme.palette.common.black
+    : theme.palette.secondary.main};
+      background-image: url(${backgroundImage});
+      border-radius: ${theme.borderRadius};
     `};
-
-  ${({ backgroundImage }) => `background-image: url(${backgroundImage})`};
 
   background-repeat: no-repeat;
   background-position-x: center;
-  background-position-y: 24px;
-  background-size: auto 200px;
-  margin-left: -32px;
-  margin-right: -32px;
-
-  transition: all 0.5s;
+  background-position-y: center;
+  background-size: auto 168px;
 `;
 
 export const OpenButton = styled(Button).attrs(() => ({
   fontColor: "white",
 }))`
   position: absolute;
-  top: 100%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, calc(-100% - 32px));
+  transform: translate(-50%, -50%);
+  width: 120px;
+  box-shadow: ${({ theme }) => theme.boxShadow.small};
 `;
+
+export const EditButton = styled(Button).attrs(() => ({
+  fontColor: "white",
+}))`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EditIcon = styled(UIEditIcon).attrs(() => ({
+  sx: { fontSize: 14 },
+}))``;
 
 export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 500px;
-  max-height: 500px;
 `;
 
-export const PictogramsWrapper = styled.div`
-  overflow-y: scroll;
+export const ModalTitle = styled(Typography).attrs(() => ({
+  variant: "caption4",
+}))``;
 
+export const PictogramsWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
 `;
 
 export const Pictogram = styled.img<{ active?: boolean }>`
@@ -65,9 +77,13 @@ export const Pictogram = styled.img<{ active?: boolean }>`
   cursor: pointer;
   box-sizing: border-box;
 
+  ${({ theme }) => css`
+    border-radius: ${theme.borderRadius};
+  `}
+
   ${({ active, theme }) =>
     active &&
     css`
-      border: 4px solid ${theme.palette.primary.main};
+      border: 2px solid ${theme.palette.primary.main};
     `}
 `;
