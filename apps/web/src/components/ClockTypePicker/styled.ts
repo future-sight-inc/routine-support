@@ -1,30 +1,58 @@
-import { Typography } from "@mui/material";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import styled, { css } from "styled-components";
+
+import { Typography } from "../../styled/components/Typography";
 
 export const Wrapper = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 8px;
   padding-top: 4px;
 `;
 
-export const LabelWrapper = styled.div<{ isChecked: boolean }>`
-  box-shadow: ${({ theme }) => theme.palette.border.main} 0px 0px 0px 1px;
-  padding: 4px;
+export const TypeWrapper = styled.div<{ isChecked: boolean }>`
+  width: 120px;
+  height: 60px;
+  box-sizing: border-box;
   border-radius: 5px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+
+  ${({ isChecked, theme }) =>
+    !isChecked &&
+    css`
+      border: 1px solid ${theme.palette.border.main};
+
+      & * {
+        color: ${theme.palette.secondary.text};
+      }
+
+      &:hover {
+        border: 1px solid ${theme.palette.primary.main};
+
+        & * {
+          color: ${theme.palette.primary.main};
+        }
+      }
+    `}
 
   ${({ isChecked, theme }) =>
     isChecked &&
     css`
-      box-shadow: ${theme.palette.primary.main} 0px 0px 0px 3px;
+      background: ${theme.palette.primary.main};
+
+      & * {
+        color: ${theme.palette.common.white};
+      }
     `}
 `;
 
-export const LabelText = styled(Typography)``;
+export const TypeText = styled(Typography).attrs(() => ({
+  variant: "caption4",
+}))``;
 
-export const LabelIcon = styled.img`
-  width: 110px;
-  height: 90px;
-  object-fit: contain;
-`;
+export const TypeIcon = styled(AccessTimeIcon).attrs(() => ({
+  sx: { fontSize: 30 },
+}))``;
