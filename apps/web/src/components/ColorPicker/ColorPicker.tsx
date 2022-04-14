@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { ColorEnum } from "../../constants/ColorEnum";
+import { ColorEnum } from "@routine-support/domains";
+
 import { COLORS } from "../../constants/Colors";
 import { createActiveColorDataTestId, createColorDataTestId } from "./locators";
 import * as S from "./styled";

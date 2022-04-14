@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 
 export const Color = styled.div<{ color: string; isActive: boolean }>`
   ${({ theme, color, isActive }) => css`
+    margin-top: 4px;
     width: 40px;
     height: 40px;
     background: ${color};

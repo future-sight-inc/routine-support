@@ -4,6 +4,7 @@ import { Student } from "@routine-support/domains";
 import { ActivityFilter as ActivityFilterType } from "@routine-support/domains";
 import { Checkbox } from "apps/web/src/components/Checkbox";
 import { COMMON_ACTIVITY_COLOR } from "apps/web/src/constants/defaultActivityColor";
+import { getColor } from "apps/web/src/utils/getColor";
 import { useTranslation } from "react-i18next";
 
 import { useActivityFilterComponent } from "./hooks";
@@ -51,7 +52,7 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
       {students.map((student) => (
         <S.FilterWrapper>
           <Checkbox
-            color={student.color}
+            color={getColor(student.color)}
             onChange={(value) => handleChange(student._id, value)}
             value={activityFilter.common}
             label={student.name}

@@ -2,8 +2,7 @@ import React from "react";
 
 import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
-import { ClockTypePicker } from "apps/web/src/components/FormFields/ClockTypePicker";
-import { LanguagePicker } from "apps/web/src/components/FormFields/LanguagePicker";
+import { ColorPicker } from "apps/web/src/components/FormFields/ColorPicker";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { useTranslation } from "react-i18next";
 
@@ -15,6 +14,7 @@ export interface StudentFormActions {
   createStudent: (student: Student) => Promise<void>;
   updateStudent: (student: Student) => Promise<void>;
   deleteStudent: (id: Id) => Promise<void>;
+  closeModal: () => void;
   getStudents: () => void;
 }
 
@@ -40,14 +40,14 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         <S.Title>
           {student?._id ? t("Modify student") : t("Add student")}
         </S.Title>
-        <TextField
-          name="name"
+        <TextField name="name" control={control} label={t("Name")} required />
+        <ColorPicker
+          name="color"
           control={control}
           label={t("Name")}
-          // fullWidth
           required
         />
-        <LanguagePicker
+        {/* <LanguagePicker
           name="language"
           control={control}
           label={t("Preferred language")}
@@ -56,7 +56,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           name="clockType"
           control={control}
           label={t("Clock type")}
-        />
+        /> */}
         {/* <TextField
           name="pinCode"
           control={control}
@@ -73,11 +73,13 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           >
             {student?._id ? t("Update") : t("Create")}
           </S.SubmitButton>
-          {student?._id && (
-            <S.DeleteButton color="error" onClick={onDelete}>
-              {t("Delete")}
-            </S.DeleteButton>
-          )}
+
+          <S.SecondaryButton
+            color="error"
+            onClick={student?._id ? onDelete : actions.closeModal}
+          >
+            {student?._id ? t("Delete") : t("Cancel")}
+          </S.SecondaryButton>
         </S.ButtonsWrapper>
         {submitError && <ErrorText>{submitError}</ErrorText>}
       </S.Wrapper>

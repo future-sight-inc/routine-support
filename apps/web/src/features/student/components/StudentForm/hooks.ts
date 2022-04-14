@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Student } from "@routine-support/domains";
+import { ColorEnum, Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
 import { StudentFormActions } from "./StudentForm";
@@ -10,7 +10,7 @@ export const useStudentFormComponent = (
   actions: StudentFormActions
 ) => {
   const { control, handleSubmit, formState, getValues } = useForm({
-    defaultValues: { pinCode: "0000", ...student },
+    defaultValues: { pinCode: "0000", color: ColorEnum.Purple, ...student },
   });
   const [submitError, setSubmitError] = useState<string | null>(null);
 

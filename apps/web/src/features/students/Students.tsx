@@ -55,6 +55,7 @@ export const Students: React.FC = () => {
               createStudent: Student.operations.createStudent,
               updateStudent: Student.operations.updateStudent,
               deleteStudent: Student.operations.deleteStudent,
+              closeModal: Student.operations.closeStudentModal,
               getStudents: Students.operations.getStudents,
             }}
           />

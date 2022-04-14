@@ -1,29 +1,28 @@
-import { Typography } from "@mui/material";
 import { Button } from "apps/web/src/styled/components/Button";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 `;
 
-export const Title = styled(Typography).attrs(() => ({ variant: "h5" }))``;
+export const Title = styled(Typography).attrs(() => ({
+  variant: "caption4",
+}))``;
 
-export const SubmitButton = styled(Button).attrs(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-}))`
+export const SubmitButton = styled(Button)`
   width: 120px;
 `;
 
-export const DeleteButton = styled(Button).attrs(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.main,
-  fontColor: theme.palette.secondary.text,
+export const SecondaryButton = styled(Button).attrs(() => ({
+  variant: "secondary",
 }))`
   width: 120px;
 `;
 
 export const ButtonsWrapper = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 8px;
 `;

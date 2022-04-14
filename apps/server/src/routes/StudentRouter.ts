@@ -1,25 +1,24 @@
 import { ActivityModel, StudentModel } from "@routine-support/domains";
 import { Router } from "express";
 import { coachAuthorization } from "../middleware/coachAuthorization";
-import { STUDENT_LOCALS_NAME, studentAuthorization } from "../middleware/studentAuthorization";
+import {
+  STUDENT_LOCALS_NAME,
+  studentAuthorization,
+} from "../middleware/studentAuthorization";
 import { getAuthCookie } from "../utils/getAuthCookie";
-import { getRandomColor } from "../utils/getRandomColor";
 
 export const studentRouter = Router();
 
 studentRouter.post("/", coachAuthorization, async (req, res) => {
-  StudentModel.create(
-    { ...req.body, color: getRandomColor() },
-    (err, result) => {
-      if (err) {
-        console.log(err);
+  StudentModel.create({ ...req.body }, (err, result) => {
+    if (err) {
+      console.log(err);
 
-        return;
-      }
-
-      return res.status(200).send(result);
+      return;
     }
-  );
+
+    return res.status(200).send(result);
+  });
 });
 
 studentRouter.post("/login", (req, res) => {

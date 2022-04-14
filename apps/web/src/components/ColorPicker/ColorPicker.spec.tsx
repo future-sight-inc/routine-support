@@ -1,10 +1,10 @@
 import "@testing-library/jest-dom";
 import React from "react";
 
+import { ColorEnum } from "@routine-support/domains";
 import { cleanup, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { ColorEnum } from "../../constants/ColorEnum";
 import { AppWrapper } from "../AppWrapper";
 import { ColorPicker } from "./ColorPicker";
 import { createActiveColorDataTestId, createColorDataTestId } from "./locators";
