@@ -13,14 +13,11 @@ export const ImportantFlagPicker: React.FC<ImportantFlagPickerProps> = ({
   value,
   onChange,
 }) => {
-  const [checked, setChecked] = useState(value ?? false);
+  const [checked, setChecked] = useState(Boolean(value));
 
   const handleToggle = () => {
-    setChecked((checked) => {
-      onChange(!checked);
-
-      return !checked;
-    });
+    onChange(!checked);
+    setChecked(!checked);
   };
 
   return (

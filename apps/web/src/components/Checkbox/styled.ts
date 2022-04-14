@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   gap: 8px;
   align-items: center;
   cursor: pointer;
+  height: 40px;
 `;
 
 export const CheckIcon = styled(CheckBoxIcon).attrs(() => ({

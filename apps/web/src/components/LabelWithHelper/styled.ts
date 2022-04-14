@@ -39,6 +39,7 @@ export const HelperText = styled(Typography)`
   ${({ theme }) => css`
     border-radius: ${theme.borderRadius};
     box-shadow: ${theme.boxShadow.small};
+    background: ${theme.palette.common.white};
   `};
 `;
 

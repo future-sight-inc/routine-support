@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
 `;
 
 export const NameInput = styled.input`
@@ -13,25 +13,27 @@ export const NameInput = styled.input`
   outline: none;
 `;
 
-export const Row = styled.div`
-  display: flex;
-  gap: 16px;
+export const DateWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 90px 90px;
+  gap: 8px;
 `;
 
-export const SubmitButton = styled(Button).attrs(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-}))`
+export const RepeatWrapper = styled.div`
+  width: 200px;
+`;
+
+export const SubmitButton = styled(Button)`
   width: 120px;
 `;
 
-export const DeleteButton = styled(Button).attrs(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.main,
-  fontColor: theme.palette.secondary.text,
+export const SecondaryButton = styled(Button).attrs(() => ({
+  variant: "secondary",
 }))`
   width: 120px;
 `;
 
 export const ButtonsWrapper = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 8px;
 `;

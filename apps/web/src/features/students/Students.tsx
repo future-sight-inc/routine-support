@@ -26,7 +26,6 @@ export const Students: React.FC = () => {
     <ContentWrapper
       loading={Students.models.loading}
       error={Students.models.error}
-      onReload={Students.operations.getStudents}
     >
       <Helmet>
         <title>{t("Students")}</title>

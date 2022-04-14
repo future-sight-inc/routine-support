@@ -7,8 +7,8 @@ import {
   YearNumber,
 } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
-import { Checkbox } from "apps/web/src/components/FormFields/Checkbox";
 import { CommonFlagPicker } from "apps/web/src/components/FormFields/CommonFlagPicker";
+import { ImportantFlagPicker } from "apps/web/src/components/FormFields/ImportantFlagPicker";
 import { useTranslation } from "react-i18next";
 
 import { ErrorText } from "../../../../components/ErrorText";
@@ -25,6 +25,7 @@ export interface ActivityFormActions {
   createActivity: (activity: Activity) => Promise<void>;
   updateActivity: (activity: Activity) => Promise<void>;
   deleteActivity: (id: Id) => Promise<void>;
+  closeModal: () => void;
   getWeek: (data: {
     params?: { year: YearNumber; week: WeekNumber };
     config?: { silent: boolean };
@@ -65,7 +66,7 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           required
           placeholder={t("Activity name")}
         />
-        <S.Row>
+        <S.DateWrapper>
           <DatePicker
             name="date"
             control={control}
@@ -84,31 +85,30 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
             label={t("Activity end time")}
             required
           />
-        </S.Row>
+        </S.DateWrapper>
         <PictogramPicker name="pictogram" control={control} required />
-        <RepeatTypePicker
+        <CommonFlagPicker
+          label={t("Activity type")}
           control={control}
-          name="repeatType"
-          label={t("Repeat type")}
-          disabled={!isRepeatTypeAvailable}
+          name="isCommon"
         />
-        <div>
-          <CommonFlagPicker
-            label={t("Activity type")}
+        {shouldShowStudents && (
+          <StudentsPicker
+            name="students"
+            label={t("Students")}
+            required
             control={control}
-            name="isCommon"
           />
-          {shouldShowStudents && (
-            <StudentsPicker name="students" required control={control} />
-          )}
-        </div>
-        <Checkbox
-          // todo translate
-          label={t("Is important")}
-          helperText={t("Important activity hint")}
-          control={control}
-          name="isImportant"
-        />
+        )}
+        <S.RepeatWrapper>
+          <RepeatTypePicker
+            control={control}
+            name="repeatType"
+            label={t("Repeat type")}
+            disabled={!isRepeatTypeAvailable}
+          />
+        </S.RepeatWrapper>
+        <ImportantFlagPicker control={control} name="isImportant" />
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"
@@ -117,11 +117,12 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           >
             {activity?._id ? t("Update") : t("Create")}
           </S.SubmitButton>
-          {activity?._id && (
-            <S.DeleteButton color="error" onClick={onDelete}>
-              {t("Delete")}
-            </S.DeleteButton>
-          )}
+          <S.SecondaryButton
+            type="button"
+            onClick={activity?._id ? onDelete : actions.closeModal}
+          >
+            {activity?._id ? t("Delete") : t("Cancel")}
+          </S.SecondaryButton>
         </S.ButtonsWrapper>
         {submitError && <ErrorText>{submitError}</ErrorText>}
       </S.Wrapper>

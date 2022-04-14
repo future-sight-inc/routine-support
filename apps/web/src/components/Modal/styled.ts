@@ -20,13 +20,14 @@ export const Modal = styled.div`
 
 export const ModalContent = styled.div`
   box-sizing: border-box;
-  width: 420px;
+  width: 400px;
   min-height: 200px;
   margin: 0 auto;
   margin-top: 20vh;
   margin-bottom: 32px;
   padding: 16px;
   padding-bottom: 24px;
+  box-sizing: border-box;
   position: relative;
 
   ${({ theme }) => css`

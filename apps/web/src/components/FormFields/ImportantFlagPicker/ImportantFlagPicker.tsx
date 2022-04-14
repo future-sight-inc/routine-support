@@ -1,15 +1,14 @@
 import React from "react";
 
-import { CommonFlagPicker as UncontrolledCommonFlagPicker } from "../../CommonFlagPicker";
+import { ImportantFlagPicker as UIImportantFlagPicker } from "../../ImportantFlagPicker/ImportantFlagPicker";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-export const CommonFlagPicker: React.FC<FormFieldProps> = ({
+export const ImportantFlagPicker: React.FC<FormFieldProps> = ({
   name,
   control,
   required,
   disabled,
-  label,
   helperText,
 }) => {
   return (
@@ -18,13 +17,9 @@ export const CommonFlagPicker: React.FC<FormFieldProps> = ({
       control={control}
       required={required}
       disabled={disabled}
-      label={label}
       helperText={helperText}
       render={({ field }) => (
-        <UncontrolledCommonFlagPicker
-          value={field.value}
-          onChange={field.onChange}
-        />
+        <UIImportantFlagPicker value={field.value} onChange={field.onChange} />
       )}
     />
   );

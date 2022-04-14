@@ -13,7 +13,6 @@ export const StudentsPicker: React.FC<FormFieldProps> = ({
 }) => {
   const {
     models: { students },
-    operations: { getStudents },
   } = useStudents();
 
   return (
@@ -27,7 +26,7 @@ export const StudentsPicker: React.FC<FormFieldProps> = ({
         <UncontrolledStudentsPicker
           value={field.value}
           students={students}
-          actions={{ getStudents, onChange: field.onChange }}
+          onChange={field.onChange}
         />
       )}
     />

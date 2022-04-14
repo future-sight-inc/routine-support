@@ -19,4 +19,4 @@ export const MessageWrapper = styled.div`
   `}
 `;
 
-export const Message = styled(Typography).attrs(() => ({ variant: "text3" }))``;
+export const Message = styled(Typography)``;

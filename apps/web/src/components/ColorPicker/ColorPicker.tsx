@@ -25,8 +25,9 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
 
   return (
     <S.Wrapper>
-      {COLORS.map((color) => (
+      {COLORS.map((color, index) => (
         <S.Color
+          key={index}
           color={color.color}
           isActive={color.value === activeColor}
           onClick={() => handleChange(color.value)}

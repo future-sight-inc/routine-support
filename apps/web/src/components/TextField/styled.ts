@@ -43,6 +43,10 @@ export const TextField = styled.input<{ error?: boolean }>`
         border-color: ${theme.palette.error.text};
       `}
     }
+
+    &:disabled {
+      pointer-events: none;
+    }
   `}
 
   & * {

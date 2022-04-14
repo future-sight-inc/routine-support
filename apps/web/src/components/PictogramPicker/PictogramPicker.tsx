@@ -60,8 +60,9 @@ export const PictogramPicker: React.FC<PictogramPickerProps> = ({
             data-testid={PictogramPickerLocators.SearchField}
           />
           <S.PictogramsWrapper>
-            {pictograms.map((item) => (
+            {pictograms.map((item, index) => (
               <S.Pictogram
+                key={index}
                 src={item.url}
                 active={selectedPictogram === item.url}
                 data-testid={`${createPictogramDataTestId({

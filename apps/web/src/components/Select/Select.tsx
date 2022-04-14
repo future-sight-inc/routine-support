@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { TextFieldProps } from "../TextField";
 import { SelectLocators } from "./locators";
@@ -27,6 +27,10 @@ export const Select: React.FC<SelectProps> = ({
 }) => {
   const [selected, setSelected] = useState<OptionValue>(value ?? defaultValue);
   const [isOpened, setIsOpened] = useState(false);
+
+  useEffect(() => {
+    setSelected(value);
+  }, [value]);
 
   const handleOpen = () => {
     setIsOpened(true);

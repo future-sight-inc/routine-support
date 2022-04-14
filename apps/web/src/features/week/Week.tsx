@@ -37,11 +37,7 @@ export const Week: React.FC = () => {
   }
 
   return (
-    <ContentWrapper
-      loading={Week.models.loading}
-      error={Week.models.error}
-      onReload={Week.operations.getWeek}
-    >
+    <ContentWrapper loading={Week.models.loading} error={Week.models.error}>
       <Helmet>
         <title>{t("Calendar")}</title>
       </Helmet>
@@ -90,6 +86,7 @@ export const Week: React.FC = () => {
                 createActivity: Activity.operations.createActivity,
                 updateActivity: Activity.operations.updateActivity,
                 deleteActivity: Activity.operations.deleteActivity,
+                closeModal: Activity.operations.closeActivityModal,
                 getWeek: Week.operations.getWeek,
               }}
             />
