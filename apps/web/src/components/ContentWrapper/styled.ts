@@ -1,23 +1,15 @@
-import { CircularProgress, Typography } from "@mui/material";
-import styled, { css } from "styled-components";
+import { CircularProgress } from "@mui/material";
+import styled from "styled-components";
 
 import { Button } from "../../styled/components/Button";
+import { ErrorText as UIErrorText } from "../ErrorText";
 
-export const ErrorText = styled(Typography)`
-  padding: 16px;
-
-  ${({ theme }) =>
-    css`
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: ${theme.borderRadius};
-      background: ${theme.palette.secondary.main};
-      color: ${theme.palette.error.main};
-      border: ${theme.palette.border.main};
-    `};
+export const ErrorWrapper = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
 `;
+
+export const ErrorText = styled(UIErrorText)``;
 
 export const SpinnerWrapper = styled.div`
   width: 100%;

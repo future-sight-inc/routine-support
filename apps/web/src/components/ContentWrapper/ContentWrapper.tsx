@@ -5,16 +5,12 @@ import * as S from "./styled";
 interface ContentWrapperProps {
   loading: boolean;
   error: string | null;
-  errorText?: string;
-  onReload?: () => void;
   children: ReactNode;
 }
 
 export const ContentWrapper: React.FC<ContentWrapperProps> = ({
   loading,
   error,
-  errorText,
-  onReload,
   children,
 }) => {
   if (loading) {
@@ -27,10 +23,9 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({
 
   if (error) {
     return (
-      <S.ErrorText>
-        {error || errorText}{" "}
-        {onReload && <S.ReloadButton>Перезагрузить</S.ReloadButton>}
-      </S.ErrorText>
+      <S.ErrorWrapper>
+        <S.ErrorText>{error}</S.ErrorText>
+      </S.ErrorWrapper>
     );
   }
 
