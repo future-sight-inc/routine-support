@@ -1,4 +1,4 @@
-import { Checkbox } from "@mui/material";
+import { Checkbox as UICheckbox } from "apps/web/src/components/Checkbox";
 import { Typography } from "apps/web/src/styled/components/Typography";
 import styled, { css } from "styled-components";
 
@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 `;
 
 export const Title = styled(Typography).attrs(() => ({
@@ -15,6 +16,10 @@ export const Title = styled(Typography).attrs(() => ({
 }))``;
 
 export const FilterWrapper = styled.div`
+  height: 30px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
   padding-left: 8px;
   box-sizing: border-box;
 
@@ -27,26 +32,4 @@ export const FilterWrapper = styled.div`
   }
 `;
 
-export const FilterCheckbox = styled(Checkbox).attrs(
-  ({ checkboxColor: color }: { checkboxColor: string }) => ({
-    sx: {
-      color,
-      "&.Mui-checked": {
-        color,
-      },
-    },
-  })
-)<{ checkboxColor: string }>`
-  height: 30px;
-`;
-
-export const FilterName = styled(Typography).attrs(() => ({
-  variant: "text1",
-}))`
-  width: 118px;
-  overflow: hidden;
-  white-space: break-word;
-  user-select: none;
-  padding-right: 8px;
-  box-sizing: border-box;
-`;
+export const Checkbox = styled(UICheckbox)``;

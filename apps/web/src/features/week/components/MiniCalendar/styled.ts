@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
 
 export const CurrentMonthRow = styled.div`
   height: 30px;
-  padding: 0 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { TypographyVariant } from "../../styled/components/Typography";
+import { LabelWithHelper } from "../LabelWithHelper";
 import { CheckboxLocators } from "./locators";
 import * as S from "./styled";
 
@@ -8,6 +10,8 @@ interface CheckboxProps {
   helperText?: string;
   value?: boolean;
   onChange: (value: boolean) => void;
+  labelVariant?: TypographyVariant;
+  color?: string;
 }
 
 export const Checkbox: React.FC<CheckboxProps> = ({
@@ -15,6 +19,8 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   helperText,
   value,
   onChange,
+  labelVariant,
+  color,
 }) => {
   const [checked, setChecked] = useState(value ?? false);
 
@@ -27,13 +33,23 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   };
 
   return (
-    <S.Wrapper onClick={handleToggle} data-testid={CheckboxLocators.Wrapper}>
+    <S.Wrapper
+      onClick={handleToggle}
+      data-testid={CheckboxLocators.Wrapper}
+      color={color}
+    >
       {checked ? (
         <S.CheckIcon data-testid={CheckboxLocators.CheckedIcon} />
       ) : (
         <S.EmptyIcon data-testid={CheckboxLocators.EmptyIcon} />
       )}
-      <S.Label helperText={helperText}>{label}</S.Label>
+      <LabelWithHelper
+        helperText={helperText}
+        color="normal"
+        variant={labelVariant}
+      >
+        {label}
+      </LabelWithHelper>
     </S.Wrapper>
   );
 };

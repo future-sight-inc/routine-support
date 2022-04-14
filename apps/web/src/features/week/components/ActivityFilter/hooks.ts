@@ -14,13 +14,10 @@ export const useActivityFilterComponent = (
     savedActivityFilter || {}
   );
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
+  const handleChange = (name: string, value: boolean) => {
     const newActivityFilter = activityFilter;
 
-    newActivityFilter[event.target.name] = checked;
+    newActivityFilter[name] = value;
 
     ActivityFilterService.setFilter(newActivityFilter);
     setActivityFilter(newActivityFilter);

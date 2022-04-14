@@ -1,8 +1,8 @@
 import React from "react";
 
-import { FormControlLabel } from "@mui/material";
 import { Student } from "@routine-support/domains";
 import { ActivityFilter as ActivityFilterType } from "@routine-support/domains";
+import { Checkbox } from "apps/web/src/components/Checkbox";
 import { COMMON_ACTIVITY_COLOR } from "apps/web/src/constants/defaultActivityColor";
 import { useTranslation } from "react-i18next";
 
@@ -40,30 +40,22 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
     <S.Wrapper>
       <S.Title>{t("Filters")}</S.Title>
       <S.FilterWrapper>
-        <FormControlLabel
-          control={
-            <S.FilterCheckbox
-              checkboxColor={COMMON_ACTIVITY_COLOR}
-              name={"common"}
-              checked={activityFilter.common}
-              onChange={handleChange}
-            />
-          }
-          label={<S.FilterName>{t("Common")}</S.FilterName>}
+        <S.Checkbox
+          color={COMMON_ACTIVITY_COLOR}
+          onChange={(value) => handleChange("common", value)}
+          value={activityFilter.common}
+          label={t("Common")}
+          labelVariant="text1"
         />
       </S.FilterWrapper>
       {students.map((student) => (
         <S.FilterWrapper>
-          <FormControlLabel
-            control={
-              <S.FilterCheckbox
-                checkboxColor={student.color}
-                name={student._id as string}
-                checked={activityFilter[student._id]}
-                onChange={handleChange}
-              />
-            }
-            label={<S.FilterName>{student.name}</S.FilterName>}
+          <Checkbox
+            color={student.color}
+            onChange={(value) => handleChange(student._id, value)}
+            value={activityFilter.common}
+            label={student.name}
+            labelVariant="text1"
           />
         </S.FilterWrapper>
       ))}
