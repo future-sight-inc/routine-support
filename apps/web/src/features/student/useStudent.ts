@@ -13,7 +13,9 @@ import { studentAPI } from "../../services/ApiService";
 
 export const useStudent = () => {
   const [loading, setLoading] = useState(false);
-  const [opened, setOpened] = useState(false);
+  const [studentModalOpened, setStudentModalOpened] = useState(false);
+  const [settingsModalOpened, setSettingsModalOpened] = useState(false);
+
   const { student } = useAppSelector((state) => state.student);
   const coachId = useAppSelector((state) => state.coach.coach?._id);
   const dispatch = useAppDispatch();
@@ -34,7 +36,7 @@ export const useStudent = () => {
 
         ActivityFilterService.addStudent(response.data._id);
 
-        setOpened(false);
+        setStudentModalOpened(false);
       } finally {
         setLoading(false);
       }
@@ -47,7 +49,7 @@ export const useStudent = () => {
 
       await studentAPI.updateStudent(student);
 
-      setOpened(false);
+      setStudentModalOpened(false);
     } finally {
       setLoading(false);
     }
@@ -61,7 +63,7 @@ export const useStudent = () => {
 
       ActivityFilterService.removeStudent(id);
 
-      setOpened(false);
+      setStudentModalOpened(false);
     } finally {
       setLoading(false);
     }
@@ -69,23 +71,46 @@ export const useStudent = () => {
 
   const openStudentModal = (student: Student) => {
     setStudent(student);
-    setOpened(true);
+    setStudentModalOpened(true);
   };
 
   const openNewStudentModal = () => {
     setStudent();
-    setOpened(true);
+    setStudentModalOpened(true);
   };
 
   const closeStudentModal = () => {
     setStudent();
-    setOpened(false);
+    setStudentModalOpened(false);
+  };
+
+  const updateSettings = async (student: Student) => {
+    try {
+      setLoading(true);
+
+      await studentAPI.updateStudent(student);
+
+      setSettingsModalOpened(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const openSettingsModal = (student: Student) => {
+    setStudent(student);
+    setSettingsModalOpened(true);
+  };
+
+  const closeSettingsModal = () => {
+    setStudent();
+    setSettingsModalOpened(false);
   };
 
   return {
     models: {
       student,
-      opened,
+      studentModalOpened,
+      settingsModalOpened,
       loading,
     },
     operations: {
@@ -96,6 +121,9 @@ export const useStudent = () => {
       openStudentModal,
       openNewStudentModal,
       closeStudentModal,
+      updateSettings,
+      openSettingsModal,
+      closeSettingsModal,
     },
   };
 };

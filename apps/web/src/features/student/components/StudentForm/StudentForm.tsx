@@ -47,24 +47,6 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           label={t("Name")}
           required
         />
-        {/* <LanguagePicker
-          name="language"
-          control={control}
-          label={t("Preferred language")}
-        />
-        <ClockTypePicker
-          name="clockType"
-          control={control}
-          label={t("Clock type")}
-        /> */}
-        {/* <TextField
-          name="pinCode"
-          control={control}
-          label={t("PIN code")}
-          inputProps={{ inputMode: "numeric", pattern: "[0-9]{4}" }}
-          fullWidth
-          required
-        /> */}
         <S.ButtonsWrapper>
           <S.SubmitButton
             type="submit"
@@ -75,7 +57,6 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           </S.SubmitButton>
 
           <S.SecondaryButton
-            color="error"
             onClick={student?._id ? onDelete : actions.closeModal}
           >
             {student?._id ? t("Delete") : t("Cancel")}

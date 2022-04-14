@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { ContentWrapper } from "../../components/ContentWrapper";
 import { Modal } from "../../components/Modal";
+import { SettingsForm } from "../student/components/SettingsForm";
 import { StudentForm } from "../student/components/StudentForm/StudentForm";
 import { useStudent } from "../student/useStudent";
 import { Layout } from "../students/components/Layout";
@@ -41,12 +42,13 @@ export const Students: React.FC = () => {
           students={Students.models.students}
           actions={{
             openStudentModal: Student.operations.openStudentModal,
+            openSettingsModal: Student.operations.openSettingsModal,
             deleteStudent: Student.operations.deleteStudent,
             getStudents: Students.operations.getStudents,
           }}
         />
         <Modal
-          isOpened={Student.models.opened}
+          isOpened={Student.models.studentModalOpened}
           onClose={Student.operations.closeStudentModal}
         >
           <StudentForm
@@ -55,6 +57,19 @@ export const Students: React.FC = () => {
               createStudent: Student.operations.createStudent,
               updateStudent: Student.operations.updateStudent,
               deleteStudent: Student.operations.deleteStudent,
+              closeModal: Student.operations.closeStudentModal,
+              getStudents: Students.operations.getStudents,
+            }}
+          />
+        </Modal>
+        <Modal
+          isOpened={Student.models.settingsModalOpened}
+          onClose={Student.operations.closeSettingsModal}
+        >
+          <SettingsForm
+            student={Student.models.student}
+            actions={{
+              updateSettings: Student.operations.updateSettings,
               closeModal: Student.operations.closeStudentModal,
               getStudents: Students.operations.getStudents,
             }}

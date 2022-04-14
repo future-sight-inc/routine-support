@@ -4,11 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { ContentWrapper } from "./ContentWrapper";
 
 storiesOf("Components", module).add("ContentWrapper", () => (
-  <ContentWrapper
-    loading={boolean("Loading", false)}
-    error={text("Error", "")}
-    onReload={() => null}
-  >
+  <ContentWrapper loading={boolean("Loading", false)} error={text("Error", "")}>
     {text("Children", "Some content")}
   </ContentWrapper>
 ));

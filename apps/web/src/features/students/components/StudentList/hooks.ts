@@ -41,7 +41,7 @@ export const useStudentListComponent = (actions: StudentListActions) => {
     setCurrentStudent(null);
   };
 
-  const onStudentClick = actions.openStudentModal;
+  const onStudentClick = actions.openSettingsModal;
 
   return {
     models: { qr, qrLoading, currentStudent },

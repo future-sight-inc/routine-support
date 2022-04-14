@@ -16,6 +16,7 @@ import * as S from "./styled";
 
 export interface StudentListActions {
   openStudentModal: (student: Student) => void;
+  openSettingsModal: (student: Student) => void;
   deleteStudent: (id: Id) => void;
   getStudents: () => void;
 }

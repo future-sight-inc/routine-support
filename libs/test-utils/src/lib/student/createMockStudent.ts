@@ -1,4 +1,4 @@
-import { Student } from "@routine-support/domains";
+import { ColorEnum, Student } from "@routine-support/domains";
 import { LanguageEnum } from "@routine-support/types";
 import * as uuid from "uuid";
 
@@ -9,7 +9,7 @@ export const createMockStudent = (data?: Partial<Student>): Student => {
     _id: studentId,
     name: "Boris",
     coachId: "",
-    color: "#bebebe",
+    color: ColorEnum.Orange,
     pinCode: "",
     clockType: 0,
     language: LanguageEnum.En,
