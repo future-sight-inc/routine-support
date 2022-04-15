@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
 import BasicList from "@mui/material/List";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import styled, { css } from "styled-components";
 
 export const List = styled(BasicList)`
@@ -11,7 +11,9 @@ export const List = styled(BasicList)`
   background: 25px;
 `;
 
-export const QrTitle = styled(Typography).attrs(() => ({ variant: "h6" }))`
+export const QrTitle = styled(Typography).attrs(() => ({
+  variant: "caption4",
+}))`
   text-align: center;
 `;
 
