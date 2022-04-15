@@ -45,7 +45,6 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
           </S.Cell>
         ))}
       </S.TimeColumn>
-
       {week.weekInfo.days.map((day) => (
         <S.Column isWeekend={isWeekend(day)}>
           {week.weekInfo.timeRange.map((time) => (

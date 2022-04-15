@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { Student } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 import QRCode from "qrcode";
 import { useTranslation } from "react-i18next";
 
@@ -13,9 +12,9 @@ export const useStudentListComponent = (actions: StudentListActions) => {
   const [qrLoading, setQrLoading] = useState(false);
   const { t } = useTranslation();
 
-  const onStudentDelete = async (id: Id) => {
+  const onStudentDelete = async (student: Student) => {
     if (window.confirm(t("Confirm student delete"))) {
-      await actions.deleteStudent(id);
+      await actions.deleteStudent(student);
 
       actions.getStudents();
     }
@@ -41,10 +40,8 @@ export const useStudentListComponent = (actions: StudentListActions) => {
     setCurrentStudent(null);
   };
 
-  const onStudentClick = actions.openSettingsModal;
-
   return {
     models: { qr, qrLoading, currentStudent },
-    operations: { onStudentClick, onStudentDelete, onQrOpen, onQrClose },
+    operations: { onStudentDelete, onQrOpen, onQrClose },
   };
 };

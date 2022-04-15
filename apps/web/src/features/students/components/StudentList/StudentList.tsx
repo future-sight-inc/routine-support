@@ -1,23 +1,19 @@
 import React from "react";
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import QrCodeIcon from "@mui/icons-material/QrCode";
-import { ListItemText } from "@mui/material";
-import { ListItemButton } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import ListItem from "@mui/material/ListItem";
 import { Student } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 import { Modal } from "apps/web/src/components/Modal";
 import { useTranslation } from "react-i18next";
 
+import { AddStudentCard } from "../AddStudentCard";
+import { StudentCard } from "../StudentCard";
 import { useStudentListComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface StudentListActions {
   openStudentModal: (student: Student) => void;
   openSettingsModal: (student: Student) => void;
-  deleteStudent: (id: Id) => void;
+  openNewStudentModal: () => void;
+  deleteStudent: (student: Student) => void;
   getStudents: () => void;
 }
 
@@ -32,41 +28,23 @@ export const StudentList: React.FC<StudentListProps> = ({
 }) => {
   const {
     models: { qr, currentStudent },
-    operations: { onStudentClick, onStudentDelete, onQrOpen, onQrClose },
+    operations: { onStudentDelete, onQrOpen, onQrClose },
   } = useStudentListComponent(actions);
 
   const { t } = useTranslation();
 
-  if (!students.length) {
-    return <S.EmptyText>{t("No students")}</S.EmptyText>;
-  }
-
   return (
-    <S.List>
+    <S.Wrapper>
+      <AddStudentCard onStudentModalOpen={actions.openNewStudentModal} />
       {students.map((student, index) => (
-        <ListItem disablePadding divider={index < students.length - 1}>
-          <ListItemButton onClick={() => onStudentClick(student)}>
-            <ListItemText primary={student.name} />
-            <div>
-              <IconButton
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onQrOpen(student);
-                }}
-              >
-                <QrCodeIcon />
-              </IconButton>
-              <IconButton
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onStudentDelete(student._id);
-                }}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          </ListItemButton>
-        </ListItem>
+        <StudentCard
+          key={index}
+          student={student}
+          onStudentModalOpen={actions.openStudentModal}
+          onStudentDelete={onStudentDelete}
+          onSettingsModalOpen={actions.openSettingsModal}
+          onQROpen={onQrOpen}
+        />
       ))}
       <Modal isOpened={Boolean(qr)} onClose={onQrClose}>
         <S.QrTitle>
@@ -79,6 +57,6 @@ export const StudentList: React.FC<StudentListProps> = ({
           {t("QR instructions end")}
         </S.QrTitle>
       </Modal>
-    </S.List>
+    </S.Wrapper>
   );
 };

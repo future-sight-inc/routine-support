@@ -3,14 +3,14 @@ import React from "react";
 import * as S from "./styled";
 
 interface AddStudentCardProps {
-  onStudentAdd: () => void;
+  onStudentModalOpen: () => void;
 }
 
 export const AddStudentCard: React.FC<AddStudentCardProps> = ({
-  onStudentAdd,
+  onStudentModalOpen,
 }) => {
   return (
-    <S.Card onClick={onStudentAdd}>
+    <S.Card onClick={onStudentModalOpen}>
       <S.AddIcon />
     </S.Card>
   );

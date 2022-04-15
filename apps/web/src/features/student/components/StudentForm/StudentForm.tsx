@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Student } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 import { ColorPicker } from "apps/web/src/components/FormFields/ColorPicker";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { useTranslation } from "react-i18next";
@@ -13,7 +12,7 @@ import * as S from "./styled";
 export interface StudentFormActions {
   createStudent: (student: Student) => Promise<void>;
   updateStudent: (student: Student) => Promise<void>;
-  deleteStudent: (id: Id) => Promise<void>;
+  deleteStudent: (student: Student) => Promise<void>;
   closeModal: () => void;
   getStudents: () => void;
 }

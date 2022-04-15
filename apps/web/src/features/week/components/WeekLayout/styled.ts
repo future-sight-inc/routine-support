@@ -15,13 +15,20 @@ export const Head = styled.div`
 `;
 
 export const ActionsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  height: calc(100vh - 132px);
+  display: grid;
+  grid-template-rows: 40px auto 1fr;
   gap: 24px;
 `;
 
+export const FilterWrapper = styled.div`
+  overflow: scroll;
+`;
+
+export const MiniCalendarWrapper = styled.div``;
+
 export const CalendarWrapper = styled.div`
-  height: 100vh;
+  height: calc(100vh - 132px);
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -33,6 +40,5 @@ export const ButtonWrapper = styled.div`
 
 export const Body = styled.div`
   position: relative;
-  max-height: calc(100% - 220px);
   overflow-y: scroll;
 `;

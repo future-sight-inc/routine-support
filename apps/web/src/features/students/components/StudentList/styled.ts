@@ -1,14 +1,11 @@
-import BasicList from "@mui/material/List";
 import { Typography } from "apps/web/src/styled/components/Typography";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const List = styled(BasicList)`
-  position: static;
-  max-height: calc(100vh - 60px - 32px - 40px - 64px);
-  overflow-y: scroll;
-  border: 1px solid ${({ theme }) => theme.palette.border.main};
-  border-radius: 8px;
-  background: 25px;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
 `;
 
 export const QrTitle = styled(Typography).attrs(() => ({
@@ -23,20 +20,4 @@ export const Qr = styled.img`
   display: block;
   margin: 0 auto;
   height: auto;
-`;
-
-export const EmptyText = styled(Typography)`
-  padding: 16px;
-
-  ${({ theme }) =>
-    css`
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: ${theme.borderRadius};
-      background: ${theme.palette.secondary.main};
-      color: ${theme.palette.secondary.text};
-      border: ${theme.palette.border.main};
-    `};
 `;

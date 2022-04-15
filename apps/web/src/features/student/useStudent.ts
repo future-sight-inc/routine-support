@@ -5,7 +5,6 @@ import {
   Student,
   studentActions,
 } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { ActivityFilterService } from "../../services/ActivityFilterService";
@@ -55,13 +54,13 @@ export const useStudent = () => {
     }
   };
 
-  const deleteStudent = async (id: Id) => {
+  const deleteStudent = async (student: Student) => {
     try {
       setLoading(true);
 
-      await studentAPI.deleteStudent(id);
+      await studentAPI.deleteStudent(student._id);
 
-      ActivityFilterService.removeStudent(id);
+      ActivityFilterService.removeStudent(student._id);
 
       setStudentModalOpened(false);
     } finally {

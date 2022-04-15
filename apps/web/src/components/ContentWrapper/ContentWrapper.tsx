@@ -29,5 +29,5 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({
     );
   }
 
-  return <div>{children}</div>;
+  return <S.Wrapper>{children}</S.Wrapper>;
 };

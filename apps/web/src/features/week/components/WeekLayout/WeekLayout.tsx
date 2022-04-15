@@ -23,8 +23,8 @@ export const WeekLayout: React.FC<WeekLayoutProps> = ({
     <S.Wrapper>
       <S.ActionsWrapper>
         <S.ButtonWrapper>{addActivityButton}</S.ButtonWrapper>
-        {miniCalendar}
-        {activityFilter}
+        <S.MiniCalendarWrapper>{miniCalendar}</S.MiniCalendarWrapper>
+        <S.FilterWrapper>{activityFilter}</S.FilterWrapper>
       </S.ActionsWrapper>
       <S.CalendarWrapper>
         <S.Head>{weekRange}</S.Head>

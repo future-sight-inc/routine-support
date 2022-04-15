@@ -31,10 +31,10 @@ export const useStudentFormComponent = (
   });
 
   const onDelete = async () => {
-    const id = getValues()._id;
+    const student = getValues() as Student;
 
-    if (window.confirm("Confirm your action") && id) {
-      await actions.deleteStudent(id);
+    if (window.confirm("Confirm your action") && student._id) {
+      await actions.deleteStudent(student);
 
       actions.getStudents();
     }

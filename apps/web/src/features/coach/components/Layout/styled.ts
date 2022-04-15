@@ -6,8 +6,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-row: repeat(3, auto);
-  gap: 24px;
+  grid-template-row: 50px 1fr 50px;
   height: 100vh;
   cursor: default;
 `;
@@ -17,8 +16,8 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 0 16px;
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
   max-width: ${({ theme }) => theme.size.maxWidth};
   margin: 0 auto;
