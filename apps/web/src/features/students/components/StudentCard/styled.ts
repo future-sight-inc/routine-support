@@ -80,17 +80,17 @@ export const IconWrapper = styled.div`
   `}
 `;
 export const ModifyIcon = styled(UIModifyIcon).attrs(() => ({
-  sx: { fontSize: 16 },
+  sx: { fontSize: 20 },
 }))``;
 
 export const SettingsIcon = styled(UISettingsIcon).attrs(() => ({
-  sx: { fontSize: 16 },
+  sx: { fontSize: 20 },
 }))``;
 
 export const QRCodeIcon = styled(UIQrCodeIcon).attrs(() => ({
-  sx: { fontSize: 16 },
+  sx: { fontSize: 20 },
 }))``;
 
 export const DeleteIcon = styled(UIDeleteIcon).attrs(() => ({
-  sx: { fontSize: 16 },
+  sx: { fontSize: 20 },
 }))``;
