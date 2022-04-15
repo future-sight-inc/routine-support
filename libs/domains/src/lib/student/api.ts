@@ -1,11 +1,6 @@
 import { Id } from "@routine-support/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import {
-  CoachId,
-  CreateStudentDto,
-  LoginStudentDto,
-  Student,
-} from "./types";
+import { CoachId, CreateStudentDto, LoginStudentDto, Student } from "./types";
 
 export const createStudentAPI = (client: AxiosInstance) => ({
   login: async (data: LoginStudentDto): Promise<Student> => {
@@ -27,10 +22,7 @@ export const createStudentAPI = (client: AxiosInstance) => ({
     return request.data as Student;
   },
   createStudent: async (data: CreateStudentDto) => {
-    const request: AxiosResponse<Student> = await client.post(
-      "/student",
-      data
-    );
+    const request: AxiosResponse<Student> = await client.post("/student", data);
 
     return request;
   },

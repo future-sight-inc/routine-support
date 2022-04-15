@@ -3,7 +3,7 @@ import {
   addStudentToActivity,
   createMockActivity,
   createMockStudent,
-  setActivityRepeatType
+  setActivityRepeatType,
 } from "@routine-support/test-utils";
 import { getActivityImportanceValue } from "./getActivityImportanceValue";
 
@@ -23,7 +23,7 @@ describe("getActivityImportanceValue", () => {
     const student = createMockStudent();
 
     addStudentToActivity(activity, student);
-    setActivityRepeatType(activity, RepeatTypeEnum.None)
+    setActivityRepeatType(activity, RepeatTypeEnum.None);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(62);
   });
@@ -33,7 +33,7 @@ describe("getActivityImportanceValue", () => {
     const student = createMockStudent();
 
     addStudentToActivity(activity, student);
-    setActivityRepeatType(activity, RepeatTypeEnum.EveryYear)
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryYear);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(30);
   });
@@ -43,7 +43,7 @@ describe("getActivityImportanceValue", () => {
     const student = createMockStudent();
 
     addStudentToActivity(activity, student);
-    setActivityRepeatType(activity, RepeatTypeEnum.EveryMonth)
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryMonth);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(14);
   });
@@ -53,7 +53,7 @@ describe("getActivityImportanceValue", () => {
     const student = createMockStudent();
 
     addStudentToActivity(activity, student);
-    setActivityRepeatType(activity, RepeatTypeEnum.EveryWeek)
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryWeek);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(6);
   });
@@ -63,7 +63,7 @@ describe("getActivityImportanceValue", () => {
     const student = createMockStudent();
 
     addStudentToActivity(activity, student);
-    setActivityRepeatType(activity, RepeatTypeEnum.EveryDay)
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryDay);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(2);
   });
@@ -79,7 +79,7 @@ describe("getActivityImportanceValue", () => {
   it("No-repeat common activity", () => {
     const activity = createMockActivity();
 
-    setActivityRepeatType(activity, RepeatTypeEnum.None)
+    setActivityRepeatType(activity, RepeatTypeEnum.None);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(31);
   });
@@ -87,7 +87,7 @@ describe("getActivityImportanceValue", () => {
   it("Yearly common activity", () => {
     const activity = createMockActivity();
 
-    setActivityRepeatType(activity, RepeatTypeEnum.EveryYear)
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryYear);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(15);
   });
@@ -95,7 +95,7 @@ describe("getActivityImportanceValue", () => {
   it("Monthly common activity", () => {
     const activity = createMockActivity();
 
-    setActivityRepeatType(activity, RepeatTypeEnum.EveryMonth)
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryMonth);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(7);
   });
@@ -103,7 +103,7 @@ describe("getActivityImportanceValue", () => {
   it("Weekly common activity", () => {
     const activity = createMockActivity();
 
-    setActivityRepeatType(activity, RepeatTypeEnum.EveryWeek)
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryWeek);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(3);
   });
@@ -111,8 +111,8 @@ describe("getActivityImportanceValue", () => {
   it("Daily common activity", () => {
     const activity = createMockActivity();
 
-    setActivityRepeatType(activity, RepeatTypeEnum.EveryDay)
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryDay);
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(1);
   });
-})
+});

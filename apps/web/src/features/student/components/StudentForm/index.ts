@@ -1,1 +1,1 @@
-export { StudentForm } from './StudentForm'
+export { StudentForm } from "./StudentForm";

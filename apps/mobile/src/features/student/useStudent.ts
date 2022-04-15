@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  studentActions,
-  StudentLoginDto,
-} from "@routine-support/domains";
+import { studentActions, StudentLoginDto } from "@routine-support/domains";
 import { LanguageEnum } from "@routine-support/types";
 import { useTranslation } from "react-i18next";
 

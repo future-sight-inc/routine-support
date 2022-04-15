@@ -1,1 +1,1 @@
-export { LabelWithHelper } from './LabelWithHelper'
+export { LabelWithHelper } from "./LabelWithHelper";
