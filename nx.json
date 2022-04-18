@@ -1,7 +1,7 @@
 {
   "npmScope": "routine-support",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
   "implicitDependencies": {
     "package.json": {
