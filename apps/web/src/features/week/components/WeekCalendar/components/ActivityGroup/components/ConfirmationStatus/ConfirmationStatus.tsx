@@ -45,7 +45,7 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
             ))}
           </S.List>
           <S.List>
-            <S.ListHeading>{t("Pending")}</S.ListHeading>
+            <S.ListHeading>{t<string>("Pending")}</S.ListHeading>
             {assignedStudents.map((student) => (
               <Typography>{student.name}</Typography>
             ))}
