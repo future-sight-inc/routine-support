@@ -1,0 +1,70 @@
+{
+  "Create": "Создать",
+  "Update": "Обновить",
+  "Delete": "Удалить",
+
+  "Log in": "Вход",
+  "Logout": "Выйти",
+  "Sign up": "Регистрация",
+
+  "Name": "Имя",
+  "Email": "Почта",
+  "Password": "Пароль",
+  "Submit": "Отправить",
+
+  "Link to register": "Нет аккаунта? Зарегистрироваться",
+  "Link to sign in": "Уже есть аккаунт? Вход",
+  "Logout confirm message": "Вы уверены, что хотите выйти?",
+
+  "Calendar": "Календарь",
+
+  "Activity": "Событие",
+
+  "Activity status": "Статус прохождения",
+  "Completed": "Прошли",
+  "Pending": "Ожидаются",
+
+  "Required field": "Обязательное поле",
+
+  "Activity name": "Название события",
+  "Activity date": "Дата",
+  "Activity start time": "Начало",
+  "Activity end time": "Окончание",
+
+  "Change pictogram": "Изменить пиктограмму",
+  "Choose pictogram": "Выбрать пиктограмму",
+  "Search": "Поиск...",
+
+  "Repeat type": "Повторять",
+  "Activity type": "Тип активности",
+  "Every day": "Каждый день",
+  "Every week": "Каждую неделю",
+  "Every month": "Каждый месяц",
+  "Never": "Никогда",
+
+  "Filters": "Фильтры",
+
+  "Today": "Сегодня",
+
+  "Common": "Общие",
+  "Common activity": "Общая",
+  "Individual activity": "Индивидуальная",
+  "Choose students": "Выберите студента или студентов",
+
+  "Student": "Студент",
+  "Students": "Студенты",
+  "Clock type": "Тип часов",
+  "Digital": "Цифровые",
+  "Analog": "Со стрелками",
+  "PIN code": "PIN код",
+
+  "Modify student": "Редактирование студента",
+  "Add student": "Добавить студента",
+  "Confirm student delete": "Подтвердите удаление",
+  "No students": "Пока нет ни одного студента",
+
+  "QR instructions start": "Отсканируйте в приложении",
+  "QR instructions end": "Routine Support, чтобы войти",
+
+  "Rights info": "Routine Support. 2022. Все права защищены"
+}
