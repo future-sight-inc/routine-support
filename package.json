@@ -88,6 +88,9 @@
     "tslib": "^2.0.0",
     "uuid": "^8.3.2"
   },
+  "resolutions": {
+    "@types/react": "17.0.30"
+  },
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/plugin-transform-modules-commonjs": "^7.16.8",
