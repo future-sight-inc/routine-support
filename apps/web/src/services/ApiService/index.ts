@@ -6,7 +6,7 @@ import {
   createWeekAPI,
 } from "@routine-support/domains";
 
-const client = createClient(process.env.NX_API_ENDPOINT || "");
+const client = createClient("/api");
 
 export const activityAPI = createActivityAPI(client);
 export const studentAPI = createStudentAPI(client);
