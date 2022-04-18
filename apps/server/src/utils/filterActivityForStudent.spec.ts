@@ -1,5 +1,8 @@
-
-import { addStudentToActivity, createMockActivitySchema, createMockStudent } from "@routine-support/test-utils";
+import {
+  addStudentToActivity,
+  createMockActivitySchema,
+  createMockStudent,
+} from "@routine-support/test-utils";
 import { filterActivityForStudent } from "./filterActivityForStudent";
 
 const TARGET_STUDENT = createMockStudent();

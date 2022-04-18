@@ -1,10 +1,8 @@
-import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 40px calc(100vh - 140px);
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 180px 1fr;
   gap: 16px;
   overflow: hidden;
 `;
@@ -12,26 +10,35 @@ export const Wrapper = styled.div`
 export const Head = styled.div`
   height: 40px;
   display: grid;
-  grid-template-columns: 140px 7fr;
+  padding-left: 60px;
   gap: 1px;
 `;
 
-export const Column = styled.div`
-  height: 100vh;
+export const ActionsWrapper = styled.div`
+  height: calc(100vh - 132px);
   display: grid;
-  gap: 16px;
-  grid-template-rows: 40px calc(100vh - 40px - 16px);
+  grid-template-rows: 40px auto 1fr;
+  gap: 24px;
+`;
+
+export const FilterWrapper = styled.div`
+  overflow: scroll;
+`;
+
+export const MiniCalendarWrapper = styled.div``;
+
+export const CalendarWrapper = styled.div`
+  height: calc(100vh - 132px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
 `;
 
 export const Body = styled.div`
   position: relative;
-`;
-
-export const Spinner = styled(CircularProgress)`
-  ${({ theme }) => theme.position.absoluteCenter};
+  overflow-y: scroll;
 `;

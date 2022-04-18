@@ -1,21 +1,24 @@
 import React from "react";
 
-import { MenuItem, SelectProps } from "@mui/material";
 import { RepeatTypeEnum } from "@routine-support/domains";
 import { useTranslation } from "react-i18next";
 
-import { Select } from "../Select";
+import { Select, SelectProps } from "../Select";
 
 export const RepeatTypePicker: React.FC<SelectProps> = ({ ...props }) => {
   const { t } = useTranslation();
 
   return (
-    <Select {...props} defaultValue={RepeatTypeEnum.None}>
-      <MenuItem value={RepeatTypeEnum.None}>{t("Never")}</MenuItem>
-      <MenuItem value={RepeatTypeEnum.EveryDay}>{t("Every day")}</MenuItem>
-      <MenuItem value={RepeatTypeEnum.EveryWeek}>{t("Every week")}</MenuItem>
-      <MenuItem value={RepeatTypeEnum.EveryMonth}>{t("Every month")}</MenuItem>
-      <MenuItem value={RepeatTypeEnum.EveryYear}>{t("Every year")}</MenuItem>
-    </Select>
+    <Select
+      {...props}
+      defaultValue={RepeatTypeEnum.None}
+      options={[
+        { text: t("Never"), value: RepeatTypeEnum.None },
+        { text: t("Every day"), value: RepeatTypeEnum.EveryDay },
+        { text: t("Every week"), value: RepeatTypeEnum.EveryWeek },
+        { text: t("Every month"), value: RepeatTypeEnum.EveryMonth },
+        { text: t("Every year"), value: RepeatTypeEnum.EveryYear },
+      ]}
+    />
   );
 };

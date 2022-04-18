@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 
+import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
+
 import { ContentWrapper } from "../../components/ContentWrapper/ContentWrapper";
 import { Modal } from "../../components/Modal";
 import { ActivityForm } from "../../features/activity/components/ActivityForm";
@@ -8,13 +11,15 @@ import { useCoach } from "../coach/useCoach";
 import { useStudents } from "../students/useStudents";
 import { ActivityFilter } from "./components/ActivityFilter";
 import { AddActivityButton } from "./components/AddActivityButton";
+import { MiniCalendar } from "./components/MiniCalendar";
 import { WeekCalendar } from "./components/WeekCalendar";
 import { WeekLayout } from "./components/WeekLayout";
 import { WeekRange } from "./components/WeekRange";
-import { WeekSelect } from "./components/WeekSelect";
 import { useWeek } from "./useWeek";
 
 export const Week: React.FC = () => {
+  const { t } = useTranslation();
+
   const Week = useWeek();
   const Activity = useActivity();
   const Students = useStudents();
@@ -32,15 +37,14 @@ export const Week: React.FC = () => {
   }
 
   return (
-    <ContentWrapper
-      loading={Week.models.loading}
-      error={Week.models.error}
-      onReload={Week.operations.getWeek}
-    >
+    <ContentWrapper loading={Week.models.loading} error={Week.models.error}>
+      <Helmet>
+        <title>{t("Calendar")}</title>
+      </Helmet>
       <WeekLayout
-        weekSelect={
-          <WeekSelect
-            loading={Week.models.loading}
+        miniCalendar={
+          <MiniCalendar
+            currentDate={Week.models.currentDate}
             actions={{ getWeek: Week.operations.getWeek }}
           />
         }
@@ -72,7 +76,7 @@ export const Week: React.FC = () => {
         }
         activityModal={
           <Modal
-            opened={Activity.models.opened}
+            isOpened={Activity.models.opened}
             onClose={Activity.operations.closeActivityModal}
           >
             <ActivityForm
@@ -82,6 +86,7 @@ export const Week: React.FC = () => {
                 createActivity: Activity.operations.createActivity,
                 updateActivity: Activity.operations.updateActivity,
                 deleteActivity: Activity.operations.deleteActivity,
+                closeModal: Activity.operations.closeActivityModal,
                 getWeek: Week.operations.getWeek,
               }}
             />

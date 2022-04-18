@@ -1,1 +1,0 @@
-export { AddStudentButton } from './AddStudentButton';

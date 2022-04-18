@@ -42,6 +42,10 @@
   "Every month": "Every month",
   "Never": "Never",
 
+  "Filters": "Filters",
+
+  "Today": "Today",
+
   "Common": "Common",
   "Common activity": "Common",
   "Individual activity": "Individual",
@@ -62,5 +66,5 @@
   "QR instructions start": "Use QR scanner in",
   "QR instructions end": "Routine Support app to sign in",
 
-  "Rights info": "Future Sight Inc. 2022. All rights reserved"
+  "Rights info": "Routine Support. 2022. All rights reserved"
 }

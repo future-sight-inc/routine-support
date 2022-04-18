@@ -1,48 +1,35 @@
-import { Checkbox, Typography } from "@mui/material";
+import { Checkbox as UICheckbox } from "apps/web/src/components/Checkbox";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    align-self: flex-start;
-    border: 1px solid ${theme.border.color};
-    padding: 16px;
-    border-radius: ${theme.borderRadius}px;
-    background: ${theme.palette.common.lightgrey};
-  `}
-
+  align-self: flex-start;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  width: 155px;
+  gap: 8px;
+  width: 100%;
 `;
+
+export const Title = styled(Typography).attrs(() => ({
+  variant: "text1Bold",
+}))``;
 
 export const FilterWrapper = styled.div`
+  height: 30px;
   display: flex;
   align-items: center;
-`;
-
-export const FilterCheckbox = styled(Checkbox).attrs(
-  ({ checkboxColor: color }: { checkboxColor: string }) => ({
-    sx: {
-      color,
-      "&.Mui-checked": {
-        color,
-      },
-    },
-  })
-)<{ checkboxColor: string }>`
-  color: black;
-`;
-
-export const FilterName = styled(Typography)`
-  max-width: 80px;
   overflow: hidden;
-  white-space: break-word;
-  user-select: none;
+  padding-left: 8px;
+  box-sizing: border-box;
+
+  &:hover {
+    ${({ theme }) =>
+    css`
+        background: ${theme.palette.secondary.main};
+        border-radius: ${theme.borderRadius};
+      `};
+  }
 `;
 
-export const Divider = styled.div`
-  height: 1px;
-  width: 100%;
-  background: ${({ theme }) => theme.border.color};
-`;
+export const Checkbox = styled(UICheckbox)``;

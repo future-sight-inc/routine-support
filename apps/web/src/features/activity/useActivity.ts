@@ -1,9 +1,6 @@
 import { useState } from "react";
 
-import {
-  Activity,
-  activityActions,
-} from "@routine-support/domains";
+import { Activity, activityActions } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";

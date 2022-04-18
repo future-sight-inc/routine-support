@@ -23,7 +23,7 @@ export const CommonFlagPicker: React.FC<FormFieldProps> = ({
       render={({ field }) => (
         <UncontrolledCommonFlagPicker
           value={field.value}
-          onChange={(event) => field.onChange(event.target.value === "true")}
+          onChange={field.onChange}
         />
       )}
     />

@@ -1,1 +1,0 @@
-export { WeekSelect } from "./WeekSelect";

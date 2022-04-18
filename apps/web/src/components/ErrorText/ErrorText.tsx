@@ -7,5 +7,9 @@ interface ErrorTextProps {
 }
 
 export const ErrorText: React.FC<ErrorTextProps> = ({ children }) => {
-  return <S.ErrorText>{children}</S.ErrorText>;
+  return (
+    <S.Wrapper>
+      <S.ErrorText>{children}</S.ErrorText>
+    </S.Wrapper>
+  );
 };

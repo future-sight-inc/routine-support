@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import * as S from "./styled";
 
 interface WeekLayoutProps {
-  weekSelect: ReactNode;
+  miniCalendar: ReactNode;
   weekRange: ReactNode;
   calendar: ReactNode;
   addActivityButton: ReactNode;
@@ -12,7 +12,7 @@ interface WeekLayoutProps {
 }
 
 export const WeekLayout: React.FC<WeekLayoutProps> = ({
-  weekSelect,
+  miniCalendar,
   weekRange,
   calendar,
   addActivityButton,
@@ -21,17 +21,15 @@ export const WeekLayout: React.FC<WeekLayoutProps> = ({
 }) => {
   return (
     <S.Wrapper>
-      <S.Column>
+      <S.ActionsWrapper>
         <S.ButtonWrapper>{addActivityButton}</S.ButtonWrapper>
-        {activityFilter}
-      </S.Column>
-      <S.Column>
-        <S.Head>
-          {weekSelect}
-          {weekRange}
-        </S.Head>
+        <S.MiniCalendarWrapper>{miniCalendar}</S.MiniCalendarWrapper>
+        <S.FilterWrapper>{activityFilter}</S.FilterWrapper>
+      </S.ActionsWrapper>
+      <S.CalendarWrapper>
+        <S.Head>{weekRange}</S.Head>
         <S.Body>{calendar}</S.Body>
-      </S.Column>
+      </S.CalendarWrapper>
       {activityModal}
     </S.Wrapper>
   );

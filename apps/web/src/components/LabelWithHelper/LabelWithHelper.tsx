@@ -1,50 +1,43 @@
-import React, { RefCallback } from "react";
+import React, { ReactNode, RefCallback } from "react";
 
-import {
-  bindHover,
-  bindPopover,
-  usePopupState,
-} from "material-ui-popup-state/hooks";
-import HoverPopover from "material-ui-popup-state/HoverPopover";
-
+import { TypographyVariant } from "../../styled/components/Typography";
+import { LabelWithHelperLocators } from "./locators";
 import * as S from "./styled";
 
 interface LabelWithHelperProps {
-  label: string;
-  error?: boolean;
-  ref?: RefCallback<unknown>;
+  ref?: RefCallback<any>;
   helperText?: string;
+  color?: "secondary" | "normal";
+  children: ReactNode;
+  variant?: TypographyVariant;
 }
 
 export const LabelWithHelper: React.FC<LabelWithHelperProps> = ({
-  label,
-  error,
-  ref,
+  color = "secondary",
+  variant = "text2",
+  children,
   helperText,
 }) => {
-  const popupState = usePopupState({ variant: "popper", popupId: "demoMenu" });
-
   return (
-    <>
-      <S.Wrapper>
-        <S.Label ref={ref} error={error}>
-          {label}
-        </S.Label>
-        {helperText && <S.HelpIcon {...bindHover(popupState)} />}
-      </S.Wrapper>
-      <HoverPopover
-        {...bindPopover(popupState)}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
+    <S.Wrapper>
+      <S.Label
+        color={color}
+        data-testid={LabelWithHelperLocators.Label}
+        variant={variant}
       >
-        <S.HelperText>{helperText}</S.HelperText>
-      </HoverPopover>
-    </>
+        {children}
+      </S.Label>
+      {helperText && (
+        <S.HelpIconWrapper data-testid={LabelWithHelperLocators.HelpIcon}>
+          <S.HelpIcon />
+          <S.HelperText
+            data-testid={LabelWithHelperLocators.HelperText}
+            variant={variant}
+          >
+            {helperText}
+          </S.HelperText>
+        </S.HelpIconWrapper>
+      )}
+    </S.Wrapper>
   );
 };

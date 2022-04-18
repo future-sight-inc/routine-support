@@ -1,13 +1,15 @@
 import React from "react";
 
-import UICheckbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-
-import { LabelWithHelper } from "../../LabelWithHelper";
+import { Checkbox as UICheckbox } from "../../Checkbox";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-export const Checkbox: React.FC<FormFieldProps> = ({
+type CheckboxProps = FormFieldProps & {
+  label: string;
+  helperText?: string;
+};
+
+export const Checkbox: React.FC<CheckboxProps> = ({
   name,
   control,
   required,
@@ -23,14 +25,11 @@ export const Checkbox: React.FC<FormFieldProps> = ({
       disabled={disabled}
       helperText={helperText}
       render={({ field }) => (
-        <FormControlLabel
-          checked={field.value}
+        <UICheckbox
+          label={label}
+          helperText={helperText}
+          value={field.value}
           onChange={field.onChange}
-          defaultChecked={false}
-          control={<UICheckbox />}
-          label={
-            label && <LabelWithHelper label={label} helperText={helperText} />
-          }
         />
       )}
     />

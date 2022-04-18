@@ -42,6 +42,10 @@
   "Every month": "Каждый месяц",
   "Never": "Никогда",
 
+  "Filters": "Фильтры",
+
+  "Today": "Сегодня",
+
   "Common": "Общие",
   "Common activity": "Общая",
   "Individual activity": "Индивидуальная",
@@ -62,5 +66,5 @@
   "QR instructions start": "Отсканируйте в приложении",
   "QR instructions end": "Routine Support, чтобы войти",
 
-  "Rights info": "Future Sight Inc. 2022. Все права защищены"
+  "Rights info": "Routine Support. 2022. Все права защищены"
 }

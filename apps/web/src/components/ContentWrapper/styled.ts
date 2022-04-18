@@ -1,22 +1,33 @@
-import { CircularProgress, Typography } from "@mui/material";
-import { Button } from "apps/web/src/styled/components/Button";
-import styled, { css } from "styled-components";
+import { CircularProgress } from "@mui/material";
+import styled from "styled-components";
 
-export const ErrorText = styled(Typography)`
+import { Button } from "../../styled/components/Button";
+import { ErrorText as UIErrorText } from "../ErrorText";
+
+export const Wrapper = styled.div`
+  height: calc(100vh - 100px);
+  box-sizing: border-box;
   padding: 16px;
+  overflow: scroll;
+`;
 
-  ${({ theme }) =>
-    css`
-      ${theme.position.absoluteCenter}
-      border-radius: ${theme.borderRadius}px;
-      background: ${theme.palette.common.grey};
-      color: ${theme.palette.error.main};
-      border: ${theme.border.main};
-    `};
+export const ErrorWrapper = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+export const ErrorText = styled(UIErrorText)``;
+
+export const SpinnerWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
 `;
 
 export const Spinner = styled(CircularProgress)`
-  ${({ theme }) => theme.position.absoluteCenter};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const ReloadButton = styled(Button)`

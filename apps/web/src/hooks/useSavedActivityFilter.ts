@@ -7,6 +7,5 @@ export const useSavedActivityFilter = (): ActivityFilter | undefined => {
     return JSON.parse(savedFilter);
   }
 
-
   return undefined;
 };

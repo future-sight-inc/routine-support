@@ -22,10 +22,8 @@ dayRouter.get("/:date", async (req, res) => {
   const parsedActivities = studentActivities.map(createActivityFromSchema);
   const dayScheduleActivities = getDayScheduleActivities(parsedActivities);
 
-  return res
-    .status(200)
-    .send({
-      date,
-      activities: dayScheduleActivities.map(createSchemaFromActivity),
-    });
+  return res.status(200).send({
+    date,
+    activities: dayScheduleActivities.map(createSchemaFromActivity),
+  });
 });

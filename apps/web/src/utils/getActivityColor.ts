@@ -5,6 +5,7 @@ import {
   GROUP_ACTIVITY_COLOR,
   IMPORTANT_ACTIVITY_COLOR,
 } from "../constants/defaultActivityColor";
+import { getColor } from "./getColor";
 import { getStudentsByIds } from "./getStudentsByIds";
 
 export const getActivityColor = (activity: Activity, students: Student[]) => {
@@ -12,7 +13,7 @@ export const getActivityColor = (activity: Activity, students: Student[]) => {
     const student = getStudentsByIds(students, activity.students)[0];
 
     if (student) {
-      return student.color;
+      return getColor(student.color);
     }
   }
 

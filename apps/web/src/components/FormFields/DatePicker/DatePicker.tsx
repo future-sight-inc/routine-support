@@ -1,8 +1,8 @@
 import React from "react";
 
-import { TextField } from "@mui/material";
 import moment from "moment";
 
+import { TextField } from "../../TextField";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
@@ -27,9 +27,6 @@ export const DatePicker: React.FC<FormFieldProps> = ({
       render={({ field: { value, onChange, ...field }, fieldState }) => (
         <TextField
           type="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
           {...field}
           value={value.format(HTML_DATE_FORMAT)}
           onChange={(event) =>

@@ -1,9 +1,6 @@
 import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 
-export const getActivityImportanceValue = (
-  activity: Activity
-): number => {
-
+export const getActivityImportanceValue = (activity: Activity): number => {
   let importanceValue = 0;
 
   if (activity.isImportant) {
@@ -11,23 +8,23 @@ export const getActivityImportanceValue = (
   }
 
   switch (activity.repeatType) {
-    case (RepeatTypeEnum.None): {
+    case RepeatTypeEnum.None: {
       importanceValue = 31;
       break;
     }
-    case (RepeatTypeEnum.EveryYear): {
+    case RepeatTypeEnum.EveryYear: {
       importanceValue = 15;
       break;
     }
-    case (RepeatTypeEnum.EveryMonth): {
+    case RepeatTypeEnum.EveryMonth: {
       importanceValue = 7;
       break;
     }
-    case (RepeatTypeEnum.EveryWeek): {
+    case RepeatTypeEnum.EveryWeek: {
       importanceValue = 3;
       break;
     }
-    case (RepeatTypeEnum.EveryDay): {
+    case RepeatTypeEnum.EveryDay: {
       importanceValue = 1;
       break;
     }

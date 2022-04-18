@@ -1,48 +1,82 @@
-import { css, DefaultTheme } from "styled-components";
+import { DefaultTheme } from "styled-components";
 
 export const Theme: DefaultTheme = {
   palette: {
     primary: {
       main: "#2F80ED",
-      contrastText: "#000",
+      hovered: "#1A6EDE",
+      clicked: "#075DD0",
+      message: "#CFE4FF",
+      text: "#000000",
     },
     secondary: {
-      main: "#F3F3F3",
-      contrastText: "#838383",
+      main: "#EFEFEF",
+      hovered: "#E3E3E3",
+      clicked: "#D7D7D7",
+      text: "#9A9A9A",
     },
     error: {
-      main: "#d32f2f",
-      contrastText: "#d32f2f",
+      main: "#FFE8E8",
+      text: "#d32f2f",
+    },
+    border: {
+      main: "#DEDEDE",
     },
     common: {
-      black: "#000",
-      white: "#fff",
-      grey: "#F3F3F3",
-      lightgrey: "#F9F9F9",
+      black: "#000000",
+      white: "#ffffff",
       lightblue: "#F5FCFF",
       green: "#95E19B",
-      blue: "#A0DBFD",
-      darkblue: "#2C5082",
       yellow: "#FFD74A",
-      activeSidebarLink: "rgba(255, 255, 255, 0.2)",
+      blue: "#D0ECFF",
+      purple: "#A08EFF",
+      pink: "#FFC1E6",
+      red: "#FF9191",
+      mint: "#7EF5F5",
+      orange: "#FF9A6F",
+      brown: "#B59388",
+      darkgreen: "#60B667",
     },
   },
-  borderRadius: 4,
-  border: {
-    main: "1px solid #DEDEDE",
-    width: 1,
-    color: "#DEDEDE",
-  },
-  position: {
-    absoluteCenter: css`
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    `,
-  },
+  borderRadius: "5px",
+  // todo разобраться в структуре, постараться выпилить
   size: {
-    cellHeight: "160px",
+    cellHeight: "140px",
     maxWidth: "1900px",
+  },
+  fonts: {
+    caption4: {
+      size: "20px",
+      weight: "bold",
+    },
+    text1: {
+      size: "16px",
+      weight: "normal",
+    },
+    text2: {
+      size: "14px",
+      weight: "normal",
+    },
+    text3: {
+      size: "12px",
+      weight: "normal",
+    },
+    text1Bold: {
+      size: "16px",
+      weight: "bold",
+    },
+    text2Bold: {
+      size: "14px",
+      weight: "bold",
+    },
+    text3Bold: {
+      size: "12px",
+      weight: "bold",
+    },
+  },
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  boxShadow: {
+    medium: "0px 16px 24px rgba(0, 0, 0, 0.1)",
+    small: "0px 4px 10px 3px rgba(0, 0, 0, 0.1)",
   },
 };

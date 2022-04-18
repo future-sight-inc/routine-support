@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import * as S from "./styled";
 
@@ -11,7 +11,11 @@ interface AddActivityButtonProps {
 export const AddActivityButton: React.FC<AddActivityButtonProps> = ({
   onClick,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  return <S.Button onClick={onClick}>+ {t("Activity")}</S.Button>;
+  return (
+    <S.Button onClick={onClick}>
+      <S.ButtonText>+ {t("Activity")}</S.ButtonText>
+    </S.Button>
+  );
 };

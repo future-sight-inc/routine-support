@@ -1,6 +1,12 @@
 import React, { createRef } from "react";
 
-import { Activity, groupActivities, Student, Week } from "@routine-support/domains";
+import {
+  Activity,
+  groupActivities,
+  Student,
+  Week,
+} from "@routine-support/domains";
+import { isToday } from "@routine-support/utils";
 import { stringifyDate } from "@routine-support/utils";
 
 import { ActivityGroup } from "./components/ActivityGroup";
@@ -56,9 +62,9 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               onActivityClick={actions.openActivityModal}
             />
           ))}
+          {isToday(day) && <S.TimeLine top={timelineTopOffset} />}
         </S.Column>
       ))}
-      <S.TimeLine top={timelineTopOffset} />
     </S.Wrapper>
   );
 };

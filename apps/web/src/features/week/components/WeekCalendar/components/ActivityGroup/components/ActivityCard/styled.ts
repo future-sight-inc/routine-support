@@ -1,9 +1,42 @@
-import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import { css } from "styled-components";
+import styledComponents from "styled-components";
 import styled from "styled-container-query";
 
-export const Wrapper = styled(Box)<{
+const TimeText = styledComponents(Typography).attrs(() => ({
+  variant: "text2",
+}))``;
+
+export const Time = styled(TimeText)`
+  &:container(max-width: 100px) {
+    visibility: hidden;
+    height: 0;
+  }
+
+  &:container(min-width: 140px) {
+    visibility: visible;
+  }
+`;
+
+const NameText = styledComponents(Typography).attrs(() => ({
+  variant: "text1Bold",
+}))``;
+
+export const Name = styled(NameText)`
+  &:container(max-width: 140px) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &:container(max-height: 100px) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+`;
+
+export const Wrapper = styled.div<{
   rowStart: number;
   marginTop: number;
   count: number;
@@ -19,9 +52,8 @@ export const Wrapper = styled(Box)<{
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   margin: 0;
-
   padding: 8px;
 
   &:container(max-width: 100px) {
@@ -29,7 +61,7 @@ export const Wrapper = styled(Box)<{
   }
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius}px;
+    border-radius: ${theme.borderRadius};
   `}
 
   ${({ rowStart, marginTop, count, index, height, theme }) => css`
@@ -44,38 +76,10 @@ export const Wrapper = styled(Box)<{
 
   pointer-events: all;
   cursor: pointer;
-`;
-
-export const Time = styled(Typography)`
-  font-size: 14px;
-
-  &:container(max-width: 100px) {
-    visibility: hidden;
-    height: 0;
-  }
 
   &:container(max-height: 100px) {
-    visibility: hidden;
-    height: 0;
-  }
-
-  &:container(min-width: 140px) {
-    visibility: visible;
-  }
-`;
-
-export const Name = styled(Typography)`
-  font-weight: bold;
-
-  &:container(max-width: 140px) {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  &:container(max-height: 100px) {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    ${Time} {
+      display: none;
+    }
   }
 `;

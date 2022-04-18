@@ -10,7 +10,7 @@ export const ClockTypePicker: React.FC<FormFieldProps> = ({
   required,
   disabled,
   label,
-  helperText
+  helperText,
 }) => {
   return (
     <Controller

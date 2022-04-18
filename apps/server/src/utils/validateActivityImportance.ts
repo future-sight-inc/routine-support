@@ -15,8 +15,6 @@ export const validateActivityImportance = async (
       isImportant: true,
     });
 
-    console.log(importantActivitySameDay);
-
     if (
       importantActivitySameDay &&
       isTimeCrossed(

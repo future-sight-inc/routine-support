@@ -4,7 +4,7 @@ import {
   createMockActivitiesGroup,
   createMockActivity,
   createMockStudent,
-  setActivityRepeatType
+  setActivityRepeatType,
 } from "@routine-support/test-utils";
 import { getHighPriorityActivityFromGroup } from "./getHighPriorityActivityFromGroup";
 
@@ -36,8 +36,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const individualActivity = createMockActivity();
     const student = createMockStudent();
 
-    setActivityRepeatType(commonActivity, RepeatTypeEnum.EveryYear)
-    setActivityRepeatType(individualActivity, RepeatTypeEnum.EveryYear)
+    setActivityRepeatType(commonActivity, RepeatTypeEnum.EveryYear);
+    setActivityRepeatType(individualActivity, RepeatTypeEnum.EveryYear);
 
     addStudentToActivity(individualActivity, student);
     addActivityToGroup(group, commonActivity);
@@ -54,8 +54,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const individualActivity = createMockActivity();
     const student = createMockStudent();
 
-    setActivityRepeatType(commonActivity, RepeatTypeEnum.EveryMonth)
-    setActivityRepeatType(individualActivity, RepeatTypeEnum.EveryMonth)
+    setActivityRepeatType(commonActivity, RepeatTypeEnum.EveryMonth);
+    setActivityRepeatType(individualActivity, RepeatTypeEnum.EveryMonth);
 
     addStudentToActivity(individualActivity, student);
     addActivityToGroup(group, commonActivity);
@@ -72,8 +72,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const individualActivity = createMockActivity();
     const student = createMockStudent();
 
-    setActivityRepeatType(commonActivity, RepeatTypeEnum.EveryWeek)
-    setActivityRepeatType(individualActivity, RepeatTypeEnum.EveryWeek)
+    setActivityRepeatType(commonActivity, RepeatTypeEnum.EveryWeek);
+    setActivityRepeatType(individualActivity, RepeatTypeEnum.EveryWeek);
 
     addStudentToActivity(individualActivity, student);
     addActivityToGroup(group, commonActivity);
@@ -90,8 +90,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const individualActivity = createMockActivity();
     const student = createMockStudent();
 
-    setActivityRepeatType(commonActivity, RepeatTypeEnum.EveryDay)
-    setActivityRepeatType(individualActivity, RepeatTypeEnum.EveryDay)
+    setActivityRepeatType(commonActivity, RepeatTypeEnum.EveryDay);
+    setActivityRepeatType(individualActivity, RepeatTypeEnum.EveryDay);
 
     addStudentToActivity(individualActivity, student);
     addActivityToGroup(group, commonActivity);
@@ -123,8 +123,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const individualActivityB = createMockActivity();
     const student = createMockStudent();
 
-    setActivityRepeatType(individualActivityA, RepeatTypeEnum.EveryYear)
-    setActivityRepeatType(individualActivityB, RepeatTypeEnum.EveryYear)
+    setActivityRepeatType(individualActivityA, RepeatTypeEnum.EveryYear);
+    setActivityRepeatType(individualActivityB, RepeatTypeEnum.EveryYear);
 
     addStudentToActivity(individualActivityA, student);
     addStudentToActivity(individualActivityB, student);
@@ -143,8 +143,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const individualActivityB = createMockActivity();
     const student = createMockStudent();
 
-    setActivityRepeatType(individualActivityA, RepeatTypeEnum.EveryMonth)
-    setActivityRepeatType(individualActivityB, RepeatTypeEnum.EveryMonth)
+    setActivityRepeatType(individualActivityA, RepeatTypeEnum.EveryMonth);
+    setActivityRepeatType(individualActivityB, RepeatTypeEnum.EveryMonth);
 
     addStudentToActivity(individualActivityA, student);
     addStudentToActivity(individualActivityB, student);
@@ -163,8 +163,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const individualActivityB = createMockActivity();
     const student = createMockStudent();
 
-    setActivityRepeatType(individualActivityA, RepeatTypeEnum.EveryWeek)
-    setActivityRepeatType(individualActivityB, RepeatTypeEnum.EveryWeek)
+    setActivityRepeatType(individualActivityA, RepeatTypeEnum.EveryWeek);
+    setActivityRepeatType(individualActivityB, RepeatTypeEnum.EveryWeek);
 
     addStudentToActivity(individualActivityA, student);
     addStudentToActivity(individualActivityB, student);
@@ -183,8 +183,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const individualActivityB = createMockActivity();
     const student = createMockStudent();
 
-    setActivityRepeatType(individualActivityA, RepeatTypeEnum.EveryDay)
-    setActivityRepeatType(individualActivityB, RepeatTypeEnum.EveryDay)
+    setActivityRepeatType(individualActivityA, RepeatTypeEnum.EveryDay);
+    setActivityRepeatType(individualActivityB, RepeatTypeEnum.EveryDay);
 
     addStudentToActivity(individualActivityA, student);
     addStudentToActivity(individualActivityB, student);
@@ -219,8 +219,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const commonActivityA = createMockActivity();
     const commonActivityB = createMockActivity();
 
-    setActivityRepeatType(commonActivityA, RepeatTypeEnum.EveryYear)
-    setActivityRepeatType(commonActivityB, RepeatTypeEnum.EveryYear)
+    setActivityRepeatType(commonActivityA, RepeatTypeEnum.EveryYear);
+    setActivityRepeatType(commonActivityB, RepeatTypeEnum.EveryYear);
 
     addActivityToGroup(group, commonActivityA);
     addActivityToGroup(group, commonActivityB);
@@ -235,8 +235,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const commonActivityA = createMockActivity();
     const commonActivityB = createMockActivity();
 
-    setActivityRepeatType(commonActivityA, RepeatTypeEnum.EveryMonth)
-    setActivityRepeatType(commonActivityB, RepeatTypeEnum.EveryMonth)
+    setActivityRepeatType(commonActivityA, RepeatTypeEnum.EveryMonth);
+    setActivityRepeatType(commonActivityB, RepeatTypeEnum.EveryMonth);
 
     addActivityToGroup(group, commonActivityA);
     addActivityToGroup(group, commonActivityB);
@@ -251,8 +251,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const commonActivityA = createMockActivity();
     const commonActivityB = createMockActivity();
 
-    setActivityRepeatType(commonActivityA, RepeatTypeEnum.EveryWeek)
-    setActivityRepeatType(commonActivityB, RepeatTypeEnum.EveryWeek)
+    setActivityRepeatType(commonActivityA, RepeatTypeEnum.EveryWeek);
+    setActivityRepeatType(commonActivityB, RepeatTypeEnum.EveryWeek);
 
     addActivityToGroup(group, commonActivityA);
     addActivityToGroup(group, commonActivityB);
@@ -267,8 +267,8 @@ describe("getHighPriorityActivityFromGroup", () => {
     const commonActivityA = createMockActivity();
     const commonActivityB = createMockActivity();
 
-    setActivityRepeatType(commonActivityA, RepeatTypeEnum.EveryDay)
-    setActivityRepeatType(commonActivityB, RepeatTypeEnum.EveryDay)
+    setActivityRepeatType(commonActivityA, RepeatTypeEnum.EveryDay);
+    setActivityRepeatType(commonActivityB, RepeatTypeEnum.EveryDay);
 
     addActivityToGroup(group, commonActivityA);
     addActivityToGroup(group, commonActivityB);
@@ -550,8 +550,8 @@ describe("getHighPriorityActivityFromGroup", () => {
 
     addStudentToActivity(individualActivityDaily, student);
 
-    setActivityRepeatType(commonActivityWeekly, RepeatTypeEnum.EveryWeek)
-    setActivityRepeatType(individualActivityDaily, RepeatTypeEnum.EveryDay)
+    setActivityRepeatType(commonActivityWeekly, RepeatTypeEnum.EveryWeek);
+    setActivityRepeatType(individualActivityDaily, RepeatTypeEnum.EveryDay);
 
     addActivityToGroup(group, commonActivityWeekly);
     addActivityToGroup(group, individualActivityDaily);
@@ -569,8 +569,8 @@ describe("getHighPriorityActivityFromGroup", () => {
 
     addStudentToActivity(individualActivityYearly, student);
 
-    setActivityRepeatType(commonActivityDaily, RepeatTypeEnum.EveryDay)
-    setActivityRepeatType(individualActivityYearly, RepeatTypeEnum.EveryYear)
+    setActivityRepeatType(commonActivityDaily, RepeatTypeEnum.EveryDay);
+    setActivityRepeatType(individualActivityYearly, RepeatTypeEnum.EveryYear);
 
     addActivityToGroup(group, commonActivityDaily);
     addActivityToGroup(group, individualActivityYearly);
@@ -588,8 +588,8 @@ describe("getHighPriorityActivityFromGroup", () => {
 
     addStudentToActivity(individualActivityWeekly, student);
 
-    setActivityRepeatType(commonActivityDaily, RepeatTypeEnum.EveryDay)
-    setActivityRepeatType(individualActivityWeekly, RepeatTypeEnum.EveryWeek)
+    setActivityRepeatType(commonActivityDaily, RepeatTypeEnum.EveryDay);
+    setActivityRepeatType(individualActivityWeekly, RepeatTypeEnum.EveryWeek);
 
     addActivityToGroup(group, commonActivityDaily);
     addActivityToGroup(group, individualActivityWeekly);
@@ -607,8 +607,8 @@ describe("getHighPriorityActivityFromGroup", () => {
 
     addStudentToActivity(individualActivityDaily, student);
 
-    setActivityRepeatType(commonActivityYearly, RepeatTypeEnum.EveryYear)
-    setActivityRepeatType(individualActivityDaily, RepeatTypeEnum.EveryDay)
+    setActivityRepeatType(commonActivityYearly, RepeatTypeEnum.EveryYear);
+    setActivityRepeatType(individualActivityDaily, RepeatTypeEnum.EveryDay);
 
     addActivityToGroup(group, commonActivityYearly);
     addActivityToGroup(group, individualActivityDaily);
@@ -626,8 +626,8 @@ describe("getHighPriorityActivityFromGroup", () => {
 
     addStudentToActivity(individualActivityMonthly, student);
 
-    setActivityRepeatType(commonActivityNoRepeat, RepeatTypeEnum.None)
-    setActivityRepeatType(individualActivityMonthly, RepeatTypeEnum.EveryMonth)
+    setActivityRepeatType(commonActivityNoRepeat, RepeatTypeEnum.None);
+    setActivityRepeatType(individualActivityMonthly, RepeatTypeEnum.EveryMonth);
 
     addActivityToGroup(group, commonActivityNoRepeat);
     addActivityToGroup(group, individualActivityMonthly);
@@ -645,8 +645,8 @@ describe("getHighPriorityActivityFromGroup", () => {
 
     addStudentToActivity(individualActivityNoRepeat, student);
 
-    setActivityRepeatType(commonActivityMonthly, RepeatTypeEnum.EveryMonth)
-    setActivityRepeatType(individualActivityNoRepeat, RepeatTypeEnum.None)
+    setActivityRepeatType(commonActivityMonthly, RepeatTypeEnum.EveryMonth);
+    setActivityRepeatType(individualActivityNoRepeat, RepeatTypeEnum.None);
 
     addActivityToGroup(group, commonActivityMonthly);
     addActivityToGroup(group, individualActivityNoRepeat);
@@ -664,7 +664,7 @@ describe("getHighPriorityActivityFromGroup", () => {
 
     addStudentToActivity(individualActivityImportant, student);
 
-    setActivityRepeatType(commonActivityNoRepeat, RepeatTypeEnum.None)
+    setActivityRepeatType(commonActivityNoRepeat, RepeatTypeEnum.None);
     individualActivityImportant.isImportant = true;
 
     addActivityToGroup(group, commonActivityNoRepeat);
@@ -684,7 +684,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addStudentToActivity(individualActivityNoRepeat, student);
 
     commonActivityImportant.isImportant = true;
-    setActivityRepeatType(individualActivityNoRepeat, RepeatTypeEnum.None)
+    setActivityRepeatType(individualActivityNoRepeat, RepeatTypeEnum.None);
 
     addActivityToGroup(group, commonActivityImportant);
     addActivityToGroup(group, individualActivityNoRepeat);
@@ -693,4 +693,4 @@ describe("getHighPriorityActivityFromGroup", () => {
       commonActivityImportant
     );
   });
-})
+});

@@ -1,76 +1,143 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 
-import { Chip, Menu } from "@mui/material";
 import { Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { getStudentsByIds } from "apps/web/src/utils/getStudentsByIds";
 import { useTranslation } from "react-i18next";
 
-import { useStudentsPickerComponent } from "./hooks";
+import {
+  createDeleteIconDataTestId,
+  createOptionDataTestId,
+  createStudentDataTestId,
+  StudentsPickerLocators,
+} from "./locators";
 import * as S from "./styled";
+import { filterStudents } from "./utils";
 
-export interface StudentsPickerActions {
-  getStudents: () => void;
-  onChange: (studentsId?: Id[]) => void;
-}
-
-interface StudentsPickerProps {
-  value: Id[];
+interface StudentPickerProps {
+  value?: Id[];
   students: Student[];
-  actions: StudentsPickerActions;
+  onChange: (students: Id[]) => void;
 }
 
-export const StudentsPicker: React.FC<StudentsPickerProps> = ({
-  value = [],
+export const StudentsPicker: React.FC<StudentPickerProps> = ({
+  value,
   students,
-  actions,
+  onChange,
 }) => {
-  const {
-    models: { anchorEl, isMenuOpen },
-    operations: {
-      handleStudentAdd,
-      handleStudentDelete,
-      handleMenuOpen,
-      handleMenuClose,
-    },
-  } = useStudentsPickerComponent(value, actions);
-
   const { t } = useTranslation();
 
+  const [isOpened, setIsOpened] = useState(false);
+  const [filter, setFilter] = useState<string>("");
+
+  const [selectedStudents, setSelectedStudents] = useState<Id[]>(value || []);
+
+  const studentsToChoose = filterStudents({
+    students,
+    selectedStudents,
+    filter,
+  });
+
+  const handleOpen = () => {
+    setIsOpened(true);
+  };
+
+  const handleClose = () => {
+    setIsOpened(false);
+    setFilter("");
+  };
+
+  const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFilter(event.target.value);
+  };
+
+  const handleSelect = (student: Student) => {
+    selectedStudents.push(student._id);
+    setSelectedStudents(selectedStudents);
+    onChange(selectedStudents);
+    handleClose();
+  };
+
+  const handleDeleteStudent = (studentToDelete: Student) => {
+    const updatedStudents = selectedStudents.filter(
+      (student) => student !== studentToDelete._id
+    );
+
+    setSelectedStudents(updatedStudents);
+    onChange(updatedStudents);
+  };
+
   return (
-    <S.Wrapper>
-      <S.OpenButton
-        onClick={handleMenuOpen}
-        disabled={value.length === students.length}
-      >
-        {t("Add student")}
-      </S.OpenButton>
-      <Menu anchorEl={anchorEl} open={isMenuOpen} onClose={handleMenuClose}>
-        {students.map((student) => (
-          <S.MenuItem
-            value={student._id}
-            selected={value.some((studentId) => studentId === student._id)}
-            onClick={() => handleStudentAdd(student._id)}
-          >
-            {student.name}
-          </S.MenuItem>
-        ))}
-      </Menu>
-      <S.StudentsWrapper>
-        {getStudentsByIds(students, value).map((student) => {
-          return (
-            <Chip
-              variant="outlined"
-              onDelete={(event) => {
-                event.stopPropagation();
-                handleStudentDelete(student._id);
-              }}
-              key={student._id}
-              label={student.name}
+    <>
+      {isOpened && (
+        <S.Overlay
+          onClick={handleClose}
+          data-testid={StudentsPickerLocators.Overlay}
+        />
+      )}
+      <S.Wrapper>
+        <S.FieldWrapper
+          isActive={isOpened}
+          onClick={handleOpen}
+          data-testid={StudentsPickerLocators.FieldWrapper}
+        >
+          {selectedStudents.length > 0 && (
+            <S.StudentsWrapper>
+              {getStudentsByIds(students, selectedStudents).map(
+                (student, index) => (
+                  <S.StudentWrapper
+                    key={index}
+                    data-testid={createStudentDataTestId(student)}
+                  >
+                    <S.StudentName>{student.name}</S.StudentName>
+                    <S.DeleteStudentIcon
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleDeleteStudent(student);
+                      }}
+                      data-testid={createDeleteIconDataTestId(student)}
+                    />
+                  </S.StudentWrapper>
+                )
+              )}
+            </S.StudentsWrapper>
+          )}
+          {isOpened ? (
+            <S.SearchField
+              placeholder={t("Pick a student")}
+              value={filter}
+              onChange={handleFilterChange}
+              data-testid={StudentsPickerLocators.SearchField}
             />
-          );
-        })}
-      </S.StudentsWrapper>
-    </S.Wrapper>
+          ) : (
+            <S.OpenText
+              onClick={handleOpen}
+              data-testid={StudentsPickerLocators.OpenText}
+            >
+              {t("+ Add student")}
+            </S.OpenText>
+          )}
+        </S.FieldWrapper>
+        {isOpened && (
+          <S.Menu data-testid={StudentsPickerLocators.Menu}>
+            {studentsToChoose.length > 0 ? (
+              studentsToChoose.map((student, index) => (
+                <S.Option
+                  key={index}
+                  onClick={() => handleSelect(student)}
+                  data-testid={createOptionDataTestId(student)}
+                >
+                  {student.name}
+                </S.Option>
+              ))
+            ) : (
+              <S.EmptyText data-testid={StudentsPickerLocators.EmptyText}>
+                {t("No one to pick")}
+              </S.EmptyText>
+            )}
+          </S.Menu>
+        )}
+      </S.Wrapper>
+    </>
   );
 };

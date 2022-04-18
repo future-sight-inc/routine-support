@@ -19,6 +19,7 @@ export const useActivityFormComponent = (
     start: moment(),
     end: moment().add("hours", 1),
     isCommon: true,
+    isImportant: false,
     ...activity,
   };
   const {

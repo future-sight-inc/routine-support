@@ -1,23 +1,38 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 
-import CloseIcon from "@mui/icons-material/Close";
+import { Portal } from "react-portal";
 
+import { ModalLocators } from "./locators";
 import * as S from "./styled";
 
 interface ModalProps {
-  opened: boolean;
+  isOpened: boolean;
   onClose: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ opened, onClose, children }) => {
+export const Modal: React.FC<ModalProps> = ({
+  isOpened,
+  onClose,
+  children,
+}) => {
+  if (!isOpened) {
+    return null;
+  }
+
   return (
-    <S.Modal open={opened} onClose={onClose}>
-      <S.ModalContent>
-        <S.IconWrapper onClick={onClose}>
-          <CloseIcon />
-        </S.IconWrapper>
-        {children}
-      </S.ModalContent>
-    </S.Modal>
+    <Portal isOpen={isOpened} closePortal={onClose}>
+      <S.Modal onClick={onClose} data-testid={ModalLocators.Container}>
+        <S.ModalContent
+          onClick={(event: MouseEvent) => event.stopPropagation()}
+          data-testid={ModalLocators.Content}
+        >
+          <S.CloseIcon
+            onClick={onClose}
+            data-testid={ModalLocators.CloseIcon}
+          />
+          {children}
+        </S.ModalContent>
+      </S.Modal>
+    </Portal>
   );
 };

@@ -1,28 +1,29 @@
 import UIHelpIcon from "@mui/icons-material/Help";
-import { Typography } from "@mui/material";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+import {
+  getTypographyColorStyles,
+  Typography,
+  TypographyColor,
+} from "../../styled/components/Typography";
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const Label = styled(Typography).attrs(() => ({
-  variant: "body1",
-}))<{
-  error?: boolean;
-}>`
+export const Label = styled(Typography)<{ color: TypographyColor }>`
   display: flex;
   align-items: center;
   user-select: none;
 
-  ${({ theme }) => `color: ${theme.palette.common.black}`};
-  ${({ error, theme }) => error && `color: ${theme.palette.error.main}`};
+  ${({ color }) => getTypographyColorStyles(color)}
 `;
 
-export const HelpIcon = styled(UIHelpIcon)`
-  font-size: 18px;
-  color: ${({ theme }) => theme.palette.secondary.contrastText};
+export const HelpIcon = styled(UIHelpIcon).attrs(() => ({
+  sx: { fontSize: 16 },
+}))`
+  color: ${({ theme }) => theme.palette.secondary.text};
   cursor: pointer;
 
   &:hover {
@@ -33,5 +34,31 @@ export const HelpIcon = styled(UIHelpIcon)`
 `;
 
 export const HelperText = styled(Typography)`
-  padding: 8px;
+  display: none;
+
+  ${({ theme }) => css`
+    border-radius: ${theme.borderRadius};
+    box-shadow: ${theme.boxShadow.small};
+    background: ${theme.palette.common.white};
+  `};
+`;
+
+export const HelpIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:hover {
+    ${HelperText} {
+      display: block;
+      position: absolute;
+      top: -4px;
+      left: 4px;
+      transform: translateY(-100%);
+      padding: 12px;
+      height: 40px;
+      box-sizing: border-box;
+      white-space: nowrap;
+    }
+  }
 `;

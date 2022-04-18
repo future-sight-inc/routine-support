@@ -1,8 +1,8 @@
 import React from "react";
 
+import { ActivityNameInput as UncontrolledActivityNameInput } from "../../ActivityNameInput";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
-import * as S from "./styled";
 
 export const ActivityNameInput: React.FC<FormFieldProps> = ({
   name,
@@ -17,7 +17,9 @@ export const ActivityNameInput: React.FC<FormFieldProps> = ({
       control={control}
       required={required}
       disabled={disabled}
-      render={({ field }) => <S.Input {...field} placeholder={placeholder} />}
+      render={({ field }) => (
+        <UncontrolledActivityNameInput {...field} placeholder={placeholder} />
+      )}
     />
   );
 };

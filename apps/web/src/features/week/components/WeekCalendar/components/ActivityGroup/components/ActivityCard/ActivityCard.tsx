@@ -5,7 +5,7 @@ import { getMinutes, stringifyTime } from "@routine-support/utils";
 
 import * as S from "./styled";
 
-interface ActivityCardProps {
+export interface ActivityCardProps {
   rowStart: number;
   activity: Activity;
   index: number;

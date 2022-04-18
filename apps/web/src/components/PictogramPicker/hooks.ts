@@ -6,6 +6,7 @@ import { PictogramPickerActions } from "./PictogramPicker";
 import pictogramsInfo from "./pictograms_info.json";
 
 export const usePictogramPickerComponent = (
+  value: string | undefined,
   actions: PictogramPickerActions
 ) => {
   const [opened, setOpened] = useState(false);
@@ -13,6 +14,9 @@ export const usePictogramPickerComponent = (
   const [pictograms, setPictograms] = useState<Pictogram[]>(
     pictogramsInfo.pictograms
   );
+  const [selectedPictogram, setSelectedPictogram] = useState<
+  string | undefined
+  >(value);
 
   const onSearchStringChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
@@ -42,12 +46,14 @@ export const usePictogramPickerComponent = (
   };
 
   const onPictogramClick = (pictogram: string) => {
+    setSelectedPictogram(pictogram);
     actions.onChange(pictogram);
     onModalClose();
   };
 
   return {
     models: {
+      selectedPictogram,
       pictograms,
       opened,
       searchString,

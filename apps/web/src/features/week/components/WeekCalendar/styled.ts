@@ -1,23 +1,18 @@
-import { Typography } from "@mui/material";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 140px repeat(7, 1fr);
-  background: ${({ theme }) => theme.border.color};
-  border: 1px solid ${({ theme }) => theme.border.color};
+  grid-template-columns: 55px repeat(7, 1fr);
+  background: ${({ theme }) => theme.palette.border.main};
   grid-column-gap: 1px;
-  border-radius: ${({ theme }) => theme.borderRadius}px;
-  max-height: calc(100vh - 150px);
-  overflow-y: scroll;
-  position: relative;
 `;
 
 export const Cell = styled.div<{ passed?: boolean }>`
   padding: 8px;
   min-height: ${({ theme }) => theme.size.cellHeight};
   box-sizing: border-box;
-  background: ${({ theme }) => theme.palette.common.grey};
+  background: ${({ theme }) => theme.palette.secondary.main};
   background: white;
   transition: box-shadow 0.2s;
   cursor: pointer;
@@ -62,11 +57,14 @@ export const AbsoluteColumn = styled.div<{ rowsCount: number }>`
 
 export const TimeColumn = styled(Column)`
   text-align: center;
+  grid-row-gap: 0;
 
   & ${Cell} {
-    background: ${({ theme }) => theme.palette.common.lightgrey};
     display: flex;
-    align-items: center;
+
+    padding: 0;
+
+    background: white;
     justify-content: center;
     cursor: default;
 
@@ -76,13 +74,34 @@ export const TimeColumn = styled(Column)`
   }
 `;
 
-export const Time = styled(Typography).attrs(() => ({ variant: "body2" }))``;
+export const Time = styled(Typography).attrs(() => ({
+  variant: "text2",
+  color: "secondary",
+}))`
+  margin-top: -14px;
+`;
 
 export const TimeLine = styled.div<{ top: number }>`
   position: absolute;
+
   top: ${({ top }) => top}px;
+
   left: 0;
   right: 0;
-  height: 1px;
+  height: 2px;
+
   background: ${({ theme }) => theme.palette.primary.main};
+
+  &::before {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: grey;
+    margin-top: -4px;
+    margin-left: -6px;
+    border-radius: 50%;
+    content: "";
+
+    background: ${({ theme }) => theme.palette.primary.main};
+  }
 `;

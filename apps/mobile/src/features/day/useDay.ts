@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  Activity,
-  dayActions,
-} from "@routine-support/domains";
+import { Activity, dayActions } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 import { useDispatch } from "react-redux";

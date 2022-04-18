@@ -1,25 +1,55 @@
-import { IconButton } from "@mui/material";
-import Card from "@mui/material/Card";
-import DefaultModal from "@mui/material/Modal";
-import styled from "styled-components";
+import UICloseIcon from "@mui/icons-material/Close";
+import { rgba } from "polished";
+import styled, { css } from "styled-components";
 
-export const Modal = styled(DefaultModal)``;
-
-export const ModalContent = styled(Card)`
-  width: 420px;
-  min-height: 80px;
-  ${({ theme }) => theme.position.absoluteCenter}
-  outline: none;
-  padding: 32px;
-  max-height: 80vh;
+export const Modal = styled.div`
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1000;
   overflow: scroll;
+
+  padding-bottom: 32px;
+
+  ${({ theme }) => css`
+    background: ${rgba(theme.palette.common.black, 0.5)};
+  `}
 `;
 
-export const IconWrapper = styled(IconButton)`
-  position: absolute;
-  top: 8px;
-  right: 8px;
+export const ModalContent = styled.div`
+  box-sizing: border-box;
+  width: 400px;
+  min-height: 200px;
+  margin: 0 auto;
+  margin-top: 20vh;
+  margin-bottom: 32px;
+  padding: 16px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+  position: relative;
 
-  width: 24px;
-  height: 24px;
+  ${({ theme }) => css`
+    background: ${theme.palette.common.white};
+    border-radius: ${theme.borderRadius};
+    box-shadow: ${theme.boxShadow.medium};
+  `}
+`;
+
+export const CloseIcon = styled(UICloseIcon).attrs(() => ({
+  sx: { fontSize: 20 },
+}))`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+
+  ${({ theme }) => css`
+    color: ${theme.palette.secondary.text};
+
+    &:hover {
+      color: ${theme.palette.primary.text};
+    }}
+  `}
 `;

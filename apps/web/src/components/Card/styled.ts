@@ -7,8 +7,14 @@ export const Wrapper = styled.div<{ absoluteCenter?: boolean }>`
 
   ${({ theme, absoluteCenter }) => css`
     background: ${theme.palette.common.white};
-    border: ${theme.border.main};
-    border-radius: ${theme.borderRadius}px;
-    ${absoluteCenter && theme.position.absoluteCenter};
+    border: ${theme.palette.border.main};
+    border-radius: ${theme.borderRadius};
+    ${absoluteCenter &&
+    css`
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    `};
   `};
 `;

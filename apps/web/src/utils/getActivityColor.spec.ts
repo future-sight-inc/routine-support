@@ -10,6 +10,7 @@ import {
   IMPORTANT_ACTIVITY_COLOR,
 } from "../constants/defaultActivityColor";
 import { getActivityColor } from "./getActivityColor";
+import { getColor } from "./getColor";
 
 describe("getActivityColor", () => {
   it("Common activity", () => {
@@ -24,7 +25,7 @@ describe("getActivityColor", () => {
 
     addStudentToActivity(activity, student);
 
-    expect(getActivityColor(activity, [student])).toBe(student.color);
+    expect(getActivityColor(activity, [student])).toBe(getColor(student.color));
   });
 
   it("Activity has two assigned students", () => {

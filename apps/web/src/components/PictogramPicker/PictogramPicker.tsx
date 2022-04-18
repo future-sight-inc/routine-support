@@ -1,12 +1,12 @@
 import React from "react";
 
-import SearchIcon from "@mui/icons-material/Search";
-import { InputAdornment, TextField } from "@mui/material";
 import { ImageUrl } from "@routine-support/types";
 import { useTranslation } from "react-i18next";
 
 import { Modal } from "../Modal";
+import { TextField } from "../TextField";
 import { usePictogramPickerComponent } from "./hooks";
+import { createPictogramDataTestId, PictogramPickerLocators } from "./locators";
 import * as S from "./styled";
 
 interface PictogramPickerProps {
@@ -19,45 +19,56 @@ export interface PictogramPickerActions {
 }
 
 export const PictogramPicker: React.FC<PictogramPickerProps> = ({
-  value: selectedPictogram,
+  value,
   onChange,
 }) => {
   const {
-    models: { opened, searchString, pictograms },
+    models: { selectedPictogram, opened, searchString, pictograms },
     operations: {
       onModalClose,
       onModalOpen,
       onPictogramClick,
       onSearchStringChange,
     },
-  } = usePictogramPickerComponent({ onChange });
+  } = usePictogramPickerComponent(value, { onChange });
   const { t } = useTranslation();
 
   return (
     <S.Wrapper backgroundImage={selectedPictogram}>
-      <S.OpenButton onClick={onModalOpen}>
-        {selectedPictogram ? t("Change pictogram") : t("Choose pictogram")}
-      </S.OpenButton>
-      <Modal opened={opened} onClose={onModalClose}>
-        <S.ModalContent>
+      {selectedPictogram ? (
+        <S.EditButton
+          onClick={onModalOpen}
+          data-testid={PictogramPickerLocators.EditButton}
+        >
+          <S.EditIcon />
+        </S.EditButton>
+      ) : (
+        <S.OpenButton
+          onClick={onModalOpen}
+          data-testid={PictogramPickerLocators.OpenButton}
+        >
+          {t("Choose")}
+        </S.OpenButton>
+      )}
+      <Modal isOpened={opened} onClose={onModalClose}>
+        <S.ModalContent data-testid={PictogramPickerLocators.ModalContent}>
+          <S.ModalTitle>{t("Pictograms")}</S.ModalTitle>
           <TextField
             placeholder={t("Search")}
-            fullWidth
             value={searchString}
             onChange={onSearchStringChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
+            data-testid={PictogramPickerLocators.SearchField}
           />
           <S.PictogramsWrapper>
-            {pictograms.map((item) => (
+            {pictograms.map((item, index) => (
               <S.Pictogram
+                key={index}
                 src={item.url}
                 active={selectedPictogram === item.url}
+                data-testid={`${createPictogramDataTestId({
+                  name: item.en,
+                  isActive: selectedPictogram === item.url,
+                })}`}
                 onClick={() => onPictogramClick(item.url)}
               />
             ))}

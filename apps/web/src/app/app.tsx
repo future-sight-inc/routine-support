@@ -5,10 +5,10 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { useTranslation } from "react-i18next";
 import { Route } from "react-router-dom";
 
+import { LoginForm } from "../features/coach/components/Forms/LoginForm";
+import { RegisterForm } from "../features/coach/components/Forms/RegisterForm";
 import { Layout } from "../features/coach/components/Layout";
-import { LoginForm } from "../features/coach/components/LoginForm";
 import { PrivateRoute } from "../features/coach/components/PrivateRoute";
-import { RegisterForm } from "../features/coach/components/RegisterForm";
 import { Students } from "../features/students/Students";
 import { Week } from "../features/week";
 import { LinkService } from "../services/LinkService";
