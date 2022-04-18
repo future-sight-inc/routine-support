@@ -27,7 +27,7 @@ app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../web/index.html"));
 });
 
-const port = process.env.NX_SECRET_KEY || 5000;
+const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api 🚀`);
 });
