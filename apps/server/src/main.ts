@@ -6,6 +6,10 @@ import bodyParser from "body-parser";
 import bearerToken from "express-bearer-token";
 import "./db/mongodb";
 import morgan from "morgan";
+import path from "path";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
@@ -18,8 +22,12 @@ app.use(cors());
 app.use(morgan("tiny"));
 
 app.use("/api", BaseRouter);
+app.use(express.static(path.join(__dirname, "../web")));
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../web/index.html"));
+});
 
-const port = process.env.SERVER_PORT || 5000;
+const port = process.env.NX_SECRET_KEY || 5000;
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api 🚀`);
 });
