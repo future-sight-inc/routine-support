@@ -892,43 +892,40 @@ const TIME_FORMAT = "HH:mm";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ActivityModel": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.ActivityModel),
+/* harmony export */   "ClockTypeEnum": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.ClockTypeEnum),
+/* harmony export */   "CoachModel": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.CoachModel),
+/* harmony export */   "ColorEnum": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.ColorEnum),
 /* harmony export */   "RepeatTypeEnum": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.RepeatTypeEnum),
+/* harmony export */   "StudentModel": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.StudentModel),
 /* harmony export */   "activityActions": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.activityActions),
 /* harmony export */   "activityReducer": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.activityReducer),
 /* harmony export */   "activitySlice": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.activitySlice),
 /* harmony export */   "addActivityToGroup": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.addActivityToGroup),
+/* harmony export */   "coachActions": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.coachActions),
+/* harmony export */   "coachReducer": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.coachReducer),
+/* harmony export */   "coachSlice": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.coachSlice),
 /* harmony export */   "createActivityAPI": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.createActivityAPI),
 /* harmony export */   "createActivityFromSchema": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.createActivityFromSchema),
+/* harmony export */   "createCoachAPI": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.createCoachAPI),
+/* harmony export */   "createDayAPI": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.createDayAPI),
+/* harmony export */   "createDayFromSchema": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.createDayFromSchema),
 /* harmony export */   "createSchemaFromActivity": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.createSchemaFromActivity),
-/* harmony export */   "groupActivities": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.groupActivities),
-/* harmony export */   "isTimeCrossed": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.isTimeCrossed),
-/* harmony export */   "sortActivitiesByTime": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.sortActivitiesByTime),
+/* harmony export */   "createStudentAPI": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.createStudentAPI),
 /* harmony export */   "createWeekAPI": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.createWeekAPI),
 /* harmony export */   "createWeekFromSchema": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.createWeekFromSchema),
 /* harmony export */   "createWeekInfoFromSchema": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.createWeekInfoFromSchema),
 /* harmony export */   "dateInfoToMoment": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.dateInfoToMoment),
+/* harmony export */   "dayActions": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.dayActions),
+/* harmony export */   "dayReducer": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.dayReducer),
+/* harmony export */   "daySlice": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.daySlice),
 /* harmony export */   "getCurrentDateInfo": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.getCurrentDateInfo),
 /* harmony export */   "getDateInfoFromMoment": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.getDateInfoFromMoment),
 /* harmony export */   "getDateInfoQuery": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.getDateInfoQuery),
 /* harmony export */   "getDaysOfWeek": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.getDaysOfWeek),
+/* harmony export */   "groupActivities": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.groupActivities),
+/* harmony export */   "isTimeCrossed": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.isTimeCrossed),
 /* harmony export */   "repeatActivity": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.repeatActivity),
-/* harmony export */   "weekActions": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.weekActions),
-/* harmony export */   "weekReducer": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.weekReducer),
-/* harmony export */   "weekSlice": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.weekSlice),
-/* harmony export */   "createDayAPI": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.createDayAPI),
-/* harmony export */   "createDayFromSchema": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.createDayFromSchema),
-/* harmony export */   "dayActions": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.dayActions),
-/* harmony export */   "dayReducer": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.dayReducer),
-/* harmony export */   "daySlice": () => (/* reexport safe */ _lib_day__WEBPACK_IMPORTED_MODULE_2__.daySlice),
-/* harmony export */   "CoachModel": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.CoachModel),
-/* harmony export */   "coachActions": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.coachActions),
-/* harmony export */   "coachReducer": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.coachReducer),
-/* harmony export */   "coachSlice": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.coachSlice),
-/* harmony export */   "createCoachAPI": () => (/* reexport safe */ _lib_coach__WEBPACK_IMPORTED_MODULE_3__.createCoachAPI),
-/* harmony export */   "ClockTypeEnum": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.ClockTypeEnum),
-/* harmony export */   "ColorEnum": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.ColorEnum),
-/* harmony export */   "StudentModel": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.StudentModel),
-/* harmony export */   "createStudentAPI": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.createStudentAPI),
+/* harmony export */   "sortActivitiesByTime": () => (/* reexport safe */ _lib_activity__WEBPACK_IMPORTED_MODULE_0__.sortActivitiesByTime),
 /* harmony export */   "studentActions": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.studentActions),
 /* harmony export */   "studentAuthActions": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.studentAuthActions),
 /* harmony export */   "studentAuthReducer": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.studentAuthReducer),
@@ -937,7 +934,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "studentSlice": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.studentSlice),
 /* harmony export */   "studentsActions": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.studentsActions),
 /* harmony export */   "studentsReducer": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.studentsReducer),
-/* harmony export */   "studentsSlice": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.studentsSlice)
+/* harmony export */   "studentsSlice": () => (/* reexport safe */ _lib_student__WEBPACK_IMPORTED_MODULE_4__.studentsSlice),
+/* harmony export */   "weekActions": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.weekActions),
+/* harmony export */   "weekReducer": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.weekReducer),
+/* harmony export */   "weekSlice": () => (/* reexport safe */ _lib_week__WEBPACK_IMPORTED_MODULE_1__.weekSlice)
 /* harmony export */ });
 /* harmony import */ var _lib_activity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./libs/domains/src/lib/activity/index.ts");
 /* harmony import */ var _lib_week__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./libs/domains/src/lib/week/index.ts");
@@ -992,13 +992,13 @@ const createActivityAPI = (client) => ({
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createActivityAPI": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.createActivityAPI),
 /* harmony export */   "ActivityModel": () => (/* reexport safe */ _model__WEBPACK_IMPORTED_MODULE_1__.ActivityModel),
+/* harmony export */   "RepeatTypeEnum": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_3__.RepeatTypeEnum),
 /* harmony export */   "activityActions": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_2__.activityActions),
 /* harmony export */   "activityReducer": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_2__.activityReducer),
 /* harmony export */   "activitySlice": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_2__.activitySlice),
-/* harmony export */   "RepeatTypeEnum": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_3__.RepeatTypeEnum),
 /* harmony export */   "addActivityToGroup": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_4__.addActivityToGroup),
+/* harmony export */   "createActivityAPI": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.createActivityAPI),
 /* harmony export */   "createActivityFromSchema": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_4__.createActivityFromSchema),
 /* harmony export */   "createSchemaFromActivity": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_4__.createSchemaFromActivity),
 /* harmony export */   "groupActivities": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_4__.groupActivities),
@@ -1090,9 +1090,9 @@ const ActivityModel = (0,mongoose__WEBPACK_IMPORTED_MODULE_0__.model)("activity"
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "activitySlice": () => (/* binding */ activitySlice),
 /* harmony export */   "activityActions": () => (/* binding */ activityActions),
-/* harmony export */   "activityReducer": () => (/* binding */ activityReducer)
+/* harmony export */   "activityReducer": () => (/* binding */ activityReducer),
+/* harmony export */   "activitySlice": () => (/* binding */ activitySlice)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("@reduxjs/toolkit");
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
@@ -1402,11 +1402,11 @@ const createCoachAPI = (client) => ({
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createCoachAPI": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.createCoachAPI),
 /* harmony export */   "CoachModel": () => (/* reexport safe */ _model__WEBPACK_IMPORTED_MODULE_1__.CoachModel),
 /* harmony export */   "coachActions": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_2__.coachActions),
 /* harmony export */   "coachReducer": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_2__.coachReducer),
-/* harmony export */   "coachSlice": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_2__.coachSlice)
+/* harmony export */   "coachSlice": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_2__.coachSlice),
+/* harmony export */   "createCoachAPI": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.createCoachAPI)
 /* harmony export */ });
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./libs/domains/src/lib/coach/api.ts");
 /* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./libs/domains/src/lib/coach/model.ts");
@@ -1456,9 +1456,9 @@ const CoachModel = (0,mongoose__WEBPACK_IMPORTED_MODULE_0__.model)("coach", coac
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "coachSlice": () => (/* binding */ coachSlice),
 /* harmony export */   "coachActions": () => (/* binding */ coachActions),
-/* harmony export */   "coachReducer": () => (/* binding */ coachReducer)
+/* harmony export */   "coachReducer": () => (/* binding */ coachReducer),
+/* harmony export */   "coachSlice": () => (/* binding */ coachSlice)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("@reduxjs/toolkit");
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
@@ -1520,10 +1520,10 @@ const createDayAPI = (client) => ({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createDayAPI": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.createDayAPI),
+/* harmony export */   "createDayFromSchema": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.createDayFromSchema),
 /* harmony export */   "dayActions": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.dayActions),
 /* harmony export */   "dayReducer": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.dayReducer),
-/* harmony export */   "daySlice": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.daySlice),
-/* harmony export */   "createDayFromSchema": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.createDayFromSchema)
+/* harmony export */   "daySlice": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.daySlice)
 /* harmony export */ });
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./libs/domains/src/lib/day/api.ts");
 /* harmony import */ var _slice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./libs/domains/src/lib/day/slice.ts");
@@ -1542,9 +1542,9 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "daySlice": () => (/* binding */ daySlice),
 /* harmony export */   "dayActions": () => (/* binding */ dayActions),
-/* harmony export */   "dayReducer": () => (/* binding */ dayReducer)
+/* harmony export */   "dayReducer": () => (/* binding */ dayReducer),
+/* harmony export */   "daySlice": () => (/* binding */ daySlice)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("@reduxjs/toolkit");
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
@@ -1661,19 +1661,19 @@ const createStudentAPI = (client) => ({
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createStudentAPI": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.createStudentAPI),
+/* harmony export */   "ClockTypeEnum": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_5__.ClockTypeEnum),
+/* harmony export */   "ColorEnum": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_5__.ColorEnum),
 /* harmony export */   "StudentModel": () => (/* reexport safe */ _model__WEBPACK_IMPORTED_MODULE_1__.StudentModel),
+/* harmony export */   "createStudentAPI": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.createStudentAPI),
 /* harmony export */   "studentActions": () => (/* reexport safe */ _studentSlice__WEBPACK_IMPORTED_MODULE_2__.studentActions),
-/* harmony export */   "studentReducer": () => (/* reexport safe */ _studentSlice__WEBPACK_IMPORTED_MODULE_2__.studentReducer),
-/* harmony export */   "studentSlice": () => (/* reexport safe */ _studentSlice__WEBPACK_IMPORTED_MODULE_2__.studentSlice),
 /* harmony export */   "studentAuthActions": () => (/* reexport safe */ _studentAuthSlice__WEBPACK_IMPORTED_MODULE_3__.studentAuthActions),
 /* harmony export */   "studentAuthReducer": () => (/* reexport safe */ _studentAuthSlice__WEBPACK_IMPORTED_MODULE_3__.studentAuthReducer),
 /* harmony export */   "studentAuthSlice": () => (/* reexport safe */ _studentAuthSlice__WEBPACK_IMPORTED_MODULE_3__.studentAuthSlice),
+/* harmony export */   "studentReducer": () => (/* reexport safe */ _studentSlice__WEBPACK_IMPORTED_MODULE_2__.studentReducer),
+/* harmony export */   "studentSlice": () => (/* reexport safe */ _studentSlice__WEBPACK_IMPORTED_MODULE_2__.studentSlice),
 /* harmony export */   "studentsActions": () => (/* reexport safe */ _studentsSlice__WEBPACK_IMPORTED_MODULE_4__.studentsActions),
 /* harmony export */   "studentsReducer": () => (/* reexport safe */ _studentsSlice__WEBPACK_IMPORTED_MODULE_4__.studentsReducer),
-/* harmony export */   "studentsSlice": () => (/* reexport safe */ _studentsSlice__WEBPACK_IMPORTED_MODULE_4__.studentsSlice),
-/* harmony export */   "ClockTypeEnum": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_5__.ClockTypeEnum),
-/* harmony export */   "ColorEnum": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_5__.ColorEnum)
+/* harmony export */   "studentsSlice": () => (/* reexport safe */ _studentsSlice__WEBPACK_IMPORTED_MODULE_4__.studentsSlice)
 /* harmony export */ });
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./libs/domains/src/lib/student/api.ts");
 /* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./libs/domains/src/lib/student/model.ts");
@@ -1745,9 +1745,9 @@ const StudentModel = (0,mongoose__WEBPACK_IMPORTED_MODULE_1__.model)("student", 
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "studentAuthSlice": () => (/* binding */ studentAuthSlice),
 /* harmony export */   "studentAuthActions": () => (/* binding */ studentAuthActions),
-/* harmony export */   "studentAuthReducer": () => (/* binding */ studentAuthReducer)
+/* harmony export */   "studentAuthReducer": () => (/* binding */ studentAuthReducer),
+/* harmony export */   "studentAuthSlice": () => (/* binding */ studentAuthSlice)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("@reduxjs/toolkit");
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
@@ -1778,9 +1778,9 @@ const studentAuthReducer = studentAuthSlice.reducer;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "studentSlice": () => (/* binding */ studentSlice),
 /* harmony export */   "studentActions": () => (/* binding */ studentActions),
-/* harmony export */   "studentReducer": () => (/* binding */ studentReducer)
+/* harmony export */   "studentReducer": () => (/* binding */ studentReducer),
+/* harmony export */   "studentSlice": () => (/* binding */ studentSlice)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("@reduxjs/toolkit");
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
@@ -1808,9 +1808,9 @@ const studentReducer = studentSlice.reducer;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "studentsSlice": () => (/* binding */ studentsSlice),
 /* harmony export */   "studentsActions": () => (/* binding */ studentsActions),
-/* harmony export */   "studentsReducer": () => (/* binding */ studentsReducer)
+/* harmony export */   "studentsReducer": () => (/* binding */ studentsReducer),
+/* harmony export */   "studentsSlice": () => (/* binding */ studentsSlice)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("@reduxjs/toolkit");
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
@@ -1838,8 +1838,8 @@ const studentsReducer = studentsSlice.reducer;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ColorEnum": () => (/* binding */ ColorEnum),
-/* harmony export */   "ClockTypeEnum": () => (/* binding */ ClockTypeEnum)
+/* harmony export */   "ClockTypeEnum": () => (/* binding */ ClockTypeEnum),
+/* harmony export */   "ColorEnum": () => (/* binding */ ColorEnum)
 /* harmony export */ });
 var ColorEnum;
 (function (ColorEnum) {
@@ -1900,9 +1900,6 @@ const createWeekAPI = (client) => ({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createWeekAPI": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.createWeekAPI),
-/* harmony export */   "weekActions": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.weekActions),
-/* harmony export */   "weekReducer": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.weekReducer),
-/* harmony export */   "weekSlice": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.weekSlice),
 /* harmony export */   "createWeekFromSchema": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.createWeekFromSchema),
 /* harmony export */   "createWeekInfoFromSchema": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.createWeekInfoFromSchema),
 /* harmony export */   "dateInfoToMoment": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.dateInfoToMoment),
@@ -1910,7 +1907,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getDateInfoFromMoment": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.getDateInfoFromMoment),
 /* harmony export */   "getDateInfoQuery": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.getDateInfoQuery),
 /* harmony export */   "getDaysOfWeek": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.getDaysOfWeek),
-/* harmony export */   "repeatActivity": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.repeatActivity)
+/* harmony export */   "repeatActivity": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_3__.repeatActivity),
+/* harmony export */   "weekActions": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.weekActions),
+/* harmony export */   "weekReducer": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.weekReducer),
+/* harmony export */   "weekSlice": () => (/* reexport safe */ _slice__WEBPACK_IMPORTED_MODULE_1__.weekSlice)
 /* harmony export */ });
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./libs/domains/src/lib/week/api.ts");
 /* harmony import */ var _slice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./libs/domains/src/lib/week/slice.ts");
@@ -1929,9 +1929,9 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "weekSlice": () => (/* binding */ weekSlice),
 /* harmony export */   "weekActions": () => (/* binding */ weekActions),
-/* harmony export */   "weekReducer": () => (/* binding */ weekReducer)
+/* harmony export */   "weekReducer": () => (/* binding */ weekReducer),
+/* harmony export */   "weekSlice": () => (/* binding */ weekSlice)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("@reduxjs/toolkit");
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);

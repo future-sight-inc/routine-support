@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  min-width: 1280px;
+}
+
+a {
+  font-family: Roboto;
+}
+
+a:visited {
+  color: initial;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsU0FBQTtFQUNBLGlCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBQTtBQUNGOztBQUNFO0VBQ0UsY0FBQTtBQUNKIiwiZmlsZSI6InN0eWxlcy5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gIG1hcmdpbjogMDtcbiAgbWluLXdpZHRoOiAxMjgwcHg7XG59XG5cbmEge1xuICBmb250LWZhbWlseTogUm9ib3RvO1xuXG4gICY6dmlzaXRlZCB7XG4gICAgY29sb3I6IGluaXRpYWw7XG4gIH1cbn1cbiJdfQ== */
