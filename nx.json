@@ -12,7 +12,7 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "nx/tasks-runners/default",
       "options": {
         "cacheableOperations": [
           "build",
@@ -20,7 +20,8 @@
           "test",
           "e2e",
           "build-storybook"
-        ]
+        ],
+        "parallel": 1
       }
     }
   },
@@ -31,36 +32,6 @@
         "projects": "dependencies"
       }
     ]
-  },
-  "projects": {
-    "api-client": {
-      "tags": []
-    },
-    "constants": {
-      "tags": []
-    },
-    "domains": {
-      "tags": []
-    },
-    "mobile": {
-      "tags": []
-    },
-    "test-utils": {
-      "tags": []
-    },
-    "types": {
-      "tags": []
-    },
-    "utils": {
-      "tags": []
-    },
-    "web": {
-      "tags": []
-    },
-    "web-e2e": {
-      "tags": [],
-      "implicitDependencies": ["web"]
-    }
   },
   "cli": {
     "defaultCollection": "@nrwl/react"

@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, ReactNode } from "react";
 
 import { Portal } from "react-portal";
 
@@ -8,6 +8,7 @@ import * as S from "./styled";
 interface ModalProps {
   isOpened: boolean;
   onClose: () => void;
+  children?: ReactNode;
 }
 
 export const Modal: React.FC<ModalProps> = ({
