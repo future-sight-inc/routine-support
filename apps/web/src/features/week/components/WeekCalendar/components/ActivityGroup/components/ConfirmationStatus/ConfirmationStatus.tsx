@@ -1,6 +1,5 @@
 import React, { MouseEvent } from "react";
 
-import { Typography } from "@mui/material";
 import { Activity, Student } from "@routine-support/domains";
 import { Modal } from "apps/web/src/components/Modal";
 import { useTranslation } from "react-i18next";
@@ -34,20 +33,19 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
           {confirmedStudents.length}/{assignedStudents.length}
         </S.ConfirmedNumber>
       </S.ConfirmationWrapper>
-
       <Modal isOpened={modalOpened} onClose={handleModalClose}>
         <S.ModalTitle>{t("Activity status")}</S.ModalTitle>
         <S.ModalContent>
           <S.List>
-            <S.ListHeading>{t("Completed")}</S.ListHeading>
+            <S.ConfirmedHeading>{t("Completed")}</S.ConfirmedHeading>
             {confirmedStudents.map((student) => (
-              <Typography>{student.name}</Typography>
+              <S.StudentName>{student.name}</S.StudentName>
             ))}
           </S.List>
           <S.List>
-            <S.ListHeading>{t("Pending")}</S.ListHeading>
+            <S.PendingHeading>{t("Pending")}</S.PendingHeading>
             {assignedStudents.map((student) => (
-              <Typography>{student.name}</Typography>
+              <S.StudentName>{student.name}</S.StudentName>
             ))}
           </S.List>
         </S.ModalContent>
