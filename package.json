@@ -18,6 +18,7 @@
     "format": "git-format-staged -f 'prettier --ignore-unknown --stdin --stdin-filepath \"{}\"' .",
     "prepare": "npx husky install",
     "pre-commit": "lint-staged",
+    "preinstall": "npx npm-force-resolutions",
     "storybook:web": "nx run web:storybook"
   },
   "private": true,
