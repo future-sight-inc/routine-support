@@ -24,12 +24,6 @@ export const SubmitButton = styled(Button)`
   width: 120px;
 `;
 
-export const SecondaryButton = styled(Button).attrs(() => ({
-  variant: "secondary",
-}))`
-  width: 120px;
-`;
-
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 8px;
