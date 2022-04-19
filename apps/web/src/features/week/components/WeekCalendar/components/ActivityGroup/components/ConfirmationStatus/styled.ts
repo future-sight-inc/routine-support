@@ -78,7 +78,6 @@ export const List = styledComponents.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  min-height: 150px;
 
   &:first-child {
     border-right: 1px solid ${({ theme }) => theme.palette.border.main};
