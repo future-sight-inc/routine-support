@@ -8,16 +8,21 @@ export const Wrapper = styled.div`
   gap: 16px;
 `;
 
-export const QrTitle = styled(Typography).attrs(() => ({
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const ModalText = styled(Typography).attrs(() => ({
   variant: "caption4",
 }))`
   text-align: center;
 `;
 
 export const Qr = styled.img`
-  width: 100%;
-  max-width: 250px;
+  width: 200px;
+  height: 200px;
   display: block;
   margin: 0 auto;
-  height: auto;
 `;
