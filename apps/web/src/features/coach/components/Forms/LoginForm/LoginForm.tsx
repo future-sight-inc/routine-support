@@ -50,8 +50,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
           {submitError && <ErrorText>{submitError}</ErrorText>}
         </S.ButtonWrapper>
         <S.LinkText>
-          Don't have an account?{" "}
-          <S.Link to={LinkService.register()}>Create</S.Link>
+          {t("No account yet")}{" "}
+          <S.Link to={LinkService.register()}>{t("Create account")}</S.Link>
         </S.LinkText>
       </S.Form>
     </S.Wrapper>

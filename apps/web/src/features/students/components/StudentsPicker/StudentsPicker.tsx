@@ -114,7 +114,7 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
               onClick={handleOpen}
               data-testid={StudentsPickerLocators.OpenText}
             >
-              {t("+ Add student")}
+              + {t("Add student")}
             </S.OpenText>
           )}
         </S.FieldWrapper>
@@ -132,7 +132,7 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
               ))
             ) : (
               <S.EmptyText data-testid={StudentsPickerLocators.EmptyText}>
-                {t("No one to pick")}
+                {t("No students to pick")}
               </S.EmptyText>
             )}
           </S.Menu>

@@ -43,7 +43,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         <ColorPicker
           name="color"
           control={control}
-          label={t("Name")}
+          label={t("Activity card color")}
           required
         />
         <S.ButtonsWrapper>
