@@ -73,6 +73,7 @@
     "react-native-clock-analog": "^0.0.3",
     "react-native-config": "^1.4.5",
     "react-native-dotenv": "^3.3.1",
+    "react-native-safe-area-context": "3.3.2",
     "react-native-svg": "12.1.1",
     "react-native-web": "0.17.1",
     "react-portal": "^4.2.2",
@@ -115,6 +116,8 @@
     "@storybook/addon-links": "^5.3",
     "@storybook/addon-ondevice-actions": "^5.3.23",
     "@storybook/addon-ondevice-knobs": "^5.3.25",
+    "@storybook/builder-webpack5": "~6.3.0",
+    "@storybook/manager-webpack5": "~6.3.0",
     "@storybook/react": "~6.3.0",
     "@storybook/react-native": "^5.3.25",
     "@storybook/react-native-server": "^5.3.23",
@@ -159,15 +162,13 @@
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "jest-react-native": "18.0.0",
+    "nx": "13.10.2",
     "nx-react-native-expo": "^0.0.9",
     "prettier": "2.6.2",
     "react-test-renderer": "17.0.1",
     "ts-jest": "27.0.5",
     "tsconfig-paths-webpack-plugin": "3.3.0",
     "typescript": "~4.3.5",
-    "url-loader": "^3.0.0",
-    "nx": "13.10.2",
-    "@storybook/builder-webpack5": "~6.3.0",
-    "@storybook/manager-webpack5": "~6.3.0"
+    "url-loader": "^3.0.0"
   }
 }

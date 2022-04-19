@@ -7,8 +7,8 @@ import { Moment } from "moment";
 import AnalogClock from "react-native-clock-analog";
 
 export enum ClockSizeEnum {
-  Small = 90,
-  Large = 110,
+  Small = 120,
+  Large = 140,
 }
 
 interface ClockProps {

@@ -6,7 +6,9 @@ import {
   createStudentAPI,
 } from "@routine-support/domains";
 
-const client = createClient(API_ENDPOINT || "");
+// todo Не прокидывается переменная без вывода в консоль
+console.log(API_ENDPOINT);
+const client = createClient(API_ENDPOINT);
 
 export const dayAPI = createDayAPI(client);
 export const studentAPI = createStudentAPI(client);
