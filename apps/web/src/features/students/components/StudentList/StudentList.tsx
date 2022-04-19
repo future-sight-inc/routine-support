@@ -47,15 +47,17 @@ export const StudentList: React.FC<StudentListProps> = ({
         />
       ))}
       <Modal isOpened={Boolean(qr)} onClose={onQrClose}>
-        <S.QrTitle>
-          {t("QR code for")} {currentStudent?.name}
-        </S.QrTitle>
-        {qr && <S.Qr src={qr} />}
-        <S.QrTitle>
-          {t("QR instructions start")}
-          <br />
-          {t("QR instructions end")}
-        </S.QrTitle>
+        <S.ModalContent>
+          <S.ModalText>
+            {t("QR code for")} {currentStudent?.name}
+          </S.ModalText>
+          {qr && <S.Qr src={qr} />}
+          <S.ModalText>
+            {t("QR instructions start")}
+            <br />
+            {t("QR instructions end")}
+          </S.ModalText>
+        </S.ModalContent>
       </Modal>
     </S.Wrapper>
   );
