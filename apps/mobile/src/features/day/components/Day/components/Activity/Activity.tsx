@@ -23,8 +23,6 @@ export const Activity: React.FC<ActivityProps> = ({
 }) => {
   const styles = createStyles({ isPassed });
 
-  console.log(activity);
-
   return (
     <Layout style={styles.wrapper}>
       <Image
@@ -56,7 +54,7 @@ const createStyles = (props: { isPassed: boolean }) =>
       flexDirection: "row",
       opacity: props.isPassed ? 0.3 : undefined,
     },
-    image: { width: 120, height: 120, borderRadius: 5 },
+    image: { marginTop: 12, width: 130, height: 130, borderRadius: 5 },
     infoWrapper: {
       marginLeft: 16,
       flexDirection: "column",
