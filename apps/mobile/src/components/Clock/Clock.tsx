@@ -22,7 +22,7 @@ export const Clock: React.FC<ClockProps> = ({ start, end, type, size }) => {
   switch (type) {
   case ClockTypeEnum.Digital:
     return (
-      <Text category="s1" appearance="hint">
+      <Text category="h6" appearance="hint">
         {stringifyTime(start)}-{stringifyTime(end)}
       </Text>
     );

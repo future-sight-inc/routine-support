@@ -24,21 +24,21 @@ export const ClockTypePicker: React.FC<ClockTypePickerProps> = ({
   return (
     <S.Wrapper>
       <S.TypeWrapper
-        isChecked={value === ClockTypeEnum.Analog}
-        onClick={() => handleSelect(ClockTypeEnum.Analog)}
-        data-testid={createClockTypeDataTestId({
-          locator: ClockTypePickerLocators.Analog,
-          isActive: value === ClockTypeEnum.Analog,
-        })}
-      >
-        <S.TypeText>12:34</S.TypeText>
-      </S.TypeWrapper>
-      <S.TypeWrapper
         isChecked={value === ClockTypeEnum.Digital}
         onClick={() => handleSelect(ClockTypeEnum.Digital)}
         data-testid={createClockTypeDataTestId({
           locator: ClockTypePickerLocators.Digital,
           isActive: value === ClockTypeEnum.Digital,
+        })}
+      >
+        <S.TypeText>12:34</S.TypeText>
+      </S.TypeWrapper>
+      <S.TypeWrapper
+        isChecked={value === ClockTypeEnum.Analog}
+        onClick={() => handleSelect(ClockTypeEnum.Analog)}
+        data-testid={createClockTypeDataTestId({
+          locator: ClockTypePickerLocators.Analog,
+          isActive: value === ClockTypeEnum.Analog,
         })}
       >
         <S.TypeIcon />
