@@ -54,7 +54,7 @@ const createStyles = (props: { isPassed: boolean }) =>
       flexDirection: "row",
       opacity: props.isPassed ? 0.3 : undefined,
     },
-    image: { marginTop: 12, width: 130, height: 130, borderRadius: 5 },
+    image: { width: 150, height: 150, borderRadius: 5 },
     infoWrapper: {
       marginLeft: 16,
       flexDirection: "column",
