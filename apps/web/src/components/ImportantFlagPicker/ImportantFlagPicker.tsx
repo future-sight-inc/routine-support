@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { t } from "i18next";
+
 import { Checkbox } from "../Checkbox/Checkbox";
 import { ImportantFlagPickerLocators } from "./locators";
 import * as S from "./styled";
@@ -26,14 +28,14 @@ export const ImportantFlagPicker: React.FC<ImportantFlagPickerProps> = ({
         <Checkbox
           value={checked}
           onChange={handleToggle}
-          label="Is important"
-          helperText="Some text about importance"
+          label={t("Important activity")}
+          helperText={t("Important activity hint")}
         />
       </S.CheckboxWrapper>
       {checked && (
         <S.MessageWrapper>
           <S.Message data-testid={ImportantFlagPickerLocators.Message}>
-            Данная активность будет отображаться в наивысшем приоритете
+            {t("Important activity active")}
           </S.Message>
         </S.MessageWrapper>
       )}

@@ -52,7 +52,7 @@ export const PinCodeInput: React.FC<pinCodeInputProps> = ({
 
   return (
     <Layout style={styles.container}>
-      <Text category="h4" style={styles.title}>
+      <Text category="h5" style={styles.title}>
         {t<string>("Enter PIN to log out")}
       </Text>
       <Layout style={styles.dotsContainer}>
@@ -60,6 +60,7 @@ export const PinCodeInput: React.FC<pinCodeInputProps> = ({
           .fill("")
           .map((__, index) => (
             <View
+              key={index}
               style={{
                 ...styles.dot,
                 backgroundColor:
@@ -146,5 +147,5 @@ const themedStyles = StyleService.create({
     backgroundColor: "color-basic-300",
   },
   closeIconWrapper: { flexDirection: "row", justifyContent: "center" },
-  closeIcon: { width: 64, height: 64, marginTop: 96 },
+  closeIcon: { width: 48, height: 48, marginTop: 96 },
 });

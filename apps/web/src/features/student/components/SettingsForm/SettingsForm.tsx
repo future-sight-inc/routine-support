@@ -64,9 +64,6 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
           >
             {t("Update")}
           </S.SubmitButton>
-          <S.SecondaryButton onClick={actions.closeModal}>
-            {t("Cancel")}
-          </S.SecondaryButton>
         </S.ButtonsWrapper>
         {submitError && <ErrorText>{submitError}</ErrorText>}
       </S.Wrapper>

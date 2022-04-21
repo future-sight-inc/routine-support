@@ -6,6 +6,7 @@ import {
 } from "@routine-support/domains";
 import { Layout, Text } from "@ui-kitten/components";
 import { Image, StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
 
 import { Clock, ClockSizeEnum } from "../../../../../../components/Clock";
 
@@ -31,7 +32,7 @@ export const Activity: React.FC<ActivityProps> = ({
         style={styles.image}
       />
       <Layout style={styles.infoWrapper}>
-        <Text category="h6" style={styles.activityName}>
+        <Text category="h5" style={styles.activityName} numberOfLines={2}>
           {activity.name}
         </Text>
         <Clock
@@ -53,7 +54,15 @@ const createStyles = (props: { isPassed: boolean }) =>
       flexDirection: "row",
       opacity: props.isPassed ? 0.3 : undefined,
     },
-    image: { width: 120, height: 120 },
-    infoWrapper: { marginLeft: 16 },
-    activityName: { marginBottom: 8 },
+    image: { width: 150, height: 150, borderRadius: 5 },
+    infoWrapper: {
+      marginLeft: 16,
+      flexDirection: "column",
+      alignItems: "center",
+      width: Dimensions.get("screen").width - 208,
+    },
+    activityName: {
+      marginBottom: 8,
+      textAlign: "center",
+    },
   });

@@ -6,6 +6,7 @@ import {
   ClockTypeEnum,
 } from "@routine-support/domains";
 import { Button, Icon, Layout, Text } from "@ui-kitten/components";
+import { Dimensions } from "react-native";
 import { Image, StyleSheet } from "react-native";
 
 import { Clock, ClockSizeEnum } from "../../../../../../components/Clock";
@@ -29,17 +30,17 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
 
   return (
     <Layout style={styles.wrapper}>
-      <Image
-        source={{
-          uri: activity.pictogram,
-        }}
-        style={styles.image}
-      />
       <Layout style={styles.infoWrapper}>
-        <Text category="h5" style={styles.name}>
-          {activity.name}
-        </Text>
+        <Image
+          source={{
+            uri: activity.pictogram,
+          }}
+          style={styles.image}
+        />
         <Layout style={styles.clockWrapper}>
+          <Text category="h5" style={styles.name} numberOfLines={2}>
+            {activity.name}
+          </Text>
           <Clock
             start={activity.start}
             end={activity.end}
@@ -47,18 +48,21 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
             size={ClockSizeEnum.Large}
           />
         </Layout>
-        <Button
-          style={styles.confirmButton}
-          onPress={handleConfirmActivity}
-          disabled={confirmed}
-          accessoryLeft={
-            <Icon
-              fill={confirmed ? "lightgrey" : "white"}
-              name="checkmark-outline"
-            />
-          }
-        />
       </Layout>
+      <Button
+        style={styles.confirmButton}
+        status="success"
+        onPress={handleConfirmActivity}
+        disabled={confirmed}
+        accessoryRight={(props) => (
+          <Icon
+            {...props}
+            name="checkmark-outline"
+            style={styles.confirmIcon}
+            fill="white"
+          />
+        )}
+      />
     </Layout>
   );
 };
@@ -67,11 +71,19 @@ const styles = StyleSheet.create({
   wrapper: {
     padding: 16,
     flex: 1,
+    flexDirection: "column",
+  },
+  image: { width: 200, height: 200, borderRadius: 5 },
+  infoWrapper: {
     flexDirection: "row",
   },
-  image: { width: "50%", height: 200 },
-  infoWrapper: { marginLeft: 16, width: "50%", paddingRight: 16 },
   name: { marginBottom: 8, textAlign: "center" },
-  clockWrapper: { flexDirection: "row", justifyContent: "center" },
-  confirmButton: { marginTop: "auto" },
+  clockWrapper: {
+    marginLeft: 8,
+    width: Dimensions.get("screen").width - 240,
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  confirmButton: { height: 80, marginTop: 16 },
+  confirmIcon: { width: 60, height: 60 },
 });

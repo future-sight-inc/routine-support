@@ -12,11 +12,13 @@ export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  align-items: center;
 `;
 
 export const ModalText = styled(Typography).attrs(() => ({
   variant: "caption4",
 }))`
+  width: 80%;
   text-align: center;
 `;
 

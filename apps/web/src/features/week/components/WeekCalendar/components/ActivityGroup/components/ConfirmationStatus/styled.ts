@@ -103,6 +103,6 @@ export const ConfirmedHeading = styledComponents(PendingHeading)`
 export const StudentName = styledComponents(Typography).attrs(() => ({
   variant: "text1",
 }))`
-  height: 30px;
-  line-height: 30px;
+  padding: 0.5em;
+  white-space: wrap;
 `;

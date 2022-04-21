@@ -37,7 +37,7 @@ export const CommonFlagPicker: React.FC<CommonFlagPickerProps> = ({
             : CommonFlagPickerLocators.Common
         }
       >
-        {t("Common")}
+        {t("Common activity")}
       </S.Button>
       <S.Button
         onClick={() => handleChange(false)}
@@ -48,7 +48,7 @@ export const CommonFlagPicker: React.FC<CommonFlagPickerProps> = ({
             : CommonFlagPickerLocators.Individual
         }
       >
-        {t("Individ.")}
+        {t("Individual activity short")}
       </S.Button>
     </S.Wrapper>
   );

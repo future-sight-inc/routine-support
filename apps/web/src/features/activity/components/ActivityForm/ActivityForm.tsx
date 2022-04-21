@@ -86,7 +86,12 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
             required
           />
         </S.DateWrapper>
-        <PictogramPicker name="pictogram" control={control} required />
+        <PictogramPicker
+          name="pictogram"
+          control={control}
+          label={t("Pictogram")}
+          required
+        />
         <CommonFlagPicker
           label={t("Activity type")}
           control={control}

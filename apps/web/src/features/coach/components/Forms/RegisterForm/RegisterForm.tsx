@@ -58,7 +58,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
           {submitError && <ErrorText>{submitError}</ErrorText>}
         </S.ButtonWrapper>
         <S.LinkText>
-          Have an account? <S.Link to={LinkService.login()}>Login</S.Link>
+          {t("Already have an account")}{" "}
+          <S.Link to={LinkService.login()}>{t("Sign in")}</S.Link>
         </S.LinkText>
       </S.Form>
     </S.Wrapper>

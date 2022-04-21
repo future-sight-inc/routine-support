@@ -56,9 +56,10 @@ export const HelpIconWrapper = styled.div`
       left: 4px;
       transform: translateY(-100%);
       padding: 12px;
-      height: 40px;
+      min-height: 40px;
       box-sizing: border-box;
-      white-space: nowrap;
+      width: 350px;
+      white-space: wrap;
     }
   }
 `;
