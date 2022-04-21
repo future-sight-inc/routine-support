@@ -4,6 +4,7 @@
     "yarn lint:write",
     "yarn test:utils",
     "yarn test:domains",
-    "yarn test:server"
+    "yarn test:server",
+    "yarn test:web"
   ]
 }
