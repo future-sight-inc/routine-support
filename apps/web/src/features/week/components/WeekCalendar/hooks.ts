@@ -12,6 +12,7 @@ export const useWeekCalendarComponent = (
   actions: WeekCalendarActions
 ) => {
   const [timelineTopOffset, setTimelineTopOffset] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const checkOffset = () => {
@@ -30,8 +31,11 @@ export const useWeekCalendarComponent = (
   }, [containerRef]);
 
   useEffect(() => {
-    currentTimeRef?.current?.scrollIntoView();
-  }, [currentTimeRef]);
+    if (!scrolled && currentTimeRef.current && timelineTopOffset) {
+      currentTimeRef.current.scrollIntoView();
+      setScrolled(true);
+    }
+  }, [scrolled, currentTimeRef, timelineTopOffset]);
 
   const onCellClick = (time: TimeString, day: Moment) => {
     actions.openNewActivityModal({

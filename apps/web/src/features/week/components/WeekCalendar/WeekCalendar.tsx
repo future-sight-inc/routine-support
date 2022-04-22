@@ -42,9 +42,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
     <S.Wrapper ref={wrapperRef}>
       <S.TimeColumn>
         {week.weekInfo.timeRange.map((time, index) => (
-          <S.Cell key={index}>
-            <S.Time>{time}</S.Time>
-          </S.Cell>
+          <S.Cell key={index}>{index > 0 && <S.Time>{time}</S.Time>}</S.Cell>
         ))}
         <S.CurrentTime top={timelineTopOffset}>
           {stringifyTime(moment())}
