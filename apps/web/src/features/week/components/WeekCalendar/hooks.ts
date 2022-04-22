@@ -27,7 +27,7 @@ export const useWeekCalendarComponent = (
     const timerId = setInterval(() => checkOffset(), 60 * 1000);
 
     return () => clearInterval(timerId);
-  }, [containerRef, currentTimeRef]);
+  }, [containerRef]);
 
   useEffect(() => {
     currentTimeRef?.current?.scrollIntoView();
