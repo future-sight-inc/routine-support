@@ -6,8 +6,9 @@ import {
   Student,
   Week,
 } from "@routine-support/domains";
-import { isToday } from "@routine-support/utils";
+import { isToday, stringifyTime } from "@routine-support/utils";
 import { stringifyDate } from "@routine-support/utils";
+import moment from "moment";
 
 import { ActivityGroup } from "./components/ActivityGroup";
 import { useWeekCalendarComponent } from "./hooks";
@@ -30,11 +31,12 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
   actions,
 }) => {
   const wrapperRef = createRef<HTMLDivElement>();
+  const currentTimeRef = createRef<HTMLDivElement>();
 
   const {
     models: { timelineTopOffset },
     operations: { onCellClick },
-  } = useWeekCalendarComponent(wrapperRef, actions);
+  } = useWeekCalendarComponent(wrapperRef, currentTimeRef, actions);
 
   return (
     <S.Wrapper ref={wrapperRef}>
@@ -44,6 +46,9 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
             <S.Time>{time}</S.Time>
           </S.Cell>
         ))}
+        <S.CurrentTime top={timelineTopOffset}>
+          {stringifyTime(moment())}
+        </S.CurrentTime>
       </S.TimeColumn>
       {week.weekInfo.days.map((day) => (
         <S.Column isWeekend={isWeekend(day)}>
@@ -62,7 +67,9 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               onActivityClick={actions.openActivityModal}
             />
           ))}
-          {isToday(day) && <S.TimeLine top={timelineTopOffset} />}
+          {isToday(day) && (
+            <S.TimeLine top={timelineTopOffset} ref={currentTimeRef} />
+          )}
         </S.Column>
       ))}
     </S.Wrapper>

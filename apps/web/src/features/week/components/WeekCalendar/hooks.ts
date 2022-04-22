@@ -1,18 +1,17 @@
 import { RefObject, useEffect, useState } from "react";
 
 import { TimeString } from "@routine-support/types";
-import { getMinutes, parseTime, pxToNumber } from "@routine-support/utils";
+import { getMinutes, parseTime } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 
-import { Theme } from "../../../../styled/theme";
 import { WeekCalendarActions } from "./WeekCalendar";
 
 export const useWeekCalendarComponent = (
   containerRef: RefObject<HTMLDivElement>,
+  currentTimeRef: RefObject<HTMLDivElement>,
   actions: WeekCalendarActions
 ) => {
   const [timelineTopOffset, setTimelineTopOffset] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const checkOffset = () => {
@@ -20,20 +19,19 @@ export const useWeekCalendarComponent = (
       const minutes = getMinutes(moment());
       const offsetTop = (minutes / (24 * 60)) * (frame || 0);
 
-      if (!scrolled) {
-        setTimelineTopOffset(offsetTop);
-        containerRef?.current?.scrollTo({
-          top: offsetTop - pxToNumber(Theme.size.cellHeight),
-        });
-        setScrolled(true);
-      }
+      setTimelineTopOffset(offsetTop);
     };
 
     checkOffset();
+
     const timerId = setInterval(() => checkOffset(), 60 * 1000);
 
     return () => clearInterval(timerId);
-  }, [containerRef]);
+  }, [containerRef, currentTimeRef]);
+
+  useEffect(() => {
+    currentTimeRef?.current?.scrollIntoView();
+  }, [currentTimeRef]);
 
   const onCellClick = (time: TimeString, day: Moment) => {
     actions.openNewActivityModal({
