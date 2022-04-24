@@ -72,9 +72,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
         {weeksOfCalendar.map((week) => (
           <S.Week
             isCurrent={week[0].isoWeek() === currentDate.isoWeek()}
-            onClick={() =>
-              handleWeekSelect(moment().isoWeek(week[0].isoWeek()))
-            }
+            onClick={() => handleWeekSelect(week[0])}
           >
             {week.map((day) => (
               <S.Day isCurrentMonth={displayedMonth.month() === day.month()}>
