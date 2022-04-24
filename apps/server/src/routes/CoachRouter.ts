@@ -6,14 +6,19 @@ import {
 } from "../middleware/coachAuthorization";
 import { getAuthCookie } from "../utils/getAuthCookie";
 import { hashPassword } from "../utils/hashPassword";
+import { validateCoach } from "../utils/validateCoach";
 
 export const coachRouter = Router();
 
 coachRouter.post("/", async (req, res) => {
-  const { password, ...data } = req.body;
+  const validationData = await validateCoach(req.body);
 
-  CoachModel.create(
-    { ...data, password: hashPassword(password) },
+  if (validationData && !validationData.isValid) {
+    return res.status(422).send(validationData);
+  }
+
+  return CoachModel.create(
+    { ...req.body, password: hashPassword(req.body.password) },
     (err, result) => {
       if (err) {
         console.log(err);
@@ -35,7 +40,7 @@ coachRouter.post("/login", async (req, res) => {
     { email, password: hashPassword(password) },
     (err, result) => {
       if (err || !result) {
-        return res.status(401).send(err);
+        return res.status(401).send({ error: "Invalid credentials" });
       }
 
       const cookie = getAuthCookie(result);
