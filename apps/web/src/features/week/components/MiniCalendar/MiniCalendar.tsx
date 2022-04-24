@@ -7,6 +7,7 @@ import { Moment } from "moment";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 
+import { MiniCalendarLocators } from "./locators";
 import * as S from "./styled";
 
 interface MiniCalendarProps {
@@ -51,19 +52,25 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
   return (
     <S.Wrapper>
       <S.CurrentMonthRow>
-        <S.CurrentMonth>
+        <S.CurrentMonth data-testid={MiniCalendarLocators.CurrentMonth}>
           {displayedMonth.locale(i18n.language).format("MMM YYYY")}
         </S.CurrentMonth>
         <S.Buttons>
-          <S.ButtonWrapper onClick={handlePrevMonthClick}>
+          <S.ButtonWrapper
+            onClick={handlePrevMonthClick}
+            data-testid={MiniCalendarLocators.PreviousMonthButton}
+          >
             <ChevronLeft />
           </S.ButtonWrapper>
-          <S.ButtonWrapper onClick={handleNextMonthClick}>
+          <S.ButtonWrapper
+            onClick={handleNextMonthClick}
+            data-testid={MiniCalendarLocators.NextMonthButton}
+          >
             <ChevronRight />
           </S.ButtonWrapper>
         </S.Buttons>
       </S.CurrentMonthRow>
-      <S.WeeksWrapper>
+      <S.WeeksWrapper data-testid={MiniCalendarLocators.WeeksContainer}>
         <S.DayNames>
           {weeksOfCalendar[0].map((day) => (
             <S.Day>{day.locale(i18n.language).format("dd")}</S.Day>
@@ -75,16 +82,27 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
             onClick={() =>
               handleWeekSelect(moment().isoWeek(week[0].isoWeek()))
             }
+            data-testid={
+              week[0].isoWeek() === currentDate.isoWeek()
+                ? MiniCalendarLocators.ActiveWeek
+                : MiniCalendarLocators.Week
+            }
           >
             {week.map((day) => (
-              <S.Day isCurrentMonth={displayedMonth.month() === day.month()}>
+              <S.Day
+                isCurrentMonth={displayedMonth.month() === day.month()}
+                data-testid={MiniCalendarLocators.Day}
+              >
                 {day.format("D")}
               </S.Day>
             ))}
           </S.Week>
         ))}
       </S.WeeksWrapper>
-      <S.TodayWrapper onClick={handleTodayClick}>
+      <S.TodayWrapper
+        onClick={handleTodayClick}
+        data-testid={MiniCalendarLocators.TodayButton}
+      >
         <S.Today>{t("Today")}</S.Today>
       </S.TodayWrapper>
     </S.Wrapper>
