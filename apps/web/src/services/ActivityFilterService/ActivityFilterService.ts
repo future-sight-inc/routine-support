@@ -9,7 +9,7 @@ export const ActivityFilterService = {
       return JSON.parse(savedActivityFilter);
     }
 
-    return undefined;
+    return {};
   },
   setFilter: (newActivityFilter: ActivityFilter) => {
     localStorage.setItem("filter", JSON.stringify(newActivityFilter));
@@ -17,7 +17,7 @@ export const ActivityFilterService = {
   clearFilter: () => {
     localStorage.removeItem("filter");
   },
-  addStudent: (id: Id) => {
+  addProperty: (id: Id) => {
     const savedActivityFilter = ActivityFilterService.getFilter();
 
     if (savedActivityFilter) {
@@ -26,7 +26,7 @@ export const ActivityFilterService = {
       ActivityFilterService.setFilter(savedActivityFilter);
     }
   },
-  removeStudent: (id: Id) => {
+  removeProperty: (id: Id) => {
     const savedActivityFilter = ActivityFilterService.getFilter();
 
     if (savedActivityFilter) {

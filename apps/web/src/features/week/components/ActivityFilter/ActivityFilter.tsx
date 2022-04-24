@@ -33,10 +33,6 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
 
   const { t } = useTranslation();
 
-  if (!Object.keys(activityFilter).length) {
-    return null;
-  }
-
   return (
     <S.Wrapper>
       <S.Title>{t("Filters")}</S.Title>
@@ -54,7 +50,7 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
           <Checkbox
             color={getColor(student.color)}
             onChange={(value) => handleChange(student._id, value)}
-            value={activityFilter.common}
+            value={activityFilter[student._id]}
             label={student.name}
             labelVariant="text1"
           />
