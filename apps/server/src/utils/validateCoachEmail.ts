@@ -6,7 +6,7 @@ export const validateCoachEmail = async (email: string) => {
     (await CoachModel.find({ email }).countDocuments()) === 0;
   const emailError: FormError = {
     name: "email",
-    message: "User with this email already exists",
+    message: "Invalid email error",
   };
 
   if (isEmailValid) {

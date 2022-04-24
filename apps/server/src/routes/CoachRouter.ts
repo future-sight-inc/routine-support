@@ -40,7 +40,7 @@ coachRouter.post("/login", async (req, res) => {
     { email, password: hashPassword(password) },
     (err, result) => {
       if (err || !result) {
-        return res.status(401).send(err);
+        return res.status(401).send({ error: "Invalid credentials" });
       }
 
       const cookie = getAuthCookie(result);

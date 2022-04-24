@@ -13,6 +13,9 @@
   "Password": "Password",
   "Submit": "Submit",
 
+  "Invalid email error": "User with this email already exists",
+  "Invalid credentials": "Invalid email or password",
+
   "No account yet": "No account yet?",
   "Create account": "Create",
   "Already have an account": "Already have an account?",
@@ -30,6 +33,9 @@
   "Pending": "Pending",
 
   "Required field": "Required field",
+
+  "Invalid activity time error": "Invalid time",
+  "Overlapping important activity": "Important activities can not overlap",
 
   "Activity name": "Activity title",
   "Activity date": "Date",

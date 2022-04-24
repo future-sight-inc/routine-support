@@ -13,6 +13,9 @@
   "Password": "Wachtwoord",
   "Submit": "Verzenden",
 
+  "Invalid email error": "Gebruiker met dit e-mailadres bestaat al",
+  "Invalid credentials": "Ongeldig e-mailadres of wachtwoord",
+
   "No account yet": "Nog geen account?",
   "Create account": "Registreer",
   "Already have an account": "Heeft u al een account?",
@@ -30,6 +33,9 @@
   "Pending": "In behandeling",
 
   "Required field": "Verplicht veld",
+
+  "Invalid activity time error": "Ongeldige tijd",
+  "Overlapping important activity": "Belangrijke activiteiten mogen elkaar niet overlappen",
 
   "Activity name": "Activiteitstitel",
   "Activity date": "Datum",
