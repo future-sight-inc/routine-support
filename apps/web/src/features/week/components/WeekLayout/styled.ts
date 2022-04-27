@@ -21,9 +21,7 @@ export const ActionsWrapper = styled.div`
   gap: 24px;
 `;
 
-export const FilterWrapper = styled.div`
-  overflow: scroll;
-`;
+export const FilterWrapper = styled.div``;
 
 export const MiniCalendarWrapper = styled.div``;
 

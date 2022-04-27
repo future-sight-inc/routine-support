@@ -3,7 +3,7 @@ import { Moment } from "moment";
 
 export const getDateInfoFromMoment = (moment: Moment): DateInfo => {
   return {
-    year: Number(moment.clone().get("year")),
-    week: Number(moment.clone().format("W")),
+    year: Number(moment.clone().year()),
+    week: Number(moment.clone().isoWeek()),
   };
 };

@@ -33,7 +33,7 @@ export const useStudent = () => {
           coachId,
         });
 
-        ActivityFilterService.addStudent(response.data._id);
+        ActivityFilterService.addProperty(response.data._id);
 
         setStudentModalOpened(false);
       } finally {
@@ -60,7 +60,7 @@ export const useStudent = () => {
 
       await studentAPI.deleteStudent(student._id);
 
-      ActivityFilterService.removeStudent(student._id);
+      ActivityFilterService.removeProperty(student._id);
 
       setStudentModalOpened(false);
     } finally {

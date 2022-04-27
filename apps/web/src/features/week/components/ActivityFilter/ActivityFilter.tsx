@@ -33,33 +33,31 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
 
   const { t } = useTranslation();
 
-  if (!Object.keys(activityFilter).length) {
-    return null;
-  }
-
   return (
     <S.Wrapper>
       <S.Title>{t("Filters")}</S.Title>
-      <S.FilterWrapper>
-        <S.Checkbox
-          color={COMMON_ACTIVITY_COLOR}
-          onChange={(value) => handleChange("common", value)}
-          value={activityFilter.common}
-          label={t("Common")}
-          labelVariant="text1"
-        />
-      </S.FilterWrapper>
-      {students.map((student) => (
+      <S.FiltersWrapper>
         <S.FilterWrapper>
-          <Checkbox
-            color={getColor(student.color)}
-            onChange={(value) => handleChange(student._id, value)}
+          <S.Checkbox
+            color={COMMON_ACTIVITY_COLOR}
+            onChange={(value) => handleChange("common", value)}
             value={activityFilter.common}
-            label={student.name}
+            label={t("Common")}
             labelVariant="text1"
           />
         </S.FilterWrapper>
-      ))}
+        {students.map((student) => (
+          <S.FilterWrapper>
+            <Checkbox
+              color={getColor(student.color)}
+              onChange={(value) => handleChange(student._id, value)}
+              value={activityFilter[student._id]}
+              label={student.name}
+              labelVariant="text1"
+            />
+          </S.FilterWrapper>
+        ))}
+      </S.FiltersWrapper>
     </S.Wrapper>
   );
 };
