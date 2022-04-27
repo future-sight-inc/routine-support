@@ -8,7 +8,7 @@ export const CheckIcon = styled(CheckBoxIcon).attrs(() => ({
   sx: { fontSize: 20 },
 }))``;
 
-export const Wrapper = styled.div<{ color?: string }>`
+export const Wrapper = styled.div<{ color?: string; width?: number }>`
   display: flex;
   gap: 8px;
   align-items: center;

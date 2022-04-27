@@ -16,7 +16,7 @@ export const Title = styled(Typography).attrs(() => ({
 }))``;
 
 export const FiltersWrapper = styled.div`
-  height: 100%;
+  height: calc(100vh - 520px);
   overflow: scroll;
 `;
 
@@ -30,7 +30,11 @@ export const FilterWrapper = styled.div`
   margin-bottom: 8px;
 
   p {
-    width: 140px;
+    width: 135px;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
   }
 
   &:hover {
