@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   coachActions,
@@ -6,6 +6,7 @@ import {
   RegisterCoachDto,
   UpdateCoachDto,
 } from "@routine-support/domains";
+import io from "socket.io-client";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { coachAPI } from "../../services/ApiService";
@@ -13,9 +14,25 @@ import { coachAPI } from "../../services/ApiService";
 export const useCoach = () => {
   const dispatch = useAppDispatch();
 
-  const { coach, isLogged } = useAppSelector((state) => state.coach);
+  const { coach, isLogged, socketConnection } = useAppSelector(
+    (state) => state.coach
+  );
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    if (coach && !socketConnection) {
+      dispatch(
+        coachActions.setSocketConnection(
+          io({
+            auth: {
+              coachId: coach._id,
+            },
+          })
+        )
+      );
+    }
+  }, [coach, socketConnection]);
 
   const login = async (data: LoginCoachDto) => {
     try {
@@ -99,6 +116,7 @@ export const useCoach = () => {
       isLogged,
       isChecked,
       loading,
+      socketConnection,
     },
     operations: {
       login,

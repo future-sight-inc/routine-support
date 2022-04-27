@@ -1,10 +1,14 @@
 import { Router } from "express";
-import { ActivityModel } from "@routine-support/domains";
+import {
+  ActivityModel,
+  WeekSocketEventTypeEnum,
+} from "@routine-support/domains";
 import { studentAuthorization } from "../middleware/studentAuthorization";
 import { stringifyDate } from "@routine-support/utils";
 import { validateActivity } from "../utils/validateActivity";
 import moment from "moment";
 import { coachAuthorization } from "../middleware/coachAuthorization";
+import { emitByCoachId } from "../main";
 
 export const activityRouter = Router();
 
@@ -63,7 +67,7 @@ activityRouter.put(
   studentAuthorization,
   async (req, res) => {
     const { id, timestamp } = req.params;
-    const { _id: studentId } = res.locals.student;
+    const { _id: studentId, coachId } = res.locals.student;
     const dateString = stringifyDate(moment.unix(Number(timestamp)));
 
     const updatedActivity = await ActivityModel.findById(id);
@@ -81,6 +85,8 @@ activityRouter.put(
 
         return;
       }
+
+      emitByCoachId(coachId, { type: WeekSocketEventTypeEnum.UpdateCalendar });
 
       return res.sendStatus(200);
     });
