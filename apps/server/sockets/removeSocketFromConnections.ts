@@ -15,8 +15,9 @@ export const removeSocketFromConnections = (
       connection.sockets = connection.sockets.filter(
         (connectionSocket) => connectionSocket.id !== socket.id
       );
+      const shouldDeleteConnection = connection?.sockets.length === 0;
 
-      if (!connection?.sockets.length) {
+      if (shouldDeleteConnection) {
         const connectionIndex = connections.findIndex(
           (connection) => connection.coachId === coachId
         );
