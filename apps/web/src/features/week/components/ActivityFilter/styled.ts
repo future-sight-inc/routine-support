@@ -16,7 +16,7 @@ export const Title = styled(Typography).attrs(() => ({
 }))``;
 
 export const FiltersWrapper = styled.div`
-  height: calc(100vh - 520px);
+  height: calc(100vh - 517px);
   overflow: scroll;
 `;
 
