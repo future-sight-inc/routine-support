@@ -53,26 +53,11 @@ export const StudentsWrapper = styled.div`
   gap: 8px;
 `;
 
-export const Student = styled.div<{ color: string }>`
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 12px;
-
-  ${({ theme, color }) => css`
-    border-radius: ${theme.borderRadius};
-    background: ${color};
-  `}
-`;
-
 export const StudentsList = styled.div`
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 `;
-
-export const StudentName = styled(Typography)``;
 
 export const DeleteButton = styled(Button).attrs(() => ({
   variant: "secondary",

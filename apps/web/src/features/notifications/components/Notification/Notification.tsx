@@ -3,8 +3,8 @@ import React from "react";
 import { Activity, Student } from "@routine-support/domains";
 import { stringifyTime } from "@routine-support/utils";
 import { Badge } from "apps/web/src/components/Badge";
+import { StudentBadge } from "apps/web/src/components/StudentBadge";
 import { getActivityStatusesFromStudents } from "apps/web/src/utils/getActivityStatusesFromStudents";
-import { getColor } from "apps/web/src/utils/getColor";
 import { useTranslation } from "react-i18next";
 
 import * as S from "./styled";
@@ -47,9 +47,7 @@ export const Notification: React.FC<NotificationProps> = ({
           <S.Caption>{t("These students were late")}:</S.Caption>
           <S.StudentsList>
             {pendingStudents.map((student, index) => (
-              <S.Student color={getColor(student.color)} key={index}>
-                <S.StudentName>{student.name}</S.StudentName>
-              </S.Student>
+              <StudentBadge student={student} key={index} />
             ))}
           </S.StudentsList>
         </S.StudentsWrapper>
