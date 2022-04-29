@@ -6,6 +6,7 @@ import {
   RegisterCoachDto,
   UpdateCoachDto,
 } from "@routine-support/domains";
+import { SocketUserTypeEnum } from "@routine-support/types";
 import io from "socket.io-client";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -26,7 +27,8 @@ export const useCoach = () => {
         coachActions.setSocketConnection(
           io({
             auth: {
-              coachId: coach._id,
+              userId: coach._id,
+              userType: SocketUserTypeEnum.Coach,
             },
           })
         )

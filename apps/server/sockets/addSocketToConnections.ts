@@ -1,15 +1,15 @@
 import { Socket } from "socket.io";
-import { SocketConnection } from "../src/main";
+import { SocketConnection } from "../src/types/Socket";
 
 export const addSocketToConnections = (
   connections: SocketConnection[],
   socket: Socket
 ) => {
-  const { coachId } = socket.handshake.auth;
+  const { userId, userType } = socket.handshake.auth;
 
-  if (coachId) {
+  if (userId) {
     const connection = connections.find(
-      (connection) => connection.coachId === coachId
+      (connection) => connection.userId === userId
     );
 
     if (connection) {
@@ -22,7 +22,8 @@ export const addSocketToConnections = (
       }
     } else {
       connections.push({
-        coachId,
+        userId,
+        userType,
         sockets: [socket],
       });
     }

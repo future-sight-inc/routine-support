@@ -1,6 +1,7 @@
+import { SocketUserTypeEnum } from "@routine-support/types";
 import { Socket } from "socket.io";
 import * as uuid from "uuid";
-import { SocketConnection } from "../src/main";
+import { SocketConnection } from "../src/types/Socket";
 import { addSocketToConnections } from "./addSocketToConnections";
 import { createMockSocket } from "./testUtils";
 
@@ -12,35 +13,61 @@ describe("addSocketToConnections", () => {
     addSocketToConnections(connections, socket);
 
     expect(connections).toStrictEqual([
-      { coachId: socket.handshake.auth.coachId, sockets: [socket] },
+      {
+        userId: socket.handshake.auth.userId,
+        userType: socket.handshake.auth.userType,
+        sockets: [socket],
+      },
     ]);
   });
 
   it("List with one connection, create another connection", () => {
     const connections: SocketConnection[] = [];
-    const socket1: Socket = createMockSocket();
-    const socket2: Socket = createMockSocket();
+    const socket1: Socket = createMockSocket({
+      userType: SocketUserTypeEnum.Coach,
+    });
+    const socket2: Socket = createMockSocket({
+      userType: SocketUserTypeEnum.Coach,
+    });
 
     addSocketToConnections(connections, socket1);
     addSocketToConnections(connections, socket2);
 
     expect(connections).toStrictEqual([
-      { coachId: socket1.handshake.auth.coachId, sockets: [socket1] },
-      { coachId: socket2.handshake.auth.coachId, sockets: [socket2] },
+      {
+        userId: socket1.handshake.auth.userId,
+        userType: SocketUserTypeEnum.Coach,
+        sockets: [socket1],
+      },
+      {
+        userId: socket2.handshake.auth.userId,
+        userType: SocketUserTypeEnum.Coach,
+        sockets: [socket2],
+      },
     ]);
   });
 
   it("List with one connection, add socket to connection", () => {
     const connections: SocketConnection[] = [];
-    const coachId = uuid.v4();
-    const socket1: Socket = createMockSocket({ coachId });
-    const socket2: Socket = createMockSocket({ coachId });
+    const userId = uuid.v4();
+    const socket1: Socket = createMockSocket({
+      userId,
+      userType: SocketUserTypeEnum.Coach,
+    });
+    const socket2: Socket = createMockSocket({
+      userId,
+      userType: SocketUserTypeEnum.Coach,
+    });
 
     addSocketToConnections(connections, socket1);
     addSocketToConnections(connections, socket2);
 
     expect(connections).toStrictEqual([
-      { coachId: coachId, sockets: [socket1, socket2] },
+      {
+        userId,
+        userType: SocketUserTypeEnum.Coach,
+        sockets: [socket1, socket2],
+      },
     ]);
   });
 
@@ -52,7 +79,11 @@ describe("addSocketToConnections", () => {
     addSocketToConnections(connections, socket);
 
     expect(connections).toStrictEqual([
-      { coachId: socket.handshake.auth.coachId, sockets: [socket] },
+      {
+        userId: socket.handshake.auth.userId,
+        userType: SocketUserTypeEnum.Coach,
+        sockets: [socket],
+      },
     ]);
   });
 });

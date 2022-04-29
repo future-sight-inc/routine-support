@@ -5,7 +5,7 @@ import express from "express";
 import bearerToken from "express-bearer-token";
 import morgan from "morgan";
 import path from "path";
-import { Server, Socket } from "socket.io";
+import { Server } from "socket.io";
 import {
   addSocketToConnections,
   createEmitByCoachId,
@@ -13,6 +13,7 @@ import {
 } from "../sockets";
 import "./db/mongodb";
 import BaseRouter from "./routes";
+import { SocketConnection } from "./types/Socket";
 
 const app = express();
 
@@ -41,18 +42,19 @@ server.on("error", console.error);
 
 export const io = new Server(server);
 
-export interface SocketConnection {
-  coachId: string;
-  sockets: Socket[];
-}
-
 export const connections: SocketConnection[] = [];
 
 io.on("connection", (socket) => {
   addSocketToConnections(connections, socket);
+  console.log(
+    `Socket user connected: ${socket.handshake.auth.userId}, ${socket.handshake.auth.userType}`
+  );
 
   socket.on("disconnect", () => {
     removeSocketFromConnections(connections, socket);
+    console.log(
+      `Socket user disconnected: ${socket.handshake.auth.userId}, ${socket.handshake.auth.userType}`
+    );
   });
 });
 

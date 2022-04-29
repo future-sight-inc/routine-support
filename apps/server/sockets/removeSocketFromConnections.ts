@@ -1,14 +1,15 @@
-import { SocketConnection } from "../src/main";
+import { Socket } from "socket.io";
+import { SocketConnection } from "../src/types/Socket";
 
 export const removeSocketFromConnections = (
   connections: SocketConnection[],
-  socket
+  socket: Socket
 ) => {
-  const { coachId } = socket.handshake.auth;
+  const { userId } = socket.handshake.auth;
 
-  if (coachId) {
+  if (userId) {
     const connection = connections.find(
-      (connection) => connection.coachId === coachId
+      (connection) => connection.userId === userId
     );
 
     if (connection) {
@@ -19,7 +20,7 @@ export const removeSocketFromConnections = (
 
       if (shouldDeleteConnection) {
         const connectionIndex = connections.findIndex(
-          (connection) => connection.coachId === coachId
+          (connection) => connection.userId === userId
         );
 
         connections.splice(connectionIndex, 1);

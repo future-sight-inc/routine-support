@@ -9,6 +9,7 @@ import { validateActivity } from "../utils/validateActivity";
 import moment from "moment";
 import { coachAuthorization } from "../middleware/coachAuthorization";
 import { emitByCoachId } from "../main";
+import { SocketUserTypeEnum } from "@routine-support/types";
 
 export const activityRouter = Router();
 
@@ -87,7 +88,13 @@ activityRouter.put(
         return;
       }
 
-      emitByCoachId(coachId, { type: WeekSocketEventTypeEnum.UpdateCalendar });
+      emitByCoachId({
+        userId: coachId,
+        userType: SocketUserTypeEnum.Coach,
+        message: {
+          type: WeekSocketEventTypeEnum.UpdateCalendar,
+        },
+      });
 
       return res.sendStatus(200);
     });
