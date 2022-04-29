@@ -44,7 +44,7 @@ export const Notification: React.FC<NotificationProps> = ({
           </S.Time>
         </S.Row>
         <S.StudentsWrapper>
-          <S.Caption>{t("These students were late:")}</S.Caption>
+          <S.Caption>{t("These students were late")}:</S.Caption>
           <S.StudentsList>
             {pendingStudents.map((student, index) => (
               <S.Student color={getColor(student.color)} key={index}>

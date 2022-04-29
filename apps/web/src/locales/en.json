@@ -91,5 +91,9 @@
   "QR instructions start": "Use QR scanner in",
   "QR instructions end": "Routine Support app to sign in",
 
-  "Rights info": "Routine Support. 2022. All rights reserved"
+  "Rights info": "Routine Support. 2022. All rights reserved",
+
+  "Activity was missed": "Activity was missed",
+  "These students were late": "These students were late",
+  "New": "New"
 }
