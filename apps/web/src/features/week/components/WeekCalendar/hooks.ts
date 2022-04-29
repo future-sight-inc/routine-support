@@ -32,7 +32,7 @@ export const useWeekCalendarComponent = (
 
   useEffect(() => {
     if (!scrolled && currentTimeRef.current && timelineTopOffset) {
-      currentTimeRef.current.scrollIntoView();
+      currentTimeRef.current.scrollIntoView({ block: "center" });
       setScrolled(true);
     }
   }, [scrolled, currentTimeRef, timelineTopOffset]);
