@@ -47,6 +47,7 @@ activityRouter.put("/:id", coachAuthorization, async (req, res) => {
 
   await ActivityModel.findByIdAndUpdate(id, {
     ...req.body,
+    confirmation: {},
   });
 
   return res.sendStatus(200);
