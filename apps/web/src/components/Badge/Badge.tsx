@@ -8,8 +8,8 @@ export type BadgeColor = "primary" | "alert";
 export type TextColor = "black" | "white";
 
 interface BadgeProps {
-  color: BadgeColor;
-  textColor: TextColor;
+  color?: BadgeColor;
+  textColor?: TextColor;
   children: ReactNode;
 }
 

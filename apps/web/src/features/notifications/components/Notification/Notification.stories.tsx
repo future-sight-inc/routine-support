@@ -1,7 +1,17 @@
 import React from "react";
 
+import {
+  createMockActivity,
+  createMockStudent,
+} from "@routine-support/test-utils";
 import { storiesOf } from "@storybook/react";
 
 import { Notification } from "./Notification";
 
-storiesOf("Notifications", module).add("Notification", () => <Notification />);
+storiesOf("Notifications", module).add("Notification", () => {
+  const activity = createMockActivity({ name: "Billiard" });
+  const student1 = createMockStudent();
+  const student2 = createMockStudent();
+
+  return <Notification activity={activity} students={[student1, student2]} />;
+});

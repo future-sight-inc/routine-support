@@ -31,7 +31,7 @@ export const InfoWrapper = styled.div`
 
 export const Row = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 8px;
 `;
 
@@ -53,16 +53,16 @@ export const StudentsWrapper = styled.div`
   gap: 8px;
 `;
 
-export const Student = styled.div`
+export const Student = styled.div<{ color: string }>`
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 12px;
 
-  ${({ theme }) => css`
+  ${({ theme, color }) => css`
     border-radius: ${theme.borderRadius};
-    background: ${theme.palette.common.darkgreen};
+    background: ${color};
   `}
 `;
 
