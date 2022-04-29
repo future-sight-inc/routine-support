@@ -42,14 +42,16 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
       <Modal isOpened={modalOpened} onClose={handleModalClose}>
         <S.ModalContent>
           <S.ModalTitle>{t("Activity status")}</S.ModalTitle>
-          <S.Section>
-            <S.SectionTitle>{t("Pending")}</S.SectionTitle>
-            <S.StudentsWrapper>
-              {pendingStudents.map((student, index) => (
-                <StudentBadge student={student} key={index} isPending />
-              ))}
-            </S.StudentsWrapper>
-          </S.Section>
+          {pendingStudents.length > 0 && (
+            <S.Section>
+              <S.SectionTitle>{t("Pending")}</S.SectionTitle>
+              <S.StudentsWrapper>
+                {pendingStudents.map((student, index) => (
+                  <StudentBadge student={student} key={index} isPending />
+                ))}
+              </S.StudentsWrapper>
+            </S.Section>
+          )}
           <S.Section>
             <S.SectionTitle>
               {t("Completed")} {statusCounter}
