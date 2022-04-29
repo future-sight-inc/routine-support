@@ -3,11 +3,13 @@ import React from "react";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import GroupIcon from "@mui/icons-material/Group";
 import LogoutIcon from "@mui/icons-material/Logout";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import PersonIcon from "@mui/icons-material/Person";
 import { Coach } from "@routine-support/domains";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 
+import { Badge } from "../Badge";
 import { NavigationLink } from "../NavigationLink";
 import * as S from "./styled";
 
@@ -40,6 +42,12 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
           </NavigationLink>
           <NavigationLink icon={<GroupIcon />} to={"/students"}>
             {t("Students")}
+          </NavigationLink>
+          <NavigationLink icon={<NotificationsIcon />} to={"/notifications"}>
+            {t("Notifications")}
+            <S.BadgeWrapper>
+              <Badge color="alert">99</Badge>
+            </S.BadgeWrapper>
           </NavigationLink>
         </S.Navigation>
         <S.LogoutWrapper onClick={onLogout}>

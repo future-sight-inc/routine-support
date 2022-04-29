@@ -3,7 +3,9 @@ import styled, { css } from "styled-components";
 import { Typography } from "../../styled/components/Typography";
 
 export const Wrapper = styled.div<{ color: string }>`
+  min-width: 18px;
   height: 18px;
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;

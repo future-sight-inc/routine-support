@@ -44,7 +44,16 @@ export const Navigation = styled.nav`
   gap: 16px;
 `;
 
-export const IconWrapper = styled.div`
+export const BadgeWrapper = styled.div`
+  margin-left: 8px;
+  display: inline;
+
+  * {
+    color: ${({ theme }) => theme.palette.common.white};
+  }
+`;
+
+export const IconWrapper = styled.span`
   position: relative;
   display: flex;
   justify-content: center;
