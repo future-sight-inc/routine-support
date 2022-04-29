@@ -61,48 +61,27 @@ export const Wrapper = styled.div`
 `;
 
 export const ModalContent = styledComponents.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-radius: ${({ theme }) => theme.borderRadius};
-  overflow: hidden;
-  border: 1px solid  ${({ theme }) => theme.palette.border.main};
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const ModalTitle = styledComponents(Typography).attrs(() => ({
   variant: "caption4",
-}))`
-  margin-bottom: 16px;
-`;
+}))``;
 
-export const List = styledComponents.div`
+export const Section = styledComponents.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
-  min-height: 150px;
-
-  &:first-child {
-    border-right: 1px solid ${({ theme }) => theme.palette.border.main};
-  }
+  gap: 8px;
 `;
 
-export const PendingHeading = styledComponents(Typography).attrs(() => ({
-  variant: "text1Bold",
-}))`
-  height: 30px;
-  line-height: 30px;
-  margin-bottom: 8px;
-
-  background: ${({ theme }) => theme.palette.secondary.main};
-`;
-
-export const ConfirmedHeading = styledComponents(PendingHeading)`
-  background: ${({ theme }) => theme.palette.primary.main};
-  color: ${({ theme }) => theme.palette.common.white};
-`;
-
-export const StudentName = styledComponents(Typography).attrs(() => ({
+export const SectionTitle = styledComponents(Typography).attrs(() => ({
   variant: "text1",
-}))`
-  padding: 0.5em;
-  white-space: wrap;
+}))``;
+
+export const StudentsWrapper = styledComponents.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 `;
