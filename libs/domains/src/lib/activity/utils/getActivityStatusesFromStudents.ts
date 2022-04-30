@@ -1,8 +1,7 @@
-import { Activity, Student } from "@routine-support/domains";
+import { Activity, getStudentsByIds, Student } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 
 import { getPendingStudents } from "./getPendingStudents";
-import { getStudentsByIds } from "./getStudentsByIds";
 
 export const getActivityStatusesFromStudents = (
   activity: Activity,
@@ -17,7 +16,7 @@ export const getActivityStatusesFromStudents = (
 
   confirmedStudents = getStudentsByIds(
     students,
-    activity.confirmation[stringifyDate(activity.date)]
+    activity.confirmation[stringifyDate(activity.date)]?.students
   );
 
   if (activity.students.length) {

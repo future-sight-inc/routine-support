@@ -1,49 +1,30 @@
 import {
-  ActivityModel,
   createActivityFromSchema,
   createSchemaFromActivity,
-  getDaysOfWeek,
-  RepeatTypeEnum,
 } from "@routine-support/domains";
-import { Router } from "express";
-import { getDayScheduleActivities } from "../utils/getDayScheduleActivities";
-import { filterActivitiesForStudent } from "../utils/filterActivitiesForStudent";
-import { repeatActivities } from "../utils/repeatActivities";
 import { parseDate } from "@routine-support/utils";
+import { Router } from "express";
+import { filterActivitiesForStudent } from "../utils/filterActivitiesForStudent";
+import { getActivitiesOfWeek } from "../utils/getActivitiesOfWeek";
+import { getDayScheduleActivities } from "../utils/getDayScheduleActivities";
 
 export const dayRouter = Router();
 
-// todo Упростить логику, написать тесты для функций
 dayRouter.get("/:date", async (req, res) => {
   const { date } = req.params;
   const student = res.locals.student;
 
-  const currentWeek = getDaysOfWeek({
-    year: parseDate(date).year(),
-    week: parseDate(date).isoWeek(),
+  const activitiesOfWeek = await getActivitiesOfWeek({
+    currentDate: parseDate(date),
+    coachId: student.coachId,
   });
+  const todaysActivities = activitiesOfWeek.filter(
+    (activity) => activity.date === date
+  );
 
-  const activitiesWithoutRepeat = await ActivityModel.find({
-    coachId: student.coachId,
-    repeatType: RepeatTypeEnum.None,
-  }).lean();
-
-  let activitiesWithRepeat = await ActivityModel.find({
-    coachId: student.coachId,
-    repeatType: { $gt: RepeatTypeEnum.None },
-  }).lean();
-
-  activitiesWithRepeat = repeatActivities(activitiesWithRepeat, currentWeek);
-
-  const activities = [
-    ...activitiesWithoutRepeat,
-    ...activitiesWithRepeat,
-  ].filter((activity) => activity.date === date);
-
-  const studentActivities = filterActivitiesForStudent(activities, {
+  const studentActivities = filterActivitiesForStudent(todaysActivities, {
     _id: student._id,
   });
-
   const parsedActivities = studentActivities.map(createActivityFromSchema);
   const dayScheduleActivities = getDayScheduleActivities(parsedActivities);
 

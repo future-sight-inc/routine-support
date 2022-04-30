@@ -1,7 +1,7 @@
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { SocketConnection } from "../src/types/Socket";
 
-export const createEmitByCoachId = (connections: SocketConnection[]) => {
+export const createEmitToUser = (connections: SocketConnection[]) => {
   return ({
     userId,
     userType,

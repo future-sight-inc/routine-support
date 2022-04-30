@@ -1,10 +1,13 @@
 import React from "react";
 
-import { Activity, Student } from "@routine-support/domains";
+import {
+  Activity,
+  getActivityStatusesFromStudents,
+  Student,
+} from "@routine-support/domains";
 import { stringifyTime } from "@routine-support/utils";
 import { Badge } from "apps/web/src/components/Badge";
 import { StudentBadge } from "apps/web/src/components/StudentBadge";
-import { getActivityStatusesFromStudents } from "apps/web/src/utils/getActivityStatusesFromStudents";
 import { useTranslation } from "react-i18next";
 
 import * as S from "./styled";

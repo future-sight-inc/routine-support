@@ -1,3 +1,3 @@
 export { addSocketToConnections } from "./addSocketToConnections";
-export { createEmitByCoachId } from "./createEmitByCoachId";
+export { createEmitToUser } from "./createEmitToUser";
 export { removeSocketFromConnections } from "./removeSocketFromConnections";

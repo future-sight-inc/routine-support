@@ -8,12 +8,13 @@ import path from "path";
 import { Server } from "socket.io";
 import {
   addSocketToConnections,
-  createEmitByCoachId,
   removeSocketFromConnections,
 } from "../sockets";
+import { createEmitToUser } from "../sockets/createEmitToUser";
 import "./db/mongodb";
 import BaseRouter from "./routes";
 import { SocketConnection } from "./types/Socket";
+import { checkTodaysActivitiesConfirmationAndNotify } from "./utils/checkTodaysActivitiesConfirmationAndNotify";
 
 const app = express();
 
@@ -58,4 +59,6 @@ io.on("connection", (socket) => {
   });
 });
 
-export const emitByCoachId = createEmitByCoachId(connections);
+export const emitToUser = createEmitToUser(connections);
+
+setInterval(checkTodaysActivitiesConfirmationAndNotify, 1000);

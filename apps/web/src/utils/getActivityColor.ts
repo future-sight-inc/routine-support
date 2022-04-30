@@ -1,4 +1,4 @@
-import { Activity, Student } from "@routine-support/domains";
+import { Activity, getStudentsByIds, Student } from "@routine-support/domains";
 
 import {
   COMMON_ACTIVITY_COLOR,
@@ -6,7 +6,6 @@ import {
   IMPORTANT_ACTIVITY_COLOR,
 } from "../constants/defaultActivityColor";
 import { getColor } from "./getColor";
-import { getStudentsByIds } from "./getStudentsByIds";
 
 export const getActivityColor = (activity: Activity, students: Student[]) => {
   if (activity.students.length === 1) {

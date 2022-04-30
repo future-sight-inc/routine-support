@@ -1,7 +1,10 @@
 import { useState } from "react";
 
-import { Activity, Student } from "@routine-support/domains";
-import { getActivityStatusesFromStudents } from "apps/web/src/utils/getActivityStatusesFromStudents";
+import {
+  Activity,
+  getActivityStatusesFromStudents,
+  Student,
+} from "@routine-support/domains";
 
 export const useConfirmationStatusComponent = (
   activity: Activity,
