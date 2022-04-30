@@ -13,5 +13,12 @@ storiesOf("Notifications", module).add("Notification", () => {
   const student1 = createMockStudent();
   const student2 = createMockStudent();
 
-  return <Notification activity={activity} students={[student1, student2]} />;
+  return (
+    <Notification
+      activity={activity}
+      students={[student1, student2]}
+      isViewed={false}
+      onDelete={() => null}
+    />
+  );
 });

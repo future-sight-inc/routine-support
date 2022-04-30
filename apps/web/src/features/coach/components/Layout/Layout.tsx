@@ -13,10 +13,16 @@ export interface LayoutActions {
 
 interface LayoutProps {
   user: Coach;
+  notViewedCount: number;
   actions: LayoutActions;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
+export const Layout: React.FC<LayoutProps> = ({
+  children,
+  user,
+  notViewedCount,
+  actions,
+}) => {
   const {
     operations: { handleLogout },
   } = useLayoutComponent(actions);
@@ -24,7 +30,11 @@ export const Layout: React.FC<LayoutProps> = ({ children, user, actions }) => {
   return (
     <S.Wrapper>
       <S.HeaderWrapper>
-        <Header user={user} onLogout={handleLogout} />
+        <Header
+          user={user}
+          notViewedCount={notViewedCount}
+          onLogout={handleLogout}
+        />
       </S.HeaderWrapper>
       <S.Content>{children}</S.Content>
       <S.FooterWrapper>

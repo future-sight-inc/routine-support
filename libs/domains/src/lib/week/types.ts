@@ -40,4 +40,5 @@ export type ActivityFilterQuery = Id[];
 
 export enum WeekSocketEventTypeEnum {
   UpdateCalendar = "update calendar",
+  UpdateNotifications = "update notifications",
 }

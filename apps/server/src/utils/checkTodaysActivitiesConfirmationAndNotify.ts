@@ -4,9 +4,12 @@ import {
   NotificationModel,
   setActivityNotified,
   StudentModel,
+  WeekSocketEventTypeEnum,
 } from "@routine-support/domains";
+import { SocketUserTypeEnum } from "@routine-support/types";
 import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
+import { emitToUser } from "../main";
 import { getActivitiesOfWeek } from "./getActivitiesOfWeek";
 import { shouldNotifyActivity } from "./shouldNotifyActivity";
 
@@ -30,16 +33,26 @@ export const checkTodaysActivitiesConfirmationAndNotify = async () => {
       shouldNotifyActivity(activity, coachStudents)
     );
 
-    activitiesToNotify.forEach(async (activity) => {
-      const { _id, ...activityData } = activity;
+    if (activitiesToNotify.length) {
+      activitiesToNotify.forEach(async (activity) => {
+        const { _id, ...activityData } = activity;
 
-      await NotificationModel.create({
-        activity,
-        coachId: coach._id,
-        date: activity.date,
+        await NotificationModel.create({
+          activity,
+          coachId: coach._id,
+          date: activity.date,
+        });
+        setActivityNotified(activity, true);
+        await ActivityModel.findByIdAndUpdate(_id, activityData);
       });
-      setActivityNotified(activity, true);
-      await ActivityModel.findByIdAndUpdate(_id, activityData);
-    });
+
+      emitToUser({
+        userId: coach._id,
+        userType: SocketUserTypeEnum.Coach,
+        message: {
+          type: WeekSocketEventTypeEnum.UpdateNotifications,
+        },
+      });
+    }
   });
 };
