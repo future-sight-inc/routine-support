@@ -25,7 +25,7 @@ export const validateActivityImportance = async (
     ) {
       throw {
         isValid: false,
-        error: "Important activity this day already exists",
+        error: "Overlapping important activity",
       };
     }
 

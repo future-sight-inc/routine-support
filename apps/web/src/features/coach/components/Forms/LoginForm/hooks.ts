@@ -1,6 +1,9 @@
 import { useState } from "react";
 
 import { LoginCoachDto } from "@routine-support/domains";
+import { SubmitErrorData } from "@routine-support/types";
+import { setFormErrors } from "apps/web/src/utils/setFormErrors";
+import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 
 import { LoginFormActions } from "./LoginForm";
@@ -10,6 +13,7 @@ export const useLoginFormComponent = (actions: LoginFormActions) => {
     register,
     handleSubmit,
     control,
+    setError,
     formState: { isSubmitting },
   } = useForm<LoginCoachDto>();
   const [submitError, setSubmitError] = useState<string | undefined>();
@@ -20,7 +24,9 @@ export const useLoginFormComponent = (actions: LoginFormActions) => {
 
       await actions.login(data);
     } catch (error) {
-      setSubmitError(error.message);
+      const data = (error as AxiosError<SubmitErrorData>).response?.data;
+
+      setFormErrors(data, setError, setSubmitError);
     }
   });
 

@@ -10,7 +10,7 @@ const TIME_VALIDATION_ERROR: SubmitErrorData = {
   errors: [
     {
       name: "end",
-      message: "Invalid time",
+      message: "Invalid activity time error",
     },
   ],
 };

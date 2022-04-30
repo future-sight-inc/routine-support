@@ -13,6 +13,6 @@ export const validateActivity = async (
 
     return;
   } catch (error) {
-    return error;
+    return error as SubmitErrorData;
   }
 };

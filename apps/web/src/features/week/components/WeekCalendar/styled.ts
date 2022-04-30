@@ -57,6 +57,7 @@ export const AbsoluteColumn = styled.div<{ rowsCount: number }>`
 
 export const TimeColumn = styled(Column)`
   text-align: center;
+  position: relative;
   grid-row-gap: 0;
 
   & ${Cell} {
@@ -78,7 +79,7 @@ export const Time = styled(Typography).attrs(() => ({
   variant: "text2",
   color: "secondary",
 }))`
-  margin-top: -14px;
+  margin-top: -8px;
 `;
 
 export const TimeLine = styled.div<{ top: number }>`
@@ -104,4 +105,23 @@ export const TimeLine = styled.div<{ top: number }>`
 
     background: ${({ theme }) => theme.palette.primary.main};
   }
+`;
+
+export const CurrentTime = styled(Typography).attrs(() => ({
+  variant: "text2Bold",
+  color: "white",
+}))<{ top: number }>`
+  position: absolute;
+
+  top: ${({ top }) => top}px;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  width: 35px;
+
+  ${({ theme }) => css`
+    padding: 4px;
+    background: ${theme.palette.primary.main};
+    border-radius: ${theme.borderRadius};
+  `}
 `;

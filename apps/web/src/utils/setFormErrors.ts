@@ -1,8 +1,9 @@
-import { FormError, SubmitErrorData } from "@routine-support/types";
+import { SubmitErrorData } from "@routine-support/types";
+import { UseFormSetError } from "react-hook-form";
 
 export const setFormErrors = (
   submitErrorData: SubmitErrorData = { isValid: true },
-  setError: (name: string, error: FormError) => void,
+  setError: UseFormSetError<any>,
   setSubmitError: (error?: string) => void
 ) => {
   setSubmitError(submitErrorData?.error);

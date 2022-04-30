@@ -15,6 +15,11 @@ export const Title = styled(Typography).attrs(() => ({
   variant: "text1Bold",
 }))``;
 
+export const FiltersWrapper = styled.div`
+  height: calc(100vh - 520px);
+  overflow: scroll;
+`;
+
 export const FilterWrapper = styled.div`
   height: 30px;
   display: flex;
@@ -22,6 +27,15 @@ export const FilterWrapper = styled.div`
   overflow: hidden;
   padding-left: 8px;
   box-sizing: border-box;
+  margin-bottom: 8px;
+
+  p {
+    width: 135px;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+  }
 
   &:hover {
     ${({ theme }) =>

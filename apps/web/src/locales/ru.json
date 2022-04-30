@@ -13,6 +13,9 @@
   "Password": "Пароль",
   "Submit": "Отправить",
 
+  "Invalid email error": "Пользователь с таким адресом электронной почты уже существует",
+  "Invalid credentials": "Неверные данные входа",
+
   "No account yet": "Еще не зарегистрированы?",
   "Create account": "Создать аккаунт",
   "Already have an account": "Уже зарегистрированы?",
@@ -30,6 +33,9 @@
   "Pending": "Ожидаются",
 
   "Required field": "Обязательное поле",
+
+  "Invalid activity time error": "Невалидное время",
+  "Overlapping important activity": "Важные активности не могут пересекаться",
 
   "Activity name": "Название события",
   "Activity date": "Дата",
