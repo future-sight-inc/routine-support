@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { ActivityModel } from "../activity";
+import { NotificationSchema } from "./types";
 
 const notificationSchema = new Schema({
   coachId: {
@@ -7,16 +7,20 @@ const notificationSchema = new Schema({
     required: true,
   },
   activity: {
-    type: ActivityModel,
+    type: Schema.Types.Mixed,
     required: true,
   },
   isViewed: {
     type: Schema.Types.Boolean,
     default: false,
   },
+  date: {
+    type: Schema.Types.String,
+    required: true,
+  },
 });
 
-export const NotificationModel = model<Notification>(
+export const NotificationModel = model<NotificationSchema>(
   "notification",
   notificationSchema
 );
