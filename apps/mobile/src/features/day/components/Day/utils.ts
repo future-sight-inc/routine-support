@@ -15,5 +15,5 @@ export const isActivityConfirmed = ({
     return false;
   }
 
-  return activity.confirmation[dateString].includes(studentId);
+  return activity.confirmation[dateString].students.includes(studentId);
 };
