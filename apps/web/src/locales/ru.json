@@ -97,5 +97,7 @@
 
   "Activity was missed": "Событие пропущено",
   "These students were late": "Студенты, которые опоздали",
-  "New": "Новое"
+  "New": "Новое",
+  "Clear all": "Очистить",
+  "No notifications": "Нет уведомлений"
 }

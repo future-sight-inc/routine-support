@@ -7,12 +7,12 @@ export const useSocketEventListener = (
   listener: (data: unknown) => void
 ) => {
   const {
-    models: { socketConnection },
+    models: { coach, socketConnection },
   } = useCoach();
 
   useEffect(() => {
-    if (socketConnection) {
+    if (coach && socketConnection) {
       socketConnection.on(eventType, listener);
     }
-  }, [socketConnection]);
+  }, [coach, socketConnection]);
 };

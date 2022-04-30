@@ -2,6 +2,7 @@ import React from "react";
 
 import AdapterMoment from "@mui/lab/AdapterMoment";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { useTranslation } from "react-i18next";
 import { Route } from "react-router-dom";
 
@@ -9,13 +10,31 @@ import { LoginForm } from "../features/coach/components/Forms/LoginForm";
 import { RegisterForm } from "../features/coach/components/Forms/RegisterForm";
 import { Layout } from "../features/coach/components/Layout";
 import { PrivateRoute } from "../features/coach/components/PrivateRoute";
+import { useSocketEventListener } from "../features/coach/hooks/useSocketEventListener";
 import { Notifications } from "../features/notifications/Notifications";
+import { useNotifications } from "../features/notifications/useNotifications";
 import { Students } from "../features/students/Students";
 import { Week } from "../features/week";
+import { useWeek } from "../features/week/useWeek";
 import { LinkService } from "../services/LinkService";
 
 export const App = () => {
   const { i18n } = useTranslation();
+
+  const {
+    operations: { getWeek },
+  } = useWeek();
+  const {
+    operations: { getNotifications },
+  } = useNotifications();
+
+  useSocketEventListener(WeekSocketEventTypeEnum.UpdateCalendar, () => {
+    getWeek({ config: { silent: true } });
+  });
+
+  useSocketEventListener(WeekSocketEventTypeEnum.UpdateNotifications, () => {
+    getNotifications({ config: { silent: true } });
+  });
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment} locale={i18n.language}>

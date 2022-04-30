@@ -8,5 +8,5 @@ export const groupNotifications = (notifications: Notification[]) => {
     addNotificationToGroup(notification, groups)
   );
 
-  return groups;
+  return groups.sort((a, b) => b.date.unix() - a.date.unix());
 };

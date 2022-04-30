@@ -24,7 +24,7 @@ export const useNotifications = () => {
       try {
         setError(null);
 
-        data?.config?.silent && setLoading(true);
+        !data?.config?.silent && setLoading(true);
 
         const responseData = await notificationAPI.getNotifications();
 
@@ -53,8 +53,21 @@ export const useNotifications = () => {
     }
   };
 
+  const viewNotification = async (notification: Notification) => {
+    try {
+      await notificationAPI.viewNotification(notification._id);
+    } finally {
+      getNotifications({ config: { silent: true } });
+    }
+  };
+
   return {
     models: { notificationsGroups, notViewedCount, loading, error },
-    operations: { getNotifications, deleteNotification, clearAllNotifications },
+    operations: {
+      getNotifications,
+      deleteNotification,
+      clearAllNotifications,
+      viewNotification,
+    },
   };
 };

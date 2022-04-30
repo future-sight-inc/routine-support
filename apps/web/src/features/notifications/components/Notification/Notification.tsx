@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef, useEffect } from "react";
 
 import {
   Activity,
@@ -10,6 +10,7 @@ import { Badge } from "apps/web/src/components/Badge";
 import { StudentBadge } from "apps/web/src/components/StudentBadge";
 import { useTranslation } from "react-i18next";
 
+import useOnScreen from "./hooks";
 import * as S from "./styled";
 
 interface NotificationProps {
@@ -17,6 +18,7 @@ interface NotificationProps {
   students: Student[];
   isViewed: boolean;
   onDelete: () => void;
+  onView: () => void;
 }
 
 export const Notification: React.FC<NotificationProps> = ({
@@ -24,8 +26,18 @@ export const Notification: React.FC<NotificationProps> = ({
   students,
   isViewed,
   onDelete,
+  onView,
 }) => {
+  const containerRef = createRef<HTMLDivElement>();
+  const isVisible = useOnScreen(containerRef);
+
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (!isViewed && isVisible) {
+      setTimeout(() => onView(), 2000);
+    }
+  }, [isVisible]);
 
   const { pendingStudents } = getActivityStatusesFromStudents(
     activity,
@@ -37,7 +49,7 @@ export const Notification: React.FC<NotificationProps> = ({
   }
 
   return (
-    <S.Wrapper>
+    <S.Wrapper ref={containerRef}>
       <S.Image src="https://www.sclera.be/resources/pictos/biljart%20t.png" />
       <S.InfoWrapper>
         <S.Row>

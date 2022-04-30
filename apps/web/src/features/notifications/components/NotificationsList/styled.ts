@@ -30,3 +30,11 @@ export const NotificationGroupDate = styled(Typography).attrs(() => ({
   variant: "text1",
   color: "secondary",
 }))``;
+
+export const EmptyText = styled(Typography).attrs(() => ({
+  variant: "text1",
+  color: "secondary",
+}))`
+  margin-top: 16px;
+  text-align: center;
+`;

@@ -34,6 +34,7 @@ export const Notifications: React.FC = () => {
         actions={{
           deleteNotification: Notifications.operations.deleteNotification,
           clearAllNotifications: Notifications.operations.clearAllNotifications,
+          viewNotification: Notifications.operations.viewNotification,
         }}
       />
     </ContentWrapper>
