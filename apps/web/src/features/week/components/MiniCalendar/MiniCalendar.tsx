@@ -6,7 +6,11 @@ import { Moment } from "moment";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 
-import { MiniCalendarLocators } from "./locators";
+import {
+  createActiveWeekDataTestId,
+  createWeekDataTestId,
+  MiniCalendarLocators,
+} from "./locators";
 import * as S from "./styled";
 import { getWeeksOfCalendar } from "./utils";
 
@@ -70,7 +74,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
           </S.ButtonWrapper>
         </S.Buttons>
       </S.CurrentMonthRow>
-      <S.WeeksWrapper data-testid={MiniCalendarLocators.WeeksContainer}>
+      <S.WeeksWrapper>
         <S.DayNames>
           {weeksOfCalendar[0].map((day) => (
             <S.Day>{day.locale(i18n.language).format("dd")}</S.Day>
@@ -84,8 +88,8 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
             }
             data-testid={
               week[0].isoWeek() === currentDate.isoWeek()
-                ? MiniCalendarLocators.ActiveWeek
-                : MiniCalendarLocators.Week
+                ? createActiveWeekDataTestId(week[0].isoWeek(), week[0].year())
+                : createWeekDataTestId(week[0].isoWeek(), week[0].year())
             }
           >
             {week.map((day) => (

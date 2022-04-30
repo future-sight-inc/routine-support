@@ -2,11 +2,16 @@ export enum MiniCalendarLocators {
   CurrentMonth = "CurrentMonth",
   PreviousMonthButton = "PreviousMonthButton",
   NextMonthButton = "NextMonthButton",
-  WeeksContainer = "WeeksContainer",
   Week = "Week",
   ActiveWeek = "ActiveWeek",
   Day = "Day",
   TodayButton = "TodayButton",
 }
 
-// функция чтобы в локаторе было написано какая неделя и год пример в колорпикер
+export const createWeekDataTestId = (week: number, year: number) => {
+  return `${MiniCalendarLocators.Week}-${week}-${year}`;
+};
+
+export const createActiveWeekDataTestId = (week: number, year: number) => {
+  return `${MiniCalendarLocators.ActiveWeek}-${week}-${year}`;
+};
