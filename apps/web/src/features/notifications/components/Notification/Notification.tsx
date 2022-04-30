@@ -15,11 +15,15 @@ import * as S from "./styled";
 interface NotificationProps {
   activity: Activity;
   students: Student[];
+  isViewed: boolean;
+  onDelete: () => void;
 }
 
 export const Notification: React.FC<NotificationProps> = ({
   activity,
   students,
+  isViewed,
+  onDelete,
 }) => {
   const { t } = useTranslation();
 
@@ -38,7 +42,7 @@ export const Notification: React.FC<NotificationProps> = ({
       <S.InfoWrapper>
         <S.Row>
           <S.Title>{t("Activity was missed")}</S.Title>
-          <Badge>{t("New")}</Badge>
+          {!isViewed && <Badge>{t("New")}</Badge>}
         </S.Row>
         <S.Row>
           <S.Name>{activity.name}</S.Name>
@@ -55,7 +59,7 @@ export const Notification: React.FC<NotificationProps> = ({
           </S.StudentsList>
         </S.StudentsWrapper>
       </S.InfoWrapper>
-      <S.DeleteButton>{t("Delete")}</S.DeleteButton>
+      <S.DeleteButton onClick={onDelete}>{t("Delete")}</S.DeleteButton>
     </S.Wrapper>
   );
 };

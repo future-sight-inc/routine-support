@@ -9,6 +9,7 @@ import { LoginForm } from "../features/coach/components/Forms/LoginForm";
 import { RegisterForm } from "../features/coach/components/Forms/RegisterForm";
 import { Layout } from "../features/coach/components/Layout";
 import { PrivateRoute } from "../features/coach/components/PrivateRoute";
+import { Notifications } from "../features/notifications/Notifications";
 import { Students } from "../features/students/Students";
 import { Week } from "../features/week";
 import { LinkService } from "../services/LinkService";
@@ -31,6 +32,9 @@ export const App = () => {
           </Route>
           <Route exact path={LinkService.students()}>
             <Students />
+          </Route>
+          <Route exact path={LinkService.notifications()}>
+            <Notifications />
           </Route>
         </Layout>
       </PrivateRoute>

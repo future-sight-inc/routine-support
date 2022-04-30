@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { studentsActions } from "@routine-support/domains";
 
@@ -12,6 +12,10 @@ export const useStudents = () => {
   const dispatch = useAppDispatch();
 
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getStudents();
+  }, []);
 
   const getStudents = async () => {
     if (coachId) {

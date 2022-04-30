@@ -14,13 +14,18 @@ notificationsRouter.get("/", coachAuthorization, async (__, res) => {
     coachId: res.locals.coach._id,
   }).lean();
 
+  const notViewedCount =
+    notifications.filter((notification) => !notification.isViewed)?.length || 0;
   const notificationGroups = groupNotifications(
     notifications.map(createNotificationFromSchema)
   );
 
-  return res
-    .status(200)
-    .send(notificationGroups.map(createSchemaFromNotificationGroup));
+  return res.status(200).send({
+    notViewedCount,
+    notificationsGroups: notificationGroups.map(
+      createSchemaFromNotificationGroup
+    ),
+  });
 });
 
 notificationsRouter.put("/view/:id", coachAuthorization, async (req, res) => {

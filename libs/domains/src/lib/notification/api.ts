@@ -3,12 +3,22 @@ import { AxiosInstance, AxiosResponse } from "axios";
 import { NotificationsGroup, NotificationsGroupSchema } from "./types";
 import { createNotificationsGroupFromSchema } from "./utils/createNotificationsGroupFromSchema";
 
-export const createActivityApi = (client: AxiosInstance) => ({
-  getNotifications: async (): Promise<NotificationsGroup[]> => {
-    const response: AxiosResponse<NotificationsGroupSchema[]> =
-      await client.get("/notifications");
+export const createNotificationAPI = (client: AxiosInstance) => ({
+  getNotifications: async (): Promise<{
+    notViewedCount: number;
+    notificationsGroups: NotificationsGroup[];
+  }> => {
+    const response: AxiosResponse<{
+      notViewedCount: number;
+      notificationsGroups: NotificationsGroupSchema[];
+    }> = await client.get("/notifications");
 
-    return response.data.map(createNotificationsGroupFromSchema);
+    return {
+      notViewedCount: response.data.notViewedCount,
+      notificationsGroups: response.data.notificationsGroups.map(
+        createNotificationsGroupFromSchema
+      ),
+    };
   },
   viewNotification: async (id: Id): Promise<AxiosResponse> => {
     const request: AxiosResponse = await client.put(

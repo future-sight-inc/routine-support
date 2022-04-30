@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 
-import { WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
@@ -8,7 +7,6 @@ import { ContentWrapper } from "../../components/ContentWrapper/ContentWrapper";
 import { Modal } from "../../components/Modal";
 import { ActivityForm } from "../../features/activity/components/ActivityForm";
 import { useActivity } from "../activity/useActivity";
-import { useSocketEventListener } from "../coach/hooks/useSocketEventListener";
 import { useCoach } from "../coach/useCoach";
 import { useStudents } from "../students/useStudents";
 import { ActivityFilter } from "./components/ActivityFilter";
@@ -26,10 +24,6 @@ export const Week: React.FC = () => {
   const Activity = useActivity();
   const Students = useStudents();
   const Coach = useCoach();
-
-  useSocketEventListener(WeekSocketEventTypeEnum.UpdateCalendar, () => {
-    Week.operations.getWeek({ config: { silent: true } });
-  });
 
   useEffect(() => {
     if (Coach.models.coach) {
