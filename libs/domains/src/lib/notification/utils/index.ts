@@ -1,0 +1,1 @@
+export { createNotificationsGroupFromSchema } from "./createNotificationsGroupFromSchema";
