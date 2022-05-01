@@ -6,6 +6,11 @@ import { StudentBadge } from "apps/web/src/components/StudentBadge";
 import { useTranslation } from "react-i18next";
 
 import { useConfirmationStatusComponent } from "./hooks";
+import {
+  ConfirmationStatusLocatorsEnum,
+  createConfirmedStudentDataTestId,
+  createPendingStudentDataTestId,
+} from "./locators";
 import * as S from "./styled";
 
 interface ConfirmationStatusProps {
@@ -34,20 +39,32 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
   return (
     <S.Wrapper
       onClick={(event: MouseEvent<HTMLDivElement>) => event.stopPropagation()}
+      data-testid={ConfirmationStatusLocatorsEnum.Wrapper}
     >
       <S.ConfirmationWrapper onClick={handleModalOpen}>
         <S.CheckedIcon />
-        <S.ConfirmedNumber>{statusCounter}</S.ConfirmedNumber>
+        <S.ConfirmedNumber data-testid={ConfirmationStatusLocatorsEnum.Counter}>
+          {statusCounter}
+        </S.ConfirmedNumber>
       </S.ConfirmationWrapper>
       <Modal isOpened={modalOpened} onClose={handleModalClose}>
-        <S.ModalContent>
+        <S.ModalContent
+          data-testid={ConfirmationStatusLocatorsEnum.ModalContent}
+        >
           <S.ModalTitle>{t("Activity status")}</S.ModalTitle>
           {pendingStudents.length > 0 && (
-            <S.Section>
+            <S.Section
+              data-testid={ConfirmationStatusLocatorsEnum.PendingStudentWrapper}
+            >
               <S.SectionTitle>{t("Pending")}</S.SectionTitle>
               <S.StudentsWrapper>
                 {pendingStudents.map((student, index) => (
-                  <StudentBadge student={student} key={index} isPending />
+                  <StudentBadge
+                    student={student}
+                    key={index}
+                    isPending
+                    dataTestId={createPendingStudentDataTestId(student)}
+                  />
                 ))}
               </S.StudentsWrapper>
             </S.Section>
@@ -58,7 +75,11 @@ export const ConfirmationStatus: React.FC<ConfirmationStatusProps> = ({
             </S.SectionTitle>
             <S.StudentsWrapper>
               {confirmedStudents.map((student, index) => (
-                <StudentBadge student={student} key={index} />
+                <StudentBadge
+                  student={student}
+                  key={index}
+                  dataTestId={createConfirmedStudentDataTestId(student)}
+                />
               ))}
             </S.StudentsWrapper>
           </S.Section>
