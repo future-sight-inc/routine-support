@@ -82,10 +82,11 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
         </S.DayNames>
         {weeksOfCalendar.map((week) => (
           <S.Week
-            isCurrent={week[0].isoWeek() === currentDate.isoWeek()}
-            onClick={() =>
-              handleWeekSelect(moment().isoWeek(week[0].isoWeek()))
+            isCurrent={
+              week[0].year() === currentDate.year() &&
+              week[0].isoWeek() === currentDate.isoWeek()
             }
+            onClick={() => handleWeekSelect(week[0])}
             data-testid={
               week[0].isoWeek() === currentDate.isoWeek()
                 ? createActiveWeekDataTestId(week[0].isoWeek(), week[0].year())
