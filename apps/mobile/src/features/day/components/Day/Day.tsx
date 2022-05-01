@@ -49,8 +49,6 @@ export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
   } = useDayComponent(actions);
   const { t } = useTranslation();
 
-  console.log(student);
-
   return (
     <>
       <MainLayout

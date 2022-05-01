@@ -39,7 +39,7 @@ export const Notification: React.FC<NotificationProps> = ({
 
   useEffect(() => {
     if (!isViewed && isVisible) {
-      setTimeout(() => onView(), 2000);
+      setTimeout(() => onView(), 1000);
     }
   }, [isVisible]);
 

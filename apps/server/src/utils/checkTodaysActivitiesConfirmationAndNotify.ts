@@ -26,9 +26,11 @@ export const checkTodaysActivitiesConfirmationAndNotify = async () => {
       currentDate,
       coachId: coach._id,
     });
+
     const todaysActivities = activitiesOfWeek.filter(
       (activity) => activity.date === stringifyDate(currentDate)
     );
+
     const activitiesToNotify = todaysActivities.filter((activity) =>
       shouldNotifyActivity(activity, coachStudents)
     );

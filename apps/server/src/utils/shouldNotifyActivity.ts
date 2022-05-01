@@ -15,7 +15,6 @@ export const shouldNotifyActivity = (
     createActivityFromSchema(activity),
     students
   );
-
   const currentTime = moment();
   const activityEndTime = parseTime(activity.end);
 

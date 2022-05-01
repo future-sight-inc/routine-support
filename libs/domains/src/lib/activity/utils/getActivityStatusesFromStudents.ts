@@ -14,14 +14,14 @@ export const getActivityStatusesFromStudents = (
   let confirmedStudents: Student[] = [];
   let assignedStudents = students;
 
-  confirmedStudents = getStudentsByIds(
-    students,
-    activity.confirmation[stringifyDate(activity.date)]?.students
-  );
-
-  if (activity.students.length) {
+  if (!activity.isCommon) {
     assignedStudents = getStudentsByIds(students, activity.students);
   }
+
+  confirmedStudents = getStudentsByIds(
+    assignedStudents,
+    activity.confirmation[stringifyDate(activity.date)]?.students
+  );
 
   return {
     confirmedStudents,
