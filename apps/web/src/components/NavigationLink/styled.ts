@@ -7,18 +7,20 @@ export const Wrapper = styled.div<{ isActive: boolean }>`
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  height: 50px;
+
   width: auto;
 
   ${({ theme, isActive }) =>
     !isActive &&
     css`
-      & ${Text}, & * {
+      & ${Text}, & svg,
+      & span {
         color: ${theme.palette.secondary.text};
       }
 
       &:hover {
-        & ${Text}, & * {
+        & ${Text}, & svg,
+        & span {
           color: ${theme.palette.primary.text};
         }
       }
@@ -27,7 +29,8 @@ export const Wrapper = styled.div<{ isActive: boolean }>`
     ${({ theme, isActive }) =>
     isActive &&
       css`
-        & ${Text}, & * {
+        & ${Text}, & svg,
+        & span {
           color: ${theme.palette.primary.main};
         }
       `}}
@@ -35,4 +38,7 @@ export const Wrapper = styled.div<{ isActive: boolean }>`
 
 export const Text = styled(Typography).attrs(() => ({
   variant: "text2Bold",
-}))``;
+}))`
+  display: inline-flex;
+  align-items: center;
+`;

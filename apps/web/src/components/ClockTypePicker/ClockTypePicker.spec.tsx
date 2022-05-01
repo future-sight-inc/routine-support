@@ -38,7 +38,7 @@ describe("ClockTypePicker", () => {
 
     const clockTypeToClick = getByTestId(
       createClockTypeDataTestId({
-        locator: ClockTypePickerLocators.Digital,
+        locator: ClockTypePickerLocators.Analog,
         isActive: false,
       })
     );
@@ -48,7 +48,7 @@ describe("ClockTypePicker", () => {
     expect(
       getByTestId(
         createClockTypeDataTestId({
-          locator: ClockTypePickerLocators.Digital,
+          locator: ClockTypePickerLocators.Analog,
           isActive: true,
         })
       )

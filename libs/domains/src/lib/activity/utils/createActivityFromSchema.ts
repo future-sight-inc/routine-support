@@ -7,7 +7,7 @@ export const createActivityFromSchema = (
   return {
     ...activitySchema,
     date: parseDate(activitySchema.date),
-    start: parseTime(activitySchema.start),
-    end: parseTime(activitySchema.end),
+    start: parseTime(activitySchema.start, activitySchema.date),
+    end: parseTime(activitySchema.end, activitySchema.date),
   };
 };

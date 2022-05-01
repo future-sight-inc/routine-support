@@ -1,10 +1,16 @@
 import { Router } from "express";
-import { ActivityModel } from "@routine-support/domains";
+import {
+  ActivityModel,
+  confirmStudentActivity,
+  WeekSocketEventTypeEnum,
+} from "@routine-support/domains";
 import { studentAuthorization } from "../middleware/studentAuthorization";
 import { stringifyDate } from "@routine-support/utils";
 import { validateActivity } from "../utils/validateActivity";
 import moment from "moment";
 import { coachAuthorization } from "../middleware/coachAuthorization";
+import { SocketUserTypeEnum } from "@routine-support/types";
+import { emitToUser } from "../main";
 
 export const activityRouter = Router();
 
@@ -27,6 +33,7 @@ activityRouter.post("/", coachAuthorization, async (req, res) => {
 
   await ActivityModel.create({
     ...req.body,
+    confirmation: {},
   });
 
   return res.sendStatus(200);
@@ -43,6 +50,7 @@ activityRouter.put("/:id", coachAuthorization, async (req, res) => {
 
   await ActivityModel.findByIdAndUpdate(id, {
     ...req.body,
+    confirmation: {},
   });
 
   return res.sendStatus(200);
@@ -63,24 +71,33 @@ activityRouter.put(
   studentAuthorization,
   async (req, res) => {
     const { id, timestamp } = req.params;
-    const { _id: studentId } = res.locals.student;
-    const dateString = stringifyDate(moment.unix(Number(timestamp)));
+    const { student } = res.locals;
+    const confirmationDate = stringifyDate(moment.unix(Number(timestamp)));
 
-    const updatedActivity = await ActivityModel.findById(id);
+    const activityToConfirm = await ActivityModel.findById(id);
 
-    // todo resolve type
-    if (!updatedActivity!.confirmation[dateString]) {
-      updatedActivity!.confirmation[dateString] = [];
+    if (activityToConfirm) {
+      confirmStudentActivity({
+        student,
+        activity: activityToConfirm,
+        confirmationDate,
+      });
     }
 
-    updatedActivity!.confirmation[dateString].push(studentId);
-
-    ActivityModel.findByIdAndUpdate(id, { ...updatedActivity }, (err) => {
+    ActivityModel.findByIdAndUpdate(id, { ...activityToConfirm }, (err) => {
       if (err) {
         console.log(err);
 
         return;
       }
+
+      emitToUser({
+        userId: student.coachId,
+        userType: SocketUserTypeEnum.Coach,
+        message: {
+          type: WeekSocketEventTypeEnum.UpdateCalendar,
+        },
+      });
 
       return res.sendStatus(200);
     });

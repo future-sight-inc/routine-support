@@ -40,3 +40,8 @@ export enum LanguageEnum {
   Nl = "nl",
   Ru = "ru",
 }
+
+export enum SocketUserTypeEnum {
+  Coach = "coach",
+  Student = "student",
+}

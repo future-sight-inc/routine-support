@@ -1,6 +1,6 @@
 import { createMockStudent } from "@routine-support/test-utils";
 
-import { getPendingStudents } from "./utils";
+import { getPendingStudents } from "./getPendingStudents";
 
 describe("getPendingStudents", () => {
   it("No pending students", () => {

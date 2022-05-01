@@ -3,20 +3,28 @@ import React from "react";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import GroupIcon from "@mui/icons-material/Group";
 import LogoutIcon from "@mui/icons-material/Logout";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import PersonIcon from "@mui/icons-material/Person";
 import { Coach } from "@routine-support/domains";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 
+import { LinkService } from "../../services/LinkService";
+import { Badge } from "../Badge";
 import { NavigationLink } from "../NavigationLink";
 import * as S from "./styled";
 
 interface HeaderProps {
   user: Coach;
+  notViewedCount: number;
   onLogout: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
+export const Header: React.FC<HeaderProps> = ({
+  user,
+  notViewedCount,
+  onLogout,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -34,12 +42,25 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
                 <CalendarTodayIcon />
               </S.IconWrapper>
             }
-            to={"/"}
+            to={LinkService.home()}
           >
             {t("Calendar")}
           </NavigationLink>
-          <NavigationLink icon={<GroupIcon />} to={"/students"}>
+          <NavigationLink icon={<GroupIcon />} to={LinkService.students()}>
             {t("Students")}
+          </NavigationLink>
+          <NavigationLink
+            icon={<NotificationsIcon />}
+            to={LinkService.notifications()}
+          >
+            {t("Notifications")}
+            <S.BadgeWrapper>
+              {notViewedCount > 0 && (
+                <Badge color="alert">
+                  {notViewedCount >= 100 ? "99+" : notViewedCount}
+                </Badge>
+              )}
+            </S.BadgeWrapper>
           </NavigationLink>
         </S.Navigation>
         <S.LogoutWrapper onClick={onLogout}>

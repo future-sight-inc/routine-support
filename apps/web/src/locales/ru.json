@@ -93,5 +93,12 @@
   "QR instructions start": "Отсканируйте в приложении",
   "QR instructions end": "Routine Support, чтобы войти",
 
-  "Rights info": "Routine Support. 2022. Все права защищены"
+  "Rights info": "Routine Support. 2022. Все права защищены",
+
+  "Notifications": "Уведомления",
+  "Activity was missed": "Событие пропущено",
+  "These students were late": "Студенты, которые опоздали",
+  "New": "Новое",
+  "Clear all": "Очистить",
+  "No notifications": "Нет уведомлений"
 }

@@ -4,6 +4,6 @@ import { storiesOf } from "@storybook/react";
 
 import { AddStudentCard } from "./AddStudentCard";
 
-storiesOf("Components", module).add("AddStudentCard", () => (
-  <AddStudentCard onStudentAdd={() => null} />
+storiesOf("Students", module).add("AddStudentCard", () => (
+  <AddStudentCard onStudentModalOpen={() => null} />
 ));

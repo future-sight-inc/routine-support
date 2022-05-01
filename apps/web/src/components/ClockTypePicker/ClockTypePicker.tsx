@@ -14,7 +14,9 @@ export const ClockTypePicker: React.FC<ClockTypePickerProps> = ({
   value: defaultValue,
   onChange,
 }) => {
-  const [value, setValue] = useState(defaultValue || ClockTypeEnum.Analog);
+  const [value, setValue] = useState<ClockTypeEnum>(
+    defaultValue || ClockTypeEnum.Digital
+  );
 
   const handleSelect = (value: ClockTypeEnum) => {
     setValue(value);

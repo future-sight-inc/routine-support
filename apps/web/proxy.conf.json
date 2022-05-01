@@ -1,4 +1,9 @@
 {
+  "/socket.io": {
+    "target": "http://localhost:4000",
+    "secure": false,
+    "ws": true
+  },
   "/api": {
     "target": "http://localhost:4000",
     "secure": true

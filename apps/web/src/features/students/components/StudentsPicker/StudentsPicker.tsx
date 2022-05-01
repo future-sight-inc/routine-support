@@ -1,8 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 
-import { Student } from "@routine-support/domains";
+import { getStudentsByIds, Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
-import { getStudentsByIds } from "apps/web/src/utils/getStudentsByIds";
 import { useTranslation } from "react-i18next";
 
 import {

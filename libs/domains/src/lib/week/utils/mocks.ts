@@ -1,3 +1,13 @@
+export const FIRST_WEEK_OF_YEAR = [
+  "02.01.2023",
+  "03.01.2023",
+  "04.01.2023",
+  "05.01.2023",
+  "06.01.2023",
+  "07.01.2023",
+  "08.01.2023",
+];
+
 export const WEEK_OF_MONTH = [
   "07.03.2022",
   "08.03.2022",
@@ -37,6 +47,11 @@ export const WEEK_INCLUDES_SPECIAL_DATE = [
   "02.3.2024",
   "03.3.2024",
 ];
+
+export const FIRST_WEEK_OF_YEAR_INFO = {
+  week: 1,
+  year: 2023,
+};
 
 export const WEEK_OF_MONTH_INFO = {
   week: 10,

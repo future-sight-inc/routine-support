@@ -8,7 +8,10 @@ export const getStudentsByIds = (
   const result: Student[] = [];
 
   ids.forEach((id) => {
-    const student = students.find((student) => student._id === id);
+    // todo из бд у пользователя летит objectId вместо строки
+    const student = students.find(
+      (student) => String(student._id) === String(id)
+    );
 
     if (student) {
       result.push(student);

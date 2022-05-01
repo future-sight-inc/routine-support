@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
@@ -24,13 +24,6 @@ export const Week: React.FC = () => {
   const Activity = useActivity();
   const Students = useStudents();
   const Coach = useCoach();
-
-  useEffect(() => {
-    if (Coach.models.coach) {
-      Week.operations.getWeek();
-      Students.operations.getStudents();
-    }
-  }, [Coach.models.coach]);
 
   if (!Coach.models.coach) {
     return null;

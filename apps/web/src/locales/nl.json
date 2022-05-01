@@ -90,5 +90,12 @@
   "QR instructions start": "Gebruik QR-scanner in",
   "QR instructions end": "de Routine Support-app om in te loggen",
 
-  "Rights info": "Routine Support. 2022. Alle rechten voorbehouden"
+  "Rights info": "Routine Support. 2022. Alle rechten voorbehouden",
+
+  "Notifications": "Meldingen",
+  "Activity was missed": "Activiteit werd gemist",
+  "These students were late": "Deze studenten waren te laat",
+  "New": "Nieuw",
+  "Clear all": "Alles wissen",
+  "No notifications": "Geen meldingen"
 }

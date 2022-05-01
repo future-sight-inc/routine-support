@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   ActivityFilter,
@@ -33,11 +33,15 @@ export const useWeek = () => {
 
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    getWeek();
+  }, []);
+
   // todo refactor args, add default config obj
   const getWeek = async (data?: {
     params?: {
-      year?: YearNumber;
-      week?: WeekNumber;
+      year: YearNumber;
+      week: WeekNumber;
     };
     activityFilter?: ActivityFilter;
     config?: {
@@ -46,6 +50,8 @@ export const useWeek = () => {
   }) => {
     try {
       !data?.config?.silent && setLoading(true);
+
+      console.log(data?.params);
 
       const date: DateInfo = {
         year: data?.params?.year || dateInfoQuery?.year || currentDateInfo.year,
@@ -64,7 +70,7 @@ export const useWeek = () => {
     } catch (error) {
       setError(error.message);
     } finally {
-      !data?.config?.silent && setLoading(false);
+      setLoading(false);
     }
   };
 
