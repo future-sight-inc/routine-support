@@ -4,23 +4,24 @@ import {
   getActivityStatusesFromStudents,
   Student,
 } from "@routine-support/domains";
-import { parseTime } from "@routine-support/utils";
 import moment from "moment";
 
 export const shouldNotifyActivity = (
-  activity: ActivitySchema,
+  activitySchema: ActivitySchema,
   students: Student[]
 ): boolean => {
+  const activity = createActivityFromSchema(activitySchema);
   const { pendingStudents } = getActivityStatusesFromStudents(
-    createActivityFromSchema(activity),
+    activity,
     students
   );
   const currentTime = moment();
-  const activityEndTime = parseTime(activity.end);
+
+  console.log(activity);
 
   return (
     pendingStudents.length > 0 &&
-    !activity.confirmation[activity.date]?.isNotified &&
-    currentTime.isSameOrAfter(activityEndTime)
+    !activity.confirmation[activitySchema.date]?.isNotified &&
+    currentTime.isSameOrAfter(activity.end)
   );
 };
