@@ -11,9 +11,15 @@ interface BadgeProps {
   color?: BadgeColor;
   textColor?: TextColor;
   children: ReactNode;
+  dataTestId?: string;
 }
 
-export const Badge: React.FC<BadgeProps> = ({ color, textColor, children }) => {
+export const Badge: React.FC<BadgeProps> = ({
+  color,
+  textColor,
+  children,
+  dataTestId,
+}) => {
   const getColorOfBadge = (color?: BadgeColor) => {
     switch (color) {
     case "primary":
@@ -37,7 +43,7 @@ export const Badge: React.FC<BadgeProps> = ({ color, textColor, children }) => {
   };
 
   return (
-    <S.Wrapper color={getColorOfBadge(color)}>
+    <S.Wrapper color={getColorOfBadge(color)} data-testid={dataTestId}>
       <S.InnerText textColor={getColorOfText(textColor)}>
         {children}
       </S.InnerText>

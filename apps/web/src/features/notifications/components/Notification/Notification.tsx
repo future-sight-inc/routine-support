@@ -11,6 +11,10 @@ import { StudentBadge } from "apps/web/src/components/StudentBadge";
 import { useTranslation } from "react-i18next";
 
 import useOnScreen from "./hooks";
+import {
+  createStudentBadgeDataTestId,
+  NotificationLocatorsEnum,
+} from "./locators";
 import * as S from "./styled";
 
 interface NotificationProps {
@@ -49,16 +53,25 @@ export const Notification: React.FC<NotificationProps> = ({
   }
 
   return (
-    <S.Wrapper ref={containerRef}>
+    <S.Wrapper
+      ref={containerRef}
+      data-testid={NotificationLocatorsEnum.Wrapper}
+    >
       <S.Image src="https://www.sclera.be/resources/pictos/biljart%20t.png" />
       <S.InfoWrapper>
         <S.Row>
           <S.Title>{t("Activity was missed")}</S.Title>
-          {!isViewed && <Badge>{t("New")}</Badge>}
+          {!isViewed && (
+            <Badge dataTestId={NotificationLocatorsEnum.NotViewedBadge}>
+              {t("New")}
+            </Badge>
+          )}
         </S.Row>
         <S.Row>
-          <S.Name>{activity.name}</S.Name>
-          <S.Time>
+          <S.Name data-testid={NotificationLocatorsEnum.ActivityName}>
+            {activity.name}
+          </S.Name>
+          <S.Time data-testid={NotificationLocatorsEnum.ActivityTime}>
             {stringifyTime(activity.start)} - {stringifyTime(activity.end)}
           </S.Time>
         </S.Row>
@@ -66,7 +79,11 @@ export const Notification: React.FC<NotificationProps> = ({
           <S.Caption>{t("These students were late")}:</S.Caption>
           <S.StudentsList>
             {pendingStudents.map((student, index) => (
-              <StudentBadge student={student} key={index} />
+              <StudentBadge
+                student={student}
+                key={index}
+                dataTestId={createStudentBadgeDataTestId(student)}
+              />
             ))}
           </S.StudentsList>
         </S.StudentsWrapper>
