@@ -29,7 +29,9 @@ export const NotificationWrapper = styled.div`
 export const NotificationGroupDate = styled(Typography).attrs(() => ({
   variant: "text1",
   color: "secondary",
-}))``;
+}))`
+  text-transform: capitalize;
+`;
 
 export const EmptyText = styled(Typography).attrs(() => ({
   variant: "text1",

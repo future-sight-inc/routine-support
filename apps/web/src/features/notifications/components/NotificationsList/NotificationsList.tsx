@@ -29,7 +29,7 @@ export const NotificationsList: React.FC<NotificationsListProps> = ({
   students,
   actions,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     operations: { handleClearAllNotifications },
   } = useNotificationsListComponent(actions);
@@ -46,7 +46,9 @@ export const NotificationsList: React.FC<NotificationsListProps> = ({
               <S.NotificationGroupDate>
                 {isToday(notificationGroup.date)
                   ? t("Today")
-                  : notificationGroup.date.format("dddd DD MMM")}
+                  : notificationGroup.date
+                    .locale(i18n.language)
+                    .format("dddd DD MMM")}
               </S.NotificationGroupDate>
               <S.NotificationWrapper>
                 {notificationGroup.notifications.map((notification, index) => (
