@@ -52,7 +52,7 @@ export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
   return (
     <>
       <MainLayout
-        title={`${t<string>("Hello")}, ${student.name}`}
+        title={t<string>("Today")}
         accessoryRight={
           <TopNavigationAction
             icon={(props) => (

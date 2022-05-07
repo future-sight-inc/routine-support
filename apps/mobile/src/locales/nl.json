@@ -19,5 +19,9 @@
   "Logout": "Uitloggen",
 
   "Confirm your action": "Bevestig uw actie",
-  "Cancel": "Annuleren"
+  "Cancel": "Annuleren",
+
+  "Enter PIN to log out": "Voer pincode in om uit te loggen",
+  "Hello": "Hallo",
+  "Today": "Vandaag"
 }

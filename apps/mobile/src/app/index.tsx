@@ -5,6 +5,7 @@ import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { NativeModules, Platform } from "react-native";
 import { Provider } from "react-redux";
 import { NativeRouter } from "react-router-native";
 
@@ -22,10 +23,18 @@ i18n.use(initReactI18next).init({
     ru: {
       translation: ruLocale,
     },
+    ru_RU: {
+      translation: ruLocale,
+    },
     nl: {
       translation: nlLocale,
     },
   },
+  lng:
+    Platform.OS === "ios"
+      ? NativeModules.SettingsManager.settings.AppleLocale
+      : NativeModules.I18nManager.localeIdentifier,
+  fallbackLng: "en",
 });
 
 export const AppWrapper: React.FC = ({ children }) => {

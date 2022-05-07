@@ -6,6 +6,7 @@ import {
   studentActions,
 } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
+import { useTranslation } from "react-i18next";
 import { io } from "socket.io-client";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -20,9 +21,10 @@ export const useStudent = () => {
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
+  const { i18n } = useTranslation();
+
   useEffect(() => {
     if (student && !socketConnection) {
-      console.log("connected");
       dispatch(
         studentActions.setSocketConnection(
           // todo Использовать переменную окружения
@@ -36,6 +38,12 @@ export const useStudent = () => {
       );
     }
   }, [student, socketConnection]);
+
+  useEffect(() => {
+    if (student) {
+      i18n.changeLanguage(student.language);
+    }
+  }, [student]);
 
   const login = async (data: LoginStudentDto) => {
     try {
