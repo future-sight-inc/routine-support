@@ -1,53 +1,42 @@
 import React from "react";
 
-import * as eva from "@eva-design/eva";
-import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
-import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import { Provider } from "react-redux";
-import { NativeRouter, Route } from "react-router-native";
+import { WeekSocketEventTypeEnum } from "@routine-support/domains";
+import { Route } from "react-router-native";
 
 import { Day } from "../features/day/components/Day";
+import { useDay } from "../features/day/useDay";
 import { Login } from "../features/student/components/Login";
 import { PrivateRoute } from "../features/student/components/PrivateRoute";
-import enLocale from "../locales/en.json";
-import nlLocale from "../locales/nl.json";
-import ruLocale from "../locales/ru.json";
-import { store } from "./store";
-
-i18n.use(initReactI18next).init({
-  resources: {
-    en: {
-      translation: enLocale,
-    },
-    ru: {
-      translation: ruLocale,
-    },
-    nl: {
-      translation: nlLocale,
-    },
-  },
-});
+import { useSocketEventListener } from "../features/student/hooks/useSocketEventListener";
+import { useStudent } from "../features/student/useStudent";
 
 export const App = () => {
+  const {
+    operations: { getDay },
+  } = useDay();
+
+  const {
+    operations: { getStudent },
+  } = useStudent();
+
+  useSocketEventListener(WeekSocketEventTypeEnum.UpdateSchedule, () => {
+    getDay();
+  });
+
+  useSocketEventListener(WeekSocketEventTypeEnum.UpdateSettings, () => {
+    getStudent();
+  });
+
   return (
     <>
-      <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
-        <Provider store={store}>
-          <NativeRouter>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <PrivateRoute>
-              <Route exact path="/">
-                <Day />
-              </Route>
-            </PrivateRoute>
-          </NativeRouter>
-        </Provider>
-      </ApplicationProvider>
+      <Route exact path="/login">
+        <Login />
+      </Route>
+      <PrivateRoute>
+        <Route exact path="/">
+          <Day />
+        </Route>
+      </PrivateRoute>
     </>
   );
 };

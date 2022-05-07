@@ -18,10 +18,11 @@ export const useStudent = () => {
 
   useEffect(() => {
     if (student && !socketConnection) {
+      console.log("connected");
       dispatch(
         studentActions.setSocketConnection(
           // todo Использовать переменную окружения
-          io("http://192.168.2.7:4000/socket.io", {
+          io("http://192.168.2.7:4000", {
             auth: {
               userId: student._id,
               userType: SocketUserTypeEnum.Student,
