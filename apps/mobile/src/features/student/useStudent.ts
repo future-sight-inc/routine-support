@@ -1,27 +1,38 @@
 import { useEffect, useState } from "react";
 
-import { studentActions, StudentLoginDto } from "@routine-support/domains";
-import { LanguageEnum } from "@routine-support/types";
-import { useTranslation } from "react-i18next";
+import { LoginStudentDto, studentActions } from "@routine-support/domains";
+import { SocketUserTypeEnum } from "@routine-support/types";
+import { io } from "socket.io-client";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { studentAPI } from "../../services/ApiService";
 
 export const useStudent = () => {
   const dispatch = useAppDispatch();
-  const { i18n } = useTranslation();
 
-  const { student, isLogged } = useAppSelector((state) => state.student);
+  const { student, isLogged, socketConnection } = useAppSelector(
+    (state) => state.student
+  );
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    if (student) {
-      i18n.changeLanguage(student.language || LanguageEnum.En);
+    if (student && !socketConnection) {
+      dispatch(
+        studentActions.setSocketConnection(
+          // todo Использовать переменную окружения
+          io("http://192.168.2.7:4000/socket.io", {
+            auth: {
+              userId: student._id,
+              userType: SocketUserTypeEnum.Student,
+            },
+          })
+        )
+      );
     }
-  }, [student]);
+  }, [student, socketConnection]);
 
-  const login = async (data: StudentLoginDto) => {
+  const login = async (data: LoginStudentDto) => {
     try {
       setLoading(true);
 
@@ -74,6 +85,7 @@ export const useStudent = () => {
       isLogged,
       isChecked,
       loading,
+      socketConnection,
     },
     operations: {
       login,

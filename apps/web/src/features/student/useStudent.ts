@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { ActivityFilterService } from "../../services/ActivityFilterService";
 import { studentAPI } from "../../services/ApiService";
 
+// todo Отвязать от studentSlice
 export const useStudent = () => {
   const [loading, setLoading] = useState(false);
   const [studentModalOpened, setStudentModalOpened] = useState(false);
@@ -19,7 +20,7 @@ export const useStudent = () => {
   const coachId = useAppSelector((state) => state.coach.coach?._id);
   const dispatch = useAppDispatch();
 
-  const setStudent = (student?: Partial<Student>) => {
+  const setStudent = (student?: Student) => {
     dispatch(studentActions.setStudent(student || null));
   };
 
