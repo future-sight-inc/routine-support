@@ -2,9 +2,9 @@ import { useEffect } from "react";
 
 import { useStudent } from "../useStudent";
 
-export const useSocketEventListener = (
+export const useSocketEventListener = <T = unknown>(
   eventType: string,
-  listener: (data: unknown) => void
+  listener: (data: T) => void
 ) => {
   const {
     models: { student, socketConnection },

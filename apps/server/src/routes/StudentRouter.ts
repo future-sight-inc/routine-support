@@ -1,5 +1,11 @@
-import { ActivityModel, StudentModel } from "@routine-support/domains";
+import {
+  ActivityModel,
+  StudentModel,
+  WeekSocketEventTypeEnum,
+} from "@routine-support/domains";
+import { SocketUserTypeEnum } from "@routine-support/types";
 import { Router } from "express";
+import { emitToUser } from "../main";
 import { coachAuthorization } from "../middleware/coachAuthorization";
 import {
   STUDENT_LOCALS_NAME,
@@ -66,24 +72,23 @@ studentRouter.delete("/:id", async (req, res) => {
   res.sendStatus(200);
 });
 
-studentRouter.put("/:id", (req, res) => {
+studentRouter.put("/:id", async (req, res) => {
   const id = req.params.id;
 
-  StudentModel.findByIdAndUpdate(
-    id,
-    {
-      ...req.body,
+  await StudentModel.findByIdAndUpdate(id, {
+    ...req.body,
+  });
+
+  emitToUser({
+    userId: id,
+    userType: SocketUserTypeEnum.Student,
+    message: {
+      type: WeekSocketEventTypeEnum.UpdateSettings,
+      data: req.body,
     },
-    (err) => {
-      if (err) {
-        console.log(err);
+  });
 
-        return;
-      }
-
-      res.sendStatus(200);
-    }
-  );
+  res.sendStatus(200);
 });
 
 studentRouter.get("/coach/:id", coachAuthorization, (req, res) => {

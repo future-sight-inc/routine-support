@@ -1,6 +1,6 @@
 import React from "react";
 
-import { WeekSocketEventTypeEnum } from "@routine-support/domains";
+import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { Route } from "react-router-native";
 
 import { Day } from "../features/day/components/Day";
@@ -16,16 +16,19 @@ export const App = () => {
   } = useDay();
 
   const {
-    operations: { getStudent },
+    operations: { updateStudentSettings },
   } = useStudent();
 
   useSocketEventListener(WeekSocketEventTypeEnum.UpdateSchedule, () => {
     getDay();
   });
 
-  useSocketEventListener(WeekSocketEventTypeEnum.UpdateSettings, () => {
-    getStudent();
-  });
+  useSocketEventListener<Partial<Student>>(
+    WeekSocketEventTypeEnum.UpdateSettings,
+    (settings) => {
+      updateStudentSettings(settings);
+    }
+  );
 
   return (
     <>

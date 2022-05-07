@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { LoginStudentDto, studentActions } from "@routine-support/domains";
+import {
+  LoginStudentDto,
+  Student,
+  studentActions,
+} from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { io } from "socket.io-client";
 
@@ -80,6 +84,10 @@ export const useStudent = () => {
     }
   };
 
+  const updateStudentSettings = (settings: Partial<Student>) => {
+    dispatch(studentActions.updateStudentSettings(settings));
+  };
+
   return {
     models: {
       student,
@@ -92,6 +100,7 @@ export const useStudent = () => {
       login,
       logout,
       getStudent,
+      updateStudentSettings,
     },
   };
 };

@@ -26,6 +26,10 @@ export const studentSlice = createSlice({
       // todo баг в типизации redux
       state.socketConnection = action.payload as any;
     },
+    updateStudentSettings: (state, action: PayloadAction<Partial<Student>>) => {
+      // todo баг в типизации redux
+      state.student = { ...state.student, ...action.payload } as any;
+    },
   },
 });
 
