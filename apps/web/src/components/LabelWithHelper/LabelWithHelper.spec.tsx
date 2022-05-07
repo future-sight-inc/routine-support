@@ -2,7 +2,6 @@ import "@testing-library/jest-dom";
 import React from "react";
 
 import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 import { AppWrapper } from "../AppWrapper";
 import { LabelWithHelper } from "./LabelWithHelper";
@@ -45,23 +44,5 @@ describe("LabelWithHelper", () => {
     expect(getByTestId(LabelWithHelperLocators.HelperText)).toHaveTextContent(
       HELPER_TEXT
     );
-  });
-
-  it("Show helper text on hover, hide on mouse leave", async () => {
-    const { getByTestId } = render(
-      <AppWrapper>
-        <LabelWithHelper helperText="Helper text">Label</LabelWithHelper>
-      </AppWrapper>
-    );
-
-    const HelpIcon = getByTestId(LabelWithHelperLocators.HelpIcon);
-    const HelperText = getByTestId(LabelWithHelperLocators.HelperText);
-
-    await userEvent.hover(HelpIcon);
-    // todo resolve test
-    expect(HelperText).toBeInTheDocument();
-
-    await userEvent.unhover(getByTestId(LabelWithHelperLocators.HelpIcon));
-    expect(HelperText).not.toBeVisible();
   });
 });

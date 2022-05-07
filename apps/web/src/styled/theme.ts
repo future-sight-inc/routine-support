@@ -39,7 +39,6 @@ export const Theme: DefaultTheme = {
     },
   },
   borderRadius: "5px",
-  // todo разобраться в структуре, постараться выпилить
   size: {
     cellHeight: "140px",
     maxWidth: "1900px",
