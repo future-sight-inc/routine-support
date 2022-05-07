@@ -1,28 +1,18 @@
 import { useState } from "react";
 
-import {
-  CreateStudentDto,
-  Student,
-  studentActions,
-} from "@routine-support/domains";
+import { CreateStudentDto, Student } from "@routine-support/domains";
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import { ActivityFilterService } from "../../services/ActivityFilterService";
 import { studentAPI } from "../../services/ApiService";
 
-// todo Отвязать от studentSlice
 export const useStudent = () => {
   const [loading, setLoading] = useState(false);
   const [studentModalOpened, setStudentModalOpened] = useState(false);
   const [settingsModalOpened, setSettingsModalOpened] = useState(false);
 
-  const { student } = useAppSelector((state) => state.student);
+  const [student, setStudent] = useState<Student | undefined>();
   const coachId = useAppSelector((state) => state.coach.coach?._id);
-  const dispatch = useAppDispatch();
-
-  const setStudent = (student?: Student) => {
-    dispatch(studentActions.setStudent(student || null));
-  };
 
   const createStudent = async (student: CreateStudentDto) => {
     if (coachId) {
@@ -75,12 +65,12 @@ export const useStudent = () => {
   };
 
   const openNewStudentModal = () => {
-    setStudent();
+    setStudent(undefined);
     setStudentModalOpened(true);
   };
 
   const closeStudentModal = () => {
-    setStudent();
+    setStudent(undefined);
     setStudentModalOpened(false);
   };
 
@@ -102,7 +92,7 @@ export const useStudent = () => {
   };
 
   const closeSettingsModal = () => {
-    setStudent();
+    setStudent(undefined);
     setSettingsModalOpened(false);
   };
 

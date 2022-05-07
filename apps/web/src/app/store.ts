@@ -2,7 +2,6 @@ import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import {
   coachReducer,
   notificationsReducer,
-  studentReducer,
   studentsReducer,
   weekReducer,
 } from "@routine-support/domains";
@@ -11,7 +10,6 @@ export const store = configureStore({
   reducer: {
     week: weekReducer,
     coach: coachReducer,
-    student: studentReducer,
     students: studentsReducer,
     notifications: notificationsReducer,
   },

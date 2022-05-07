@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { SettingsFormActions } from "./SettingsForm";
 
 export const useSettingsFormComponent = (
-  student: Partial<Student> | null,
+  student: Partial<Student> | undefined,
   actions: SettingsFormActions
 ) => {
   const { control, handleSubmit, formState } = useForm({
