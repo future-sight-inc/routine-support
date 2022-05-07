@@ -11,7 +11,7 @@ import { ActivityFormActions } from "./ActivityForm";
 
 export const useActivityFormComponent = (
   coach: Coach,
-  activity: Partial<Activity> | null,
+  activity: Partial<Activity> | undefined,
   actions: ActivityFormActions
 ) => {
   const defaultValues = {

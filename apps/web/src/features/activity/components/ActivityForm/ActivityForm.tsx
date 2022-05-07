@@ -34,7 +34,7 @@ export interface ActivityFormActions {
 
 export interface ActivityFormProps {
   coach: Coach;
-  activity: Partial<Activity> | null;
+  activity: Partial<Activity> | undefined;
   actions: ActivityFormActions;
 }
 
