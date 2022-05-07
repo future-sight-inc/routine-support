@@ -65,7 +65,7 @@ export const useWeek = () => {
       );
 
       dispatch(weekActions.setWeek(week));
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     } finally {
       setLoading(false);

@@ -25,7 +25,7 @@ export const useStudentFormComponent = (
       }
 
       actions.getStudents();
-    } catch (error) {
+    } catch (error: any) {
       setSubmitError(error.message);
     }
   });
