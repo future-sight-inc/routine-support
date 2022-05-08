@@ -21,7 +21,7 @@ export const Modal = styled.div`
 export const ModalContent = styled.div`
   box-sizing: border-box;
   width: 400px;
-  min-height: 200px;
+  min-height: 120px;
   margin: 0 auto;
   margin-top: 20vh;
   margin-bottom: 32px;
