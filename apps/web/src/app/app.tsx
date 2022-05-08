@@ -25,16 +25,14 @@ export const App = () => {
     operations: { getWeek },
   } = useWeek();
   const {
-    operations: { getNotifications },
+    operations: { notify },
   } = useNotifications();
 
   useSocketEventListener(WeekSocketEventTypeEnum.UpdateCalendar, () => {
     getWeek({ config: { silent: true } });
   });
 
-  useSocketEventListener(WeekSocketEventTypeEnum.UpdateNotifications, () => {
-    getNotifications({ config: { silent: true } });
-  });
+  useSocketEventListener(WeekSocketEventTypeEnum.UpdateNotifications, notify);
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment} locale={i18n.language}>

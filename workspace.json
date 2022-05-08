@@ -318,7 +318,7 @@
             "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets/"],
             "styles": ["apps/web/src/styles.scss"],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "webpackConfig": "apps/web/custom-webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -350,7 +350,8 @@
           "options": {
             "buildTarget": "web:build",
             "hmr": true,
-            "proxyConfig": "apps/web/proxy.conf.json"
+            "proxyConfig": "apps/web/proxy.conf.json",
+            "webpackConfig": "apps/web/custom-webpack.config.js"
           },
           "configurations": {
             "production": {

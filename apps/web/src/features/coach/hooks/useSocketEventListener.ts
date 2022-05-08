@@ -11,7 +11,11 @@ export const useSocketEventListener = (
   } = useCoach();
 
   useEffect(() => {
-    if (coach && socketConnection) {
+    if (
+      coach &&
+      socketConnection &&
+      !socketConnection.hasListeners(eventType)
+    ) {
       socketConnection.on(eventType, listener);
     }
   }, [coach, socketConnection]);
