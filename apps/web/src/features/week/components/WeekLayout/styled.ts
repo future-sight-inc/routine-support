@@ -17,7 +17,7 @@ export const Head = styled.div`
 export const ActionsWrapper = styled.div`
   height: calc(100vh - 132px);
   display: grid;
-  grid-template-rows: 40px auto 1fr;
+  grid-template-rows: 40px max-content 1fr;
   gap: 24px;
 `;
 
