@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { StudentFormActions } from "./StudentForm";
 
 export const useStudentFormComponent = (
-  student: Partial<Student> | null,
+  student: Partial<Student> | undefined,
   actions: StudentFormActions
 ) => {
   const { control, handleSubmit, formState, getValues } = useForm({
@@ -25,7 +25,7 @@ export const useStudentFormComponent = (
       }
 
       actions.getStudents();
-    } catch (error) {
+    } catch (error: any) {
       setSubmitError(error.message);
     }
   });

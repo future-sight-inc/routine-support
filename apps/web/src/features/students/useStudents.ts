@@ -27,7 +27,7 @@ export const useStudents = () => {
         const students = await studentAPI.getStudents(coachId);
 
         dispatch(studentsActions.setStudents(students));
-      } catch (error) {
+      } catch (error: any) {
         setError(error.message);
       } finally {
         setLoading(false);

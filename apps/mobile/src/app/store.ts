@@ -1,9 +1,9 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-import { dayReducer, studentAuthReducer } from "@routine-support/domains";
+import { dayReducer, studentReducer } from "@routine-support/domains";
 
 export const store = configureStore({
   reducer: {
-    student: studentAuthReducer,
+    student: studentReducer,
     day: dayReducer,
   },
 });

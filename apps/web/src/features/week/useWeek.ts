@@ -51,8 +51,6 @@ export const useWeek = () => {
     try {
       !data?.config?.silent && setLoading(true);
 
-      console.log(data?.params);
-
       const date: DateInfo = {
         year: data?.params?.year || dateInfoQuery?.year || currentDateInfo.year,
         week: data?.params?.week || dateInfoQuery?.week || currentDateInfo.week,
@@ -67,7 +65,7 @@ export const useWeek = () => {
       );
 
       dispatch(weekActions.setWeek(week));
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     } finally {
       setLoading(false);

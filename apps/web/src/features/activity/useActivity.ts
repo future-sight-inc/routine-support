@@ -1,20 +1,14 @@
 import { useState } from "react";
 
-import { Activity, activityActions } from "@routine-support/domains";
+import { Activity } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { activityAPI } from "../../services/ApiService";
 
 export const useActivity = () => {
   const [loading, setLoading] = useState(false);
   const [opened, setOpened] = useState(false);
-  const { activity } = useAppSelector((state) => state.activity);
-  const dispatch = useAppDispatch();
-
-  const setActivity = (activity?: Partial<Activity>) => {
-    dispatch(activityActions.setActivity(activity || null));
-  };
+  const [activity, setActivity] = useState<Activity | undefined>();
 
   const createActivity = async (activity: Activity) => {
     try {
@@ -57,13 +51,13 @@ export const useActivity = () => {
     setOpened(true);
   };
 
-  const openNewActivityModal = (activity?: Partial<Activity>) => {
-    setActivity(activity);
+  const openNewActivityModal = (activityToOpen?: Partial<Activity>) => {
+    setActivity({ ...activity, ...activityToOpen } as Activity);
     setOpened(true);
   };
 
   const closeActivityModal = () => {
-    setActivity();
+    setActivity(undefined);
     setOpened(false);
   };
 

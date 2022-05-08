@@ -1,14 +1,19 @@
 module.exports = {
-  displayName: "mobile",
-  preset: "../../jest.preset.js",
-  globals: {
-    "ts-jest": {
-      tsconfig: "<rootDir>/tsconfig.spec.json",
-    },
+  displayName: "Routine Support",
+  preset: "react-native",
+  testRunner: "jest-jasmine2",
+  resolver: "@nrwl/jest/plugins/resolver",
+  moduleFileExtensions: ["ts", "js", "html", "tsx", "jsx"],
+  setupFilesAfterEnv: ["<rootDir>/test-setup.ts"],
+  moduleNameMapper: {
+    ".svg": "@nrwl/react-native/plugins/jest/svg-mock",
   },
   transform: {
-    "^.+\\.[tj]sx?$": "ts-jest",
+    "^.+\\.ts?$": "ts-jest",
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+    "^.+\\.(bmp|gif|jpg|jpeg|mp4|png|psd|svg|webp)$": require.resolve(
+      "react-native/jest/assetFileTransformer.js"
+    ),
   },
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  coverageDirectory: "../../coverage/apps/mobile",
 };

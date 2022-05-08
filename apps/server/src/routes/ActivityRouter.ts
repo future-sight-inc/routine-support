@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   ActivityModel,
   confirmStudentActivity,
+  StudentModel,
   WeekSocketEventTypeEnum,
 } from "@routine-support/domains";
 import { studentAuthorization } from "../middleware/studentAuthorization";
@@ -36,6 +37,20 @@ activityRouter.post("/", coachAuthorization, async (req, res) => {
     confirmation: {},
   });
 
+  const coachStudents = await StudentModel.find({
+    coachId: res.locals.coach._id,
+  }).lean();
+
+  coachStudents.forEach((student) =>
+    emitToUser({
+      userId: student._id,
+      userType: SocketUserTypeEnum.Student,
+      message: {
+        type: WeekSocketEventTypeEnum.UpdateSchedule,
+      },
+    })
+  );
+
   return res.sendStatus(200);
 });
 
@@ -53,17 +68,43 @@ activityRouter.put("/:id", coachAuthorization, async (req, res) => {
     confirmation: {},
   });
 
+  const coachStudents = await StudentModel.find({
+    coachId: res.locals.coach._id,
+  }).lean();
+
+  coachStudents.forEach((student) =>
+    emitToUser({
+      userId: student._id,
+      userType: SocketUserTypeEnum.Student,
+      message: {
+        type: WeekSocketEventTypeEnum.UpdateSchedule,
+      },
+    })
+  );
+
   return res.sendStatus(200);
 });
 
 activityRouter.delete("/:id", coachAuthorization, async (req, res) => {
   const id = req.params.id;
 
-  ActivityModel.findByIdAndDelete(id, (err) => {
-    if (err) return console.log(err);
+  await ActivityModel.findByIdAndDelete(id);
 
-    return res.sendStatus(200);
-  });
+  const coachStudents = await StudentModel.find({
+    coachId: res.locals.coach._id,
+  }).lean();
+
+  coachStudents.forEach((student) =>
+    emitToUser({
+      userId: student._id,
+      userType: SocketUserTypeEnum.Student,
+      message: {
+        type: WeekSocketEventTypeEnum.UpdateSchedule,
+      },
+    })
+  );
+
+  return res.sendStatus(200);
 });
 
 activityRouter.put(

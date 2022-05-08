@@ -7,6 +7,7 @@ import {
 } from "@routine-support/domains";
 
 console.log(API_ENDPOINT);
+// todo Использовать переменную окружения
 const client = createClient("http://192.168.2.7:4000/api");
 
 export const dayAPI = createDayAPI(client);

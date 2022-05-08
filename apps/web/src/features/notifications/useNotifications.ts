@@ -29,7 +29,7 @@ export const useNotifications = () => {
         const responseData = await notificationAPI.getNotifications();
 
         dispatch(notificationsActions.setNotificationsGroups(responseData));
-      } catch (error) {
+      } catch (error: any) {
         setError(error.message);
       } finally {
         setLoading(false);

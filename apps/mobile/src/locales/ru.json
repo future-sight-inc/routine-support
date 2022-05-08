@@ -19,5 +19,9 @@
   "Logout": "Выйти",
 
   "Confirm your action": "Подтвердите действие",
-  "Cancel": "Отмена"
+  "Cancel": "Отмена",
+
+  "Enter PIN to log out": "Введите ПИН код для выхода",
+  "Hello": "Привет",
+  "Today": "Сегодня"
 }

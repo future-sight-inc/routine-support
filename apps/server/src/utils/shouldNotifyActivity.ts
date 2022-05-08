@@ -17,8 +17,6 @@ export const shouldNotifyActivity = (
   );
   const currentTime = moment();
 
-  console.log(activity);
-
   return (
     pendingStudents.length > 0 &&
     !activity.confirmation[activitySchema.date]?.isNotified &&

@@ -18,7 +18,7 @@ export interface StudentFormActions {
 }
 
 export interface StudentFormProps {
-  student: Partial<Student> | null;
+  student: Partial<Student> | undefined;
   actions: StudentFormActions;
 }
 

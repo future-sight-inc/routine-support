@@ -19,5 +19,9 @@
   "Logout": "Logout",
 
   "Confirm your action": "Confirm your action",
-  "Cancel": "Cancel"
+  "Cancel": "Cancel",
+
+  "Enter PIN to log out": "Enter PIN to log out",
+  "Hello": "Hello",
+  "Today": "Today"
 }
