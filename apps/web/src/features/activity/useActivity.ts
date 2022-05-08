@@ -19,6 +19,7 @@ export const useActivity = () => {
       setOpened(false);
     } finally {
       setLoading(false);
+      setActivity(undefined);
     }
   };
 
@@ -31,6 +32,7 @@ export const useActivity = () => {
       setOpened(false);
     } finally {
       setLoading(false);
+      setActivity(undefined);
     }
   };
 
@@ -43,6 +45,7 @@ export const useActivity = () => {
       setOpened(false);
     } finally {
       setLoading(false);
+      setActivity(undefined);
     }
   };
 

@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 
 import { Activity, Coach, RepeatTypeEnum } from "@routine-support/domains";
 import { SubmitErrorData } from "@routine-support/types";
+import { useConfirm } from "apps/web/src/services/ConfirmationService";
 import { setFormErrors } from "apps/web/src/utils/setFormErrors";
 import { AxiosError } from "axios";
+import { t } from "i18next";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 
@@ -42,6 +44,8 @@ export const useActivityFormComponent = (
   const [isRepeatTypeAvailable, setRepeatTypeAvailable] = useState(
     !defaultValues.isImportant
   );
+
+  const { confirm } = useConfirm();
 
   useEffect(() => {
     // ! баг в react-hook-form
@@ -95,13 +99,19 @@ export const useActivityFormComponent = (
     }
   });
 
+  // todo Вынести часть логики выше
   const onDelete = async () => {
     const id = getValues()._id;
 
-    if (window.confirm("Confirm your action") && id) {
-      await actions.deleteActivity(id);
+    if (id) {
+      confirm({
+        title: t("Confirm your action"),
+        onConfirm: async () => {
+          await actions.deleteActivity(id);
 
-      actions.getWeek({ config: { silent: true } });
+          actions.getWeek({ config: { silent: true } });
+        },
+      });
     }
   };
 
