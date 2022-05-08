@@ -10,7 +10,7 @@ export const addNotificationToGroup = (
   );
 
   if (groupToAdd) {
-    groupToAdd.notifications.push(notification);
+    groupToAdd.notifications.unshift(notification);
   } else {
     groups.push({
       date: notification.date,

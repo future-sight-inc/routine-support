@@ -76,7 +76,7 @@ export const useNotifications = () => {
 
       await getNotifications();
 
-      toast(t("New notification"), {
+      toast(t("Activity was missed"), {
         hideProgressBar: true,
         onClick: () => {
           history.push(LinkService.notifications());

@@ -28,7 +28,7 @@ describe("addNotificationToGroup", () => {
     expect(groups).toStrictEqual([
       {
         date: notification1.date,
-        notifications: [notification1, notification2],
+        notifications: [notification2, notification1],
       },
     ]);
   });
