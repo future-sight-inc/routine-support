@@ -99,7 +99,6 @@ export const useActivityFormComponent = (
     }
   });
 
-  // todo Вынести часть логики выше
   const onDelete = async () => {
     const id = getValues()._id;
 
