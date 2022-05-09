@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 
-import { Student } from "@routine-support/domains";
+import { getStudentsByIds, Student } from "@routine-support/domains";
+import { Id } from "@routine-support/types";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -13,9 +14,9 @@ import * as S from "./styled";
 import { filterStudents } from "./utils";
 
 interface StudentPickerProps {
-  value?: Student[];
+  value?: Id[];
   students: Student[];
-  onChange: (students: Student[]) => void;
+  onChange: (students: Id[]) => void;
 }
 
 export const StudentsPicker: React.FC<StudentPickerProps> = ({
@@ -28,9 +29,7 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
   const [isOpened, setIsOpened] = useState(false);
   const [filter, setFilter] = useState<string>("");
 
-  const [selectedStudents, setSelectedStudents] = useState<Student[]>(
-    value || []
-  );
+  const [selectedStudents, setSelectedStudents] = useState<Id[]>(value || []);
 
   const studentsToChoose = filterStudents({
     students,
@@ -52,16 +51,19 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
   };
 
   const handleSelect = (student: Student) => {
-    selectedStudents.push(student);
+    selectedStudents.push(student._id);
     setSelectedStudents(selectedStudents);
     onChange(selectedStudents);
     handleClose();
   };
 
   const handleDeleteStudent = (studentToDelete: Student) => {
-    setSelectedStudents((students) =>
-      students.filter((student) => student._id !== studentToDelete._id)
+    const updatedStudents = selectedStudents.filter(
+      (student) => student !== studentToDelete._id
     );
+
+    setSelectedStudents(updatedStudents);
+    onChange(updatedStudents);
   };
 
   return (
@@ -80,21 +82,23 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
         >
           {selectedStudents.length > 0 && (
             <S.StudentsWrapper>
-              {selectedStudents.map((student, index) => (
-                <S.StudentWrapper
-                  key={index}
-                  data-testid={createStudentDataTestId(student)}
-                >
-                  <S.StudentName>{student.name}</S.StudentName>
-                  <S.DeleteStudentIcon
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      handleDeleteStudent(student);
-                    }}
-                    data-testid={createDeleteIconDataTestId(student)}
-                  />
-                </S.StudentWrapper>
-              ))}
+              {getStudentsByIds(students, selectedStudents).map(
+                (student, index) => (
+                  <S.StudentWrapper
+                    key={index}
+                    data-testid={createStudentDataTestId(student)}
+                  >
+                    <S.StudentName>{student.name}</S.StudentName>
+                    <S.DeleteStudentIcon
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleDeleteStudent(student);
+                      }}
+                      data-testid={createDeleteIconDataTestId(student)}
+                    />
+                  </S.StudentWrapper>
+                )
+              )}
             </S.StudentsWrapper>
           )}
           {isOpened ? (
@@ -109,7 +113,7 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
               onClick={handleOpen}
               data-testid={StudentsPickerLocators.OpenText}
             >
-              {t("+ Add student")}
+              + {t("Add student")}
             </S.OpenText>
           )}
         </S.FieldWrapper>

@@ -4,8 +4,8 @@ import React from "react";
 import { createMockStudent } from "@routine-support/test-utils";
 import { cleanup, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { AppWrapper } from "apps/web/src/components/AppWrapper";
 
-import { AppWrapper } from "../AppWrapper";
 import {
   createDeleteIconDataTestId,
   createOptionDataTestId,
@@ -21,6 +21,7 @@ const STUDENT4 = createMockStudent({ name: "Pasha" });
 const STUDENTS = [STUDENT1, STUDENT2, STUDENT3, STUDENT4];
 const NO_MATCHES_FILTER = "Boris";
 const ONE_MATCH_FILTER = "Nikita";
+const ONE_MATCH_FILTER_IGNORE_REGISTER = "nik";
 const TWO_MATCHES_FILTER = "M";
 
 afterEach(cleanup);
@@ -115,7 +116,7 @@ describe("StudentsPicker", () => {
       <AppWrapper>
         <StudentsPicker
           students={STUDENTS}
-          value={[STUDENT1]}
+          value={[STUDENT1._id]}
           onChange={() => null}
         />
       </AppWrapper>
@@ -132,7 +133,7 @@ describe("StudentsPicker", () => {
       <AppWrapper>
         <StudentsPicker
           students={STUDENTS}
-          value={[STUDENT1]}
+          value={[STUDENT1._id]}
           onChange={() => null}
         />
       </AppWrapper>
@@ -153,7 +154,7 @@ describe("StudentsPicker", () => {
       <AppWrapper>
         <StudentsPicker
           students={[STUDENT1]}
-          value={[STUDENT1]}
+          value={[STUDENT1._id]}
           onChange={() => null}
         />
       </AppWrapper>
@@ -170,7 +171,7 @@ describe("StudentsPicker", () => {
       <AppWrapper>
         <StudentsPicker
           students={[STUDENT1]}
-          value={[STUDENT1]}
+          value={[STUDENT1._id]}
           onChange={() => null}
         />
       </AppWrapper>
@@ -188,12 +189,35 @@ describe("StudentsPicker", () => {
     );
   });
 
+  it("Filter with one match (ignore register)", async () => {
+    const { getByTestId } = render(
+      <AppWrapper>
+        <StudentsPicker
+          students={[STUDENT1]}
+          value={[STUDENT1._id]}
+          onChange={() => null}
+        />
+      </AppWrapper>
+    );
+
+    await userEvent.click(getByTestId(StudentsPickerLocators.FieldWrapper));
+    expect(getByTestId(StudentsPickerLocators.Menu)).toBeVisible();
+    await userEvent.type(
+      getByTestId(StudentsPickerLocators.SearchField),
+      ONE_MATCH_FILTER_IGNORE_REGISTER
+    );
+
+    waitFor(() =>
+      expect(getByTestId(createOptionDataTestId(STUDENT3))).toBeVisible()
+    );
+  });
+
   it("Filter with one match", async () => {
     const { getByTestId } = render(
       <AppWrapper>
         <StudentsPicker
           students={[STUDENT1]}
-          value={[STUDENT1]}
+          value={[STUDENT1._id]}
           onChange={() => null}
         />
       </AppWrapper>
@@ -219,7 +243,7 @@ describe("StudentsPicker", () => {
       <AppWrapper>
         <StudentsPicker
           students={[STUDENT1]}
-          value={[STUDENT1]}
+          value={[STUDENT1._id]}
           onChange={() => null}
         />
       </AppWrapper>

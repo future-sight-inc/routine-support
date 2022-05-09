@@ -9,6 +9,7 @@ import {
 import { Id } from "@routine-support/types";
 import { CommonFlagPicker } from "apps/web/src/components/FormFields/CommonFlagPicker";
 import { ImportantFlagPicker } from "apps/web/src/components/FormFields/ImportantFlagPicker";
+import { StudentsPicker } from "apps/web/src/components/FormFields/StudentsPicker";
 import { useTranslation } from "react-i18next";
 
 import { ErrorText } from "../../../../components/ErrorText";
@@ -17,7 +18,6 @@ import { DatePicker } from "../../../../components/FormFields/DatePicker";
 import { PictogramPicker } from "../../../../components/FormFields/PictogramPicker";
 import { RepeatTypePicker } from "../../../../components/FormFields/RepeatTypePicker";
 import { TimePicker } from "../../../../components/FormFields/TimePicker";
-import { StudentsPicker } from "../../../students/components/StudentsPicker";
 import { useActivityFormComponent } from "./hooks";
 import * as S from "./styled";
 

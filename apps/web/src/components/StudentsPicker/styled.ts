@@ -1,8 +1,7 @@
 import ClearIcon from "@mui/icons-material/Clear";
+import { TextField } from "apps/web/src/components/TextField";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import styled, { css } from "styled-components";
-
-import { Typography } from "../../styled/components/Typography";
-import { TextField } from "../TextField";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -92,6 +91,7 @@ export const Menu = styled.div`
   left: 0;
   right: 0;
   transform: translateY(100%);
+  z-index: 1000;
 
   ${({ theme }) => css`
     border-radius: ${theme.borderRadius};
