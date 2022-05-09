@@ -1,14 +1,20 @@
+import { useConfirm } from "apps/web/src/services/ConfirmationService";
 import { useTranslation } from "react-i18next";
 
 import { LayoutActions } from "./Layout";
 
 export const useLayoutComponent = (actions: LayoutActions) => {
   const { t } = useTranslation();
+  const { confirm } = useConfirm();
 
   const handleLogout = () => {
-    if (window.confirm(t("Logout confirm message"))) {
-      actions.logout();
-    }
+    confirm({
+      title: t("Confirm your action"),
+      description: t("Logout confirm message"),
+      onConfirm: () => {
+        actions.logout();
+      },
+    });
   };
 
   return {

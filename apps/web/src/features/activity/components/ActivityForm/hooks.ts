@@ -105,6 +105,7 @@ export const useActivityFormComponent = (
     if (id) {
       confirm({
         title: t("Confirm your action"),
+        description: t("Are you sure you want to delete this activity?"),
         onConfirm: async () => {
           await actions.deleteActivity(id);
 

@@ -99,5 +99,10 @@
   "New": "New",
   "Clear all": "Clear all",
   "No notifications": "No notifications",
-  "Confirm": "Confirm"
+  "Confirm": "Confirm",
+
+  "Confirm your action": "Confirm your action",
+  "Are you sure you want to delete this activity?": "Are you sure you want to delete this activity?",
+  "Are you sure you want to delete all notifications?": "Are you sure you want to delete all notifications?",
+  "Are you sure you want to delete this student?": "Are you sure you want to delete this student?"
 }

@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 import { ColorEnum, Student } from "@routine-support/domains";
+import { useConfirm } from "apps/web/src/services/ConfirmationService";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { StudentFormActions } from "./StudentForm";
 
@@ -13,6 +15,8 @@ export const useStudentFormComponent = (
     defaultValues: { pinCode: "0000", color: ColorEnum.Purple, ...student },
   });
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const { confirm } = useConfirm();
+  const { t } = useTranslation();
 
   const onSubmit = handleSubmit(async (values) => {
     try {
@@ -33,10 +37,16 @@ export const useStudentFormComponent = (
   const onDelete = async () => {
     const student = getValues() as Student;
 
-    if (window.confirm("Confirm your action") && student._id) {
-      await actions.deleteStudent(student);
+    if (student._id) {
+      confirm({
+        title: t("Confirm your action"),
+        description: t("Are you sure you want to delete this student?"),
+        onConfirm: async () => {
+          await actions.deleteStudent(student);
 
-      actions.getStudents();
+          actions.getStudents();
+        },
+      });
     }
   };
 
