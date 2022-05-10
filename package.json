@@ -55,6 +55,7 @@
     "expo-status-bar": "1.2.0",
     "expo-structured-headers": "2.1.1",
     "expo-updates": "~0.11.7",
+    "express": "^4.18.1",
     "express-bearer-token": "^2.4.0",
     "i18next": "^21.8.0",
     "i18next-browser-languagedetector": "^6.1.4",
