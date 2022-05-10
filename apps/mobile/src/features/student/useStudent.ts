@@ -74,6 +74,9 @@ export const useStudent = () => {
       dispatch(studentActions.setStudent(null));
       setIsChecked(true);
       setLoading(false);
+
+      socketConnection?.disconnect();
+      dispatch(studentActions.setSocketConnection(null));
     }
   };
 
