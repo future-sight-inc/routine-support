@@ -100,5 +100,11 @@
   "These students were late": "Студенты, которые опоздали",
   "New": "Новое",
   "Clear all": "Очистить",
-  "No notifications": "Нет уведомлений"
+  "No notifications": "Нет уведомлений",
+  "Confirm": "Подтвердить",
+
+  "Confirm your action": "Подтвердите действие",
+  "Are you sure you want to delete this activity?": "Вы уверены, что хотите удалить событие?",
+  "Are you sure you want to delete all notifications?": "Вы уверены, что хотите удалить все уведомления?",
+  "Are you sure you want to delete this student?": "Вы уверены, что хотите удалить учетную запись студента?"
 }

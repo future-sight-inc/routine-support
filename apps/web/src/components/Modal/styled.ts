@@ -1,7 +1,7 @@
 import UICloseIcon from "@mui/icons-material/Close";
 import { rgba } from "polished";
 import styled, { css } from "styled-components";
-
+import styledQuery from "styled-container-query";
 export const Modal = styled.div`
   top: 0;
   bottom: 0;
@@ -18,10 +18,10 @@ export const Modal = styled.div`
   `}
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styledQuery.div`
   box-sizing: border-box;
   width: 400px;
-  min-height: 200px;
+  min-height: 120px;
   margin: 0 auto;
   margin-top: 20vh;
   margin-bottom: 32px;
@@ -29,6 +29,11 @@ export const ModalContent = styled.div`
   padding-bottom: 24px;
   box-sizing: border-box;
   position: relative;
+
+  &:container(max-height: 60%) {
+    margin-top: 50vh;
+    transform: translateY(-50%);
+  }
 
   ${({ theme }) => css`
     background: ${theme.palette.common.white};

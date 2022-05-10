@@ -8525,6 +8525,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-confirm@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@types/react-confirm/-/react-confirm-0.1.4.tgz#e618562febf8f6e87a878aa9cec1378ac0d94ccc"
+  integrity sha512-WL24KCSFgH0IkJVUmJuHfogflQpY9TUxS1Tso1AtkP0BgmDrFMZcRvAJ+JHj0BcMBwordyiKhj4f+2OJHDwq+Q==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@17.0.2":
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.2.tgz#35654cf6c49ae162d5bc90843d5437dc38008d43"
@@ -25722,6 +25729,11 @@ react-colorful@^5.1.2:
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.5.1.tgz#29d9c4e496f2ca784dd2bb5053a3a4340cfaf784"
   integrity sha512-M1TJH2X3RXEt12sWkpa6hLc/bbYS0H6F4rIqjQZ+RxNBstpY67d9TrFXtqdZwhpmBXcCwEi7stKqFue3ZRkiOg==
+
+react-confirm@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/react-confirm/-/react-confirm-0.2.2.tgz#e329d0b4e7d5165704f5e2841efb10bcea0c3dcb"
+  integrity sha512-jSqN+HiT9k/Ru1h7r1/mSqSKyKbl68JIEbW+Hs4KV9OAudYauM3bHgPMMHbQ3M5L2zBVIwynEetb55bBghV6vA==
 
 react-dev-utils@10.2.1, react-dev-utils@~10.2.1:
   version "10.2.1"

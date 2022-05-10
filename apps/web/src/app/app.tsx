@@ -16,6 +16,7 @@ import { useNotifications } from "../features/notifications/useNotifications";
 import { Students } from "../features/students/Students";
 import { Week } from "../features/week";
 import { useWeek } from "../features/week/useWeek";
+import { ConfirmationProvider } from "../services/ConfirmationService";
 import { LinkService } from "../services/LinkService";
 
 export const App = () => {
@@ -25,38 +26,38 @@ export const App = () => {
     operations: { getWeek },
   } = useWeek();
   const {
-    operations: { getNotifications },
+    operations: { notify },
   } = useNotifications();
 
   useSocketEventListener(WeekSocketEventTypeEnum.UpdateCalendar, () => {
     getWeek({ config: { silent: true } });
   });
 
-  useSocketEventListener(WeekSocketEventTypeEnum.UpdateNotifications, () => {
-    getNotifications({ config: { silent: true } });
-  });
+  useSocketEventListener(WeekSocketEventTypeEnum.UpdateNotifications, notify);
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment} locale={i18n.language}>
-      <Route path={LinkService.login()}>
-        <LoginForm />
-      </Route>
-      <Route path={LinkService.register()}>
-        <RegisterForm />
-      </Route>
-      <PrivateRoute>
-        <Layout>
-          <Route exact path={LinkService.home()}>
-            <Week />
-          </Route>
-          <Route exact path={LinkService.students()}>
-            <Students />
-          </Route>
-          <Route exact path={LinkService.notifications()}>
-            <Notifications />
-          </Route>
-        </Layout>
-      </PrivateRoute>
+      <ConfirmationProvider>
+        <Route path={LinkService.login()}>
+          <LoginForm />
+        </Route>
+        <Route path={LinkService.register()}>
+          <RegisterForm />
+        </Route>
+        <PrivateRoute>
+          <Layout>
+            <Route exact path={LinkService.home()}>
+              <Week />
+            </Route>
+            <Route exact path={LinkService.students()}>
+              <Students />
+            </Route>
+            <Route exact path={LinkService.notifications()}>
+              <Notifications />
+            </Route>
+          </Layout>
+        </PrivateRoute>
+      </ConfirmationProvider>
     </LocalizationProvider>
   );
 };

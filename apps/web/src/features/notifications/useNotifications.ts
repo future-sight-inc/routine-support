@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 
 import { Notification, notificationsActions } from "@routine-support/domains";
+import { useTranslation } from "react-i18next";
+import { useHistory, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { notificationAPI } from "../../services/ApiService";
+import { LinkService } from "../../services/LinkService";
+import notificationSound from "./notificationSound.mp3";
 
 export const useNotifications = () => {
+  const location = useLocation();
+  const history = useHistory();
+  const { t } = useTranslation();
+
   const [loading, setLoading] = useState(true);
   const { notificationsGroups, notViewedCount } = useAppSelector(
     (state) => state.notifications
@@ -61,6 +70,23 @@ export const useNotifications = () => {
     }
   };
 
+  const notify = async () => {
+    if (location.pathname !== LinkService.notifications()) {
+      const audio = new Audio(notificationSound);
+
+      await getNotifications();
+
+      toast(t("Activity was missed"), {
+        hideProgressBar: true,
+        onClick: () => {
+          history.push(LinkService.notifications());
+        },
+      });
+
+      audio.play();
+    }
+  };
+
   return {
     models: { notificationsGroups, notViewedCount, loading, error },
     operations: {
@@ -68,6 +94,7 @@ export const useNotifications = () => {
       deleteNotification,
       clearAllNotifications,
       viewNotification,
+      notify,
     },
   };
 };

@@ -97,5 +97,11 @@
   "These students were late": "Deze studenten waren te laat",
   "New": "Nieuw",
   "Clear all": "Alles wissen",
-  "No notifications": "Geen meldingen"
+  "No notifications": "Geen meldingen",
+  "Confirm": "Bevestigen",
+
+  "Confirm your action": "Bevestig je actie",
+  "Are you sure you want to delete this activity?": "Weet je zeker dat je deze activiteit wilt verwijderen?",
+  "Are you sure you want to delete all notifications?": "Weet je zeker dat je alle meldingen wilt verwijderen?",
+  "Are you sure you want to delete this student?": "Weet je zeker dat je deze leerling wilt verwijderen?"
 }
