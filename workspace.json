@@ -1,16 +1,16 @@
 {
   "version": 2,
   "projects": {
-    "mobile": "apps/mobile",
-    "mobile-e2e": "apps/mobile-e2e",
-    "web": "apps/web",
-    "web-e2e": "apps/web-e2e",
-    "server": "apps/server",
     "api-client": "libs/api-client",
     "constants": "libs/constants",
     "domains": "libs/domains",
+    "mobile": "apps/mobile",
+    "mobile-e2e": "apps/mobile-e2e",
+    "server": "apps/server",
     "test-utils": "libs/test-utils",
     "types": "libs/types",
-    "utils": "libs/utils"
+    "utils": "libs/utils",
+    "web": "apps/web",
+    "web-e2e": "apps/web-e2e"
   }
 }
