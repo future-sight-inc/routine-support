@@ -1,4 +1,3 @@
-import { API_ENDPOINT } from "@env";
 import { createClient } from "@routine-support/api-client";
 import {
   createActivityAPI,
@@ -6,7 +5,6 @@ import {
   createStudentAPI,
 } from "@routine-support/domains";
 
-console.log(API_ENDPOINT);
 // todo Использовать переменную окружения
 const client = createClient("http://192.168.2.7:4000/api");
 

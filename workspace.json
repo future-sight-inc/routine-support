@@ -74,20 +74,6 @@
       },
       "tags": []
     },
-    "api-interfaces": {
-      "root": "libs/api-interfaces",
-      "sourceRoot": "libs/api-interfaces/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
-          }
-        }
-      }
-    },
     "constants": {
       "root": "libs/constants",
       "sourceRoot": "libs/constants/src",
@@ -140,41 +126,85 @@
       "projectType": "application",
       "generators": {},
       "targets": {
-        "bundle": {
-          "executor": "nx-react-native-expo:bundle",
-          "options": {}
-        },
         "start": {
-          "executor": "nx-react-native-expo:start",
-          "options": {}
+          "executor": "@nrwl/expo:start",
+          "options": {
+            "port": 8081
+          }
+        },
+        "web": {
+          "executor": "@nrwl/expo:start",
+          "options": {
+            "port": 8081,
+            "webpack": true
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "nx start mobile"
+          }
         },
         "run-ios": {
-          "executor": "nx-react-native-expo:run-ios",
-          "options": {}
+          "executor": "@nrwl/expo:run",
+          "options": {
+            "platform": "ios"
+          }
         },
         "run-android": {
-          "executor": "nx-react-native-expo:run-android",
+          "executor": "@nrwl/expo:run",
+          "options": {
+            "platform": "android"
+          }
+        },
+        "build-ios": {
+          "executor": "@nrwl/expo:build-ios",
           "options": {}
         },
-        "run-web": {
-          "executor": "nx-react-native-expo:run-web",
+        "build-android": {
+          "executor": "@nrwl/expo:build-android",
+          "options": {}
+        },
+        "build-web": {
+          "executor": "@nrwl/expo:build-web",
+          "options": {}
+        },
+        "build-status": {
+          "executor": "@nrwl/expo:build-web",
+          "options": {}
+        },
+        "sync-deps": {
+          "executor": "@nrwl/expo:sync-deps",
+          "options": {}
+        },
+        "ensure-symlink": {
+          "executor": "@nrwl/expo:ensure-symlink",
           "options": {}
         },
         "publish": {
-          "executor": "nx-react-native-expo:publish",
+          "executor": "@nrwl/expo:publish",
+          "options": {}
+        },
+        "publish-set": {
+          "executor": "@nrwl/expo:publish-set",
+          "options": {}
+        },
+        "rollback": {
+          "executor": "@nrwl/expo:rollback",
           "options": {}
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["apps/mobile/**/*.{js,ts,tsx}"]
+            "lintFilePatterns": ["apps/mobile/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/mobile"],
           "options": {
-            "jestConfig": "apps/mobile/jest.config.js",
+            "jestConfig": "apps/mobile/jest.config.ts",
             "passWithNoTests": true
           }
         }
