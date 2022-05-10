@@ -5,7 +5,7 @@ import { Button } from "../../styled/components/Button";
 import { ErrorText as UIErrorText } from "../ErrorText";
 
 export const Wrapper = styled.div`
-  height: calc(100vh - 100px);
+  height: 100%;
   box-sizing: border-box;
   padding: 16px;
   overflow: scroll;

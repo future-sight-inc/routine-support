@@ -7,18 +7,24 @@ export const Wrapper = styled.div`
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   width: 100%;
 `;
 
 export const Title = styled(Typography).attrs(() => ({
   variant: "text1Bold",
-}))``;
+}))`
+  position: fixed;
+  width: 180px;
+  padding-bottom: 1em;
+  margin-top: -2px;
 
-export const FiltersWrapper = styled.div`
-  height: calc(100vh - 523px);
-  overflow: scroll;
+  ${({ theme }) =>
+    css`
+      background: ${theme.palette.common.white};
+    `};
 `;
+
+export const FiltersWrapper = styled.div``;
 
 export const FilterWrapper = styled.div`
   height: 30px;
@@ -35,6 +41,10 @@ export const FilterWrapper = styled.div`
     white-space: nowrap;
     display: block;
     text-overflow: ellipsis;
+  }
+
+  &:first-child {
+    margin-top: 2em;
   }
 
   &:hover {
