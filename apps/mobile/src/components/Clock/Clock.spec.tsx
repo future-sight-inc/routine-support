@@ -1,19 +1,19 @@
 import { ClockTypeEnum } from "@routine-support/domains";
 import { createMockActivity } from "@routine-support/test-utils";
-import { cleanup, render } from "@testing-library/react-native";
-
-import "@testing-library/jest-native";
-import { AppWrapper } from "../../app";
+import React from "react";
 import { Clock, ClockSizeEnum } from "./Clock";
+import { AppWrapper } from "../AppWrapper";
+import { render } from "@testing-library/react-native";
 import { ClockLocators } from "./locators";
-
-afterEach(cleanup);
+import { parseTime } from "@routine-support/utils";
 
 describe("Clock", () => {
   it("Digital clock", () => {
-    const activity = createMockActivity();
-
-    const { queryByTestId } = render(
+    const activity = createMockActivity({
+      start: parseTime("10:00"),
+      end: parseTime("11:00"),
+    });
+    const { getByTestId, findByText } = render(
       <AppWrapper>
         <Clock
           start={activity.start}
@@ -24,8 +24,7 @@ describe("Clock", () => {
       </AppWrapper>
     );
 
-    expect(queryByTestId(ClockLocators.DigitalClock)).toHaveTextContent(
-      "10000"
-    );
+    expect(getByTestId(ClockLocators.DigitalClock)).toBeTruthy();
+    expect(findByText("10:00-11:00")).toBeTruthy();
   });
 });

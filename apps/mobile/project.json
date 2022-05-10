@@ -80,7 +80,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/mobile"],
       "options": {
-        "jestConfig": "apps/mobile/jest.config.ts",
+        "jestConfig": "apps/mobile/jest.config.js",
         "passWithNoTests": true
       }
     }
