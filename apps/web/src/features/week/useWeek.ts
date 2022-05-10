@@ -16,6 +16,7 @@ import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
 import { useSavedActivityFilter } from "../../hooks/useSavedActivityFilter";
 import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";
 import { weekAPI } from "../../services/ApiService";
+import { LinkService } from "../../services/LinkService";
 
 export const useWeek = () => {
   const [loading, setLoading] = useState(false);
@@ -72,6 +73,12 @@ export const useWeek = () => {
     }
   };
 
+  const updateWeek = () => {
+    if (window.location.pathname === LinkService.home()) {
+      getWeek({ config: { silent: true } });
+    }
+  };
+
   return {
     models: {
       week,
@@ -81,6 +88,7 @@ export const useWeek = () => {
     },
     operations: {
       getWeek,
+      updateWeek,
     },
   };
 };
