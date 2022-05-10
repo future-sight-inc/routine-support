@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  height: 100%;
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 16px;
-  overflow: hidden;
 `;
 
 export const Head = styled.div`
@@ -15,21 +15,23 @@ export const Head = styled.div`
 `;
 
 export const ActionsWrapper = styled.div`
-  height: calc(100vh - 132px);
   display: grid;
-  grid-template-rows: 40px max-content 1fr;
+  grid-template-rows: 40px auto 1fr;
   gap: 24px;
+  overflow: hidden;
 `;
 
-export const FilterWrapper = styled.div``;
+export const FilterWrapper = styled.div`
+  overflow: scroll;
+`;
 
 export const MiniCalendarWrapper = styled.div``;
 
 export const CalendarWrapper = styled.div`
-  height: calc(100vh - 132px);
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-height: 0;
 `;
 
 export const ButtonWrapper = styled.div`

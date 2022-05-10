@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-row: 50px 1fr 50px;
+  grid-template-rows: max-content 1fr max-content;
   height: 100vh;
   cursor: default;
 `;
