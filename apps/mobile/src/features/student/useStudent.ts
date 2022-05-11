@@ -11,9 +11,13 @@ import { io } from "socket.io-client";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { studentAPI } from "../../services/ApiService";
+import { getEnvVars } from "apps/mobile/environment";
 
 export const useStudent = () => {
+  const { socketEndpoint } = getEnvVars();
   const dispatch = useAppDispatch();
+
+  console.log(socketEndpoint);
 
   const { student, isLogged, socketConnection } = useAppSelector(
     (state) => state.student
@@ -27,8 +31,7 @@ export const useStudent = () => {
     if (student && !socketConnection) {
       dispatch(
         studentActions.setSocketConnection(
-          // todo Использовать переменную окружения
-          io("http://192.168.2.7:4000", {
+          io(socketEndpoint, {
             auth: {
               userId: student._id,
               userType: SocketUserTypeEnum.Student,

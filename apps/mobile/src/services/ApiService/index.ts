@@ -4,9 +4,11 @@ import {
   createDayAPI,
   createStudentAPI,
 } from "@routine-support/domains";
+import { getEnvVars } from "apps/mobile/environment";
 
-// todo Использовать переменную окружения
-const client = createClient("http://192.168.2.7:4000/api");
+const { apiEndpoint } = getEnvVars();
+
+const client = createClient(apiEndpoint);
 
 export const dayAPI = createDayAPI(client);
 export const studentAPI = createStudentAPI(client);
