@@ -36,10 +36,7 @@ export const useDay = () => {
     try {
       setLoading(true);
 
-      await activityAPI.confirmActivity({
-        id: activity._id as string,
-        timestamp: activity.date.unix(),
-      });
+      await activityAPI.confirmActivity(activity);
 
       getDay();
     } catch (error) {
