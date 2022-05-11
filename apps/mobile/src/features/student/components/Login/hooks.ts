@@ -3,10 +3,14 @@ import { useEffect, useState } from "react";
 import { BarCodeEvent, BarCodeScanner } from "expo-barcode-scanner";
 
 import { LoginActions } from "./Login";
+import { useWindowDimensions } from "react-native";
+import { isInArea } from "./utils";
 
 export const useLoginComponent = (actions: LoginActions) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanning, setScanning] = useState(false);
+  const { height: viewportHeight, width: viewportWidth } =
+    useWindowDimensions();
 
   useEffect(() => {
     checkPermission();
@@ -20,15 +24,32 @@ export const useLoginComponent = (actions: LoginActions) => {
 
   const handleQrScanned = (event: BarCodeEvent) => {
     try {
-      const data = JSON.parse(event.data);
+      if (event.cornerPoints && event.bounds) {
+        const barcodeArea = {
+          x: viewportWidth / 2 - 125,
+          y: viewportHeight / 2 - 125,
+          width: 250,
+          height: 250,
+        };
+        const barcode = {
+          x: event.cornerPoints[0].x,
+          y: event.cornerPoints[0].y,
+          width: event.bounds.size.width,
+          height: event.bounds.size.height,
+        };
 
-      if (data.id) {
-        actions.login(data);
+        if (isInArea(barcodeArea, barcode)) {
+          const data = JSON.parse(event.data);
+
+          if (data.id) {
+            actions.login(data);
+          }
+
+          setScanning(false);
+        }
       }
     } catch (error) {
       console.error(error);
-    } finally {
-      setScanning(false);
     }
   };
 
