@@ -80,7 +80,7 @@ export const useLoginComponent = (actions: LoginActions) => {
     } finally {
       setLoading(false);
 
-      setTimeout(() => setBarcode(undefined), 3000);
+      setTimeout(() => setBarcode(undefined), 1000);
     }
   };
 
