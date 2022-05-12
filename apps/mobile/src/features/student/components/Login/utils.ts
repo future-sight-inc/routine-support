@@ -13,9 +13,9 @@ export const isInArea = (
   }
 ): boolean => {
   return (
-    barcode.x > area.x &&
-    barcode.x + barcode.width < area.x + area.width &&
-    barcode.y > area.y &&
-    barcode.y + barcode.height < area.y + area.height
+    barcode.x >= area.x &&
+    barcode.x + barcode.width <= area.x + area.width &&
+    barcode.y >= area.y &&
+    barcode.y + barcode.height <= area.y + area.height
   );
 };
