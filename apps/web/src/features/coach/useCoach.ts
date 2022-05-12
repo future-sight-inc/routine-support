@@ -23,6 +23,7 @@ export const useCoach = () => {
 
   useEffect(() => {
     if (coach && !socketConnection) {
+      console.log("connected");
       dispatch(
         coachActions.setSocketConnection(
           io({

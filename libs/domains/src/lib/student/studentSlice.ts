@@ -23,6 +23,10 @@ export const studentSlice = createSlice({
       state.isLogged = !!action.payload;
     },
     setSocketConnection: (state, action: PayloadAction<Socket | null>) => {
+      if (state.socketConnection) {
+        state.socketConnection.disconnect();
+      }
+
       // todo баг в типизации redux
       state.socketConnection = action.payload as any;
     },
