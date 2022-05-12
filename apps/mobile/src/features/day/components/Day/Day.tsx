@@ -6,7 +6,6 @@ import {
   Student,
 } from "@routine-support/domains";
 import {
-  Divider,
   Icon,
   Layout,
   List,
@@ -70,7 +69,6 @@ export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
         <List
           onRefresh={() => actions.getDay()}
           refreshing={loading}
-          ItemSeparatorComponent={Divider}
           style={styles.list}
           ListEmptyComponent={
             <Layout style={styles.emptyWrapper}>

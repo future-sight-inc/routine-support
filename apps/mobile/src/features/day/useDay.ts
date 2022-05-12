@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Activity, dayActions } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
-import moment, { Moment } from "moment";
+import moment from "moment";
 import { useDispatch } from "react-redux";
 
 import { useAppSelector } from "../../app/hooks";
@@ -11,18 +11,25 @@ import { activityAPI, dayAPI } from "../../services/ApiService";
 export const useDay = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const currentDate = moment();
   const { day } = useAppSelector((state) => state.day);
 
   useEffect(() => {
-    getDay(currentDate);
+    getDay();
   }, []);
 
-  const getDay = async (date: Moment = currentDate) => {
-    try {
-      setLoading(true);
+  useEffect(() => {
+    const intervalId = setInterval(async () => {
+      await getDay({ silent: true });
+    }, 60 * 1000);
 
-      const day = await dayAPI.getDay(stringifyDate(date));
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const getDay = async (config?: { silent: boolean }) => {
+    try {
+      !config?.silent && setLoading(true);
+
+      const day = await dayAPI.getDay(stringifyDate(moment()));
 
       dispatch(dayActions.setDay(day));
     } catch (error) {
@@ -34,18 +41,11 @@ export const useDay = () => {
 
   const confirmActivity = async (activity: Activity) => {
     try {
-      setLoading(true);
+      await activityAPI.confirmActivity(activity);
 
-      await activityAPI.confirmActivity({
-        id: activity._id as string,
-        timestamp: activity.date.unix(),
-      });
-
-      getDay();
+      getDay({ silent: true });
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 

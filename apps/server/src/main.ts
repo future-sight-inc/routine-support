@@ -61,4 +61,7 @@ io.on("connection", (socket) => {
 
 export const emitToUser = createEmitToUser(connections);
 
-setInterval(checkTodaysActivitiesConfirmationAndNotify, 1000);
+setInterval(
+  checkTodaysActivitiesConfirmationAndNotify,
+  Number(process.env.NOTIFIER_INTERVAL) || 60 * 1000
+);

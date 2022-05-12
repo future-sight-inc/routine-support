@@ -1,14 +1,43 @@
 {
-  "name": "routine-support",
+  "name": "mobile",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@eva-design/eva": "*",
+    "@expo/metro-config": "*",
+    "@nrwl/expo": "*",
+    "@reduxjs/toolkit": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
+    "@types/react-test-renderer": "*",
+    "@ui-kitten/components": "*",
+    "@ui-kitten/eva-icons": "*",
+    "expo": "*",
+    "expo-barcode-scanner": "*",
+    "expo-dev-client": "*",
+    "expo-splash-screen": "*",
+    "expo-status-bar": "*",
+    "expo-structured-headers": "*",
+    "expo-updates": "*",
+    "i18next": "*",
+    "mongoose": "*",
     "react": "*",
+    "react-i18next": "*",
     "react-native": "*",
-    "react-native-config": "*",
+    "react-native-clock-analog": "*",
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*",
     "react-native-svg": "*",
-    "@react-native-async-storage/async-storage": "*"
+    "react-native-web": "*",
+    "react-redux": "*",
+    "react-router-native": "*",
+    "react-test-renderer": "*",
+    "socket.io-client": "*"
+  },
+  "scripts": {
+    "eas-build-pre-install": "cd ../../ && cp yarn.lock ./apps/mobile/",
+    "postinstall": "rm -r node_modules && cd ../../ && yarn install && npx nx sync-deps mobile && npx nx ensure-symlink mobile"
   }
 }

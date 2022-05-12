@@ -5,9 +5,9 @@ import {
   Activity as ActivityType,
   ClockTypeEnum,
 } from "@routine-support/domains";
-import { Button, Icon, Layout, Text } from "@ui-kitten/components";
-import { Dimensions } from "react-native";
-import { Image, StyleSheet } from "react-native";
+import { Button, Icon, Layout, Text, useTheme } from "@ui-kitten/components";
+import { Dimensions, ImageBackground } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { Clock, ClockSizeEnum } from "../../../../../../components/Clock";
 
@@ -24,6 +24,7 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
   onConfirm,
   confirmed,
 }) => {
+  const theme = useTheme();
   const handleConfirmActivity = () => {
     onConfirm(activity);
   };
@@ -31,12 +32,24 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
   return (
     <Layout style={styles.wrapper}>
       <Layout style={styles.infoWrapper}>
-        <Image
-          source={{
-            uri: activity.pictogram,
-          }}
-          style={styles.image}
-        />
+        <Layout style={styles.imageWrapper}>
+          <ImageBackground
+            source={{
+              uri: activity.pictogram,
+            }}
+            style={styles.image}
+          />
+          {confirmed && (
+            <>
+              <Layout style={styles.iconBackground} />
+              <Icon
+                name="checkmark-circle-2"
+                style={styles.icon}
+                fill={theme["color-success-default"]}
+              />
+            </>
+          )}
+        </Layout>
         <Layout style={styles.clockWrapper}>
           <Text category="h5" style={styles.name} numberOfLines={2}>
             {activity.name}
@@ -49,20 +62,21 @@ export const CurrentActivity: React.FC<CurrentActivityProps> = ({
           />
         </Layout>
       </Layout>
-      <Button
-        style={styles.confirmButton}
-        status="success"
-        onPress={handleConfirmActivity}
-        disabled={confirmed}
-        accessoryRight={(props) => (
-          <Icon
-            {...props}
-            name="checkmark-outline"
-            style={styles.confirmIcon}
-            fill="white"
-          />
-        )}
-      />
+      {!confirmed && (
+        <Button
+          status="success"
+          style={styles.confirmButton}
+          onPress={handleConfirmActivity}
+          accessoryRight={(props) => (
+            <Icon
+              {...props}
+              name="checkmark-outline"
+              style={styles.confirmIcon}
+              fill="white"
+            />
+          )}
+        />
+      )}
     </Layout>
   );
 };
@@ -73,7 +87,21 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  image: { width: 200, height: 200, borderRadius: 5 },
+  imageWrapper: {
+    width: 200,
+    height: 200,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    overflow: "hidden",
+  },
+  image: {
+    width: 200,
+    height: 200,
+    borderRadius: 5,
+    position: "absolute",
+  },
   infoWrapper: {
     flexDirection: "row",
   },
@@ -86,4 +114,12 @@ const styles = StyleSheet.create({
   },
   confirmButton: { height: 80, marginTop: 16 },
   confirmIcon: { width: 60, height: 60 },
+  iconBackground: { width: 100, height: 100, borderRadius: 60 },
+  icon: {
+    width: 120,
+    height: 120,
+    left: 0,
+    top: 0,
+    marginTop: -110,
+  },
 });
