@@ -21,7 +21,7 @@ export const useStudentListComponent = (actions: StudentListActions) => {
       onConfirm: async () => {
         await actions.deleteStudent(student);
 
-        actions.getStudents();
+        actions.getStudents({ silent: true });
       },
     });
   };

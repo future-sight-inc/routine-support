@@ -20,7 +20,7 @@ export const useSettingsFormComponent = (
 
       await actions.updateSettings(values as Student);
 
-      actions.getStudents();
+      actions.getStudents({ silent: true });
     } catch (error: any) {
       setSubmitError(error.message);
     }

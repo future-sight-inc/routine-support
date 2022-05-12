@@ -17,12 +17,12 @@ export const useStudents = () => {
     getStudents();
   }, []);
 
-  const getStudents = async () => {
+  const getStudents = async (config?: { silent: boolean }) => {
     if (coachId) {
       try {
         setError(null);
 
-        setLoading(true);
+        !config?.silent && setLoading(true);
 
         const students = await studentAPI.getStudents(coachId);
 
