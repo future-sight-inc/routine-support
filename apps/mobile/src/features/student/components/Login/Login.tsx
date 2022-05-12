@@ -1,13 +1,18 @@
 import { LoginStudentDto, Student } from "@routine-support/domains";
-import { Button, Icon, Layout, Text } from "@ui-kitten/components";
+import { Button, Icon, Layout, Spinner, Text } from "@ui-kitten/components";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Dimensions, Image, StyleSheet } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  View,
+} from "react-native";
 import { Redirect } from "react-router-native";
 import barcodeFrame from "../../../../../assets/barcode-frame.png";
 import qrImage from "../../../../../assets/qr.png";
-import { Spinner } from "../../../../components/Spinner";
 import { BARCODE_FRAME_WIDTH } from "./constants";
 import { useLoginComponent } from "./hooks";
 
@@ -16,14 +21,13 @@ export interface LoginActions {
 }
 
 interface LoginProps {
-  loading: boolean;
   student: Student | null;
   actions: LoginActions;
 }
 
-export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
+export const Login: React.FC<LoginProps> = ({ student, actions }) => {
   const {
-    models: { hasPermission, scanning },
+    models: { hasPermission, scanning, loading },
     operations: { handleQrScanned, handleScannerOpen, handleScannerClose },
   } = useLoginComponent(actions);
   const { t } = useTranslation();
@@ -44,10 +48,6 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
     return (
       <Text style={styles.infoText}>{t<string>("No camera permission")}</Text>
     );
-  }
-
-  if (loading) {
-    return <Spinner />;
   }
 
   if (!scanning) {
@@ -80,7 +80,11 @@ export const Login: React.FC<LoginProps> = ({ loading, student, actions }) => {
         onBarCodeScanned={handleQrScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      <Image source={barcodeFrame} style={styles.barcodeFrame}></Image>
+      <View style={styles.barcodeFrame}>
+        <ImageBackground source={barcodeFrame} style={styles.barcodeImage} />
+        {loading && <Spinner status="control" size="giant" />}
+      </View>
+
       <Button
         onPress={handleScannerClose}
         size="giant"
@@ -134,6 +138,14 @@ const styles = StyleSheet.create({
     height: BARCODE_FRAME_WIDTH,
     position: "absolute",
     top: Dimensions.get("screen").height / 2 - BARCODE_FRAME_WIDTH / 2,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  barcodeImage: {
+    width: BARCODE_FRAME_WIDTH,
+    height: BARCODE_FRAME_WIDTH,
+    position: "absolute",
   },
   closeScannerButton: {
     width: "100%",

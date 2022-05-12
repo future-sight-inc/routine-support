@@ -7,11 +7,12 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { NativeModules, Platform } from "react-native";
 import { Provider } from "react-redux";
-
+import { ToastProvider } from "react-native-toast-notifications";
 import enLocale from "../../locales/en.json";
 import nlLocale from "../../locales/nl.json";
 import ruLocale from "../../locales/ru.json";
 import { store } from "../../app/store";
+import { Toast } from "../Toast";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -38,8 +39,18 @@ i18n.use(initReactI18next).init({
 export const AppWrapper: React.FC = ({ children }) => {
   return (
     <ApplicationProvider {...eva} theme={eva.light}>
-      <IconRegistry icons={EvaIconsPack} />
-      <Provider store={store}>{children}</Provider>
+      <ToastProvider
+        renderToast={(toast) => (
+          <Toast
+            title={toast.data.title}
+            description={toast.data.description}
+          />
+        )}
+        offsetTop={64}
+      >
+        <IconRegistry icons={EvaIconsPack} />
+        <Provider store={store}>{children}</Provider>
+      </ToastProvider>
     </ApplicationProvider>
   );
 };

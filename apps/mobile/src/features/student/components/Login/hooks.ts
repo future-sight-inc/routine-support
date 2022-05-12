@@ -5,12 +5,20 @@ import { BarCodeEvent, BarCodeScanner } from "expo-barcode-scanner";
 import { LoginActions } from "./Login";
 import { useWindowDimensions } from "react-native";
 import { isInArea } from "./utils";
+import { BARCODE_FRAME_WIDTH } from "./constants";
+import { useToast } from "react-native-toast-notifications";
+import { useTranslation } from "react-i18next";
 
 export const useLoginComponent = (actions: LoginActions) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanning, setScanning] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [barcode, setBarcode] = useState<BarCodeEvent | undefined>();
+
   const { height: viewportHeight, width: viewportWidth } =
     useWindowDimensions();
+  const toast = useToast();
+  const { t } = useTranslation();
 
   useEffect(() => {
     checkPermission();
@@ -22,14 +30,21 @@ export const useLoginComponent = (actions: LoginActions) => {
     setHasPermission(status === "granted");
   };
 
-  const handleQrScanned = (event: BarCodeEvent) => {
+  const handleQrScanned = async (event: BarCodeEvent) => {
+    if (barcode) {
+      return;
+    }
+
     try {
       if (event.cornerPoints && event.bounds) {
+        setLoading(true);
+        setBarcode(event);
+
         const barcodeArea = {
-          x: viewportWidth / 2 - 125,
-          y: viewportHeight / 2 - 125,
-          width: 250,
-          height: 250,
+          x: viewportWidth / 2 - BARCODE_FRAME_WIDTH / 2,
+          y: viewportHeight / 2 - BARCODE_FRAME_WIDTH / 2,
+          width: BARCODE_FRAME_WIDTH,
+          height: BARCODE_FRAME_WIDTH,
         };
         const barcode = {
           x: event.cornerPoints[0].x,
@@ -42,14 +57,30 @@ export const useLoginComponent = (actions: LoginActions) => {
           const data = JSON.parse(event.data);
 
           if (data.id) {
-            actions.login(data);
-          }
+            await actions.login(data);
 
-          setScanning(false);
+            setScanning(false);
+          } else {
+            throw new Error();
+          }
         }
       }
     } catch (error) {
-      console.error(error);
+      // todo Сделать так, чтобы можно было прокидывать открытие одним объектом
+      toast.show(null, {
+        type: "custom",
+        placement: "top",
+        duration: 3000,
+        animationType: "zoom-in",
+        data: {
+          title: t("Student is not found"),
+          description: t("Scan QR instructions"),
+        },
+      });
+    } finally {
+      setLoading(false);
+
+      setTimeout(() => setBarcode(undefined), 3000);
     }
   };
 
@@ -62,7 +93,11 @@ export const useLoginComponent = (actions: LoginActions) => {
   };
 
   return {
-    models: { hasPermission, scanning },
-    operations: { handleQrScanned, handleScannerOpen, handleScannerClose },
+    models: { hasPermission, scanning, loading },
+    operations: {
+      handleQrScanned,
+      handleScannerOpen,
+      handleScannerClose,
+    },
   };
 };

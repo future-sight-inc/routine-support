@@ -50,8 +50,6 @@ export const useStudent = () => {
 
   const login = async (data: LoginStudentDto) => {
     try {
-      setLoading(true);
-
       const student = await studentAPI.login(data);
 
       dispatch(studentActions.setStudent(student));
@@ -62,7 +60,6 @@ export const useStudent = () => {
       throw error;
     } finally {
       setIsChecked(true);
-      setLoading(false);
     }
   };
 
