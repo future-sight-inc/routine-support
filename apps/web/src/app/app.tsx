@@ -23,14 +23,14 @@ export const App = () => {
   const { i18n } = useTranslation();
 
   const {
-    operations: { getWeek },
+    operations: { updateWeek },
   } = useWeek();
   const {
     operations: { notify },
   } = useNotifications();
 
   useSocketEventListener(WeekSocketEventTypeEnum.UpdateCalendar, () => {
-    getWeek({ config: { silent: true } });
+    updateWeek();
   });
 
   useSocketEventListener(WeekSocketEventTypeEnum.UpdateNotifications, notify);

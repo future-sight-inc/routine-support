@@ -23,5 +23,7 @@
 
   "Enter PIN to log out": "Введите ПИН код для выхода",
   "Hello": "Привет",
-  "Today": "Сегодня"
+  "Today": "Сегодня",
+
+  "Student is not found": "Студент не найден"
 }

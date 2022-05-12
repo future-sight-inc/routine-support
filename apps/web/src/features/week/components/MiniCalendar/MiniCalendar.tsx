@@ -76,11 +76,11 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
       </S.CurrentMonthRow>
       <S.WeeksWrapper>
         <S.DayNames>
-          {weeksOfCalendar[0].map((day) => (
-            <S.Day>{day.locale(i18n.language).format("dd")}</S.Day>
+          {weeksOfCalendar[0].map((day, index) => (
+            <S.Day key={index}>{day.locale(i18n.language).format("dd")}</S.Day>
           ))}
         </S.DayNames>
-        {weeksOfCalendar.map((week) => (
+        {weeksOfCalendar.map((week, index) => (
           <S.Week
             isCurrent={
               week[0].year() === currentDate.year() &&
@@ -92,10 +92,12 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                 ? createActiveWeekDataTestId(week[0].isoWeek(), week[0].year())
                 : createWeekDataTestId(week[0].isoWeek(), week[0].year())
             }
+            key={index}
           >
-            {week.map((day) => (
+            {week.map((day, index) => (
               <S.Day
                 isCurrentMonth={displayedMonth.month() === day.month()}
+                key={index}
                 data-testid={MiniCalendarLocators.Day}
               >
                 {day.format("D")}

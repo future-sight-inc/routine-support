@@ -5,6 +5,7 @@
     "yarn test:utils",
     "yarn test:domains",
     "yarn test:server",
-    "yarn test:web"
+    "yarn test:web",
+    "yarn test:mobile"
   ]
 }

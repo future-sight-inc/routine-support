@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 
 import {
-  Divider,
   Layout,
   StyleService,
   Text,
@@ -43,7 +42,6 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
             {title}
           </Text>
         )}
-        <Divider />
       </Layout>
       {children}
     </SafeAreaView>
@@ -62,7 +60,6 @@ const themedStyles = StyleService.create({
   navigationWrapper: { width: "100%" },
   navigation: {
     paddingBottom: 8,
-    border: "1px solid black",
   },
   title: {
     position: "absolute",

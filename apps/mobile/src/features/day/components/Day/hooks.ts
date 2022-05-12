@@ -9,8 +9,8 @@ export const useDayComponent = (actions: DayActions) => {
     setPinCodeVisible(true);
   };
 
-  const handlePinCodeSuccessInput = () => {
-    actions.logout();
+  const handlePinCodeSuccessInput = async () => {
+    await actions.logout();
     setPinCodeVisible(false);
   };
 
