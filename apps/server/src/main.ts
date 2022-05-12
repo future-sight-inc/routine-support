@@ -57,8 +57,6 @@ io.on("connection", (socket) => {
       `Socket user disconnected: ${socket.handshake.auth.userId}, ${socket.handshake.auth.userType}`
     );
   });
-
-  console.log(connections)
 });
 
 export const emitToUser = createEmitToUser(connections);
