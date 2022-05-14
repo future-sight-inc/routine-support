@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import {
+  dayActions,
   LoginStudentDto,
   Student,
   studentActions,
@@ -74,6 +75,7 @@ export const useStudent = () => {
       dispatch(studentActions.setStudent(null));
       setIsChecked(true);
       setLoading(false);
+      dispatch(dayActions.setDay(null));
 
       socketConnection?.disconnect();
       dispatch(studentActions.setSocketConnection(null));
