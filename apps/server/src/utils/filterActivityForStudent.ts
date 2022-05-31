@@ -8,5 +8,5 @@ export const filterActivityForStudent = (
     return true;
   }
 
-  return activity.students.includes(student._id);
+  return activity.students.includes(String(student._id));
 };

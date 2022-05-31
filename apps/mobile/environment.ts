@@ -2,8 +2,8 @@ import Constants from "expo-constants";
 
 const ENV = {
   dev: {
-    apiEndpoint: "https://routine-support.herokuapp.com/api",
-    socketEndpoint: "https://routine-support.herokuapp.com",
+    apiEndpoint: "http://192.168.0.119:4000/api",
+    socketEndpoint: "http://192.168.0.119:4000",
   },
   prod: {
     apiEndpoint: "https://routine-support.herokuapp.com/api",
