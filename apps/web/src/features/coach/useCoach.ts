@@ -61,6 +61,7 @@ export const useCoach = () => {
       console.error(error);
     } finally {
       dispatch(coachActions.setCoach(null));
+      dispatch(coachActions.setSocketConnection(null));
       setIsChecked(true);
       setLoading(false);
     }
