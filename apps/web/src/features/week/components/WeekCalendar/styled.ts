@@ -16,14 +16,7 @@ export const Cell = styled.div<{ passed?: boolean }>`
   background: white;
   transition: box-shadow 0.2s;
   cursor: pointer;
-
-  &:hover {
-    ${({ theme }) =>
-    css`
-        box-shadow: inset ${theme.palette.primary.main} 0px 1px 1px,
-          inset ${theme.palette.primary.main} 0px 0px 0px 1px;
-      `}
-  }
+  position: relative;
 `;
 
 export const Column = styled.div<{ isWeekend?: boolean }>`
