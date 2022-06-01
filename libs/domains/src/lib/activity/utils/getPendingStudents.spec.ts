@@ -1,4 +1,4 @@
-import { createMockStudent } from "@routine-support/test-utils";
+import { createMockStudent } from "@routine-support/domains";
 
 import { getPendingStudents } from "./getPendingStudents";
 

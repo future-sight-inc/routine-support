@@ -1,7 +1,7 @@
 import {
   createMockActivity,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import { confirmStudentActivity } from "./confirmStudentActivity";
 

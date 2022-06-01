@@ -6,7 +6,7 @@ import {
   createMockActivity,
   createMockNotification,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { stringifyTime } from "@routine-support/utils";
 import { cleanup, render } from "@testing-library/react";
 import { AppWrapper } from "apps/web/src/components/AppWrapper";

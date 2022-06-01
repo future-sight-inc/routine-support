@@ -3,7 +3,7 @@ import {
   addStudentToActivity,
   createMockActivitySchema,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { shouldNotifyActivity } from "./shouldNotifyActivity";
 
 describe("shouldNotifyActivity", () => {

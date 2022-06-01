@@ -1,11 +1,10 @@
-import { ClockTypeEnum } from "@routine-support/domains";
-import { createMockActivity } from "@routine-support/test-utils";
-import React from "react";
-import { Clock, ClockSizeEnum } from "./Clock";
-import { AppWrapper } from "../AppWrapper";
-import { render } from "@testing-library/react-native";
-import { ClockLocators } from "./locators";
+import { ClockTypeEnum, createMockActivity } from "@routine-support/domains";
 import { parseTime } from "@routine-support/utils";
+import { render } from "@testing-library/react-native";
+import React from "react";
+import { AppWrapper } from "../AppWrapper";
+import { Clock, ClockSizeEnum } from "./Clock";
+import { ClockLocators } from "./locators";
 
 describe("Clock", () => {
   it("Digital clock", () => {

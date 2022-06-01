@@ -7,7 +7,6 @@
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
     "server": "apps/server",
-    "test-utils": "libs/test-utils",
     "types": "libs/types",
     "utils": "libs/utils",
     "web": "apps/web",

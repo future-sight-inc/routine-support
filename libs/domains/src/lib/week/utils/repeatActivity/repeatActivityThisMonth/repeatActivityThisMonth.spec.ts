@@ -1,7 +1,7 @@
 import {
   createMockActivityByDateString,
   createMockWeekFromDateStringArray,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import { WEEK_OF_MONTH } from "../../mocks";
 import { repeatActivityThisMonth } from "./repeatActivityThisMonth";

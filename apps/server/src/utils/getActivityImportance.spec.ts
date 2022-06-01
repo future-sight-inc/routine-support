@@ -4,7 +4,7 @@ import {
   createMockActivity,
   createMockStudent,
   setActivityRepeatType,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { getActivityImportanceValue } from "./getActivityImportanceValue";
 
 describe("getActivityImportanceValue", () => {

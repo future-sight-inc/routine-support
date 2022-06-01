@@ -1,5 +1,5 @@
 import { Activity } from "@routine-support/domains";
-import { createMockActivity } from "@routine-support/test-utils";
+import { createMockActivity } from "@routine-support/domains";
 import { parseTime } from "@routine-support/utils";
 import { MOCK_DATE } from "./constants";
 

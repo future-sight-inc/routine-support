@@ -3,7 +3,7 @@ import React from "react";
 import {
   createMockActivity,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { storiesOf } from "@storybook/react";
 
 import { Notification } from "./Notification";

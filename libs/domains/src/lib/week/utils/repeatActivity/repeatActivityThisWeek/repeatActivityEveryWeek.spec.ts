@@ -2,7 +2,7 @@ import {
   createMockActivityByDateString,
   createMockWeekFromDateStringArray,
   getDateStringFromActivity,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import {
   WEEK_BETWEEN_MONTHS,
   WEEK_BETWEEN_YEARS,

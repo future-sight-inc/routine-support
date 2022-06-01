@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import React from "react";
 
-import { createMockStudent } from "@routine-support/test-utils";
+import { createMockStudent } from "@routine-support/domains";
 import { cleanup, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { AppWrapper } from "apps/web/src/components/AppWrapper";

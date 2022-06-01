@@ -5,7 +5,7 @@ import {
   createMockActivity,
   createMockStudent,
   setActivityRepeatType,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { getHighPriorityActivityFromGroup } from "./getHighPriorityActivityFromGroup";
 
 describe("getHighPriorityActivityFromGroup", () => {

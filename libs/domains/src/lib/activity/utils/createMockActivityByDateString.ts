@@ -1,5 +1,5 @@
 import { Activity } from "@routine-support/domains";
-import { createMockActivity } from "@routine-support/test-utils";
+import { createMockActivity } from "@routine-support/domains";
 import { DateString } from "@routine-support/types";
 import { parseDate } from "@routine-support/utils";
 

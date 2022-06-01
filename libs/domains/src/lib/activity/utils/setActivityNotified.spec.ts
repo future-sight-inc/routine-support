@@ -1,7 +1,7 @@
 import {
   createMockActivitySchema,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { confirmStudentActivity } from "./confirmStudentActivity";
 import { setActivityNotified } from "./setActivityNotified";
 

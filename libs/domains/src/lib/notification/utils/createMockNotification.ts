@@ -1,7 +1,10 @@
-import { Activity, Notification } from "@routine-support/domains";
-import { createMockActivity } from "../activity";
-import * as uuid from "uuid";
+import {
+  Activity,
+  createMockActivity,
+  Notification,
+} from "@routine-support/domains";
 import moment from "moment";
+import * as uuid from "uuid";
 
 export const createMockNotification = (
   notificationData?: Partial<Notification>,

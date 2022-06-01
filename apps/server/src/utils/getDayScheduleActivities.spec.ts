@@ -2,7 +2,7 @@ import {
   addStudentToActivity,
   createMockActivityFromTimePeriod,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { getDayScheduleActivities } from "./getDayScheduleActivities";
 
 describe("getDayScheduleActivities", () => {

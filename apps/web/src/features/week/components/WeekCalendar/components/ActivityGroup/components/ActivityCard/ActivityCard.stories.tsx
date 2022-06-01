@@ -1,4 +1,4 @@
-import { createMockActivity } from "@routine-support/test-utils";
+import { createMockActivity } from "@routine-support/domains";
 import { parseTime } from "@routine-support/utils";
 import { storiesOf } from "@storybook/react";
 import { GROUP_ACTIVITY_COLOR } from "apps/web/src/constants/defaultActivityColor";
