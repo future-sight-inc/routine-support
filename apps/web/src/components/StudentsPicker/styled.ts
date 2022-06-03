@@ -92,6 +92,8 @@ export const Menu = styled.div`
   right: 0;
   transform: translateY(100%);
   z-index: 1000;
+  max-height: 180px;
+  overflow: scroll;
 
   ${({ theme }) => css`
     border-radius: ${theme.borderRadius};

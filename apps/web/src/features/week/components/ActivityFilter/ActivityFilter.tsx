@@ -3,7 +3,7 @@ import React from "react";
 import { Student } from "@routine-support/domains";
 import { ActivityFilter as ActivityFilterType } from "@routine-support/domains";
 import { Checkbox } from "apps/web/src/components/Checkbox";
-import { COMMON_ACTIVITY_COLOR } from "apps/web/src/constants/defaultActivityColor";
+import { COMMON_ACTIVITY_COLOR } from "apps/web/src/constants/DefaultActivityColor";
 import { getColor } from "apps/web/src/utils/getColor";
 import { useTranslation } from "react-i18next";
 

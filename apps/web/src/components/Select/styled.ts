@@ -21,7 +21,8 @@ export const Menu = styled.div`
   left: 0;
   right: 0;
   z-index: 4000;
-  overflow: hidden;
+  overflow: scroll;
+  max-height: 180px;
 
   ${({ theme }) => css`
     background: ${theme.palette.common.white};

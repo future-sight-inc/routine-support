@@ -16,6 +16,10 @@ const OPTIONS = [
   { text: "Option3", value: 2 },
 ];
 
+const LOTS_OF_OPTIONS = new Array(50)
+  .fill("")
+  .map((__, index) => ({ text: `Option${++index}`, value: index }));
+
 storiesOf("Components", module).add("Select", () => {
   return (
     <Layout>
@@ -32,6 +36,7 @@ storiesOf("Components", module).add("Select", () => {
         placeholder="Select a value"
       />
       <Select options={OPTIONS} onChange={() => null} error />
+      <Select options={LOTS_OF_OPTIONS} onChange={() => null} />
     </Layout>
   );
 });

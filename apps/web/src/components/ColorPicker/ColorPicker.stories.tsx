@@ -13,7 +13,7 @@ const FieldWrapper = styled.div`
 
 storiesOf("Components", module).add("ColorPicker", () => (
   <FieldWrapper>
-    <LabelWithHelper>Clock type</LabelWithHelper>
+    <LabelWithHelper>Color picker</LabelWithHelper>
     <ColorPicker onChange={() => null} />
   </FieldWrapper>
 ));

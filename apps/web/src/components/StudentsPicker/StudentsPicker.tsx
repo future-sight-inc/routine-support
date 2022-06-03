@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, createRef, useEffect, useState } from "react";
 
 import { getStudentsByIds, Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
@@ -37,9 +37,17 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
     filter,
   });
 
+  const inputRef = createRef<HTMLInputElement>();
+
   const handleOpen = () => {
     setIsOpened(true);
   };
+
+  useEffect(() => {
+    if (isOpened && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpened, inputRef]);
 
   const handleClose = () => {
     setIsOpened(false);
@@ -106,6 +114,7 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
               placeholder={t("Pick a student")}
               value={filter}
               onChange={handleFilterChange}
+              ref={inputRef}
               data-testid={StudentsPickerLocators.SearchField}
             />
           ) : (

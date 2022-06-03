@@ -19,6 +19,7 @@ storiesOf("Notifications", module).add("Notification", () => {
       students={[student1, student2]}
       isViewed={false}
       onDelete={() => null}
+      onView={() => null}
     />
   );
 });

@@ -4,7 +4,7 @@ import {
   COMMON_ACTIVITY_COLOR,
   GROUP_ACTIVITY_COLOR,
   IMPORTANT_ACTIVITY_COLOR,
-} from "../constants/defaultActivityColor";
+} from "../constants/DefaultActivityColor";
 import { getColor } from "./getColor";
 
 export const getActivityColor = (activity: Activity, students: Student[]) => {

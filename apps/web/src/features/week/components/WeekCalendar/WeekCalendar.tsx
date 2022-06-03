@@ -20,6 +20,7 @@ export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
   openNewActivityModal: (activity?: Partial<Activity>) => void;
 }
+
 interface WeekCalendarProps {
   week: Week;
   students: Student[];
