@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
 import { TextFieldProps } from "../TextField";
 import { SelectLocators } from "./locators";
 import * as S from "./styled";
 
-type OptionValue = string | number | undefined;
+export type OptionValue = string | number | undefined;
 
-type Option = {
+export type Option = {
   text: string;
   value: OptionValue;
 };
@@ -16,6 +16,8 @@ export type SelectProps = TextFieldProps & {
   defaultValue?: OptionValue;
   options?: Option[];
   onChange: (value: OptionValue) => void;
+  showBorder?: boolean;
+  icon?: ReactNode;
 };
 
 export const Select: React.FC<SelectProps> = ({
