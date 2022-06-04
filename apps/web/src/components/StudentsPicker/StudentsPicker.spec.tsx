@@ -6,9 +6,9 @@ import { cleanup, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { AppWrapper } from "apps/web/src/components/AppWrapper";
 
+import { createOptionDataTestId, MenuLocators } from "../Menu/locators";
 import {
   createDeleteIconDataTestId,
-  createOptionDataTestId,
   createStudentDataTestId,
   StudentsPickerLocators,
 } from "./locators";
@@ -34,7 +34,7 @@ describe("StudentsPicker", () => {
       </AppWrapper>
     );
 
-    expect(queryByTestId(StudentsPickerLocators.Menu)).toBeFalsy();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).toBeFalsy();
   });
 
   it("Click on field, close menu", async () => {
@@ -46,11 +46,11 @@ describe("StudentsPicker", () => {
 
     await userEvent.click(getByTestId(StudentsPickerLocators.FieldWrapper));
 
-    expect(getByTestId(StudentsPickerLocators.Menu)).toBeVisible();
-    expect(getByTestId(StudentsPickerLocators.Overlay)).toBeInTheDocument();
-    await userEvent.click(getByTestId(StudentsPickerLocators.Overlay));
+    expect(getByTestId(MenuLocators.MenuWrapper)).toBeVisible();
+    expect(getByTestId(MenuLocators.Overlay)).toBeInTheDocument();
+    await userEvent.click(getByTestId(MenuLocators.Overlay));
 
-    expect(queryByTestId(StudentsPickerLocators.Menu)).not.toBeInTheDocument();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).not.toBeInTheDocument();
   });
 
   it("Click on field, type, close, open field again", async () => {
@@ -67,7 +67,7 @@ describe("StudentsPicker", () => {
       "123"
     );
 
-    await userEvent.click(getByTestId(StudentsPickerLocators.Overlay));
+    await userEvent.click(getByTestId(MenuLocators.Overlay));
     await userEvent.click(getByTestId(StudentsPickerLocators.FieldWrapper));
 
     expect(
@@ -84,11 +84,11 @@ describe("StudentsPicker", () => {
 
     await userEvent.click(getByTestId(StudentsPickerLocators.OpenText));
 
-    expect(getByTestId(StudentsPickerLocators.Menu)).toBeVisible();
-    expect(getByTestId(StudentsPickerLocators.Overlay)).toBeInTheDocument();
-    await userEvent.click(getByTestId(StudentsPickerLocators.Overlay));
+    expect(getByTestId(MenuLocators.MenuWrapper)).toBeVisible();
+    expect(getByTestId(MenuLocators.Overlay)).toBeInTheDocument();
+    await userEvent.click(getByTestId(MenuLocators.Overlay));
 
-    expect(queryByTestId(StudentsPickerLocators.Menu)).not.toBeInTheDocument();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).not.toBeInTheDocument();
   });
 
   it("Click on field, choose student", async () => {
@@ -100,14 +100,14 @@ describe("StudentsPicker", () => {
 
     await userEvent.click(getByTestId(StudentsPickerLocators.FieldWrapper));
 
-    expect(getByTestId(StudentsPickerLocators.Menu)).toBeVisible();
+    expect(getByTestId(MenuLocators.MenuWrapper)).toBeVisible();
 
-    const studentOption = getByTestId(createOptionDataTestId(STUDENT1));
+    const studentOption = getByTestId(createOptionDataTestId(STUDENT1._id));
 
     expect(studentOption).toBeInTheDocument();
     await userEvent.click(studentOption);
 
-    expect(queryByTestId(StudentsPickerLocators.Menu)).not.toBeInTheDocument();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).not.toBeInTheDocument();
     expect(getByTestId(createStudentDataTestId(STUDENT1))).toBeVisible();
   });
 
@@ -162,8 +162,8 @@ describe("StudentsPicker", () => {
 
     await userEvent.click(getByTestId(StudentsPickerLocators.FieldWrapper));
 
-    expect(getByTestId(StudentsPickerLocators.Menu)).toBeVisible();
-    expect(getByTestId(StudentsPickerLocators.EmptyText)).toBeVisible();
+    expect(getByTestId(MenuLocators.MenuWrapper)).toBeVisible();
+    expect(getByTestId(MenuLocators.EmptyText)).toBeVisible();
   });
 
   it("Filter with one match", async () => {
@@ -178,14 +178,14 @@ describe("StudentsPicker", () => {
     );
 
     await userEvent.click(getByTestId(StudentsPickerLocators.FieldWrapper));
-    expect(getByTestId(StudentsPickerLocators.Menu)).toBeVisible();
+    expect(getByTestId(MenuLocators.MenuWrapper)).toBeVisible();
     await userEvent.type(
       getByTestId(StudentsPickerLocators.SearchField),
       ONE_MATCH_FILTER
     );
 
     waitFor(() =>
-      expect(getByTestId(createOptionDataTestId(STUDENT3))).toBeVisible()
+      expect(getByTestId(createOptionDataTestId(STUDENT3._id))).toBeVisible()
     );
   });
 
@@ -201,14 +201,14 @@ describe("StudentsPicker", () => {
     );
 
     await userEvent.click(getByTestId(StudentsPickerLocators.FieldWrapper));
-    expect(getByTestId(StudentsPickerLocators.Menu)).toBeVisible();
+    expect(getByTestId(MenuLocators.MenuWrapper)).toBeVisible();
     await userEvent.type(
       getByTestId(StudentsPickerLocators.SearchField),
       ONE_MATCH_FILTER_IGNORE_REGISTER
     );
 
     waitFor(() =>
-      expect(getByTestId(createOptionDataTestId(STUDENT3))).toBeVisible()
+      expect(getByTestId(createOptionDataTestId(STUDENT3._id))).toBeVisible()
     );
   });
 
@@ -224,17 +224,17 @@ describe("StudentsPicker", () => {
     );
 
     await userEvent.click(getByTestId(StudentsPickerLocators.FieldWrapper));
-    expect(getByTestId(StudentsPickerLocators.Menu)).toBeVisible();
+    expect(getByTestId(MenuLocators.MenuWrapper)).toBeVisible();
     await userEvent.type(
       getByTestId(StudentsPickerLocators.SearchField),
       TWO_MATCHES_FILTER
     );
 
     waitFor(() =>
-      expect(getByTestId(createOptionDataTestId(STUDENT1))).toBeVisible()
+      expect(getByTestId(createOptionDataTestId(STUDENT1._id))).toBeVisible()
     );
     waitFor(() =>
-      expect(getByTestId(createOptionDataTestId(STUDENT2))).toBeVisible()
+      expect(getByTestId(createOptionDataTestId(STUDENT2._id))).toBeVisible()
     );
   });
 
@@ -255,7 +255,7 @@ describe("StudentsPicker", () => {
       NO_MATCHES_FILTER
     );
 
-    expect(getByTestId(StudentsPickerLocators.Menu)).toBeVisible();
-    expect(getByTestId(StudentsPickerLocators.EmptyText)).toBeVisible();
+    expect(getByTestId(MenuLocators.MenuWrapper)).toBeVisible();
+    expect(getByTestId(MenuLocators.EmptyText)).toBeVisible();
   });
 });

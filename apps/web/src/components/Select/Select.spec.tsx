@@ -5,6 +5,7 @@ import { cleanup, render } from "@testing-library/react";
 import useEvent from "@testing-library/user-event";
 
 import { AppWrapper } from "../AppWrapper";
+import { MenuLocators } from "../Menu/locators";
 import { SelectLocators } from "./locators";
 import { Select } from "./Select";
 
@@ -54,7 +55,7 @@ describe("Select", () => {
 
     await useEvent.click(getByTestId(SelectLocators.TextField));
 
-    expect(getByTestId(SelectLocators.SelectedOption)).toHaveTextContent(
+    expect(getByTestId(MenuLocators.SelectedOption)).toHaveTextContent(
       OPTIONS[0].text
     );
   });
@@ -80,15 +81,15 @@ describe("Select", () => {
       </AppWrapper>
     );
 
-    expect(queryByTestId(SelectLocators.Menu)).toBeFalsy();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).toBeFalsy();
 
     await useEvent.click(getByTestId(SelectLocators.TextField));
 
-    expect(getByTestId(SelectLocators.Menu)).toBeVisible();
+    expect(getByTestId(MenuLocators.MenuWrapper)).toBeVisible();
 
-    await useEvent.click(getByTestId(SelectLocators.Overlay));
+    await useEvent.click(getByTestId(MenuLocators.Overlay));
 
-    expect(queryByTestId(SelectLocators.Menu)).toBeFalsy();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).toBeFalsy();
   });
 
   it("Open select, select value", async () => {
@@ -98,13 +99,13 @@ describe("Select", () => {
       </AppWrapper>
     );
 
-    expect(queryByTestId(SelectLocators.Menu)).toBeFalsy();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).toBeFalsy();
 
     await useEvent.click(getByTestId(SelectLocators.TextField));
 
     await useEvent.click(getByText(OPTIONS[1].text));
 
-    expect(queryByTestId(SelectLocators.Menu)).toBeFalsy();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).toBeFalsy();
 
     expect(getByTestId(SelectLocators.TextField)).toHaveValue(OPTIONS[1].text);
   });
@@ -122,7 +123,7 @@ describe("Select", () => {
       </AppWrapper>
     );
 
-    expect(queryByTestId(SelectLocators.Menu)).toBeFalsy();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).toBeFalsy();
 
     await useEvent.click(getByTestId(SelectLocators.TextField));
 
@@ -130,7 +131,7 @@ describe("Select", () => {
 
     expect(value).toBe(OPTIONS[1].value);
 
-    expect(queryByTestId(SelectLocators.Menu)).toBeFalsy();
+    expect(queryByTestId(MenuLocators.MenuWrapper)).toBeFalsy();
 
     expect(getByTestId(SelectLocators.TextField)).toHaveValue(OPTIONS[1].text);
   });

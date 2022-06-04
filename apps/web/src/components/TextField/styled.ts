@@ -11,6 +11,7 @@ export const IconWrapper = styled.div`
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
+  pointer-events: none;
 `;
 
 export const TextField = styled.input<{

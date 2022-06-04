@@ -113,19 +113,3 @@ export const Option = styled(Typography)`
     }
   `}
 `;
-
-export const EmptyText = styled(Typography).attrs(() => ({
-  color: "secondary",
-}))`
-  height: 40px;
-  line-height: 40px;
-  padding: 0 8px;
-`;
-
-export const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-`;

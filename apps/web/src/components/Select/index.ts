@@ -1,1 +1,1 @@
-export { Select, SelectProps, Option } from "./Select";
+export { Select, SelectProps, Option, OptionValue } from "./Select";

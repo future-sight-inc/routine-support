@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, useState } from "react";
 
+import { Menu } from "../Menu";
 import { TextFieldProps } from "../TextField";
 import { SelectLocators } from "./locators";
 import * as S from "./styled";
@@ -49,10 +50,13 @@ export const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <>
-      {isOpened && (
-        <S.Overlay onClick={handleClose} data-testid={SelectLocators.Overlay} />
-      )}
+    <Menu
+      options={options}
+      isOpened={isOpened}
+      selected={selected}
+      onClose={handleClose}
+      onSelect={handleSelect}
+    >
       <S.Wrapper>
         <S.TextField
           onClick={handleOpen}
@@ -67,28 +71,7 @@ export const Select: React.FC<SelectProps> = ({
             <S.IconDown data-testid={SelectLocators.IconDown} />
           )}
         </S.IconWrapper>
-        {isOpened && (
-          <S.Menu data-testid={SelectLocators.Menu}>
-            {options.map((item, index) => (
-              <S.OptionWrapper
-                key={index}
-                isActive={item.value === selected}
-                onClick={() => handleSelect(item)}
-              >
-                <S.Option
-                  data-testid={
-                    item.value === selected
-                      ? SelectLocators.SelectedOption
-                      : SelectLocators.Option
-                  }
-                >
-                  {item.text}
-                </S.Option>
-              </S.OptionWrapper>
-            ))}
-          </S.Menu>
-        )}
       </S.Wrapper>
-    </>
+    </Menu>
   );
 };
