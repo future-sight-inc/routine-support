@@ -1,20 +1,34 @@
 import styled, { css } from "styled-components";
 
 import { Typography } from "../../styled/components/Typography";
+import { MenuPlacement } from "./Menu";
 
 export const Wrapper = styled.div`
   position: relative;
 `;
 
-export const Menu = styled.div`
+export const Menu = styled.div<{ placement: MenuPlacement }>`
   position: absolute;
-  bottom: 0;
-  transform: translateY(calc(100% + 4px));
   left: 0;
   right: 0;
-  z-index: 4000;
+  z-index: 3000;
   overflow: scroll;
   max-height: 180px;
+
+  ${({ placement }) => {
+    switch (placement) {
+      case "top":
+        return css`
+          top: 0;
+          transform: translateY(calc(-100% - 4px));
+        `;
+      case "bottom":
+        return css`
+          bottom: 0;
+          transform: translateY(calc(100% + 4px));
+        `;
+    }
+  }}
 
   ${({ theme }) => css`
     background: ${theme.palette.common.white};
@@ -55,7 +69,7 @@ export const Overlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 3000;
+  z-index: 2000;
 `;
 
 export const EmptyText = styled(Typography).attrs(() => ({

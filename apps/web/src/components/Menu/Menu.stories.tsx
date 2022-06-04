@@ -12,6 +12,7 @@ const OPTIONS = [
 const Layout = styled.div`
   display: flex;
   gap: 120px;
+  padding-top: 240px;
 `;
 
 storiesOf("Components", module).add("Menu", () => {
@@ -27,6 +28,15 @@ storiesOf("Components", module).add("Menu", () => {
       </Menu>
       <Menu options={[]} isOpened onClose={() => null} onSelect={() => null}>
         <p>Menu with empty text</p>
+      </Menu>
+      <Menu
+        options={OPTIONS}
+        isOpened
+        placement="top"
+        onClose={() => null}
+        onSelect={() => null}
+      >
+        <p>Menu with top placement</p>
       </Menu>
     </Layout>
   );

@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState } from "react";
 
-import { Menu } from "../Menu";
+import { Menu, MenuPlacement } from "../Menu";
 import { TextFieldProps } from "../TextField";
 import { SelectLocators } from "./locators";
 import * as S from "./styled";
@@ -18,6 +18,7 @@ export type SelectProps = TextFieldProps & {
   options?: Option[];
   onChange: (value: OptionValue) => void;
   showBorder?: boolean;
+  menuPlacement?: MenuPlacement;
   icon?: ReactNode;
 };
 
@@ -26,6 +27,7 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
   value,
   defaultValue,
+  menuPlacement,
   ...props
 }) => {
   const [selected, setSelected] = useState<OptionValue>(value ?? defaultValue);
@@ -54,6 +56,7 @@ export const Select: React.FC<SelectProps> = ({
       options={options}
       isOpened={isOpened}
       selected={selected}
+      placement={menuPlacement}
       onClose={handleClose}
       onSelect={handleSelect}
     >

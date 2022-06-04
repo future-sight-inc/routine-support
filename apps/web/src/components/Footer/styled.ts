@@ -4,8 +4,8 @@ import { Typography } from "../../styled/components/Typography";
 
 export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.secondary.main};
-  color: ${({ theme }) => theme.palette.secondary.text};
   padding: 0 16px;
+  position: relative;
 `;
 
 export const Content = styled.div`
@@ -18,23 +18,9 @@ export const Content = styled.div`
   margin: 0 auto;
 `;
 
-export const LanguageWrapper = styled.div`
+export const LanguageSelectorWrapper = styled.div`
   position: absolute;
-  right: 32px;
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-`;
-
-export const LanguageSwitch = styled(Typography).attrs(() => ({
-  variant: "text2Bold",
-  color: "secondary",
-}))`
-  cursor: pointer;
-
-  &:hover {
-    color: ${({ theme }) => theme.palette.common.black};
-  }
+  right: 16px;
 `;
 
 export const Rights = styled(Typography).attrs(() => ({

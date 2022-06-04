@@ -37,6 +37,12 @@ storiesOf("Components", module).add("Select", () => {
       />
       <Select options={OPTIONS} onChange={() => null} error />
       <Select options={LOTS_OF_OPTIONS} onChange={() => null} />
+      <Select
+        placeholder="top menu placement"
+        menuPlacement="top"
+        options={LOTS_OF_OPTIONS}
+        onChange={() => null}
+      />
     </Layout>
   );
 });

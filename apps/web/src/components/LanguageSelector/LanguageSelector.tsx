@@ -33,6 +33,7 @@ export const LanguageSelector: React.FC = () => {
         options={LANGUAGES}
         onChange={handleChange}
         showBorder={false}
+        menuPlacement="top"
         icon={<S.LanguageIcon />}
         value={i18n.language}
       />

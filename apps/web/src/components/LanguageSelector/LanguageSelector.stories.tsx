@@ -3,7 +3,9 @@ import styled from "styled-components";
 
 import { LanguageSelector } from "./LanguageSelector";
 
-const Layout = styled.div``;
+const Layout = styled.div`
+  padding-top: 240px;
+`;
 
 storiesOf("Components", module).add("LanguageSelector", () => {
   return (
