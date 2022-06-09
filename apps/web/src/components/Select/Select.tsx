@@ -20,6 +20,7 @@ export type SelectProps = TextFieldProps & {
   showBorder?: boolean;
   menuPlacement?: MenuPlacement;
   icon?: ReactNode;
+  InputElement?: HTMLInputElement;
 };
 
 export const Select: React.FC<SelectProps> = ({
@@ -28,6 +29,7 @@ export const Select: React.FC<SelectProps> = ({
   value,
   defaultValue,
   menuPlacement,
+  InputElement,
   ...props
 }) => {
   const [selected, setSelected] = useState<OptionValue>(value ?? defaultValue);
@@ -65,6 +67,7 @@ export const Select: React.FC<SelectProps> = ({
           onClick={handleOpen}
           {...props}
           value={options.find((option) => option.value === selected)?.text}
+          InputElement={InputElement}
           data-testid={SelectLocators.TextField}
         />
         <S.IconWrapper>

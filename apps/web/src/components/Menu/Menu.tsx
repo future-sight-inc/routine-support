@@ -29,8 +29,6 @@ export const Menu: React.FC<MenuProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  console.log(isOpened);
-
   return (
     <>
       <Portal isOpened={isOpened} onClose={onClose}>

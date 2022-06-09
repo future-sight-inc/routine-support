@@ -36,6 +36,7 @@ export const LanguageSelector: React.FC = () => {
         menuPlacement="top"
         icon={<S.LanguageIcon />}
         value={i18n.language}
+        InputElement={S.TextField}
       />
     </S.Wrapper>
   );
