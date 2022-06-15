@@ -6,11 +6,8 @@ import bearerToken from "express-bearer-token";
 import morgan from "morgan";
 import path from "path";
 import { Server } from "socket.io";
-import {
-  addSocketToConnections,
-  removeSocketFromConnections,
-} from "../sockets";
-import { createEmitToUser } from "../sockets/createEmitToUser";
+import { addSocketToConnections, removeSocketFromConnections } from "./sockets";
+import { createEmitToUser } from "./sockets/createEmitToUser";
 import "./db/mongodb";
 import BaseRouter from "./routes";
 import { SocketConnection } from "./types/Socket";
