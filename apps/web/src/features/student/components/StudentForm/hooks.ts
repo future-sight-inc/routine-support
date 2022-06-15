@@ -28,7 +28,7 @@ export const useStudentFormComponent = (
         await actions.createStudent(values as Student);
       }
 
-      actions.getStudents();
+      actions.getStudents({ silent: true });
     } catch (error: any) {
       setSubmitError(error.message);
     }
@@ -44,7 +44,7 @@ export const useStudentFormComponent = (
         onConfirm: async () => {
           await actions.deleteStudent(student);
 
-          actions.getStudents();
+          actions.getStudents({ silent: true });
         },
       });
     }

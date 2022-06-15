@@ -1,5 +1,5 @@
 import { Socket } from "socket.io";
-import { SocketConnection } from "../src/types/Socket";
+import { SocketConnection } from "../types/Socket";
 
 export const removeSocketFromConnections = (
   connections: SocketConnection[],

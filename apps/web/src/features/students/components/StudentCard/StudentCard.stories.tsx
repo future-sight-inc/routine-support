@@ -1,6 +1,6 @@
 import React from "react";
 
-import { createMockStudent } from "@routine-support/test-utils";
+import { createMockStudent } from "@routine-support/domains";
 import { storiesOf } from "@storybook/react";
 
 import { StudentCard } from "./StudentCard";

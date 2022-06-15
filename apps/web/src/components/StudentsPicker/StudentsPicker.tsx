@@ -1,12 +1,12 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, createRef, useEffect, useState } from "react";
 
 import { getStudentsByIds, Student } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { useTranslation } from "react-i18next";
 
+import { Menu } from "../Menu";
 import {
   createDeleteIconDataTestId,
-  createOptionDataTestId,
   createStudentDataTestId,
   StudentsPickerLocators,
 } from "./locators";
@@ -37,9 +37,17 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
     filter,
   });
 
+  const inputRef = createRef<HTMLInputElement>();
+
   const handleOpen = () => {
     setIsOpened(true);
   };
+
+  useEffect(() => {
+    if (isOpened && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpened, inputRef]);
 
   const handleClose = () => {
     setIsOpened(false);
@@ -50,10 +58,17 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
     setFilter(event.target.value);
   };
 
-  const handleSelect = (student: Student) => {
-    selectedStudents.push(student._id);
-    setSelectedStudents(selectedStudents);
-    onChange(selectedStudents);
+  const handleSelect = (studentId: Id) => {
+    const selectedStudent = students.find(
+      (student) => student._id === studentId
+    );
+
+    if (selectedStudent) {
+      selectedStudents.push(selectedStudent._id);
+      setSelectedStudents(selectedStudents);
+      onChange(selectedStudents);
+    }
+
     handleClose();
   };
 
@@ -67,13 +82,15 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
   };
 
   return (
-    <>
-      {isOpened && (
-        <S.Overlay
-          onClick={handleClose}
-          data-testid={StudentsPickerLocators.Overlay}
-        />
-      )}
+    <Menu
+      options={studentsToChoose.map((student) => ({
+        text: student.name,
+        value: student._id,
+      }))}
+      isOpened={isOpened}
+      onSelect={(option) => handleSelect(option.value as string)}
+      onClose={handleClose}
+    >
       <S.Wrapper>
         <S.FieldWrapper
           isActive={isOpened}
@@ -106,6 +123,7 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
               placeholder={t("Pick a student")}
               value={filter}
               onChange={handleFilterChange}
+              ref={inputRef}
               data-testid={StudentsPickerLocators.SearchField}
             />
           ) : (
@@ -117,26 +135,7 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
             </S.OpenText>
           )}
         </S.FieldWrapper>
-        {isOpened && (
-          <S.Menu data-testid={StudentsPickerLocators.Menu}>
-            {studentsToChoose.length > 0 ? (
-              studentsToChoose.map((student, index) => (
-                <S.Option
-                  key={index}
-                  onClick={() => handleSelect(student)}
-                  data-testid={createOptionDataTestId(student)}
-                >
-                  {student.name}
-                </S.Option>
-              ))
-            ) : (
-              <S.EmptyText data-testid={StudentsPickerLocators.EmptyText}>
-                {t("No one to pick")}
-              </S.EmptyText>
-            )}
-          </S.Menu>
-        )}
       </S.Wrapper>
-    </>
+    </Menu>
   );
 };

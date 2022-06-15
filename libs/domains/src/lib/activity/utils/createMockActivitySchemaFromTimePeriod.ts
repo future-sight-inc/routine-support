@@ -1,5 +1,5 @@
 import { ActivitySchema } from "@routine-support/domains";
-import { createMockActivitySchema } from "@routine-support/test-utils";
+import { createMockActivitySchema } from "@routine-support/domains";
 import { MOCK_DATE_STRING } from "./constants";
 
 export const createMockActivitySchemaFromTimePeriod = ({

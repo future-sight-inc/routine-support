@@ -4,8 +4,6 @@ import styled, { css } from "styled-components";
 import { Typography } from "../../styled/components/Typography";
 
 export const Wrapper = styled.div`
-  padding: 0 16px;
-
   ${({ theme }) =>
     css`
       background: ${theme.palette.common.white};
@@ -22,6 +20,8 @@ export const Content = styled.div`
   margin: 0 auto;
 
   max-width: ${({ theme }) => theme.size.maxWidth};
+  padding: 0 16px;
+  box-sizing: border-box;
 `;
 
 export const UserWrapper = styled.div`

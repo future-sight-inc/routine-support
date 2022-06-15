@@ -14,7 +14,7 @@ export interface StudentListActions {
   openSettingsModal: (student: Student) => void;
   openNewStudentModal: () => void;
   deleteStudent: (student: Student) => void;
-  getStudents: () => void;
+  getStudents: (config?: { silent: boolean }) => void;
 }
 
 interface StudentListProps {

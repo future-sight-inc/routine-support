@@ -14,7 +14,7 @@ export interface StudentFormActions {
   updateStudent: (student: Student) => Promise<void>;
   deleteStudent: (student: Student) => Promise<void>;
   closeModal: () => void;
-  getStudents: () => void;
+  getStudents: (config?: { silent: boolean }) => void;
 }
 
 export interface StudentFormProps {

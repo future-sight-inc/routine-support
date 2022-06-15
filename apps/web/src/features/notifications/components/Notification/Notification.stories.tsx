@@ -3,7 +3,7 @@ import React from "react";
 import {
   createMockActivity,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { storiesOf } from "@storybook/react";
 
 import { Notification } from "./Notification";
@@ -19,6 +19,7 @@ storiesOf("Notifications", module).add("Notification", () => {
       students={[student1, student2]}
       isViewed={false}
       onDelete={() => null}
+      onView={() => null}
     />
   );
 });

@@ -92,6 +92,8 @@ export const Menu = styled.div`
   right: 0;
   transform: translateY(100%);
   z-index: 1000;
+  max-height: 180px;
+  overflow: scroll;
 
   ${({ theme }) => css`
     border-radius: ${theme.borderRadius};
@@ -110,20 +112,4 @@ export const Option = styled(Typography)`
       background: ${theme.palette.secondary.main};
     }
   `}
-`;
-
-export const EmptyText = styled(Typography).attrs(() => ({
-  color: "secondary",
-}))`
-  height: 40px;
-  line-height: 40px;
-  padding: 0 8px;
-`;
-
-export const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
 `;

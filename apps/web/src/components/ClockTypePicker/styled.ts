@@ -10,8 +10,8 @@ export const Wrapper = styled.div`
 `;
 
 export const TypeWrapper = styled.div<{ isChecked: boolean }>`
-  width: 120px;
-  height: 60px;
+  width: 80px;
+  height: 40px;
   box-sizing: border-box;
   border-radius: 5px;
   display: flex;
@@ -50,9 +50,9 @@ export const TypeWrapper = styled.div<{ isChecked: boolean }>`
 `;
 
 export const TypeText = styled(Typography).attrs(() => ({
-  variant: "caption4",
+  variant: "text1Bold",
 }))``;
 
 export const TypeIcon = styled(AccessTimeIcon).attrs(() => ({
-  sx: { fontSize: 30 },
+  sx: { fontSize: 24 },
 }))``;

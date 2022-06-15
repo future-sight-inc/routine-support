@@ -1,7 +1,7 @@
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { Socket } from "socket.io";
 import * as uuid from "uuid";
-import { SocketConnection } from "../src/types/Socket";
+import { SocketConnection } from "../types/Socket";
 import { addSocketToConnections } from "./addSocketToConnections";
 import { createMockSocket } from "./testUtils";
 

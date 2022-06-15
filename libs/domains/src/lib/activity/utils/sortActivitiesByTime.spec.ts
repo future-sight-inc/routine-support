@@ -1,4 +1,4 @@
-import { createMockActivityFromTimePeriod } from "@routine-support/test-utils";
+import { createMockActivityFromTimePeriod } from "@routine-support/domains";
 import { sortActivitiesByTime } from "./sortActivitiesByTime";
 
 const ONE_PM_ACTIVITY = createMockActivityFromTimePeriod({

@@ -20,6 +20,13 @@ export const confirmStudentActivity = ({
       isNotified: false,
     };
   } else {
-    activity.confirmation[confirmationDate].students.push(student._id);
+    if (
+      !activity.confirmation[confirmationDate].students.includes(
+        // todo Прокидывает ObjectId
+        String(student._id)
+      )
+    ) {
+      activity.confirmation[confirmationDate].students.push(student._id);
+    }
   }
 };

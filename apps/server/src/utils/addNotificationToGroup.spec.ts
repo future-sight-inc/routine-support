@@ -1,4 +1,4 @@
-import { createMockNotification } from "@routine-support/test-utils";
+import { createMockNotification } from "@routine-support/domains";
 import { parseDate } from "@routine-support/utils";
 import { addNotificationToGroup } from "./addNotificationToGroup";
 

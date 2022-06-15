@@ -1,4 +1,4 @@
-import { createMockStudent } from "@routine-support/test-utils";
+import { createMockStudent } from "@routine-support/domains";
 import { storiesOf } from "@storybook/react";
 import { LabelWithHelper } from "apps/web/src/components/LabelWithHelper";
 import styled from "styled-components";
@@ -18,7 +18,7 @@ const STUDENT3 = createMockStudent({ name: "Nikita" });
 const STUDENT4 = createMockStudent({ name: "Pasha" });
 const STUDENTS = [STUDENT1, STUDENT2, STUDENT3, STUDENT4];
 
-storiesOf("Students", module).add("StudentsPicker", () => (
+storiesOf("Components", module).add("StudentsPicker", () => (
   <Layout>
     <LabelWithHelper>Students</LabelWithHelper>
     <StudentsPicker students={STUDENTS} onChange={() => null} />

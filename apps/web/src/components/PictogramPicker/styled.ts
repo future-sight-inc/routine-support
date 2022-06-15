@@ -69,6 +69,8 @@ export const PictogramsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4px;
+  max-height: 320px;
+  overflow: scroll;
 `;
 
 export const Pictogram = styled.img<{ active?: boolean }>`

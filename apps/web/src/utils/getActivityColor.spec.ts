@@ -2,13 +2,13 @@ import {
   addStudentToActivity,
   createMockActivity,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 
 import {
   COMMON_ACTIVITY_COLOR,
   GROUP_ACTIVITY_COLOR,
   IMPORTANT_ACTIVITY_COLOR,
-} from "../constants/defaultActivityColor";
+} from "../constants/DefaultActivityColor";
 import { getActivityColor } from "./getActivityColor";
 import { getColor } from "./getColor";
 

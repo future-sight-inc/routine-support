@@ -1,1 +1,0 @@
-export { createMockStudent } from "./createMockStudent";

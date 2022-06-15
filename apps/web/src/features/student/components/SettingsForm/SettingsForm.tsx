@@ -13,7 +13,7 @@ import * as S from "./styled";
 export interface SettingsFormActions {
   updateSettings: (student: Student) => Promise<void>;
   closeModal: () => void;
-  getStudents: () => void;
+  getStudents: (config?: { silent: boolean }) => void;
 }
 
 export interface SettingsFormProps {

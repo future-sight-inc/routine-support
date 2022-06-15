@@ -1,7 +1,7 @@
 import {
   createMockActivitySchema,
   setActivityTime,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { SubmitErrorData } from "@routine-support/types";
 import { validateActivityTime } from "./validateActivityTime";
 

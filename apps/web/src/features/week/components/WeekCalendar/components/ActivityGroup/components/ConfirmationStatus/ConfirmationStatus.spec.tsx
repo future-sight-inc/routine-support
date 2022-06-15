@@ -3,7 +3,7 @@ import {
   addStudentToActivity,
   createMockActivity,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import "@testing-library/jest-dom";
 import { cleanup, render } from "@testing-library/react";
