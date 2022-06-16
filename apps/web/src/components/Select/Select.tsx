@@ -5,14 +5,14 @@ import { TextFieldProps } from "../TextField";
 import { SelectLocators } from "./locators";
 import * as S from "./styled";
 
-export type OptionValue = string | number | undefined;
+export type OptionValue = any;
 
 export type Option = {
   text: string;
   value: OptionValue;
 };
 
-export type SelectProps = TextFieldProps & {
+export type SelectProps = Omit<TextFieldProps, "onChange"> & {
   value?: OptionValue;
   defaultValue?: OptionValue;
   options?: Option[];

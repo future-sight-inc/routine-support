@@ -1,13 +1,19 @@
-import { getGreeting } from "../support/app.po";
-
 describe("web", () => {
   beforeEach(() => cy.visit("/"));
 
-  it("should display welcome message", () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login("my-email@something.com", "myPassword");
-
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains("Welcome to web!");
+  it("Should login", () => {
+    cy.get('input[type="email"]').type("nikitadmitriev97@mail.ru");
+    cy.get('input[type="password"]').type("Dinkimom48");
+    cy.get('button[type="submit"]').click();
   });
+
+  // 1 Auth
+
+  // 1.1 register (puplya puplya)
+
+  // 1.2 logout
+
+  // 1.3 login
+
+  // afterAll -> user delete
 });
