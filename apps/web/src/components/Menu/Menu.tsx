@@ -1,11 +1,11 @@
 import React, { ReactNode } from "react";
 
 import { useTranslation } from "react-i18next";
-import { Portal } from "react-portal";
 
 import { Option, OptionValue } from "../Select";
 import { createOptionDataTestId, MenuLocators } from "./locators";
 import * as S from "./styled";
+
 export type MenuPlacement = "top" | "bottom";
 
 interface MenuProps {
@@ -31,11 +31,9 @@ export const Menu: React.FC<MenuProps> = ({
 
   return (
     <>
-      <Portal isOpened={isOpened} onClose={onClose}>
-        {isOpened && (
-          <S.Overlay onClick={onClose} data-testid={MenuLocators.Overlay} />
-        )}
-      </Portal>
+      {isOpened && (
+        <S.Overlay onClick={onClose} data-testid={MenuLocators.Overlay} />
+      )}
       <S.Wrapper>
         {children}
         {isOpened && (

@@ -8,7 +8,7 @@ export const Modal = styled.div`
   left: 0;
   right: 0;
   position: absolute;
-  z-index: 1000;
+  z-index: 2000;
   overflow: scroll;
 
   ${({ theme }) => css`

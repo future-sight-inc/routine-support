@@ -108,7 +108,7 @@ describe("StudentsPicker", () => {
     await userEvent.click(studentOption);
 
     expect(queryByTestId(MenuLocators.MenuWrapper)).not.toBeInTheDocument();
-    expect(getByTestId(createStudentDataTestId(STUDENT1))).toBeVisible();
+    expect(queryByTestId(createStudentDataTestId(STUDENT1))).toBeVisible();
   });
 
   it("Show value in selected", async () => {

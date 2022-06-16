@@ -64,8 +64,8 @@ export const Select: React.FC<SelectProps> = ({
     >
       <S.Wrapper>
         <S.TextField
-          onClick={handleOpen}
           {...props}
+          onClick={handleOpen}
           value={options.find((option) => option.value === selected)?.text}
           InputElement={InputElement}
           data-testid={SelectLocators.TextField}

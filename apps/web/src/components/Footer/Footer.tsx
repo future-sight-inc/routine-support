@@ -10,12 +10,10 @@ export const Footer = () => {
 
   return (
     <S.Wrapper>
-      <S.Content>
-        <S.Rights>{t("Rights info")}</S.Rights>
-        <S.LanguageSelectorWrapper>
-          <LanguageSelector />
-        </S.LanguageSelectorWrapper>
-      </S.Content>
+      <S.Rights>{t("Rights info")}</S.Rights>
+      <S.LanguageSelectorWrapper>
+        <LanguageSelector />
+      </S.LanguageSelectorWrapper>
     </S.Wrapper>
   );
 };
