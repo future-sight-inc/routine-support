@@ -35,4 +35,9 @@ export const createCoachAPI = (client: AxiosInstance) => ({
 
     return request.data as Coach;
   },
+  deleteCoach: async (): Promise<AxiosResponse> => {
+    const request: AxiosResponse = await client.delete("/coach");
+
+    return request;
+  },
 });
