@@ -1,33 +1,17 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
+import { HeaderLocators } from "apps/web/src/components/Header/locators";
+import { ConfirmationModalLocators } from "apps/web/src/components/ConfirmationModal/locators";
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace Cypress {
-  // eslint-disable-next-line
-  interface Chainable<Subject> {
-    login(email: string, password: string): void;
-  }
-}
-//
-// -- This is a parent command --
-Cypress.Commands.add("login", (email, password) => {
-  console.log("Custom command example: Login", email, password);
+Cypress.Commands.add("getByDataTestId", (dataTestId: string) => {
+  return cy.get(`[data-testid="${dataTestId}"]`);
 });
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("login", () => {
+  cy.get('input[type="email"]').type("nikitadmitriev97@mail.ru");
+  cy.get('input[type="password"]').type("Dinkimom48");
+  cy.get('button[type="submit"]').click();
+});
+
+Cypress.Commands.add("logout", () => {
+  cy.getByDataTestId(HeaderLocators.Logout).click();
+  cy.getByDataTestId(ConfirmationModalLocators.ConfirmButton).click();
+});

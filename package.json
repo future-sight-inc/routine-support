@@ -20,7 +20,7 @@
     "prepare": "npx husky install",
     "pre-commit": "lint-staged",
     "storybook:web": "nx run web:storybook",
-    "e2e:web": "nx run web-e2e:e2e"
+    "e2e:web": "nx run web-e2e:e2e --headed --watch"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +37,7 @@
     "@mui/material": "^5.7.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/user-event": "^14.1.1",
+    "@types/jquery": "^3.5.14",
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",

@@ -1,4 +1,4 @@
 export enum HeaderLocators {
-  OpenProfile = "HeaderProfile",
+  OpenProfile = "HeaderOpenProfile",
   Logout = "HeaderLogout",
 }
