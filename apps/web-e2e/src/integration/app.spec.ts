@@ -1,11 +1,23 @@
 describe("web", () => {
-  it("Should login", () => {
-    cy.visit("/");
+  it("Should register", () => {
     cy.clearCookies();
-    cy.login();
+    cy.visit("/");
+    cy.register();
   });
 
   it("Should logout", () => {
     cy.logout();
+  });
+
+  it("Should login", () => {
+    cy.clearCookies();
+    cy.visit("/");
+    cy.login();
+  });
+
+  it("Should delete profile", () => {
+    cy.visit("/");
+    cy.login();
+    cy.deleteProfile();
   });
 });
