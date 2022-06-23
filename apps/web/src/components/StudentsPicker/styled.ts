@@ -1,5 +1,5 @@
 import ClearIcon from "@mui/icons-material/Clear";
-import { TextField } from "apps/web/src/components/TextField";
+import { TextField } from "apps/web/src/components/TextField/styled";
 import { Typography } from "apps/web/src/styled/components/Typography";
 import styled, { css } from "styled-components";
 

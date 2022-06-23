@@ -1,11 +1,11 @@
 import { useNotifications } from "../../../notifications/useNotifications";
 import { useCoach } from "../../useCoach";
-import { Layout as UncontrolledLayout } from "./Layout";
+import { MainLayout as UncontrolledMainLayout } from "./MainLayout";
 
-export const Layout: React.FC = ({ children }) => {
+export const MainLayout: React.FC = ({ children }) => {
   const {
     models: { coach },
-    operations: { logout },
+    operations: { logout, deleteCoach },
   } = useCoach();
   const {
     models: { notViewedCount },
@@ -16,12 +16,12 @@ export const Layout: React.FC = ({ children }) => {
   }
 
   return (
-    <UncontrolledLayout
+    <UncontrolledMainLayout
       user={coach}
       notViewedCount={notViewedCount}
-      actions={{ logout }}
+      actions={{ deleteCoach, logout }}
     >
       {children}
-    </UncontrolledLayout>
+    </UncontrolledMainLayout>
   );
 };

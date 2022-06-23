@@ -113,6 +113,18 @@ export const useCoach = () => {
     }
   };
 
+  const deleteCoach = async () => {
+    try {
+      setLoading(true);
+
+      await coachAPI.deleteCoach();
+    } finally {
+      dispatch(coachActions.setCoach(null));
+      setIsChecked(true);
+      setLoading(false);
+    }
+  };
+
   return {
     models: {
       coach,
@@ -127,6 +139,7 @@ export const useCoach = () => {
       logout,
       getCoach,
       updateCoach,
+      deleteCoach,
     },
   };
 };

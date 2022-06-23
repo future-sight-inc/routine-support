@@ -5,14 +5,14 @@ import { TextFieldProps } from "../TextField";
 import { SelectLocators } from "./locators";
 import * as S from "./styled";
 
-export type OptionValue = string | number | undefined;
+export type OptionValue = any;
 
 export type Option = {
   text: string;
   value: OptionValue;
 };
 
-export type SelectProps = TextFieldProps & {
+export type SelectProps = Omit<TextFieldProps, "onChange"> & {
   value?: OptionValue;
   defaultValue?: OptionValue;
   options?: Option[];
@@ -64,8 +64,8 @@ export const Select: React.FC<SelectProps> = ({
     >
       <S.Wrapper>
         <S.TextField
-          onClick={handleOpen}
           {...props}
+          onClick={handleOpen}
           value={options.find((option) => option.value === selected)?.text}
           InputElement={InputElement}
           data-testid={SelectLocators.TextField}

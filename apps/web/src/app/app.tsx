@@ -8,7 +8,7 @@ import { Route } from "react-router-dom";
 
 import { LoginForm } from "../features/coach/components/Forms/LoginForm";
 import { RegisterForm } from "../features/coach/components/Forms/RegisterForm";
-import { Layout } from "../features/coach/components/Layout";
+import { MainLayout } from "../features/coach/components/MainLayout";
 import { PrivateRoute } from "../features/coach/components/PrivateRoute";
 import { useSocketEventListener } from "../features/coach/hooks/useSocketEventListener";
 import { Notifications } from "../features/notifications/Notifications";
@@ -45,7 +45,7 @@ export const App = () => {
           <RegisterForm />
         </Route>
         <PrivateRoute>
-          <Layout>
+          <MainLayout>
             <Route exact path={LinkService.home()}>
               <Week />
             </Route>
@@ -55,7 +55,7 @@ export const App = () => {
             <Route exact path={LinkService.notifications()}>
               <Notifications />
             </Route>
-          </Layout>
+          </MainLayout>
         </PrivateRoute>
       </ConfirmationProvider>
     </LocalizationProvider>

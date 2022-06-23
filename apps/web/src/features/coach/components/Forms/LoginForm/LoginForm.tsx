@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 
 import * as S from "../styled";
 import { useLoginFormComponent } from "./hooks";
+import { LoginFormLocators } from "./locators";
 
 export interface LoginFormActions {
   login: (data: LoginCoachDto) => void;
@@ -51,7 +52,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
         </S.ButtonWrapper>
         <S.LinkText>
           {t("No account yet")}{" "}
-          <S.Link to={LinkService.register()}>{t("Create account")}</S.Link>
+          <S.Link
+            to={LinkService.register()}
+            data-testid={LoginFormLocators.LinkToRegister}
+          >
+            {t("Create account")}
+          </S.Link>
         </S.LinkText>
       </S.Form>
     </S.Wrapper>

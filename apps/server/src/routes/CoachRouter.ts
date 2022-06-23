@@ -1,4 +1,9 @@
-import { CoachModel } from "@routine-support/domains";
+import {
+  ActivityModel,
+  CoachModel,
+  NotificationModel,
+  StudentModel,
+} from "@routine-support/domains";
 import { Router } from "express";
 import {
   COACH_LOCALS_NAME,
@@ -52,6 +57,20 @@ coachRouter.post("/login", async (req, res) => {
 
 coachRouter.get("/", coachAuthorization, (__, res) => {
   return res.status(200).send(res.locals[COACH_LOCALS_NAME]);
+});
+
+coachRouter.delete("/", coachAuthorization, async (__, res) => {
+  const coach = res.locals[COACH_LOCALS_NAME];
+
+  await CoachModel.findByIdAndDelete(coach._id);
+  await StudentModel.deleteMany({ coachId: coach._id });
+  await ActivityModel.deleteMany({ coachId: coach._id });
+  await NotificationModel.deleteMany({ coachId: coach._id });
+
+  return res
+    .status(200)
+    .clearCookie("access_token")
+    .send(res.locals[COACH_LOCALS_NAME]);
 });
 
 coachRouter.get("/logout", (__, res) => {
