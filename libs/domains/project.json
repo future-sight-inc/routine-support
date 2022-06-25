@@ -1,5 +1,4 @@
 {
-  "root": "libs/domains",
   "sourceRoot": "libs/domains/src",
   "projectType": "library",
   "targets": {
