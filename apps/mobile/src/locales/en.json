@@ -1,0 +1,29 @@
+{
+  "Day schedule": "Day schedule",
+  "No activities": "All done!",
+  "Confirmed": "Confirmed",
+  "Confirm": "Confirm",
+
+  "Camera permission request": "Requesting for camera permission",
+  "No camera permission": "No access to camera",
+
+  "You need to login": "You need to login",
+  "Scan QR instructions": "Scan QR code placed in your coach panel to login student",
+
+  "Open scanner": "Open scanner",
+  "Close": "Close",
+
+  "Profile": "Profile",
+  "You are logged in as": "You are logged in as",
+  "Languages": "Languages",
+  "Logout": "Logout",
+
+  "Confirm your action": "Confirm your action",
+  "Cancel": "Cancel",
+
+  "Enter PIN to log out": "Enter PIN to log out",
+  "Hello": "Hello",
+  "Today": "Today",
+
+  "Student is not found": "Leerling is niet gevonden"
+}

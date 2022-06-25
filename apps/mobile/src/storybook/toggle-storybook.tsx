@@ -1,7 +1,7 @@
 /**
  * Toggle inspired from https://github.com/infinitered/ignite/blob/master/boilerplate/storybook/toggle-storybook.tsx
  */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DevSettings } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -32,6 +32,7 @@ async function loadString(key: string): Promise<string | null> {
 async function saveString(key: string, value: string): Promise<boolean> {
   try {
     await AsyncStorage.setItem(key, value);
+
     return true;
   } catch {
     return false;
