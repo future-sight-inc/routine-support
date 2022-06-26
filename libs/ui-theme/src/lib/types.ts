@@ -6,9 +6,11 @@ export interface Palette {
   text: string;
 }
 
+export type FontWeight = "normal" | "bold";
+
 export interface FontVariant {
   size: string;
-  weight: string;
+  weight: FontWeight;
 }
 
 export interface ThemeType {

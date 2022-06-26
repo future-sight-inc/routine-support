@@ -93,7 +93,7 @@ function ToggleStorybook(props) {
           setShowStorybook(data.payload);
         }
       };
-      ws.current.onerror = (e) => {
+      ws.current.onerror = () => {
         setShowStorybook(storedSetting === "on");
       };
     });
