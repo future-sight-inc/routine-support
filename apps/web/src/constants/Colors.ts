@@ -1,6 +1,5 @@
 import { ColorEnum } from "@routine-support/domains";
-
-import { Theme } from "../styled/theme";
+import { Theme } from "@routine-support/ui-theme";
 
 export const COLORS = [
   { value: ColorEnum.Purple, color: Theme.palette.common.purple },

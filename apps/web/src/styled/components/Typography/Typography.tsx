@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
 
+import { Theme } from "@routine-support/ui-theme";
 import styled, { css } from "styled-components";
-
-import { Theme } from "../../theme";
 
 export type TypographyVariant =
   | "caption4"
