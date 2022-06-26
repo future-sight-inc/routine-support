@@ -1,23 +1,7 @@
 import { ReactNode } from "react";
 
-import { Theme } from "@routine-support/ui-theme";
+import { Theme, TypographyColor, TypographyVariant } from "@routine-support/ui-theme";
 import styled, { css } from "styled-components";
-
-export type TypographyVariant =
-  | "caption4"
-  | "text1"
-  | "text2"
-  | "text3"
-  | "text1Bold"
-  | "text2Bold"
-  | "text3Bold";
-
-export type TypographyColor =
-  | "normal"
-  | "secondary"
-  | "primary"
-  | "white"
-  | "error";
 
 interface TypographyProps {
   variant?: TypographyVariant;

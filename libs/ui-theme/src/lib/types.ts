@@ -1,3 +1,5 @@
+import { Theme } from "./theme";
+
 export interface Palette {
   main: string;
   hovered?: string;
@@ -57,3 +59,12 @@ export interface ThemeType {
     small: string;
   };
 }
+
+export type TypographyVariant = keyof typeof Theme.fonts;
+
+export type TypographyColor =
+  | "normal"
+  | "secondary"
+  | "primary"
+  | "white"
+  | "error";

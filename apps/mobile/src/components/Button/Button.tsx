@@ -1,13 +1,19 @@
 import { Theme } from "@routine-support/ui-theme";
 import { pxToNumber } from "@routine-support/utils";
 import React, { useState } from "react";
-import { Pressable, PressableProps, StyleSheet, Text } from "react-native";
+import {
+  GestureResponderEvent,
+  Pressable,
+  PressableProps,
+  StyleSheet,
+} from "react-native";
+import { Typography } from "../Typography";
 
 type ButtonVariant = "primary" | "secondary";
 
 interface ButtonProps extends PressableProps {
   text: string;
-  variant: ButtonVariant;
+  variant?: ButtonVariant;
   fullWidth?: boolean;
   disabled?: boolean;
 }
@@ -18,16 +24,20 @@ export const Button: React.FC<ButtonProps> = ({
   fullWidth,
   disabled,
   style,
+  onPressIn,
+  onPressOut,
   ...props
 }) => {
   const [isPressed, setPressed] = useState(false);
 
-  const handlePressIn = () => {
+  const handlePressIn = (event: GestureResponderEvent) => {
     setPressed(true);
+    onPressIn(event);
   };
 
-  const handlePressOut = () => {
+  const handlePressOut = (event: GestureResponderEvent) => {
     setPressed(false);
+    onPressOut(event);
   };
 
   const getTextColor = (variant: ButtonVariant) => {
@@ -55,9 +65,9 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
       disabled={disabled}
     >
-      <Text style={{ ...styles.text, color: getTextColor(variant) }}>
+      <Typography style={{ ...styles.text, color: getTextColor(variant) }}>
         {text}
-      </Text>
+      </Typography>
     </Pressable>
   );
 };
