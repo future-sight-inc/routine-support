@@ -2,15 +2,16 @@ import React from "react";
 
 import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { Route } from "react-router-native";
-
+import { NativeRouter } from "react-router-native";
 import { Day } from "../features/day/components/Day";
 import { useDay } from "../features/day/useDay";
 import { Login } from "../features/student/components/Login";
 import { PrivateRoute } from "../features/student/components/PrivateRoute";
 import { useSocketEventListener } from "../features/student/hooks/useSocketEventListener";
 import { useStudent } from "../features/student/useStudent";
+import { AppWrapper } from "../components/AppWrapper";
 
-export const App = () => {
+const App = () => {
   const {
     operations: { getDay },
   } = useDay();
@@ -44,4 +45,10 @@ export const App = () => {
   );
 };
 
-export default App;
+export default () => (
+  <NativeRouter>
+    <AppWrapper>
+      <App />
+    </AppWrapper>
+  </NativeRouter>
+);

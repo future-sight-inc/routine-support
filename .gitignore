@@ -53,3 +53,4 @@ apps/mobile/node_modules
 .env
 .DS_Store
 apps/web-e2e/cypress.env.json
+apps/mobile/ios/Pods
