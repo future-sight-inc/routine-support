@@ -5,15 +5,9 @@ import { Login as UncontrolledLogin } from "./Login";
 
 export const Login: React.FC = () => {
   const {
-    models: { student, loading },
+    models: { student },
     operations: { login },
   } = useStudent();
 
-  return (
-    <UncontrolledLogin
-      student={student}
-      loading={loading}
-      actions={{ login }}
-    />
-  );
+  return <UncontrolledLogin student={student} actions={{ login }} />;
 };
