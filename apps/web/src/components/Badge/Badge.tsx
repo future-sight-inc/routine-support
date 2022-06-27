@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 
-import { Theme } from "../../styled/theme";
+import { Theme } from "@routine-support/ui-theme";
+
+
 import * as S from "./styled";
 
 export type BadgeColor = "primary" | "alert";

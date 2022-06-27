@@ -1,10 +1,10 @@
 import UIHelpIcon from "@mui/icons-material/Help";
+import { TypographyColor } from "@routine-support/ui-theme";
 import styled, { css } from "styled-components";
 
 import {
   getTypographyColorStyles,
   Typography,
-  TypographyColor,
 } from "../../styled/components/Typography";
 
 export const Wrapper = styled.div`

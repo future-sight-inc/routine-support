@@ -1,6 +1,7 @@
 import React, { ReactNode, RefCallback } from "react";
 
-import { TypographyVariant } from "../../styled/components/Typography";
+import { TypographyVariant } from "@routine-support/ui-theme";
+
 import { LabelWithHelperLocators } from "./locators";
 import * as S from "./styled";
 

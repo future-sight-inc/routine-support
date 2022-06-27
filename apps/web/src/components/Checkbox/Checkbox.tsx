@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { TypographyVariant } from "../../styled/components/Typography";
+import { TypographyVariant } from "@routine-support/ui-theme";
+
 import { LabelWithHelper } from "../LabelWithHelper";
 import { CheckboxLocators } from "./locators";
 import * as S from "./styled";

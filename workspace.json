@@ -8,6 +8,7 @@
     "mobile-e2e": "apps/mobile-e2e",
     "server": "apps/server",
     "types": "libs/types",
+    "ui-theme": "libs/ui-theme",
     "utils": "libs/utils",
     "web": "apps/web",
     "web-e2e": "apps/web-e2e"
