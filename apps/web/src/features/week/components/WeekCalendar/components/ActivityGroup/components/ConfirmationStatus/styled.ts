@@ -20,7 +20,7 @@ export const ConfirmationWrapper = styledComponents.div`
   display: flex;
   align-items: center;
   padding: 2px 4px;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.s};
   overflow: hidden;
   width: auto;
 

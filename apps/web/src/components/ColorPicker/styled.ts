@@ -12,7 +12,7 @@ export const Color = styled.div<{ color: string; isActive: boolean }>`
     width: 40px;
     height: 40px;
     background: ${color};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
     box-sizing: border-box;
     cursor: pointer;
 

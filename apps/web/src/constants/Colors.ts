@@ -8,5 +8,5 @@ export const COLORS = [
   { value: ColorEnum.Mint, color: Theme.palette.common.mint },
   { value: ColorEnum.Orange, color: Theme.palette.common.orange },
   { value: ColorEnum.Brown, color: Theme.palette.common.brown },
-  { value: ColorEnum.DarkGreen, color: Theme.palette.common.darkgreen },
+  { value: ColorEnum.DarkGreen, color: Theme.palette.common.darkGreen },
 ];

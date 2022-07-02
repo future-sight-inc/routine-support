@@ -23,7 +23,7 @@ export const TypeWrapper = styled.div<{ isChecked: boolean }>`
   ${({ isChecked, theme }) =>
     !isChecked &&
     css`
-      border: 1px solid ${theme.palette.border.main};
+      border: 1px solid ${theme.palette.border.normal};
 
       & * {
         color: ${theme.palette.secondary.text};

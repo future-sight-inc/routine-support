@@ -20,7 +20,8 @@ export const Theme: ThemeType = {
       text: "#d32f2f",
     },
     border: {
-      main: "#DEDEDE",
+      normal: "#DEDEDE",
+      light: "#EFEFEF",
     },
     common: {
       black: "#000000",
@@ -35,10 +36,16 @@ export const Theme: ThemeType = {
       mint: "#7EF5F5",
       orange: "#FF9A6F",
       brown: "#B59388",
-      darkgreen: "#60B667",
+      darkGreen: "#60B667",
+      greyMuted: "#F9F9F9",
     },
   },
-  borderRadius: "5px",
+  borderRadius: {
+    s: "5px",
+    m: "8px",
+    l: "13px",
+    xl: "28px",
+  },
   size: {
     cellHeight: "140px",
     maxWidth: "1900px",

@@ -30,16 +30,23 @@ export interface ThemeType {
       mint: string;
       orange: string;
       brown: string;
-      darkgreen: string;
+      darkGreen: string;
+      greyMuted: string;
     };
     primary: Palette;
     secondary: Palette;
     error: Palette;
     border: {
-      main: string;
+      normal: string;
+      light: string;
     };
   };
-  borderRadius: string;
+  borderRadius: {
+    s: string;
+    m: string;
+    l: string;
+    xl: string;
+  };
   size: {
     cellHeight: string;
     maxWidth: string;

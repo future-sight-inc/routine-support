@@ -32,7 +32,7 @@ export const Menu = styled.div<{ placement: MenuPlacement }>`
 
   ${({ theme }) => css`
     background: ${theme.palette.common.white};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
     box-shadow: ${theme.boxShadow.small};
   `}
 `;

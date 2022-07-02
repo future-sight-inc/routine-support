@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: ${({ theme }) => theme.boxShadow.medium};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.l};
 `;
 
 export const Form = styled.form`

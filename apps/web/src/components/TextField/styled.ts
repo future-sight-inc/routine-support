@@ -39,11 +39,11 @@ export const TextField = styled.input<{
       padding-left: 40px;
     `};
 
-    border-color: ${theme.palette.border.main};
+    border-color: ${theme.palette.border.normal};
     font-family: ${theme.fontFamily};
     font-size: ${theme.fonts.text2.size};
     font-weight: ${theme.fonts.text2.weight};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
 
     &::placeholder {
       font-family: ${theme.fontFamily};

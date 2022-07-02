@@ -61,7 +61,7 @@ export const Wrapper = styled.div<{
   }
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
   `}
 
   ${({ rowStart, marginTop, count, index, height, theme }) => css`

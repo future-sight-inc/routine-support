@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
   ${({ theme }) => css`
     box-shadow: ${theme.boxShadow.small};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.l};
   `}
 `;
 
@@ -19,7 +19,7 @@ export const Image = styled.img`
   background: black;
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
   `}
 `;
 
