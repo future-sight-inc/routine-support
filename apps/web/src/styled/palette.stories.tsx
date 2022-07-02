@@ -1,8 +1,8 @@
+import { Theme } from "@routine-support/ui-theme";
 import { storiesOf } from "@storybook/react";
 import styled, { css } from "styled-components";
 
 import { Typography } from "./components/Typography";
-import { Theme } from "./theme";
 
 const Layout = styled.div`
   display: flex;
