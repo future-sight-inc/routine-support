@@ -4,7 +4,7 @@ import styledComponents from "styled-components";
 import styled from "styled-container-query";
 
 const ConfirmedNumberText = styledComponents(Typography).attrs(() => ({
-  variant: "text2",
+  variant: "text2Bold",
 }))``;
 
 export const ConfirmedNumber = styled(ConfirmedNumberText)``;

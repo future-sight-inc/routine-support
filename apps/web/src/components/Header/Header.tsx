@@ -10,7 +10,6 @@ import moment from "moment";
 import { useTranslation } from "react-i18next";
 
 import { LinkService } from "../../services/LinkService";
-import { Badge } from "../Badge";
 import { NavigationLink } from "../NavigationLink";
 import { HeaderLocators } from "./locators";
 import * as S from "./styled";
@@ -56,17 +55,15 @@ export const Header: React.FC<HeaderProps> = ({
             {t("Students")}
           </NavigationLink>
           <NavigationLink
-            icon={<NotificationsIcon />}
+            icon={
+              <S.NotificationsIconWrapper>
+                <NotificationsIcon />
+                {notViewedCount > 0 && <S.NewNotificationMark />}
+              </S.NotificationsIconWrapper>
+            }
             to={LinkService.notifications()}
           >
             {t("Notifications")}
-            <S.BadgeWrapper>
-              {notViewedCount > 0 && (
-                <Badge color="alert">
-                  {notViewedCount >= 100 ? "99+" : notViewedCount}
-                </Badge>
-              )}
-            </S.BadgeWrapper>
           </NavigationLink>
         </S.Navigation>
         <S.LogoutWrapper onClick={onLogout} data-testid={HeaderLocators.Logout}>
