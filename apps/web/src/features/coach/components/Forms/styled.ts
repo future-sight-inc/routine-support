@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: ${({ theme }) => theme.boxShadow.medium};
+  border: 1px solid ${({ theme }) => theme.palette.border.light};
   border-radius: ${({ theme }) => theme.borderRadius.l};
 `;
 
@@ -39,15 +40,24 @@ export const ButtonWrapper = styled(FieldsWrapper)``;
 
 export const Link = styled(UILink)``;
 
-export const LinkText = styled(Typography)`
+export const LinkText = styled(Typography).attrs(() => ({
+  variant: "text2",
+}))`
   text-align: center;
+
+  ${({ theme }) => css`
+    color: ${theme.palette.secondary.text};
+  `}
 
   & ${Link} {
     text-decoration: none;
 
     ${({ theme }) => css`
-      font-weight: ${theme.fonts.text2Bold.weight};
       color: ${theme.palette.primary.main};
     `}
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
