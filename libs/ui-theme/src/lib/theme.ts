@@ -44,7 +44,8 @@ export const Theme: ThemeType = {
     s: "5px",
     m: "8px",
     l: "13px",
-    xl: "28px",
+    xl: "18px",
+    xxl: "28px",
   },
   size: {
     cellHeight: "140px",

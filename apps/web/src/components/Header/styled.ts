@@ -108,7 +108,7 @@ export const NewNotificationMark = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  border-radius: 2.5px;
+  border-radius: 50%;
 
   background-color: ${({ theme }) => theme.palette.common.red};
 `;

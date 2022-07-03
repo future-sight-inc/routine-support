@@ -46,6 +46,7 @@ export interface ThemeType {
     m: string;
     l: string;
     xl: string;
+    xxl: string;
   };
   size: {
     cellHeight: string;
