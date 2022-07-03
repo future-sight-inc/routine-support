@@ -17,8 +17,29 @@ const styles = StyleSheet.create({
 
 storiesOf("Components", module).add("Typography", () => (
   <View style={styles.layout}>
+    <Typography variant="caption1" style={styles.text}>
+      Caption1/48px/bold
+    </Typography>
+    <Typography variant="caption2" style={styles.text}>
+      Caption2/30px/bold
+    </Typography>
+    <Typography variant="caption3" style={styles.text}>
+      Caption3/24px/bold
+    </Typography>
     <Typography variant="caption4" style={styles.text}>
       Caption4/20px/bold
+    </Typography>
+    <Typography variant="caption1Normal" style={styles.text}>
+      Caption1Normal/48px/normal
+    </Typography>
+    <Typography variant="caption2Normal" style={styles.text}>
+      Caption2Normal/30px/normal
+    </Typography>
+    <Typography variant="caption3Normal" style={styles.text}>
+      Caption3Normal/24px/normal
+    </Typography>
+    <Typography variant="caption4Normal" style={styles.text}>
+      Caption4Normal/20px/normal
     </Typography>
     <Typography variant="text1" style={styles.text}>
       Text1/16px/normal

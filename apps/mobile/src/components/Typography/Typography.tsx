@@ -1,10 +1,6 @@
 import React, { ReactNode } from "react";
 import { Text, TextProps } from "react-native";
-import {
-  Theme,
-  TypographyColor,
-  TypographyVariant,
-} from "@routine-support/ui-theme";
+import { Theme, TypographyColor, TypographyVariant } from "@routine-support/ui-theme";
 import { pxToNumber } from "@routine-support/utils";
 
 interface TypographyProps extends TextProps {
@@ -42,8 +38,29 @@ export const Typography: React.FC<TypographyProps> = ({
     case "text3Bold":
       size = Theme.fonts.text3Bold.size;
       break;
+    case "caption1":
+      size = Theme.fonts.caption1.size;
+      break;
+    case "caption1Normal":
+      size = Theme.fonts.caption1Normal.size;
+      break;
+    case "caption2":
+      size = Theme.fonts.caption2.size;
+      break;
+    case "caption2Normal":
+      size = Theme.fonts.caption2Normal.size;
+      break;
+    case "caption3":
+      size = Theme.fonts.caption3.size;
+      break;
+    case "caption3Normal":
+      size = Theme.fonts.caption3Normal.size;
+      break;
     case "caption4":
       size = Theme.fonts.caption4.size;
+      break;
+    case "caption4Normal":
+      size = Theme.fonts.caption4Normal.size;
       break;
     }
 
@@ -64,8 +81,22 @@ export const Typography: React.FC<TypographyProps> = ({
       return Theme.fonts.text3.weight;
     case "text3Bold":
       return Theme.fonts.text3Bold.weight;
+    case "caption1":
+      return Theme.fonts.caption1.weight;
+    case "caption1Normal":
+      return Theme.fonts.caption1Normal.weight;
+    case "caption2":
+      return Theme.fonts.caption2.weight;
+    case "caption2Normal":
+      return Theme.fonts.caption2Normal.weight;
+    case "caption3":
+      return Theme.fonts.caption3.weight;
+    case "caption3Normal":
+      return Theme.fonts.caption3Normal.weight;
     case "caption4":
       return Theme.fonts.caption4.weight;
+    case "caption4Normal":
+      return Theme.fonts.caption4Normal.weight;
     }
   };
 
