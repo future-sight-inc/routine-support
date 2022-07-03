@@ -57,7 +57,7 @@ export const Notification: React.FC<NotificationProps> = ({
       ref={containerRef}
       data-testid={NotificationLocatorsEnum.Wrapper}
     >
-      <S.Image src="https://www.sclera.be/resources/pictos/biljart%20t.png" />
+      <S.Image src={activity.pictogram} />
       <S.InfoWrapper>
         <S.Row>
           <S.Title>{t("Activity was missed")}</S.Title>

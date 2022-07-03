@@ -51,7 +51,7 @@ export const FilterWrapper = styled.div`
     ${({ theme }) =>
     css`
         background: ${theme.palette.secondary.main};
-        border-radius: ${theme.borderRadius};
+        border-radius: ${theme.borderRadius.s};
       `};
   }
 `;

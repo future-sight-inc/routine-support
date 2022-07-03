@@ -4,7 +4,7 @@ import styledComponents from "styled-components";
 import styled from "styled-container-query";
 
 const ConfirmedNumberText = styledComponents(Typography).attrs(() => ({
-  variant: "text2",
+  variant: "text2Bold",
 }))``;
 
 export const ConfirmedNumber = styled(ConfirmedNumberText)``;
@@ -20,7 +20,7 @@ export const ConfirmationWrapper = styledComponents.div`
   display: flex;
   align-items: center;
   padding: 2px 4px;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.s};
   overflow: hidden;
   width: auto;
 

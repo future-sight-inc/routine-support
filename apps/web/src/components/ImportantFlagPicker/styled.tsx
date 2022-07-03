@@ -15,7 +15,7 @@ export const MessageWrapper = styled.div`
 
   ${({ theme }) => css`
     background: ${theme.palette.primary.message};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.s};
   `}
 `;
 

@@ -22,7 +22,7 @@ export const AddExtraIconWrapper = styled.div`
   height: 30px;
   ${({ theme }) => css`
     background: ${theme.palette.primary.main};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.s};
   `}
   transition: all .3s;
   z-index: 1000;

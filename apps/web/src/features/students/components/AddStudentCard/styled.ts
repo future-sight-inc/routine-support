@@ -5,7 +5,7 @@ export const Card = styled.div`
   width: 176px;
   height: 196px;
 
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.l};
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 

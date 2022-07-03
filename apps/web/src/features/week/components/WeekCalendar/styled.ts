@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 55px repeat(7, 1fr);
-  background: ${({ theme }) => theme.palette.border.main};
+  background: ${({ theme }) => theme.palette.border.light};
   grid-column-gap: 1px;
 `;
 
@@ -90,7 +90,7 @@ export const TimeLine = styled.div<{ top: number }>`
     display: block;
     width: 10px;
     height: 10px;
-    background: grey;
+
     margin-top: -4px;
     margin-left: -6px;
     border-radius: 50%;
@@ -115,6 +115,6 @@ export const CurrentTime = styled(Typography).attrs(() => ({
   ${({ theme }) => css`
     padding: 4px;
     background: ${theme.palette.primary.main};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.s};
   `}
 `;

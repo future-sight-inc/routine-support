@@ -37,7 +37,7 @@ export const ButtonWrapper = styled.div`
 
   ${({ theme }) =>
     css`
-      border-radius: ${theme.borderRadius};
+      border-radius: ${theme.borderRadius.s};
     `}
 
   &:hover {
@@ -64,7 +64,7 @@ export const Week = styled.div<{ isCurrent?: boolean }>`
 
   ${({ theme }) =>
     css`
-      border-radius: ${theme.borderRadius};
+      border-radius: ${theme.borderRadius.s};
     `}
 
   &:hover {
@@ -119,7 +119,7 @@ export const TodayWrapper = styled.div`
     justify-content: center;
     align-items: center;
     height: 30px;
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.s};
     cursor: pointer;
 
     background: ${theme.palette.secondary.main};

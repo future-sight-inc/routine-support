@@ -18,7 +18,7 @@ export const Wrapper = styled.div<{ backgroundImage?: ImageUrl }>`
     ? theme.palette.common.black
     : theme.palette.secondary.main};
       background-image: url(${backgroundImage});
-      border-radius: ${theme.borderRadius};
+      border-radius: ${theme.borderRadius.l};
     `};
 
   background-repeat: no-repeat;
@@ -80,7 +80,7 @@ export const Pictogram = styled.img<{ active?: boolean }>`
   box-sizing: border-box;
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.l};
   `}
 
   ${({ active, theme }) =>

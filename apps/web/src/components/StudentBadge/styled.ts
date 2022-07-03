@@ -9,7 +9,7 @@ export const Wrapper = styled.div<{ color: string }>`
   padding: 0 12px;
 
   ${({ theme, color }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.s};
     background: ${color};
   `}
 `;

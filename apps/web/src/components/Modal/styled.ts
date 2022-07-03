@@ -33,7 +33,8 @@ export const ModalContent = styled.div`
 
   ${({ theme }) => css`
     background: ${theme.palette.common.white};
-    border-radius: ${theme.borderRadius};
+    border: 1px solid ${theme.palette.border.light};
+    border-radius: ${theme.borderRadius.l};
     box-shadow: ${theme.boxShadow.medium};
   `};
 `;

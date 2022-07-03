@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 
   ${({ theme }) => css`
     background: ${theme.palette.error.main};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
   `};
 `;
 

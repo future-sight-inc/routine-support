@@ -5,7 +5,8 @@ import styled from "styled-container-query";
 
 const TimeText = styledComponents(Typography).attrs(() => ({
   variant: "text2",
-}))``;
+}))`
+`;
 
 export const Time = styled(TimeText)`
   &:container(max-width: 100px) {
@@ -19,7 +20,7 @@ export const Time = styled(TimeText)`
 `;
 
 const NameText = styledComponents(Typography).attrs(() => ({
-  variant: "text1Bold",
+  variant: "text1",
 }))``;
 
 export const Name = styled(NameText)`
@@ -52,7 +53,7 @@ export const Wrapper = styled.div<{
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   margin: 0;
   padding: 8px;
 
@@ -61,7 +62,7 @@ export const Wrapper = styled.div<{
   }
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
   `}
 
   ${({ rowStart, marginTop, count, index, height, theme }) => css`

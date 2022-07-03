@@ -1,8 +1,8 @@
+import { Theme } from "@routine-support/ui-theme";
 import { storiesOf } from "@storybook/react";
 import styled, { css } from "styled-components";
 
 import { Typography } from "./components/Typography";
-import { Theme } from "./theme";
 
 const Layout = styled.div`
   display: flex;
@@ -29,7 +29,7 @@ const StyledSquare = styled.div<{
   height: 50px;
   width: 50px;
   ${({ theme, level, name }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
     background: ${theme.palette[level][name]};
   `}
 `;
@@ -97,7 +97,7 @@ storiesOf("Style Kit/Palette", module).add("All", () => (
         <Square level="common" name="mint" />
         <Square level="common" name="orange" />
         <Square level="common" name="brown" />
-        <Square level="common" name="darkgreen" />
+        <Square level="common" name="darkGreen" />
       </Column>
     </Section>
   </Layout>

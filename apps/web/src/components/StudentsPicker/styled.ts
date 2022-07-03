@@ -13,7 +13,7 @@ export const FieldWrapper = styled.div<{ isActive?: boolean }>`
     flex-direction: column;
     gap: 4px;
     cursor: pointer;
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.s};
     padding: 8px;
     transition: background 0.2s;
 
@@ -65,7 +65,7 @@ export const StudentWrapper = styled.div`
 
   ${({ theme }) => css`
     background: ${theme.palette.secondary.main};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.s};
   `}
 `;
 
@@ -96,7 +96,7 @@ export const Menu = styled.div`
   overflow: scroll;
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
     background: ${theme.palette.common.white};
     box-shadow: ${theme.boxShadow.small};
   `}

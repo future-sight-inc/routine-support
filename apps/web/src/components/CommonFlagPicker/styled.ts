@@ -19,7 +19,7 @@ export const Button = styled(UIButton)<{ isActive: boolean }>`
     ${!isActive &&
     css`
       background: none;
-      border: 1px solid ${theme.palette.border.main};
+      border: 1px solid ${theme.palette.border.normal};
       color: ${theme.palette.secondary.text};
 
       &:hover {

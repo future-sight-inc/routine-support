@@ -94,3 +94,21 @@ export const LogoutWrapper = styled.div`
     }
   }
 `;
+
+export const NotificationsIconWrapper = styled.div`
+  width: 24px;
+  height: 24px;
+  position: relative;
+`;
+
+export const NewNotificationMark = styled.div`
+  width: 5px;
+  height: 5px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 2.5px;
+
+  background-color: ${({ theme }) => theme.palette.common.red};
+`;
