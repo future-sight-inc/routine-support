@@ -53,7 +53,14 @@ export interface ThemeType {
     maxWidth: string;
   };
   fonts: {
+    caption1: FontVariant;
+    caption2: FontVariant;
+    caption3: FontVariant;
     caption4: FontVariant;
+    caption1Normal: FontVariant;
+    caption2Normal: FontVariant;
+    caption3Normal: FontVariant;
+    caption4Normal: FontVariant;
     text1: FontVariant;
     text2: FontVariant;
     text3: FontVariant;
