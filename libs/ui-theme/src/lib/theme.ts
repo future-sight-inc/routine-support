@@ -44,16 +44,45 @@ export const Theme: ThemeType = {
     s: "5px",
     m: "8px",
     l: "13px",
-    xl: "28px",
+    xl: "18px",
+    xxl: "28px",
   },
   size: {
     cellHeight: "140px",
     maxWidth: "1900px",
   },
   fonts: {
+    caption1: {
+      size: "48px",
+      weight: "bold",
+    },
+    caption2: {
+      size: "30px",
+      weight: "bold",
+    },
+    caption3: {
+      size: "24px",
+      weight: "bold",
+    },
     caption4: {
       size: "20px",
       weight: "bold",
+    },
+    caption1Normal: {
+      size: "48px",
+      weight: "normal",
+    },
+    caption2Normal: {
+      size: "30px",
+      weight: "normal",
+    },
+    caption3Normal: {
+      size: "24px",
+      weight: "normal",
+    },
+    caption4Normal: {
+      size: "20px",
+      weight: "normal",
     },
     text1: {
       size: "16px",
