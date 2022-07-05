@@ -18,16 +18,16 @@ const styles = StyleSheet.create({
 storiesOf("Components", module).add("Typography", () => (
   <View style={styles.layout}>
     <Typography variant="caption1" style={styles.text}>
-      Caption1/48px/bold
+      Caption1/48px/semi bold
     </Typography>
     <Typography variant="caption2" style={styles.text}>
-      Caption2/30px/bold
+      Caption2/30px/semi bold
     </Typography>
     <Typography variant="caption3" style={styles.text}>
-      Caption3/24px/bold
+      Caption3/24px/semi bold
     </Typography>
     <Typography variant="caption4" style={styles.text}>
-      Caption4/20px/bold
+      Caption4/20px/semi bold
     </Typography>
     <Typography variant="caption1Normal" style={styles.text}>
       Caption1Normal/48px/normal

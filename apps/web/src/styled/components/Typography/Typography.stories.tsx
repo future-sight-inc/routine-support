@@ -20,10 +20,10 @@ storiesOf("Style Kit/Typography", module)
   .add("Variations", () => (
     <Layout>
       <Group>
-        <Typography variant="caption1">Caption1/48px/bold</Typography>
-        <Typography variant="caption2">Caption2/30px/bold</Typography>
-        <Typography variant="caption3">Caption3/24px/bold</Typography>
-        <Typography variant="caption4">Caption4/20px/bold</Typography>
+        <Typography variant="caption1">Caption1/48px/semi bold</Typography>
+        <Typography variant="caption2">Caption2/30px/semi bold</Typography>
+        <Typography variant="caption3">Caption3/24px/semi bold</Typography>
+        <Typography variant="caption4">Caption4/20px/semi bold</Typography>
       </Group>
       <Group>
         <Typography variant="caption1Normal">Caption1Normal/48px/normal</Typography>

@@ -8,7 +8,7 @@ export interface Palette {
   text: string;
 }
 
-export type FontWeight = "normal" | "bold";
+export type FontWeight = "normal" | "bold" | "600";
 
 export interface FontVariant {
   size: string;
@@ -77,9 +77,4 @@ export interface ThemeType {
 
 export type TypographyVariant = keyof typeof Theme.fonts;
 
-export type TypographyColor =
-  | "normal"
-  | "secondary"
-  | "primary"
-  | "white"
-  | "error";
+export type TypographyColor = "normal" | "secondary" | "primary" | "white" | "error";
