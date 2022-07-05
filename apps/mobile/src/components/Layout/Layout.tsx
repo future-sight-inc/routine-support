@@ -1,18 +1,21 @@
 import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { MobileTheme } from "../../app/app";
+import { Button } from "../Button";
+import { Typography } from "../Typography";
 
 export const Layout: React.FC = () => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.header}>
-        <Text>Header</Text>
+        <Typography variant="caption3Normal">Title</Typography>
       </View>
       <View style={styles.body}>
         <Text>Body</Text>
       </View>
       <View style={styles.footer}>
-        <Text>Footer</Text>
+        {/* todo add footer action button */}
+        <Button text="Submit" fullWidth />
       </View>
     </View>
   );
@@ -20,7 +23,7 @@ export const Layout: React.FC = () => {
 
 const HEADER_HEIGHT = 78;
 const FOOTER_HEIGHT = 98;
-const BOTTOM_SAFE_AREA_PADDING = 45;
+const BOTTOM_SAFE_AREA_PADDING = 48;
 const TOP_SAFE_AREA_PADDING = 0;
 const BODY_HEIGHT =
   Dimensions.get("window").height -
@@ -39,6 +42,7 @@ const styles = StyleSheet.create({
   header: {
     height: 78,
     flexDirection: "column",
+    alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: HORIZONTAL_PADDING,
   },
@@ -55,7 +59,9 @@ const styles = StyleSheet.create({
   footer: {
     height: FOOTER_HEIGHT,
     flexDirection: "column",
-    justifyContent: "center",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingVertical: HORIZONTAL_PADDING,
     paddingHorizontal: HORIZONTAL_PADDING,
     backgroundColor: MobileTheme.palette.common.greyMuted,
     borderWidth: 1,

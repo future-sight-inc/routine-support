@@ -26,12 +26,12 @@ export const Button: React.FC<ButtonProps> = ({
 
   const handlePressIn = (event: GestureResponderEvent) => {
     setPressed(true);
-    onPressIn(event);
+    onPressIn && onPressIn(event);
   };
 
   const handlePressOut = (event: GestureResponderEvent) => {
     setPressed(false);
-    onPressOut(event);
+    onPressOut && onPressOut(event);
   };
 
   const getTextColor = (variant: ButtonVariant) => {
@@ -67,11 +67,11 @@ export const Button: React.FC<ButtonProps> = ({
 const styles = StyleSheet.create({
   button: {
     width: 200,
-    height: 60,
+    height: 50,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: MobileTheme.palette.primary.main,
-    borderRadius: 5,
+    borderRadius: MobileTheme.borderRadius.m,
   },
   text: {
     fontWeight: MobileTheme.fonts.caption4.weight,

@@ -118,20 +118,20 @@ export type MobileThemeType = {
     maxWidth: string;
   };
   fonts: {
-    caption1: FontVariant;
-    caption2: FontVariant;
-    caption3: FontVariant;
-    caption4: FontVariant;
-    caption1Normal: FontVariant;
-    caption2Normal: FontVariant;
-    caption3Normal: FontVariant;
-    caption4Normal: FontVariant;
-    text1: FontVariant;
-    text2: FontVariant;
-    text3: FontVariant;
-    text1Bold: FontVariant;
-    text2Bold: FontVariant;
-    text3Bold: FontVariant;
+    caption1: MobileFontVariant;
+    caption2: MobileFontVariant;
+    caption3: MobileFontVariant;
+    caption4: MobileFontVariant;
+    caption1Normal: MobileFontVariant;
+    caption2Normal: MobileFontVariant;
+    caption3Normal: MobileFontVariant;
+    caption4Normal: MobileFontVariant;
+    text1: MobileFontVariant;
+    text2: MobileFontVariant;
+    text3: MobileFontVariant;
+    text1Bold: MobileFontVariant;
+    text2Bold: MobileFontVariant;
+    text3Bold: MobileFontVariant;
   };
   fontFamily: string;
   boxShadow: {
