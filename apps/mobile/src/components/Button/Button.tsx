@@ -1,12 +1,6 @@
-import { Theme } from "@routine-support/ui-theme";
-import { pxToNumber } from "@routine-support/utils";
 import React, { useState } from "react";
-import {
-  GestureResponderEvent,
-  Pressable,
-  PressableProps,
-  StyleSheet,
-} from "react-native";
+import { GestureResponderEvent, Pressable, PressableProps, StyleSheet } from "react-native";
+import { MobileTheme } from "../../app/app";
 import { Typography } from "../Typography";
 
 type ButtonVariant = "primary" | "secondary";
@@ -43,9 +37,9 @@ export const Button: React.FC<ButtonProps> = ({
   const getTextColor = (variant: ButtonVariant) => {
     switch (variant) {
     case "primary":
-      return Theme.palette.common.white;
+      return MobileTheme.palette.common.white;
     default:
-      return Theme.palette.primary.text;
+      return MobileTheme.palette.primary.text;
     }
   };
 
@@ -57,17 +51,15 @@ export const Button: React.FC<ButtonProps> = ({
         ...style,
         ...styles.button,
         backgroundColor: isPressed
-          ? Theme.palette[variant].clicked
-          : Theme.palette[variant].main,
+          ? MobileTheme.palette[variant].clicked
+          : MobileTheme.palette[variant].main,
         width: fullWidth ? "100%" : styles.button.width,
         opacity: disabled ? 0.3 : 1,
       }}
       {...props}
       disabled={disabled}
     >
-      <Typography style={{ ...styles.text, color: getTextColor(variant) }}>
-        {text}
-      </Typography>
+      <Typography style={{ ...styles.text, color: getTextColor(variant) }}>{text}</Typography>
     </Pressable>
   );
 };
@@ -78,11 +70,11 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Theme.palette.primary.main,
+    backgroundColor: MobileTheme.palette.primary.main,
     borderRadius: 5,
   },
   text: {
-    fontWeight: Theme.fonts.caption4.weight,
-    fontSize: pxToNumber(Theme.fonts.caption4.size),
+    fontWeight: MobileTheme.fonts.caption4.weight,
+    fontSize: MobileTheme.fonts.caption4.size,
   },
 });

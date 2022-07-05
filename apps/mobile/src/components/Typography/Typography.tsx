@@ -1,7 +1,7 @@
+import { TypographyColor, TypographyVariant } from "@routine-support/ui-theme";
 import React, { ReactNode } from "react";
 import { Text, TextProps } from "react-native";
-import { Theme, TypographyColor, TypographyVariant } from "@routine-support/ui-theme";
-import { pxToNumber } from "@routine-support/utils";
+import { MobileTheme } from "../../app/app";
 
 interface TypographyProps extends TextProps {
   children: ReactNode;
@@ -21,98 +21,98 @@ export const Typography: React.FC<TypographyProps> = ({
 
     switch (variant) {
     case "text1":
-      size = Theme.fonts.text1.size;
+      size = MobileTheme.fonts.text1.size;
       break;
     case "text1Bold":
-      size = Theme.fonts.text1Bold.size;
+      size = MobileTheme.fonts.text1Bold.size;
       break;
     case "text2":
-      size = Theme.fonts.text2.size;
+      size = MobileTheme.fonts.text2.size;
       break;
     case "text2Bold":
-      size = Theme.fonts.text2Bold.size;
+      size = MobileTheme.fonts.text2Bold.size;
       break;
     case "text3":
-      size = Theme.fonts.text3.size;
+      size = MobileTheme.fonts.text3.size;
       break;
     case "text3Bold":
-      size = Theme.fonts.text3Bold.size;
+      size = MobileTheme.fonts.text3Bold.size;
       break;
     case "caption1":
-      size = Theme.fonts.caption1.size;
+      size = MobileTheme.fonts.caption1.size;
       break;
     case "caption1Normal":
-      size = Theme.fonts.caption1Normal.size;
+      size = MobileTheme.fonts.caption1Normal.size;
       break;
     case "caption2":
-      size = Theme.fonts.caption2.size;
+      size = MobileTheme.fonts.caption2.size;
       break;
     case "caption2Normal":
-      size = Theme.fonts.caption2Normal.size;
+      size = MobileTheme.fonts.caption2Normal.size;
       break;
     case "caption3":
-      size = Theme.fonts.caption3.size;
+      size = MobileTheme.fonts.caption3.size;
       break;
     case "caption3Normal":
-      size = Theme.fonts.caption3Normal.size;
+      size = MobileTheme.fonts.caption3Normal.size;
       break;
     case "caption4":
-      size = Theme.fonts.caption4.size;
+      size = MobileTheme.fonts.caption4.size;
       break;
     case "caption4Normal":
-      size = Theme.fonts.caption4Normal.size;
+      size = MobileTheme.fonts.caption4Normal.size;
       break;
     }
 
-    return pxToNumber(size);
+    return size;
   };
 
   const getFontWeight = (variant: TypographyVariant): "normal" | "bold" => {
     switch (variant) {
     case "text1":
-      return Theme.fonts.text1.weight;
+      return MobileTheme.fonts.text1.weight;
     case "text1Bold":
-      return Theme.fonts.text1Bold.weight;
+      return MobileTheme.fonts.text1Bold.weight;
     case "text2":
-      return Theme.fonts.text2.weight;
+      return MobileTheme.fonts.text2.weight;
     case "text2Bold":
-      return Theme.fonts.text2Bold.weight;
+      return MobileTheme.fonts.text2Bold.weight;
     case "text3":
-      return Theme.fonts.text3.weight;
+      return MobileTheme.fonts.text3.weight;
     case "text3Bold":
-      return Theme.fonts.text3Bold.weight;
+      return MobileTheme.fonts.text3Bold.weight;
     case "caption1":
-      return Theme.fonts.caption1.weight;
+      return MobileTheme.fonts.caption1.weight;
     case "caption1Normal":
-      return Theme.fonts.caption1Normal.weight;
+      return MobileTheme.fonts.caption1Normal.weight;
     case "caption2":
-      return Theme.fonts.caption2.weight;
+      return MobileTheme.fonts.caption2.weight;
     case "caption2Normal":
-      return Theme.fonts.caption2Normal.weight;
+      return MobileTheme.fonts.caption2Normal.weight;
     case "caption3":
-      return Theme.fonts.caption3.weight;
+      return MobileTheme.fonts.caption3.weight;
     case "caption3Normal":
-      return Theme.fonts.caption3Normal.weight;
+      return MobileTheme.fonts.caption3Normal.weight;
     case "caption4":
-      return Theme.fonts.caption4.weight;
+      return MobileTheme.fonts.caption4.weight;
     case "caption4Normal":
-      return Theme.fonts.caption4Normal.weight;
+      return MobileTheme.fonts.caption4Normal.weight;
     }
   };
 
   const getFontColor = (color: TypographyColor) => {
     switch (color) {
     case "normal":
-      return Theme.palette.primary.text;
+      return MobileTheme.palette.primary.text;
     case "secondary":
-      return Theme.palette.secondary.text;
+      return MobileTheme.palette.secondary.text;
 
     case "primary":
-      return Theme.palette.primary.main;
+      return MobileTheme.palette.primary.main;
     case "white":
-      return Theme.palette.common.white;
+      return MobileTheme.palette.common.white;
     case "error":
-      return Theme.palette.error.text;
+      return MobileTheme.palette.error.text;
     }
   };
 
