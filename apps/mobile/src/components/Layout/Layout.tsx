@@ -3,12 +3,15 @@ import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { MobileTheme } from "../../app/app";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export const Layout: React.FC = () => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.header}>
-        <Typography variant="caption3Normal">Title</Typography>
+        <MaterialIcons name="menu" size={30} />
+        <Typography variant="caption3Normal">Календарь</Typography>
+        <MaterialIcons name="notifications" size={30} />
       </View>
       <View style={styles.body}>
         <Text>Body</Text>
@@ -41,9 +44,9 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 78,
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
     paddingHorizontal: HORIZONTAL_PADDING,
   },
   body: {
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
     paddingTop: HORIZONTAL_PADDING,
     borderWidth: 1,
     borderBottomWidth: 0,
-    borderColor: MobileTheme.palette.border.normal,
+    borderColor: MobileTheme.palette.border.light,
     borderTopLeftRadius: MobileTheme.borderRadius.xxl,
     borderTopRightRadius: MobileTheme.borderRadius.xxl,
   },
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: MobileTheme.palette.common.greyMuted,
     borderWidth: 1,
     borderBottomWidth: 0,
-    borderColor: MobileTheme.palette.border.normal,
+    borderColor: MobileTheme.palette.border.light,
     borderTopLeftRadius: MobileTheme.borderRadius.xl,
     borderTopRightRadius: MobileTheme.borderRadius.xl,
   },
