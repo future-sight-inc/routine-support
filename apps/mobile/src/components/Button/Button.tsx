@@ -1,15 +1,20 @@
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React, { useState } from "react";
-import { GestureResponderEvent, Pressable, PressableProps, StyleSheet } from "react-native";
+import { GestureResponderEvent, Pressable, PressableProps, StyleSheet, View } from "react-native";
 import { MobileTheme } from "../../app/app";
 import { Typography } from "../Typography";
+import { ButtonLocators } from "./locators";
 
 type ButtonVariant = "primary" | "secondary";
+
+type ButtonIcon = "add" | "remove";
 
 interface ButtonProps extends PressableProps {
   text: string;
   variant?: ButtonVariant;
   fullWidth?: boolean;
   disabled?: boolean;
+  icon?: ButtonIcon;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -18,6 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
   fullWidth,
   disabled,
   style,
+  icon,
   onPressIn,
   onPressOut,
   ...props
@@ -58,8 +64,19 @@ export const Button: React.FC<ButtonProps> = ({
       }}
       {...props}
       disabled={disabled}
+      testID={ButtonLocators.Wrapper}
     >
-      <Typography style={{ ...styles.text, color: getTextColor(variant) }}>{text}</Typography>
+      {icon && (
+        <View style={styles.iconWrapper} testID={ButtonLocators.IconWrapper}>
+          <MaterialIcons name={icon} size={24} color={getTextColor(variant)} />
+        </View>
+      )}
+      <Typography
+        style={{ ...styles.text, color: getTextColor(variant) }}
+        testID={ButtonLocators.Text}
+      >
+        {text}
+      </Typography>
     </Pressable>
   );
 };
@@ -68,6 +85,7 @@ const styles = StyleSheet.create({
   button: {
     width: 200,
     height: 50,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: MobileTheme.palette.primary.main,
@@ -76,5 +94,8 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: MobileTheme.fonts.caption4.weight,
     fontSize: MobileTheme.fonts.caption4.size,
+  },
+  iconWrapper: {
+    marginRight: 8,
   },
 });

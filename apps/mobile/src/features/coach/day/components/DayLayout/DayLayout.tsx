@@ -12,7 +12,7 @@ interface DayLayoutProps {
 export const DayLayout: React.FC<DayLayoutProps> = () => {
   // todo should use main layout component that based on layout component
   return (
-    <Layout title="Календарь" footer={<Button text="Submit" fullWidth />}>
+    <Layout title="Календарь" footer={<Button text="Событие" fullWidth icon="add" />}>
       <View style={styles.wrapper}>
         <View style={styles.header}>
           <Text>Header</Text>
