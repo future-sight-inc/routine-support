@@ -1,25 +1,25 @@
-import React from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import React, { ReactNode } from "react";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { MobileTheme } from "../../app/app";
-import { Button } from "../Button";
 import { Typography } from "../Typography";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-export const Layout: React.FC = () => {
+interface LayoutProps {
+  children: ReactNode;
+  title: string;
+  footer?: ReactNode;
+}
+
+export const Layout: React.FC<LayoutProps> = ({ title, children, footer }) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.header}>
         <MaterialIcons name="menu" size={30} />
-        <Typography variant="caption3Normal">Календарь</Typography>
+        <Typography variant="caption3Normal">{title}</Typography>
         <MaterialIcons name="notifications" size={30} />
       </View>
-      <View style={styles.body}>
-        <Text>Body</Text>
-      </View>
-      <View style={styles.footer}>
-        {/* todo add footer action button */}
-        <Button text="Submit" fullWidth />
-      </View>
+      <View style={styles.body}>{children}</View>
+      {footer && <View style={styles.footer}>{footer}</View>}
     </View>
   );
 };

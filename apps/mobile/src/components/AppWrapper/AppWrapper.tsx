@@ -41,10 +41,7 @@ export const AppWrapper: React.FC = ({ children }) => {
     <ApplicationProvider {...eva} theme={eva.light}>
       <ToastProvider
         renderToast={(toast) => (
-          <Toast
-            title={toast.data.title}
-            description={toast.data.description}
-          />
+          <Toast title={toast.data.title} description={toast.data.description} />
         )}
         offsetTop={64}
       >
