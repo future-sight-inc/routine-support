@@ -3,6 +3,7 @@ import { Dimensions, StyleSheet, View } from "react-native";
 import { MobileTheme } from "../../app/app";
 import { Typography } from "../Typography";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { LayoutLocators } from "./locators";
 
 interface LayoutProps {
   children: ReactNode;
@@ -12,14 +13,22 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ title, children, footer }) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={LayoutLocators.Wrapper}>
       <View style={styles.header}>
         <MaterialIcons name="menu" size={30} />
-        <Typography variant="caption3Normal">{title}</Typography>
+        <Typography variant="caption3Normal" testID={LayoutLocators.Title}>
+          {title}
+        </Typography>
         <MaterialIcons name="notifications" size={30} />
       </View>
-      <View style={styles.body}>{children}</View>
-      {footer && <View style={styles.footer}>{footer}</View>}
+      <View style={styles.body} testID={LayoutLocators.Body}>
+        {children}
+      </View>
+      {footer && (
+        <View style={styles.footer} testID={LayoutLocators.Footer}>
+          {footer}
+        </View>
+      )}
     </View>
   );
 };
