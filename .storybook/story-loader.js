@@ -10,6 +10,7 @@ function loadStories() {
   require("../apps/mobile/src/components/Typography/Typography.stories");
   require("../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories");
   require("../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories");
+  require("../apps/mobile/src/features/coach/day/components/Filter/Filter.stories");
 }
 
 const stories = [
@@ -19,6 +20,7 @@ const stories = [
   "../apps/mobile/src/components/Typography/Typography.stories",
   "../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories",
   "../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories",
+  "../apps/mobile/src/features/coach/day/components/Filter/Filter.stories",
 ];
 
 module.exports = {
