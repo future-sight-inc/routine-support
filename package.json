@@ -20,6 +20,7 @@
     "prepare": "npx husky install",
     "pre-commit": "lint-staged",
     "storybook:web": "nx run web:storybook",
+    "storybook:mobile": "nx run mobile:storybook",
     "e2e:web": "nx run web-e2e:e2e --headed --watch"
   },
   "private": true,
