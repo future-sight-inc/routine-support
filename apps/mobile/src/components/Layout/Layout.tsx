@@ -4,22 +4,36 @@ import { MobileTheme } from "../../app/app";
 import { Typography } from "../Typography";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { LayoutLocators } from "./locators";
+import { NotificationsIcon } from "../NotificationsIcon";
 
 interface LayoutProps {
   children: ReactNode;
   title: string;
   footer?: ReactNode;
+  hasNewNotifications: boolean;
+  onNotificationsIconPress: () => void;
+  onMenuIconPress: () => void;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ title, children, footer }) => {
+export const Layout: React.FC<LayoutProps> = ({
+  title,
+  children,
+  footer,
+  hasNewNotifications,
+  onNotificationsIconPress,
+  onMenuIconPress,
+}) => {
   return (
     <View style={styles.wrapper} testID={LayoutLocators.Wrapper}>
       <View style={styles.header}>
-        <MaterialIcons name="menu" size={30} />
+        <MaterialIcons name="menu" size={30} onPress={onMenuIconPress} />
         <Typography variant="caption3Normal" testID={LayoutLocators.Title}>
           {title}
         </Typography>
-        <MaterialIcons name="notifications" size={30} />
+        <NotificationsIcon
+          hasNewNotifications={hasNewNotifications}
+          onPress={onNotificationsIconPress}
+        />
       </View>
       <View style={styles.body} testID={LayoutLocators.Body}>
         {children}
