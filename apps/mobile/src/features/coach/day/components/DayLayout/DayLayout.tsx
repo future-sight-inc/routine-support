@@ -3,13 +3,7 @@ import { Layout } from "apps/mobile/src/components/Layout";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-interface DayLayoutProps {
-  // daySelector: ReactNode;
-  // filter: ReactNode;
-  // calendar: ReactNode;
-}
-
-export const DayLayout: React.FC<DayLayoutProps> = () => {
+export const DayLayout: React.FC = () => {
   // todo should use main layout component that based on layout component
   return (
     <Layout title="Календарь" footer={<Button text="Событие" fullWidth icon="add" />}>

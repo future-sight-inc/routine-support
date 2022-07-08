@@ -1,7 +1,7 @@
 import { MobileTheme } from "apps/mobile/src/app/app";
 import { Typography } from "apps/mobile/src/components/Typography";
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
 const DATA = new Array(24).fill("");
 
