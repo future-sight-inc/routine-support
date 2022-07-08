@@ -21,6 +21,7 @@
     "pre-commit": "lint-staged",
     "storybook:web": "nx run web:storybook",
     "storybook:mobile": "nx run mobile:storybook",
+    "ios:mobile": "nx run-ios mobile",
     "e2e:web": "nx run web-e2e:e2e --headed --watch"
   },
   "private": true,
