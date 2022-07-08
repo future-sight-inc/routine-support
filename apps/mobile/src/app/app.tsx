@@ -10,6 +10,8 @@ import { PrivateRoute } from "../features/student/components/PrivateRoute";
 import { useSocketEventListener } from "../features/student/hooks/useSocketEventListener";
 import { useStudent } from "../features/student/useStudent";
 import { AppWrapper } from "../components/AppWrapper";
+import { mapThemeToMobile } from "../utils/mapThemeToMobile";
+import { Theme } from "@routine-support/ui-theme";
 
 const App = () => {
   const {
@@ -24,12 +26,9 @@ const App = () => {
     getDay();
   });
 
-  useSocketEventListener<Partial<Student>>(
-    WeekSocketEventTypeEnum.UpdateSettings,
-    (settings) => {
-      updateStudentSettings(settings);
-    }
-  );
+  useSocketEventListener<Partial<Student>>(WeekSocketEventTypeEnum.UpdateSettings, (settings) => {
+    updateStudentSettings(settings);
+  });
 
   return (
     <>
@@ -52,3 +51,5 @@ export default () => (
     </AppWrapper>
   </NativeRouter>
 );
+
+export const MobileTheme = mapThemeToMobile(Theme);

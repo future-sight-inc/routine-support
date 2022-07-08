@@ -20,23 +20,17 @@ storiesOf("Components", module).add("Button", () => (
   <>
     <View style={styles.layout}>
       <Button style={styles.button} text="Primary Button" />
-      <Button
-        variant="secondary"
-        style={styles.button}
-        text="Secondary Button"
-      />
+      <Button variant="secondary" style={styles.button} text="Secondary Button" />
     </View>
     <View style={styles.layout}>
       <Button style={styles.button} text="Disabled Primary" disabled />
-      <Button
-        variant="secondary"
-        style={styles.button}
-        text="Disabled Secondary"
-        disabled
-      />
+      <Button variant="secondary" style={styles.button} text="Disabled Secondary" disabled />
     </View>
     <View style={styles.layout}>
       <Button style={styles.button} text="Full Width" fullWidth />
+    </View>
+    <View style={styles.layout}>
+      <Button style={styles.button} text="With Icon" icon="add" />
     </View>
   </>
 ));
