@@ -8,7 +8,7 @@ export interface Palette {
   text: string;
 }
 
-export type FontWeight = "normal" | "bold";
+export type FontWeight = "normal" | "bold" | "600";
 
 export interface FontVariant {
   size: string;

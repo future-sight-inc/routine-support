@@ -54,19 +54,19 @@ export const Theme: ThemeType = {
   fonts: {
     caption1: {
       size: "48px",
-      weight: "bold",
+      weight: "600",
     },
     caption2: {
       size: "30px",
-      weight: "bold",
+      weight: "600",
     },
     caption3: {
       size: "24px",
-      weight: "bold",
+      weight: "600",
     },
     caption4: {
       size: "20px",
-      weight: "bold",
+      weight: "600",
     },
     caption1Normal: {
       size: "48px",
