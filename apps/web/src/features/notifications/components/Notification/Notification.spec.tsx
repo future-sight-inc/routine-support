@@ -12,16 +12,13 @@ import { cleanup, render } from "@testing-library/react";
 import { AppWrapper } from "apps/web/src/components/AppWrapper";
 import "intersection-observer";
 
-import {
-  createStudentBadgeDataTestId,
-  NotificationLocatorsEnum,
-} from "./locators";
+import { createStudentBadgeDataTestId, NotificationLocatorsEnum } from "./locators";
 import { Notification } from "./Notification";
 
 afterEach(cleanup);
 
 describe("Notification", () => {
-  it("Initial state", () => {
+  it("New notification", () => {
     const student1 = createMockStudent();
     const student2 = createMockStudent();
     const activity = createMockActivity();
@@ -45,12 +42,11 @@ describe("Notification", () => {
     );
 
     expect(getByTestId(NotificationLocatorsEnum.NotViewedBadge)).toBeVisible();
-    expect(
-      getByTestId(NotificationLocatorsEnum.ActivityName)
-    ).toHaveTextContent(activity.name);
-    expect(
-      getByTestId(NotificationLocatorsEnum.ActivityTime)
-    ).toHaveTextContent(
+    expect(getByTestId(NotificationLocatorsEnum.ActivityPictogram).getAttribute("src")).toBe(
+      activity.pictogram
+    );
+    expect(getByTestId(NotificationLocatorsEnum.ActivityName)).toHaveTextContent(activity.name);
+    expect(getByTestId(NotificationLocatorsEnum.ActivityTime)).toHaveTextContent(
       `${stringifyTime(activity.start)} - ${stringifyTime(activity.end)}`
     );
     expect(getByTestId(createStudentBadgeDataTestId(student1))).toBeVisible();
@@ -82,12 +78,8 @@ describe("Notification", () => {
     );
 
     expect(queryByTestId(NotificationLocatorsEnum.NotViewedBadge)).toBeFalsy();
-    expect(
-      getByTestId(NotificationLocatorsEnum.ActivityName)
-    ).toHaveTextContent(activity.name);
-    expect(
-      getByTestId(NotificationLocatorsEnum.ActivityTime)
-    ).toHaveTextContent(
+    expect(getByTestId(NotificationLocatorsEnum.ActivityName)).toHaveTextContent(activity.name);
+    expect(getByTestId(NotificationLocatorsEnum.ActivityTime)).toHaveTextContent(
       `${stringifyTime(activity.start)} - ${stringifyTime(activity.end)}`
     );
     expect(getByTestId(createStudentBadgeDataTestId(student1))).toBeVisible();

@@ -44,11 +44,14 @@ export const Notification: React.FC<NotificationProps> = ({
   return (
     <S.Wrapper ref={containerRef} data-testid={NotificationLocatorsEnum.Wrapper}>
       <S.Row>
-        {!isViewed && <S.NotViewedBadge dataTestId={NotificationLocatorsEnum.NotViewedBadge} />}
+        {!isViewed && <S.NotViewedBadge data-testid={NotificationLocatorsEnum.NotViewedBadge} />}
         <S.NotificationType>{t("Activity was missed")}</S.NotificationType>
       </S.Row>
       <S.ActivityInfo>
-        <S.Image src={activity.pictogram} />
+        <S.Image
+          src={activity.pictogram}
+          data-testid={NotificationLocatorsEnum.ActivityPictogram}
+        />
         <S.InfoWrapper>
           <S.Title>
             <S.Name data-testid={NotificationLocatorsEnum.ActivityName}>{activity.name}</S.Name>
