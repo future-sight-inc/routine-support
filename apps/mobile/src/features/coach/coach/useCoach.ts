@@ -7,9 +7,9 @@ import {
   UpdateCoachDto,
 } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
-import io from "socket.io-client";
 import { useAppDispatch, useAppSelector } from "apps/mobile/src/app/hooks";
 import { coachAPI } from "apps/mobile/src/services/ApiService";
+import io from "socket.io-client";
 
 export const useCoach = () => {
   const dispatch = useAppDispatch();

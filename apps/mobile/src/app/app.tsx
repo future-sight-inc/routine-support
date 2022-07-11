@@ -9,11 +9,11 @@ import { useHistory } from "react-router-native";
 import { AppWrapper } from "../components/AppWrapper";
 import { Login as CoachLogin } from "../features/coach/coach/Login";
 import { Register as CoachRegister } from "../features/coach/coach/Register";
+import { Day as CoachDay } from '../features/coach/day/Day'
 import { useDay } from "../features/student/day/useDay";
 import { useSocketEventListener } from "../features/student/student/hooks/useSocketEventListener";
 import { useStudent } from "../features/student/student/useStudent";
 import { mapThemeToMobile } from "../utils/mapThemeToMobile";
-
 
 const App = () => {
   const {
@@ -36,7 +36,7 @@ const App = () => {
   const history = useHistory();
 
   useEffect(() => {
-    history.push('/coach/login');
+    history.push("/coach/login");
   }, []);
 
   return (
@@ -55,6 +55,9 @@ const App = () => {
       </Route>
       <Route exact path="/coach/register">
         <CoachRegister />
+      </Route>
+      <Route exact path="/coach/day">
+        <CoachDay />
       </Route>
     </>
   );

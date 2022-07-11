@@ -31,6 +31,7 @@ export const TextField: React.FC<TextFieldProps> = ({
           error={Boolean(fieldState.error)}
           {...props}
           {...field}
+          onChangeText={(value) => field.onChange(value)}
         />
       )}
     />
