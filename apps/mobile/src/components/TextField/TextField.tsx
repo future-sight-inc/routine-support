@@ -4,7 +4,7 @@ import { StyleSheet, TextInput, TextInputProps } from "react-native";
 
 import { MobileTheme } from "../../app/app";
 
-interface TextFieldProps extends TextInputProps {
+export interface TextFieldProps extends TextInputProps {
   error?: boolean;
 }
 
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   textInput: {
     borderWidth: 1,
 
-    height: 40,
+    height: 50,
     paddingHorizontal: 8,
     borderRadius: MobileTheme.borderRadius.m,
   },

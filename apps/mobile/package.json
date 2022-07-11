@@ -47,7 +47,8 @@
     "react-dom": "17.0.1",
     "@babel/core": "*",
     "@react-native-async-storage/async-storage": "*",
-    "@expo/vector-icons": "*"
+    "@expo/vector-icons": "*",
+    "react-hook-form": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && cp yarn.lock ./apps/mobile/",

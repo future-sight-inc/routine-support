@@ -5,6 +5,8 @@
 
 function loadStories() {
   require("../apps/mobile/src/components/Button/Button.stories");
+  require("../apps/mobile/src/components/FormFields/TextField/TextField.stories");
+  require("../apps/mobile/src/components/Label/Label.stories");
   require("../apps/mobile/src/components/Layout/Layout.stories");
   require("../apps/mobile/src/components/NotificationsIcon/NotificationsIcon.stories");
   require("../apps/mobile/src/components/TextField/TextField.stories");
@@ -17,6 +19,8 @@ function loadStories() {
 
 const stories = [
   "../apps/mobile/src/components/Button/Button.stories",
+  "../apps/mobile/src/components/FormFields/TextField/TextField.stories",
+  "../apps/mobile/src/components/Label/Label.stories",
   "../apps/mobile/src/components/Layout/Layout.stories",
   "../apps/mobile/src/components/NotificationsIcon/NotificationsIcon.stories",
   "../apps/mobile/src/components/TextField/TextField.stories",

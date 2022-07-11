@@ -1,22 +1,33 @@
 import React from "react";
 
 import { Button } from "apps/mobile/src/components/Button";
+import { TextField } from "apps/mobile/src/components/TextField";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export const Login: React.FC = () => {
   return (
     <View style={styles.wrapper}>
-      <Typography variant='caption4'>Login</Typography>
-      <TextInput placeholder="Email" />
-      <TextInput placeholder="Password" />
-      <Button text="Login" />
+      <Typography variant="caption2" style={styles.title}>
+        Login
+      </Typography>
+
+      <TextField placeholder="Email" style={styles.textInput} />
+      <TextField placeholder="Password" style={styles.textInput} />
+
+      <Button text="Login" fullWidth />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    padding: 32,
+    paddingHorizontal: 16,
+    paddingVertical: 32,
+  },
+  title: { marginBottom: 16 },
+
+  textInput: {
+    marginBottom: 16,
   },
 });
