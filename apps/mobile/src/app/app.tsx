@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 
 import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
+import { Theme } from "@routine-support/ui-theme";
 import { Route } from "react-router-native";
 import { NativeRouter } from "react-router-native";
-import { useDay } from "../features/day/useDay";
-import { useSocketEventListener } from "../features/student/hooks/useSocketEventListener";
-import { useStudent } from "../features/student/useStudent";
+import { useHistory } from "react-router-native";
+
 import { AppWrapper } from "../components/AppWrapper";
-import { mapThemeToMobile } from "../utils/mapThemeToMobile";
-import { Theme } from "@routine-support/ui-theme";
 import { Login as CoachLogin } from "../features/coach/coach/Login";
 import { Register as CoachRegister } from "../features/coach/coach/Register";
-import { useHistory } from "react-router-native";
+import { useDay } from "../features/student/day/useDay";
+import { useSocketEventListener } from "../features/student/student/hooks/useSocketEventListener";
+import { useStudent } from "../features/student/student/useStudent";
+import { mapThemeToMobile } from "../utils/mapThemeToMobile";
+
 
 const App = () => {
   const {

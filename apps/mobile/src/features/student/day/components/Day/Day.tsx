@@ -17,8 +17,8 @@ import { useTranslation } from "react-i18next";
 import { Image, StyleSheet } from "react-native";
 
 import smile from "../../../../../assets/smile.png";
-import { MainLayout } from "../../../../components/MainLayout";
-import { PinCodeInput } from "../../../../components/PinCodeInput";
+import { MainLayout } from "../../../../../components/MainLayout";
+import { PinCodeInput } from "../../../../../components/PinCodeInput";
 import { Activity } from "./components/Activity";
 import { CurrentActivity } from "./components/CurrentActivity";
 import { useDayComponent } from "./hooks";
