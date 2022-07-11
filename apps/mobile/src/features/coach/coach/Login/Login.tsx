@@ -5,6 +5,7 @@ import { Button } from "apps/mobile/src/components/Button";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { StyleSheet, View } from "react-native";
+import { Link } from "react-router-native";
 
 import { useLoginComponent } from "./hooks";
 
@@ -35,13 +36,17 @@ export const Login: React.FC<LoginProps> = ({ actions }) => {
         placeholder="Password"
         style={styles.textInput}
       />
-
       <Button text="Login" fullWidth onPress={handleSubmit} />
       {submitError && (
         <Typography variant="text1" color="error">
           {submitError}
         </Typography>
       )}
+      <Link to="/coach/register">
+        <Typography variant="text1" color="primary">
+          Register
+        </Typography>
+      </Link>
     </View>
   );
 };
@@ -52,7 +57,6 @@ const styles = StyleSheet.create({
     paddingVertical: 32,
   },
   title: { marginBottom: 16 },
-
   textInput: {
     marginBottom: 16,
   },
