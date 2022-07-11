@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  dayActions,
-  LoginStudentDto,
-  Student,
-  studentActions,
-} from "@routine-support/domains";
+import { dayActions, LoginStudentDto, Student, studentActions } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { useTranslation } from "react-i18next";
 import { io } from "socket.io-client";
@@ -18,11 +13,7 @@ export const useStudent = () => {
   const { socketEndpoint } = getEnvVars();
   const dispatch = useAppDispatch();
 
-  console.log(socketEndpoint);
-
-  const { student, isLogged, socketConnection } = useAppSelector(
-    (state) => state.student
-  );
+  const { student, isLogged, socketConnection } = useAppSelector((state) => state.student);
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
