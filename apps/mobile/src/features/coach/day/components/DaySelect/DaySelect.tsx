@@ -1,7 +1,8 @@
+import React from "react";
+
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Typography } from "apps/mobile/src/components/Typography";
 import moment from "moment";
-import React from "react";
 import { StyleSheet, View } from "react-native";
 
 export const DaySelect: React.FC = () => {
@@ -29,6 +30,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
   },
-  dayNumberWrapper: { flexDirection: "row", alignItems: "center", justifyContent: "center" },
+  dayNumberWrapper: {
+    height: 24,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   dayNumber: {},
 });
