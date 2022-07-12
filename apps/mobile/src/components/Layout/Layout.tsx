@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
+import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { MobileTheme } from "../../app/app";
 import { NotificationsIcon } from "../NotificationsIcon";
@@ -25,6 +26,9 @@ export const Layout: React.FC<LayoutProps> = ({
   onNotificationsIconPress,
   onMenuIconPress,
 }) => {
+  const insets = useSafeAreaInsets();
+  const styles = createStyles({ insets, hasFooter: Boolean(footer) });
+
   return (
     <SafeAreaView style={styles.wrapper} testID={LayoutLocators.Wrapper}>
       <View style={styles.header}>
@@ -37,7 +41,7 @@ export const Layout: React.FC<LayoutProps> = ({
           onPress={onNotificationsIconPress}
         />
       </View>
-      <View style={styles.body} testID={LayoutLocators.Body}>
+      <View style={{ ...styles.body }} testID={LayoutLocators.Body}>
         {children}
       </View>
       {footer && (
@@ -49,46 +53,55 @@ export const Layout: React.FC<LayoutProps> = ({
   );
 };
 
-const HEADER_HEIGHT = 78;
-const FOOTER_HEIGHT = 98;
+const createStyles = ({ insets, hasFooter }: { insets: EdgeInsets; hasFooter: boolean }) => {
+  const HEADER_HEIGHT = 78;
+  const FOOTER_HEIGHT = 80;
+  const HORIZONTAL_PADDING = 16;
 
-const BODY_HEIGHT = Dimensions.get("window").height - HEADER_HEIGHT - FOOTER_HEIGHT;
+  const BODY_HEIGHT =
+    Dimensions.get("screen").height -
+    HEADER_HEIGHT -
+    FOOTER_HEIGHT -
+    insets.bottom -
+    HORIZONTAL_PADDING -
+    8; // todo resolve value
 
-const HORIZONTAL_PADDING = 16;
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "column",
-  },
-  header: {
-    height: 78,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: HORIZONTAL_PADDING,
-  },
-  body: {
-    height: BODY_HEIGHT,
-    paddingHorizontal: HORIZONTAL_PADDING,
-    paddingTop: HORIZONTAL_PADDING,
-    borderWidth: 1,
-    borderBottomWidth: 0,
-    borderColor: MobileTheme.palette.border.light,
-    borderTopLeftRadius: MobileTheme.borderRadius.xxl,
-    borderTopRightRadius: MobileTheme.borderRadius.xxl,
-  },
-  footer: {
-    height: FOOTER_HEIGHT,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    paddingVertical: HORIZONTAL_PADDING,
-    paddingHorizontal: HORIZONTAL_PADDING,
-    backgroundColor: MobileTheme.palette.common.greyMuted,
-    borderWidth: 1,
-    borderBottomWidth: 0,
-    borderColor: MobileTheme.palette.border.light,
-    borderTopLeftRadius: MobileTheme.borderRadius.xl,
-    borderTopRightRadius: MobileTheme.borderRadius.xl,
-  },
-});
+  return StyleSheet.create({
+    wrapper: {
+      flexDirection: "column",
+    },
+    header: {
+      height: HEADER_HEIGHT,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      paddingHorizontal: HORIZONTAL_PADDING,
+    },
+    body: {
+      height: BODY_HEIGHT,
+      paddingHorizontal: HORIZONTAL_PADDING,
+      paddingBottom: hasFooter ? 100 : 0,
+      paddingTop: HORIZONTAL_PADDING,
+      borderWidth: 1,
+      borderBottomWidth: 0,
+      borderColor: MobileTheme.palette.border.light,
+      borderTopLeftRadius: MobileTheme.borderRadius.xxl,
+      borderTopRightRadius: MobileTheme.borderRadius.xxl,
+      overflow: "hidden",
+    },
+    footer: {
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      paddingVertical: HORIZONTAL_PADDING,
+      paddingBottom: insets.bottom,
+      paddingHorizontal: HORIZONTAL_PADDING,
+      backgroundColor: MobileTheme.palette.common.greyMuted,
+      borderWidth: 1,
+      borderBottomWidth: 0,
+      borderColor: MobileTheme.palette.border.light,
+      borderTopLeftRadius: MobileTheme.borderRadius.xl,
+      borderTopRightRadius: MobileTheme.borderRadius.xl,
+    },
+  });
+};
