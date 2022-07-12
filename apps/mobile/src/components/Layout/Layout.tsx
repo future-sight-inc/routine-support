@@ -1,10 +1,12 @@
 import React, { ReactNode } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
-import { MobileTheme } from "../../app/app";
-import { Typography } from "../Typography";
+
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { LayoutLocators } from "./locators";
+import { Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
+
+import { MobileTheme } from "../../app/app";
 import { NotificationsIcon } from "../NotificationsIcon";
+import { Typography } from "../Typography";
+import { LayoutLocators } from "./locators";
 
 interface LayoutProps {
   children: ReactNode;
@@ -24,7 +26,7 @@ export const Layout: React.FC<LayoutProps> = ({
   onMenuIconPress,
 }) => {
   return (
-    <View style={styles.wrapper} testID={LayoutLocators.Wrapper}>
+    <SafeAreaView style={styles.wrapper} testID={LayoutLocators.Wrapper}>
       <View style={styles.header}>
         <MaterialIcons name="menu" size={30} onPress={onMenuIconPress} />
         <Typography variant="caption3Normal" testID={LayoutLocators.Title}>
@@ -43,27 +45,20 @@ export const Layout: React.FC<LayoutProps> = ({
           {footer}
         </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
 const HEADER_HEIGHT = 78;
 const FOOTER_HEIGHT = 98;
-const BOTTOM_SAFE_AREA_PADDING = 48;
-const TOP_SAFE_AREA_PADDING = 0;
-const BODY_HEIGHT =
-  Dimensions.get("window").height -
-  TOP_SAFE_AREA_PADDING -
-  HEADER_HEIGHT -
-  FOOTER_HEIGHT -
-  BOTTOM_SAFE_AREA_PADDING;
+
+const BODY_HEIGHT = Dimensions.get("window").height - HEADER_HEIGHT - FOOTER_HEIGHT;
+
 const HORIZONTAL_PADDING = 16;
 
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "column",
-    paddingTop: TOP_SAFE_AREA_PADDING,
-    paddingBottom: BOTTOM_SAFE_AREA_PADDING,
   },
   header: {
     height: 78,

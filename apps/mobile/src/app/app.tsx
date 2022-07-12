@@ -2,14 +2,11 @@ import React, { useEffect } from "react";
 
 import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { Theme } from "@routine-support/ui-theme";
-import { Route } from "react-router-native";
 import { NativeRouter } from "react-router-native";
 import { useHistory } from "react-router-native";
 
 import { AppWrapper } from "../components/AppWrapper";
-import { Login as CoachLogin } from "../features/coach/coach/Login";
-import { Register as CoachRegister } from "../features/coach/coach/Register";
-import { Day as CoachDay } from '../features/coach/day/Day'
+import { CoachEntry } from "../features/coach";
 import { useDay } from "../features/student/day/useDay";
 import { useSocketEventListener } from "../features/student/student/hooks/useSocketEventListener";
 import { useStudent } from "../features/student/student/useStudent";
@@ -50,15 +47,7 @@ const App = () => {
         </Route>
       </PrivateRoute> */}
 
-      <Route exact path="/coach/login">
-        <CoachLogin />
-      </Route>
-      <Route exact path="/coach/register">
-        <CoachRegister />
-      </Route>
-      <Route exact path="/coach/day">
-        <CoachDay />
-      </Route>
+      <CoachEntry />
     </>
   );
 };

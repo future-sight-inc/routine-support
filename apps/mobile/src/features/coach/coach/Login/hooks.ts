@@ -10,7 +10,6 @@ import { LoginActions } from "./Login";
 
 export const useLoginComponent = (actions: LoginActions) => {
   const {
-    register,
     handleSubmit,
     control,
     setError,
