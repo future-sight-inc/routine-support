@@ -3,7 +3,7 @@ import React from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StyleSheet, View } from "react-native";
 
-import { MobileTheme } from "../../app/app";
+import { MobileTheme } from "../../theme";
 import { NotificationsIconLocators } from "./locators";
 
 interface NotificationsIconProps {

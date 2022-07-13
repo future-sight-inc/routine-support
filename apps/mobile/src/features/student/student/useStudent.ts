@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 import { dayActions, LoginStudentDto, Student, studentActions } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
+import { getEnvVars } from "apps/mobile/environment";
 import { useTranslation } from "react-i18next";
 import { io } from "socket.io-client";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { studentAPI } from "../../services/ApiService";
-import { getEnvVars } from "apps/mobile/environment";
 
 export const useStudent = () => {
   const { socketEndpoint } = getEnvVars();

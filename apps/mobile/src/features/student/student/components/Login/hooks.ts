@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { BarCodeEvent, BarCodeScanner } from "expo-barcode-scanner";
-
-import { LoginActions } from "./Login";
-import { useWindowDimensions } from "react-native";
-import { isInArea } from "./utils";
-import { BARCODE_FRAME_WIDTH } from "./constants";
-import { useToast } from "react-native-toast-notifications";
 import { useTranslation } from "react-i18next";
+import { useWindowDimensions } from "react-native";
+import { useToast } from "react-native-toast-notifications";
+
+import { BARCODE_FRAME_WIDTH } from "./constants";
+import { LoginActions } from "./Login";
+import { isInArea } from "./utils";
 
 export const useLoginComponent = (actions: LoginActions) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
@@ -15,8 +15,7 @@ export const useLoginComponent = (actions: LoginActions) => {
   const [loading, setLoading] = useState(false);
   const [barcode, setBarcode] = useState<BarCodeEvent | undefined>();
 
-  const { height: viewportHeight, width: viewportWidth } =
-    useWindowDimensions();
+  const { height: viewportHeight, width: viewportWidth } = useWindowDimensions();
   const toast = useToast();
   const { t } = useTranslation();
 

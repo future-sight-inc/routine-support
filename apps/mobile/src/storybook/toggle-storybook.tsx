@@ -2,8 +2,9 @@
  * Toggle inspired from https://github.com/infinitered/ignite/blob/master/boilerplate/storybook/toggle-storybook.tsx
  */
 import React, { useEffect, useRef, useState } from "react";
-import { DevSettings } from "react-native";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { DevSettings } from "react-native";
 
 import AppRoot from "../app/app";
 
