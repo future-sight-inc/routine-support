@@ -3,12 +3,12 @@ import {
   createMockActivity,
   createMockStudent,
 } from "@routine-support/domains";
-
 import {
   COMMON_ACTIVITY_COLOR,
   GROUP_ACTIVITY_COLOR,
   IMPORTANT_ACTIVITY_COLOR,
-} from "../constants/defaultActivityColor";
+} from "../constants";
+
 import { getActivityColor } from "./getActivityColor";
 import { getColor } from "./getColor";
 
@@ -36,9 +36,7 @@ describe("getActivityColor", () => {
     addStudentToActivity(activity, student1);
     addStudentToActivity(activity, student2);
 
-    expect(getActivityColor(activity, [student1, student2])).toBe(
-      GROUP_ACTIVITY_COLOR
-    );
+    expect(getActivityColor(activity, [student1, student2])).toBe(GROUP_ACTIVITY_COLOR);
   });
 
   it("Important activity", () => {

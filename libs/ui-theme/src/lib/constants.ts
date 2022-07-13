@@ -10,3 +10,7 @@ export const COLORS = [
   { value: ColorEnum.Brown, color: Theme.palette.common.brown },
   { value: ColorEnum.DarkGreen, color: Theme.palette.common.darkGreen },
 ];
+
+export const COMMON_ACTIVITY_COLOR = Theme.palette.common.blue;
+export const GROUP_ACTIVITY_COLOR = Theme.palette.common.green;
+export const IMPORTANT_ACTIVITY_COLOR = Theme.palette.common.yellow;

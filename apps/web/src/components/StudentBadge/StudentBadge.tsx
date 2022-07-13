@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Student } from "@routine-support/domains";
-import { Theme } from "@routine-support/ui-theme";
+import { getColor, Theme } from "@routine-support/ui-theme";
 
-import { getColor } from "../../utils/getColor";
+
 import * as S from "./styled";
 
 interface StudentBadgeProps {
