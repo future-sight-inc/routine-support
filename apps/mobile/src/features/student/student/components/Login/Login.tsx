@@ -1,16 +1,12 @@
+import React from "react";
+
 import { LoginStudentDto, Student } from "@routine-support/domains";
 import { Button, Icon, Layout, Spinner, Text } from "@ui-kitten/components";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import React from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Dimensions,
-  Image,
-  ImageBackground,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Dimensions, Image, ImageBackground, StyleSheet, View } from "react-native";
 import { Redirect } from "react-router-native";
+
 import barcodeFrame from "../../../../../assets/barcode-frame.png";
 import qrImage from "../../../../../assets/qr.png";
 import { BARCODE_FRAME_WIDTH } from "./constants";
@@ -37,17 +33,11 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
   }
 
   if (hasPermission === null) {
-    return (
-      <Text style={styles.infoText}>
-        {t<string>("Camera permission request")}
-      </Text>
-    );
+    return <Text style={styles.infoText}>{t<string>("Camera permission request")}</Text>;
   }
 
   if (hasPermission === false) {
-    return (
-      <Text style={styles.infoText}>{t<string>("No camera permission")}</Text>
-    );
+    return <Text style={styles.infoText}>{t<string>("No camera permission")}</Text>;
   }
 
   if (!scanning) {
@@ -76,10 +66,7 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
 
   return (
     <Layout style={styles.scannerWrapper}>
-      <BarCodeScanner
-        onBarCodeScanned={handleQrScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
+      <BarCodeScanner onBarCodeScanned={handleQrScanned} style={StyleSheet.absoluteFillObject} />
       <View style={styles.barcodeFrame}>
         <ImageBackground source={barcodeFrame} style={styles.barcodeImage} />
         {loading && <Spinner status="control" size="giant" />}

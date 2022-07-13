@@ -7,27 +7,45 @@ import {
   Student,
 } from "@routine-support/domains";
 import { getActivityColor } from "@routine-support/ui-theme";
-import { MobileTheme } from "apps/mobile/src/app/app";
 import { Typography } from "apps/mobile/src/components/Typography";
+import { MobileTheme } from "apps/mobile/src/theme";
 import { StyleSheet, View } from "react-native";
+
+import { ActivityLocators } from "./locators";
 
 interface ActivityProps {
   activity: ActivityType;
   students: Student[];
+  onActivityPress: () => void;
+  onConfirmationStatusPress: () => void;
 }
 
-export const Activity: React.FC<ActivityProps> = ({ activity, students }) => {
+export const Activity: React.FC<ActivityProps> = ({
+  activity,
+  students,
+  onActivityPress,
+  onConfirmationStatusPress,
+}) => {
   const { assignedStudents, confirmedStudents } = getActivityStatusesFromStudents(
     activity,
     students
   );
 
   return (
-    <View style={{ ...styles.wrapper, backgroundColor: getActivityColor(activity, students) }}>
-      <Typography variant="caption4Normal">{activity.name}</Typography>
-      <View style={styles.confirmationStatusWrapper}>
+    <View
+      style={{ ...styles.wrapper, backgroundColor: getActivityColor(activity, students) }}
+      onPress={() => onActivityPress()}
+    >
+      <Typography variant="caption4Normal" testID={ActivityLocators.Name}>
+        {activity.name}
+      </Typography>
+      <View style={styles.confirmationStatusWrapper} onPress={() => onConfirmationStatusPress()}>
         <MaterialIcons name="check" size={14} />
-        <Typography variant="text2Bold" style={styles.confirmationStatus}>
+        <Typography
+          variant="text2Bold"
+          style={styles.confirmationStatus}
+          testID={ActivityLocators.Status}
+        >
           {confirmedStudents.length}/{assignedStudents.length}
         </Typography>
       </View>

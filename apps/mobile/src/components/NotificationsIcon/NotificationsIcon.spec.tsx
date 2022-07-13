@@ -2,16 +2,15 @@ import React from "react";
 
 import { fireEvent, render } from "@testing-library/react-native";
 
-import { AppWrapper } from "../AppWrapper";
 import { NotificationsIconLocators } from "./locators";
 import { NotificationsIcon } from "./NotificationsIcon";
+
+jest.mock("../../theme");
 
 describe("NotificationsIcon", () => {
   it("No new notifications", () => {
     const { queryByTestId } = render(
-      <AppWrapper>
-        <NotificationsIcon onPress={() => null} hasNewNotifications={false} />
-      </AppWrapper>
+      <NotificationsIcon onPress={() => null} hasNewNotifications={false} />
     );
 
     expect(queryByTestId(NotificationsIconLocators.Dot)).toBeFalsy();
@@ -19,9 +18,7 @@ describe("NotificationsIcon", () => {
 
   it("Has new notifications", () => {
     const { queryByTestId } = render(
-      <AppWrapper>
-        <NotificationsIcon onPress={() => null} hasNewNotifications />
-      </AppWrapper>
+      <NotificationsIcon onPress={() => null} hasNewNotifications />
     );
 
     expect(queryByTestId(NotificationsIconLocators.Dot)).toBeTruthy();
@@ -30,11 +27,7 @@ describe("NotificationsIcon", () => {
   it("Passed handler was called", () => {
     const handlePress = jest.fn();
 
-    const { getByTestId } = render(
-      <AppWrapper>
-        <NotificationsIcon onPress={handlePress} hasNewNotifications />
-      </AppWrapper>
-    );
+    const { getByTestId } = render(<NotificationsIcon onPress={handlePress} hasNewNotifications />);
 
     fireEvent.press(getByTestId(NotificationsIconLocators.Wrapper));
     expect(handlePress).toBeCalledTimes(1);
