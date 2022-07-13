@@ -1,33 +1,33 @@
-import { Button } from "apps/mobile/src/components/Button";
-import { Layout } from "apps/mobile/src/components/Layout";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { ReactNode } from "react";
 
-export const DayLayout: React.FC = () => {
-  // todo should use main layout component that based on layout component
+import { StyleSheet, View } from "react-native";
+
+interface DayLayoutProps {
+  daySelect: ReactNode;
+  filter: ReactNode;
+  calendar: ReactNode;
+}
+
+export const DayLayout: React.FC<DayLayoutProps> = ({ daySelect, filter, calendar }) => {
   return (
-    <Layout title="Календарь" footer={<Button text="Событие" fullWidth icon="add" />}>
-      <View style={styles.wrapper}>
-        <View style={styles.header}>
-          <Text>Header</Text>
-        </View>
-        <View style={styles.body}>
-          <Text>Body</Text>
-        </View>
+    <View style={styles.wrapper}>
+      <View style={styles.header}>
+        {daySelect}
+        {filter}
       </View>
-    </Layout>
+      <View style={styles.body}>{calendar}</View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {},
   header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
     height: 33,
-    backgroundColor: "black",
     marginBottom: 8,
   },
-  body: {
-    backgroundColor: "grey",
-    height: "100%",
-  },
+  body: {},
 });

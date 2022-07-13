@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Spinner } from "../../../../components/Spinner";
+import { Spinner } from "../../../../../components/Spinner";
 import { useStudent } from "../../../student/useStudent";
 import { useDay } from "../../useDay";
 import { Day as UncontrolledDay } from "./Day";

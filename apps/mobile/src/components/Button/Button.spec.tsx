@@ -1,5 +1,7 @@
-import { fireEvent, render } from "@testing-library/react-native";
 import React from "react";
+
+import { fireEvent, render } from "@testing-library/react-native";
+
 import { Button } from "./Button";
 import { ButtonLocators } from "./locators";
 

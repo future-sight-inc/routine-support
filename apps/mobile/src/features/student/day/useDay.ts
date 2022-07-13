@@ -5,8 +5,8 @@ import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
-import { useAppSelector } from "../../app/hooks";
-import { activityAPI, dayAPI } from "../../services/ApiService";
+import { useAppSelector } from "../../../app/hooks";
+import { activityAPI, dayAPI } from "../../../services/ApiService";
 
 export const useDay = () => {
   const dispatch = useDispatch();

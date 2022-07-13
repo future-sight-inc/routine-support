@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
-import { Route } from "react-router-native";
-import { NativeRouter } from "react-router-native";
-import { Day } from "../features/day/components/Day";
-import { useDay } from "../features/day/useDay";
-import { Login } from "../features/student/components/Login";
-import { PrivateRoute } from "../features/student/components/PrivateRoute";
-import { useSocketEventListener } from "../features/student/hooks/useSocketEventListener";
-import { useStudent } from "../features/student/useStudent";
-import { AppWrapper } from "../components/AppWrapper";
-import { mapThemeToMobile } from "../utils/mapThemeToMobile";
 import { Theme } from "@routine-support/ui-theme";
+import { NativeRouter } from "react-router-native";
+import { useHistory } from "react-router-native";
+
+import { AppWrapper } from "../components/AppWrapper";
+import { CoachEntry } from "../features/coach";
+import { useDay } from "../features/student/day/useDay";
+import { useSocketEventListener } from "../features/student/student/hooks/useSocketEventListener";
+import { useStudent } from "../features/student/student/useStudent";
+import { mapThemeToMobile } from "../utils/mapThemeToMobile";
 
 const App = () => {
   const {
@@ -22,6 +21,7 @@ const App = () => {
     operations: { updateStudentSettings },
   } = useStudent();
 
+  // Имеет смысл разделить две версии на разные entries, которые будут подключаться в App
   useSocketEventListener(WeekSocketEventTypeEnum.UpdateSchedule, () => {
     getDay();
   });
@@ -30,16 +30,24 @@ const App = () => {
     updateStudentSettings(settings);
   });
 
+  const history = useHistory();
+
+  useEffect(() => {
+    history.push("/coach/login");
+  }, []);
+
   return (
     <>
-      <Route exact path="/login">
-        <Login />
+      {/* <Route exact path="/student/login">
+        <StudentLogin />
       </Route>
       <PrivateRoute>
-        <Route exact path="/">
+        <Route exact path="/student/">
           <Day />
         </Route>
-      </PrivateRoute>
+      </PrivateRoute> */}
+
+      <CoachEntry />
     </>
   );
 };

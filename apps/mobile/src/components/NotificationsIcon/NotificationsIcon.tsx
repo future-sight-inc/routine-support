@@ -1,6 +1,8 @@
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React from "react";
+
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StyleSheet, View } from "react-native";
+
 import { MobileTheme } from "../../app/app";
 import { NotificationsIconLocators } from "./locators";
 

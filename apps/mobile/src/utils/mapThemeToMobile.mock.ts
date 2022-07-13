@@ -52,19 +52,19 @@ export const MobileTheme = {
   fonts: {
     caption1: {
       size: 48,
-      weight: "bold",
+      weight: "600",
     },
     caption2: {
       size: 30,
-      weight: "bold",
+      weight: "600",
     },
     caption3: {
       size: 24,
-      weight: "bold",
+      weight: "600",
     },
     caption4: {
       size: 20,
-      weight: "bold",
+      weight: "600",
     },
     caption1Normal: {
       size: 48,

@@ -1,5 +1,7 @@
-import { fireEvent, render } from "@testing-library/react-native";
 import React from "react";
+
+import { fireEvent, render } from "@testing-library/react-native";
+
 import { AppWrapper } from "../AppWrapper";
 import { NotificationsIconLocators } from "./locators";
 import { NotificationsIcon } from "./NotificationsIcon";
