@@ -16,6 +16,7 @@ function loadStories() {
   require("../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories");
   require("../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories");
   require("../apps/mobile/src/features/coach/day/components/Filter/Filter.stories");
+  require("../apps/mobile/src/features/coach/students/components/Student/Student.stories");
 }
 
 const stories = [
@@ -31,6 +32,7 @@ const stories = [
   "../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories",
   "../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories",
   "../apps/mobile/src/features/coach/day/components/Filter/Filter.stories",
+  "../apps/mobile/src/features/coach/students/components/Student/Student.stories",
 ];
 
 module.exports = {

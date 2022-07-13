@@ -42,10 +42,10 @@ export const Button: React.FC<ButtonProps> = ({
 
   const getTextColor = (variant: ButtonVariant) => {
     switch (variant) {
-    case "primary":
-      return MobileTheme.palette.common.white;
-    default:
-      return MobileTheme.palette.primary.text;
+      case "primary":
+        return MobileTheme.palette.common.white;
+      default:
+        return MobileTheme.palette.primary.text;
     }
   };
 
@@ -54,13 +54,13 @@ export const Button: React.FC<ButtonProps> = ({
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       style={{
-        ...style,
         ...styles.button,
         backgroundColor: isPressed
           ? MobileTheme.palette[variant].clicked
           : MobileTheme.palette[variant].main,
         width: fullWidth ? "100%" : styles.button.width,
         opacity: disabled ? 0.3 : 1,
+        ...style,
       }}
       {...props}
       disabled={disabled}
