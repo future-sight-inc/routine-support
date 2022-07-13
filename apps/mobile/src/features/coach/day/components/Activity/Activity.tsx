@@ -1,7 +1,11 @@
 import React from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Activity as ActivityType, Student } from "@routine-support/domains";
+import {
+  Activity as ActivityType,
+  getActivityStatusesFromStudents,
+  Student,
+} from "@routine-support/domains";
 import { getActivityColor } from "@routine-support/ui-theme";
 import { MobileTheme } from "apps/mobile/src/app/app";
 import { Typography } from "apps/mobile/src/components/Typography";
@@ -13,13 +17,18 @@ interface ActivityProps {
 }
 
 export const Activity: React.FC<ActivityProps> = ({ activity, students }) => {
+  const { assignedStudents, confirmedStudents } = getActivityStatusesFromStudents(
+    activity,
+    students
+  );
+
   return (
     <View style={{ ...styles.wrapper, backgroundColor: getActivityColor(activity, students) }}>
       <Typography variant="caption4Normal">{activity.name}</Typography>
       <View style={styles.confirmationStatusWrapper}>
         <MaterialIcons name="check" size={14} />
         <Typography variant="text2Bold" style={styles.confirmationStatus}>
-          1/3
+          {confirmedStudents.length}/{assignedStudents.length}
         </Typography>
       </View>
     </View>
