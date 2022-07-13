@@ -1,21 +1,24 @@
+import React from "react";
+
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Activity as ActivityType, Student } from "@routine-support/domains";
+import { getActivityColor } from "@routine-support/ui-theme";
 import { MobileTheme } from "apps/mobile/src/app/app";
 import { Typography } from "apps/mobile/src/components/Typography";
-import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Activity as ActivityType } from "@routine-support/domains";
 
 interface ActivityProps {
   activity: ActivityType;
+  students: Student[];
 }
 
-export const Activity: React.FC<ActivityProps> = ({ activity }) => {
+export const Activity: React.FC<ActivityProps> = ({ activity, students }) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={{ ...styles.wrapper, backgroundColor: getActivityColor(activity, students) }}>
       <Typography variant="caption4Normal">{activity.name}</Typography>
       <View style={styles.confirmationStatusWrapper}>
         <MaterialIcons name="check" size={14} />
-        <Typography variant="text3Bold" style={styles.confirmationStatus}>
+        <Typography variant="text2Bold" style={styles.confirmationStatus}>
           1/3
         </Typography>
       </View>
