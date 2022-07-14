@@ -1,30 +1,82 @@
 import React from "react";
 
+import {
+  ActivitiesGroup as ActivitiesGroupType,
+  Activity as ActivityType,
+  groupActivities,
+  Student,
+} from "@routine-support/domains";
+import { TimeString } from "@routine-support/types";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
-import { FlatList, StyleSheet, View } from "react-native";
+import { Dimensions, FlatList, StyleSheet, View } from "react-native";
 
-const DATA = new Array(24).fill("");
+import { ActivitiesGroup } from "../ActivitiesGroup";
 
-export const Calendar: React.FC = () => {
+interface CalendarProps {
+  timeRange: TimeString[];
+  activities: ActivityType[];
+  students: Student[];
+  onActivityPress: (activity: ActivityType) => void;
+  onConfirmationStatusPress: (activity: ActivityType) => void;
+}
+
+export const Calendar: React.FC<CalendarProps> = ({
+  timeRange,
+  activities,
+  students,
+  onActivityPress,
+  onConfirmationStatusPress,
+}) => {
+  const activitiesGroups = groupActivities(activities);
+
+  const getGroupByTime = (time: TimeString, activitiesGroups: ActivitiesGroupType[]) => {
+    const [hour] = time.split(":");
+    const filteredGroup = activitiesGroups.find(
+      (activityGroup) => activityGroup.start.get("h") === Number(hour)
+    );
+
+    return filteredGroup;
+  };
+
+  const renderActivitiesGroup = (time: TimeString) => {
+    const group = getGroupByTime(time, activitiesGroups);
+
+    return (
+      group && (
+        <ActivitiesGroup
+          group={group}
+          students={students}
+          rowHeight={ROW_HEIGHT}
+          onActivityPress={onActivityPress}
+          onConfirmationStatusPress={onConfirmationStatusPress}
+        />
+      )
+    );
+  };
+
   return (
     <FlatList
-      data={DATA}
-      renderItem={({ index }) => (
-        <View style={styles.row}>
+      data={timeRange}
+      renderItem={({ item, index }) => (
+        <View style={styles.row} key={index}>
           <View style={styles.timeColumn}>
             <View />
             <View style={styles.dash} />
             <Typography variant="text3" color="secondary">
-              {index + 1}:00
+              {item}
             </Typography>
           </View>
           <View
-            style={{ ...styles.bodyColumn, borderBottomWidth: index + 1 === DATA.length ? 0 : 1 }}
-          ></View>
+            style={{
+              ...styles.bodyColumn,
+              borderBottomWidth: index + 1 === timeRange.length ? 0 : 1,
+            }}
+          >
+            {renderActivitiesGroup(item)}
+          </View>
         </View>
       )}
-      keyExtractor={(item) => item.id}
     />
   );
 };
@@ -49,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: MobileTheme.palette.secondary.main,
   },
   bodyColumn: {
-    width: "100%",
+    width: Dimensions.get("screen").width - 45 - 8,
     borderColor: MobileTheme.palette.border.light,
     marginLeft: 8,
   },

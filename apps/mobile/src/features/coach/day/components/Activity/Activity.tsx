@@ -16,6 +16,7 @@ import { ActivityLocators } from "./locators";
 interface ActivityProps {
   activity: ActivityType;
   students: Student[];
+  style?: Record<string, unknown>;
   onActivityPress: () => void;
   onConfirmationStatusPress: () => void;
 }
@@ -23,6 +24,7 @@ interface ActivityProps {
 export const Activity: React.FC<ActivityProps> = ({
   activity,
   students,
+  style,
   onActivityPress,
   onConfirmationStatusPress,
 }) => {
@@ -33,7 +35,7 @@ export const Activity: React.FC<ActivityProps> = ({
 
   return (
     <View
-      style={{ ...styles.wrapper, backgroundColor: getActivityColor(activity, students) }}
+      style={{ ...styles.wrapper, backgroundColor: getActivityColor(activity, students), ...style }}
       onPress={() => onActivityPress()}
     >
       <Typography variant="caption4Normal" testID={ActivityLocators.Name}>
