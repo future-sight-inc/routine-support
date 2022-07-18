@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 
+import moment, { Moment } from "moment";
 import { rgba } from "polished";
 import {
   Animated,
@@ -13,12 +14,24 @@ import DatePicker from "react-native-date-picker";
 
 import { MobileTheme } from "../../theme";
 import { Typography } from "../Typography";
+import { DateSelectorLocators } from "./locators";
 
-export const DateSelector: React.FC = () => {
+interface DateSelectorProps {
+  pressElement: ReactNode;
+  onSelect: (value: Moment) => void;
+  value?: Moment;
+}
+
+export const DateSelector: React.FC<DateSelectorProps> = ({
+  pressElement,
+  onSelect,
+  value: defaultValue,
+}) => {
+  const [value, setValue] = useState<Moment>(defaultValue || moment());
   const [isOpened, setOpened] = useState(false);
 
   const [isBackgroundVisible, setBackgroundVisible] = useState(false);
-  const fadeAnim = useRef(new Animated.Value(1)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const fadeInBackground = () => {
     setBackgroundVisible(true);
@@ -47,10 +60,22 @@ export const DateSelector: React.FC = () => {
     setOpened(false);
   };
 
+  const handleChange = (value: Date) => {
+    const newValue = moment(value);
+
+    setValue(newValue);
+  };
+
+  const handleSelect = () => {
+    onSelect(value);
+    handleClose();
+  };
+
   return (
     <>
-      <Typography onPress={handleOpen}>Press to open</Typography>
-
+      <TouchableWithoutFeedback onPress={handleOpen} testID={DateSelectorLocators.PressElement}>
+        {pressElement}
+      </TouchableWithoutFeedback>
       {isBackgroundVisible && (
         <Animated.View
           style={[
@@ -59,24 +84,39 @@ export const DateSelector: React.FC = () => {
               opacity: fadeAnim,
             },
           ]}
+          testID={DateSelectorLocators.Background}
         />
       )}
-
-      <Modal visible={isOpened} animationType="slide" transparent>
-        <View style={styles.modalWrapper}>
-          <TouchableWithoutFeedback onPress={handleClose}>
+      <Modal
+        visible={isOpened}
+        animationType="slide"
+        transparent
+        testID={DateSelectorLocators.Modal}
+      >
+        <View style={styles.modalContentWrapper}>
+          <TouchableWithoutFeedback onPress={handleClose} testID={DateSelectorLocators.ModalDim}>
             <View style={styles.modalDim} />
           </TouchableWithoutFeedback>
-          <View style={styles.modal}>
+          <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
-              <Typography variant="text1Bold" color="primary" onPress={handleClose}>
+              <Typography
+                variant="text1Bold"
+                color="primary"
+                onPress={handleClose}
+                testID={DateSelectorLocators.CloseText}
+              >
                 Закрыть
               </Typography>
-              <Typography variant="text1Bold" color="primary">
+              <Typography
+                variant="text1Bold"
+                color="primary"
+                onPress={handleSelect}
+                testID={DateSelectorLocators.ConfirmText}
+              >
                 Выбрать
               </Typography>
             </View>
-            <DatePicker date={new Date()} onDateChange={() => null} />
+            <DatePicker date={value.toDate()} onDateChange={handleChange} />
           </View>
         </View>
       </Modal>
@@ -91,13 +131,13 @@ const styles = StyleSheet.create({
     backgroundColor: rgba(MobileTheme.palette.common.black, 0.6),
     position: "absolute",
   },
-  modalWrapper: {
+  modalContentWrapper: {
     width: "100%",
     height: "100%",
     flexDirection: "column",
     justifyContent: "flex-end",
   },
-  modal: {
+  modalContent: {
     width: Dimensions.get("screen").width - 32,
     backgroundColor: MobileTheme.palette.common.white,
     borderRadius: MobileTheme.borderRadius.m,
