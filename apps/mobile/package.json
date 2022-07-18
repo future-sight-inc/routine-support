@@ -71,7 +71,8 @@
     "core-js": "*",
     "regenerator-runtime": "*",
     "@material-ui/core": "*",
-    "react-native-get-random-values": "*"
+    "react-native-get-random-values": "*",
+    "react-native-date-picker": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && cp yarn.lock ./apps/mobile/",

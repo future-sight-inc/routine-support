@@ -5,6 +5,7 @@
 
 function loadStories() {
   require("../apps/mobile/src/components/Button/Button.stories");
+  require("../apps/mobile/src/components/DateSelector/DateSelector.stories");
   require("../apps/mobile/src/components/FormFields/TextField/TextField.stories");
   require("../apps/mobile/src/components/Label/Label.stories");
   require("../apps/mobile/src/components/Layout/Layout.stories");
@@ -21,6 +22,7 @@ function loadStories() {
 
 const stories = [
   "../apps/mobile/src/components/Button/Button.stories",
+  "../apps/mobile/src/components/DateSelector/DateSelector.stories",
   "../apps/mobile/src/components/FormFields/TextField/TextField.stories",
   "../apps/mobile/src/components/Label/Label.stories",
   "../apps/mobile/src/components/Layout/Layout.stories",
