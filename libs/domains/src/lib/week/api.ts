@@ -1,20 +1,10 @@
 import { AxiosInstance, AxiosResponse } from "axios";
 
-import {
-  ActivityFilter,
-  Week,
-  WeekNumber,
-  WeekSchema,
-  YearNumber,
-} from "./types";
+import { ActivityFilter, Week, WeekNumber, WeekSchema, YearNumber } from "./types";
 import { createWeekFromSchema } from "./utils";
 
-export const createWeekAPI = (client: AxiosInstance) => ({
-  getWeek: async (
-    year: YearNumber,
-    week: WeekNumber,
-    filter?: ActivityFilter
-  ): Promise<Week> => {
+export const createCoachWeekAPI = (client: AxiosInstance) => ({
+  getWeek: async (year: YearNumber, week: WeekNumber, filter?: ActivityFilter): Promise<Week> => {
     // todo resolve type
     let filterParam: any = undefined;
 
@@ -30,10 +20,9 @@ export const createWeekAPI = (client: AxiosInstance) => ({
       filterParam = filterParam.join(",");
     }
 
-    const response: AxiosResponse<WeekSchema> = await client.get(
-      `/week/${year}/${week}`,
-      { params: { filter: filterParam } }
-    );
+    const response: AxiosResponse<WeekSchema> = await client.get(`/week/${year}/${week}`, {
+      params: { filter: filterParam },
+    });
 
     return createWeekFromSchema(response.data);
   },

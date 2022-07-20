@@ -9,7 +9,7 @@ import { Server } from "socket.io";
 import { addSocketToConnections, removeSocketFromConnections } from "./sockets";
 import { createEmitToUser } from "./sockets/createEmitToUser";
 import "./db/mongodb";
-import BaseRouter from "./routes";
+import { router } from "./routes";
 import { SocketConnection } from "./types/Socket";
 import { checkTodaysActivitiesConfirmationAndNotify } from "./utils/checkTodaysActivitiesConfirmationAndNotify";
 
@@ -23,7 +23,7 @@ app.use(bearerToken());
 app.use(cors());
 app.use(morgan("tiny"));
 
-app.use("/api", BaseRouter);
+app.use("/api", router);
 
 app.use("/", express.static(path.join(__dirname, "../web")));
 app.use("/", (req, res) => {

@@ -6,7 +6,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 
 import { useAppSelector } from "../../../app/hooks";
-import { activityAPI, dayAPI } from "../../../services/ApiService";
+import { studentActivityAPI, studentDayAPI } from "../../../services/ApiService";
 
 export const useDay = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export const useDay = () => {
     try {
       !config?.silent && setLoading(true);
 
-      const day = await dayAPI.getDay(stringifyDate(moment()));
+      const day = await studentDayAPI.getDay(stringifyDate(moment()));
 
       dispatch(dayActions.setDay(day));
     } catch (error) {
@@ -41,7 +41,7 @@ export const useDay = () => {
 
   const confirmActivity = async (activity: Activity) => {
     try {
-      await activityAPI.confirmActivity(activity);
+      await studentActivityAPI.confirmActivity(activity);
 
       getDay({ silent: true });
     } catch (error) {

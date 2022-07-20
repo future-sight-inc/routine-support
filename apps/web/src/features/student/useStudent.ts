@@ -4,7 +4,7 @@ import { CreateStudentDto, Student } from "@routine-support/domains";
 
 import { useAppSelector } from "../../app/hooks";
 import { ActivityFilterService } from "../../services/ActivityFilterService";
-import { studentAPI } from "../../services/ApiService";
+import { coachStudentAPI } from "../../services/ApiService";
 
 export const useStudent = () => {
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ export const useStudent = () => {
       try {
         setLoading(true);
 
-        const response = await studentAPI.createStudent({
+        const response = await coachStudentAPI.createStudent({
           ...student,
           coachId,
         });
@@ -37,7 +37,7 @@ export const useStudent = () => {
     try {
       setLoading(true);
 
-      await studentAPI.updateStudent(student);
+      await coachStudentAPI.updateStudent(student);
 
       setStudentModalOpened(false);
     } finally {
@@ -49,7 +49,7 @@ export const useStudent = () => {
     try {
       setLoading(true);
 
-      await studentAPI.deleteStudent(student._id);
+      await coachStudentAPI.deleteStudent(student._id);
 
       ActivityFilterService.removeProperty(student._id);
 
@@ -78,7 +78,7 @@ export const useStudent = () => {
     try {
       setLoading(true);
 
-      await studentAPI.updateStudent(student);
+      await coachStudentAPI.updateStudent(student);
 
       setSettingsModalOpened(false);
     } finally {
