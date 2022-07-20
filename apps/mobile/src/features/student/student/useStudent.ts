@@ -3,11 +3,10 @@ import { useEffect, useState } from "react";
 import { dayActions, LoginStudentDto, Student, studentActions } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { getEnvVars } from "apps/mobile/environment";
+import { useAppDispatch, useAppSelector } from "apps/mobile/src/app/hooks";
+import { studentAuthAPI } from "apps/mobile/src/services/ApiService";
 import { useTranslation } from "react-i18next";
 import { io } from "socket.io-client";
-
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { studentAPI } from "../../services/ApiService";
 
 export const useStudent = () => {
   const { socketEndpoint } = getEnvVars();
@@ -42,7 +41,7 @@ export const useStudent = () => {
 
   const login = async (data: LoginStudentDto) => {
     try {
-      const student = await studentAPI.login(data);
+      const student = await studentAuthAPI.login(data);
 
       dispatch(studentActions.setStudent(student));
     } catch (error) {
@@ -59,7 +58,7 @@ export const useStudent = () => {
     try {
       setLoading(true);
 
-      await studentAPI.logout();
+      await studentAuthAPI.logout();
     } catch (error) {
       console.error(error);
     } finally {
@@ -77,7 +76,7 @@ export const useStudent = () => {
     try {
       setLoading(true);
 
-      const student = await studentAPI.getStudent();
+      const student = await studentAuthAPI.getStudent();
 
       dispatch(studentActions.setStudent(student));
     } catch {

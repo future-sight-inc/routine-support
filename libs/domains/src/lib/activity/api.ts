@@ -4,12 +4,9 @@ import { AxiosInstance, AxiosResponse } from "axios";
 import { Activity } from "./types";
 import { createSchemaFromActivity } from "./utils";
 
-export const createActivityAPI = (client: AxiosInstance) => ({
+export const createCoachActivityAPI = (client: AxiosInstance) => ({
   createActivity: async (data: Activity): Promise<AxiosResponse> => {
-    const request: AxiosResponse = await client.post(
-      "/activity",
-      createSchemaFromActivity(data)
-    );
+    const request: AxiosResponse = await client.post("/activity", createSchemaFromActivity(data));
 
     return request;
   },
@@ -26,13 +23,13 @@ export const createActivityAPI = (client: AxiosInstance) => ({
 
     return request;
   },
+});
+
+export const createStudentActivityAPI = (client: AxiosInstance) => ({
   confirmActivity: async (activity: Activity) => {
-    const request: AxiosResponse = await client.put(
-      `/activity/confirm/${activity._id}/`,
-      {
-        date: stringifyDate(activity.date),
-      }
-    );
+    const request: AxiosResponse = await client.put(`/activity/confirm/${activity._id}/`, {
+      date: stringifyDate(activity.date),
+    });
 
     return request;
   },

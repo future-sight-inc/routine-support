@@ -5,17 +5,14 @@ import {
   StudentModel,
 } from "@routine-support/domains";
 import { Router } from "express";
-import {
-  COACH_LOCALS_NAME,
-  coachAuthorization,
-} from "../middleware/coachAuthorization";
-import { getAuthCookie } from "../utils/getAuthCookie";
-import { hashPassword } from "../utils/hashPassword";
-import { validateCoach } from "../utils/validateCoach";
+import { COACH_LOCALS_NAME, coachAuthorization } from "../../middleware/coachAuthorization";
+import { getAuthCookie } from "../../utils/getAuthCookie";
+import { hashPassword } from "../../utils/hashPassword";
+import { validateCoach } from "../../utils/validateCoach";
 
-export const coachRouter = Router();
+export const authRouter = Router();
 
-coachRouter.post("/", async (req, res) => {
+authRouter.post("/", async (req, res) => {
   const validationData = await validateCoach(req.body);
 
   if (validationData && !validationData.isValid) {
@@ -38,28 +35,25 @@ coachRouter.post("/", async (req, res) => {
   );
 });
 
-coachRouter.post("/login", async (req, res) => {
+authRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  CoachModel.findOne(
-    { email, password: hashPassword(password) },
-    (err, result) => {
-      if (err || !result) {
-        return res.status(401).send({ error: "Invalid credentials" });
-      }
-
-      const cookie = getAuthCookie(result);
-
-      return res.status(200).cookie(cookie.name, cookie.token).send(result);
+  CoachModel.findOne({ email, password: hashPassword(password) }, (err, result) => {
+    if (err || !result) {
+      return res.status(401).send({ error: "Invalid credentials" });
     }
-  );
+
+    const cookie = getAuthCookie(result);
+
+    return res.status(200).cookie(cookie.name, cookie.token).send(result);
+  });
 });
 
-coachRouter.get("/", coachAuthorization, (__, res) => {
+authRouter.get("/", coachAuthorization, (__, res) => {
   return res.status(200).send(res.locals[COACH_LOCALS_NAME]);
 });
 
-coachRouter.delete("/", coachAuthorization, async (__, res) => {
+authRouter.delete("/", coachAuthorization, async (__, res) => {
   const coach = res.locals[COACH_LOCALS_NAME];
 
   await CoachModel.findByIdAndDelete(coach._id);
@@ -67,12 +61,9 @@ coachRouter.delete("/", coachAuthorization, async (__, res) => {
   await ActivityModel.deleteMany({ coachId: coach._id });
   await NotificationModel.deleteMany({ coachId: coach._id });
 
-  return res
-    .status(200)
-    .clearCookie("access_token")
-    .send(res.locals[COACH_LOCALS_NAME]);
+  return res.status(200).clearCookie("access_token").send(res.locals[COACH_LOCALS_NAME]);
 });
 
-coachRouter.get("/logout", (__, res) => {
+authRouter.get("/logout", (__, res) => {
   return res.clearCookie("access_token").sendStatus(200);
 });
