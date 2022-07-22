@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import {
   ActivityFilter,
+  createWeekFromSchema,
   DateInfo,
   dateInfoToMoment,
   getCurrentDateInfo,
@@ -79,7 +80,7 @@ export const useWeek = () => {
 
   return {
     models: {
-      week,
+      week: week ? createWeekFromSchema(week) : null,
       currentDate,
       loading,
       error,
