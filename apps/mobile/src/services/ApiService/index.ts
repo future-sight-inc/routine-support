@@ -1,6 +1,7 @@
 import { createClient } from "@routine-support/api-client";
 import {
   createCoachAuthAPI,
+  createCoachDayAPI,
   createStudentActivityAPI,
   createStudentAuthAPI,
   createStudentDayAPI,
@@ -13,6 +14,7 @@ const coachClient = createClient(`${apiEndpoint}/coach`);
 const studentClient = createClient(`${apiEndpoint}/student`);
 
 export const coachAuthAPI = createCoachAuthAPI(coachClient);
+export const coachDayAPI = createCoachDayAPI(coachClient);
 
 export const studentDayAPI = createStudentDayAPI(studentClient);
 export const studentAuthAPI = createStudentAuthAPI(studentClient);

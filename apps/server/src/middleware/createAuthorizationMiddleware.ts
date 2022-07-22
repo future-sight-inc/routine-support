@@ -8,6 +8,7 @@ export const createAuthorizationMiddleware =
     (req: Request, res: Response, next: () => unknown) => {
       try {
         const token = req.cookies.access_token;
+
         const data = jwt.verify(token, process.env.SECRET_KEY || "") as User;
 
         return model.findById(data._id, (err, result) => {

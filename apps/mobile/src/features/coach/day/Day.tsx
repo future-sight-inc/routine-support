@@ -1,10 +1,5 @@
 import React from "react";
 
-import {
-  addStudentToActivity,
-  createMockActivityFromTimePeriod,
-  createMockStudent,
-} from "@routine-support/domains";
 import { Button } from "apps/mobile/src/components/Button";
 
 import { MainLayout } from "../coach/MainLayout";
@@ -38,14 +33,16 @@ const TIME_RANGE = [
   "22:00",
   "23:00",
 ];
-const activity1 = createMockActivityFromTimePeriod({ start: "12:00", end: "13:00" });
-const activity2 = createMockActivityFromTimePeriod({ start: "12:00", end: "13:40" });
-const activity3 = createMockActivityFromTimePeriod({ start: "13:40", end: "16:40" });
-const student = createMockStudent();
-
-addStudentToActivity(activity1, student);
 
 export const Day: React.FC = () => {
+  // const {
+  //   models: { day },
+  // } = useDay();
+
+  // if (!day) {
+  //   return <Typography>Fuck</Typography>;
+  // }
+
   return (
     <MainLayout title="Calendar" footer={<Button text="Activity" icon="add" fullWidth />}>
       <DayLayout
@@ -53,8 +50,8 @@ export const Day: React.FC = () => {
         filter={<Filter />}
         calendar={
           <Calendar
-            activities={[activity1, activity2, activity3]}
-            students={[student]}
+            activities={[]}
+            students={[]}
             timeRange={TIME_RANGE}
             onActivityPress={() => null}
             onConfirmationStatusPress={() => null}
