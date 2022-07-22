@@ -8,7 +8,7 @@ import {
 } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { useAppDispatch, useAppSelector } from "apps/mobile/src/app/hooks";
-import { coachAPI } from "apps/mobile/src/services/ApiService";
+import { coachAuthAPI } from "apps/mobile/src/services/ApiService";
 import io from "socket.io-client";
 
 export const useCoach = () => {
@@ -37,7 +37,7 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      const user = await coachAPI.login(data);
+      const user = await coachAuthAPI.login(data);
 
       dispatch(coachActions.setCoach(user));
     } catch (error) {
@@ -53,7 +53,7 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      await coachAPI.logout();
+      await coachAuthAPI.logout();
     } catch (error) {
       console.error(error);
     } finally {
@@ -68,7 +68,7 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      const user = await coachAPI.register(data);
+      const user = await coachAuthAPI.register(data);
 
       dispatch(coachActions.setCoach(user));
     } catch (error) {
@@ -84,7 +84,7 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      const user = await coachAPI.getCoach();
+      const user = await coachAuthAPI.getCoach();
 
       dispatch(coachActions.setCoach(user));
     } catch {
@@ -99,7 +99,7 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      const user = await coachAPI.updateCoach(data);
+      const user = await coachAuthAPI.updateCoach(data);
 
       dispatch(coachActions.setCoach(user));
     } catch {
@@ -114,7 +114,7 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      await coachAPI.deleteCoach();
+      await coachAuthAPI.deleteCoach();
     } finally {
       dispatch(coachActions.setCoach(null));
       setIsChecked(true);

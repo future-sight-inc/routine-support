@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 
-import { Activity } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
-import { studentDayActions } from "apps/mobile/src/app/store";
+import { coachDayActions } from "apps/mobile/src/app/store";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
 import { useAppSelector } from "../../../app/hooks";
-import { studentActivityAPI, studentDayAPI } from "../../../services/ApiService";
+import { coachDayAPI } from "../../../services/ApiService";
 
 export const useDay = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const { day } = useAppSelector((state) => state.studentDay);
+  const { day } = useAppSelector((state) => state.coachDay);
 
   useEffect(() => {
     getDay();
@@ -30,9 +29,9 @@ export const useDay = () => {
     try {
       !config?.silent && setLoading(true);
 
-      const day = await studentDayAPI.getDay(stringifyDate(moment()));
+      const day = await coachDayAPI.getDay(stringifyDate(moment()));
 
-      dispatch(studentDayActions.setDay(day));
+      dispatch(coachDayActions.setDay(day));
     } catch (error) {
       console.error(error);
     } finally {
@@ -40,15 +39,5 @@ export const useDay = () => {
     }
   };
 
-  const confirmActivity = async (activity: Activity) => {
-    try {
-      await studentActivityAPI.confirmActivity(activity);
-
-      getDay({ silent: true });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return { models: { loading, day }, operations: { getDay, confirmActivity } };
+  return { models: { loading, day }, operations: { getDay } };
 };
