@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Activity } from "@routine-support/domains";
+import { Activity, createDayFromSchema } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import { studentDayActions } from "apps/mobile/src/app/store";
 import moment from "moment";
@@ -50,5 +50,8 @@ export const useDay = () => {
     }
   };
 
-  return { models: { loading, day }, operations: { getDay, confirmActivity } };
+  return {
+    models: { loading, day: day ? createDayFromSchema(day) : null },
+    operations: { getDay, confirmActivity },
+  };
 };
