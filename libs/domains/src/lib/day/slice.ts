@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Day } from "./types";
+import { DaySchema } from "./types";
 
 export interface DayState {
-  day: Day | null;
+  day: DaySchema | null;
 }
 
 const initialState: DayState = {
@@ -15,7 +15,7 @@ export const createDaySlice = ({ name }: { name: string }) => {
     name,
     initialState,
     reducers: {
-      setDay: (state, action: PayloadAction<Day | null>) => {
+      setDay: (state, action: PayloadAction<DaySchema | null>) => {
         state.day = action.payload;
       },
     },

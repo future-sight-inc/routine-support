@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { Notification, notificationsActions } from "@routine-support/domains";
+import {
+  createNotificationsGroupFromSchema,
+  Notification,
+  notificationsActions,
+} from "@routine-support/domains";
 import { useTranslation } from "react-i18next";
 import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -86,7 +90,12 @@ export const useNotifications = () => {
   };
 
   return {
-    models: { notificationsGroups, notViewedCount, loading, error },
+    models: {
+      notificationsGroups: notificationsGroups.map(createNotificationsGroupFromSchema),
+      notViewedCount,
+      loading,
+      error,
+    },
     operations: {
       getNotifications,
       deleteNotification,
