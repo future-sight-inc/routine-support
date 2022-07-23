@@ -72,7 +72,8 @@
     "regenerator-runtime": "*",
     "@material-ui/core": "*",
     "react-native-get-random-values": "*",
-    "react-native-date-picker": "*"
+    "react-native-date-picker": "*",
+    "@react-native-community/datetimepicker": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && cp yarn.lock ./apps/mobile/",

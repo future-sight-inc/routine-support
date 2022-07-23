@@ -1,5 +1,6 @@
 import React, { ReactNode, useRef, useState } from "react";
 
+import DatePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import moment, { Moment } from "moment";
 import { rgba } from "polished";
 import {
@@ -10,7 +11,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import DatePicker from "react-native-date-picker";
 
 import { MobileTheme } from "../../theme";
 import { Typography } from "../Typography";
@@ -60,8 +60,8 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
     setOpened(false);
   };
 
-  const handleChange = (value: Date) => {
-    const newValue = moment(value);
+  const handleChange = (__: DateTimePickerEvent, date?: Date | undefined) => {
+    const newValue = moment(date);
 
     setValue(newValue);
   };
@@ -116,7 +116,7 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
                 Выбрать
               </Typography>
             </View>
-            <DatePicker date={value.toDate()} onDateChange={handleChange} />
+            <DatePicker value={value.toDate()} onChange={handleChange} display="spinner" />
           </View>
         </View>
       </Modal>
