@@ -12,16 +12,17 @@ export const useDay = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { day } = useAppSelector((state) => state.coachDay);
+  const [currentDate, setCurrentDate] = useState(moment());
 
   useEffect(() => {
     getDay();
-  }, []);
+  }, [currentDate]);
 
   const getDay = async (config?: { silent: boolean }) => {
     try {
       !config?.silent && setLoading(true);
 
-      const day = await coachDayAPI.getDay(stringifyDate(moment()));
+      const day = await coachDayAPI.getDay(stringifyDate(currentDate));
 
       dispatch(coachDayActions.setDay(day));
     } catch (error) {
@@ -32,7 +33,7 @@ export const useDay = () => {
   };
 
   return {
-    models: { loading, day: day ? createDayFromSchema(day) : null },
-    operations: { getDay },
+    models: { loading, day: day ? createDayFromSchema(day) : null, currentDate },
+    operations: { getDay, setCurrentDate },
   };
 };
