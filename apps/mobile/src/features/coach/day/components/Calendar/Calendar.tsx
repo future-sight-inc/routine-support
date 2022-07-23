@@ -41,6 +41,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const renderActivitiesGroup = (time: TimeString) => {
     const group = getGroupByTime(time, activitiesGroups);
+    const rowWidth = Dimensions.get("screen").width - 85;
 
     return (
       group && (
@@ -50,6 +51,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           rowHeight={ROW_HEIGHT}
           onActivityPress={onActivityPress}
           onConfirmationStatusPress={onConfirmationStatusPress}
+          rowWidth={rowWidth}
         />
       )
     );
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: MobileTheme.palette.secondary.main,
   },
   bodyColumn: {
-    width: Dimensions.get("screen").width - 45 - 8,
+    width: Dimensions.get("screen").width - 53,
     borderColor: MobileTheme.palette.border.light,
     marginLeft: 8,
   },
