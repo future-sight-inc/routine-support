@@ -14,6 +14,7 @@ interface ActivitiesGroup {
   group: ActivitiesGroupType;
   students: Student[];
   rowHeight: number;
+  rowWidth: number;
   onActivityPress: (activity: ActivityType) => void;
   onConfirmationStatusPress: (activity: ActivityType) => void;
 }
@@ -22,11 +23,18 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
   group,
   students,
   rowHeight,
+  rowWidth,
   onActivityPress,
   onConfirmationStatusPress,
 }) => {
   return (
-    <View style={{ ...styles.wrapper, marginTop: (group.start.get("minutes") / 60) * rowHeight }}>
+    <View
+      style={{
+        ...styles.wrapper,
+        marginTop: (group.start.get("minutes") / 60) * rowHeight,
+        width: rowWidth,
+      }}
+    >
       {group.activities.map((activity, index) => (
         <Activity
           key={index}
@@ -35,7 +43,7 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
           onActivityPress={() => onActivityPress(activity)}
           onConfirmationStatusPress={() => onConfirmationStatusPress(activity)}
           style={{
-            width: `${100 / group.activities.length}%`,
+            width: rowWidth / group.activities.length - 4 * (group.activities.length - 1),
             height:
               getActivityDurationInHours(activity) * rowHeight -
               getTimelineMargin(activity.end) -
@@ -55,7 +63,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     top: 0,
     right: 0,
-    width: "100%",
+    left: 0,
     position: "absolute",
     zIndex: 100,
   },
