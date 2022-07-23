@@ -21,3 +21,11 @@ export const createDaySlice = ({ name }: { name: string }) => {
     },
   });
 };
+
+const studentDaySlice = createDaySlice({ name: "studentDay" });
+const coachDaySlice = createDaySlice({ name: "coachDay" });
+
+export const studentDayActions = studentDaySlice.actions;
+export const studentDayReducer = studentDaySlice.reducer;
+export const coachDayActions = coachDaySlice.actions;
+export const coachDayReducer = coachDaySlice.reducer;

@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-
-import { useHistory } from "react-router-native";
+import { Redirect } from "react-router-native";
 
 import { useCoach } from "../useCoach";
 import { Login as UncontrolledLogin } from "./Login";
@@ -11,14 +9,9 @@ export const Login: React.FC = () => {
     operations: { login },
   } = useCoach();
 
-  const history = useHistory();
-
-  useEffect(() => {
-    if (isLogged) {
-      // todo use link service
-      return history.push("/coach/day");
-    }
-  }, [isLogged, history]);
+  if (isLogged) {
+    return <Redirect to="/coach/day" />;
+  }
 
   return <UncontrolledLogin actions={{ login }} />;
 };

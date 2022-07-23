@@ -1,12 +1,14 @@
 import React from "react";
 
 import { Button } from "apps/mobile/src/components/Button";
+import { Typography } from "apps/mobile/src/components/Typography";
 
 import { MainLayout } from "../coach/MainLayout";
 import { Calendar } from "./components/Calendar";
 import { DayLayout } from "./components/DayLayout";
 import { DaySelect } from "./components/DaySelect";
 import { Filter } from "./components/Filter";
+import { useDay } from "./useDay";
 
 const TIME_RANGE = [
   "1:00",
@@ -35,13 +37,13 @@ const TIME_RANGE = [
 ];
 
 export const Day: React.FC = () => {
-  // const {
-  //   models: { day },
-  // } = useDay();
+  const {
+    models: { day },
+  } = useDay();
 
-  // if (!day) {
-  //   return <Typography>Fuck</Typography>;
-  // }
+  if (!day) {
+    return <Typography>Loading</Typography>;
+  }
 
   return (
     <MainLayout title="Calendar" footer={<Button text="Activity" icon="add" fullWidth />}>
@@ -50,7 +52,7 @@ export const Day: React.FC = () => {
         filter={<Filter />}
         calendar={
           <Calendar
-            activities={[]}
+            activities={day.activities}
             students={[]}
             timeRange={TIME_RANGE}
             onActivityPress={() => null}
