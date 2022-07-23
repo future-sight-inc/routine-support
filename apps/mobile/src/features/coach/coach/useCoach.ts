@@ -9,12 +9,12 @@ import {
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { useAppDispatch, useAppSelector } from "apps/mobile/src/app/hooks";
 import { coachAuthAPI } from "apps/mobile/src/services/ApiService";
-import io from "socket.io-client";
+import { io } from "socket.io-client";
 
 export const useCoach = () => {
   const dispatch = useAppDispatch();
 
-  const { coach, isLogged, socketConnection } = useAppSelector((state) => state.coach);
+  const { coach, isLogged, socketConnection } = useAppSelector((state) => state.coachAuth);
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
@@ -41,6 +41,7 @@ export const useCoach = () => {
 
       dispatch(coachActions.setCoach(user));
     } catch (error) {
+      console.log("error", error);
       dispatch(coachActions.setCoach(null));
       throw error;
     } finally {

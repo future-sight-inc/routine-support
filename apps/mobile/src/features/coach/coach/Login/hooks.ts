@@ -21,8 +21,6 @@ export const useLoginComponent = (actions: LoginActions) => {
     try {
       setSubmitError(undefined);
 
-      console.log(data);
-
       await actions.login(data);
     } catch (error) {
       const data = (error as AxiosError<SubmitErrorData>).response?.data;

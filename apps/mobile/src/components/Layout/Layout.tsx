@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
-import { EdgeInsets } from "react-native-safe-area-context";
+import { Dimensions, StyleSheet, View } from "react-native";
+import { EdgeInsets, SafeAreaView } from "react-native-safe-area-context";
 
 import { MobileTheme } from "../../theme";
 import { NotificationsIcon } from "../NotificationsIcon";

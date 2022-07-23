@@ -1,6 +1,6 @@
 import React from "react";
 
-import { RouteProps } from "react-router-native";
+import { Redirect, RouteProps } from "react-router-native";
 
 import { usePrivateRouteComponent } from "./hooks";
 import { PrivateRoute as UncontrolledPrivateRoute } from "./PrivateRoute";
@@ -10,6 +10,10 @@ export const PrivateRoute: React.FC<RouteProps> = (props) => {
     models: { loading, isLogged, isChecked },
     operations: { logout },
   } = usePrivateRouteComponent();
+
+  if (!isLogged && isChecked) {
+    return <Redirect to="/coach/login" />;
+  }
 
   return (
     <UncontrolledPrivateRoute

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { createDayFromSchema } from "@routine-support/domains";
+import { coachDayActions, createDayFromSchema } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
-import { coachDayActions } from "apps/mobile/src/app/store";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
@@ -16,14 +15,6 @@ export const useDay = () => {
 
   useEffect(() => {
     getDay();
-  }, []);
-
-  useEffect(() => {
-    const intervalId = setInterval(async () => {
-      await getDay({ silent: true });
-    }, 60 * 1000);
-
-    return () => clearInterval(intervalId);
   }, []);
 
   const getDay = async (config?: { silent: boolean }) => {
