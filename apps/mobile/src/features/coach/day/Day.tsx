@@ -38,7 +38,8 @@ const TIME_RANGE = [
 
 export const Day: React.FC = () => {
   const {
-    models: { day },
+    models: { day, currentDate },
+    operations: { setCurrentDate },
   } = useDay();
 
   if (!day) {
@@ -48,7 +49,7 @@ export const Day: React.FC = () => {
   return (
     <MainLayout title="Calendar" footer={<Button text="Activity" icon="add" fullWidth />}>
       <DayLayout
-        daySelect={<DaySelect />}
+        daySelect={<DaySelect date={currentDate} onSelect={setCurrentDate} />}
         filter={<Filter />}
         calendar={
           <Calendar

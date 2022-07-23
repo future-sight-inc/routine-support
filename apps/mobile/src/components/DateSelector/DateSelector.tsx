@@ -1,5 +1,6 @@
 import React, { ReactNode, useRef, useState } from "react";
 
+import { OverlayContainer } from "@react-native-aria/overlays";
 import DatePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import moment, { Moment } from "moment";
 import { rgba } from "polished";
@@ -77,15 +78,17 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
         {pressElement}
       </TouchableWithoutFeedback>
       {isBackgroundVisible && (
-        <Animated.View
-          style={[
-            styles.background,
-            {
-              opacity: fadeAnim,
-            },
-          ]}
-          testID={DateSelectorLocators.Background}
-        />
+        <OverlayContainer>
+          <Animated.View
+            style={[
+              styles.background,
+              {
+                opacity: fadeAnim,
+              },
+            ]}
+            testID={DateSelectorLocators.Background}
+          />
+        </OverlayContainer>
       )}
       <Modal
         visible={isOpened}

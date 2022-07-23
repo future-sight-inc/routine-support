@@ -1,5 +1,6 @@
 import React from "react";
 
+import { OverlayProvider } from "@react-native-aria/overlays";
 import { fireEvent, render } from "@testing-library/react-native";
 import moment from "moment";
 
@@ -10,7 +11,9 @@ import { DateSelectorLocators } from "./locators";
 describe("DateSelector", () => {
   it("Initial. Should not display modal", () => {
     const { queryByTestId, getByText } = render(
-      <DateSelector onSelect={() => null} pressElement={<Typography>Press</Typography>} />
+      <OverlayProvider>
+        <DateSelector onSelect={() => null} pressElement={<Typography>Press</Typography>} />
+      </OverlayProvider>
     );
 
     expect(queryByTestId(DateSelectorLocators.Background)).toBeFalsy();
@@ -19,7 +22,9 @@ describe("DateSelector", () => {
 
   it("Open modal and close on close text press", async () => {
     const { getByTestId, queryByTestId } = render(
-      <DateSelector onSelect={() => null} pressElement={<Typography>Press</Typography>} />
+      <OverlayProvider>
+        <DateSelector onSelect={() => null} pressElement={<Typography>Press</Typography>} />
+      </OverlayProvider>
     );
 
     await fireEvent.press(getByTestId(DateSelectorLocators.PressElement));
@@ -33,7 +38,9 @@ describe("DateSelector", () => {
 
   it("Open modal and close on modal dim press", async () => {
     const { getByTestId, queryByTestId } = render(
-      <DateSelector onSelect={() => null} pressElement={<Typography>Press</Typography>} />
+      <OverlayProvider>
+        <DateSelector onSelect={() => null} pressElement={<Typography>Press</Typography>} />
+      </OverlayProvider>
     );
 
     await fireEvent.press(getByTestId(DateSelectorLocators.PressElement));
@@ -49,11 +56,13 @@ describe("DateSelector", () => {
     const value = moment();
     const handleSelect = jest.fn();
     const { getByTestId, queryByTestId } = render(
-      <DateSelector
-        onSelect={handleSelect}
-        value={value}
-        pressElement={<Typography>Press</Typography>}
-      />
+      <OverlayProvider>
+        <DateSelector
+          onSelect={handleSelect}
+          value={value}
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
     );
 
     await fireEvent.press(getByTestId(DateSelectorLocators.PressElement));

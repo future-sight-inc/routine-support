@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
-import { NativeRouter } from "react-router-native";
 import { useHistory } from "react-router-native";
 
 import { AppWrapper } from "../components/AppWrapper";
@@ -51,9 +50,7 @@ const App = () => {
 };
 
 export default () => (
-  <NativeRouter>
-    <AppWrapper>
-      <App />
-    </AppWrapper>
-  </NativeRouter>
+  <AppWrapper>
+    <App />
+  </AppWrapper>
 );
