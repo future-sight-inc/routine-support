@@ -79,6 +79,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           </View>
         </View>
       )}
+      keyExtractor={(item) => item}
     />
   );
 };
