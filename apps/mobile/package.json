@@ -73,7 +73,8 @@
     "@material-ui/core": "*",
     "react-native-get-random-values": "*",
     "react-native-date-picker": "*",
-    "@react-native-community/datetimepicker": "*"
+    "@react-native-community/datetimepicker": "*",
+    "@react-native-aria/overlays": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && cp yarn.lock ./apps/mobile/",
