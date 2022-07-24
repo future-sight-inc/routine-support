@@ -145,4 +145,42 @@ describe("StudentsSelector", () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
   });
+
+  it("Open modal, toggle selected student, close modal", async () => {
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const value = [student1._id, student2._id];
+    const handleSelect = jest.fn();
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <StudentsSelector
+          onSelect={handleSelect}
+          value={value}
+          students={[student1, student2, student3]}
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createStudentTestId({ student: student1, isSelected: true }))
+    );
+    expect(getByTestId(createStudentTestId({ student: student1, isSelected: false }))).toBeTruthy();
+
+    await fireEvent.press(getByTestId(InputModalLocators.CloseText));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createStudentTestId({ student: student1, isSelected: true }))).toBeTruthy();
+    expect(getByTestId(createStudentTestId({ student: student2, isSelected: true }))).toBeTruthy();
+    expect(getByTestId(createStudentTestId({ student: student3, isSelected: false }))).toBeTruthy();
+  });
 });

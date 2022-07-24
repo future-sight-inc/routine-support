@@ -28,6 +28,12 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
     onSelect(value);
   };
 
+  const handleClose = () => {
+    if (defaultValue) {
+      setValue(defaultValue);
+    }
+  };
+
   return (
     <InputModal
       pressElement={pressElement}
@@ -40,6 +46,7 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
         />
       }
       onConfirm={handleSelect}
+      onClose={handleClose}
     />
   );
 };

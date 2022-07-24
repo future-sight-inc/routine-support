@@ -14,6 +14,7 @@ describe("InputModal", () => {
         <InputModal
           onConfirm={() => null}
           pressElement={<Typography>Press</Typography>}
+          onClose={() => null}
           input={null}
         />
       </OverlayProvider>
@@ -30,6 +31,7 @@ describe("InputModal", () => {
         <InputModal
           onConfirm={() => null}
           pressElement={<Typography>Press</Typography>}
+          onClose={() => null}
           input={INPUT}
         />
       </OverlayProvider>
@@ -51,6 +53,7 @@ describe("InputModal", () => {
         <InputModal
           onConfirm={() => null}
           pressElement={<Typography>Press</Typography>}
+          onClose={() => null}
           input={null}
         />
       </OverlayProvider>
@@ -72,6 +75,7 @@ describe("InputModal", () => {
         <InputModal
           onConfirm={handleSelect}
           pressElement={<Typography>Press</Typography>}
+          onClose={() => null}
           input={null}
         />
       </OverlayProvider>

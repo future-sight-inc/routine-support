@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { createMockStudent, Student } from "@routine-support/domains";
-import { FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { Dimensions, FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { MobileTheme } from "../../theme";
 import { InputModal } from "../InputModal";
@@ -42,6 +42,10 @@ export const StudentsSelector: React.FC<StudentsSelectorProps> = ({
     onSelect(selected);
   };
 
+  const handleClose = () => {
+    setSelected(value);
+  };
+
   return (
     <InputModal
       pressElement={pressElement}
@@ -73,12 +77,13 @@ export const StudentsSelector: React.FC<StudentsSelectorProps> = ({
         />
       }
       onConfirm={handleConfirm}
+      onClose={handleClose}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: { marginTop: 16, height: 250 },
+  wrapper: { marginTop: 16, height: Dimensions.get("screen").height / 2 },
   studentWrapper: {
     height: 30,
     flexDirection: "row",
