@@ -119,7 +119,12 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
                 Выбрать
               </Typography>
             </View>
-            <DatePicker value={value.toDate()} onChange={handleChange} display="spinner" />
+            <DatePicker
+              value={value.toDate()}
+              onChange={handleChange}
+              display="spinner"
+              textColor="black"
+            />
           </View>
         </View>
       </Modal>
