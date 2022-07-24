@@ -4,12 +4,14 @@ import {
   coachReducer,
   studentDayReducer,
   studentReducer,
+  studentsReducer,
 } from "@routine-support/domains";
 
 export const store = configureStore({
   reducer: {
     coachAuth: coachReducer,
     coachDay: coachDayReducer,
+    coachStudents: studentsReducer,
 
     studentAuth: studentReducer,
     studentDay: studentDayReducer,

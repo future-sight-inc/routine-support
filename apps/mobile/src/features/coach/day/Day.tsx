@@ -4,6 +4,7 @@ import { Button } from "apps/mobile/src/components/Button";
 import { Typography } from "apps/mobile/src/components/Typography";
 
 import { MainLayout } from "../coach/MainLayout";
+import { useStudents } from "../students/useStudents";
 import { Calendar } from "./components/Calendar";
 import { DayLayout } from "./components/DayLayout";
 import { DaySelect } from "./components/DaySelect";
@@ -41,6 +42,9 @@ export const Day: React.FC = () => {
     models: { day, currentDate },
     operations: { setCurrentDate },
   } = useDay();
+  const {
+    models: { students },
+  } = useStudents();
 
   if (!day) {
     return <Typography>Loading</Typography>;
@@ -54,7 +58,7 @@ export const Day: React.FC = () => {
         calendar={
           <Calendar
             activities={day.activities}
-            students={[]}
+            students={students}
             timeRange={TIME_RANGE}
             onActivityPress={() => null}
             onConfirmationStatusPress={() => null}
