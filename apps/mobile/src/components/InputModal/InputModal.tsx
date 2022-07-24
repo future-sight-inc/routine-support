@@ -63,7 +63,8 @@ export const InputModal: React.FC<InputModalProps> = ({
 
   const handleConfirm = () => {
     onConfirm();
-    handleClose();
+    fadeOutBackground();
+    setOpened(false);
   };
 
   return (
@@ -144,5 +145,6 @@ const styles = StyleSheet.create({
   modalHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginBottom: 16,
   },
 });

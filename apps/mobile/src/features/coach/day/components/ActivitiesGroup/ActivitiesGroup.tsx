@@ -43,7 +43,7 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
           onActivityPress={() => onActivityPress(activity)}
           onConfirmationStatusPress={() => onConfirmationStatusPress(activity)}
           style={{
-            width: rowWidth / group.activities.length - 4 * (group.activities.length - 1),
+            width: rowWidth / group.activities.length - 8 * group.activities.length,
             height:
               getActivityDurationInHours(activity) * rowHeight -
               getTimelineMargin(activity.end) -

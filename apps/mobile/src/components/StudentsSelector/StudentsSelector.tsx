@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { createMockStudent, Student } from "@routine-support/domains";
-import { Dimensions, FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { ActivityFilter, createMockStudent, Student } from "@routine-support/domains";
+import { FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { MobileTheme } from "../../theme";
 import { InputModal } from "../InputModal";
@@ -11,39 +11,43 @@ import { createStudentTestId } from "./locators";
 
 interface StudentsSelectorProps {
   students: Student[];
-  value: string[];
+  value: ActivityFilter;
   pressElement: ReactNode;
-  onSelect: (value: string[]) => void;
+  onSelect: (filter: ActivityFilter) => void;
 }
 
 export const StudentsSelector: React.FC<StudentsSelectorProps> = ({
   students,
-  value,
+  value: defaultFilter,
   pressElement,
   onSelect,
 }) => {
-  const [selected, setSelected] = useState<string[]>(value || []);
-
-  const isStudentSelected = (student: Student): boolean => {
-    return selected.includes(student._id);
-  };
+  const [filter, setFilter] = useState<ActivityFilter>(defaultFilter);
 
   const handleStudentToggle = (student: Student) => {
-    const isCurrentStudentSelected = isStudentSelected(student);
+    const isCurrentStudentSelected = filter[student._id];
 
     if (isCurrentStudentSelected) {
-      setSelected((selected) => selected.filter((id) => student._id !== id));
+      const newFilter = {};
+
+      Object.keys(filter)
+        .filter((key) => key !== student._id)
+        .forEach((key) => {
+          newFilter[key] = true;
+        });
+
+      setFilter(newFilter);
     } else {
-      setSelected((selected) => [...selected, student._id]);
+      setFilter({ ...filter, [student._id]: true });
     }
   };
 
   const handleConfirm = () => {
-    onSelect(selected);
+    onSelect(filter);
   };
 
   const handleClose = () => {
-    setSelected(value);
+    setFilter(defaultFilter);
   };
 
   return (
@@ -55,13 +59,13 @@ export const StudentsSelector: React.FC<StudentsSelectorProps> = ({
           renderItem={({ item: student }) => (
             <TouchableWithoutFeedback
               onPress={() => handleStudentToggle(student)}
-              testID={createStudentTestId({ student, isSelected: isStudentSelected(student) })}
+              testID={createStudentTestId({ student, isSelected: filter[student._id] })}
             >
               <View style={styles.studentWrapper}>
                 <View
                   style={{
                     ...styles.checkWrapper,
-                    backgroundColor: isStudentSelected(student)
+                    backgroundColor: filter[student._id]
                       ? MobileTheme.palette.primary.main
                       : MobileTheme.palette.common.white,
                   }}
@@ -83,7 +87,7 @@ export const StudentsSelector: React.FC<StudentsSelectorProps> = ({
 };
 
 const styles = StyleSheet.create({
-  wrapper: { marginTop: 16, height: Dimensions.get("screen").height / 2 },
+  wrapper: { height: 300, marginTop: 8 },
   studentWrapper: {
     height: 30,
     flexDirection: "row",
