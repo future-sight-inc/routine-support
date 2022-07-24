@@ -13,6 +13,7 @@ export const useDay = () => {
   const [loading, setLoading] = useState(false);
   const { day } = useAppSelector((state) => state.coachDay);
   const [currentDate, setCurrentDate] = useState(moment());
+  const [filter, setFilter] = useState<string[]>([]);
 
   useEffect(() => {
     getDay();
@@ -33,7 +34,7 @@ export const useDay = () => {
   };
 
   return {
-    models: { loading, day: day ? createDayFromSchema(day) : null, currentDate },
-    operations: { getDay, setCurrentDate },
+    models: { loading, day: day ? createDayFromSchema(day) : null, currentDate, filter },
+    operations: { getDay, onDateSelect: setCurrentDate, onFilterSelect: setFilter },
   };
 };

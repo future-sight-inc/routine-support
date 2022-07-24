@@ -19,9 +19,15 @@ interface InputModalProps {
   pressElement: ReactNode;
   input: ReactNode;
   onConfirm: () => void;
+  onClose: () => void;
 }
 
-export const InputModal: React.FC<InputModalProps> = ({ pressElement, input, onConfirm }) => {
+export const InputModal: React.FC<InputModalProps> = ({
+  pressElement,
+  input,
+  onConfirm,
+  onClose,
+}) => {
   const [isOpened, setOpened] = useState(false);
 
   const [isBackgroundVisible, setBackgroundVisible] = useState(false);
@@ -52,6 +58,7 @@ export const InputModal: React.FC<InputModalProps> = ({ pressElement, input, onC
   const handleClose = () => {
     fadeOutBackground();
     setOpened(false);
+    onClose();
   };
 
   const handleConfirm = () => {
