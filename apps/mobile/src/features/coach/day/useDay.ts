@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { coachDayActions, createDayFromSchema } from "@routine-support/domains";
+import {
+  ActivityFilter,
+  coachDayActions,
+  createDayFromSchema,
+  Student,
+} from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
 import { useDispatch } from "react-redux";
@@ -13,17 +18,18 @@ export const useDay = () => {
   const [loading, setLoading] = useState(false);
   const { day } = useAppSelector((state) => state.coachDay);
   const [currentDate, setCurrentDate] = useState(moment());
-  const [filter, setFilter] = useState<string[]>([]);
+
+  const [activityFilter, setActivityFilter] = useState<ActivityFilter>({});
 
   useEffect(() => {
     getDay();
-  }, [currentDate]);
+  }, [currentDate, activityFilter]);
 
   const getDay = async (config?: { silent: boolean }) => {
     try {
       !config?.silent && setLoading(true);
 
-      const day = await coachDayAPI.getDay(stringifyDate(currentDate));
+      const day = await coachDayAPI.getDay({ date: stringifyDate(currentDate), activityFilter });
 
       dispatch(coachDayActions.setDay(day));
     } catch (error) {
@@ -33,8 +39,21 @@ export const useDay = () => {
     }
   };
 
+  const setDefaultActivityFilter = ({ students }: { students: Student[] }) => {
+    const activityFilter = { common: true };
+
+    students.forEach((student) => (activityFilter[student._id] = true));
+
+    setActivityFilter(activityFilter);
+  };
+
   return {
-    models: { loading, day: day ? createDayFromSchema(day) : null, currentDate, filter },
-    operations: { getDay, onDateSelect: setCurrentDate, onFilterSelect: setFilter },
+    models: { loading, day: day ? createDayFromSchema(day) : null, currentDate, activityFilter },
+    operations: {
+      getDay,
+      onDateSelect: setCurrentDate,
+      onActivityFilterSelect: setActivityFilter,
+      setDefaultActivityFilter,
+    },
   };
 };

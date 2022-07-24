@@ -14,7 +14,7 @@ storiesOf("Components", module).add("StudentsSelector", () => {
     <OverlayProvider>
       <StudentsSelector
         students={STUDENTS}
-        value={[]}
+        value={{}}
         pressElement={<Typography>Press me</Typography>}
         onSelect={() => null}
       />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Button } from "apps/mobile/src/components/Button";
 import { Typography } from "apps/mobile/src/components/Typography";
@@ -39,12 +39,16 @@ const TIME_RANGE = [
 
 export const Day: React.FC = () => {
   const {
-    models: { day, currentDate, filter },
-    operations: { onDateSelect, onFilterSelect },
-  } = useDay();
-  const {
     models: { students },
   } = useStudents();
+  const {
+    models: { day, currentDate, activityFilter },
+    operations: { onDateSelect, onActivityFilterSelect, setDefaultActivityFilter },
+  } = useDay();
+
+  useEffect(() => {
+    setDefaultActivityFilter({ students });
+  }, [students]);
 
   if (!day) {
     return <Typography>Loading</Typography>;
@@ -54,7 +58,9 @@ export const Day: React.FC = () => {
     <MainLayout title="Calendar" footer={<Button text="Activity" icon="add" fullWidth />}>
       <DayLayout
         daySelect={<DaySelect date={currentDate} onSelect={onDateSelect} />}
-        filter={<Filter students={students} value={filter} onSelect={onFilterSelect} />}
+        filter={
+          <Filter students={students} value={activityFilter} onSelect={onActivityFilterSelect} />
+        }
         calendar={
           <Calendar
             activities={day.activities}

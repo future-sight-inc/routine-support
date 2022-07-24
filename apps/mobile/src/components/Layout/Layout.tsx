@@ -81,7 +81,7 @@ const createStyles = ({ insets, hasFooter }: { insets: EdgeInsets; hasFooter: bo
     body: {
       height: BODY_HEIGHT,
       paddingHorizontal: HORIZONTAL_PADDING,
-      paddingBottom: hasFooter ? 100 : 0,
+      paddingBottom: hasFooter ? 82 : 0,
       paddingTop: HORIZONTAL_PADDING,
       borderWidth: 1,
       borderBottomWidth: 0,
