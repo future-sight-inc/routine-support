@@ -12,6 +12,7 @@ import { MobileTheme } from "apps/mobile/src/theme";
 import { Dimensions, FlatList, StyleSheet, View } from "react-native";
 
 import { ActivitiesGroup } from "../ActivitiesGroup";
+import { CurrentTimeLine } from "../CurrentTimeLine";
 
 interface CalendarProps {
   timeRange: TimeString[];
@@ -41,7 +42,6 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const renderActivitiesGroup = (time: TimeString) => {
     const group = getGroupByTime(time, activitiesGroups);
-    const rowWidth = Dimensions.get("screen").width - 85;
 
     return (
       group && (
@@ -51,7 +51,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           rowHeight={ROW_HEIGHT}
           onActivityPress={onActivityPress}
           onConfirmationStatusPress={onConfirmationStatusPress}
-          rowWidth={rowWidth}
+          rowWidth={ROW_WIDTH}
         />
       )
     );
@@ -60,6 +60,10 @@ export const Calendar: React.FC<CalendarProps> = ({
   return (
     <FlatList
       data={timeRange}
+      ListHeaderComponent={
+        <CurrentTimeLine rowHeight={ROW_HEIGHT} timeColumnWidth={TIME_COLUMN_WIDTH} />
+      }
+      ListHeaderComponentStyle={{ zIndex: 1 }}
       renderItem={({ item, index }) => (
         <View style={styles.row} key={index}>
           <View style={styles.timeColumn}>
@@ -76,7 +80,6 @@ export const Calendar: React.FC<CalendarProps> = ({
           <View
             style={{
               ...styles.bodyColumn,
-              borderBottomWidth: index + 1 === timeRange.length ? 0 : 1,
             }}
           >
             {renderActivitiesGroup(item)}
@@ -84,33 +87,44 @@ export const Calendar: React.FC<CalendarProps> = ({
         </View>
       )}
       keyExtractor={(item) => item}
+      ItemSeparatorComponent={() => <View style={styles.separator} />}
     />
   );
 };
 
 const ROW_HEIGHT = 120;
+const ROW_WIDTH = Dimensions.get("screen").width - 100;
+const TIME_COLUMN_WIDTH = 45;
+const COLUMNS_GAP = 24;
 
 const styles = StyleSheet.create({
-  wrapper: {
-    height: "100%",
-    overflow: "scroll",
+  row: {
+    flexDirection: "row",
   },
-  row: { flexDirection: "row" },
   timeColumn: {
-    width: 45,
+    width: TIME_COLUMN_WIDTH,
     height: ROW_HEIGHT,
     flexDirection: "column",
     justifyContent: "space-between",
   },
-  timeText: { marginTop: -8 },
+  timeText: {
+    marginTop: -8,
+    marginLeft: 4,
+  },
   dash: {
     height: 1,
     width: 12,
+    marginLeft: 4,
     backgroundColor: MobileTheme.palette.secondary.main,
   },
   bodyColumn: {
-    width: Dimensions.get("screen").width - 53,
-    borderColor: MobileTheme.palette.border.light,
-    marginLeft: 8,
+    marginLeft: COLUMNS_GAP,
+  },
+  separator: {
+    marginLeft: TIME_COLUMN_WIDTH + COLUMNS_GAP,
+    width: "100%",
+    height: 1,
+    backgroundColor: MobileTheme.palette.border.light,
+    zIndex: 10,
   },
 });

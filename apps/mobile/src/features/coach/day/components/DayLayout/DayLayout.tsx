@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-import { StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 
 interface DayLayoutProps {
   daySelect: ReactNode;
@@ -29,5 +29,7 @@ const styles = StyleSheet.create({
     height: 33,
     marginBottom: 8,
   },
-  body: {},
+  body: {
+    width: Dimensions.get("screen").width,
+  },
 });
