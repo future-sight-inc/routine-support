@@ -63,11 +63,15 @@ export const Calendar: React.FC<CalendarProps> = ({
       renderItem={({ item, index }) => (
         <View style={styles.row} key={index}>
           <View style={styles.timeColumn}>
-            <View />
+            {index === 0 ? (
+              <View />
+            ) : (
+              <Typography variant="text3" color="secondary" style={styles.timeText}>
+                {item}
+              </Typography>
+            )}
             <View style={styles.dash} />
-            <Typography variant="text3" color="secondary">
-              {item}
-            </Typography>
+            <View />
           </View>
           <View
             style={{
@@ -98,6 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
   },
+  timeText: { marginTop: -8 },
   dash: {
     height: 1,
     width: 12,

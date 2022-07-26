@@ -8,6 +8,7 @@ import { storiesOf } from "@storybook/react-native";
 import { Calendar } from "./Calendar";
 
 const TIME_RANGE = [
+  "0:00",
   "1:00",
   "2:00",
   "3:00",
