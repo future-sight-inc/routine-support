@@ -4,19 +4,19 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { ActivityFilter, createMockStudent, Student } from "@routine-support/domains";
 import { FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
-import { InputModal } from "../InputModal";
-import { Typography } from "../Typography";
+import { InputModal } from "../../../../../../../components/InputModal";
+import { Typography } from "../../../../../../../components/Typography";
+import { MobileTheme } from "../../../../../../../theme";
 import { createStudentTestId } from "./locators";
 
-interface StudentsSelectorProps {
+interface FilterSelectorProps {
   students: Student[];
   value: ActivityFilter;
   pressElement: ReactNode;
   onSelect: (filter: ActivityFilter) => void;
 }
 
-export const StudentsSelector: React.FC<StudentsSelectorProps> = ({
+export const FilterSelector: React.FC<FilterSelectorProps> = ({
   students,
   value: defaultFilter,
   pressElement,

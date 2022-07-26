@@ -4,12 +4,12 @@ import { OverlayProvider } from "@react-native-aria/overlays";
 import { createMockStudent } from "@routine-support/domains";
 import { fireEvent, render } from "@testing-library/react-native";
 
-import { InputModalLocators } from "../InputModal/locators";
-import { Typography } from "../Typography";
+import { InputModalLocators } from "../../../../../../../components/InputModal/locators";
+import { Typography } from "../../../../../../../components/Typography";
+import { FilterSelector } from "./FilterSelector";
 import { createStudentTestId } from "./locators";
-import { StudentsSelector } from "./StudentsSelector";
 
-describe("StudentsSelector", () => {
+describe("FilterSelector", () => {
   it("Open modal, shows students", async () => {
     const value = {};
     const handleSelect = jest.fn();
@@ -19,7 +19,7 @@ describe("StudentsSelector", () => {
 
     const { getByTestId } = render(
       <OverlayProvider>
-        <StudentsSelector
+        <FilterSelector
           onSelect={handleSelect}
           value={value}
           students={[student1, student2, student3]}
@@ -45,7 +45,7 @@ describe("StudentsSelector", () => {
 
     const { getByTestId } = render(
       <OverlayProvider>
-        <StudentsSelector
+        <FilterSelector
           onSelect={handleSelect}
           value={value}
           students={[student1, student2, student3]}
@@ -72,7 +72,7 @@ describe("StudentsSelector", () => {
 
     const { getByTestId } = render(
       <OverlayProvider>
-        <StudentsSelector
+        <FilterSelector
           onSelect={handleSelect}
           value={value}
           students={[student1, student2, student3]}
@@ -95,7 +95,7 @@ describe("StudentsSelector", () => {
 
     const { getByTestId } = render(
       <OverlayProvider>
-        <StudentsSelector
+        <FilterSelector
           onSelect={handleSelect}
           value={value}
           students={[student1, student2, student3]}
@@ -122,7 +122,7 @@ describe("StudentsSelector", () => {
 
     const { getByTestId, queryByTestId } = render(
       <OverlayProvider>
-        <StudentsSelector
+        <FilterSelector
           onSelect={handleSelect}
           value={value}
           students={[student1, student2, student3]}
@@ -155,7 +155,7 @@ describe("StudentsSelector", () => {
 
     const { getByTestId } = render(
       <OverlayProvider>
-        <StudentsSelector
+        <FilterSelector
           onSelect={handleSelect}
           value={value}
           students={[student1, student2, student3]}
