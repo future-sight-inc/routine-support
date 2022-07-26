@@ -37,7 +37,7 @@ const TIME_RANGE = [
 storiesOf("Coach/Day", module).add("Calendar", () => {
   const activity1 = createMockActivityFromTimePeriod({ start: "12:00", end: "13:00" });
   const activity2 = createMockActivityFromTimePeriod({ start: "12:00", end: "13:40" });
-  const activity3 = createMockActivityFromTimePeriod({ start: "13:40", end: "16:40" });
+  const activity3 = createMockActivityFromTimePeriod({ start: "13:40", end: "18:00" });
   const student = createMockStudent();
 
   addStudentToActivity(activity1, student);

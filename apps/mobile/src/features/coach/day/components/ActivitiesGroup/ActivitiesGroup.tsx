@@ -7,8 +7,8 @@ import {
 } from "@routine-support/domains";
 import { StyleSheet, View } from "react-native";
 
+import { getActivityDurationInHours, getTimeInHours, getTimelineMargin } from "../../utils";
 import { Activity } from "../Activity";
-import { getActivityDurationInHours, getTimeInHours, getTimelineMargin } from "./utils";
 
 interface ActivitiesGroup {
   group: ActivitiesGroupType;
@@ -43,7 +43,7 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
           onActivityPress={() => onActivityPress(activity)}
           onConfirmationStatusPress={() => onConfirmationStatusPress(activity)}
           style={{
-            width: (rowWidth - 8) / group.activities.length - 4,
+            width: rowWidth / group.activities.length - 4,
             height:
               getActivityDurationInHours(activity) * rowHeight -
               getTimelineMargin(activity.end) -
@@ -65,6 +65,5 @@ const styles = StyleSheet.create({
     right: 0,
     left: 0,
     position: "absolute",
-    zIndex: 100,
   },
 });
