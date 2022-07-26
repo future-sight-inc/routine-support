@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 
-import { Notification, notificationsActions } from "@routine-support/domains";
+import {
+  createNotificationsGroupFromSchema,
+  Notification,
+  notificationsActions,
+} from "@routine-support/domains";
 import { useTranslation } from "react-i18next";
 import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { notificationAPI } from "../../services/ApiService";
+import { coachNotificationAPI } from "../../services/ApiService";
 import { LinkService } from "../../services/LinkService";
 import notificationSound from "./notificationSound.mp3";
 
@@ -16,9 +20,7 @@ export const useNotifications = () => {
   const { t } = useTranslation();
 
   const [loading, setLoading] = useState(true);
-  const { notificationsGroups, notViewedCount } = useAppSelector(
-    (state) => state.notifications
-  );
+  const { notificationsGroups, notViewedCount } = useAppSelector((state) => state.notifications);
   const coachId = useAppSelector((state) => state.coach.coach?._id);
   const dispatch = useAppDispatch();
 
@@ -35,7 +37,7 @@ export const useNotifications = () => {
 
         !data?.config?.silent && setLoading(true);
 
-        const responseData = await notificationAPI.getNotifications();
+        const responseData = await coachNotificationAPI.getNotifications();
 
         dispatch(notificationsActions.setNotificationsGroups(responseData));
       } catch (error: any) {
@@ -48,7 +50,7 @@ export const useNotifications = () => {
 
   const deleteNotification = async (notification: Notification) => {
     try {
-      await notificationAPI.deleteNotification(notification._id);
+      await coachNotificationAPI.deleteNotification(notification._id);
     } finally {
       getNotifications({ config: { silent: true } });
     }
@@ -56,7 +58,7 @@ export const useNotifications = () => {
 
   const clearAllNotifications = async () => {
     try {
-      await notificationAPI.deleteNotifications();
+      await coachNotificationAPI.deleteNotifications();
     } finally {
       getNotifications({ config: { silent: true } });
     }
@@ -64,7 +66,7 @@ export const useNotifications = () => {
 
   const viewNotification = async (notification: Notification) => {
     try {
-      await notificationAPI.viewNotification(notification._id);
+      await coachNotificationAPI.viewNotification(notification._id);
     } finally {
       getNotifications({ config: { silent: true } });
     }
@@ -88,7 +90,12 @@ export const useNotifications = () => {
   };
 
   return {
-    models: { notificationsGroups, notViewedCount, loading, error },
+    models: {
+      notificationsGroups: notificationsGroups.map(createNotificationsGroupFromSchema),
+      notViewedCount,
+      loading,
+      error,
+    },
     operations: {
       getNotifications,
       deleteNotification,

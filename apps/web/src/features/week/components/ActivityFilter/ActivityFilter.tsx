@@ -2,19 +2,15 @@ import React from "react";
 
 import { Student } from "@routine-support/domains";
 import { ActivityFilter as ActivityFilterType } from "@routine-support/domains";
+import { COMMON_ACTIVITY_COLOR, getColor } from "@routine-support/ui-theme";
 import { Checkbox } from "apps/web/src/components/Checkbox";
-import { getColor } from "apps/web/src/utils/getColor";
 import { useTranslation } from "react-i18next";
 
-import { COMMON_ACTIVITY_COLOR } from "../../../../constants/defaultActivityColor";
 import { useActivityFilterComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface ActivityFilterActions {
-  getWeek: (data: {
-    activityFilter: ActivityFilterType;
-    config: { silent: boolean };
-  }) => void;
+  getWeek: (data: { activityFilter: ActivityFilterType; config: { silent: boolean } }) => void;
 }
 
 interface ActivityFilterProps {
@@ -22,10 +18,7 @@ interface ActivityFilterProps {
   actions: ActivityFilterActions;
 }
 
-export const ActivityFilter: React.FC<ActivityFilterProps> = ({
-  students,
-  actions,
-}) => {
+export const ActivityFilter: React.FC<ActivityFilterProps> = ({ students, actions }) => {
   const {
     models: { activityFilter },
     operations: { handleChange },

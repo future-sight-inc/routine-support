@@ -1,19 +1,13 @@
 import { Router } from "express";
-import {
-  ActivityModel,
-  confirmStudentActivity,
-  StudentModel,
-  WeekSocketEventTypeEnum,
-} from "@routine-support/domains";
-import { studentAuthorization } from "../middleware/studentAuthorization";
-import { validateActivity } from "../utils/validateActivity";
-import { coachAuthorization } from "../middleware/coachAuthorization";
+import { ActivityModel, StudentModel, WeekSocketEventTypeEnum } from "@routine-support/domains";
+
 import { SocketUserTypeEnum } from "@routine-support/types";
-import { emitToUser } from "../main";
+import { emitToUser } from "../../main";
+import { validateActivity } from "../../utils/validateActivity";
 
 export const activityRouter = Router();
 
-activityRouter.get("/:id", coachAuthorization, async (req, res) => {
+activityRouter.get("/:id", async (req, res) => {
   const activity = await ActivityModel.findById(req.params.id);
 
   if (activity) {
@@ -23,7 +17,7 @@ activityRouter.get("/:id", coachAuthorization, async (req, res) => {
   return res.sendStatus(404);
 });
 
-activityRouter.post("/", coachAuthorization, async (req, res) => {
+activityRouter.post("/", async (req, res) => {
   const validationData = await validateActivity(req.body);
 
   if (validationData && !validationData.isValid) {
@@ -52,7 +46,7 @@ activityRouter.post("/", coachAuthorization, async (req, res) => {
   return res.sendStatus(200);
 });
 
-activityRouter.put("/:id", coachAuthorization, async (req, res) => {
+activityRouter.put("/:id", async (req, res) => {
   const id = req.params.id;
 
   const validationData = await validateActivity(req.body);
@@ -83,7 +77,7 @@ activityRouter.put("/:id", coachAuthorization, async (req, res) => {
   return res.sendStatus(200);
 });
 
-activityRouter.delete("/:id", coachAuthorization, async (req, res) => {
+activityRouter.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
   await ActivityModel.findByIdAndDelete(id);
@@ -103,38 +97,4 @@ activityRouter.delete("/:id", coachAuthorization, async (req, res) => {
   );
 
   return res.sendStatus(200);
-});
-
-activityRouter.put("/confirm/:id", studentAuthorization, async (req, res) => {
-  const { id } = req.params;
-  const { date } = req.body;
-  const { student } = res.locals;
-
-  const activityToConfirm = await ActivityModel.findById(id);
-
-  if (activityToConfirm) {
-    confirmStudentActivity({
-      student,
-      activity: activityToConfirm,
-      confirmationDate: date,
-    });
-  }
-
-  ActivityModel.findByIdAndUpdate(id, { ...activityToConfirm }, (err) => {
-    if (err) {
-      console.log(err);
-
-      return;
-    }
-
-    emitToUser({
-      userId: student.coachId,
-      userType: SocketUserTypeEnum.Coach,
-      message: {
-        type: WeekSocketEventTypeEnum.UpdateCalendar,
-      },
-    });
-
-    return res.sendStatus(200);
-  });
 });

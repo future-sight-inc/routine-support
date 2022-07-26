@@ -1,15 +1,16 @@
 import React, { ReactNode } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
-import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
+import { Dimensions, StyleSheet, View } from "react-native";
+import { EdgeInsets, SafeAreaView } from "react-native-safe-area-context";
 
-import { MobileTheme } from "../../app/app";
+import { MobileTheme } from "../../theme";
 import { NotificationsIcon } from "../NotificationsIcon";
 import { Typography } from "../Typography";
 import { LayoutLocators } from "./locators";
 
-interface LayoutProps {
+export interface LayoutProps {
+  insets: EdgeInsets;
   children: ReactNode;
   title: string;
   footer?: ReactNode;
@@ -19,6 +20,7 @@ interface LayoutProps {
 }
 
 export const Layout: React.FC<LayoutProps> = ({
+  insets,
   title,
   children,
   footer,
@@ -26,7 +28,6 @@ export const Layout: React.FC<LayoutProps> = ({
   onNotificationsIconPress,
   onMenuIconPress,
 }) => {
-  const insets = useSafeAreaInsets();
   const styles = createStyles({ insets, hasFooter: Boolean(footer) });
 
   return (
@@ -80,7 +81,7 @@ const createStyles = ({ insets, hasFooter }: { insets: EdgeInsets; hasFooter: bo
     body: {
       height: BODY_HEIGHT,
       paddingHorizontal: HORIZONTAL_PADDING,
-      paddingBottom: hasFooter ? 100 : 0,
+      paddingBottom: hasFooter ? 82 : 0,
       paddingTop: HORIZONTAL_PADDING,
       borderWidth: 1,
       borderBottomWidth: 0,

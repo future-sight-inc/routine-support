@@ -4,8 +4,8 @@ import {
   NotificationModel,
 } from "@routine-support/domains";
 import { Router } from "express";
-import { coachAuthorization } from "../middleware/coachAuthorization";
-import { groupNotifications } from "../utils/groupNotifications";
+import { coachAuthorization } from "../../middleware/coachAuthorization";
+import { groupNotifications } from "../../utils/groupNotifications";
 
 export const notificationsRouter = Router();
 
@@ -16,15 +16,11 @@ notificationsRouter.get("/", coachAuthorization, async (__, res) => {
 
   const notViewedCount =
     notifications.filter((notification) => !notification.isViewed)?.length || 0;
-  const notificationGroups = groupNotifications(
-    notifications.map(createNotificationFromSchema)
-  );
+  const notificationGroups = groupNotifications(notifications.map(createNotificationFromSchema));
 
   return res.status(200).send({
     notViewedCount,
-    notificationsGroups: notificationGroups.map(
-      createSchemaFromNotificationGroup
-    ),
+    notificationsGroups: notificationGroups.map(createSchemaFromNotificationGroup),
   });
 });
 

@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 
-import { dayActions, LoginStudentDto, Student, studentActions } from "@routine-support/domains";
+import { LoginStudentDto, Student, studentActions } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
+import { getEnvVars } from "apps/mobile/environment";
+import { useAppDispatch, useAppSelector } from "apps/mobile/src/app/hooks";
+import { studentDayActions } from "apps/mobile/src/app/store";
+import { studentAuthAPI } from "apps/mobile/src/services/ApiService";
 import { useTranslation } from "react-i18next";
 import { io } from "socket.io-client";
-
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { studentAPI } from "../../services/ApiService";
-import { getEnvVars } from "apps/mobile/environment";
 
 export const useStudent = () => {
   const { socketEndpoint } = getEnvVars();
   const dispatch = useAppDispatch();
 
-  const { student, isLogged, socketConnection } = useAppSelector((state) => state.student);
+  const { student, isLogged, socketConnection } = useAppSelector((state) => state.studentAuth);
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
@@ -42,7 +42,7 @@ export const useStudent = () => {
 
   const login = async (data: LoginStudentDto) => {
     try {
-      const student = await studentAPI.login(data);
+      const student = await studentAuthAPI.login(data);
 
       dispatch(studentActions.setStudent(student));
     } catch (error) {
@@ -59,14 +59,14 @@ export const useStudent = () => {
     try {
       setLoading(true);
 
-      await studentAPI.logout();
+      await studentAuthAPI.logout();
     } catch (error) {
       console.error(error);
     } finally {
       dispatch(studentActions.setStudent(null));
       setIsChecked(true);
       setLoading(false);
-      dispatch(dayActions.setDay(null));
+      dispatch(studentDayActions.setDay(null));
 
       socketConnection?.disconnect();
       dispatch(studentActions.setSocketConnection(null));
@@ -77,7 +77,7 @@ export const useStudent = () => {
     try {
       setLoading(true);
 
-      const student = await studentAPI.getStudent();
+      const student = await studentAuthAPI.getStudent();
 
       dispatch(studentActions.setStudent(student));
     } catch {

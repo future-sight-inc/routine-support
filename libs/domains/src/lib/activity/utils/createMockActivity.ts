@@ -5,7 +5,7 @@ export const createMockActivity = (activity?: Partial<Activity>): Activity => {
   return {
     _id: "",
     coachId: "",
-    name: "",
+    name: "Activity title",
     pictogram: "",
     date: MOCK_DATE,
     start: MOCK_DATE,

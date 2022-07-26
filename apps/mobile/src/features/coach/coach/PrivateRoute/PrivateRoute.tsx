@@ -1,28 +1,18 @@
 import React from "react";
 
-import { Redirect, Route, RouteProps } from "react-router-native";
+import { Route, RouteProps } from "react-router-native";
 
 import { Spinner } from "../../../../components/Spinner";
 
 interface Props extends RouteProps {
   loading: boolean;
-  isLogged: boolean;
-  isChecked: boolean;
+
   onLogout: () => void;
 }
 
-export const PrivateRoute: React.FC<Props> = ({
-  loading,
-  isLogged,
-  isChecked,
-  ...routeProps
-}) => {
+export const PrivateRoute: React.FC<Props> = ({ loading, ...routeProps }) => {
   if (loading) {
     return <Spinner />;
-  }
-
-  if (!isLogged && isChecked) {
-    return <Redirect to="/coach/login" />;
   }
 
   return <Route {...routeProps} />;

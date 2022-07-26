@@ -1,6 +1,8 @@
-import { storiesOf } from "@storybook/react-native";
 import React from "react";
+
+import { storiesOf } from "@storybook/react-native";
 import { Dimensions, StyleSheet, View } from "react-native";
+
 import { Typography } from "./Typography";
 
 const styles = StyleSheet.create({

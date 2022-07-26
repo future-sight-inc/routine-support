@@ -1,10 +1,10 @@
 import { Activity, getStudentsByIds, Student } from "@routine-support/domains";
-
 import {
   COMMON_ACTIVITY_COLOR,
   GROUP_ACTIVITY_COLOR,
   IMPORTANT_ACTIVITY_COLOR,
-} from "../constants/defaultActivityColor";
+} from "../constants";
+
 import { getColor } from "./getColor";
 
 export const getActivityColor = (activity: Activity, students: Student[]) => {

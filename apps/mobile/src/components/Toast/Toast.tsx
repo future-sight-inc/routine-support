@@ -1,6 +1,7 @@
 import React from "react";
-import { Dimensions, StyleSheet } from "react-native";
+
 import { Layout, Text } from "@ui-kitten/components";
+import { Dimensions, StyleSheet } from "react-native";
 
 interface ToastProps {
   title: string;

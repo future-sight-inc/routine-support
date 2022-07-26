@@ -1,7 +1,9 @@
-import { TypographyColor, TypographyVariant } from "@routine-support/ui-theme";
 import React, { ReactNode } from "react";
+
+import { TypographyColor, TypographyVariant } from "@routine-support/ui-theme";
 import { Text, TextProps } from "react-native";
-import { MobileTheme } from "../../app/app";
+
+import { MobileTheme } from "../../theme";
 
 interface TypographyProps extends TextProps {
   children: ReactNode;

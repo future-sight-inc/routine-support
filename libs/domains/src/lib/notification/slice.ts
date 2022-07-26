@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { NotificationsGroup } from "./types";
+import { NotificationsGroupSchema } from "./types";
 
 export interface NotificationsState {
   notViewedCount: number;
-  notificationsGroups: NotificationsGroup[];
+  notificationsGroups: NotificationsGroupSchema[];
 }
 
 const initialState: NotificationsState = {
@@ -20,12 +20,11 @@ export const notificationsSlice = createSlice({
       state,
       action: PayloadAction<{
         notViewedCount: number;
-        notificationsGroups: NotificationsGroup[];
+        notificationsGroups: NotificationsGroupSchema[];
       }>
     ) => {
       state.notViewedCount = action.payload.notViewedCount;
-      // todo баг в типизации redux
-      state.notificationsGroups = action.payload.notificationsGroups as any;
+      state.notificationsGroups = action.payload.notificationsGroups;
     },
   },
 });

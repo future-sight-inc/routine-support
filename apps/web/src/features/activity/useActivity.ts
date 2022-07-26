@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Activity } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 
-import { activityAPI } from "../../services/ApiService";
+import { coachActivityAPI } from "../../services/ApiService";
 
 export const useActivity = () => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ export const useActivity = () => {
     try {
       setLoading(true);
 
-      await activityAPI.createActivity(activity);
+      await coachActivityAPI.createActivity(activity);
 
       setOpened(false);
     } finally {
@@ -27,7 +27,7 @@ export const useActivity = () => {
     try {
       setLoading(true);
 
-      await activityAPI.updateActivity(activity);
+      await coachActivityAPI.updateActivity(activity);
 
       setOpened(false);
     } finally {
@@ -40,7 +40,7 @@ export const useActivity = () => {
     try {
       setLoading(true);
 
-      await activityAPI.deleteActivity(id);
+      await coachActivityAPI.deleteActivity(id);
 
       setOpened(false);
     } finally {

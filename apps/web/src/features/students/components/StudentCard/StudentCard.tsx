@@ -1,7 +1,7 @@
 import React, { MouseEvent } from "react";
 
 import { Student } from "@routine-support/domains";
-import { getColor } from "apps/web/src/utils/getColor";
+import { getColor } from "@routine-support/ui-theme";
 
 import * as S from "./styled";
 

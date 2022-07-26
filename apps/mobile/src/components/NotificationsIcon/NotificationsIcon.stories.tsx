@@ -1,6 +1,8 @@
-import { storiesOf } from "@storybook/react-native";
 import React from "react";
+
+import { storiesOf } from "@storybook/react-native";
 import { View } from "react-native";
+
 import { NotificationsIcon } from "./NotificationsIcon";
 
 storiesOf("Components", module).add("NotificationsIcon", () => {

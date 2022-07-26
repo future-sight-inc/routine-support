@@ -1,24 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Day } from "./types";
+import { DaySchema } from "./types";
 
 export interface DayState {
-  day: Day | null;
+  day: DaySchema | null;
 }
 
 const initialState: DayState = {
   day: null,
 };
 
-export const daySlice = createSlice({
-  name: "day",
-  initialState,
-  reducers: {
-    setDay: (state, action: PayloadAction<Day | null>) => {
-      state.day = action.payload;
+export const createDaySlice = ({ name }: { name: string }) => {
+  return createSlice({
+    name,
+    initialState,
+    reducers: {
+      setDay: (state, action: PayloadAction<DaySchema | null>) => {
+        state.day = action.payload;
+      },
     },
-  },
-});
+  });
+};
 
-export const dayActions = daySlice.actions;
-export const dayReducer = daySlice.reducer;
+const studentDaySlice = createDaySlice({ name: "studentDay" });
+const coachDaySlice = createDaySlice({ name: "coachDay" });
+
+export const studentDayActions = studentDaySlice.actions;
+export const studentDayReducer = studentDaySlice.reducer;
+export const coachDayActions = coachDaySlice.actions;
+export const coachDayReducer = coachDaySlice.reducer;

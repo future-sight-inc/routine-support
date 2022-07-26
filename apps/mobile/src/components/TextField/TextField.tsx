@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { StyleSheet, TextInput, TextInputProps } from "react-native";
 
-import { MobileTheme } from "../../app/app";
+import { MobileTheme } from "../../theme";
 
 export interface TextFieldProps extends TextInputProps {
   error?: boolean;

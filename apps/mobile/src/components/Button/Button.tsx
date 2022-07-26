@@ -1,7 +1,9 @@
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React, { useState } from "react";
+
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { GestureResponderEvent, Pressable, PressableProps, StyleSheet, View } from "react-native";
-import { MobileTheme } from "../../app/app";
+
+import { MobileTheme } from "../../theme";
 import { Typography } from "../Typography";
 import { ButtonLocators } from "./locators";
 

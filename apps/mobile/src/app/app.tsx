@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 
 import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
-import { Theme } from "@routine-support/ui-theme";
-import { NativeRouter } from "react-router-native";
 import { useHistory } from "react-router-native";
 
 import { AppWrapper } from "../components/AppWrapper";
@@ -10,7 +8,6 @@ import { CoachEntry } from "../features/coach";
 import { useDay } from "../features/student/day/useDay";
 import { useSocketEventListener } from "../features/student/student/hooks/useSocketEventListener";
 import { useStudent } from "../features/student/student/useStudent";
-import { mapThemeToMobile } from "../utils/mapThemeToMobile";
 
 const App = () => {
   const {
@@ -53,11 +50,7 @@ const App = () => {
 };
 
 export default () => (
-  <NativeRouter>
-    <AppWrapper>
-      <App />
-    </AppWrapper>
-  </NativeRouter>
+  <AppWrapper>
+    <App />
+  </AppWrapper>
 );
-
-export const MobileTheme = mapThemeToMobile(Theme);

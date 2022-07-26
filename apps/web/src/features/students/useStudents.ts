@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { studentsActions } from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { studentAPI } from "../../services/ApiService";
+import { coachStudentAPI } from "../../services/ApiService";
 
 export const useStudents = () => {
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ export const useStudents = () => {
 
         !config?.silent && setLoading(true);
 
-        const students = await studentAPI.getStudents(coachId);
+        const students = await coachStudentAPI.getStudents(coachId);
 
         dispatch(studentsActions.setStudents(students));
       } catch (error: any) {
