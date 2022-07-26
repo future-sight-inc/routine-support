@@ -2,8 +2,9 @@ import React from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { ActivityFilter, Student } from "@routine-support/domains";
-import { StudentsSelector } from "apps/mobile/src/components/StudentsSelector";
 import { StyleSheet, View } from "react-native";
+
+import { FilterSelector } from "./components/FilterSelector";
 
 interface FilterProps {
   students: Student[];
@@ -13,7 +14,7 @@ interface FilterProps {
 
 export const Filter: React.FC<FilterProps> = ({ students, value, onSelect }) => {
   return (
-    <StudentsSelector
+    <FilterSelector
       pressElement={
         <View style={styles.wrapper}>
           <MaterialIcons name="people" size={24} />
