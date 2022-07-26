@@ -2,6 +2,7 @@ import { parseDate } from "@routine-support/utils";
 import { Router } from "express";
 import { filterActivities } from "../../utils/filterActivities";
 import { getActivitiesOfWeek } from "../../utils/getActivitiesOfWeek";
+import { getTimeRange } from "../../utils/getTimeRange";
 import { parseActivitiesFilter } from "../../utils/parseActivitiesFilter";
 
 export const dayRouter = Router();
@@ -23,5 +24,6 @@ dayRouter.get("/:date", async (req, res) => {
   return res.status(200).send({
     date,
     activities: filteredActivities,
+    timeRange: getTimeRange(),
   });
 });
