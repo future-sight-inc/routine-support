@@ -1,12 +1,12 @@
 import React from "react";
 
 import { RegisterCoachDto } from "@routine-support/domains";
-import { Button } from "apps/mobile/src/components/Button";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
 
+import { AuthFormLayout } from "../AuthFormLayout";
 import { useRegisterComponent } from "./hooks";
 
 export interface RegisterActions {
@@ -24,40 +24,41 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
   } = useRegisterComponent(actions);
 
   return (
-    <View style={styles.wrapper}>
-      <Typography variant="caption2" style={styles.title}>
-        Register
-      </Typography>
-      <TextField control={control} name="name" placeholder="Name" style={styles.textInput} />
-      <TextField control={control} name="email" placeholder="Email" style={styles.textInput} />
+    <AuthFormLayout
+      title="Зарегистрироваться
+    в Routine Support"
+      submitButtonText="Зарегистрироваться"
+      onSubmit={handleSubmit}
+    >
+      <TextField control={control} name="name" placeholder="Имя" style={styles.textInput} />
+      <TextField control={control} name="email" placeholder="Почта" style={styles.textInput} />
       <TextField
         control={control}
         name="password"
-        placeholder="Password"
+        placeholder="Пароль"
+        secureTextEntry={true}
         style={styles.textInput}
       />
-      <Button text="Register" fullWidth onPress={handleSubmit} />
       {submitError && (
         <Typography variant="text1" color="error">
           {submitError}
         </Typography>
       )}
       <Link to="/coach/login">
-        <Typography variant="text1" color="primary">
-          Login
+        <Typography variant="text1" color="secondary">
+          Уже зарегистрированы?{" "}
+          <Typography variant="text1" color="primary">
+            Войти
+          </Typography>
         </Typography>
       </Link>
-    </View>
+    </AuthFormLayout>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    paddingHorizontal: 16,
-    paddingVertical: 32,
-  },
-  title: { marginBottom: 16 },
   textInput: {
     marginBottom: 16,
+    width: Dimensions.get("screen").width - 32,
   },
 });
