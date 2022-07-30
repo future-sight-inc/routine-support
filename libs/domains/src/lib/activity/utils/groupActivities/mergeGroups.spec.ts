@@ -1,7 +1,7 @@
 import {
   createActivitiesGroupFromTimePeriod,
   createMockActivityFromTimePeriod,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { addActivityToGroup } from "../addActivityToGroup";
 import { mergeGroups } from "./mergeGroups";
 

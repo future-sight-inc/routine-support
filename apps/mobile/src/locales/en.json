@@ -1,6 +1,6 @@
 {
   "Day schedule": "Day schedule",
-  "No activities": "No activities for today...",
+  "No activities": "All done!",
   "Confirmed": "Confirmed",
   "Confirm": "Confirm",
 
@@ -19,5 +19,11 @@
   "Logout": "Logout",
 
   "Confirm your action": "Confirm your action",
-  "Cancel": "Cancel"
+  "Cancel": "Cancel",
+
+  "Enter PIN to log out": "Enter PIN to log out",
+  "Hello": "Hello",
+  "Today": "Today",
+
+  "Student is not found": "Leerling is niet gevonden"
 }

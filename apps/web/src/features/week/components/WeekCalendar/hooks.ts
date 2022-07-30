@@ -1,16 +1,23 @@
 import { RefObject, useEffect, useState } from "react";
 
+import { groupActivities, Week } from "@routine-support/domains";
 import { TimeString } from "@routine-support/types";
-import { getMinutes, parseTime, pxToNumber } from "@routine-support/utils";
+import { getMinutes, parseTime } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 
-import { Theme } from "../../../../styled/theme";
 import { WeekCalendarActions } from "./WeekCalendar";
 
-export const useWeekCalendarComponent = (
-  containerRef: RefObject<HTMLDivElement>,
-  actions: WeekCalendarActions
-) => {
+export const useWeekCalendarComponent = ({
+  week,
+  containerRef,
+  currentTimeRef,
+  actions,
+}: {
+  week: Week;
+  containerRef: RefObject<HTMLDivElement>;
+  currentTimeRef: RefObject<HTMLDivElement>;
+  actions: WeekCalendarActions;
+}) => {
   const [timelineTopOffset, setTimelineTopOffset] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
@@ -20,20 +27,22 @@ export const useWeekCalendarComponent = (
       const minutes = getMinutes(moment());
       const offsetTop = (minutes / (24 * 60)) * (frame || 0);
 
-      if (!scrolled) {
-        setTimelineTopOffset(offsetTop);
-        containerRef?.current?.scrollTo({
-          top: offsetTop - pxToNumber(Theme.size.cellHeight),
-        });
-        setScrolled(true);
-      }
+      setTimelineTopOffset(offsetTop);
     };
 
     checkOffset();
+
     const timerId = setInterval(() => checkOffset(), 60 * 1000);
 
     return () => clearInterval(timerId);
   }, [containerRef]);
+
+  useEffect(() => {
+    if (!scrolled && currentTimeRef.current && timelineTopOffset) {
+      currentTimeRef.current.scrollIntoView({ block: "center" });
+      setScrolled(true);
+    }
+  }, [scrolled, currentTimeRef, timelineTopOffset]);
 
   const onCellClick = (time: TimeString, day: Moment) => {
     actions.openNewActivityModal({
@@ -43,5 +52,11 @@ export const useWeekCalendarComponent = (
     });
   };
 
-  return { models: { timelineTopOffset }, operations: { onCellClick } };
+  return {
+    models: {
+      timelineTopOffset,
+      groupedActivitiesByDays: week.days.map((day) => groupActivities(day?.activities)),
+    },
+    operations: { onCellClick },
+  };
 };

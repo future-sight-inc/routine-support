@@ -17,7 +17,7 @@ export const Card = styled.div<{ studentColor: string }>`
   box-sizing: border-box;
   padding: 16px;
 
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.l};
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 
@@ -68,7 +68,7 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.s};
   cursor: pointer;
 
   ${({ theme }) => css`

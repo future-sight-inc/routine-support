@@ -1,8 +1,8 @@
-import { createMockStudent } from "@routine-support/test-utils";
+import { createMockStudent } from "@routine-support/domains";
 import { storiesOf } from "@storybook/react";
+import { LabelWithHelper } from "apps/web/src/components/LabelWithHelper";
 import styled from "styled-components";
 
-import { LabelWithHelper } from "../LabelWithHelper";
 import { StudentsPicker } from "./StudentsPicker";
 
 const Layout = styled.div`

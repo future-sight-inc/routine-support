@@ -1,6 +1,7 @@
 import React, { ReactNode, RefCallback } from "react";
 
-import { TypographyVariant } from "../../styled/components/Typography";
+import { TypographyVariant } from "@routine-support/ui-theme";
+
 import { LabelWithHelperLocators } from "./locators";
 import * as S from "./styled";
 
@@ -20,20 +21,13 @@ export const LabelWithHelper: React.FC<LabelWithHelperProps> = ({
 }) => {
   return (
     <S.Wrapper>
-      <S.Label
-        color={color}
-        data-testid={LabelWithHelperLocators.Label}
-        variant={variant}
-      >
+      <S.Label color={color} data-testid={LabelWithHelperLocators.Label} variant={variant}>
         {children}
       </S.Label>
       {helperText && (
         <S.HelpIconWrapper data-testid={LabelWithHelperLocators.HelpIcon}>
           <S.HelpIcon />
-          <S.HelperText
-            data-testid={LabelWithHelperLocators.HelperText}
-            variant={variant}
-          >
+          <S.HelperText data-testid={LabelWithHelperLocators.HelperText} variant={variant}>
             {helperText}
           </S.HelperText>
         </S.HelpIconWrapper>

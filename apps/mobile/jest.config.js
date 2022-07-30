@@ -1,14 +1,19 @@
 module.exports = {
   displayName: "mobile",
-  preset: "../../jest.preset.js",
-  globals: {
-    "ts-jest": {
-      tsconfig: "<rootDir>/tsconfig.spec.json",
-    },
+  resolver: "@nrwl/jest/plugins/resolver",
+  preset: "jest-expo",
+  transformIgnorePatterns: [
+    "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-router-native)",
+  ],
+  moduleFileExtensions: ["ts", "js", "html", "tsx", "jsx"],
+  setupFilesAfterEnv: ["<rootDir>/test-setup.ts"],
+  moduleNameMapper: {
+    ".svg": "@nrwl/expo/plugins/jest/svg-mock",
   },
   transform: {
-    "^.+\\.[tj]sx?$": "ts-jest",
+    "\\.(js|ts|tsx)$": require.resolve("../../node_modules/react-native/jest/preprocessor.js"),
+    "^.+\\.(bmp|gif|jpg|jpeg|mp4|png|psd|svg|webp|ttf)$": require.resolve(
+      "react-native/jest/assetFileTransformer.js"
+    ),
   },
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  coverageDirectory: "../../coverage/apps/mobile",
 };

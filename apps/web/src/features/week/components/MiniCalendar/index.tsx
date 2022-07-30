@@ -1,11 +1,12 @@
 import React from "react";
 
-import { DateInfo, getDateInfoFromMoment } from "@routine-support/domains";
+import { DateInfo } from "@routine-support/domains";
 import { Moment } from "moment";
 
+import { useMiniCalendarComponent } from "./hooks";
 import { MiniCalendar as UncontrolledMiniCalendar } from "./MiniCalendar";
 
-interface MiniCalendarActions {
+export interface MiniCalendarActions {
   getWeek: (data: { params: DateInfo; config: { silent: true } }) => void;
 }
 
@@ -14,21 +15,10 @@ interface MiniCalendarProps {
   actions: MiniCalendarActions;
 }
 
-export const MiniCalendar: React.FC<MiniCalendarProps> = ({
-  currentDate,
-  actions,
-}) => {
-  const handleWeekSelect = (week: Moment) => {
-    actions.getWeek({
-      params: getDateInfoFromMoment(week),
-      config: { silent: true },
-    });
-  };
+export const MiniCalendar: React.FC<MiniCalendarProps> = ({ currentDate, actions }) => {
+  const {
+    operations: { handleWeekSelect },
+  } = useMiniCalendarComponent(actions);
 
-  return (
-    <UncontrolledMiniCalendar
-      currentDate={currentDate}
-      onWeekSelect={handleWeekSelect}
-    />
-  );
+  return <UncontrolledMiniCalendar currentDate={currentDate} onWeekSelect={handleWeekSelect} />;
 };

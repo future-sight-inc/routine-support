@@ -4,7 +4,7 @@ import styledComponents from "styled-components";
 import styled from "styled-container-query";
 
 const ConfirmedNumberText = styledComponents(Typography).attrs(() => ({
-  variant: "text2",
+  variant: "text2Bold",
 }))``;
 
 export const ConfirmedNumber = styled(ConfirmedNumberText)``;
@@ -20,7 +20,7 @@ export const ConfirmationWrapper = styledComponents.div`
   display: flex;
   align-items: center;
   padding: 2px 4px;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.s};
   overflow: hidden;
   width: auto;
 
@@ -61,35 +61,27 @@ export const Wrapper = styled.div`
 `;
 
 export const ModalContent = styledComponents.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  overflow-y: scroll;
-  border: 1px solid ${({ theme }) => theme.palette.border.main};
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
-export const ModalTitle = styledComponents(Typography)`
-  font-size: 24px;
-  font-weight: medium;
-  margin-bottom: 16px;
-`;
+export const ModalTitle = styledComponents(Typography).attrs(() => ({
+  variant: "caption4",
+}))``;
 
-export const List = styledComponents.div`
+export const Section = styledComponents.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  text-align: center;
-  padding-bottom: 8px;
-
-  &:first-child {
-    border-right: 1px solid ${({ theme }) => theme.palette.border.main};
-  }
 `;
 
-export const ListHeading = styledComponents(Typography)`
-  margin-bottom: 4px;
-  font-weight: bold;
-  padding: 8px;
+export const SectionTitle = styledComponents(Typography).attrs(() => ({
+  variant: "text1",
+}))``;
 
-  background: ${({ theme }) => theme.palette.secondary.main};
+export const StudentsWrapper = styledComponents.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 `;

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   ActivityFilter,
+  createWeekFromSchema,
   DateInfo,
   dateInfoToMoment,
   getCurrentDateInfo,
@@ -15,7 +16,8 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useDateInfoQuery } from "../../hooks/useDateInfoQuery";
 import { useSavedActivityFilter } from "../../hooks/useSavedActivityFilter";
 import { useUpdateCurrentDateInfoQuery } from "../../hooks/useUpdateCurrentDateInfoQuery";
-import { weekAPI } from "../../services/ApiService";
+import { coachWeekAPI } from "../../services/ApiService";
+import { LinkService } from "../../services/LinkService";
 
 export const useWeek = () => {
   const [loading, setLoading] = useState(false);
@@ -27,17 +29,19 @@ export const useWeek = () => {
   const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
   const savedActivityFilter = useSavedActivityFilter();
 
-  const currentDate = dateInfoQuery
-    ? dateInfoToMoment(dateInfoQuery)
-    : moment();
+  const currentDate = dateInfoQuery ? dateInfoToMoment(dateInfoQuery) : moment();
 
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getWeek();
+  }, []);
 
   // todo refactor args, add default config obj
   const getWeek = async (data?: {
     params?: {
-      year?: YearNumber;
-      week?: WeekNumber;
+      year: YearNumber;
+      week: WeekNumber;
     };
     activityFilter?: ActivityFilter;
     config?: {
@@ -54,29 +58,36 @@ export const useWeek = () => {
 
       updateCurrentDateInfoQuery(date);
 
-      const week = await weekAPI.getWeek(
+      const week = await coachWeekAPI.getWeek(
         date.year,
         date.week,
         data?.activityFilter || savedActivityFilter
       );
 
       dispatch(weekActions.setWeek(week));
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     } finally {
-      !data?.config?.silent && setLoading(false);
+      setLoading(false);
+    }
+  };
+
+  const updateWeek = () => {
+    if (window.location.pathname === LinkService.home()) {
+      getWeek({ config: { silent: true } });
     }
   };
 
   return {
     models: {
-      week,
+      week: week ? createWeekFromSchema(week) : null,
       currentDate,
       loading,
       error,
     },
     operations: {
       getWeek,
+      updateWeek,
     },
   };
 };

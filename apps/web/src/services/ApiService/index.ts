@@ -1,14 +1,16 @@
 import { createClient } from "@routine-support/api-client";
 import {
-  createActivityAPI,
-  createCoachAPI,
-  createStudentAPI,
-  createWeekAPI,
+  createCoachActivityAPI,
+  createCoachAuthAPI,
+  createCoachNotificationAPI,
+  createCoachStudentAPI,
+  createCoachWeekAPI,
 } from "@routine-support/domains";
 
-const client = createClient("/api");
+const client = createClient("/api/coach");
 
-export const activityAPI = createActivityAPI(client);
-export const studentAPI = createStudentAPI(client);
-export const coachAPI = createCoachAPI(client);
-export const weekAPI = createWeekAPI(client);
+export const coachActivityAPI = createCoachActivityAPI(client);
+export const coachStudentAPI = createCoachStudentAPI(client);
+export const coachAuthAPI = createCoachAuthAPI(client);
+export const coachWeekAPI = createCoachWeekAPI(client);
+export const coachNotificationAPI = createCoachNotificationAPI(client);

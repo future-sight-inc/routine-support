@@ -37,3 +37,10 @@ export type DateInfo = {
 export type ActivityFilter = { [key: string]: boolean };
 
 export type ActivityFilterQuery = Id[];
+
+export enum WeekSocketEventTypeEnum {
+  UpdateCalendar = "update calendar",
+  UpdateNotifications = "update notifications",
+  UpdateSchedule = "update schedule",
+  UpdateSettings = "update settings",
+}

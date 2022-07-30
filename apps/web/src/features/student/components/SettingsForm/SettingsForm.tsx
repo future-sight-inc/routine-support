@@ -13,18 +13,15 @@ import * as S from "./styled";
 export interface SettingsFormActions {
   updateSettings: (student: Student) => Promise<void>;
   closeModal: () => void;
-  getStudents: () => void;
+  getStudents: (config?: { silent: boolean }) => void;
 }
 
 export interface SettingsFormProps {
-  student: Partial<Student> | null;
+  student: Partial<Student> | undefined;
   actions: SettingsFormActions;
 }
 
-export const SettingsForm: React.FC<SettingsFormProps> = ({
-  student,
-  actions,
-}) => {
+export const SettingsForm: React.FC<SettingsFormProps> = ({ student, actions }) => {
   const {
     models: { control, isDirty, isSubmitting, submitError },
     operations: { handleSubmit },
@@ -37,36 +34,16 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
       <S.Wrapper>
         <S.Title>{t("App settings")}</S.Title>
         <S.LanguagePickerWrapper>
-          <LanguagePicker
-            name="language"
-            control={control}
-            label={t("Preferred language")}
-          />
+          <LanguagePicker name="language" control={control} label={t("Preferred language")} />
         </S.LanguagePickerWrapper>
-        <ClockTypePicker
-          name="clockType"
-          control={control}
-          label={t("Clock type")}
-        />
+        <ClockTypePicker name="clockType" control={control} label={t("Clock type")} />
         <S.PinCodeWrapper>
-          <TextField
-            name="pinCode"
-            control={control}
-            label={t("PIN code")}
-            required
-          />
+          <TextField name="pinCode" control={control} label={t("PIN code")} required />
         </S.PinCodeWrapper>
         <S.ButtonsWrapper>
-          <S.SubmitButton
-            type="submit"
-            isLoading={isSubmitting}
-            disabled={!isDirty}
-          >
+          <S.SubmitButton type="submit" isLoading={isSubmitting} disabled={!isDirty}>
             {t("Update")}
           </S.SubmitButton>
-          <S.SecondaryButton onClick={actions.closeModal}>
-            {t("Cancel")}
-          </S.SecondaryButton>
         </S.ButtonsWrapper>
         {submitError && <ErrorText>{submitError}</ErrorText>}
       </S.Wrapper>

@@ -3,7 +3,7 @@ import {
   createMockActivitySchema,
   createMockFilter,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { filterActivity } from "./filterActivity";
 
 const TARGET_STUDENT = createMockStudent();

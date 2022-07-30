@@ -2,7 +2,7 @@ import {
   addStudentToActivity,
   createMockActivitySchema,
   createMockStudent,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { filterActivityForStudent } from "./filterActivityForStudent";
 
 const TARGET_STUDENT = createMockStudent();
@@ -11,10 +11,7 @@ const OTHER_STUDENT = createMockStudent();
 describe("filterActivityForStudent", () => {
   it("Common activity. Should be truthy", () => {
     const activity = createMockActivitySchema();
-    const isActivityAvailable = filterActivityForStudent(
-      activity,
-      TARGET_STUDENT
-    );
+    const isActivityAvailable = filterActivityForStudent(activity, TARGET_STUDENT);
 
     expect(isActivityAvailable).toBeTruthy();
   });
@@ -23,10 +20,7 @@ describe("filterActivityForStudent", () => {
     const activity = createMockActivitySchema();
 
     addStudentToActivity(activity, TARGET_STUDENT);
-    const isActivityAvailable = filterActivityForStudent(
-      activity,
-      TARGET_STUDENT
-    );
+    const isActivityAvailable = filterActivityForStudent(activity, TARGET_STUDENT);
 
     expect(isActivityAvailable).toBeTruthy();
   });
@@ -35,10 +29,7 @@ describe("filterActivityForStudent", () => {
     const activity = createMockActivitySchema();
 
     addStudentToActivity(activity, OTHER_STUDENT);
-    const isActivityAvailable = filterActivityForStudent(
-      activity,
-      TARGET_STUDENT
-    );
+    const isActivityAvailable = filterActivityForStudent(activity, TARGET_STUDENT);
 
     expect(isActivityAvailable).toBeFalsy();
   });

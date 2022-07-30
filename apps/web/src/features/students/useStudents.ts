@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { studentsActions } from "@routine-support/domains";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { studentAPI } from "../../services/ApiService";
+import { coachStudentAPI } from "../../services/ApiService";
 
 export const useStudents = () => {
   const [loading, setLoading] = useState(true);
@@ -13,17 +13,21 @@ export const useStudents = () => {
 
   const [error, setError] = useState<string | null>(null);
 
-  const getStudents = async () => {
+  useEffect(() => {
+    getStudents();
+  }, []);
+
+  const getStudents = async (config?: { silent: boolean }) => {
     if (coachId) {
       try {
         setError(null);
 
-        setLoading(true);
+        !config?.silent && setLoading(true);
 
-        const students = await studentAPI.getStudents(coachId);
+        const students = await coachStudentAPI.getStudents(coachId);
 
         dispatch(studentsActions.setStudents(students));
-      } catch (error) {
+      } catch (error: any) {
         setError(error.message);
       } finally {
         setLoading(false);

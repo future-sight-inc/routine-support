@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   coachActions,
@@ -6,22 +6,39 @@ import {
   RegisterCoachDto,
   UpdateCoachDto,
 } from "@routine-support/domains";
+import { SocketUserTypeEnum } from "@routine-support/types";
+import io from "socket.io-client";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { coachAPI } from "../../services/ApiService";
+import { coachAuthAPI } from "../../services/ApiService";
 
 export const useCoach = () => {
   const dispatch = useAppDispatch();
 
-  const { coach, isLogged } = useAppSelector((state) => state.coach);
+  const { coach, isLogged, socketConnection } = useAppSelector((state) => state.coach);
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    if (coach && !socketConnection) {
+      dispatch(
+        coachActions.setSocketConnection(
+          io({
+            auth: {
+              userId: coach._id,
+              userType: SocketUserTypeEnum.Coach,
+            },
+          })
+        )
+      );
+    }
+  }, [coach, socketConnection]);
 
   const login = async (data: LoginCoachDto) => {
     try {
       setLoading(true);
 
-      const user = await coachAPI.login(data);
+      const user = await coachAuthAPI.login(data);
 
       dispatch(coachActions.setCoach(user));
     } catch (error) {
@@ -37,11 +54,12 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      await coachAPI.logout();
+      await coachAuthAPI.logout();
     } catch (error) {
       console.error(error);
     } finally {
       dispatch(coachActions.setCoach(null));
+      dispatch(coachActions.setSocketConnection(null));
       setIsChecked(true);
       setLoading(false);
     }
@@ -51,7 +69,7 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      const user = await coachAPI.register(data);
+      const user = await coachAuthAPI.register(data);
 
       dispatch(coachActions.setCoach(user));
     } catch (error) {
@@ -67,7 +85,7 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      const user = await coachAPI.getCoach();
+      const user = await coachAuthAPI.getCoach();
 
       dispatch(coachActions.setCoach(user));
     } catch {
@@ -82,12 +100,24 @@ export const useCoach = () => {
     try {
       setLoading(true);
 
-      const user = await coachAPI.updateCoach(data);
+      const user = await coachAuthAPI.updateCoach(data);
 
       dispatch(coachActions.setCoach(user));
     } catch {
       dispatch(coachActions.setCoach(null));
     } finally {
+      setIsChecked(true);
+      setLoading(false);
+    }
+  };
+
+  const deleteCoach = async () => {
+    try {
+      setLoading(true);
+
+      await coachAuthAPI.deleteCoach();
+    } finally {
+      dispatch(coachActions.setCoach(null));
       setIsChecked(true);
       setLoading(false);
     }
@@ -99,6 +129,7 @@ export const useCoach = () => {
       isLogged,
       isChecked,
       loading,
+      socketConnection,
     },
     operations: {
       login,
@@ -106,6 +137,7 @@ export const useCoach = () => {
       logout,
       getCoach,
       updateCoach,
+      deleteCoach,
     },
   };
 };

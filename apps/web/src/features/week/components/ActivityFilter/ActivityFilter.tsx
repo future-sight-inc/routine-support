@@ -2,19 +2,15 @@ import React from "react";
 
 import { Student } from "@routine-support/domains";
 import { ActivityFilter as ActivityFilterType } from "@routine-support/domains";
+import { COMMON_ACTIVITY_COLOR, getColor } from "@routine-support/ui-theme";
 import { Checkbox } from "apps/web/src/components/Checkbox";
-import { COMMON_ACTIVITY_COLOR } from "apps/web/src/constants/defaultActivityColor";
-import { getColor } from "apps/web/src/utils/getColor";
 import { useTranslation } from "react-i18next";
 
 import { useActivityFilterComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface ActivityFilterActions {
-  getWeek: (data: {
-    activityFilter: ActivityFilterType;
-    config: { silent: boolean };
-  }) => void;
+  getWeek: (data: { activityFilter: ActivityFilterType; config: { silent: boolean } }) => void;
 }
 
 interface ActivityFilterProps {
@@ -22,10 +18,7 @@ interface ActivityFilterProps {
   actions: ActivityFilterActions;
 }
 
-export const ActivityFilter: React.FC<ActivityFilterProps> = ({
-  students,
-  actions,
-}) => {
+export const ActivityFilter: React.FC<ActivityFilterProps> = ({ students, actions }) => {
   const {
     models: { activityFilter },
     operations: { handleChange },
@@ -33,33 +26,31 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({
 
   const { t } = useTranslation();
 
-  if (!Object.keys(activityFilter).length) {
-    return null;
-  }
-
   return (
     <S.Wrapper>
       <S.Title>{t("Filters")}</S.Title>
-      <S.FilterWrapper>
-        <S.Checkbox
-          color={COMMON_ACTIVITY_COLOR}
-          onChange={(value) => handleChange("common", value)}
-          value={activityFilter.common}
-          label={t("Common")}
-          labelVariant="text1"
-        />
-      </S.FilterWrapper>
-      {students.map((student) => (
+      <S.FiltersWrapper>
         <S.FilterWrapper>
-          <Checkbox
-            color={getColor(student.color)}
-            onChange={(value) => handleChange(student._id, value)}
+          <S.Checkbox
+            color={COMMON_ACTIVITY_COLOR}
+            onChange={(value) => handleChange("common", value)}
             value={activityFilter.common}
-            label={student.name}
+            label={t("Common")}
             labelVariant="text1"
           />
         </S.FilterWrapper>
-      ))}
+        {students.map((student) => (
+          <S.FilterWrapper>
+            <Checkbox
+              color={getColor(student.color)}
+              onChange={(value) => handleChange(student._id, value)}
+              value={activityFilter[student._id]}
+              label={student.name}
+              labelVariant="text1"
+            />
+          </S.FilterWrapper>
+        ))}
+      </S.FiltersWrapper>
     </S.Wrapper>
   );
 };

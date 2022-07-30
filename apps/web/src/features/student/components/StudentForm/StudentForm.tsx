@@ -14,18 +14,15 @@ export interface StudentFormActions {
   updateStudent: (student: Student) => Promise<void>;
   deleteStudent: (student: Student) => Promise<void>;
   closeModal: () => void;
-  getStudents: () => void;
+  getStudents: (config?: { silent: boolean }) => void;
 }
 
 export interface StudentFormProps {
-  student: Partial<Student> | null;
+  student: Partial<Student> | undefined;
   actions: StudentFormActions;
 }
 
-export const StudentForm: React.FC<StudentFormProps> = ({
-  student,
-  actions,
-}) => {
+export const StudentForm: React.FC<StudentFormProps> = ({ student, actions }) => {
   const {
     models: { control, isDirty, isSubmitting, submitError },
     operations: { handleSubmit, onDelete },
@@ -36,28 +33,15 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   return (
     <form onSubmit={handleSubmit}>
       <S.Wrapper>
-        <S.Title>
-          {student?._id ? t("Modify student") : t("Add student")}
-        </S.Title>
+        <S.Title>{student?._id ? t("Modify student") : t("Add student")}</S.Title>
         <TextField name="name" control={control} label={t("Name")} required />
-        <ColorPicker
-          name="color"
-          control={control}
-          label={t("Name")}
-          required
-        />
+        <ColorPicker name="color" control={control} label={t("Activity card color")} required />
         <S.ButtonsWrapper>
-          <S.SubmitButton
-            type="submit"
-            isLoading={isSubmitting}
-            disabled={!isDirty}
-          >
+          <S.SubmitButton type="submit" isLoading={isSubmitting} disabled={!isDirty}>
             {student?._id ? t("Update") : t("Create")}
           </S.SubmitButton>
 
-          <S.SecondaryButton
-            onClick={student?._id ? onDelete : actions.closeModal}
-          >
+          <S.SecondaryButton onClick={student?._id ? onDelete : actions.closeModal}>
             {student?._id ? t("Delete") : t("Cancel")}
           </S.SecondaryButton>
         </S.ButtonsWrapper>

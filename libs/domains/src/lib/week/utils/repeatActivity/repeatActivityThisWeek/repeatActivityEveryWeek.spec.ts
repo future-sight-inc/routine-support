@@ -2,12 +2,8 @@ import {
   createMockActivityByDateString,
   createMockWeekFromDateStringArray,
   getDateStringFromActivity,
-} from "@routine-support/test-utils";
-import {
-  WEEK_BETWEEN_MONTHS,
-  WEEK_BETWEEN_YEARS,
-  WEEK_OF_MONTH,
-} from "../../mocks";
+} from "@routine-support/domains";
+import { WEEK_BETWEEN_MONTHS, WEEK_BETWEEN_YEARS, WEEK_OF_MONTH } from "../../mocks";
 import { repeatActivityThisWeek } from "./repeatActivityThisWeek";
 
 describe("repeatActivityThisWeek: day of the current week. Should be Monday", () => {

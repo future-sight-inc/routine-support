@@ -8,10 +8,8 @@ export const Modal = styled.div`
   left: 0;
   right: 0;
   position: absolute;
-  z-index: 1000;
+  z-index: 2000;
   overflow: scroll;
-
-  padding-bottom: 32px;
 
   ${({ theme }) => css`
     background: ${rgba(theme.palette.common.black, 0.5)};
@@ -21,20 +19,24 @@ export const Modal = styled.div`
 export const ModalContent = styled.div`
   box-sizing: border-box;
   width: 400px;
-  min-height: 200px;
+  min-height: 120px;
   margin: 0 auto;
-  margin-top: 20vh;
+
   margin-bottom: 32px;
   padding: 16px;
   padding-bottom: 24px;
   box-sizing: border-box;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   ${({ theme }) => css`
     background: ${theme.palette.common.white};
-    border-radius: ${theme.borderRadius};
+    border: 1px solid ${theme.palette.border.light};
+    border-radius: ${theme.borderRadius.l};
     box-shadow: ${theme.boxShadow.medium};
-  `}
+  `};
 `;
 
 export const CloseIcon = styled(UICloseIcon).attrs(() => ({
@@ -50,6 +52,6 @@ export const CloseIcon = styled(UICloseIcon).attrs(() => ({
 
     &:hover {
       color: ${theme.palette.primary.text};
-    }}
+    }
   `}
 `;

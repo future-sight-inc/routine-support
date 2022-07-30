@@ -31,13 +31,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
       <S.Form onSubmit={handleSubmit}>
         <S.Title>{t("Sign up")}</S.Title>
         <S.FieldsWrapper>
-          <TextField
-            name="name"
-            type="text"
-            control={control}
-            required
-            placeholder={t("Name")}
-          />
+          <TextField name="name" type="text" control={control} required placeholder={t("Name")} />
           <TextField
             name="email"
             type="email"
@@ -58,7 +52,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
           {submitError && <ErrorText>{submitError}</ErrorText>}
         </S.ButtonWrapper>
         <S.LinkText>
-          Have an account? <S.Link to={LinkService.login()}>Login</S.Link>
+          {t("Already have an account")} <S.Link to={LinkService.login()}>{t("Sign in")}</S.Link>
         </S.LinkText>
       </S.Form>
     </S.Wrapper>

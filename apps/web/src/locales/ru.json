@@ -2,6 +2,7 @@
   "Create": "Создать",
   "Update": "Обновить",
   "Delete": "Удалить",
+  "Cancel": "Отменить",
 
   "Log in": "Вход",
   "Logout": "Выйти",
@@ -12,6 +13,13 @@
   "Password": "Пароль",
   "Submit": "Отправить",
 
+  "Invalid email error": "Пользователь с таким адресом электронной почты уже существует",
+  "Invalid credentials": "Неверные данные входа",
+
+  "No account yet": "Еще не зарегистрированы?",
+  "Create account": "Создать аккаунт",
+  "Already have an account": "Уже зарегистрированы?",
+  "Sign in": "Войти",
   "Link to register": "Нет аккаунта? Зарегистрироваться",
   "Link to sign in": "Уже есть аккаунт? Вход",
   "Logout confirm message": "Вы уверены, что хотите выйти?",
@@ -26,20 +34,27 @@
 
   "Required field": "Обязательное поле",
 
+  "Invalid activity time error": "Невалидное время",
+  "Overlapping important activity": "Важные активности не могут пересекаться",
+
   "Activity name": "Название события",
   "Activity date": "Дата",
   "Activity start time": "Начало",
   "Activity end time": "Окончание",
 
+  "Pictogram": "Пиктограмма",
+  "Pictograms": "Пиктограммы",
+  "Choose": "Выбрать",
   "Change pictogram": "Изменить пиктограмму",
   "Choose pictogram": "Выбрать пиктограмму",
   "Search": "Поиск...",
 
   "Repeat type": "Повторять",
-  "Activity type": "Тип активности",
+  "Activity type": "Тип события",
   "Every day": "Каждый день",
   "Every week": "Каждую неделю",
   "Every month": "Каждый месяц",
+  "Every year": "Каждый год",
   "Never": "Никогда",
 
   "Filters": "Фильтры",
@@ -47,24 +62,49 @@
   "Today": "Сегодня",
 
   "Common": "Общие",
-  "Common activity": "Общая",
-  "Individual activity": "Индивидуальная",
+  "Common activity": "Общее",
+  "Individual activity": "Индивидуальное",
+  "Individual activity short": "Индивид.",
   "Choose students": "Выберите студента или студентов",
+  "Important activity": "Важное событие",
+  "Important activity hint": "Важное событие - это ...",
+  "Important activity active": "Это событие будет отображаться в наивысшем приоритете",
 
   "Student": "Студент",
   "Students": "Студенты",
+
+  "App settings": "Настройки приложения",
   "Clock type": "Тип часов",
   "Digital": "Цифровые",
   "Analog": "Со стрелками",
   "PIN code": "PIN код",
+  "Preferred language": "Язык",
 
+  "Pick a student": "Выберите студента",
   "Modify student": "Редактирование студента",
   "Add student": "Добавить студента",
   "Confirm student delete": "Подтвердите удаление",
   "No students": "Пока нет ни одного студента",
+  "No students to pick": "Студенты не найдены",
 
+  "Activity card color": "Цвет",
+
+  "QR code for": "QR код для студента",
   "QR instructions start": "Отсканируйте в приложении",
   "QR instructions end": "Routine Support, чтобы войти",
 
-  "Rights info": "Routine Support. 2022. Все права защищены"
+  "Rights info": "Routine Support. 2022. Все права защищены",
+
+  "Notifications": "Уведомления",
+  "Activity was missed": "Событие пропущено",
+  "These students were late": "Студенты, которые опоздали",
+  "New": "Новое",
+  "Clear all": "Очистить",
+  "No notifications": "Нет уведомлений",
+  "Confirm": "Подтвердить",
+
+  "Confirm your action": "Подтвердите действие",
+  "Are you sure you want to delete this activity?": "Вы уверены, что хотите удалить событие?",
+  "Are you sure you want to delete all notifications?": "Вы уверены, что хотите удалить все уведомления?",
+  "Are you sure you want to delete this student?": "Вы уверены, что хотите удалить учетную запись студента?"
 }

@@ -2,6 +2,7 @@
   "Create": "Maken",
   "Update": "Bijwerken",
   "Delete": "Verwijderen",
+  "Cancel": "Annuleren",
 
   "Log in": "Inloggen",
   "Logout": "Uitloggen",
@@ -12,6 +13,13 @@
   "Password": "Wachtwoord",
   "Submit": "Verzenden",
 
+  "Invalid email error": "Gebruiker met dit e-mailadres bestaat al",
+  "Invalid credentials": "Ongeldig e-mailadres of wachtwoord",
+
+  "No account yet": "Nog geen account?",
+  "Create account": "Registreer",
+  "Already have an account": "Heeft u al een account?",
+  "Sign in": "Inloggen",
   "Link to register": "Nog geen account? Meld u hier aan",
   "Link to sign in": "Heeft u al een account? Log hier in",
   "Logout confirm message": "Weet u zeker dat u wilt uitloggen?",
@@ -26,20 +34,26 @@
 
   "Required field": "Verplicht veld",
 
+  "Invalid activity time error": "Ongeldige tijd",
+  "Overlapping important activity": "Belangrijke activiteiten mogen elkaar niet overlappen",
+
   "Activity name": "Activiteitstitel",
   "Activity date": "Datum",
   "Activity start time": "Start",
   "Activity end time": "Einde",
 
+  "Pictogram": "Pictogram",
+  "Choose": "Kiezen",
   "Change pictogram": "Pictogram wijzigen",
   "Choose pictogram": "Kies pictogram",
-  "Search": "Search...",
+  "Search": "Zoeken...",
 
   "Repeat type": "Herhaal",
   "Activity type": "Activiteitstype",
   "Every day": "Elke dag",
   "Every week": "Elke week",
   "Every month": "Elke maand",
+  "Every year": "Elk jaar",
   "Never": "Nooit",
 
   "Filters": "Filters",
@@ -48,22 +62,46 @@
   "Common": "Algemeen",
   "Common activity": "Algemeen",
   "Individual activity": "Individuele",
+  "Individual activity short": "Individuele",
   "Choose students": "Kies student(en)",
+  "Important activity": "Belangrijke activiteit",
+  "Important activity hint": "Important activity is an activity with highest priority. Use this flag if you want your student to see the activity. Important activity can not be repeated. There can only be one activity at a time",
+  "Important activity active": "Deze activiteit heeft de hoogste prioriteit",
 
   "Student": "Student",
   "Students": "Studenten",
+
+  "App settings": "App settings",
   "Clock type": "Kloktype",
   "Digital": "Digitaal",
   "Analog": "Analoog",
   "PIN code": "PIN code",
+  "Preferred language": "Language",
 
+  "Pick a student": "Pick a student",
   "Modify student": "Wijzig leerling",
   "Add student": "Leerling toevoegen",
   "Confirm student delete": "Bevestig je actie",
   "No students": "Er zijn nog geen studenten",
+  "No students to pick": "Niemand om uit te kiezen",
+  "Activity card color": "Color",
 
+  "QR code for": "QR code for",
   "QR instructions start": "Gebruik QR-scanner in",
   "QR instructions end": "de Routine Support-app om in te loggen",
 
-  "Rights info": "Routine Support. 2022. Alle rechten voorbehouden"
+  "Rights info": "Routine Support. 2022. Alle rechten voorbehouden",
+
+  "Notifications": "Meldingen",
+  "Activity was missed": "Activiteit werd gemist",
+  "These students were late": "Deze studenten waren te laat",
+  "New": "Nieuw",
+  "Clear all": "Alles wissen",
+  "No notifications": "Geen meldingen",
+  "Confirm": "Bevestigen",
+
+  "Confirm your action": "Bevestig je actie",
+  "Are you sure you want to delete this activity?": "Weet je zeker dat je deze activiteit wilt verwijderen?",
+  "Are you sure you want to delete all notifications?": "Weet je zeker dat je alle meldingen wilt verwijderen?",
+  "Are you sure you want to delete this student?": "Weet je zeker dat je deze leerling wilt verwijderen?"
 }

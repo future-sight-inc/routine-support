@@ -1,24 +1,7 @@
 import { ReactNode } from "react";
 
+import { Theme, TypographyColor, TypographyVariant } from "@routine-support/ui-theme";
 import styled, { css } from "styled-components";
-
-import { Theme } from "../../theme";
-
-export type TypographyVariant =
-  | "caption4"
-  | "text1"
-  | "text2"
-  | "text3"
-  | "text1Bold"
-  | "text2Bold"
-  | "text3Bold";
-
-export type TypographyColor =
-  | "normal"
-  | "secondary"
-  | "primary"
-  | "white"
-  | "error";
 
 interface TypographyProps {
   variant?: TypographyVariant;
@@ -56,12 +39,88 @@ const DEFAULT_STYLES = css`
   margin: 0;
 `;
 
-const Caption4 = styled.h6<{ color?: TypographyColor }>`
+const Caption1 = styled.h1<{ color?: TypographyColor }>`
+  ${({ color, theme }) =>
+    css`
+      font-family: ${theme.fontFamily};
+      font-size: ${theme.fonts.caption1.size};
+      font-weight: ${theme.fonts.caption1.weight};
+      ${getTypographyColorStyles(color)}
+    `}
+  ${DEFAULT_STYLES}
+`;
+
+const Caption2 = styled.h2<{ color?: TypographyColor }>`
+  ${({ color, theme }) =>
+    css`
+      font-family: ${theme.fontFamily};
+      font-size: ${theme.fonts.caption2.size};
+      font-weight: ${theme.fonts.caption2.weight};
+      ${getTypographyColorStyles(color)}
+    `}
+  ${DEFAULT_STYLES}
+`;
+
+const Caption3 = styled.h3<{ color?: TypographyColor }>`
+  ${({ color, theme }) =>
+    css`
+      font-family: ${theme.fontFamily};
+      font-size: ${theme.fonts.caption3.size};
+      font-weight: ${theme.fonts.caption3.weight};
+      ${getTypographyColorStyles(color)}
+    `}
+  ${DEFAULT_STYLES}
+`;
+
+const Caption4 = styled.h4<{ color?: TypographyColor }>`
   ${({ color, theme }) =>
     css`
       font-family: ${theme.fontFamily};
       font-size: ${theme.fonts.caption4.size};
       font-weight: ${theme.fonts.caption4.weight};
+      ${getTypographyColorStyles(color)}
+    `}
+  ${DEFAULT_STYLES}
+`;
+
+const Caption1Normal = styled.h1<{ color?: TypographyColor }>`
+  ${({ color, theme }) =>
+    css`
+      font-family: ${theme.fontFamily};
+      font-size: ${theme.fonts.caption1Normal.size};
+      font-weight: ${theme.fonts.caption1Normal.weight};
+      ${getTypographyColorStyles(color)}
+    `}
+  ${DEFAULT_STYLES}
+`;
+
+const Caption2Normal = styled.h2<{ color?: TypographyColor }>`
+  ${({ color, theme }) =>
+    css`
+      font-family: ${theme.fontFamily};
+      font-size: ${theme.fonts.caption2Normal.size};
+      font-weight: ${theme.fonts.caption2Normal.weight};
+      ${getTypographyColorStyles(color)}
+    `}
+  ${DEFAULT_STYLES}
+`;
+
+const Caption3Normal = styled.h3<{ color?: TypographyColor }>`
+  ${({ color, theme }) =>
+    css`
+      font-family: ${theme.fontFamily};
+      font-size: ${theme.fonts.caption3Normal.size};
+      font-weight: ${theme.fonts.caption3Normal.weight};
+      ${getTypographyColorStyles(color)}
+    `}
+  ${DEFAULT_STYLES}
+`;
+const Caption4Normal = styled.h4<{ color?: TypographyColor }>`
+  ${({ color, theme }) =>
+    css`
+      font-family: ${theme.fontFamily};
+      font-size: ${theme.fonts.caption4Normal.size};
+      font-weight: ${theme.fonts.caption4Normal.weight};
       ${getTypographyColorStyles(color)}
     `}
   ${DEFAULT_STYLES}
@@ -133,14 +192,24 @@ const Text3Bold = styled.p<{ color?: TypographyColor }>`
   ${DEFAULT_STYLES}
 `;
 
-export const Typography: React.FC<TypographyProps> = ({
-  variant,
-  color,
-  ...props
-}) => {
+export const Typography: React.FC<TypographyProps> = ({ variant, color, ...props }) => {
   switch (variant) {
+  case "caption1":
+    return <Caption1 color={color} {...props} />;
+  case "caption2":
+    return <Caption2 color={color} {...props} />;
+  case "caption3":
+    return <Caption3 color={color} {...props} />;
   case "caption4":
     return <Caption4 color={color} {...props} />;
+  case "caption1Normal":
+    return <Caption1Normal color={color} {...props} />;
+  case "caption2Normal":
+    return <Caption2Normal color={color} {...props} />;
+  case "caption3Normal":
+    return <Caption3Normal color={color} {...props} />;
+  case "caption4Normal":
+    return <Caption4Normal color={color} {...props} />;
   case "text1":
     return <Text1 color={color} {...props} />;
   case "text2":

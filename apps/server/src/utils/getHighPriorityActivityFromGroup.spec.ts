@@ -5,7 +5,7 @@ import {
   createMockActivity,
   createMockStudent,
   setActivityRepeatType,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { getHighPriorityActivityFromGroup } from "./getHighPriorityActivityFromGroup";
 
 describe("getHighPriorityActivityFromGroup", () => {
@@ -15,9 +15,7 @@ describe("getHighPriorityActivityFromGroup", () => {
 
     addActivityToGroup(group, commonActivity);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivity
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivity);
   });
 
   it("Group has 1 individual activity", () => {
@@ -43,9 +41,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivity);
     addActivityToGroup(group, individualActivity);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivity
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivity);
   });
 
   it("Group has common and individual activities, repeat monthly", () => {
@@ -61,9 +57,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivity);
     addActivityToGroup(group, individualActivity);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivity
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivity);
   });
 
   it("Group has common and individual activities, repeat weekly", () => {
@@ -79,9 +73,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivity);
     addActivityToGroup(group, individualActivity);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivity
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivity);
   });
 
   it("Group has common and individual activities, repeat daily", () => {
@@ -97,9 +89,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivity);
     addActivityToGroup(group, individualActivity);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivity
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivity);
   });
 
   it("Group has common and individual activities, no repeat", () => {
@@ -112,9 +102,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivity);
     addActivityToGroup(group, individualActivity);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivity
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivity);
   });
 
   it("Group has 2 individual activities, repeat yearly", () => {
@@ -132,9 +120,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityA);
     addActivityToGroup(group, individualActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityA);
   });
 
   it("Group has 2 individual activities, repeat monthly", () => {
@@ -152,9 +138,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityA);
     addActivityToGroup(group, individualActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityA);
   });
 
   it("Group has 2 individual activities, repeat weekly", () => {
@@ -172,9 +156,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityA);
     addActivityToGroup(group, individualActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityA);
   });
 
   it("Group has 2 individual activities, repeat daily", () => {
@@ -192,9 +174,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityA);
     addActivityToGroup(group, individualActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityA);
   });
 
   it("Group has 2 individual activities, no repeat", () => {
@@ -209,9 +189,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityA);
     addActivityToGroup(group, individualActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityA);
   });
 
   it("Group has 2 individual activities, repeat yearly", () => {
@@ -225,9 +203,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityA);
     addActivityToGroup(group, commonActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityA);
   });
 
   it("Group has 2 individual activities, repeat monthly", () => {
@@ -241,9 +217,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityA);
     addActivityToGroup(group, commonActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityA);
   });
 
   it("Group has 2 individual activities, repeat weekly", () => {
@@ -257,9 +231,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityA);
     addActivityToGroup(group, commonActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityA);
   });
 
   it("Group has 2 individual activities, repeat daily", () => {
@@ -273,9 +245,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityA);
     addActivityToGroup(group, commonActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityA);
   });
 
   it("Group has 2 individual activities, no repeat", () => {
@@ -286,9 +256,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityA);
     addActivityToGroup(group, commonActivityB);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityA
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityA);
   });
 
   it("Group has only individual activities, has important activity", () => {
@@ -323,9 +291,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityWeekly);
     addActivityToGroup(group, individualActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityImportant
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityImportant);
   });
 
   it("Group has only individual activities, repeat: none + year + month + week + day", () => {
@@ -355,9 +321,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityWeekly);
     addActivityToGroup(group, individualActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityNoRepeat
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityNoRepeat);
   });
 
   it("Group has only individual activities, repeat: year + month + week + day", () => {
@@ -383,9 +347,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityWeekly);
     addActivityToGroup(group, individualActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityYearly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityYearly);
   });
 
   it("Group has only individual activities, repeat: month + week + day", () => {
@@ -407,9 +369,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityWeekly);
     addActivityToGroup(group, individualActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityMonthly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityMonthly);
   });
 
   it("Group has only individual activities, repeat: week + day", () => {
@@ -427,9 +387,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, individualActivityWeekly);
     addActivityToGroup(group, individualActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityWeekly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityWeekly);
   });
 
   it("Group has only common activities, has important", () => {
@@ -455,9 +413,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityWeekly);
     addActivityToGroup(group, commonActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityImportant
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityImportant);
   });
 
   it("Group has only common activities, repeat: none + year + month + week + day", () => {
@@ -480,9 +436,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityWeekly);
     addActivityToGroup(group, commonActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityNoRepeat
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityNoRepeat);
   });
 
   it("Group has only common activities, repeat: year + month + week + day", () => {
@@ -502,9 +456,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityWeekly);
     addActivityToGroup(group, commonActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityYearly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityYearly);
   });
 
   it("Group has only common activities, repeat: month + week + day", () => {
@@ -521,9 +473,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityWeekly);
     addActivityToGroup(group, commonActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityMonthly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityMonthly);
   });
 
   it("Group has only common activities, repeat: week + day", () => {
@@ -537,9 +487,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityWeekly);
     addActivityToGroup(group, commonActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityWeekly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityWeekly);
   });
 
   it("Group has common weekly and individual daily activity", () => {
@@ -556,9 +504,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityWeekly);
     addActivityToGroup(group, individualActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityWeekly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityWeekly);
   });
 
   it("Group has common daily and individual yearly activity", () => {
@@ -575,9 +521,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityDaily);
     addActivityToGroup(group, individualActivityYearly);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityYearly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityYearly);
   });
 
   it("Group has common daily and individual weekly activity", () => {
@@ -594,9 +538,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityDaily);
     addActivityToGroup(group, individualActivityWeekly);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityWeekly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityWeekly);
   });
 
   it("Group has common yearly and individual daily activity", () => {
@@ -613,9 +555,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityYearly);
     addActivityToGroup(group, individualActivityDaily);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityYearly
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityYearly);
   });
 
   it("Group has common no-repeat and individual monthly activity", () => {
@@ -632,9 +572,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityNoRepeat);
     addActivityToGroup(group, individualActivityMonthly);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityNoRepeat
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityNoRepeat);
   });
 
   it("Group has common monthly and individual no-repeat activity", () => {
@@ -651,9 +589,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityMonthly);
     addActivityToGroup(group, individualActivityNoRepeat);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityNoRepeat
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityNoRepeat);
   });
 
   it("Group has common no-repeat and individual important activity", () => {
@@ -670,9 +606,7 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityNoRepeat);
     addActivityToGroup(group, individualActivityImportant);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      individualActivityImportant
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(individualActivityImportant);
   });
 
   it("Group has common important and individual no-repeat activity", () => {
@@ -689,8 +623,6 @@ describe("getHighPriorityActivityFromGroup", () => {
     addActivityToGroup(group, commonActivityImportant);
     addActivityToGroup(group, individualActivityNoRepeat);
 
-    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(
-      commonActivityImportant
-    );
+    expect(getHighPriorityActivityFromGroup(group)).toStrictEqual(commonActivityImportant);
   });
 });

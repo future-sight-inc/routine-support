@@ -1,15 +1,8 @@
 import { useState } from "react";
 
-import { Activity, Student } from "@routine-support/domains";
-import { stringifyDate } from "@routine-support/utils";
-import { getStudentsByIds } from "apps/web/src/utils/getStudentsByIds";
+import { Activity, getActivityStatusesFromStudents, Student } from "@routine-support/domains";
 
-import { getPendingStudents } from "./utils";
-
-export const useConfirmationStatusComponent = (
-  activity: Activity,
-  students: Student[]
-) => {
+export const useConfirmationStatusComponent = (activity: Activity, students: Student[]) => {
   const [modalOpened, setModalOpened] = useState(false);
 
   const handleModalOpen = () => {
@@ -20,26 +13,17 @@ export const useConfirmationStatusComponent = (
     setModalOpened(false);
   };
 
-  let confirmedStudents: Student[] = [];
-  let assignedStudents = students;
-
-  if (activity.confirmation) {
-    confirmedStudents = getStudentsByIds(
-      students,
-      activity.confirmation[stringifyDate(activity.date)]
-    );
-  }
-
-  if (activity.students.length) {
-    assignedStudents = getStudentsByIds(students, activity.students);
-  }
+  const { confirmedStudents, assignedStudents, pendingStudents } = getActivityStatusesFromStudents(
+    activity,
+    students
+  );
 
   return {
     models: {
       modalOpened,
       confirmedStudents,
       assignedStudents,
-      pendingStudents: getPendingStudents(assignedStudents, confirmedStudents),
+      pendingStudents,
     },
     operations: { handleModalOpen, handleModalClose },
   };

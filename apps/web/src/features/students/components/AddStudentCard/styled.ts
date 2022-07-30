@@ -5,7 +5,7 @@ export const Card = styled.div`
   width: 176px;
   height: 196px;
 
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.l};
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 
@@ -18,8 +18,7 @@ export const Card = styled.div`
   `}
 
   &:hover {
-    box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.palette.primary.main}
-      inset;
+    box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.palette.primary.main} inset;
   }
 `;
 

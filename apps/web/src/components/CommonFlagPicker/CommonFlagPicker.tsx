@@ -2,10 +2,7 @@ import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
 
-import {
-  CommonFlagPickerLocators,
-  createActiveButtonDataTestId,
-} from "./locators";
+import { CommonFlagPickerLocators, createActiveButtonDataTestId } from "./locators";
 import * as S from "./styled";
 
 interface CommonFlagPickerProps {
@@ -13,10 +10,7 @@ interface CommonFlagPickerProps {
   onChange: (value: boolean) => void;
 }
 
-export const CommonFlagPicker: React.FC<CommonFlagPickerProps> = ({
-  value,
-  onChange,
-}) => {
+export const CommonFlagPicker: React.FC<CommonFlagPickerProps> = ({ value, onChange }) => {
   const { t } = useTranslation();
 
   const [isCommon, setIsCommon] = useState(value ?? true);
@@ -37,7 +31,7 @@ export const CommonFlagPicker: React.FC<CommonFlagPickerProps> = ({
             : CommonFlagPickerLocators.Common
         }
       >
-        {t("Common")}
+        {t("Common activity")}
       </S.Button>
       <S.Button
         onClick={() => handleChange(false)}
@@ -48,7 +42,7 @@ export const CommonFlagPicker: React.FC<CommonFlagPickerProps> = ({
             : CommonFlagPickerLocators.Individual
         }
       >
-        {t("Individ.")}
+        {t("Individual activity short")}
       </S.Button>
     </S.Wrapper>
   );

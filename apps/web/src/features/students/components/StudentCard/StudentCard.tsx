@@ -1,7 +1,7 @@
 import React, { MouseEvent } from "react";
 
 import { Student } from "@routine-support/domains";
-import { getColor } from "apps/web/src/utils/getColor";
+import { getColor } from "@routine-support/ui-theme";
 
 import * as S from "./styled";
 
@@ -40,10 +40,7 @@ export const StudentCard: React.FC<StudentCardProps> = ({
   };
 
   return (
-    <S.Card
-      studentColor={getColor(student.color)}
-      onClick={handleStudentModalOpen}
-    >
+    <S.Card studentColor={getColor(student.color)} onClick={handleStudentModalOpen}>
       <S.Name>{student.name}</S.Name>
       <S.FaceIcon />
       <S.ControlsPanel>

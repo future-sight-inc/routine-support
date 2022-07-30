@@ -1,6 +1,1 @@
-export {
-  Typography,
-  TypographyVariant,
-  TypographyColor,
-  getTypographyColorStyles,
-} from "./Typography";
+export { Typography, getTypographyColorStyles } from "./Typography";

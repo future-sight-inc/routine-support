@@ -4,11 +4,14 @@ import { ClockTypeEnum } from "@routine-support/domains";
 import { stringifyTime } from "@routine-support/utils";
 import { Text } from "@ui-kitten/components";
 import { Moment } from "moment";
+import { View } from "react-native";
 import AnalogClock from "react-native-clock-analog";
 
+import { ClockLocators } from "./locators";
+
 export enum ClockSizeEnum {
-  Small = 90,
-  Large = 110,
+  Small = 120,
+  Large = 140,
 }
 
 interface ClockProps {
@@ -22,19 +25,21 @@ export const Clock: React.FC<ClockProps> = ({ start, end, type, size }) => {
   switch (type) {
   case ClockTypeEnum.Digital:
     return (
-      <Text category="s1" appearance="hint">
+      <Text category="h6" appearance="hint" testID={ClockLocators.DigitalClock}>
         {stringifyTime(start)}-{stringifyTime(end)}
       </Text>
     );
   case ClockTypeEnum.Analog:
     return (
-      <AnalogClock
-        colorHour="black"
-        colorMinutes="black"
-        hour={start.hours()}
-        minutes={start.minutes()}
-        size={size}
-      />
+      <View testId={ClockLocators.AnalogClock}>
+        <AnalogClock
+          colorHour="black"
+          colorMinutes="black"
+          hour={start.hours()}
+          minutes={start.minutes()}
+          size={size}
+        />
+      </View>
     );
   default:
     return null;

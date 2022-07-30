@@ -4,4 +4,5 @@ export enum PathEnum {
   Home = "/",
   Profile = "/user",
   Students = "/students",
+  Notifications = "/notifications",
 }

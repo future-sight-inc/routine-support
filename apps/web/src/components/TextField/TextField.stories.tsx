@@ -1,3 +1,4 @@
+import SearchIcon from "@mui/icons-material/Search";
 import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
 
@@ -18,5 +19,7 @@ storiesOf("Components", module).add("TextField", () => (
     <TextField value="Filled with error" error />
     <TextField type="time" />
     <TextField type="date" />
+    <TextField showBorder={false} placeholder="Border less" />
+    <TextField icon={<SearchIcon />} placeholder="With icon" />
   </Layout>
 ));

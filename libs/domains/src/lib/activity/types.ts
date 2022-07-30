@@ -42,7 +42,10 @@ export type ActivitySchema = {
 };
 
 export type ConfirmationInfo = {
-  [key in DateString]: Id[];
+  [key in DateString]: {
+    students: Id[];
+    isNotified: boolean;
+  };
 };
 
 export interface ActivitiesGroup {

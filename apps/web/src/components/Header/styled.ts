@@ -4,8 +4,6 @@ import styled, { css } from "styled-components";
 import { Typography } from "../../styled/components/Typography";
 
 export const Wrapper = styled.div`
-  padding: 0 16px;
-
   ${({ theme }) =>
     css`
       background: ${theme.palette.common.white};
@@ -22,6 +20,8 @@ export const Content = styled.div`
   margin: 0 auto;
 
   max-width: ${({ theme }) => theme.size.maxWidth};
+  padding: 0 16px;
+  box-sizing: border-box;
 `;
 
 export const UserWrapper = styled.div`
@@ -29,6 +29,7 @@ export const UserWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 `;
 
 export const UserEmail = styled(Typography).attrs(() => ({
@@ -44,7 +45,16 @@ export const Navigation = styled.nav`
   gap: 16px;
 `;
 
-export const IconWrapper = styled.div`
+export const BadgeWrapper = styled.div`
+  margin-left: 8px;
+  display: inline;
+
+  * {
+    color: ${({ theme }) => theme.palette.common.white};
+  }
+`;
+
+export const IconWrapper = styled.span`
   position: relative;
   display: flex;
   justify-content: center;
@@ -83,4 +93,22 @@ export const LogoutWrapper = styled.div`
       color: ${({ theme }) => theme.palette.common.black};
     }
   }
+`;
+
+export const NotificationsIconWrapper = styled.div`
+  width: 24px;
+  height: 24px;
+  position: relative;
+`;
+
+export const NewNotificationMark = styled.div`
+  width: 5px;
+  height: 5px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+
+  background-color: ${({ theme }) => theme.palette.common.red};
 `;

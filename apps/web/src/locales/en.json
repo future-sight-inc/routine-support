@@ -2,6 +2,7 @@
   "Create": "Create",
   "Update": "Update",
   "Delete": "Delete",
+  "Cancel": "Cancel",
 
   "Log in": "Sign in",
   "Logout": "Sign out",
@@ -12,6 +13,13 @@
   "Password": "Password",
   "Submit": "Submit",
 
+  "Invalid email error": "User with this email already exists",
+  "Invalid credentials": "Invalid email or password",
+
+  "No account yet": "No account yet?",
+  "Create account": "Create",
+  "Already have an account": "Already have an account?",
+  "Sign in": "Sign in",
   "Link to register": "No account yet? Sign up here",
   "Link to sign in": "Already have an account? Sign in here",
   "Logout confirm message": "Are you sure you want to log out?",
@@ -26,11 +34,16 @@
 
   "Required field": "Required field",
 
+  "Invalid activity time error": "Invalid time",
+  "Overlapping important activity": "Important activities can not overlap",
+
   "Activity name": "Activity title",
   "Activity date": "Date",
   "Activity start time": "Start",
   "Activity end time": "End",
 
+  "Pictogram": "Pictogram",
+  "Choose": "Choose",
   "Change pictogram": "Change pictogram",
   "Choose pictogram": "Choose pictogram",
   "Search": "Search...",
@@ -40,6 +53,7 @@
   "Every day": "Every day",
   "Every week": "Every week",
   "Every month": "Every month",
+  "Every year": "Every year",
   "Never": "Never",
 
   "Filters": "Filters",
@@ -49,22 +63,46 @@
   "Common": "Common",
   "Common activity": "Common",
   "Individual activity": "Individual",
+  "Individual activity short": "Individual",
   "Choose students": "Choose student(s)",
+  "Important activity": "Important activity",
+  "Important activity hint": "Important activity is an activity with highest priority. Use this flag if you want your student to see the activity. Important activity can not be repeated. There can only be one activity at a time",
+  "Important activity active": "This activity has the highest priority",
 
   "Student": "Student",
   "Students": "Students",
+
+  "App settings": "App settings",
   "Clock type": "Clock type",
   "Digital": "Digital",
   "Analog": "Analog",
   "PIN code": "PIN code",
+  "Preferred language": "Language",
 
+  "Pick a student": "Pick a student",
   "Modify student": "Modify student",
   "Add student": "Add student",
   "Confirm student delete": "Confirm your action",
   "No students": "There are no students yet",
+  "No students to pick": "No one to pick",
+  "Activity card color": "Color",
 
+  "QR code for": "QR code for",
   "QR instructions start": "Use QR scanner in",
   "QR instructions end": "Routine Support app to sign in",
 
-  "Rights info": "Routine Support. 2022. All rights reserved"
+  "Rights info": "Routine Support. 2022. All rights reserved",
+
+  "Notifications": "Notifications",
+  "Activity was missed": "Activity was missed",
+  "These students were late": "These students were late",
+  "New": "New",
+  "Clear all": "Clear all",
+  "No notifications": "No notifications",
+  "Confirm": "Confirm",
+
+  "Confirm your action": "Confirm your action",
+  "Are you sure you want to delete this activity?": "Are you sure you want to delete this activity?",
+  "Are you sure you want to delete all notifications?": "Are you sure you want to delete all notifications?",
+  "Are you sure you want to delete this student?": "Are you sure you want to delete this student?"
 }

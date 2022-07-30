@@ -1,17 +1,17 @@
 import React from "react";
 
-import { createMockStudent } from "@routine-support/test-utils";
+import { createMockStudent } from "@routine-support/domains";
 import { storiesOf } from "@storybook/react";
 
 import { StudentCard } from "./StudentCard";
 
-const STUDENT = createMockStudent({ name: "Peter Parker", color: "pink" });
+const STUDENT = createMockStudent({ name: "Peter Parker" });
 
-storiesOf("Components", module).add("StudentCard", () => (
+storiesOf("Students", module).add("StudentCard", () => (
   <StudentCard
     student={STUDENT}
-    onStudentModify={() => null}
-    onStudentSettings={() => null}
+    onSettingsModalOpen={() => null}
+    onStudentModalOpen={() => null}
     onQROpen={() => null}
     onStudentDelete={() => null}
   />

@@ -1,15 +1,12 @@
 import React, { createRef } from "react";
 
-import {
-  Activity,
-  groupActivities,
-  Student,
-  Week,
-} from "@routine-support/domains";
-import { isToday } from "@routine-support/utils";
+import { Activity, isTimeCrossed, Student, Week } from "@routine-support/domains";
+import { isToday, parseTime, stringifyTime } from "@routine-support/utils";
 import { stringifyDate } from "@routine-support/utils";
+import moment from "moment";
 
 import { ActivityGroup } from "./components/ActivityGroup";
+import { AddActivityIcon } from "./components/AddActivityIcon";
 import { useWeekCalendarComponent } from "./hooks";
 import * as S from "./styled";
 import { isWeekend } from "./utils";
@@ -18,43 +15,47 @@ export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
   openNewActivityModal: (activity?: Partial<Activity>) => void;
 }
+
 interface WeekCalendarProps {
   week: Week;
   students: Student[];
   actions: WeekCalendarActions;
 }
 
-export const WeekCalendar: React.FC<WeekCalendarProps> = ({
-  week,
-  students,
-  actions,
-}) => {
-  const wrapperRef = createRef<HTMLDivElement>();
+export const WeekCalendar: React.FC<WeekCalendarProps> = ({ week, students, actions }) => {
+  const containerRef = createRef<HTMLDivElement>();
+  const currentTimeRef = createRef<HTMLDivElement>();
 
   const {
-    models: { timelineTopOffset },
+    models: { timelineTopOffset, groupedActivitiesByDays },
     operations: { onCellClick },
-  } = useWeekCalendarComponent(wrapperRef, actions);
+  } = useWeekCalendarComponent({ week, containerRef, currentTimeRef, actions });
 
   return (
-    <S.Wrapper ref={wrapperRef}>
+    <S.Wrapper ref={containerRef}>
       <S.TimeColumn>
         {week.weekInfo.timeRange.map((time, index) => (
-          <S.Cell key={index}>
-            <S.Time>{time}</S.Time>
-          </S.Cell>
+          <S.Cell key={index}>{index > 0 && <S.Time>{time}</S.Time>}</S.Cell>
         ))}
+        <S.CurrentTime top={timelineTopOffset}>{stringifyTime(moment())}</S.CurrentTime>
       </S.TimeColumn>
-      {week.weekInfo.days.map((day) => (
+      {week.weekInfo.days.map((day, index) => (
         <S.Column isWeekend={isWeekend(day)}>
           {week.weekInfo.timeRange.map((time) => (
-            <S.Cell onClick={() => onCellClick(time, day)}></S.Cell>
+            <S.Cell onClick={() => onCellClick(time, day)}>
+              <AddActivityIcon
+                isEmpty={
+                  !groupedActivitiesByDays[index].some((group) =>
+                    isTimeCrossed(group, {
+                      start: parseTime(time, stringifyDate(day)),
+                      end: parseTime(time, stringifyDate(day)).add(1, "hours"),
+                    })
+                  )
+                }
+              />
+            </S.Cell>
           ))}
-          {groupActivities(
-            week.days.find(
-              (item) => stringifyDate(item.date) === stringifyDate(day)
-            )?.activities
-          ).map((group) => (
+          {groupedActivitiesByDays[index].map((group) => (
             <ActivityGroup
               students={students}
               timeRange={week.weekInfo.timeRange}
@@ -62,7 +63,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
               onActivityClick={actions.openActivityModal}
             />
           ))}
-          {isToday(day) && <S.TimeLine top={timelineTopOffset} />}
+          {isToday(day) && <S.TimeLine top={timelineTopOffset} ref={currentTimeRef} />}
         </S.Column>
       ))}
     </S.Wrapper>

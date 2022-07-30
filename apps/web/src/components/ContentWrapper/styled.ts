@@ -5,20 +5,21 @@ import { Button } from "../../styled/components/Button";
 import { ErrorText as UIErrorText } from "../ErrorText";
 
 export const Wrapper = styled.div`
-  height: calc(100vh - 100px);
+  height: 100%;
   box-sizing: border-box;
   padding: 16px;
   overflow: scroll;
 `;
 
-export const ErrorWrapper = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
+export const ErrorWrapper = styled(Wrapper)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ErrorText = styled(UIErrorText)``;
 
-export const SpinnerWrapper = styled.div`
+export const SpinnerWrapper = styled(Wrapper)`
   width: 100%;
   height: 100vh;
 `;

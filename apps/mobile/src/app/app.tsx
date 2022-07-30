@@ -1,55 +1,56 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import * as eva from "@eva-design/eva";
-import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
-import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import { Provider } from "react-redux";
-import { NativeRouter, Route } from "react-router-native";
+import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
+import { useHistory } from "react-router-native";
 
-import { Day } from "../features/day/components/Day";
-import { Login } from "../features/student/components/Login";
-import { PrivateRoute } from "../features/student/components/PrivateRoute";
-import enLocale from "../locales/en.json";
-import nlLocale from "../locales/nl.json";
-import ruLocale from "../locales/ru.json";
-import { store } from "./store";
+import { AppWrapper } from "../components/AppWrapper";
+import { CoachEntry } from "../features/coach";
+import { useDay } from "../features/student/day/useDay";
+import { useSocketEventListener } from "../features/student/student/hooks/useSocketEventListener";
+import { useStudent } from "../features/student/student/useStudent";
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: {
-      translation: enLocale,
-    },
-    ru: {
-      translation: ruLocale,
-    },
-    nl: {
-      translation: nlLocale,
-    },
-  },
-});
+const App = () => {
+  const {
+    operations: { getDay },
+  } = useDay();
 
-export const App = () => {
+  const {
+    operations: { updateStudentSettings },
+  } = useStudent();
+
+  // Имеет смысл разделить две версии на разные entries, которые будут подключаться в App
+  useSocketEventListener(WeekSocketEventTypeEnum.UpdateSchedule, () => {
+    getDay();
+  });
+
+  useSocketEventListener<Partial<Student>>(WeekSocketEventTypeEnum.UpdateSettings, (settings) => {
+    updateStudentSettings(settings);
+  });
+
+  const history = useHistory();
+
+  useEffect(() => {
+    history.push("/coach/login");
+  }, []);
+
   return (
     <>
-      <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
-        <Provider store={store}>
-          <NativeRouter>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <PrivateRoute>
-              <Route exact path="/">
-                <Day />
-              </Route>
-            </PrivateRoute>
-          </NativeRouter>
-        </Provider>
-      </ApplicationProvider>
+      {/* <Route exact path="/student/login">
+        <StudentLogin />
+      </Route>
+      <PrivateRoute>
+        <Route exact path="/student/">
+          <Day />
+        </Route>
+      </PrivateRoute> */}
+
+      <CoachEntry />
     </>
   );
 };
 
-export default App;
+export default () => (
+  <AppWrapper>
+    <App />
+  </AppWrapper>
+);

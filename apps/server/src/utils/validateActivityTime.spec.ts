@@ -1,7 +1,4 @@
-import {
-  createMockActivitySchema,
-  setActivityTime,
-} from "@routine-support/test-utils";
+import { createMockActivitySchema, setActivityTime } from "@routine-support/domains";
 import { SubmitErrorData } from "@routine-support/types";
 import { validateActivityTime } from "./validateActivityTime";
 
@@ -10,7 +7,7 @@ const TIME_VALIDATION_ERROR: SubmitErrorData = {
   errors: [
     {
       name: "end",
-      message: "Invalid time",
+      message: "Invalid activity time error",
     },
   ],
 };

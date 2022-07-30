@@ -1,6 +1,6 @@
 {
   "Day schedule": "Расписание",
-  "No activities": "Сегодня активностей нет",
+  "No activities": "Все выполнено!",
   "Confirmed": "Пройдено",
   "Confirm": "Подтвердить",
 
@@ -19,5 +19,11 @@
   "Logout": "Выйти",
 
   "Confirm your action": "Подтвердите действие",
-  "Cancel": "Отмена"
+  "Cancel": "Отмена",
+
+  "Enter PIN to log out": "Введите ПИН код для выхода",
+  "Hello": "Привет",
+  "Today": "Сегодня",
+
+  "Student is not found": "Студент не найден"
 }

@@ -11,6 +11,7 @@ export const validateActivityImportance = async (
 ): Promise<SubmitErrorData | undefined> => {
   if (activity.isImportant) {
     const importantActivitySameDay = await ActivityModel.findOne({
+      _id: { $ne: activity._id },
       date: activity.date,
       isImportant: true,
     });
@@ -24,7 +25,7 @@ export const validateActivityImportance = async (
     ) {
       throw {
         isValid: false,
-        error: "Important activity this day already exists",
+        error: "Overlapping important activity",
       };
     }
 

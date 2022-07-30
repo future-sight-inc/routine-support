@@ -1,9 +1,20 @@
 {
-  "extends": [
-    "plugin:@nrwl/nx/react",
-    "../../.eslintrc.json",
-    "../web/.eslintrc.json"
-  ],
-  "plugins": ["react", "react-native"],
-  "ignorePatterns": ["!**/*", "node_modules"]
+  "extends": ["plugin:@nrwl/nx/react", "../web/.eslintrc.json"],
+  "ignorePatterns": ["!**/*", ".expo", "node_modules", "web-build"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": "off"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
 }

@@ -9,18 +9,17 @@ export const PictogramPicker: React.FC<FormFieldProps> = ({
   control,
   required,
   disabled,
+  label,
 }) => {
   return (
     <Controller
       name={name}
       control={control}
       required={required}
+      label={label}
       disabled={disabled}
       render={({ field }) => (
-        <UncontrolledPictogramPicker
-          value={field.value}
-          onChange={field.onChange}
-        />
+        <UncontrolledPictogramPicker value={field.value} onChange={field.onChange} />
       )}
     />
   );

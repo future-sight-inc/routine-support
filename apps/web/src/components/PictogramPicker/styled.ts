@@ -14,11 +14,9 @@ export const Wrapper = styled.div<{ backgroundImage?: ImageUrl }>`
 
   ${({ theme, backgroundImage }) =>
     css`
-      background: ${backgroundImage
-    ? theme.palette.common.black
-    : theme.palette.secondary.main};
+      background: ${backgroundImage ? theme.palette.common.black : theme.palette.secondary.main};
       background-image: url(${backgroundImage});
-      border-radius: ${theme.borderRadius};
+      border-radius: ${theme.borderRadius.l};
     `};
 
   background-repeat: no-repeat;
@@ -69,6 +67,8 @@ export const PictogramsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4px;
+  max-height: 320px;
+  overflow: scroll;
 `;
 
 export const Pictogram = styled.img<{ active?: boolean }>`
@@ -78,7 +78,7 @@ export const Pictogram = styled.img<{ active?: boolean }>`
   box-sizing: border-box;
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.l};
   `}
 
   ${({ active, theme }) =>

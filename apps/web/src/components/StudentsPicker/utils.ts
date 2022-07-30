@@ -1,4 +1,5 @@
 import { Student } from "@routine-support/domains";
+import { Id } from "@routine-support/types";
 
 export const filterStudents = ({
   students,
@@ -6,19 +7,17 @@ export const filterStudents = ({
   filter,
 }: {
   students: Student[];
-  selectedStudents: Student[];
+  selectedStudents: Id[];
   filter: string;
 }) => {
   let filtered = students;
 
   selectedStudents.forEach((selectedStudent) => {
-    filtered = filtered.filter(
-      (student) => student._id !== selectedStudent._id
-    );
+    filtered = filtered.filter((student) => student._id !== selectedStudent);
   });
 
   if (filter.length) {
-    filtered = filtered.filter((student) => student.name.includes(filter));
+    filtered = filtered.filter((student) => new RegExp(filter, "i").test(student.name));
   }
 
   return filtered;

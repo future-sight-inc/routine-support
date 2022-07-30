@@ -1,11 +1,8 @@
 import UIHelpIcon from "@mui/icons-material/Help";
+import { TypographyColor } from "@routine-support/ui-theme";
 import styled, { css } from "styled-components";
 
-import {
-  getTypographyColorStyles,
-  Typography,
-  TypographyColor,
-} from "../../styled/components/Typography";
+import { getTypographyColorStyles, Typography } from "../../styled/components/Typography";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -37,7 +34,7 @@ export const HelperText = styled(Typography)`
   display: none;
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
     box-shadow: ${theme.boxShadow.small};
     background: ${theme.palette.common.white};
   `};
@@ -56,9 +53,10 @@ export const HelpIconWrapper = styled.div`
       left: 4px;
       transform: translateY(-100%);
       padding: 12px;
-      height: 40px;
+      min-height: 40px;
       box-sizing: border-box;
-      white-space: nowrap;
+      width: 350px;
+      white-space: wrap;
     }
   }
 `;

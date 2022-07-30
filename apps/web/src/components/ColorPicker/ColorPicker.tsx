@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import { ColorEnum } from "@routine-support/domains";
+import { COLORS } from "@routine-support/ui-theme";
 
-import { COLORS } from "../../constants/Colors";
 import { createActiveColorDataTestId, createColorDataTestId } from "./locators";
 import * as S from "./styled";
 
@@ -11,13 +11,8 @@ interface ColorPickerProps {
   onChange: (value: ColorEnum) => void;
 }
 
-export const ColorPicker: React.FC<ColorPickerProps> = ({
-  value,
-  onChange,
-}) => {
-  const [activeColor, setActiveColor] = useState<ColorEnum>(
-    value ?? ColorEnum.Purple
-  );
+export const ColorPicker: React.FC<ColorPickerProps> = ({ value, onChange }) => {
+  const [activeColor, setActiveColor] = useState<ColorEnum>(value ?? ColorEnum.Purple);
 
   const handleChange = (value: ColorEnum) => {
     setActiveColor(value);

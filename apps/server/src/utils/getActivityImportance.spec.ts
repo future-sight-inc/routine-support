@@ -4,7 +4,7 @@ import {
   createMockActivity,
   createMockStudent,
   setActivityRepeatType,
-} from "@routine-support/test-utils";
+} from "@routine-support/domains";
 import { getActivityImportanceValue } from "./getActivityImportanceValue";
 
 describe("getActivityImportanceValue", () => {
@@ -15,7 +15,7 @@ describe("getActivityImportanceValue", () => {
     addStudentToActivity(activity, student);
     activity.isImportant = true;
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(64);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(50);
   });
 
   it("No-repeat individual activity", () => {
@@ -25,7 +25,7 @@ describe("getActivityImportanceValue", () => {
     addStudentToActivity(activity, student);
     setActivityRepeatType(activity, RepeatTypeEnum.None);
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(62);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(42);
   });
 
   it("Yearly individual activity", () => {
@@ -35,7 +35,7 @@ describe("getActivityImportanceValue", () => {
     addStudentToActivity(activity, student);
     setActivityRepeatType(activity, RepeatTypeEnum.EveryYear);
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(30);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(32);
   });
 
   it("Monthly individual activity", () => {
@@ -45,7 +45,7 @@ describe("getActivityImportanceValue", () => {
     addStudentToActivity(activity, student);
     setActivityRepeatType(activity, RepeatTypeEnum.EveryMonth);
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(14);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(22);
   });
 
   it("Weekly individual activity", () => {
@@ -55,7 +55,7 @@ describe("getActivityImportanceValue", () => {
     addStudentToActivity(activity, student);
     setActivityRepeatType(activity, RepeatTypeEnum.EveryWeek);
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(6);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(12);
   });
 
   it("Daily individual activity", () => {
@@ -67,13 +67,84 @@ describe("getActivityImportanceValue", () => {
 
     expect(getActivityImportanceValue(activity)).toStrictEqual(2);
   });
+  it("Important group activity", () => {
+    const activity = createMockActivity();
+    const student = createMockStudent();
+    const student2 = createMockStudent();
+
+    addStudentToActivity(activity, student);
+    addStudentToActivity(activity, student2);
+    activity.isImportant = true;
+
+    expect(getActivityImportanceValue(activity)).toStrictEqual(50);
+  });
+
+  it("No-repeat group activity", () => {
+    const activity = createMockActivity();
+    const student = createMockStudent();
+    const student2 = createMockStudent();
+
+    addStudentToActivity(activity, student);
+    addStudentToActivity(activity, student2);
+    setActivityRepeatType(activity, RepeatTypeEnum.None);
+
+    expect(getActivityImportanceValue(activity)).toStrictEqual(41);
+  });
+
+  it("Yearly group activity", () => {
+    const activity = createMockActivity();
+    const student = createMockStudent();
+    const student2 = createMockStudent();
+
+    addStudentToActivity(activity, student);
+    addStudentToActivity(activity, student2);
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryYear);
+
+    expect(getActivityImportanceValue(activity)).toStrictEqual(31);
+  });
+
+  it("Monthly group activity", () => {
+    const activity = createMockActivity();
+    const student = createMockStudent();
+    const student2 = createMockStudent();
+
+    addStudentToActivity(activity, student);
+    addStudentToActivity(activity, student2);
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryMonth);
+
+    expect(getActivityImportanceValue(activity)).toStrictEqual(21);
+  });
+
+  it("Weekly group activity", () => {
+    const activity = createMockActivity();
+    const student = createMockStudent();
+    const student2 = createMockStudent();
+
+    addStudentToActivity(activity, student);
+    addStudentToActivity(activity, student2);
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryWeek);
+
+    expect(getActivityImportanceValue(activity)).toStrictEqual(11);
+  });
+
+  it("Daily group activity", () => {
+    const activity = createMockActivity();
+    const student = createMockStudent();
+    const student2 = createMockStudent();
+
+    addStudentToActivity(activity, student);
+    addStudentToActivity(activity, student2);
+    setActivityRepeatType(activity, RepeatTypeEnum.EveryDay);
+
+    expect(getActivityImportanceValue(activity)).toStrictEqual(1);
+  });
 
   it("Important common activity", () => {
     const activity = createMockActivity();
 
     activity.isImportant = true;
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(64);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(50);
   });
 
   it("No-repeat common activity", () => {
@@ -81,7 +152,7 @@ describe("getActivityImportanceValue", () => {
 
     setActivityRepeatType(activity, RepeatTypeEnum.None);
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(31);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(40);
   });
 
   it("Yearly common activity", () => {
@@ -89,7 +160,7 @@ describe("getActivityImportanceValue", () => {
 
     setActivityRepeatType(activity, RepeatTypeEnum.EveryYear);
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(15);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(30);
   });
 
   it("Monthly common activity", () => {
@@ -97,7 +168,7 @@ describe("getActivityImportanceValue", () => {
 
     setActivityRepeatType(activity, RepeatTypeEnum.EveryMonth);
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(7);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(20);
   });
 
   it("Weekly common activity", () => {
@@ -105,7 +176,7 @@ describe("getActivityImportanceValue", () => {
 
     setActivityRepeatType(activity, RepeatTypeEnum.EveryWeek);
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(3);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(10);
   });
 
   it("Daily common activity", () => {
@@ -113,6 +184,6 @@ describe("getActivityImportanceValue", () => {
 
     setActivityRepeatType(activity, RepeatTypeEnum.EveryDay);
 
-    expect(getActivityImportanceValue(activity)).toStrictEqual(1);
+    expect(getActivityImportanceValue(activity)).toStrictEqual(0);
   });
 });

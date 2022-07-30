@@ -4,16 +4,13 @@ module.exports = {
   ...rootMain,
 
   core: { ...rootMain.core, builder: "webpack5" },
+
   stories: [
     ...rootMain.stories,
     "../src/app/**/*.stories.mdx",
     "../src/app/**/*.stories.@(js|jsx|ts|tsx)",
   ],
-  addons: [
-    ...rootMain.addons,
-    "@nrwl/react/plugins/storybook",
-    "@storybook/addon-knobs",
-  ],
+  addons: [...rootMain.addons, "@nrwl/react/plugins/storybook", "@storybook/addon-knobs"],
   webpackFinal: async (config, { configType }) => {
     // apply any global webpack configs that might have been specified in .storybook/main.js
     if (rootMain.webpackFinal) {

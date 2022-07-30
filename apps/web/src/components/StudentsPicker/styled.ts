@@ -1,8 +1,7 @@
 import ClearIcon from "@mui/icons-material/Clear";
+import { TextField } from "apps/web/src/components/TextField/styled";
+import { Typography } from "apps/web/src/styled/components/Typography";
 import styled, { css } from "styled-components";
-
-import { Typography } from "../../styled/components/Typography";
-import { TextField } from "../TextField";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -14,7 +13,7 @@ export const FieldWrapper = styled.div<{ isActive?: boolean }>`
     flex-direction: column;
     gap: 4px;
     cursor: pointer;
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.s};
     padding: 8px;
     transition: background 0.2s;
 
@@ -66,7 +65,7 @@ export const StudentWrapper = styled.div`
 
   ${({ theme }) => css`
     background: ${theme.palette.secondary.main};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.s};
   `}
 `;
 
@@ -92,9 +91,12 @@ export const Menu = styled.div`
   left: 0;
   right: 0;
   transform: translateY(100%);
+  z-index: 1000;
+  max-height: 180px;
+  overflow: scroll;
 
   ${({ theme }) => css`
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
     background: ${theme.palette.common.white};
     box-shadow: ${theme.boxShadow.small};
   `}
@@ -110,20 +112,4 @@ export const Option = styled(Typography)`
       background: ${theme.palette.secondary.main};
     }
   `}
-`;
-
-export const EmptyText = styled(Typography).attrs(() => ({
-  color: "secondary",
-}))`
-  height: 40px;
-  line-height: 40px;
-  padding: 0 8px;
-`;
-
-export const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
 `;

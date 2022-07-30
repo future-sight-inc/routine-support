@@ -1,21 +1,8 @@
 import { Router } from "express";
-import { coachAuthorization } from "../middleware/coachAuthorization";
-import { studentAuthorization } from "../middleware/studentAuthorization";
+import { coachRouter } from "./coach";
+import { studentRouter } from "./student";
 
-import { activityRouter } from "./ActivityRouter";
-import { dayRouter } from "./DayRouter";
-import { studentRouter } from "./StudentRouter";
-import { coachRouter } from "./CoachRouter";
-import { weekRouter } from "./WeekRouter";
+export const router = Router();
 
-// Init router and path
-const router = Router();
-
-// Add sub-routes
-router.use("/activity", activityRouter);
-router.use("/week", coachAuthorization, weekRouter);
-router.use("/day", studentAuthorization, dayRouter);
-router.use("/coach", coachRouter);
 router.use("/student", studentRouter);
-
-export default router;
+router.use("/coach", coachRouter);

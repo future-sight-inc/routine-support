@@ -16,22 +16,24 @@ const OPTIONS = [
   { text: "Option3", value: 2 },
 ];
 
+const LOTS_OF_OPTIONS = new Array(50)
+  .fill("")
+  .map((__, index) => ({ text: `Option${++index}`, value: index }));
+
 storiesOf("Components", module).add("Select", () => {
   return (
     <Layout>
       <Select options={OPTIONS} onChange={() => null} />
-      <Select
-        options={OPTIONS}
-        onChange={() => null}
-        placeholder="Select a value"
-      />
-      <Select
-        value={0}
-        options={OPTIONS}
-        onChange={() => null}
-        placeholder="Select a value"
-      />
+      <Select options={OPTIONS} onChange={() => null} placeholder="Select a value" />
+      <Select value={0} options={OPTIONS} onChange={() => null} placeholder="Select a value" />
       <Select options={OPTIONS} onChange={() => null} error />
+      <Select options={LOTS_OF_OPTIONS} onChange={() => null} />
+      <Select
+        placeholder="top menu placement"
+        menuPlacement="top"
+        options={LOTS_OF_OPTIONS}
+        onChange={() => null}
+      />
     </Layout>
   );
 });

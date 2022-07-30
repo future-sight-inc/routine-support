@@ -14,7 +14,7 @@ export const Wrapper = styled.button<{
   ${({ theme, variant }) => css`
     font-size: ${theme.fonts.text1Bold.size};
     font-weight: ${theme.fonts.text1Bold.weight};
-    border-radius: ${theme.borderRadius};
+    border-radius: ${theme.borderRadius.m};
 
     ${variant === "primary" &&
     css`

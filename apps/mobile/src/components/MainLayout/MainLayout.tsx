@@ -1,15 +1,10 @@
 import React, { ReactNode } from "react";
 
-import {
-  Divider,
-  Layout,
-  StyleService,
-  Text,
-  TopNavigation,
-  useStyleSheet,
-} from "@ui-kitten/components";
+import { Layout, StyleService, Text, TopNavigation, useStyleSheet } from "@ui-kitten/components";
 import { RenderProp } from "@ui-kitten/components/devsupport";
-import { StyleSheet } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { Dimensions } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface MainLayoutProps {
   accessoryLeft?: RenderProp<unknown>;
@@ -27,7 +22,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
   const styles = useStyleSheet(themedStyles);
 
   return (
-    <Layout style={styles.wrapper}>
+    <SafeAreaView style={styles.wrapper}>
+      <StatusBar style="light-content" />
       <Layout style={styles.navigationWrapper}>
         <TopNavigation
           alignment="center"
@@ -36,36 +32,34 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
           style={styles.navigation}
         />
         {title && (
-          <Text style={styles.title} category="h6">
+          <Text style={styles.title} category="h4">
             {title}
           </Text>
         )}
-        <Divider />
       </Layout>
       {children}
-    </Layout>
+    </SafeAreaView>
   );
 };
 
 const themedStyles = StyleService.create({
   wrapper: {
     flex: 1,
+    flexDirection: "column",
     alignItems: "center",
     paddingBottom: 8,
-    ...StyleSheet.absoluteFillObject,
+    width: "100%",
+    height: Dimensions.get("screen").height,
   },
   navigationWrapper: { width: "100%" },
   navigation: {
-    paddingTop: 64,
-    paddingBottom: 16,
-    backgroundColor: "color-primary-500",
+    paddingBottom: 8,
   },
   title: {
     position: "absolute",
-    top: 66,
+    top: 12,
     left: 120,
     right: 120,
     textAlign: "center",
-    color: "white",
   },
 });

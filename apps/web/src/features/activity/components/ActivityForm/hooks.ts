@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 
 import { Activity, Coach, RepeatTypeEnum } from "@routine-support/domains";
 import { SubmitErrorData } from "@routine-support/types";
+import { useConfirm } from "apps/web/src/services/ConfirmationService";
 import { setFormErrors } from "apps/web/src/utils/setFormErrors";
 import { AxiosError } from "axios";
+import { t } from "i18next";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 
@@ -11,7 +13,7 @@ import { ActivityFormActions } from "./ActivityForm";
 
 export const useActivityFormComponent = (
   coach: Coach,
-  activity: Partial<Activity> | null,
+  activity: Partial<Activity> | undefined,
   actions: ActivityFormActions
 ) => {
   const defaultValues = {
@@ -22,26 +24,16 @@ export const useActivityFormComponent = (
     isImportant: false,
     ...activity,
   };
-  const {
-    control,
-    handleSubmit,
-    formState,
-    getValues,
-    setValue,
-    setError,
-    watch,
-  } = useForm({
+  const { control, handleSubmit, formState, getValues, setValue, setError, watch } = useForm({
     defaultValues,
   });
 
   const [submitError, setSubmitError] = useState<string | undefined>();
 
-  const [shouldShowStudents, setShouldShowStudent] = useState(
-    !defaultValues.isCommon
-  );
-  const [isRepeatTypeAvailable, setRepeatTypeAvailable] = useState(
-    !defaultValues.isImportant
-  );
+  const [shouldShowStudents, setShouldShowStudent] = useState(!defaultValues.isCommon);
+  const [isRepeatTypeAvailable, setRepeatTypeAvailable] = useState(!defaultValues.isImportant);
+
+  const { confirm } = useConfirm();
 
   useEffect(() => {
     // ! баг в react-hook-form
@@ -98,10 +90,16 @@ export const useActivityFormComponent = (
   const onDelete = async () => {
     const id = getValues()._id;
 
-    if (window.confirm("Confirm your action") && id) {
-      await actions.deleteActivity(id);
+    if (id) {
+      confirm({
+        title: t("Confirm your action"),
+        description: t("Are you sure you want to delete this activity?"),
+        onConfirm: async () => {
+          await actions.deleteActivity(id);
 
-      actions.getWeek({ config: { silent: true } });
+          actions.getWeek({ config: { silent: true } });
+        },
+      });
     }
   };
 

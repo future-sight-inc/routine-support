@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 55px repeat(7, 1fr);
-  background: ${({ theme }) => theme.palette.border.main};
+  background: ${({ theme }) => theme.palette.border.light};
   grid-column-gap: 1px;
 `;
 
@@ -16,14 +16,7 @@ export const Cell = styled.div<{ passed?: boolean }>`
   background: white;
   transition: box-shadow 0.2s;
   cursor: pointer;
-
-  &:hover {
-    ${({ theme }) =>
-    css`
-        box-shadow: inset ${theme.palette.primary.main} 0px 1px 1px,
-          inset ${theme.palette.primary.main} 0px 0px 0px 1px;
-      `}
-  }
+  position: relative;
 `;
 
 export const Column = styled.div<{ isWeekend?: boolean }>`
@@ -57,6 +50,7 @@ export const AbsoluteColumn = styled.div<{ rowsCount: number }>`
 
 export const TimeColumn = styled(Column)`
   text-align: center;
+  position: relative;
   grid-row-gap: 0;
 
   & ${Cell} {
@@ -78,7 +72,7 @@ export const Time = styled(Typography).attrs(() => ({
   variant: "text2",
   color: "secondary",
 }))`
-  margin-top: -14px;
+  margin-top: -8px;
 `;
 
 export const TimeLine = styled.div<{ top: number }>`
@@ -96,7 +90,7 @@ export const TimeLine = styled.div<{ top: number }>`
     display: block;
     width: 10px;
     height: 10px;
-    background: grey;
+
     margin-top: -4px;
     margin-left: -6px;
     border-radius: 50%;
@@ -104,4 +98,23 @@ export const TimeLine = styled.div<{ top: number }>`
 
     background: ${({ theme }) => theme.palette.primary.main};
   }
+`;
+
+export const CurrentTime = styled(Typography).attrs(() => ({
+  variant: "text2Bold",
+  color: "white",
+}))<{ top: number }>`
+  position: absolute;
+
+  top: ${({ top }) => top}px;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  width: 35px;
+
+  ${({ theme }) => css`
+    padding: 4px;
+    background: ${theme.palette.primary.main};
+    border-radius: ${theme.borderRadius.s};
+  `}
 `;
