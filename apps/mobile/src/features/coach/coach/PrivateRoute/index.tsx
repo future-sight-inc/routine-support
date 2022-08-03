@@ -1,5 +1,6 @@
 import React from "react";
 
+import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Redirect, RouteProps } from "react-router-native";
 
 import { usePrivateRouteComponent } from "./hooks";
@@ -12,7 +13,7 @@ export const PrivateRoute: React.FC<RouteProps> = (props) => {
   } = usePrivateRouteComponent();
 
   if (!isLogged && isChecked) {
-    return <Redirect to="/coach/login" />;
+    return <Redirect to={LinkService.coach.login()} />;
   }
 
   return (

@@ -3,6 +3,7 @@ import React from "react";
 import { RegisterCoachDto } from "@routine-support/domains";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Typography } from "apps/mobile/src/components/Typography";
+import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Dimensions, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
 
@@ -44,7 +45,7 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
           {submitError}
         </Typography>
       )}
-      <Link to="/coach/login" underlayColor="transparent">
+      <Link to={LinkService.coach.login()} underlayColor="transparent">
         <Typography variant="text1" color="secondary">
           Уже зарегистрированы?{" "}
           <Typography variant="text1" color="primary">
