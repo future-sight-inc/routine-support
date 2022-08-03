@@ -7,7 +7,6 @@ import { FlatList, StyleSheet, View } from "react-native";
 
 import { Student } from "../Student";
 
-
 interface StudentsListProps {
   students: StudentType[];
 }
@@ -39,7 +38,6 @@ export const StudentsList: React.FC<StudentsListProps> = ({ students }) => {
 const styles = StyleSheet.create({
   separator: {
     height: 1,
-    marginLeft: 16,
     backgroundColor: MobileTheme.palette.border.normal,
   },
   emptyListText: {

@@ -38,6 +38,7 @@ const stories = [
   "../apps/mobile/src/features/coach/day/components/Filter/components/FilterSelector/FilterSelector.stories",
   "../apps/mobile/src/features/coach/day/components/Filter/Filter.stories",
   "../apps/mobile/src/features/coach/students/components/Student/Student.stories",
+  "../apps/mobile/src/features/coach/students/components/StudentsLayout/StudentsLayout.stories",
   "../apps/mobile/src/features/coach/students/components/StudentsList/StudentsList.stories",
 ];
 

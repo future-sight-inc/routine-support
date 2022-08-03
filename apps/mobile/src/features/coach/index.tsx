@@ -6,7 +6,7 @@ import { LinkService } from "../../services/LinkService";
 import { Login } from "./coach/Login";
 import { PrivateRoute } from "./coach/PrivateRoute";
 import { Register } from "./coach/Register";
-import { Day } from "./day/Day";
+import { Students } from "./students/Students";
 
 export const CoachEntry: React.FC = () => {
   return (
@@ -18,7 +18,7 @@ export const CoachEntry: React.FC = () => {
         <Register />
       </Route>
       <PrivateRoute exact path={LinkService.coach.day()}>
-        <Day />
+        <Students />
       </PrivateRoute>
     </Switch>
   );
