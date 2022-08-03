@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { EdgeInsets, SafeAreaView } from "react-native-safe-area-context";
 
 import { MobileTheme } from "../../theme";
@@ -14,6 +14,7 @@ export interface LayoutProps {
   footer?: ReactNode;
   leftIcon: ReactNode;
   rightIcon?: ReactNode;
+  footerStyle?: StyleProp<ViewStyle>;
 }
 
 export const Layout: React.FC<LayoutProps> = ({
@@ -23,6 +24,7 @@ export const Layout: React.FC<LayoutProps> = ({
   title,
   children,
   footer,
+  footerStyle,
 }) => {
   const styles = createStyles({ insets, hasFooter: Boolean(footer) });
 
@@ -39,7 +41,7 @@ export const Layout: React.FC<LayoutProps> = ({
         {children}
       </View>
       {footer && (
-        <View style={styles.footer} testID={LayoutLocators.Footer}>
+        <View style={{ ...styles.footer, ...footerStyle }} testID={LayoutLocators.Footer}>
           {footer}
         </View>
       )}
