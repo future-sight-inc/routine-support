@@ -49,7 +49,7 @@ export const Login: React.FC<LoginProps> = ({ actions }) => {
           {submitError}
         </Typography>
       )}
-      <Link to="/coach/register">
+      <Link to="/coach/register" underlayColor="transparent">
         <Typography variant="text1" color="secondary">
           Еще не зарегистрированы?{" "}
           <Typography variant="text1" color="primary">
