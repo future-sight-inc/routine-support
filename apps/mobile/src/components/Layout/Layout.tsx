@@ -1,11 +1,9 @@
 import React, { ReactNode } from "react";
 
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Dimensions, StyleSheet, View } from "react-native";
 import { EdgeInsets, SafeAreaView } from "react-native-safe-area-context";
 
 import { MobileTheme } from "../../theme";
-import { NotificationsIcon } from "../NotificationsIcon";
 import { Typography } from "../Typography";
 import { LayoutLocators } from "./locators";
 
@@ -14,33 +12,28 @@ export interface LayoutProps {
   children: ReactNode;
   title: string;
   footer?: ReactNode;
-  hasNewNotifications: boolean;
-  onNotificationsIconPress: () => void;
-  onMenuIconPress: () => void;
+  leftIcon: ReactNode;
+  rightIcon?: ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({
   insets,
+  leftIcon,
+  rightIcon,
   title,
   children,
   footer,
-  hasNewNotifications,
-  onNotificationsIconPress,
-  onMenuIconPress,
 }) => {
   const styles = createStyles({ insets, hasFooter: Boolean(footer) });
 
   return (
     <SafeAreaView style={styles.wrapper} testID={LayoutLocators.Wrapper}>
       <View style={styles.header}>
-        <MaterialIcons name="menu" size={30} onPress={onMenuIconPress} />
+        {leftIcon}
         <Typography variant="caption3Normal" testID={LayoutLocators.Title}>
           {title}
         </Typography>
-        <NotificationsIcon
-          hasNewNotifications={hasNewNotifications}
-          onPress={onNotificationsIconPress}
-        />
+        {rightIcon || <View />}
       </View>
       <View style={{ ...styles.body }} testID={LayoutLocators.Body}>
         {children}

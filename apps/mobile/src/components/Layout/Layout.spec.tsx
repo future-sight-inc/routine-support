@@ -14,17 +14,11 @@ describe("Layout", () => {
   const TITLE = "Title";
   const CHILDREN = <Text testID="children">Children</Text>;
   const FOOTER = <Text testID="footer">Footer</Text>;
-  const insets: EdgeInsets = { bottom: 0, top: 0, left: 0, rigth: 0 };
+  const insets: EdgeInsets = { bottom: 0, top: 0, left: 0, right: 0 };
 
   it("Has proper title", () => {
     const { getByTestId, debug } = render(
-      <Layout
-        insets={insets}
-        title={TITLE}
-        hasNewNotifications={false}
-        onMenuIconPress={() => null}
-        onNotificationsIconPress={() => null}
-      >
+      <Layout insets={insets} title={TITLE} leftIcon={null}>
         {null}
       </Layout>
     );
@@ -36,13 +30,7 @@ describe("Layout", () => {
 
   it("Renders children", () => {
     const { getByTestId } = render(
-      <Layout
-        insets={insets}
-        title={TITLE}
-        hasNewNotifications={false}
-        onMenuIconPress={() => null}
-        onNotificationsIconPress={() => null}
-      >
+      <Layout insets={insets} title={TITLE} leftIcon={null}>
         {CHILDREN}
       </Layout>
     );
@@ -52,14 +40,7 @@ describe("Layout", () => {
 
   it("Renders children", () => {
     const { getByTestId } = render(
-      <Layout
-        insets={insets}
-        title={TITLE}
-        footer={FOOTER}
-        hasNewNotifications={false}
-        onMenuIconPress={() => null}
-        onNotificationsIconPress={() => null}
-      >
+      <Layout insets={insets} title={TITLE} footer={FOOTER} leftIcon={null}>
         {CHILDREN}
       </Layout>
     );
