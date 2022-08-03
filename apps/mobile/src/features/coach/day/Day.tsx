@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 
+import { isToday } from "@routine-support/utils";
 import { Button } from "apps/mobile/src/components/Button";
 import { Typography } from "apps/mobile/src/components/Typography";
 
@@ -37,6 +38,7 @@ export const Day: React.FC = () => {
         }
         calendar={
           <Calendar
+            isToday={isToday(currentDate)}
             activities={day.activities}
             students={students}
             timeRange={day.timeRange}
