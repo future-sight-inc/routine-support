@@ -44,10 +44,10 @@ export const Button: React.FC<ButtonProps> = ({
 
   const getTextColor = (variant: ButtonVariant) => {
     switch (variant) {
-      case "primary":
-        return MobileTheme.palette.common.white;
-      default:
-        return MobileTheme.palette.primary.text;
+    case "primary":
+      return MobileTheme.palette.common.white;
+    default:
+      return MobileTheme.palette.primary.text;
     }
   };
 
