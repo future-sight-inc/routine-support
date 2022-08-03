@@ -2,7 +2,7 @@ import { RefObject, useEffect, useState } from "react";
 
 import { groupActivities, Week } from "@routine-support/domains";
 import { TimeString } from "@routine-support/types";
-import { getMinutes, parseTime } from "@routine-support/utils";
+import { getMinutes, isToday, parseTime } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 
 import { WeekCalendarActions } from "./WeekCalendar";
@@ -55,9 +55,8 @@ export const useWeekCalendarComponent = ({
   return {
     models: {
       timelineTopOffset,
-      groupedActivitiesByDays: week.days.map((day) =>
-        groupActivities(day?.activities)
-      ),
+      groupedActivitiesByDays: week.days.map((day) => groupActivities(day?.activities)),
+      isCurrentWeek: week.days.some((day) => isToday(day.date)),
     },
     operations: { onCellClick },
   };

@@ -15,6 +15,7 @@ import { ActivitiesGroup } from "../ActivitiesGroup";
 import { CurrentTimeLine } from "../CurrentTimeLine";
 
 interface CalendarProps {
+  isToday: boolean;
   timeRange: TimeString[];
   activities: ActivityType[];
   students: Student[];
@@ -23,6 +24,7 @@ interface CalendarProps {
 }
 
 export const Calendar: React.FC<CalendarProps> = ({
+  isToday,
   timeRange,
   activities,
   students,
@@ -61,7 +63,9 @@ export const Calendar: React.FC<CalendarProps> = ({
     <FlatList
       data={timeRange}
       ListHeaderComponent={
-        <CurrentTimeLine rowHeight={ROW_HEIGHT} timeColumnWidth={TIME_COLUMN_WIDTH} />
+        isToday ? (
+          <CurrentTimeLine rowHeight={ROW_HEIGHT} timeColumnWidth={TIME_COLUMN_WIDTH} />
+        ) : null
       }
       ListHeaderComponentStyle={{ zIndex: 1 }}
       renderItem={({ item, index }) => (
