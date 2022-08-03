@@ -44,7 +44,7 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
           {submitError}
         </Typography>
       )}
-      <Link to="/coach/login">
+      <Link to="/coach/login" underlayColor="transparent">
         <Typography variant="text1" color="secondary">
           Уже зарегистрированы?{" "}
           <Typography variant="text1" color="primary">
