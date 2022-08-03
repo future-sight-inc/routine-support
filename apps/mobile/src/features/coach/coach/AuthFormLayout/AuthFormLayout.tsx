@@ -5,7 +5,7 @@ import { Button } from "apps/mobile/src/components/Button";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
 import { Dimensions, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { EdgeInsets, SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface AuthFormLayoutProps {
   title: string;
@@ -20,6 +20,9 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
   submitButtonText,
   onSubmit,
 }) => {
+  const insets = useSafeAreaInsets();
+  const styles = createStyles({ insets });
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.iconWrapper}>
@@ -34,31 +37,36 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  wrapper: {
-    paddingTop: 100,
-    height: Dimensions.get("screen").height,
-    paddingHorizontal: 16,
-    position: "relative",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  iconWrapper: {
-    width: 50,
-    height: 50,
-    marginBottom: 16,
-    backgroundColor: MobileTheme.palette.primary.main,
-    borderRadius: MobileTheme.borderRadius.m,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: { marginBottom: 16, width: "100%", textAlign: "center" },
-  textInput: {
-    marginBottom: 16,
-    width: Dimensions.get("screen").width - 32,
-  },
-  submitButton: {
-    marginTop: "auto",
-  },
-});
+const createStyles = ({ insets }: { insets: EdgeInsets }) =>
+  StyleSheet.create({
+    wrapper: {
+      height: Dimensions.get("screen").height,
+      padding: 16,
+      paddingBottom: Dimensions.get("screen").height / 5,
+      position: "relative",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    iconWrapper: {
+      width: 50,
+      height: 50,
+      marginBottom: 16,
+      backgroundColor: MobileTheme.palette.primary.main,
+      borderRadius: MobileTheme.borderRadius.m,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    title: { marginBottom: 16, width: "100%", textAlign: "center" },
+    textInput: {
+      marginBottom: 16,
+      width: Dimensions.get("screen").width - 32,
+    },
+    submitButton: {
+      position: "absolute",
+      bottom: insets.bottom || 16,
+      left: 16,
+      marginTop: "auto",
+    },
+  });
