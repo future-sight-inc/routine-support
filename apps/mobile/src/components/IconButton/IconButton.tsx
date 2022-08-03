@@ -1,7 +1,9 @@
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React, { useState } from "react";
-import { GestureResponderEvent, Pressable, PressableProps, StyleSheet, View } from "react-native";
-import { MobileTheme } from "../../app/app";
+
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { GestureResponderEvent, Pressable, PressableProps, StyleSheet } from "react-native";
+
+import { MobileTheme } from "../../theme";
 
 type ButtonIcon = "settings" | "qr-code";
 

@@ -2,11 +2,14 @@ import React from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Student as StudentType } from "@routine-support/domains";
-import { getColor, Theme } from "@routine-support/ui-theme";
+import { getColor } from "@routine-support/ui-theme";
 import { IconButton } from "apps/mobile/src/components/IconButton";
 import { Typography } from "apps/mobile/src/components/Typography";
+import { MobileTheme } from "apps/mobile/src/theme";
 import { StyleSheet, View } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+
+import { StudentLocators } from "./locators";
 
 interface StudentProps {
   student: StudentType;
@@ -44,8 +47,13 @@ export const Student: React.FC<StudentProps> = ({
             icon="settings"
             style={styles.settingsButton}
             onPress={() => onSettingsOpen(student)}
+            testID={StudentLocators.SettingsButton}
           />
-          <IconButton icon="qr-code" onPress={() => onQrOpen(student)} />
+          <IconButton
+            icon="qr-code"
+            onPress={() => onQrOpen(student)}
+            testID={StudentLocators.QRButton}
+          />
         </View>
       </View>
     </Swipeable>
@@ -77,12 +85,12 @@ const styles = StyleSheet.create({
   deleteWrapper: {
     width: 80,
     height: 80,
-    backgroundColor: Theme.palette.common.red,
+    backgroundColor: MobileTheme.palette.common.red,
 
     alignItems: "center",
     justifyContent: "center",
   },
   deleteIcon: {
-    color: Theme.palette.common.white,
+    color: MobileTheme.palette.common.white,
   },
 });
