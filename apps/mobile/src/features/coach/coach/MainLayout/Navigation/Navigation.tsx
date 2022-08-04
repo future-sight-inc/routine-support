@@ -6,8 +6,11 @@ import { Coach } from "@routine-support/domains";
 import { Button } from "apps/mobile/src/components/Button";
 import { Modal } from "apps/mobile/src/components/Modal";
 import { Typography } from "apps/mobile/src/components/Typography";
+import { LinkService } from "apps/mobile/src/services/LinkService";
 import { MobileTheme } from "apps/mobile/src/theme";
 import { StyleSheet, View } from "react-native";
+
+import { Link } from "./components/Link";
 
 interface NavigationProps {
   coach: Coach;
@@ -37,32 +40,24 @@ export const Navigation: React.FC<NavigationProps> = ({ pressElement, coach, onL
           </Typography>
         </View>
         <View style={styles.linksWrapper}>
-          <View style={styles.linkWrapper}>
-            <View style={styles.linkIconWrapper}>
-              <MaterialCommunityIcons
-                name="calendar-month"
-                size={18}
-                color={MobileTheme.palette.primary.text}
-              />
-            </View>
-            <Typography variant="caption4Normal">Календарь</Typography>
-          </View>
-          <View style={styles.linkWrapper}>
-            <View style={styles.linkIconWrapper}>
-              <MaterialIcons name="people-alt" size={18} color={MobileTheme.palette.primary.text} />
-            </View>
-            <Typography variant="caption4Normal">Дети</Typography>
-          </View>
-          <View style={styles.linkWrapper}>
-            <View style={styles.linkIconWrapper}>
-              <MaterialCommunityIcons
-                name="bell"
-                size={18}
-                color={MobileTheme.palette.primary.text}
-              />
-            </View>
-            <Typography variant="caption4Normal">Уведомления</Typography>
-          </View>
+          <Link
+            text="Календарь"
+            path={LinkService.coach.day()}
+            iconName="calendar-month"
+            IconComponent={MaterialCommunityIcons}
+          />
+          <Link
+            text="Дети"
+            path={LinkService.coach.students()}
+            iconName="people-alt"
+            IconComponent={MaterialIcons}
+          />
+          <Link
+            text="Уведомления"
+            path={LinkService.coach.notifications()}
+            iconName="bell"
+            IconComponent={MaterialCommunityIcons}
+          />
         </View>
       </View>
     </Modal>

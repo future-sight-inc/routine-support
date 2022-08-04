@@ -13,6 +13,7 @@ export interface MainLayoutProps {
   children: ReactNode;
   footer?: ReactNode;
   onLogout: () => void;
+  onNotificationsIconPress: () => void;
 }
 
 export const MainLayout: React.FC<MainLayoutProps> = ({
@@ -21,6 +22,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
   children,
   footer,
   onLogout,
+  onNotificationsIconPress,
 }) => {
   return (
     <Layout
@@ -33,7 +35,9 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
           onLogout={onLogout}
         />
       }
-      rightIcon={<NotificationsIcon hasNewNotifications={false} onPress={() => null} />}
+      rightIcon={
+        <NotificationsIcon hasNewNotifications={false} onPress={onNotificationsIconPress} />
+      }
     >
       {children}
     </Layout>

@@ -18,7 +18,7 @@ export const MainLayout: React.FC<Omit<MainLayoutProps, "onLogout">> = ({
     operations: { logout },
   } = useCoach();
   const {
-    operations: { handleLogout },
+    operations: { handleLogout, handleNotificationsIconPress },
   } = useMainLayoutComponent({ logout });
 
   if (!coach) {
@@ -26,7 +26,13 @@ export const MainLayout: React.FC<Omit<MainLayoutProps, "onLogout">> = ({
   }
 
   return (
-    <UncontrolledMainLayout title={title} footer={footer} coach={coach} onLogout={handleLogout}>
+    <UncontrolledMainLayout
+      title={title}
+      footer={footer}
+      coach={coach}
+      onLogout={handleLogout}
+      onNotificationsIconPress={handleNotificationsIconPress}
+    >
       {children}
     </UncontrolledMainLayout>
   );
