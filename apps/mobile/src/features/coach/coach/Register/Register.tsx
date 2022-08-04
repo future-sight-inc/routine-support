@@ -32,11 +32,18 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
       submitButtonText="Зарегистрироваться"
       onSubmit={handleSubmit}
     >
-      <TextField control={control} name="name" placeholder="Имя" style={styles.textInput} />
+      <TextField
+        control={control}
+        name="name"
+        placeholder="Имя"
+        required
+        style={styles.textInput}
+      />
       <TextField
         control={control}
         name="email"
         placeholder="Почта"
+        required
         keyboardType="email-address"
         textContentType="emailAddress"
         autoCapitalize="none"
@@ -47,6 +54,7 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
         control={control}
         name="password"
         placeholder="Пароль"
+        required
         secureTextEntry={true}
         style={styles.textInput}
       />
