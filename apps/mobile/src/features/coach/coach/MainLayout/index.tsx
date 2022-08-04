@@ -1,26 +1,33 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Layout } from "apps/mobile/src/components/Layout";
-import { NotificationsIcon } from "apps/mobile/src/components/NotificationsIcon";
+import { useCoach } from "../useCoach";
+import { MainLayoutProps, MainLayout as UncontrolledMainLayout } from "./MainLayout";
+import { useMainLayoutComponent } from "./useMainLayoutComponent";
 
-import { Navigation } from "./Navigation";
-
-interface MainLayoutProps {
-  title: string;
-  children: ReactNode;
-  footer?: ReactNode;
+export interface MainLayoutActions {
+  logout: () => void;
 }
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ title, children, footer }) => {
+export const MainLayout: React.FC<Omit<MainLayoutProps, "onLogout">> = ({
+  title,
+  children,
+  footer,
+}) => {
+  const {
+    models: { coach },
+    operations: { logout },
+  } = useCoach();
+  const {
+    operations: { handleLogout },
+  } = useMainLayoutComponent({ logout });
+
+  if (!coach) {
+    return null;
+  }
+
   return (
-    <Layout
-      title={title}
-      footer={footer}
-      leftIcon={<Navigation pressElement={<MaterialIcons name="menu" size={30} />} />}
-      rightIcon={<NotificationsIcon hasNewNotifications={false} onPress={() => null} />}
-    >
+    <UncontrolledMainLayout title={title} footer={footer} coach={coach} onLogout={handleLogout}>
       {children}
-    </Layout>
+    </UncontrolledMainLayout>
   );
 };

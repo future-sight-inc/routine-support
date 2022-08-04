@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Coach } from "@routine-support/domains";
 import { Button } from "apps/mobile/src/components/Button";
 import { Modal } from "apps/mobile/src/components/Modal";
 import { Typography } from "apps/mobile/src/components/Typography";
@@ -9,15 +10,17 @@ import { MobileTheme } from "apps/mobile/src/theme";
 import { StyleSheet, View } from "react-native";
 
 interface NavigationProps {
+  coach: Coach;
   pressElement: ReactNode;
+  onLogout: () => void;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ pressElement }) => {
+export const Navigation: React.FC<NavigationProps> = ({ pressElement, coach, onLogout }) => {
   return (
     <Modal
       pressElement={pressElement}
       title="Меню"
-      footer={<Button text="Выйти" fullWidth />}
+      footer={<Button text="Выйти" fullWidth onPress={onLogout} />}
       footerStyle={styles.footer}
     >
       <View style={styles.wrapper}>
@@ -25,12 +28,12 @@ export const Navigation: React.FC<NavigationProps> = ({ pressElement }) => {
           <View style={styles.userIcon} />
           <View style={styles.userNameWrapper}>
             <Typography variant="caption4Normal" style={styles.userName}>
-              Маня
+              {coach.name}
             </Typography>
             <MaterialIcons name="edit" size={14} />
           </View>
           <Typography variant="text2Bold" color="secondary">
-            marie.ower@gmail.com
+            {coach.email}
           </Typography>
         </View>
         <View style={styles.linksWrapper}>
