@@ -1,23 +1,39 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
-import { Layout } from "apps/mobile/src/components/Layout";
+import { useCoach } from "../useCoach";
+import { MainLayoutProps, MainLayout as UncontrolledMainLayout } from "./MainLayout";
+import { useMainLayoutComponent } from "./useMainLayoutComponent";
 
-interface MainLayoutProps {
-  title: string;
-  children: ReactNode;
-  footer?: ReactNode;
+export interface MainLayoutActions {
+  logout: () => void;
 }
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ title, children, footer }) => {
+export const MainLayout: React.FC<Omit<MainLayoutProps, "onLogout">> = ({
+  title,
+  children,
+  footer,
+}) => {
+  const {
+    models: { coach },
+    operations: { logout },
+  } = useCoach();
+  const {
+    operations: { handleLogout, handleNotificationsIconPress },
+  } = useMainLayoutComponent({ logout });
+
+  if (!coach) {
+    return null;
+  }
+
   return (
-    <Layout
+    <UncontrolledMainLayout
       title={title}
       footer={footer}
-      hasNewNotifications={false}
-      onNotificationsIconPress={() => null}
-      onMenuIconPress={() => null}
+      coach={coach}
+      onLogout={handleLogout}
+      onNotificationsIconPress={handleNotificationsIconPress}
     >
       {children}
-    </Layout>
+    </UncontrolledMainLayout>
   );
 };

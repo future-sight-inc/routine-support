@@ -85,6 +85,7 @@ describe("InputModal", () => {
     expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
 
     await fireEvent.press(getByTestId(InputModalLocators.ConfirmText));
+    expect(handleSelect).toBeCalled();
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
     expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();

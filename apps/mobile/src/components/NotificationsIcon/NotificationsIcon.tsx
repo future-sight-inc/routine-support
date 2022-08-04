@@ -1,7 +1,7 @@
 import React from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { MobileTheme } from "../../theme";
 import { NotificationsIconLocators } from "./locators";
@@ -16,10 +16,12 @@ export const NotificationsIcon: React.FC<NotificationsIconProps> = ({
   hasNewNotifications,
 }) => {
   return (
-    <View style={styles.wrapper} onPress={onPress} testID={NotificationsIconLocators.Wrapper}>
-      <MaterialIcons name="notifications" size={30} />
-      {hasNewNotifications && <View style={styles.dot} testID={NotificationsIconLocators.Dot} />}
-    </View>
+    <TouchableWithoutFeedback onPress={onPress} testID={NotificationsIconLocators.Wrapper}>
+      <View style={styles.wrapper}>
+        <MaterialIcons name="notifications" size={30} />
+        {hasNewNotifications && <View style={styles.dot} testID={NotificationsIconLocators.Dot} />}
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 

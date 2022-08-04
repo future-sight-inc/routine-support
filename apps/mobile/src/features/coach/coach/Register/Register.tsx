@@ -1,6 +1,7 @@
 import React from "react";
 
 import { RegisterCoachDto } from "@routine-support/domains";
+import { ErrorMessage } from "apps/mobile/src/components/ErrorMessage";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
@@ -31,20 +32,33 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
       submitButtonText="Зарегистрироваться"
       onSubmit={handleSubmit}
     >
-      <TextField control={control} name="name" placeholder="Имя" style={styles.textInput} />
-      <TextField control={control} name="email" placeholder="Почта" style={styles.textInput} />
+      <TextField
+        control={control}
+        name="name"
+        placeholder="Имя"
+        required
+        style={styles.textInput}
+      />
+      <TextField
+        control={control}
+        name="email"
+        placeholder="Почта"
+        required
+        keyboardType="email-address"
+        textContentType="emailAddress"
+        autoCapitalize="none"
+        autoCorrect={false}
+        style={styles.textInput}
+      />
       <TextField
         control={control}
         name="password"
         placeholder="Пароль"
+        required
         secureTextEntry={true}
         style={styles.textInput}
       />
-      {submitError && (
-        <Typography variant="text1" color="error">
-          {submitError}
-        </Typography>
-      )}
+      {submitError && <ErrorMessage style={styles.errorMessage}>{submitError}</ErrorMessage>}
       <Link to={LinkService.coach.login()} underlayColor="transparent">
         <Typography variant="text1" color="secondary">
           Уже зарегистрированы?{" "}
@@ -61,5 +75,8 @@ const styles = StyleSheet.create({
   textInput: {
     marginBottom: 16,
     width: Dimensions.get("screen").width - 32,
+  },
+  errorMessage: {
+    marginBottom: 16,
   },
 });

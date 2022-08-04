@@ -108,7 +108,6 @@ export const Typography: React.FC<TypographyProps> = ({
       return MobileTheme.palette.primary.text;
     case "secondary":
       return MobileTheme.palette.secondary.text;
-
     case "primary":
       return MobileTheme.palette.primary.main;
     case "white":
