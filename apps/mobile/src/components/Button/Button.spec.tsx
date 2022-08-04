@@ -26,6 +26,14 @@ describe("Button", () => {
     expect(queryByTestId(ButtonLocators.IconWrapper)).toBeTruthy();
   });
 
+  it("Loading button, has only spinner", () => {
+    const { queryByTestId } = render(<Button text={BUTTON_TEXT} loading icon="add" />);
+
+    expect(queryByTestId(ButtonLocators.Spinner)).toBeTruthy();
+    expect(queryByTestId(ButtonLocators.Text)).toBeFalsy();
+    expect(queryByTestId(ButtonLocators.IconWrapper)).toBeFalsy();
+  });
+
   it("Press handler was called", () => {
     const handlePress = jest.fn();
 
