@@ -13,13 +13,14 @@ import { useLoginComponent } from "./hooks";
 
 export interface LoginActions {
   login: (data: LoginCoachDto) => void;
+  loading: boolean;
 }
 
 interface LoginProps {
   actions: LoginActions;
 }
 
-export const Login: React.FC<LoginProps> = ({ actions }) => {
+export const Login: React.FC<LoginProps> = ({ actions, loading }) => {
   const {
     models: { submitError, control },
     operations: { handleSubmit },
@@ -30,6 +31,7 @@ export const Login: React.FC<LoginProps> = ({ actions }) => {
       title="Войти в Routine Support"
       submitButtonText="Войти"
       onSubmit={handleSubmit}
+      loading={loading}
     >
       <TextField
         control={control}
@@ -40,6 +42,7 @@ export const Login: React.FC<LoginProps> = ({ actions }) => {
         autoCapitalize="none"
         autoCorrect={false}
         required
+        disabled={loading}
         style={styles.textInput}
       />
       <TextField
@@ -48,6 +51,7 @@ export const Login: React.FC<LoginProps> = ({ actions }) => {
         placeholder="Пароль"
         required
         secureTextEntry={true}
+        disabled={loading}
         style={styles.textInput}
       />
       {submitError && <ErrorMessage style={styles.errorMessage}>{submitError}</ErrorMessage>}
