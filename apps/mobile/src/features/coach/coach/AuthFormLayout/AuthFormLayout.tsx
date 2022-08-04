@@ -11,6 +11,7 @@ interface AuthFormLayoutProps {
   title: string;
   children: ReactNode;
   submitButtonText: string;
+  loading: boolean;
   onSubmit: () => void;
 }
 
@@ -18,6 +19,7 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
   title,
   children,
   submitButtonText,
+  loading,
   onSubmit,
 }) => {
   const insets = useSafeAreaInsets();
@@ -32,7 +34,13 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
         {title}
       </Typography>
       {children}
-      <Button text={submitButtonText} fullWidth onPress={onSubmit} style={styles.submitButton} />
+      <Button
+        text={submitButtonText}
+        fullWidth
+        onPress={onSubmit}
+        loading={loading}
+        style={styles.submitButton}
+      />
     </SafeAreaView>
   );
 };

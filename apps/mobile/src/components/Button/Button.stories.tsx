@@ -34,5 +34,9 @@ storiesOf("Components", module).add("Button", () => (
     <View style={styles.layout}>
       <Button style={styles.button} text="With Icon" icon="add" />
     </View>
+    <View style={styles.layout}>
+      <Button style={styles.button} text="Loading" loading />
+      <Button style={styles.button} variant="secondary" text="Loading" loading />
+    </View>
   </>
 ));

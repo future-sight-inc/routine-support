@@ -6,7 +6,7 @@ import { Login as UncontrolledLogin } from "./Login";
 
 export const Login: React.FC = () => {
   const {
-    models: { isLogged },
+    models: { isLogged, loading },
     operations: { login },
   } = useCoach();
   const insets = useSafeAreaInsets();
@@ -15,5 +15,5 @@ export const Login: React.FC = () => {
     return <Redirect to="/coach/day" />;
   }
 
-  return <UncontrolledLogin insets={insets} actions={{ login }} />;
+  return <UncontrolledLogin insets={insets} actions={{ login }} loading={loading} />;
 };

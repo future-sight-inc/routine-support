@@ -17,9 +17,10 @@ export interface RegisterActions {
 
 interface RegisterProps {
   actions: RegisterActions;
+  loading: boolean;
 }
 
-export const Register: React.FC<RegisterProps> = ({ actions }) => {
+export const Register: React.FC<RegisterProps> = ({ actions, loading }) => {
   const {
     models: { submitError, control },
     operations: { handleSubmit },
@@ -31,6 +32,7 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
     в Routine Support"
       submitButtonText="Зарегистрироваться"
       onSubmit={handleSubmit}
+      loading={loading}
     >
       <TextField
         control={control}
@@ -38,6 +40,7 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
         placeholder="Имя"
         required
         style={styles.textInput}
+        disabled={loading}
       />
       <TextField
         control={control}
@@ -49,6 +52,7 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
         autoCapitalize="none"
         autoCorrect={false}
         style={styles.textInput}
+        disabled={loading}
       />
       <TextField
         control={control}
@@ -57,6 +61,7 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
         required
         secureTextEntry={true}
         style={styles.textInput}
+        disabled={loading}
       />
       {submitError && <ErrorMessage style={styles.errorMessage}>{submitError}</ErrorMessage>}
       <Link to={LinkService.coach.login()} underlayColor="transparent">
