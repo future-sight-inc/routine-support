@@ -14,7 +14,7 @@ export const CoachEntry: React.FC = () => {
       <Route exact path={LinkService.coach.login()}>
         <Login />
       </Route>
-      <Route exact path={LinkService.coach.login()}>
+      <Route exact path={LinkService.coach.register()}>
         <Register />
       </Route>
       <PrivateRoute exact path={LinkService.coach.day()}>

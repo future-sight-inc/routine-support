@@ -34,6 +34,10 @@ export const Login: React.FC<LoginProps> = ({ actions }) => {
         control={control}
         name="email"
         placeholder="Почта"
+        keyboardType="email-address"
+        textContentType="emailAddress"
+        autoCapitalize="none"
+        autoCorrect={false}
         required
         style={styles.textInput}
       />

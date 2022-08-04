@@ -32,7 +32,16 @@ export const Register: React.FC<RegisterProps> = ({ actions }) => {
       onSubmit={handleSubmit}
     >
       <TextField control={control} name="name" placeholder="Имя" style={styles.textInput} />
-      <TextField control={control} name="email" placeholder="Почта" style={styles.textInput} />
+      <TextField
+        control={control}
+        name="email"
+        placeholder="Почта"
+        keyboardType="email-address"
+        textContentType="emailAddress"
+        autoCapitalize="none"
+        autoCorrect={false}
+        style={styles.textInput}
+      />
       <TextField
         control={control}
         name="password"
