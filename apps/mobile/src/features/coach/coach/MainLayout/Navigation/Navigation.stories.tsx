@@ -5,13 +5,13 @@ import { storiesOf } from "@storybook/react-native";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { Menu } from "./Menu";
+import { Navigation } from "./Navigation";
 
-storiesOf("Coach/MainLayout", module).add("Menu", () => {
+storiesOf("Coach/MainLayout", module).add("Navigation", () => {
   return (
     <SafeAreaProvider>
       <OverlayProvider>
-        <Menu pressElement={<Typography>Press me</Typography>} />
+        <Navigation pressElement={<Typography>Press me</Typography>} />
       </OverlayProvider>
     </SafeAreaProvider>
   );

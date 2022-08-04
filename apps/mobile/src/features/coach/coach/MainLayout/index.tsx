@@ -4,6 +4,8 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Layout } from "apps/mobile/src/components/Layout";
 import { NotificationsIcon } from "apps/mobile/src/components/NotificationsIcon";
 
+import { Navigation } from "./Navigation";
+
 interface MainLayoutProps {
   title: string;
   children: ReactNode;
@@ -15,7 +17,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ title, children, footer 
     <Layout
       title={title}
       footer={footer}
-      leftIcon={<MaterialIcons name="menu" size={30} />}
+      leftIcon={<Navigation pressElement={<MaterialIcons name="menu" size={30} />} />}
       rightIcon={<NotificationsIcon hasNewNotifications={false} onPress={() => null} />}
     >
       {children}

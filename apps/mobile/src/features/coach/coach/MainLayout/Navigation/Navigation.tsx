@@ -8,16 +8,16 @@ import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
 import { StyleSheet, View } from "react-native";
 
-interface MenuProps {
+interface NavigationProps {
   pressElement: ReactNode;
 }
 
-export const Menu: React.FC<MenuProps> = ({ pressElement }) => {
+export const Navigation: React.FC<NavigationProps> = ({ pressElement }) => {
   return (
     <Modal
       pressElement={pressElement}
       title="Меню"
-      footer={<Button text="Выйти" style={styles.logoutButton} fullWidth />}
+      footer={<Button text="Выйти" fullWidth />}
       footerStyle={styles.footer}
     >
       <View style={styles.wrapper}>
