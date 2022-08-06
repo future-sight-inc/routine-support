@@ -1,18 +1,14 @@
 import React from "react";
 
 import { OverlayProvider } from "@react-native-aria/overlays";
-import { createMockStudent, Student } from "@routine-support/domains";
-import { getColor } from "@routine-support/ui-theme";
+import { createMockStudent } from "@routine-support/domains";
 import { fireEvent, render } from "@testing-library/react-native";
 
+import { createOptionFromStudent } from "../../utils/createOptionFromStudent";
 import { InputModalLocators } from "../InputModal/locators";
 import { Typography } from "../Typography";
 import { createOptionTestId } from "./locators";
 import { Select } from "./Select";
-
-const createOptionFromStudent = (student: Student) => {
-  return { value: student._id, text: student.name, color: getColor(student.color) };
-};
 
 describe("Select", () => {
   it("Open modal, shows options", async () => {

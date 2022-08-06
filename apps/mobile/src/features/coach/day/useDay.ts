@@ -19,7 +19,7 @@ export const useDay = () => {
   const { day } = useAppSelector((state) => state.coachDay);
   const [currentDate, setCurrentDate] = useState(moment());
 
-  const [activityFilter, setActivityFilter] = useState<ActivityFilter>({});
+  const [activityFilter, setActivityFilter] = useState<ActivityFilter>([]);
 
   useEffect(() => {
     getDay();
@@ -40,9 +40,9 @@ export const useDay = () => {
   };
 
   const setDefaultActivityFilter = ({ students }: { students: Student[] }) => {
-    const activityFilter = { common: true };
+    const activityFilter = ["common"];
 
-    students.forEach((student) => (activityFilter[student._id] = true));
+    students.forEach((student) => activityFilter.push(student._id));
 
     setActivityFilter(activityFilter);
   };
