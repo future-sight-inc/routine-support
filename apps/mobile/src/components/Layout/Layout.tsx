@@ -37,11 +37,11 @@ export const Layout: React.FC<LayoutProps> = ({
         </Typography>
         {rightIcon || <View />}
       </View>
-      <View style={{ ...styles.body }} testID={LayoutLocators.Body}>
+      <View style={styles.body} testID={LayoutLocators.Body}>
         {children}
       </View>
       {footer && (
-        <View style={{ ...styles.footer, ...footerStyle }} testID={LayoutLocators.Footer}>
+        <View style={[styles.footer, footerStyle]} testID={LayoutLocators.Footer}>
           {footer}
         </View>
       )}
