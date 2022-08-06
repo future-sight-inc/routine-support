@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { isToday } from "@routine-support/utils";
 import { Button } from "apps/mobile/src/components/Button";
-import { Typography } from "apps/mobile/src/components/Typography";
+import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
 
 import { MainLayout } from "../coach/MainLayout";
 import { useStudents } from "../students/useStudents";
@@ -14,10 +14,10 @@ import { useDay } from "./useDay";
 
 export const Day: React.FC = () => {
   const {
-    models: { students },
+    models: { students, loading: loadingStudents },
   } = useStudents();
   const {
-    models: { day, currentDate, activityFilter },
+    models: { day, currentDate, activityFilter, loading: loadingDay },
     operations: { onDateSelect, onActivityFilterSelect, setDefaultActivityFilter },
   } = useDay();
 
@@ -25,8 +25,8 @@ export const Day: React.FC = () => {
     setDefaultActivityFilter({ students });
   }, [students]);
 
-  if (!day) {
-    return <Typography>Loading</Typography>;
+  if (loadingStudents || loadingDay) {
+    return <LoadingScreen />;
   }
 
   return (
@@ -39,9 +39,9 @@ export const Day: React.FC = () => {
         calendar={
           <Calendar
             isToday={isToday(currentDate)}
-            activities={day.activities}
+            activities={day!.activities}
             students={students}
-            timeRange={day.timeRange}
+            timeRange={day!.timeRange}
             onActivityPress={() => null}
             onConfirmationStatusPress={() => null}
           />

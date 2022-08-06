@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { LinkService } from "apps/mobile/src/services/LinkService";
 import { useHistory } from "react-router-native";
 
 import { useCoach } from "../useCoach";
@@ -7,7 +8,7 @@ import { Register as UncontrolledRegister } from "./Register";
 
 export const Register: React.FC = () => {
   const {
-    models: { isLogged },
+    models: { isLogged, loading },
     operations: { register },
   } = useCoach();
 
@@ -15,10 +16,9 @@ export const Register: React.FC = () => {
 
   useEffect(() => {
     if (isLogged) {
-      // todo use link service
-      return history.push("/coach/day");
+      return history.push(LinkService.coach.day());
     }
   }, [isLogged, history]);
 
-  return <UncontrolledRegister actions={{ register }} />;
+  return <UncontrolledRegister actions={{ register }} loading={loading} />;
 };

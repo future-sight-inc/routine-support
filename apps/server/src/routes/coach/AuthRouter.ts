@@ -20,7 +20,7 @@ authRouter.post("/", async (req, res) => {
   }
 
   return CoachModel.create(
-    { ...req.body, password: hashPassword(req.body.password) },
+    { ...req.body, email: req.body.email.toLowerCase(), password: hashPassword(req.body.password) },
     (err, result) => {
       if (err) {
         console.log(err);
@@ -38,15 +38,18 @@ authRouter.post("/", async (req, res) => {
 authRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  CoachModel.findOne({ email, password: hashPassword(password) }, (err, result) => {
-    if (err || !result) {
-      return res.status(401).send({ error: "Invalid credentials" });
+  CoachModel.findOne(
+    { email: email.toLowerCase(), password: hashPassword(password) },
+    (err, result) => {
+      if (err || !result) {
+        return res.status(401).send({ error: "Invalid credentials" });
+      }
+
+      const cookie = getAuthCookie(result);
+
+      return res.status(200).cookie(cookie.name, cookie.token).send(result);
     }
-
-    const cookie = getAuthCookie(result);
-
-    return res.status(200).cookie(cookie.name, cookie.token).send(result);
-  });
+  );
 });
 
 authRouter.get("/", coachAuthorization, (__, res) => {

@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { GestureResponderEvent, Pressable, PressableProps, StyleSheet, View } from "react-native";
+import {
+  ActivityIndicator,
+  GestureResponderEvent,
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  View,
+} from "react-native";
 
 import { MobileTheme } from "../../theme";
 import { Typography } from "../Typography";
@@ -17,6 +24,7 @@ interface ButtonProps extends PressableProps {
   fullWidth?: boolean;
   disabled?: boolean;
   icon?: ButtonIcon;
+  loading?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -26,10 +34,12 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   style,
   icon,
+  loading,
   onPressIn,
   onPressOut,
   ...props
 }) => {
+  const isDisabled = disabled || loading;
   const [isPressed, setPressed] = useState(false);
 
   const handlePressIn = (event: GestureResponderEvent) => {
@@ -51,34 +61,54 @@ export const Button: React.FC<ButtonProps> = ({
     }
   };
 
+  const renderInner = () => {
+    if (loading) {
+      return (
+        <ActivityIndicator
+          color={getTextColor(variant)}
+          style={styles.spinner}
+          testID={ButtonLocators.Spinner}
+        />
+      );
+    } else {
+      return (
+        <>
+          {icon && (
+            <View style={styles.iconWrapper} testID={ButtonLocators.IconWrapper}>
+              <MaterialIcons name={icon} size={24} color={getTextColor(variant)} />
+            </View>
+          )}
+          <Typography
+            style={{ ...styles.text, color: getTextColor(variant) }}
+            testID={ButtonLocators.Text}
+          >
+            {text}
+          </Typography>
+        </>
+      );
+    }
+  };
+
   return (
     <Pressable
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
-      style={{
-        ...styles.button,
-        backgroundColor: isPressed
-          ? MobileTheme.palette[variant].clicked
-          : MobileTheme.palette[variant].main,
-        width: fullWidth ? "100%" : styles.button.width,
-        opacity: disabled ? 0.3 : 1,
-        ...style,
-      }}
+      style={[
+        styles.button,
+        {
+          backgroundColor: isPressed
+            ? MobileTheme.palette[variant].clicked
+            : MobileTheme.palette[variant].main,
+          width: fullWidth ? "100%" : styles.button.width,
+          opacity: isDisabled ? 0.3 : 1,
+        },
+        style,
+      ]}
       {...props}
-      disabled={disabled}
+      disabled={isDisabled}
       testID={ButtonLocators.Wrapper}
     >
-      {icon && (
-        <View style={styles.iconWrapper} testID={ButtonLocators.IconWrapper}>
-          <MaterialIcons name={icon} size={24} color={getTextColor(variant)} />
-        </View>
-      )}
-      <Typography
-        style={{ ...styles.text, color: getTextColor(variant) }}
-        testID={ButtonLocators.Text}
-      >
-        {text}
-      </Typography>
+      {renderInner()}
     </Pressable>
   );
 };
@@ -98,6 +128,9 @@ const styles = StyleSheet.create({
     fontSize: MobileTheme.fonts.caption4.size,
   },
   iconWrapper: {
+    marginRight: 8,
+  },
+  spinner: {
     marginRight: 8,
   },
 });
