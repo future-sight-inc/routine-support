@@ -8,15 +8,15 @@ import * as S from "./styled";
 const LANGUAGES = [
   {
     text: "Nederlands",
-    value: "nl",
+    value: "nl-NL",
   },
   {
     text: "English",
-    value: "en",
+    value: "en-EN",
   },
   {
     text: "Русский",
-    value: "ru",
+    value: "ru-RU",
   },
 ];
 
@@ -26,6 +26,8 @@ export const LanguageSelector: React.FC = () => {
   const handleChange = (lang: string) => {
     i18n.changeLanguage(lang);
   };
+
+  console.log(i18n.language);
 
   return (
     <S.Wrapper>
