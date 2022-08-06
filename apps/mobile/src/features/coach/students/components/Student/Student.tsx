@@ -6,17 +6,17 @@ import { getColor } from "@routine-support/ui-theme";
 import { IconButton } from "apps/mobile/src/components/IconButton";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import { StudentLocators } from "./locators";
 
 interface StudentProps {
   student: StudentType;
-  onStudentOpen: (student: StudentType) => void;
-  onSettingsOpen: (student: StudentType) => void;
-  onQrOpen: (student: StudentType) => void;
-  onStudentDelete: (student: StudentType) => void;
+  onStudentOpen: () => void;
+  onSettingsOpen: () => void;
+  onQrOpen: () => void;
+  onStudentDelete: () => void;
 }
 
 export const Student: React.FC<StudentProps> = ({
@@ -27,14 +27,19 @@ export const Student: React.FC<StudentProps> = ({
   onStudentDelete,
 }) => {
   const renderRightActions = () => (
-    <View style={styles.deleteWrapper} onPress={() => onStudentDelete(student)}>
+    <TouchableOpacity
+      style={styles.deleteWrapper}
+      testID={StudentLocators.DeleteButton}
+      onPress={onStudentDelete}
+      activeOpacity={0.7}
+    >
       <MaterialIcons name="delete" size={30} style={styles.deleteIcon} />
-    </View>
+    </TouchableOpacity>
   );
 
   return (
     <Swipeable renderRightActions={renderRightActions}>
-      <View style={styles.wrapper} onPress={() => onStudentOpen(student)}>
+      <View style={styles.wrapper} onPress={onStudentOpen}>
         <MaterialIcons
           name="face"
           size={66}
@@ -46,14 +51,10 @@ export const Student: React.FC<StudentProps> = ({
           <IconButton
             icon="settings"
             style={styles.settingsButton}
-            onPress={() => onSettingsOpen(student)}
+            onPress={onSettingsOpen}
             testID={StudentLocators.SettingsButton}
           />
-          <IconButton
-            icon="qr-code"
-            onPress={() => onQrOpen(student)}
-            testID={StudentLocators.QRButton}
-          />
+          <IconButton icon="qr-code" onPress={onQrOpen} testID={StudentLocators.QRButton} />
         </View>
       </View>
     </Swipeable>

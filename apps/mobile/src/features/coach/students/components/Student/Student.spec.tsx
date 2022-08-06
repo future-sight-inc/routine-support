@@ -60,4 +60,22 @@ describe("Student", () => {
 
     expect(handleQROpen).toBeCalled();
   });
+
+  it("Call delete handler", async () => {
+    const handleDelete = jest.fn();
+
+    const { getByTestId } = render(
+      <Student
+        student={student}
+        onStudentOpen={() => null}
+        onSettingsOpen={() => null}
+        onQrOpen={() => null}
+        onStudentDelete={handleDelete}
+      />
+    );
+
+    await fireEvent.press(getByTestId(StudentLocators.DeleteButton));
+
+    expect(handleDelete).toBeCalled();
+  });
 });

@@ -9,9 +9,19 @@ import { Student } from "../Student";
 
 interface StudentsListProps {
   students: StudentType[];
+  onStudentOpen: (student: StudentType) => void;
+  onSettingsOpen: (student: StudentType) => void;
+  onQrOpen: (student: StudentType) => void;
+  onStudentDelete: (student: StudentType) => void;
 }
 
-export const StudentsList: React.FC<StudentsListProps> = ({ students }) => {
+export const StudentsList: React.FC<StudentsListProps> = ({
+  students,
+  onStudentOpen,
+  onSettingsOpen,
+  onQrOpen,
+  onStudentDelete,
+}) => {
   return (
     <FlatList
       ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -25,10 +35,10 @@ export const StudentsList: React.FC<StudentsListProps> = ({ students }) => {
         <Student
           key={item._id}
           student={item}
-          onStudentOpen={() => null}
-          onSettingsOpen={() => null}
-          onQrOpen={() => null}
-          onStudentDelete={() => null}
+          onStudentOpen={() => onStudentOpen(item)}
+          onSettingsOpen={() => onSettingsOpen(item)}
+          onQrOpen={() => onQrOpen(item)}
+          onStudentDelete={() => onStudentDelete(item)}
         />
       )}
     />
