@@ -1,0 +1,434 @@
+import React from "react";
+
+import { OverlayProvider } from "@react-native-aria/overlays";
+import { createMockStudent, Student } from "@routine-support/domains";
+import { getColor } from "@routine-support/ui-theme";
+import { fireEvent, render } from "@testing-library/react-native";
+
+import { InputModalLocators } from "../InputModal/locators";
+import { Typography } from "../Typography";
+import { createOptionTestId } from "./locators";
+import { Select } from "./Select";
+
+const createOptionFromStudent = (student: Student) => {
+  return { value: student._id, text: student.name, color: getColor(student.color) };
+};
+
+describe("Select", () => {
+  it("Open modal, shows options", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+  });
+
+  it("Open modal, press on student", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[0], isSelected: false }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: true }))).toBeTruthy();
+  });
+
+  it("Open modal, shows selected value", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = student1._id;
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: true }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+  });
+
+  it("Open modal, toggle selected option", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = student1._id;
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+  });
+
+  it("Open modal, select another option", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = student1._id;
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[1], isSelected: false }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: true }))).toBeTruthy();
+  });
+
+  it("Open modal, toggle selected option, press on confirm", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = student1._id;
+
+    const { getByTestId, queryByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+
+    await fireEvent.press(getByTestId(InputModalLocators.ConfirmText));
+    expect(handleSelect).toBeCalledWith(undefined);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+  });
+
+  it("Open modal, toggle selected option, close modal", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = student1._id;
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+
+    await fireEvent.press(getByTestId(InputModalLocators.CloseText));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: true }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+  });
+
+  it("Multiple: open modal, shows options", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          multiple
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+  });
+
+  it("Multiple: open modal, press on student", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          multiple
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[0], isSelected: false }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: true }))).toBeTruthy();
+  });
+
+  it("Multiple: open modal, shows selected value", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = [student1._id];
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          multiple
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: true }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+  });
+
+  it("Multiple: open modal, toggle selected option", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = [student1._id];
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          multiple
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+  });
+
+  it("Multiple: open modal, select another value option", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = [student1._id];
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          multiple
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[1], isSelected: false }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: true }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: true }))).toBeTruthy();
+  });
+
+  it("Multiple: open modal, toggle selected option, press on confirm", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = [student1._id];
+
+    const { getByTestId, queryByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          multiple
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+
+    await fireEvent.press(getByTestId(InputModalLocators.ConfirmText));
+    expect(handleSelect).toBeCalledWith([]);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+  });
+
+  it("Multiple: open modal, toggle selected option, close modal", async () => {
+    const handleSelect = jest.fn();
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const value = [student1._id];
+
+    const { getByTestId } = render(
+      <OverlayProvider>
+        <Select
+          onSelect={handleSelect}
+          options={options}
+          value={value}
+          multiple
+          pressElement={<Typography>Press</Typography>}
+        />
+      </OverlayProvider>
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    await fireEvent.press(
+      getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
+    );
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+
+    await fireEvent.press(getByTestId(InputModalLocators.CloseText));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: true }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+  });
+});
