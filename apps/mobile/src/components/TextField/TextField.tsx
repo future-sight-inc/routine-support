@@ -41,9 +41,9 @@ export const TextField: React.FC<TextFieldProps> = ({
 
   return (
     <TextInput
-      {...props}
-      style={{ ...styles.textInput, borderColor: getBorderColor(), ...style }}
+      style={[styles.textInput, { borderColor: getBorderColor() }, style]}
       placeholderTextColor={MobileTheme.palette.secondary.text}
+      {...props}
       onFocus={handleFocus}
       onBlur={handleBlur}
     />
@@ -53,7 +53,6 @@ export const TextField: React.FC<TextFieldProps> = ({
 const styles = StyleSheet.create({
   textInput: {
     borderWidth: 1,
-
     height: 50,
     paddingHorizontal: 8,
     borderRadius: MobileTheme.borderRadius.m,
