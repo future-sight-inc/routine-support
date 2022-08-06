@@ -54,3 +54,4 @@ apps/mobile/node_modules
 .DS_Store
 apps/web-e2e/cypress.env.json
 apps/mobile/ios/Pods
+apps/mobile/environment.ts
