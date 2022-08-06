@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Layout } from "apps/mobile/src/components/Layout";
@@ -8,10 +8,13 @@ import { ModalLocators } from "./locators";
 
 interface ModalProps {
   title: string;
-  pressElement: ReactNode;
-  footer: ReactNode;
+  pressElement?: ReactNode;
+  footer?: ReactNode;
   footerStyle?: StyleProp<ViewStyle>;
   children: ReactNode;
+  isOpened?: boolean;
+  onOpen?: () => void;
+  onClose?: () => void;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -20,20 +23,33 @@ export const Modal: React.FC<ModalProps> = ({
   children,
   footer,
   footerStyle,
+  isOpened: defaultOpened,
+  onOpen,
+  onClose,
 }) => {
-  const [isOpened, setOpened] = useState(false);
+  const [isOpened, setOpened] = useState(defaultOpened || false);
+
+  useEffect(() => {
+    if (defaultOpened) {
+      setOpened(defaultOpened);
+    }
+  }, [defaultOpened]);
 
   const handleOpen = () => {
     setOpened(true);
+    onOpen && onOpen();
   };
 
   const handleClose = () => {
     setOpened(false);
+    onClose && onClose();
   };
 
   return (
     <>
-      <TouchableWithoutFeedback onPress={handleOpen}>{pressElement}</TouchableWithoutFeedback>
+      {pressElement && (
+        <TouchableWithoutFeedback onPress={handleOpen}>{pressElement}</TouchableWithoutFeedback>
+      )}
       <NativeModal visible={isOpened} animationType="slide" testID={ModalLocators.Modal}>
         <Layout
           title={title}

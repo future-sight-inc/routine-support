@@ -6,10 +6,12 @@ import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
 
 import { MainLayout } from "../coach/MainLayout";
 import { useStudents } from "../students/useStudents";
+import { ActivityModal } from "./components/ActivityModal";
 import { Calendar } from "./components/Calendar";
 import { DayLayout } from "./components/DayLayout";
 import { DaySelect } from "./components/DaySelect";
 import { Filter } from "./components/Filter";
+import { useActivity } from "./useActivity";
 import { useDay } from "./useDay";
 
 export const Day: React.FC = () => {
@@ -20,6 +22,10 @@ export const Day: React.FC = () => {
     models: { day, currentDate, activityFilter, loading: loadingDay },
     operations: { onDateSelect, onActivityFilterSelect, setDefaultActivityFilter },
   } = useDay();
+  const {
+    models: { isOpened },
+    operations: { openNewActivityModal, closeActivityModal },
+  } = useActivity();
 
   useEffect(() => {
     setDefaultActivityFilter({ students });
@@ -30,7 +36,12 @@ export const Day: React.FC = () => {
   }
 
   return (
-    <MainLayout title="Calendar" footer={<Button text="Activity" icon="add" fullWidth />}>
+    <MainLayout
+      title="Calendar"
+      footer={
+        <Button text="Activity" icon="add" fullWidth onPress={() => openNewActivityModal()} />
+      }
+    >
       <DayLayout
         daySelect={<DaySelect date={currentDate} onSelect={onDateSelect} />}
         filter={
@@ -47,6 +58,7 @@ export const Day: React.FC = () => {
           />
         }
       />
+      <ActivityModal isOpened={isOpened} onClose={() => closeActivityModal()} />
     </MainLayout>
   );
 };
