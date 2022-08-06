@@ -70,7 +70,7 @@ export const InputModal: React.FC<InputModalProps> = ({
   return (
     <>
       <TouchableWithoutFeedback onPress={handleOpen} testID={InputModalLocators.PressElement}>
-        {pressElement}
+        <View>{pressElement}</View>
       </TouchableWithoutFeedback>
       {isBackgroundVisible && (
         <OverlayContainer>

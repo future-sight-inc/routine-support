@@ -1,6 +1,7 @@
 import { Option } from "./Select";
 
 export enum SelectLocators {
+  Input = "SelectInput",
   Option = "SelectOption",
   ActiveOption = "SelectActiveOption",
 }

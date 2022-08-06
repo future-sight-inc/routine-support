@@ -1,12 +1,13 @@
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { MobileTheme } from "../../theme";
 import { InputModal } from "../InputModal";
+import { TextField, TextFieldProps } from "../TextField";
 import { Typography } from "../Typography";
-import { createOptionTestId } from "./locators";
+import { createOptionTestId, SelectLocators } from "./locators";
 
 export type Option = {
   value: string;
@@ -17,7 +18,8 @@ export type Option = {
 type SelectValue = string | undefined | string[];
 
 interface SelectProps {
-  pressElement: ReactNode;
+  InputComponent?: React.FC<{ value?: string }>;
+  InputProps?: TextFieldProps;
   value?: SelectValue;
   options: Option[];
   multiple?: boolean;
@@ -25,7 +27,8 @@ interface SelectProps {
 }
 
 export const Select: React.FC<SelectProps> = ({
-  pressElement,
+  InputComponent = TextField,
+  InputProps,
   value: defaultValue,
   options,
   multiple,
@@ -38,7 +41,23 @@ export const Select: React.FC<SelectProps> = ({
 
     return defaultValue || undefined;
   };
+
+  const findOptionByValue = (value: SelectValue) => {
+    return options.find((option) => option.value === value);
+  };
+
+  const getDefaultDisplayedValue = () => {
+    if (multiple) {
+      const selectedOptions = (getDefaultValue() as string[]).map(findOptionByValue);
+
+      return selectedOptions.map((option) => option!.text).join(", ");
+    } else {
+      return findOptionByValue(getDefaultValue())?.text || "";
+    }
+  };
+
   const [value, setValue] = useState<string | undefined | string[]>(getDefaultValue());
+  const [displayedValue, setDisplayedValue] = useState(getDefaultDisplayedValue());
 
   const isOptionSelected = (option: Option) => {
     if (multiple) {
@@ -68,6 +87,14 @@ export const Select: React.FC<SelectProps> = ({
 
   const handleConfirm = () => {
     onSelect(value);
+
+    if (multiple) {
+      const selectedOptions = (value as string[]).map(findOptionByValue);
+
+      setDisplayedValue(selectedOptions.map((option) => option!.text).join(", "));
+    } else {
+      setDisplayedValue(findOptionByValue(value)?.text || "");
+    }
   };
 
   const handleClose = () => {
@@ -80,7 +107,14 @@ export const Select: React.FC<SelectProps> = ({
 
   return (
     <InputModal
-      pressElement={pressElement}
+      pressElement={
+        <InputComponent
+          {...InputProps}
+          value={displayedValue}
+          pointerEvents="none"
+          testID={SelectLocators.Input}
+        />
+      }
       input={
         <FlatList
           data={options}
