@@ -1,6 +1,5 @@
 import React from "react";
 
-import { OverlayProvider } from "@react-native-aria/overlays";
 import { storiesOf } from "@storybook/react-native";
 import { StyleSheet } from "react-native";
 
@@ -11,7 +10,7 @@ import { Select } from "./Select";
 
 storiesOf("Components", module).add("Select", () => {
   return (
-    <OverlayProvider>
+    <>
       <Select
         InputComponent={() => <Typography style={styles.text}>Open regular select</Typography>}
         onSelect={() => null}
@@ -37,7 +36,7 @@ storiesOf("Components", module).add("Select", () => {
           { value: "2", text: "Andrew", color: MobileTheme.palette.common.brown },
         ]}
       />
-    </OverlayProvider>
+    </>
   );
 });
 

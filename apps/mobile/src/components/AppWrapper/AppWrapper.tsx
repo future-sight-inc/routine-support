@@ -1,7 +1,6 @@
 import React from "react";
 
 import * as eva from "@eva-design/eva";
-import { OverlayProvider } from "@react-native-aria/overlays";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import i18n from "i18next";
@@ -44,19 +43,17 @@ export const AppWrapper: React.FC = ({ children }) => {
   return (
     <NativeRouter>
       <SafeAreaProvider>
-        <OverlayProvider>
-          <ApplicationProvider {...eva} theme={eva.light}>
-            <ToastProvider
-              renderToast={(toast) => (
-                <Toast title={toast.data.title} description={toast.data.description} />
-              )}
-              offsetTop={64}
-            >
-              <IconRegistry icons={EvaIconsPack} />
-              <Provider store={store}>{children}</Provider>
-            </ToastProvider>
-          </ApplicationProvider>
-        </OverlayProvider>
+        <ApplicationProvider {...eva} theme={eva.light}>
+          <ToastProvider
+            renderToast={(toast) => (
+              <Toast title={toast.data.title} description={toast.data.description} />
+            )}
+            offsetTop={64}
+          >
+            <IconRegistry icons={EvaIconsPack} />
+            <Provider store={store}>{children}</Provider>
+          </ToastProvider>
+        </ApplicationProvider>
       </SafeAreaProvider>
     </NativeRouter>
   );

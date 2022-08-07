@@ -1,6 +1,5 @@
 import React from "react";
 
-import { OverlayProvider } from "@react-native-aria/overlays";
 import { createMockStudent } from "@routine-support/domains";
 import { fireEvent, render } from "@testing-library/react-native";
 
@@ -17,11 +16,7 @@ describe("Select", () => {
     const student3 = createMockStudent();
     const options = [student1, student2, student3].map(createOptionFromStudent);
 
-    const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} />
-      </OverlayProvider>
-    );
+    const { getByTestId } = render(<Select onSelect={handleSelect} options={options} />);
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
     expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
@@ -38,11 +33,7 @@ describe("Select", () => {
     const student3 = createMockStudent();
     const options = [student1, student2, student3].map(createOptionFromStudent);
 
-    const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} />
-      </OverlayProvider>
-    );
+    const { getByTestId } = render(<Select onSelect={handleSelect} options={options} />);
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
     expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
@@ -62,9 +53,7 @@ describe("Select", () => {
     const value = student1._id;
 
     const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} />
     );
 
     expect(getByTestId(SelectLocators.Input).props.value).toBe(student1.name);
@@ -82,9 +71,7 @@ describe("Select", () => {
     const value = student1._id;
 
     const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
@@ -105,9 +92,7 @@ describe("Select", () => {
     const value = student1._id;
 
     const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
@@ -129,9 +114,7 @@ describe("Select", () => {
     const value = student1._id;
 
     const { getByTestId, queryByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} />
     );
 
     expect(getByTestId(SelectLocators.Input).props.value).toBe(student1.name);
@@ -160,9 +143,7 @@ describe("Select", () => {
     const value = student1._id;
 
     const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
@@ -192,11 +173,7 @@ describe("Select", () => {
     const student3 = createMockStudent();
     const options = [student1, student2, student3].map(createOptionFromStudent);
 
-    const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} multiple />
-      </OverlayProvider>
-    );
+    const { getByTestId } = render(<Select onSelect={handleSelect} options={options} multiple />);
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
     expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
@@ -213,11 +190,7 @@ describe("Select", () => {
     const student3 = createMockStudent();
     const options = [student1, student2, student3].map(createOptionFromStudent);
 
-    const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} multiple />
-      </OverlayProvider>
-    );
+    const { getByTestId } = render(<Select onSelect={handleSelect} options={options} multiple />);
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
     expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
@@ -237,9 +210,7 @@ describe("Select", () => {
     const value = [student1._id];
 
     const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} multiple />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
     expect(getByTestId(SelectLocators.Input).props.value).toBe(student1.name);
@@ -257,9 +228,7 @@ describe("Select", () => {
     const value = [student1._id];
 
     const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} multiple />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
@@ -280,9 +249,7 @@ describe("Select", () => {
     const value = [student1._id];
 
     const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} multiple />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
@@ -304,9 +271,7 @@ describe("Select", () => {
     const value = [student1._id];
 
     const { getByTestId, queryByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} multiple />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
@@ -333,9 +298,7 @@ describe("Select", () => {
     const value = [student1._id];
 
     const { getByTestId, queryByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} multiple />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
@@ -365,9 +328,7 @@ describe("Select", () => {
     const value = [student1._id];
 
     const { getByTestId } = render(
-      <OverlayProvider>
-        <Select onSelect={handleSelect} options={options} value={value} multiple />
-      </OverlayProvider>
+      <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));

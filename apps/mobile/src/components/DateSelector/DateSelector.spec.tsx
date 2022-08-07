@@ -1,6 +1,5 @@
 import React from "react";
 
-import { OverlayProvider } from "@react-native-aria/overlays";
 import { stringifyDate, stringifyTime } from "@routine-support/utils";
 import { fireEvent, render } from "@testing-library/react-native";
 import moment from "moment";
@@ -13,11 +12,7 @@ describe("DateSelector", () => {
   it("Renders current date, without mode prop", () => {
     const value = moment();
     const handleSelect = jest.fn();
-    const { getByTestId } = render(
-      <OverlayProvider>
-        <DateSelector onSelect={handleSelect} value={value} />
-      </OverlayProvider>
-    );
+    const { getByTestId } = render(<DateSelector onSelect={handleSelect} value={value} />);
 
     expect(getByTestId(DateSelectorLocators.Input).props.value).toBe(stringifyDate(value));
   });
@@ -26,9 +21,7 @@ describe("DateSelector", () => {
     const value = moment();
     const handleSelect = jest.fn();
     const { getByTestId } = render(
-      <OverlayProvider>
-        <DateSelector onSelect={handleSelect} value={value} mode="date" />
-      </OverlayProvider>
+      <DateSelector onSelect={handleSelect} value={value} mode="date" />
     );
 
     expect(getByTestId(DateSelectorLocators.Input).props.value).toBe(stringifyDate(value));
@@ -38,9 +31,7 @@ describe("DateSelector", () => {
     const value = moment();
     const handleSelect = jest.fn();
     const { getByTestId } = render(
-      <OverlayProvider>
-        <DateSelector onSelect={handleSelect} value={value} mode="time" />
-      </OverlayProvider>
+      <DateSelector onSelect={handleSelect} value={value} mode="time" />
     );
 
     expect(getByTestId(DateSelectorLocators.Input).props.value).toBe(stringifyTime(value));
@@ -50,9 +41,7 @@ describe("DateSelector", () => {
     const value = moment();
     const handleSelect = jest.fn();
     const { getByTestId, queryByTestId } = render(
-      <OverlayProvider>
-        <DateSelector onSelect={handleSelect} value={value} />
-      </OverlayProvider>
+      <DateSelector onSelect={handleSelect} value={value} />
     );
 
     expect(getByTestId(DateSelectorLocators.Input).props.value).toBe(stringifyDate(moment()));
