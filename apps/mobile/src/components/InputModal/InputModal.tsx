@@ -1,6 +1,5 @@
 import React, { ReactNode, useRef, useState } from "react";
 
-import { OverlayContainer } from "@react-native-aria/overlays";
 import { rgba } from "polished";
 import {
   Animated,
@@ -72,8 +71,8 @@ export const InputModal: React.FC<InputModalProps> = ({
       <TouchableWithoutFeedback onPress={handleOpen} testID={InputModalLocators.PressElement}>
         <View>{pressElement}</View>
       </TouchableWithoutFeedback>
-      {isBackgroundVisible && (
-        <OverlayContainer>
+      <Modal visible={isBackgroundVisible} transparent animationType="none">
+        {isBackgroundVisible && (
           <Animated.View
             style={[
               styles.background,
@@ -83,35 +82,40 @@ export const InputModal: React.FC<InputModalProps> = ({
             ]}
             testID={InputModalLocators.Background}
           />
-        </OverlayContainer>
-      )}
-      <Modal visible={isOpened} animationType="slide" transparent testID={InputModalLocators.Modal}>
-        <View style={styles.modalContentWrapper}>
-          <TouchableWithoutFeedback onPress={handleClose} testID={InputModalLocators.ModalDim}>
-            <View style={styles.modalDim} />
-          </TouchableWithoutFeedback>
-          <View style={styles.modalContent}>
-            <View style={styles.modalHeader}>
-              <Typography
-                variant="text1Bold"
-                color="primary"
-                onPress={handleClose}
-                testID={InputModalLocators.CloseText}
-              >
-                Закрыть
-              </Typography>
-              <Typography
-                variant="text1Bold"
-                color="primary"
-                onPress={handleConfirm}
-                testID={InputModalLocators.ConfirmText}
-              >
-                Выбрать
-              </Typography>
+        )}
+        <Modal
+          visible={isOpened}
+          animationType="slide"
+          transparent
+          testID={InputModalLocators.Modal}
+        >
+          <View style={styles.modalContentWrapper}>
+            <TouchableWithoutFeedback onPress={handleClose} testID={InputModalLocators.ModalDim}>
+              <View style={styles.modalDim} />
+            </TouchableWithoutFeedback>
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <Typography
+                  variant="text1Bold"
+                  color="primary"
+                  onPress={handleClose}
+                  testID={InputModalLocators.CloseText}
+                >
+                  Закрыть
+                </Typography>
+                <Typography
+                  variant="text1Bold"
+                  color="primary"
+                  onPress={handleConfirm}
+                  testID={InputModalLocators.ConfirmText}
+                >
+                  Выбрать
+                </Typography>
+              </View>
+              {input}
             </View>
-            {input}
           </View>
-        </View>
+        </Modal>
       </Modal>
     </>
   );

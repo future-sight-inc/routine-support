@@ -7,6 +7,7 @@ function loadStories() {
   require("../apps/mobile/src/components/Button/Button.stories");
   require("../apps/mobile/src/components/DateSelector/DateSelector.stories");
   require("../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories");
+  require("../apps/mobile/src/components/FormFields/DateSelector/DateSelector.stories");
   require("../apps/mobile/src/components/FormFields/TextField/TextField.stories");
   require("../apps/mobile/src/components/Label/Label.stories");
   require("../apps/mobile/src/components/Layout/Layout.stories");
@@ -17,6 +18,7 @@ function loadStories() {
   require("../apps/mobile/src/components/Typography/Typography.stories");
   require("../apps/mobile/src/features/coach/coach/MainLayout/Navigation/Navigation.stories");
   require("../apps/mobile/src/features/coach/day/components/Activity/Activity.stories");
+  require("../apps/mobile/src/features/coach/day/components/ActivityModal/ActivityModal.stories");
   require("../apps/mobile/src/features/coach/day/components/Calendar/Calendar.stories");
   require("../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories");
   require("../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories");
@@ -27,6 +29,7 @@ const stories = [
   "../apps/mobile/src/components/Button/Button.stories",
   "../apps/mobile/src/components/DateSelector/DateSelector.stories",
   "../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories",
+  "../apps/mobile/src/components/FormFields/DateSelector/DateSelector.stories",
   "../apps/mobile/src/components/FormFields/TextField/TextField.stories",
   "../apps/mobile/src/components/Label/Label.stories",
   "../apps/mobile/src/components/Layout/Layout.stories",
@@ -37,6 +40,7 @@ const stories = [
   "../apps/mobile/src/components/Typography/Typography.stories",
   "../apps/mobile/src/features/coach/coach/MainLayout/Navigation/Navigation.stories",
   "../apps/mobile/src/features/coach/day/components/Activity/Activity.stories",
+  "../apps/mobile/src/features/coach/day/components/ActivityModal/ActivityModal.stories",
   "../apps/mobile/src/features/coach/day/components/Calendar/Calendar.stories",
   "../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories",
   "../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories",

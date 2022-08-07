@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 
 import DatePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { stringifyDate, stringifyTime } from "@routine-support/utils";
@@ -10,8 +10,8 @@ import { DateSelectorLocators } from "./locators";
 
 type DateSelectorMode = "date" | "time";
 
-interface DateSelectorProps {
-  InputComponent?: ReactNode;
+export interface DateSelectorProps {
+  InputComponent?: React.FC<{ value?: string }>;
   InputProps?: TextFieldProps;
   onSelect: (value: Moment) => void;
   value?: Moment;
