@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import React from "react";
 
+import { PICTOGRAMS } from "@routine-support/pictograms";
 import { cleanup, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -8,9 +9,8 @@ import { AppWrapper } from "../AppWrapper";
 import { ModalLocators } from "../Modal/locators";
 import { createPictogramDataTestId, PictogramPickerLocators } from "./locators";
 import { PictogramPicker } from "./PictogramPicker";
-import pictogramsInfo from "./pictograms_info.json";
 
-const SELECTED = pictogramsInfo.pictograms[0];
+const SELECTED = PICTOGRAMS[0];
 
 afterEach(cleanup);
 
@@ -18,7 +18,7 @@ describe("PictogramPicker", () => {
   it("Without value", () => {
     const { queryByTestId } = render(
       <AppWrapper>
-        <PictogramPicker onChange={() => null} />
+        <PictogramPicker onChange={() => null} pictograms={PICTOGRAMS} />
       </AppWrapper>
     );
 
@@ -29,7 +29,7 @@ describe("PictogramPicker", () => {
   it("With value", () => {
     const { queryByTestId } = render(
       <AppWrapper>
-        <PictogramPicker value={SELECTED.url} onChange={() => null} />
+        <PictogramPicker value={SELECTED.url} onChange={() => null} pictograms={PICTOGRAMS} />
       </AppWrapper>
     );
 
@@ -40,7 +40,7 @@ describe("PictogramPicker", () => {
   it("Open modal, close modal without value", async () => {
     const { getByTestId } = render(
       <AppWrapper>
-        <PictogramPicker onChange={() => null} />
+        <PictogramPicker onChange={() => null} pictograms={PICTOGRAMS} />
       </AppWrapper>
     );
 
@@ -56,7 +56,7 @@ describe("PictogramPicker", () => {
   it("Open modal, close modal with value", async () => {
     const { getByTestId } = render(
       <AppWrapper>
-        <PictogramPicker value={SELECTED.url} onChange={() => null} />
+        <PictogramPicker value={SELECTED.url} onChange={() => null} pictograms={PICTOGRAMS} />
       </AppWrapper>
     );
     const activePictogramId = createPictogramDataTestId({
@@ -79,7 +79,7 @@ describe("PictogramPicker", () => {
   it("Open modal, choose value, open and check", async () => {
     const { getByTestId } = render(
       <AppWrapper>
-        <PictogramPicker onChange={() => null} />
+        <PictogramPicker onChange={() => null} pictograms={PICTOGRAMS} />
       </AppWrapper>
     );
     const pictogramToClickId = createPictogramDataTestId({ name: SELECTED.en });
