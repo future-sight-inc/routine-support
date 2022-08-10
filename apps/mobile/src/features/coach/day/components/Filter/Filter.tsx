@@ -16,12 +16,12 @@ interface FilterProps {
 export const Filter: React.FC<FilterProps> = ({ students, value, onSelect }) => {
   return (
     <Select
-      pressElement={
+      InputComponent={() => (
         <View style={styles.wrapper}>
           <MaterialIcons name="people" size={24} />
           <MaterialIcons name="arrow-drop-down" size={20} />
         </View>
-      }
+      )}
       options={[
         { value: "common", text: "Common", color: COMMON_ACTIVITY_COLOR },
         ...students.map(createOptionFromStudent),

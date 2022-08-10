@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Activity } from "@routine-support/domains";
+import { PICTOGRAMS } from "@routine-support/pictograms";
 import { coachActivityAPI } from "apps/mobile/src/services/ApiService";
 
 export const useActivity = () => {
@@ -67,6 +68,7 @@ export const useActivity = () => {
       activity,
       isOpened,
       loading,
+      pictograms: PICTOGRAMS,
     },
     operations: {
       setActivity,

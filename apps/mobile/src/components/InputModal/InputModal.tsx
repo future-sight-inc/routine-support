@@ -6,6 +6,7 @@ import {
   Dimensions,
   Modal,
   StyleSheet,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -68,9 +69,9 @@ export const InputModal: React.FC<InputModalProps> = ({
 
   return (
     <>
-      <TouchableWithoutFeedback onPress={handleOpen} testID={InputModalLocators.PressElement}>
-        <View>{pressElement}</View>
-      </TouchableWithoutFeedback>
+      <TouchableOpacity onPress={handleOpen} testID={InputModalLocators.PressElement}>
+        {pressElement}
+      </TouchableOpacity>
       <Modal visible={isBackgroundVisible} transparent animationType="none">
         {isBackgroundVisible && (
           <Animated.View

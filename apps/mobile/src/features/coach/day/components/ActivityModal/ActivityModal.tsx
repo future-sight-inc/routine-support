@@ -1,6 +1,8 @@
 import React from "react";
 
+import { Pictogram } from "@routine-support/types";
 import { DateSelector } from "apps/mobile/src/components/FormFields/DateSelector";
+import { PictogramSelector } from "apps/mobile/src/components/FormFields/PictogramSelector";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Modal } from "apps/mobile/src/components/Modal";
 import { MobileTheme } from "apps/mobile/src/theme";
@@ -9,10 +11,11 @@ import { Dimensions, StyleSheet, View } from "react-native";
 
 interface ActivityModalProps {
   isOpened: boolean;
+  pictograms: Pictogram[];
   onClose: () => void;
 }
 
-export const ActivityModal: React.FC<ActivityModalProps> = ({ isOpened, onClose }) => {
+export const ActivityModal: React.FC<ActivityModalProps> = ({ isOpened, pictograms, onClose }) => {
   const { control } = useForm();
 
   return (
@@ -45,6 +48,14 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({ isOpened, onClose 
           InputProps={{ style: styles.dateInput }}
         />
       </View>
+      <View>
+        <PictogramSelector
+          name="pictogram"
+          control={control}
+          label="Изображение"
+          pictograms={pictograms}
+        />
+      </View>
     </Modal>
   );
 };
@@ -59,6 +70,7 @@ const styles = StyleSheet.create({
   },
   dateInputsWrapper: {
     flexDirection: "row",
+    marginBottom: 16,
   },
   dateInput: {
     width: Dimensions.get("screen").width / 3 - 16,

@@ -8,6 +8,7 @@ function loadStories() {
   require("../apps/mobile/src/components/DateSelector/DateSelector.stories");
   require("../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories");
   require("../apps/mobile/src/components/FormFields/DateSelector/DateSelector.stories");
+  require("../apps/mobile/src/components/FormFields/PictogramSelector/PictogramSelector.stories");
   require("../apps/mobile/src/components/FormFields/Select/Select.stories");
   require("../apps/mobile/src/components/FormFields/TextField/TextField.stories");
   require("../apps/mobile/src/components/Label/Label.stories");
@@ -32,6 +33,7 @@ const stories = [
   "../apps/mobile/src/components/DateSelector/DateSelector.stories",
   "../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories",
   "../apps/mobile/src/components/FormFields/DateSelector/DateSelector.stories",
+  "../apps/mobile/src/components/FormFields/PictogramSelector/PictogramSelector.stories",
   "../apps/mobile/src/components/FormFields/Select/Select.stories",
   "../apps/mobile/src/components/FormFields/TextField/TextField.stories",
   "../apps/mobile/src/components/Label/Label.stories",
