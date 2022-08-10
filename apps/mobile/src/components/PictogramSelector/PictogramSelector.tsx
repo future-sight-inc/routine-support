@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Pictogram } from "@routine-support/types";
 import {
   Dimensions,
   FlatList,
@@ -15,14 +16,17 @@ import { MobileTheme } from "../../theme";
 import { Button } from "../Button";
 import { Modal } from "../Modal";
 import { Typography } from "../Typography";
+import { createPictogramTestId, PictogramSelectorLocators } from "./locators";
 
 interface PictogramSelectorProps {
   value?: string;
+  pictograms: Pictogram[];
   onSelect: (value?: string) => void;
 }
 
 export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
   value: defaultValue,
+  pictograms,
   onSelect,
 }) => {
   const [isOpened, setOpened] = useState(false);
@@ -38,6 +42,7 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
 
   const handleClose = () => {
     setOpened(false);
+    setValue(defaultValue);
   };
 
   const handleSelect = (newValue?: string) => {
@@ -46,17 +51,25 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
 
   const handleConfirm = () => {
     onSelect(value);
-    handleClose();
+    setOpened(false);
   };
 
   return (
     <>
-      <TouchableOpacity onPress={handleOpen}>
+      <TouchableOpacity onPress={handleOpen} testID={PictogramSelectorLocators.ValueWrapper}>
         <View style={[styles.pictogramPreviewWrapper, styles.currentValueWrapper]}>
           {value ? (
-            <Image style={styles.pictogramPreview} />
+            <Image
+              style={styles.pictogramPreview}
+              source={{ uri: value }}
+              testID={PictogramSelectorLocators.Image}
+            />
           ) : (
-            <Typography color="secondary" variant="text1">
+            <Typography
+              color="secondary"
+              variant="text1"
+              testID={PictogramSelectorLocators.NoValueText}
+            >
               Изображение не выбрано
             </Typography>
           )}
@@ -66,13 +79,31 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
         title="Пиктограммы"
         isOpened={isOpened}
         onClose={handleClose}
-        footer={<Button text="Выбрать" fullWidth onPress={handleConfirm} />}
+        footer={
+          <Button
+            text="Выбрать"
+            fullWidth
+            onPress={handleConfirm}
+            testID={PictogramSelectorLocators.ConfirmButton}
+          />
+        }
       >
-        <View style={styles.pictogramPreviewWrapper}>
+        <View
+          style={styles.pictogramPreviewWrapper}
+          testID={PictogramSelectorLocators.PreviewWrapper}
+        >
           {value ? (
-            <Image style={styles.pictogramPreview} />
+            <Image
+              style={styles.pictogramPreview}
+              source={{ uri: value }}
+              testID={PictogramSelectorLocators.Image}
+            />
           ) : (
-            <Typography color="secondary" variant="text1">
+            <Typography
+              color="secondary"
+              variant="text1"
+              testID={PictogramSelectorLocators.NoValueText}
+            >
               Изображение не выбрано
             </Typography>
           )}
@@ -81,19 +112,23 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
           <FlatList
             data={[
               { value: undefined },
-              { value: "1" },
-              { value: "2" },
-              { value: "3" },
-              { value: "4" },
+              ...pictograms.map((pictogram) => ({
+                value: pictogram.url,
+              })),
             ]}
             renderItem={({ item }) =>
               item.value ? (
                 <TouchableWithoutFeedback onPress={() => handleSelect(item.value)}>
-                  <View
+                  <Image
                     style={[
                       styles.pictogramWrapper,
                       value === item.value && styles.selectedPictogram,
                     ]}
+                    source={{ uri: item.value }}
+                    testID={createPictogramTestId({
+                      value: item.value,
+                      isSelected: value === item.value,
+                    })}
                   />
                 </TouchableWithoutFeedback>
               ) : (
@@ -104,6 +139,11 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
                       styles.notSelectedWrapper,
                       value === item.value && styles.selectedPictogram,
                     ]}
+                    testID={
+                      !value
+                        ? PictogramSelectorLocators.NoImageOptionSelected
+                        : PictogramSelectorLocators.NoImageOption
+                    }
                   >
                     <MaterialIcons
                       name="not-interested"
@@ -115,7 +155,7 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
               )
             }
             numColumns={4}
-            keyExtractor={(item) => item.value}
+            keyExtractor={(__, index) => index}
           />
         </View>
       </Modal>

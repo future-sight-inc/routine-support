@@ -2,7 +2,13 @@ import React, { ReactNode, useEffect, useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Layout } from "apps/mobile/src/components/Layout";
-import { Modal as NativeModal, StyleProp, TouchableWithoutFeedback, ViewStyle } from "react-native";
+import {
+  Modal as NativeModal,
+  StyleProp,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
+} from "react-native";
 
 import { ModalLocators } from "./locators";
 
@@ -52,12 +58,11 @@ export const Modal: React.FC<ModalProps> = ({
         <Layout
           title={title}
           leftIcon={
-            <MaterialIcons
-              name="close"
-              size={30}
-              onPress={handleClose}
-              testID={ModalLocators.CloseIcon}
-            />
+            <TouchableWithoutFeedback onPress={handleClose}>
+              <View testID={ModalLocators.CloseIcon}>
+                <MaterialIcons name="close" size={30} />
+              </View>
+            </TouchableWithoutFeedback>
           }
           rightIcon={<MaterialIcons name="close" size={30} color="transparent" />}
           footer={footer}
