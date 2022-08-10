@@ -17,7 +17,7 @@ export type Option = {
 
 type SelectValue = string | undefined | string[];
 
-interface SelectProps {
+export interface SelectProps {
   InputComponent?: React.FC<{ value?: string }>;
   InputProps?: TextFieldProps;
   value?: SelectValue;
