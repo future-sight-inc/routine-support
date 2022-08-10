@@ -23,16 +23,14 @@ export const Modal: React.FC<ModalProps> = ({
   children,
   footer,
   footerStyle,
-  isOpened: defaultOpened,
+  isOpened: defaultOpened = false,
   onOpen,
   onClose,
 }) => {
-  const [isOpened, setOpened] = useState(defaultOpened || false);
+  const [isOpened, setOpened] = useState(defaultOpened);
 
   useEffect(() => {
-    if (defaultOpened) {
-      setOpened(defaultOpened);
-    }
+    setOpened(defaultOpened);
   }, [defaultOpened]);
 
   const handleOpen = () => {
