@@ -12,6 +12,7 @@ export const Select: React.FC<SelectProps> = ({
   control,
   required,
   disabled,
+  InputProps,
   helperText,
   ...props
 }) => {
@@ -23,8 +24,13 @@ export const Select: React.FC<SelectProps> = ({
       required={required}
       disabled={disabled}
       helperText={helperText}
-      render={({ field }) => (
-        <UncontrolledSelect {...props} {...field} onSelect={(value) => field.onChange(value)} />
+      render={({ field, fieldState }) => (
+        <UncontrolledSelect
+          {...props}
+          {...field}
+          onSelect={(value) => field.onChange(value)}
+          InputProps={{ ...InputProps, error: Boolean(fieldState.error) }}
+        />
       )}
     />
   );

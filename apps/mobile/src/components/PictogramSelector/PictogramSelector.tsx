@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
   currentValueWrapper: {
     backgroundColor: MobileTheme.palette.secondary.main,
     borderRadius: MobileTheme.borderRadius.m,
+    marginBottom: 0,
   },
   pictogramPreviewWrapper: {
     width: "100%",

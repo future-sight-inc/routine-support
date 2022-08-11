@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   error: {
-    marginTop: -12,
+    marginTop: 4,
     marginBottom: 8,
   },
 });

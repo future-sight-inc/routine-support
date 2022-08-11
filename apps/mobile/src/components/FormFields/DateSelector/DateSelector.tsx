@@ -15,6 +15,7 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
   control,
   required,
   disabled,
+  InputProps,
   helperText,
   ...props
 }) => {
@@ -26,11 +27,12 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
       required={required}
       disabled={disabled}
       helperText={helperText}
-      render={({ field }) => (
+      render={({ field, fieldState }) => (
         <UncontrolledDateSelector
           {...props}
           {...field}
           onSelect={(value) => field.onChange(value)}
+          InputProps={{ ...InputProps, error: Boolean(fieldState.error) }}
         />
       )}
     />
