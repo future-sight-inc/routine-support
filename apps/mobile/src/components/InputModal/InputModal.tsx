@@ -96,22 +96,24 @@ export const InputModal: React.FC<InputModalProps> = ({
             </TouchableWithoutFeedback>
             <View style={styles.modalContent}>
               <View style={styles.modalHeader}>
-                <Typography
-                  variant="text1Bold"
-                  color="primary"
-                  onPress={handleClose}
-                  testID={InputModalLocators.CloseText}
-                >
-                  Закрыть
-                </Typography>
-                <Typography
-                  variant="text1Bold"
-                  color="primary"
-                  onPress={handleConfirm}
-                  testID={InputModalLocators.ConfirmText}
-                >
-                  Выбрать
-                </Typography>
+                <TouchableOpacity onPress={handleClose}>
+                  <Typography
+                    variant="text1Bold"
+                    color="primary"
+                    testID={InputModalLocators.CloseText}
+                  >
+                    Закрыть
+                  </Typography>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleConfirm}>
+                  <Typography
+                    variant="text1Bold"
+                    color="primary"
+                    testID={InputModalLocators.ConfirmText}
+                  >
+                    Выбрать
+                  </Typography>
+                </TouchableOpacity>
               </View>
               {input}
             </View>
