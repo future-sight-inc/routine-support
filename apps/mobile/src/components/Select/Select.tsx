@@ -135,7 +135,11 @@ export const Select: React.FC<SelectProps> = ({
                     },
                   ]}
                 >
-                  <MaterialIcons name="check" size={16} color="white" />
+                  {multiple ? (
+                    <MaterialIcons name="check" size={16} color="white" />
+                  ) : (
+                    <View style={styles.radioInner} />
+                  )}
                 </View>
                 <Typography variant="caption4Normal">{option.text}</Typography>
               </View>
@@ -168,5 +172,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: 16,
+  },
+  radioInner: {
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    borderWidth: 2,
+    borderColor: MobileTheme.palette.common.white,
   },
 });
