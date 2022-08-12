@@ -6,6 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { MobileTheme } from "../../theme";
 import { createOptionFromStudent } from "../../utils/createOptionFromStudent";
 import { Select } from "../Select";
+import { StudentBadge } from "../StudentBadge";
 import { Typography } from "../Typography";
 
 interface StudentsSelectorProps {
@@ -29,9 +30,7 @@ export const StudentsSelector: React.FC<StudentsSelectorProps> = ({ students }) 
         ids.length ? (
           <View style={styles.wrapper}>
             {ids.map((id) => (
-              <Typography variant="text1" color="secondary">
-                {id}
-              </Typography>
+              <StudentBadge student={students.find((student) => student._id === id)!} />
             ))}
           </View>
         ) : (
@@ -58,5 +57,8 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     flexWrap: "wrap",
+    padding: 8,
+    backgroundColor: MobileTheme.palette.secondary.main,
+    borderRadius: MobileTheme.borderRadius.m,
   },
 });

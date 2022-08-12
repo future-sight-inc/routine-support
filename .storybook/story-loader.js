@@ -17,6 +17,7 @@ function loadStories() {
   require("../apps/mobile/src/components/NotificationsIcon/NotificationsIcon.stories");
   require("../apps/mobile/src/components/PictogramSelector/PictogramSelector.stories");
   require("../apps/mobile/src/components/Select/Select.stories");
+  require("../apps/mobile/src/components/StudentBadge/StudentBadge.stories");
   require("../apps/mobile/src/components/StudentsSelector/StudentsSelector.stories");
   require("../apps/mobile/src/components/TextField/TextField.stories");
   require("../apps/mobile/src/components/Typography/Typography.stories");
@@ -43,6 +44,7 @@ const stories = [
   "../apps/mobile/src/components/NotificationsIcon/NotificationsIcon.stories",
   "../apps/mobile/src/components/PictogramSelector/PictogramSelector.stories",
   "../apps/mobile/src/components/Select/Select.stories",
+  "../apps/mobile/src/components/StudentBadge/StudentBadge.stories",
   "../apps/mobile/src/components/StudentsSelector/StudentsSelector.stories",
   "../apps/mobile/src/components/TextField/TextField.stories",
   "../apps/mobile/src/components/Typography/Typography.stories",
