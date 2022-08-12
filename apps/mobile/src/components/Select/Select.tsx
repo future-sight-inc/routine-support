@@ -23,6 +23,7 @@ export interface SelectProps {
   value?: SelectValue;
   options: Option[];
   multiple?: boolean;
+  searchable?: boolean;
   onSelect: (value: SelectValue) => void;
 }
 
@@ -32,6 +33,7 @@ export const Select: React.FC<SelectProps> = ({
   value: defaultValue,
   options,
   multiple,
+  searchable,
   onSelect,
 }) => {
   const getDefaultValue = () => {
@@ -58,6 +60,7 @@ export const Select: React.FC<SelectProps> = ({
 
   const [value, setValue] = useState<string | undefined | string[]>(getDefaultValue());
   const [displayedValue, setDisplayedValue] = useState(getDefaultDisplayedValue());
+  const [searchString, setSearchString] = useState("");
 
   const isOptionSelected = (option: Option) => {
     if (multiple) {
@@ -101,8 +104,16 @@ export const Select: React.FC<SelectProps> = ({
     setValue(getDefaultValue());
   };
 
+  const handleSearchStingChange = (newSearchString: string) => {
+    setSearchString(newSearchString);
+  };
+
   const getOptionColor = (option: Option): string => {
     return option.color || MobileTheme.palette.primary.main;
+  };
+
+  const filterOptions = (options: Option[]) => {
+    return options.filter((option) => new RegExp(`^${searchString}`, "i").test(option.text));
   };
 
   return (
@@ -116,38 +127,54 @@ export const Select: React.FC<SelectProps> = ({
         />
       }
       input={
-        <FlatList
-          data={options}
-          renderItem={({ item: option }) => (
-            <TouchableWithoutFeedback
-              onPress={() => handleSelect(option)}
-              testID={createOptionTestId({ option, isSelected: isOptionSelected(option) })}
-            >
-              <View style={styles.optionWrapper}>
-                <View
-                  style={[
-                    styles.checkWrapper,
-                    {
-                      borderColor: getOptionColor(option),
-                      backgroundColor: isOptionSelected(option)
-                        ? getOptionColor(option)
-                        : MobileTheme.palette.common.white,
-                    },
-                  ]}
-                >
-                  {multiple ? (
-                    <MaterialIcons name="check" size={16} color="white" />
-                  ) : (
-                    <View style={styles.radioInner} />
-                  )}
-                </View>
-                <Typography variant="caption4Normal">{option.text}</Typography>
-              </View>
-            </TouchableWithoutFeedback>
+        <>
+          {searchable && (
+            <TextField
+              style={styles.searchField}
+              value={searchString}
+              onChangeText={handleSearchStingChange}
+              placeholder="Поиск"
+              autoCapitalize="none"
+              autoCorrect={false}
+              icon={
+                <MaterialIcons name="search" size={16} color={MobileTheme.palette.secondary.text} />
+              }
+              testID={SelectLocators.SearchField}
+            />
           )}
-          keyExtractor={(item) => item.value}
-          style={styles.wrapper}
-        />
+          <FlatList
+            data={filterOptions(options)}
+            renderItem={({ item: option }) => (
+              <TouchableWithoutFeedback
+                onPress={() => handleSelect(option)}
+                testID={createOptionTestId({ option, isSelected: isOptionSelected(option) })}
+              >
+                <View style={styles.optionWrapper}>
+                  <View
+                    style={[
+                      styles.checkWrapper,
+                      {
+                        borderColor: getOptionColor(option),
+                        backgroundColor: isOptionSelected(option)
+                          ? getOptionColor(option)
+                          : MobileTheme.palette.common.white,
+                      },
+                    ]}
+                  >
+                    {multiple ? (
+                      <MaterialIcons name="check" size={16} color="white" />
+                    ) : (
+                      <View style={styles.radioInner} />
+                    )}
+                  </View>
+                  <Typography variant="caption4Normal">{option.text}</Typography>
+                </View>
+              </TouchableWithoutFeedback>
+            )}
+            keyExtractor={(item) => item.value}
+            style={styles.wrapper}
+          />
+        </>
       }
       onConfirm={handleConfirm}
       onClose={handleClose}
@@ -179,5 +206,9 @@ const styles = StyleSheet.create({
     borderRadius: 9,
     borderWidth: 2,
     borderColor: MobileTheme.palette.common.white,
+  },
+  searchField: {
+    backgroundColor: MobileTheme.palette.secondary.main,
+    marginBottom: 8,
   },
 });

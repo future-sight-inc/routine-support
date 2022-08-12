@@ -350,4 +350,126 @@ describe("Select", () => {
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
   });
+
+  it("Not searchable, has no search field", () => {
+    const { queryByTestId } = render(<Select onSelect={() => null} options={[]} />);
+
+    expect(queryByTestId(SelectLocators.SearchField)).toBeFalsy();
+  });
+
+  it("Searchable, has no search field", () => {
+    const { queryByTestId } = render(
+      <Select onSelect={() => null} options={[]} searchable multiple />
+    );
+
+    expect(queryByTestId(SelectLocators.SearchField));
+  });
+
+  it("Searchable, has no options after filtration", async () => {
+    const student1 = createMockStudent();
+    const student2 = createMockStudent();
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const { getByTestId, queryByTestId } = render(
+      <Select onSelect={() => null} options={options} searchable multiple />
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+
+    fireEvent.changeText(getByTestId(SelectLocators.SearchField), "123");
+
+    expect(
+      queryByTestId(createOptionTestId({ option: options[0], isSelected: false }))
+    ).toBeFalsy();
+    expect(
+      queryByTestId(createOptionTestId({ option: options[1], isSelected: false }))
+    ).toBeFalsy();
+    expect(
+      queryByTestId(createOptionTestId({ option: options[2], isSelected: false }))
+    ).toBeFalsy();
+  });
+
+  it("Searchable, has two options after filtration", async () => {
+    const student1 = createMockStudent({ name: "Masha1" });
+    const student2 = createMockStudent({ name: "Masha2" });
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const { getByTestId, queryByTestId } = render(
+      <Select onSelect={() => null} options={options} searchable multiple />
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+
+    fireEvent.changeText(getByTestId(SelectLocators.SearchField), "Masha");
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(
+      queryByTestId(createOptionTestId({ option: options[2], isSelected: false }))
+    ).toBeFalsy();
+  });
+
+  it("Searchable, has two options after filtration, case insensitive", async () => {
+    const student1 = createMockStudent({ name: "Masha1" });
+    const student2 = createMockStudent({ name: "Masha2" });
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const { getByTestId, queryByTestId } = render(
+      <Select onSelect={() => null} options={options} searchable multiple />
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+
+    fireEvent.changeText(getByTestId(SelectLocators.SearchField), "masha");
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(
+      queryByTestId(createOptionTestId({ option: options[2], isSelected: false }))
+    ).toBeFalsy();
+  });
+
+  it("Searchable, has two options after filtration, search string is a middle substring", async () => {
+    const student1 = createMockStudent({ name: "Masha1" });
+    const student2 = createMockStudent({ name: "Masha2" });
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const { getByTestId, queryByTestId } = render(
+      <Select onSelect={() => null} options={options} searchable multiple />
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+
+    fireEvent.changeText(getByTestId(SelectLocators.SearchField), "asha");
+
+    expect(
+      queryByTestId(createOptionTestId({ option: options[0], isSelected: false }))
+    ).toBeFalsy();
+    expect(
+      queryByTestId(createOptionTestId({ option: options[1], isSelected: false }))
+    ).toBeFalsy();
+    expect(
+      queryByTestId(createOptionTestId({ option: options[2], isSelected: false }))
+    ).toBeFalsy();
+  });
 });

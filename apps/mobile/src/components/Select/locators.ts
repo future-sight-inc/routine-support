@@ -2,6 +2,7 @@ import { Option } from "./Select";
 
 export enum SelectLocators {
   Input = "SelectInput",
+  SearchField = "SelectSearchField",
   Option = "SelectOption",
   ActiveOption = "SelectActiveOption",
 }
