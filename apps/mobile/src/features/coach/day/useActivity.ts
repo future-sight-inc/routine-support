@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Activity } from "@routine-support/domains";
+import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 import { PICTOGRAMS } from "@routine-support/pictograms";
 import { coachActivityAPI } from "apps/mobile/src/services/ApiService";
 
@@ -69,6 +69,13 @@ export const useActivity = () => {
       isOpened,
       loading,
       pictograms: PICTOGRAMS,
+      repeatTypeOptions: [
+        { text: "Never", value: RepeatTypeEnum.None },
+        { text: "Every day", value: RepeatTypeEnum.EveryDay },
+        { text: "Every week", value: RepeatTypeEnum.EveryWeek },
+        { text: "Every month", value: RepeatTypeEnum.EveryMonth },
+        { text: "Every year", value: RepeatTypeEnum.EveryYear },
+      ],
     },
     operations: {
       setActivity,

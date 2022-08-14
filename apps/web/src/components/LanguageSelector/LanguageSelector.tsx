@@ -27,8 +27,6 @@ export const LanguageSelector: React.FC = () => {
     i18n.changeLanguage(lang);
   };
 
-  console.log(i18n.language);
-
   return (
     <S.Wrapper>
       <Select
