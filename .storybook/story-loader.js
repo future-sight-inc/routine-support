@@ -4,9 +4,11 @@
 // https://github.com/elderfo/react-native-storybook-loader.git
 
 function loadStories() {
+  require("../apps/mobile/src/components/ActivityTypeSelector/ActivityTypeSelector.stories");
   require("../apps/mobile/src/components/Button/Button.stories");
   require("../apps/mobile/src/components/DateSelector/DateSelector.stories");
   require("../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories");
+  require("../apps/mobile/src/components/FormFields/ActivityTypeSelector/ActivityTypeSelector.stories");
   require("../apps/mobile/src/components/FormFields/DateSelector/DateSelector.stories");
   require("../apps/mobile/src/components/FormFields/PictogramSelector/PictogramSelector.stories");
   require("../apps/mobile/src/components/FormFields/Select/Select.stories");
@@ -31,9 +33,11 @@ function loadStories() {
 }
 
 const stories = [
+  "../apps/mobile/src/components/ActivityTypeSelector/ActivityTypeSelector.stories",
   "../apps/mobile/src/components/Button/Button.stories",
   "../apps/mobile/src/components/DateSelector/DateSelector.stories",
   "../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories",
+  "../apps/mobile/src/components/FormFields/ActivityTypeSelector/ActivityTypeSelector.stories",
   "../apps/mobile/src/components/FormFields/DateSelector/DateSelector.stories",
   "../apps/mobile/src/components/FormFields/PictogramSelector/PictogramSelector.stories",
   "../apps/mobile/src/components/FormFields/Select/Select.stories",
