@@ -23,7 +23,7 @@ export const Day: React.FC = () => {
     operations: { onDateSelect, onActivityFilterSelect, setDefaultActivityFilter },
   } = useDay();
   const {
-    models: { isOpened, pictograms },
+    models: { isOpened, pictograms, repeatTypeOptions },
     operations: { openNewActivityModal, closeActivityModal },
   } = useActivity();
 
@@ -62,6 +62,7 @@ export const Day: React.FC = () => {
         isOpened={isOpened}
         onClose={() => closeActivityModal()}
         pictograms={pictograms}
+        repeatTypeOptions={repeatTypeOptions}
       />
     </MainLayout>
   );

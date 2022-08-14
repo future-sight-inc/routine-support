@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Option } from "@routine-support/types";
 import { FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { MobileTheme } from "../../theme";
@@ -9,22 +10,14 @@ import { TextField, TextFieldProps } from "../TextField";
 import { Typography } from "../Typography";
 import { createOptionTestId, SelectLocators } from "./locators";
 
-export type Option = {
-  value: string;
-  text: string;
-  color?: string;
-};
-
-type SelectValue = string | undefined | string[];
-
 export interface SelectProps {
   InputComponent?: React.FC<{ value?: string }>;
   InputProps?: TextFieldProps;
-  value?: SelectValue;
+  value?: any;
   options: Option[];
   multiple?: boolean;
   searchable?: boolean;
-  onSelect: (value: SelectValue) => void;
+  onSelect: (value: any) => void;
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -38,13 +31,13 @@ export const Select: React.FC<SelectProps> = ({
 }) => {
   const getDefaultValue = () => {
     if (multiple) {
-      return defaultValue || [];
+      return defaultValue ?? [];
     }
 
-    return defaultValue || undefined;
+    return defaultValue ?? undefined;
   };
 
-  const findOptionByValue = (value: SelectValue) => {
+  const findOptionByValue = (value: any) => {
     return options.find((option) => option.value === value);
   };
 
@@ -58,17 +51,18 @@ export const Select: React.FC<SelectProps> = ({
     }
   };
 
-  const [value, setValue] = useState<string | undefined | string[]>(getDefaultValue());
+  const [value, setValue] = useState<any>(getDefaultValue());
   const [displayedValue, setDisplayedValue] = useState(getDefaultDisplayedValue());
   const [searchString, setSearchString] = useState("");
 
   useEffect(() => {
     setValue(getDefaultValue());
+    setDisplayedValue(getDefaultDisplayedValue());
   }, [defaultValue]);
 
   const isOptionSelected = (option: Option) => {
     if (multiple) {
-      return (value as string[]).includes(option.value);
+      return value.includes(option.value);
     } else {
       return value === option.value;
     }
@@ -79,9 +73,9 @@ export const Select: React.FC<SelectProps> = ({
 
     if (multiple) {
       if (isCurrentOptionSelected) {
-        setValue((value) => (value as string[]).filter((selected) => selected !== option.value));
+        setValue((value) => value.filter((selected) => selected !== option.value));
       } else {
-        setValue([...(value as string[]), option.value]);
+        setValue([...value, option.value]);
       }
     } else {
       if (isCurrentOptionSelected) {
@@ -97,7 +91,7 @@ export const Select: React.FC<SelectProps> = ({
     setSearchString("");
 
     if (multiple) {
-      const selectedOptions = (value as string[]).map(findOptionByValue);
+      const selectedOptions = value.map(findOptionByValue);
 
       setDisplayedValue(selectedOptions.map((option) => option?.text).join(", "));
     } else {
