@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
@@ -52,7 +52,7 @@ export const Select: React.FC<SelectProps> = ({
     if (multiple) {
       const selectedOptions = (getDefaultValue() as string[]).map(findOptionByValue);
 
-      return selectedOptions.map((option) => option!.text).join(", ");
+      return selectedOptions.map((option) => option?.text).join(", ");
     } else {
       return findOptionByValue(getDefaultValue())?.text || "";
     }
@@ -61,6 +61,10 @@ export const Select: React.FC<SelectProps> = ({
   const [value, setValue] = useState<string | undefined | string[]>(getDefaultValue());
   const [displayedValue, setDisplayedValue] = useState(getDefaultDisplayedValue());
   const [searchString, setSearchString] = useState("");
+
+  useEffect(() => {
+    setValue(getDefaultValue());
+  }, [defaultValue]);
 
   const isOptionSelected = (option: Option) => {
     if (multiple) {
@@ -90,11 +94,12 @@ export const Select: React.FC<SelectProps> = ({
 
   const handleConfirm = () => {
     onSelect(value);
+    setSearchString("");
 
     if (multiple) {
       const selectedOptions = (value as string[]).map(findOptionByValue);
 
-      setDisplayedValue(selectedOptions.map((option) => option!.text).join(", "));
+      setDisplayedValue(selectedOptions.map((option) => option?.text).join(", "));
     } else {
       setDisplayedValue(findOptionByValue(value)?.text || "");
     }
@@ -102,6 +107,7 @@ export const Select: React.FC<SelectProps> = ({
 
   const handleClose = () => {
     setValue(getDefaultValue());
+    setSearchString("");
   };
 
   const handleSearchStingChange = (newSearchString: string) => {

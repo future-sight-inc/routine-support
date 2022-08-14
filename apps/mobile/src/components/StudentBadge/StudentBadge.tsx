@@ -9,11 +9,12 @@ import { Typography } from "../Typography";
 
 interface StudentBadgeProps {
   student: Student;
+  testID?: string;
 }
 
-export const StudentBadge: React.FC<StudentBadgeProps> = ({ student }) => {
+export const StudentBadge: React.FC<StudentBadgeProps> = ({ student, testID }) => {
   return (
-    <View style={[styles.wrapper, { backgroundColor: getColor(student.color) }]}>
+    <View style={[styles.wrapper, { backgroundColor: getColor(student.color) }]} testID={testID}>
       <Typography variant="text2">{student.name}</Typography>
     </View>
   );

@@ -472,4 +472,50 @@ describe("Select", () => {
       queryByTestId(createOptionTestId({ option: options[2], isSelected: false }))
     ).toBeFalsy();
   });
+
+  it("Searchable, should reset search field after modal close", async () => {
+    const student1 = createMockStudent({ name: "Masha1" });
+    const student2 = createMockStudent({ name: "Masha2" });
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const { getByTestId } = render(
+      <Select onSelect={() => null} options={options} searchable multiple />
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+
+    await fireEvent.changeText(getByTestId(SelectLocators.SearchField), "asha");
+
+    await fireEvent.press(getByTestId(InputModalLocators.CloseText));
+
+    expect(getByTestId(SelectLocators.SearchField).props.value).toBe("");
+  });
+
+  it("Searchable, should reset search field after confirm", async () => {
+    const student1 = createMockStudent({ name: "Masha1" });
+    const student2 = createMockStudent({ name: "Masha2" });
+    const student3 = createMockStudent();
+    const options = [student1, student2, student3].map(createOptionFromStudent);
+    const { getByTestId } = render(
+      <Select onSelect={() => null} options={options} searchable multiple />
+    );
+
+    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+
+    expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
+    expect(getByTestId(createOptionTestId({ option: options[2], isSelected: false }))).toBeTruthy();
+
+    await fireEvent.changeText(getByTestId(SelectLocators.SearchField), "asha");
+
+    await fireEvent.press(getByTestId(InputModalLocators.ConfirmText));
+
+    expect(getByTestId(SelectLocators.SearchField).props.value).toBe("");
+  });
 });
