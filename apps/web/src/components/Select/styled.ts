@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
 export const TextField = styled(UITextField)`
   width: 100%;
   caret-color: transparent;
+  user-select: none;
   cursor: pointer;
 `;
 
