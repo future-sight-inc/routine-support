@@ -25,7 +25,7 @@ export const TextField = styled.input<{
   border: none;
   outline: none;
   border: 1px solid;
-  user-select: none;
+  user-select: auto;
   width: 100%;
 
   ${({ theme, error, showBorder, withIcon }) => css`
