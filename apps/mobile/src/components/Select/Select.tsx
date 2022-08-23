@@ -58,6 +58,7 @@ export const Select: React.FC<SelectProps> = ({
   useEffect(() => {
     setValue(getDefaultValue());
     setDisplayedValue(getDefaultDisplayedValue());
+    setDisplayedValue(getDefaultDisplayedValue());
   }, [defaultValue]);
 
   const isOptionSelected = (option: Option) => {

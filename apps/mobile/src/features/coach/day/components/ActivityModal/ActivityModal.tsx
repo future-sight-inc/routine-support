@@ -132,4 +132,7 @@ const styles = StyleSheet.create({
   fieldWrapper: {
     marginBottom: 16,
   },
+  fieldWrapper: {
+    marginBottom: 16,
+  },
 });
