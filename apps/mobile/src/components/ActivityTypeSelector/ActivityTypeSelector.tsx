@@ -62,11 +62,11 @@ export const ActivityTypeSelector: React.FC<ActivityTypeSelectorProps> = ({
 const styles = StyleSheet.create({
   wrapper: { flexDirection: "row" },
   option: {
-    height: 40,
+    height: 50,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    width: Dimensions.get("screen").width / 2 - 4,
+    width: Dimensions.get("screen").width / 2 - 20,
     borderRadius: MobileTheme.borderRadius.s,
     borderWidth: 1,
     borderColor: MobileTheme.palette.border.normal,

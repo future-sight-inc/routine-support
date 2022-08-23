@@ -29,5 +29,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: MobileTheme.borderRadius.s,
     marginRight: 8,
+    marginBottom: 8,
   },
 });

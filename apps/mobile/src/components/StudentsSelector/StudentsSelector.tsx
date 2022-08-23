@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   wrapper: {
+    minHeight: 80,
     flexDirection: "row",
     flexWrap: "wrap",
     padding: 8,

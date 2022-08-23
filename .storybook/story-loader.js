@@ -26,7 +26,6 @@ function loadStories() {
   require("../apps/mobile/src/components/Typography/Typography.stories");
   require("../apps/mobile/src/features/coach/coach/MainLayout/Navigation/Navigation.stories");
   require("../apps/mobile/src/features/coach/day/components/Activity/Activity.stories");
-  require("../apps/mobile/src/features/coach/day/components/ActivityModal/ActivityModal.stories");
   require("../apps/mobile/src/features/coach/day/components/Calendar/Calendar.stories");
   require("../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories");
   require("../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories");
@@ -56,7 +55,6 @@ const stories = [
   "../apps/mobile/src/components/Typography/Typography.stories",
   "../apps/mobile/src/features/coach/coach/MainLayout/Navigation/Navigation.stories",
   "../apps/mobile/src/features/coach/day/components/Activity/Activity.stories",
-  "../apps/mobile/src/features/coach/day/components/ActivityModal/ActivityModal.stories",
   "../apps/mobile/src/features/coach/day/components/Calendar/Calendar.stories",
   "../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories",
   "../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories",
