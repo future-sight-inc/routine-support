@@ -1,1 +1,1 @@
-export { StudentsSelector } from "./StudentsSelector";
+export { StudentsSelector, StudentsSelectorProps } from "./StudentsSelector";

@@ -17,7 +17,9 @@ import { useActivityForm } from "./useActivityForm";
 import { useDay } from "./useDay";
 
 export const Day: React.FC = () => {
-  const { coach } = useCoach();
+  const {
+    models: { coach },
+  } = useCoach();
   const {
     models: { students, loading: loadingStudents },
   } = useStudents();
@@ -31,14 +33,15 @@ export const Day: React.FC = () => {
       createActivity,
       updateActivity,
       deleteActivity,
+      openActivityModal,
       openNewActivityModal,
       closeActivityModal,
     },
   } = useActivity();
   const {
-    models: { pictograms, repeatTypeOptions },
-    // operations: {},
-  } = useActivityForm(coach, activity, {
+    models: { pictograms, repeatTypeOptions, isStudentsSelectorVisible, control },
+    operations: { handleSubmit },
+  } = useActivityForm(coach!, activity, {
     createActivity,
     updateActivity,
     deleteActivity,
@@ -71,16 +74,21 @@ export const Day: React.FC = () => {
             activities={day!.activities}
             students={students}
             timeRange={day!.timeRange}
-            onActivityPress={() => null}
+            onActivityPress={openActivityModal}
             onConfirmationStatusPress={() => null}
           />
         }
       />
       <ActivityModal
+        isEdit={activity?._id}
         isOpened={isOpened}
-        onClose={() => closeActivityModal()}
         pictograms={pictograms}
         repeatTypeOptions={repeatTypeOptions}
+        students={students}
+        control={control}
+        isStudentsSelectorVisible={isStudentsSelectorVisible}
+        onClose={() => closeActivityModal()}
+        onSubmit={handleSubmit}
       />
     </MainLayout>
   );

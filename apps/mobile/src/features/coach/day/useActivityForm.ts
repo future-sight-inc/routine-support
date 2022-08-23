@@ -15,7 +15,7 @@ export const useActivityForm = (
     createActivity: (activity: Activity) => Promise<void>;
     updateActivity: (activity: Activity) => Promise<void>;
     deleteActivity: (id: string) => Promise<void>;
-    getWeek: (data: { config?: { silent: boolean } }) => void;
+    getDay: (data: { config?: { silent: boolean } }) => void;
   }
 ) => {
   const defaultValues = {
@@ -23,28 +23,38 @@ export const useActivityForm = (
     start: moment(),
     end: moment().add("hours", 1),
     isCommon: true,
-    isImportant: false,
-    ...activity,
+    repeatType: RepeatTypeEnum.None,
+    students: [],
   };
-  const { control, handleSubmit, formState, getValues, setValue, setError, watch } = useForm({
-    defaultValues,
-  });
+  // ! баг в react-hook-form
+  const { control, handleSubmit, formState, getValues, setError, setValue, watch, reset } =
+    useForm<any>({
+      defaultValues,
+    });
 
   const [submitError, setSubmitError] = useState<string | undefined>();
 
-  const [shouldShowStudents, setShouldShowStudent] = useState(!defaultValues.isCommon);
+  const [isStudentsSelectorVisible, setStudentsSelectorVisible] = useState(!defaultValues.isCommon);
 
   useEffect(() => {
-    // ! баг в react-hook-form
-    const subscription = (watch as any)((value, { name }) => {
+    if (activity) {
+      Object.keys(activity).forEach((key) => {
+        setValue(key, activity[key]);
+      });
+    } else {
+      reset();
+    }
+  }, [activity]);
+
+  useEffect(() => {
+    const subscription = watch((value, { name }) => {
       if (name === "isCommon") {
-        setShouldShowStudent(!value.isCommon);
-        // ! баг в react-hook-form
-        (setError as any)("students", null);
+        setStudentsSelectorVisible(!value.isCommon);
+
+        setError("students", {});
 
         if (value.isCommon) {
-          // ! баг в react-hook-form
-          (setValue as any)("students", []);
+          setValue("students", []);
         }
       }
     });
@@ -68,11 +78,11 @@ export const useActivityForm = (
         } as Activity);
       }
 
-      actions.getWeek({ config: { silent: true } });
+      actions.getDay({ config: { silent: true } });
     } catch (error) {
       const data = (error as AxiosError<SubmitErrorData>).response?.data;
 
-      setFormErrors(data, setError as any, setSubmitError);
+      setFormErrors(data, setError, setSubmitError);
     }
   });
 
@@ -97,7 +107,7 @@ export const useActivityForm = (
       isDirty: formState.isDirty,
       isSubmitting: formState.isSubmitting,
       submitError,
-      shouldShowStudents,
+      isStudentsSelectorVisible,
       pictograms: PICTOGRAMS,
       repeatTypeOptions: [
         { text: "Never", value: RepeatTypeEnum.None },

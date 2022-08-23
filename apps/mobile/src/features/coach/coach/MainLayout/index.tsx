@@ -1,18 +1,20 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { useCoach } from "../useCoach";
-import { MainLayoutProps, MainLayout as UncontrolledMainLayout } from "./MainLayout";
+import { MainLayout as UncontrolledMainLayout } from "./MainLayout";
 import { useMainLayoutComponent } from "./useMainLayoutComponent";
 
 export interface MainLayoutActions {
   logout: () => void;
 }
 
-export const MainLayout: React.FC<Omit<MainLayoutProps, "onLogout">> = ({
-  title,
-  children,
-  footer,
-}) => {
+interface MainLayoutProps {
+  title: string;
+  children: ReactNode;
+  footer?: ReactNode;
+}
+
+export const MainLayout: React.FC<MainLayoutProps> = ({ title, children, footer }) => {
   const {
     models: { coach },
     operations: { logout },

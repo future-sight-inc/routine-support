@@ -10,7 +10,7 @@ import { StudentBadge } from "../StudentBadge";
 import { Typography } from "../Typography";
 import { createStudentBadgeTestId, StudentsSelectorLocators } from "./locators";
 
-interface StudentsSelectorProps {
+export interface StudentsSelectorProps {
   students: Student[];
   value?: string[];
   onSelect: (value: string[]) => void;

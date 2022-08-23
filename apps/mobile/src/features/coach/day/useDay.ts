@@ -25,9 +25,9 @@ export const useDay = () => {
     getDay();
   }, [currentDate, activityFilter]);
 
-  const getDay = async (config?: { silent: boolean }) => {
+  const getDay = async (data?: { config?: { silent: boolean } }) => {
     try {
-      !config?.silent && setLoading(true);
+      !data?.config?.silent && setLoading(true);
 
       const day = await coachDayAPI.getDay({ date: stringifyDate(currentDate), activityFilter });
 
