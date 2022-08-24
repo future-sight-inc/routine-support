@@ -75,6 +75,7 @@ export const Day: React.FC = () => {
             students={students}
             timeRange={day!.timeRange}
             onActivityPress={openActivityModal}
+            onCellPress={openNewActivityModal}
             onConfirmationStatusPress={() => null}
           />
         }
