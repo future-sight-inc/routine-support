@@ -5,47 +5,35 @@ import { ActivityFilterService } from "apps/web/src/services/ActivityFilterServi
 
 import { ActivityFilterActions } from "./ActivityFilter";
 
-export const useActivityFilterComponent = (
-  students: Student[],
-  actions: ActivityFilterActions
-) => {
+export const useActivityFilterComponent = (students: Student[], actions: ActivityFilterActions) => {
   const createInitialFilter = () => {
     const defaultFilter: ActivityFilter = ActivityFilterService.getFilter();
 
-    if (Object.keys(defaultFilter).length) {
+    if (defaultFilter.length) {
       return defaultFilter;
     }
 
-    let ids = ["common"];
+    let initialFilter = ["common"];
 
     if (students.length) {
-      ids = ids.concat(students.map((student) => student._id));
+      const studentIds = students.map((student) => student._id);
+
+      initialFilter = initialFilter.concat(studentIds);
     }
 
-    ids.forEach((id) => {
-      defaultFilter[id] = true;
-    });
-
-    ActivityFilterService.setFilter(defaultFilter);
+    ActivityFilterService.setFilter(initialFilter.concat(defaultFilter));
 
     return defaultFilter;
   };
 
-  const [activityFilter, setActivityFilter] = useState<ActivityFilter>(
-    createInitialFilter()
-  );
+  const [activityFilter, setActivityFilter] = useState<ActivityFilter>(createInitialFilter());
 
   const handleChange = (name: string, value: boolean) => {
-    const newActivityFilter = activityFilter;
+    value ? ActivityFilterService.addProperty(name) : ActivityFilterService.removeProperty(name);
 
-    newActivityFilter[name] = value;
+    const newActivityFilter = ActivityFilterService.getFilter();
 
-    value
-      ? ActivityFilterService.addProperty(name)
-      : ActivityFilterService.removeProperty(name);
-
-    setActivityFilter(ActivityFilterService.getFilter());
-
+    setActivityFilter(newActivityFilter);
     actions.getWeek({
       activityFilter: newActivityFilter,
       config: { silent: true },

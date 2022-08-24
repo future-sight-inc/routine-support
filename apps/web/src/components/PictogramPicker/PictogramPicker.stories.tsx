@@ -1,3 +1,4 @@
+import { PICTOGRAMS } from "@routine-support/pictograms";
 import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
 
@@ -14,6 +15,6 @@ const FieldWrapper = styled.div`
 storiesOf("Components", module).add("PictogramPicker", () => (
   <FieldWrapper>
     <LabelWithHelper>Pictogram</LabelWithHelper>
-    <PictogramPicker onChange={() => null} />
+    <PictogramPicker onChange={() => null} pictograms={PICTOGRAMS} />
   </FieldWrapper>
 ));

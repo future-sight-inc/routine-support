@@ -1,15 +1,22 @@
 import React from "react";
 
+import { Pictogram } from "@routine-support/types";
+
 import { PictogramPicker as UncontrolledPictogramPicker } from "../../PictogramPicker";
 import { Controller } from "../Controller";
 import { FormFieldProps } from "../types";
 
-export const PictogramPicker: React.FC<FormFieldProps> = ({
+type PictogramPickerProps = FormFieldProps & {
+  pictograms: Pictogram[];
+};
+
+export const PictogramPicker: React.FC<PictogramPickerProps> = ({
   name,
   control,
   required,
   disabled,
   label,
+  pictograms,
 }) => {
   return (
     <Controller
@@ -22,6 +29,7 @@ export const PictogramPicker: React.FC<FormFieldProps> = ({
         <UncontrolledPictogramPicker
           value={field.value}
           onChange={field.onChange}
+          pictograms={pictograms}
         />
       )}
     />

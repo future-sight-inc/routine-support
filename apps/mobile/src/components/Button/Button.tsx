@@ -93,18 +93,20 @@ export const Button: React.FC<ButtonProps> = ({
     <Pressable
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
-      style={{
-        ...style,
-        ...styles.button,
-        backgroundColor: isPressed
-          ? MobileTheme.palette[variant].clicked
-          : MobileTheme.palette[variant].main,
-        width: fullWidth ? "100%" : styles.button.width,
-        opacity: isDisabled ? 0.3 : 1,
-      }}
-      {...props}
+      style={[
+        style,
+        styles.button,
+        {
+          backgroundColor: isPressed
+            ? MobileTheme.palette[variant].clicked
+            : MobileTheme.palette[variant].main,
+          width: fullWidth ? "100%" : styles.button.width,
+          opacity: isDisabled ? 0.3 : 1,
+        },
+      ]}
       disabled={isDisabled}
       testID={ButtonLocators.Wrapper}
+      {...props}
     >
       {renderInner()}
     </Pressable>

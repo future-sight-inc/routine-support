@@ -8,15 +8,15 @@ import * as S from "./styled";
 const LANGUAGES = [
   {
     text: "Nederlands",
-    value: "nl",
+    value: "nl-NL",
   },
   {
     text: "English",
-    value: "en",
+    value: "en-EN",
   },
   {
     text: "Русский",
-    value: "ru",
+    value: "ru-RU",
   },
 ];
 

@@ -6,6 +6,7 @@
     "domains": "libs/domains",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
+    "pictograms": "libs/pictograms",
     "server": "apps/server",
     "types": "libs/types",
     "ui-theme": "libs/ui-theme",

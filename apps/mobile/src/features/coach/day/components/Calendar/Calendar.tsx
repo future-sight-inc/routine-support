@@ -7,9 +7,10 @@ import {
   Student,
 } from "@routine-support/domains";
 import { TimeString } from "@routine-support/types";
+import { parseTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
-import { Dimensions, FlatList, StyleSheet, View } from "react-native";
+import { Dimensions, FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { ActivitiesGroup } from "../ActivitiesGroup";
 import { CurrentTimeLine } from "../CurrentTimeLine";
@@ -20,6 +21,7 @@ interface CalendarProps {
   activities: ActivityType[];
   students: Student[];
   onActivityPress: (activity: ActivityType) => void;
+  onCellPress: (activity: Partial<ActivityType>) => void;
   onConfirmationStatusPress: (activity: ActivityType) => void;
 }
 
@@ -29,6 +31,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   activities,
   students,
   onActivityPress,
+  onCellPress,
   onConfirmationStatusPress,
 }) => {
   const activitiesGroups = groupActivities(activities);
@@ -59,6 +62,14 @@ export const Calendar: React.FC<CalendarProps> = ({
     );
   };
 
+  const handleCellPress = (cellTime: string) => {
+    const parsedTime = parseTime(cellTime);
+
+    console.log(cellTime);
+
+    onCellPress({ start: parsedTime, end: parsedTime.add(1, "hour") });
+  };
+
   return (
     <FlatList
       data={timeRange}
@@ -81,13 +92,9 @@ export const Calendar: React.FC<CalendarProps> = ({
             <View style={styles.dash} />
             <View />
           </View>
-          <View
-            style={{
-              ...styles.bodyColumn,
-            }}
-          >
-            {renderActivitiesGroup(item)}
-          </View>
+          <TouchableWithoutFeedback onPress={() => handleCellPress(item)}>
+            <View style={styles.bodyColumn}>{renderActivitiesGroup(item)}</View>
+          </TouchableWithoutFeedback>
         </View>
       )}
       keyExtractor={(item) => item}

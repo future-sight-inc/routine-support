@@ -1,6 +1,5 @@
 import React from "react";
 
-import { OverlayProvider } from "@react-native-aria/overlays";
 import { fireEvent, render } from "@testing-library/react-native";
 
 import { Typography } from "../Typography";
@@ -10,14 +9,12 @@ import { InputModalLocators } from "./locators";
 describe("InputModal", () => {
   it("Initial. Should not display modal", () => {
     const { queryByTestId, getByText } = render(
-      <OverlayProvider>
-        <InputModal
-          onConfirm={() => null}
-          pressElement={<Typography>Press</Typography>}
-          onClose={() => null}
-          input={null}
-        />
-      </OverlayProvider>
+      <InputModal
+        onConfirm={() => null}
+        pressElement={<Typography>Press</Typography>}
+        onClose={() => null}
+        input={null}
+      />
     );
 
     expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
@@ -27,14 +24,12 @@ describe("InputModal", () => {
   it("Open modal and close on close text press", async () => {
     const INPUT = <Typography>Input</Typography>;
     const { getByTestId, queryByTestId, getByText } = render(
-      <OverlayProvider>
-        <InputModal
-          onConfirm={() => null}
-          pressElement={<Typography>Press</Typography>}
-          onClose={() => null}
-          input={INPUT}
-        />
-      </OverlayProvider>
+      <InputModal
+        onConfirm={() => null}
+        pressElement={<Typography>Press</Typography>}
+        onClose={() => null}
+        input={INPUT}
+      />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
@@ -49,14 +44,12 @@ describe("InputModal", () => {
 
   it("Open modal and close on modal dim press", async () => {
     const { getByTestId, queryByTestId } = render(
-      <OverlayProvider>
-        <InputModal
-          onConfirm={() => null}
-          pressElement={<Typography>Press</Typography>}
-          onClose={() => null}
-          input={null}
-        />
-      </OverlayProvider>
+      <InputModal
+        onConfirm={() => null}
+        pressElement={<Typography>Press</Typography>}
+        onClose={() => null}
+        input={null}
+      />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
@@ -71,14 +64,12 @@ describe("InputModal", () => {
   it("Open modal, select value", async () => {
     const handleSelect = jest.fn();
     const { getByTestId, queryByTestId } = render(
-      <OverlayProvider>
-        <InputModal
-          onConfirm={handleSelect}
-          pressElement={<Typography>Press</Typography>}
-          onClose={() => null}
-          input={null}
-        />
-      </OverlayProvider>
+      <InputModal
+        onConfirm={handleSelect}
+        pressElement={<Typography>Press</Typography>}
+        onClose={() => null}
+        input={null}
+      />
     );
 
     await fireEvent.press(getByTestId(InputModalLocators.PressElement));
