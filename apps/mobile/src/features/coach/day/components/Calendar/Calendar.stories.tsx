@@ -44,7 +44,7 @@ storiesOf("Coach/Day", module).add("Calendar", () => {
 
   return (
     <Calendar
-      isToday={false}
+      isToday={true}
       activities={[activity1, activity2, activity3]}
       students={[student]}
       timeRange={TIME_RANGE}
