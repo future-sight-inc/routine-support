@@ -1,4 +1,5 @@
 import { Activity as ActivityType } from "@routine-support/domains";
+import { TIMELINE_MARGIN } from "apps/mobile/src/constants/TimelineMargin";
 import { Moment } from "moment";
 
 export const getActivityDurationInHours = (activity: ActivityType) => {
@@ -10,5 +11,5 @@ export const getTimeInHours = (time: Moment) => {
 };
 
 export const getTimelineMargin = (time: Moment) => {
-  return getTimeInHours(time) % 1 ? 0 : 4;
+  return getTimeInHours(time) % 1 ? 0 : TIMELINE_MARGIN;
 };
