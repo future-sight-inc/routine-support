@@ -10,12 +10,18 @@ import { getTimeInHours } from "../../utils";
 
 interface CurrentTimeLineProps {
   rowHeight: number;
+  columnsGap: number;
   timeColumnWidth: number;
 }
 
-export const CurrentTimeLine: React.FC<CurrentTimeLineProps> = ({ rowHeight, timeColumnWidth }) => {
+export const CurrentTimeLine: React.FC<CurrentTimeLineProps> = ({
+  rowHeight,
+  timeColumnWidth,
+  columnsGap,
+}) => {
   const [currentTime, setCurrentTime] = useState(stringifyTime(moment()));
-  const offsetTop = getTimeInHours(parseTime(currentTime)) * rowHeight - 10;
+  const timeInHours = getTimeInHours(parseTime(currentTime));
+  const offsetTop = timeInHours * rowHeight + (timeInHours % 1);
 
   useEffect(() => {
     const intervalId = setInterval(() => setCurrentTime(stringifyTime(moment())), 1000);
@@ -31,11 +37,13 @@ export const CurrentTimeLine: React.FC<CurrentTimeLineProps> = ({ rowHeight, tim
         </Typography>
       </View>
       <View
-        style={{
-          ...styles.currentTimeLine,
-          top: offsetTop,
-          left: timeColumnWidth + 18,
-        }}
+        style={[
+          styles.currentTimeLine,
+          {
+            top: offsetTop,
+            left: timeColumnWidth + columnsGap - 4,
+          },
+        ]}
       >
         <View style={styles.circle} />
         <View style={styles.line} />
@@ -54,8 +62,10 @@ const styles = StyleSheet.create({
     backgroundColor: MobileTheme.palette.primary.main,
     position: "absolute",
     borderRadius: MobileTheme.borderRadius.s,
+    zIndex: 4,
   },
   currentTimeLine: {
+    zIndex: 4,
     height: 20,
     width: "100%",
     position: "absolute",
