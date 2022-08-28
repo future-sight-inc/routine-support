@@ -19,6 +19,7 @@ interface ModalProps {
   footerStyle?: StyleProp<ViewStyle>;
   children: ReactNode;
   isOpened?: boolean;
+  scrollable?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
 }
@@ -30,6 +31,7 @@ export const Modal: React.FC<ModalProps> = ({
   footer,
   footerStyle,
   isOpened: defaultOpened = false,
+  scrollable,
   onOpen,
   onClose,
 }) => {
@@ -67,6 +69,7 @@ export const Modal: React.FC<ModalProps> = ({
           rightIcon={<MaterialIcons name="close" size={30} color="transparent" />}
           footer={footer}
           footerStyle={footerStyle}
+          scrollable={scrollable}
         >
           {children}
         </Layout>
