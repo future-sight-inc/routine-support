@@ -15,7 +15,7 @@ interface StudentBadgeProps {
 export const StudentBadge: React.FC<StudentBadgeProps> = ({ student, testID }) => {
   return (
     <View style={[styles.wrapper, { backgroundColor: getColor(student.color) }]} testID={testID}>
-      <Typography variant="text2">{student.name}</Typography>
+      <Typography variant="text1">{student.name}</Typography>
     </View>
   );
 };
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     alignSelf: "flex-start",
-    paddingTop: 6,
-    height: 30,
+    paddingTop: 7,
+    height: 35,
     paddingHorizontal: 12,
     borderRadius: MobileTheme.borderRadius.s,
     marginRight: 8,

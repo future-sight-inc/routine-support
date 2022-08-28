@@ -5,6 +5,7 @@ import {
   Activity as ActivityType,
   Student,
 } from "@routine-support/domains";
+import { TIMELINE_MARGIN } from "apps/mobile/src/constants/TimelineMargin";
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
 import { Activity } from "../Activity";
@@ -50,10 +51,10 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
           onActivityPress={() => onActivityPress(activity)}
           onConfirmationStatusPress={() => onConfirmationStatusPress(activity)}
           style={{
-            width: rowWidth / group.activities.length - 4,
+            width: rowWidth / group.activities.length - TIMELINE_MARGIN,
             height: getActivityHeight({ activity, rowHeight }),
             marginTop: getActivityTopOffset({ activity, group, rowHeight }),
-            marginRight: 4,
+            marginRight: TIMELINE_MARGIN,
           }}
         />
       ))}
@@ -67,6 +68,6 @@ const styles = StyleSheet.create({
     right: 0,
     left: 0,
     position: "absolute",
-    zIndex: 10,
+    zIndex: 3,
   },
 });

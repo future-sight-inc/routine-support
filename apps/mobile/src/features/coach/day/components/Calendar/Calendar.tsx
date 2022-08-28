@@ -72,9 +72,6 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   return (
     <ScrollView>
-      {isToday ? (
-        <CurrentTimeLine rowHeight={ROW_HEIGHT} timeColumnWidth={TIME_COLUMN_WIDTH} />
-      ) : null}
       {timeRange.map((time, index) => (
         <>
           <View style={styles.row} key={index}>
@@ -97,6 +94,13 @@ export const Calendar: React.FC<CalendarProps> = ({
           {renderActivitiesGroup(time)}
         </>
       ))}
+      {isToday ? (
+        <CurrentTimeLine
+          rowHeight={ROW_HEIGHT}
+          timeColumnWidth={TIME_COLUMN_WIDTH}
+          columnsGap={COLUMNS_GAP}
+        />
+      ) : null}
     </ScrollView>
   );
 };

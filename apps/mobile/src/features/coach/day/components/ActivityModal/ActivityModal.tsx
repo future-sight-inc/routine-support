@@ -43,6 +43,7 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({
       isOpened={isOpened}
       onClose={onClose}
       footer={<Button text={isEdit ? "Edit" : "Create"} fullWidth onPress={onSubmit} />}
+      scrollable
     >
       <TextField
         name="name"
@@ -127,9 +128,6 @@ const styles = StyleSheet.create({
   dateInput: {
     width: Dimensions.get("screen").width / 3 - 16,
     marginRight: 8,
-  },
-  fieldWrapper: {
-    marginBottom: 16,
   },
   fieldWrapper: {
     marginBottom: 16,
