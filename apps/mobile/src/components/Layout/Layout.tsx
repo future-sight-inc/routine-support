@@ -40,7 +40,7 @@ export const Layout: React.FC<LayoutProps> = ({
   footerStyle,
   scrollable = false,
 }) => {
-  const styles = createStyles({ insets, hasFooter: Boolean(footer) });
+  const styles = createStyles({ insets, hasFooter: Boolean(footer), scrollable });
   const [isScrolled, setScrolled] = useState(false);
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -76,7 +76,15 @@ const HEADER_HEIGHT = 78;
 const FOOTER_HEIGHT = 80;
 const FOOTER_TOP_OFFSET = 8;
 
-const createStyles = ({ insets, hasFooter }: { insets: EdgeInsets; hasFooter: boolean }) => {
+const createStyles = ({
+  insets,
+  hasFooter,
+  scrollable,
+}: {
+  insets: EdgeInsets;
+  hasFooter: boolean;
+  scrollable: boolean;
+}) => {
   const BODY_HEIGHT =
     Dimensions.get("screen").height -
     HEADER_HEIGHT -
@@ -104,6 +112,7 @@ const createStyles = ({ insets, hasFooter }: { insets: EdgeInsets; hasFooter: bo
     body: {
       marginTop: HEADER_HEIGHT,
       minHeight: BODY_HEIGHT,
+      height: scrollable ? undefined : BODY_HEIGHT,
       paddingHorizontal: LAYOUT_PADDING,
       paddingBottom: hasFooter ? 82 : 0,
       paddingTop: LAYOUT_PADDING,
