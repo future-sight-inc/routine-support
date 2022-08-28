@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 
+import { StatusBar } from "expo-status-bar";
 import {
   Dimensions,
   NativeScrollEvent,
@@ -23,6 +24,7 @@ export interface LayoutProps {
   footer?: ReactNode;
   leftIcon: ReactNode;
   rightIcon?: ReactNode;
+  bodyStyle?: StyleProp<ViewStyle>;
   footerStyle?: StyleProp<ViewStyle>;
   scrollable?: boolean;
 }
@@ -33,6 +35,7 @@ export const Layout: React.FC<LayoutProps> = ({
   rightIcon,
   title,
   children,
+  bodyStyle,
   footer,
   footerStyle,
   scrollable = false,
@@ -46,6 +49,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
   return (
     <SafeAreaView style={styles.wrapper} testID={LayoutLocators.Wrapper} mode="padding">
+      <StatusBar style="light-content" />
       <View style={[styles.header, isScrolled && { zIndex: 0 }]}>
         {leftIcon}
         <Typography variant="caption3Normal" testID={LayoutLocators.Title}>
@@ -54,7 +58,7 @@ export const Layout: React.FC<LayoutProps> = ({
         {rightIcon || <View />}
       </View>
       <ScrollView scrollEnabled={scrollable} onScroll={handleScroll} scrollEventThrottle={30}>
-        <View style={styles.body} testID={LayoutLocators.Body}>
+        <View style={[styles.body, bodyStyle]} testID={LayoutLocators.Body}>
           {children}
         </View>
       </ScrollView>
