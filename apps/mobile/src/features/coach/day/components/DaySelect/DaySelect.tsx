@@ -36,7 +36,6 @@ export const DaySelect: React.FC<DaySelectorProps> = ({ date, onSelect }) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: 50,
     flexDirection: "column",
     alignItems: "center",
   },
@@ -46,5 +45,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  dayNumber: {},
 });
