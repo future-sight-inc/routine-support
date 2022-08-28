@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: Dimensions.get("screen").width / 2 - 20,
-    borderRadius: MobileTheme.borderRadius.s,
+    borderRadius: MobileTheme.borderRadius.m,
     borderWidth: 1,
     borderColor: MobileTheme.palette.border.normal,
   },
