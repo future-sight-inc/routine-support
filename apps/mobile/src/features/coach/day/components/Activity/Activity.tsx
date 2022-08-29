@@ -9,7 +9,7 @@ import {
 import { getActivityColor } from "@routine-support/ui-theme";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { ActivityLocators } from "./locators";
 
@@ -34,24 +34,29 @@ export const Activity: React.FC<ActivityProps> = ({
   );
 
   return (
-    <View
-      style={{ ...styles.wrapper, backgroundColor: getActivityColor(activity, students), ...style }}
-      onPress={() => onActivityPress()}
-    >
-      <Typography variant="caption4Normal" testID={ActivityLocators.Name}>
-        {activity.name}
-      </Typography>
-      <View style={styles.confirmationStatusWrapper} onPress={() => onConfirmationStatusPress()}>
-        <MaterialIcons name="check" size={14} />
-        <Typography
-          variant="text2Bold"
-          style={styles.confirmationStatus}
-          testID={ActivityLocators.Status}
-        >
-          {confirmedStudents.length}/{assignedStudents.length}
+    <TouchableWithoutFeedback onPress={() => onActivityPress()}>
+      <View
+        style={{
+          ...styles.wrapper,
+          backgroundColor: getActivityColor(activity, students),
+          ...style,
+        }}
+      >
+        <Typography variant="caption4Normal" testID={ActivityLocators.Name}>
+          {activity.name}
         </Typography>
+        <View style={styles.confirmationStatusWrapper} onPress={() => onConfirmationStatusPress()}>
+          <MaterialIcons name="check" size={14} />
+          <Typography
+            variant="text2Bold"
+            style={styles.confirmationStatus}
+            testID={ActivityLocators.Status}
+          >
+            {confirmedStudents.length}/{assignedStudents.length}
+          </Typography>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

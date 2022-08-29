@@ -119,12 +119,14 @@ export const Typography: React.FC<TypographyProps> = ({
 
   return (
     <Text
-      style={{
-        fontSize: getFontSize(variant),
-        fontWeight: getFontWeight(variant),
-        color: getFontColor(color),
-        ...style,
-      }}
+      style={[
+        {
+          fontSize: getFontSize(variant),
+          fontWeight: getFontWeight(variant),
+          color: getFontColor(color),
+        },
+        style,
+      ]}
       {...props}
     >
       {children}

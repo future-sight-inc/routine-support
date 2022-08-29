@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Activity } from "@routine-support/domains";
+import { PICTOGRAMS } from "@routine-support/pictograms";
 import { Id } from "@routine-support/types";
 
 import { coachActivityAPI } from "../../services/ApiService";
@@ -69,6 +70,7 @@ export const useActivity = () => {
       activity,
       opened,
       loading,
+      pictograms: PICTOGRAMS,
     },
     operations: {
       setActivity,

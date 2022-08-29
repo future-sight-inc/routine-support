@@ -1,0 +1,32 @@
+{
+  "sourceRoot": "libs/pictograms/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/pictograms",
+        "main": "libs/pictograms/src/index.ts",
+        "tsConfig": "libs/pictograms/tsconfig.lib.json",
+        "assets": ["libs/pictograms/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/pictograms/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pictograms"],
+      "options": {
+        "jestConfig": "libs/pictograms/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -61,7 +61,7 @@ export const useWeek = () => {
       const week = await coachWeekAPI.getWeek(
         date.year,
         date.week,
-        data?.activityFilter || savedActivityFilter
+        data?.activityFilter || savedActivityFilter || []
       );
 
       dispatch(weekActions.setWeek(week));

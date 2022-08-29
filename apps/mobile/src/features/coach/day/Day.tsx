@@ -5,21 +5,48 @@ import { Button } from "apps/mobile/src/components/Button";
 import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
 
 import { MainLayout } from "../coach/MainLayout";
+import { useCoach } from "../coach/useCoach";
 import { useStudents } from "../students/useStudents";
+import { ActivityModal } from "./components/ActivityModal";
 import { Calendar } from "./components/Calendar";
 import { DayLayout } from "./components/DayLayout";
 import { DaySelect } from "./components/DaySelect";
 import { Filter } from "./components/Filter";
+import { useActivity } from "./useActivity";
+import { useActivityForm } from "./useActivityForm";
 import { useDay } from "./useDay";
 
 export const Day: React.FC = () => {
+  const {
+    models: { coach },
+  } = useCoach();
   const {
     models: { students, loading: loadingStudents },
   } = useStudents();
   const {
     models: { day, currentDate, activityFilter, loading: loadingDay },
-    operations: { onDateSelect, onActivityFilterSelect, setDefaultActivityFilter },
+    operations: { onDateSelect, onActivityFilterSelect, setDefaultActivityFilter, getDay },
   } = useDay();
+  const {
+    models: { isOpened, activity },
+    operations: {
+      createActivity,
+      updateActivity,
+      deleteActivity,
+      openActivityModal,
+      openNewActivityModal,
+      closeActivityModal,
+    },
+  } = useActivity();
+  const {
+    models: { pictograms, repeatTypeOptions, isStudentsSelectorVisible, control },
+    operations: { handleSubmit },
+  } = useActivityForm(coach!, activity, {
+    createActivity,
+    updateActivity,
+    deleteActivity,
+    getDay,
+  });
 
   useEffect(() => {
     setDefaultActivityFilter({ students });
@@ -30,7 +57,12 @@ export const Day: React.FC = () => {
   }
 
   return (
-    <MainLayout title="Calendar" footer={<Button text="Activity" icon="add" fullWidth />}>
+    <MainLayout
+      title="Calendar"
+      footer={
+        <Button text="Activity" icon="add" fullWidth onPress={() => openNewActivityModal()} />
+      }
+    >
       <DayLayout
         daySelect={<DaySelect date={currentDate} onSelect={onDateSelect} />}
         filter={
@@ -42,10 +74,22 @@ export const Day: React.FC = () => {
             activities={day!.activities}
             students={students}
             timeRange={day!.timeRange}
-            onActivityPress={() => null}
+            onActivityPress={openActivityModal}
+            onCellPress={openNewActivityModal}
             onConfirmationStatusPress={() => null}
           />
         }
+      />
+      <ActivityModal
+        isEdit={activity?._id}
+        isOpened={isOpened}
+        pictograms={pictograms}
+        repeatTypeOptions={repeatTypeOptions}
+        students={students}
+        control={control}
+        isStudentsSelectorVisible={isStudentsSelectorVisible}
+        onClose={() => closeActivityModal()}
+        onSubmit={handleSubmit}
       />
     </MainLayout>
   );

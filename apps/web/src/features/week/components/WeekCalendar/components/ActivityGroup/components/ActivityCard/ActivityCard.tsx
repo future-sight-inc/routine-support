@@ -10,9 +10,9 @@ export interface ActivityCardProps {
   activity: Activity;
   index: number;
   count: number;
-  onClick: (activity: Activity) => void;
   backgroundColor: string;
   confirmationStatus: ReactNode;
+  onClick: (activity: Activity) => void;
 }
 
 export const ActivityCard: React.FC<ActivityCardProps> = ({
@@ -21,8 +21,8 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
   index,
   count,
   backgroundColor,
-  onClick,
   confirmationStatus,
+  onClick,
 }) => {
   return (
     <S.Wrapper

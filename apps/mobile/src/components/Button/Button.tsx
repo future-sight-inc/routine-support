@@ -104,9 +104,9 @@ export const Button: React.FC<ButtonProps> = ({
         },
         style,
       ]}
-      {...props}
       disabled={isDisabled}
       testID={ButtonLocators.Wrapper}
+      {...props}
     >
       {renderInner()}
     </Pressable>

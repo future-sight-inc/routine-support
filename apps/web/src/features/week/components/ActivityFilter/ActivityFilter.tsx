@@ -34,7 +34,7 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({ students, action
           <S.Checkbox
             color={COMMON_ACTIVITY_COLOR}
             onChange={(value) => handleChange("common", value)}
-            value={activityFilter.common}
+            value={activityFilter.includes("common")}
             label={t("Common")}
             labelVariant="text1"
           />
@@ -44,7 +44,7 @@ export const ActivityFilter: React.FC<ActivityFilterProps> = ({ students, action
             <Checkbox
               color={getColor(student.color)}
               onChange={(value) => handleChange(student._id, value)}
-              value={activityFilter[student._id]}
+              value={activityFilter.includes(student._id)}
               label={student.name}
               labelVariant="text1"
             />

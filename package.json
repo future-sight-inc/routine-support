@@ -6,7 +6,7 @@
     "start:server": "nx serve server",
     "start:web": "nx serve web",
     "start:mobile": "npx nx start mobile",
-    "build": "yarn nx run-many --target=build --projects=web,server --parallel=true",
+    "build": "yarn nx run-many --target=build --projects=web,server --parallel=true && nx run web:build-storybook",
     "start": "node dist/apps/server/main.js",
     "test": "nx test",
     "test:server": "nx test server",

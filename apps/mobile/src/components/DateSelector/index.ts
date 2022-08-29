@@ -1,1 +1,1 @@
-export { DateSelector } from "./DateSelector";
+export { DateSelector, DateSelectorProps } from "./DateSelector";

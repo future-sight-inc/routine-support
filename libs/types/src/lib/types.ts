@@ -45,3 +45,9 @@ export enum SocketUserTypeEnum {
   Coach = "coach",
   Student = "student",
 }
+
+export type Option = {
+  value: string | number;
+  text: string;
+  color?: string;
+};

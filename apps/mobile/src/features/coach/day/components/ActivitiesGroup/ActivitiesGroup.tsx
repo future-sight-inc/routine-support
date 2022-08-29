@@ -5,16 +5,19 @@ import {
   Activity as ActivityType,
   Student,
 } from "@routine-support/domains";
-import { StyleSheet, View } from "react-native";
+import { TIMELINE_MARGIN } from "apps/mobile/src/constants/TimelineMargin";
+import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
-import { getActivityDurationInHours, getTimeInHours, getTimelineMargin } from "../../utils";
 import { Activity } from "../Activity";
+import { getActivitiesGroupTopOffset, getActivityHeight, getActivityTopOffset } from "./utils";
 
 interface ActivitiesGroup {
   group: ActivitiesGroupType;
   students: Student[];
   rowHeight: number;
   rowWidth: number;
+  rowIndex: number;
+  style: StyleProp<ViewStyle>;
   onActivityPress: (activity: ActivityType) => void;
   onConfirmationStatusPress: (activity: ActivityType) => void;
 }
@@ -24,16 +27,21 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
   students,
   rowHeight,
   rowWidth,
+  rowIndex,
+  style,
   onActivityPress,
   onConfirmationStatusPress,
 }) => {
   return (
     <View
-      style={{
-        ...styles.wrapper,
-        marginTop: (group.start.get("minutes") / 60) * rowHeight,
-        width: rowWidth,
-      }}
+      style={[
+        styles.wrapper,
+        {
+          top: getActivitiesGroupTopOffset({ group, rowHeight, rowIndex }),
+          width: rowWidth,
+        },
+        style,
+      ]}
     >
       {group.activities.map((activity, index) => (
         <Activity
@@ -43,14 +51,10 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
           onActivityPress={() => onActivityPress(activity)}
           onConfirmationStatusPress={() => onConfirmationStatusPress(activity)}
           style={{
-            width: rowWidth / group.activities.length - 4,
-            height:
-              getActivityDurationInHours(activity) * rowHeight -
-              getTimelineMargin(activity.end) -
-              getTimelineMargin(activity.start),
-            marginTop:
-              (getTimeInHours(activity.start) - getTimeInHours(group.start)) * rowHeight + 4,
-            marginRight: 4,
+            width: rowWidth / group.activities.length - TIMELINE_MARGIN,
+            height: getActivityHeight({ activity, rowHeight }),
+            marginTop: getActivityTopOffset({ activity, group, rowHeight }),
+            marginRight: TIMELINE_MARGIN,
           }}
         />
       ))}
@@ -61,9 +65,9 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    top: 0,
     right: 0,
     left: 0,
     position: "absolute",
+    zIndex: 3,
   },
 });

@@ -44,11 +44,13 @@ storiesOf("Coach/Day", module).add("Calendar", () => {
 
   return (
     <Calendar
+      isToday={true}
       activities={[activity1, activity2, activity3]}
       students={[student]}
       timeRange={TIME_RANGE}
       onActivityPress={() => null}
       onConfirmationStatusPress={() => null}
+      onCellPress={() => null}
     />
   );
 });
