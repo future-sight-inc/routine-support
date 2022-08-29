@@ -24,11 +24,12 @@ export const Select: React.FC<SelectProps> = ({
       required={required}
       disabled={disabled}
       helperText={helperText}
-      render={({ field, fieldState }) => (
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      render={({ field: { ref, ...fieldProps }, fieldState }) => (
         <UncontrolledSelect
           {...props}
-          {...field}
-          onSelect={(value) => field.onChange(value)}
+          {...fieldProps}
+          onSelect={(value) => fieldProps.onChange(value)}
           InputProps={{ ...InputProps, error: Boolean(fieldState.error) }}
         />
       )}

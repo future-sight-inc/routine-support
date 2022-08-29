@@ -24,14 +24,13 @@ export const DatePicker: React.FC<FormFieldProps> = ({
       required={required}
       disabled={disabled}
       helperText={helperText}
-      render={({ field: { value, onChange, ...field }, fieldState }) => (
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      render={({ field: { value, onChange, ref, ...field }, fieldState }) => (
         <TextField
           type="date"
           {...field}
           value={value.format(HTML_DATE_FORMAT)}
-          onChange={(event) =>
-            onChange(moment(event.target.value, HTML_DATE_FORMAT))
-          }
+          onChange={(event) => onChange(moment(event.target.value, HTML_DATE_FORMAT))}
           error={Boolean(fieldState.error)}
         />
       )}

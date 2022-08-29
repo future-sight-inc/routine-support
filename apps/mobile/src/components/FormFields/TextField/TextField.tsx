@@ -26,12 +26,13 @@ export const TextField: React.FC<TextFieldProps> = ({
       required={required}
       disabled={disabled}
       helperText={helperText}
-      render={({ field, fieldState }) => (
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      render={({ field: { ref, ...fieldProps }, fieldState }) => (
         <UncontrolledTextField
           error={Boolean(fieldState.error)}
           {...props}
-          {...field}
-          onChangeText={(value) => field.onChange(value)}
+          {...fieldProps}
+          onChangeText={(value) => fieldProps.onChange(value)}
         />
       )}
     />
