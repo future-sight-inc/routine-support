@@ -5,6 +5,7 @@ import { fireEvent, render } from "@testing-library/react-native";
 import moment from "moment";
 
 import { InputModalLocators } from "../InputModal/locators";
+import { PopupLocators } from "../Popup/locators";
 import { DateSelector } from "./DateSelector";
 import { DateSelectorLocators } from "./locators";
 
@@ -46,13 +47,13 @@ describe("DateSelector", () => {
 
     expect(getByTestId(DateSelectorLocators.Input).props.value).toBe(stringifyDate(moment()));
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(getByTestId(InputModalLocators.ConfirmText));
     expect(handleSelect).toBeCalledWith(value);
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+    expect(queryByTestId(PopupLocators.Background)).toBeFalsy();
   });
 });
