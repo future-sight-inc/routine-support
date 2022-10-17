@@ -10,13 +10,14 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { MobileTheme } from "../../theme";
 import { PopupLocators } from "./locators";
 
 interface PopupProps {
   isOpened?: boolean;
-  pressElement: ReactNode;
+  pressElement?: ReactNode;
   children: ReactNode;
   onClose?: () => void;
   onOpen?: () => void;
@@ -29,14 +30,15 @@ export const Popup: React.FC<PopupProps> = ({
   onClose,
   onOpen,
 }) => {
+  const insets = useSafeAreaInsets();
+
   const [isOpened, setOpened] = useState(defaultOpened);
 
-  const [isBackgroundVisible, setBackgroundVisible] = useState(isOpened);
+  const [isBackgroundVisible, setBackgroundVisible] = useState(defaultOpened);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    setOpened(defaultOpened);
-    setBackgroundVisible(defaultOpened);
+    defaultOpened ? handleOpen() : handleClose();
   }, [defaultOpened]);
 
   const fadeInBackground = () => {
@@ -53,7 +55,10 @@ export const Popup: React.FC<PopupProps> = ({
       toValue: 0,
       duration: 300,
       useNativeDriver: false,
-    }).start(() => setBackgroundVisible(false));
+    }).start(() => {
+      setBackgroundVisible(false);
+      onClose && onClose();
+    });
   };
 
   const handleOpen = () => {
@@ -63,16 +68,17 @@ export const Popup: React.FC<PopupProps> = ({
   };
 
   const handleClose = () => {
-    fadeOutBackground();
     setOpened(false);
-    onClose && onClose();
+    fadeOutBackground();
   };
 
   return (
     <>
-      <TouchableOpacity onPress={handleOpen} testID={PopupLocators.PressElement}>
-        {pressElement}
-      </TouchableOpacity>
+      {pressElement && (
+        <TouchableOpacity onPress={handleOpen} testID={PopupLocators.PressElement}>
+          {pressElement}
+        </TouchableOpacity>
+      )}
       <Modal visible={isBackgroundVisible} transparent animationType="none">
         {isBackgroundVisible && (
           <Animated.View
@@ -86,7 +92,7 @@ export const Popup: React.FC<PopupProps> = ({
           />
         )}
         <Modal visible={isOpened} animationType="slide" transparent testID={PopupLocators.Modal}>
-          <View style={styles.modalContentWrapper}>
+          <View style={[styles.modalContentWrapper, { bottom: insets.bottom }]}>
             <TouchableWithoutFeedback onPress={handleClose} testID={PopupLocators.ModalDim}>
               <View style={styles.modalDim} />
             </TouchableWithoutFeedback>
@@ -117,6 +123,7 @@ const styles = StyleSheet.create({
     borderRadius: MobileTheme.borderRadius.m,
     padding: 16,
     margin: 16,
+    marginBottom: 0,
   },
   modalDim: {
     width: "100%",

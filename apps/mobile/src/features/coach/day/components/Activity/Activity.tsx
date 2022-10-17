@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import {
@@ -7,9 +7,11 @@ import {
   Student,
 } from "@routine-support/domains";
 import { getActivityColor } from "@routine-support/ui-theme";
+import { ConfirmationStatus } from "apps/mobile/src/components/ConfirmationStatus/ConfirmationStatus";
+import { Popup } from "apps/mobile/src/components/Popup";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 
 import { ActivityLocators } from "./locators";
 
@@ -28,6 +30,16 @@ export const Activity: React.FC<ActivityProps> = ({
   onActivityPress,
   onConfirmationStatusPress,
 }) => {
+  const [isOpened, setOpened] = useState(false);
+
+  const handleOpen = () => {
+    setOpened(true);
+  };
+
+  const handleClose = () => {
+    setOpened(false);
+  };
+
   const { assignedStudents, confirmedStudents } = getActivityStatusesFromStudents(
     activity,
     students
@@ -45,8 +57,13 @@ export const Activity: React.FC<ActivityProps> = ({
         <Typography variant="caption4Normal" testID={ActivityLocators.Name}>
           {activity.name}
         </Typography>
-        <View style={styles.confirmationStatusWrapper} onPress={() => onConfirmationStatusPress()}>
+
+        <Popup isOpened={isOpened} onClose={handleClose}>
+          <ConfirmationStatus activity={activity} students={students} />
+        </Popup>
+        <TouchableOpacity style={styles.confirmationStatusWrapper} onPress={handleOpen}>
           <MaterialIcons name="check" size={14} />
+
           <Typography
             variant="text2Bold"
             style={styles.confirmationStatus}
@@ -54,7 +71,7 @@ export const Activity: React.FC<ActivityProps> = ({
           >
             {confirmedStudents.length}/{assignedStudents.length}
           </Typography>
-        </View>
+        </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
   );

@@ -74,7 +74,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     <ScrollView>
       {timeRange.map((time, index) => (
         <>
-          <View style={styles.row} key={time}>
+          <View style={styles.row}>
             <View style={styles.timeColumn}>
               {index === 0 ? (
                 <View />

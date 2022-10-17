@@ -33,8 +33,8 @@ export const InputModal: React.FC<InputModalProps> = ({
   };
 
   const handleConfirm = () => {
-    onConfirm();
     setOpened(false);
+    onConfirm();
   };
 
   return (

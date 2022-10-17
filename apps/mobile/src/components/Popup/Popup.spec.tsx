@@ -6,6 +6,8 @@ import { Typography } from "../Typography";
 import { PopupLocators } from "./locators";
 import { Popup } from "./Popup";
 
+jest.useFakeTimers();
+
 describe("Popup", () => {
   it("Initial. Should not display popup", () => {
     const { queryByTestId, getByText } = render(
