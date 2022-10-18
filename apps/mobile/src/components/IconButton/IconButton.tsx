@@ -36,14 +36,16 @@ export const IconButton: React.FC<ButtonProps> = ({
     <Pressable
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
-      style={{
-        ...styles.button,
-        backgroundColor: isPressed
-          ? MobileTheme.palette.secondary.clicked
-          : MobileTheme.palette.secondary.main,
-        opacity: disabled ? 0.3 : 1,
-        ...style,
-      }}
+      style={[
+        styles.button,
+        {
+          backgroundColor: isPressed
+            ? MobileTheme.palette.secondary.clicked
+            : MobileTheme.palette.secondary.main,
+          opacity: disabled ? 0.3 : 1,
+        },
+        style,
+      ]}
       {...props}
       disabled={disabled}
     >

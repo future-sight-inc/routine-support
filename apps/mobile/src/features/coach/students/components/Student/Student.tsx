@@ -46,7 +46,7 @@ export const Student: React.FC<StudentProps> = ({
           style={styles.avatar}
           color={getColor(student.color)}
         />
-        <Typography variant="text1">{student.name}</Typography>
+        <Typography variant="caption4Normal">{student.name}</Typography>
         <View style={styles.buttonsBlock}>
           <IconButton
             icon="settings"
@@ -64,10 +64,11 @@ export const Student: React.FC<StudentProps> = ({
 const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    backgroundColor: "white",
+    backgroundColor: MobileTheme.palette.common.white,
     display: "flex",
     flexDirection: "row",
-    padding: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     alignItems: "center",
   },
   avatar: {
@@ -87,7 +88,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     backgroundColor: MobileTheme.palette.common.red,
-
     alignItems: "center",
     justifyContent: "center",
   },

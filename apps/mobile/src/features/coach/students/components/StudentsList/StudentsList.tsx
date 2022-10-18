@@ -33,7 +33,6 @@ export const StudentsList: React.FC<StudentsListProps> = ({
       data={students}
       renderItem={({ item }) => (
         <Student
-          key={item._id}
           student={item}
           onStudentOpen={() => onStudentOpen(item)}
           onSettingsOpen={() => onSettingsOpen(item)}
@@ -41,6 +40,7 @@ export const StudentsList: React.FC<StudentsListProps> = ({
           onStudentDelete={() => onStudentDelete(item)}
         />
       )}
+      keyExtractor={(item) => item._id}
     />
   );
 };
@@ -48,7 +48,7 @@ export const StudentsList: React.FC<StudentsListProps> = ({
 const styles = StyleSheet.create({
   separator: {
     height: 1,
-    backgroundColor: MobileTheme.palette.border.normal,
+    backgroundColor: MobileTheme.palette.border.light,
   },
   emptyListText: {
     textAlign: "center",
