@@ -94,7 +94,6 @@ export const Button: React.FC<ButtonProps> = ({
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       style={[
-        style,
         styles.button,
         {
           backgroundColor: isPressed
@@ -103,6 +102,7 @@ export const Button: React.FC<ButtonProps> = ({
           width: fullWidth ? "100%" : styles.button.width,
           opacity: isDisabled ? 0.3 : 1,
         },
+        style,
       ]}
       disabled={isDisabled}
       testID={ButtonLocators.Wrapper}
