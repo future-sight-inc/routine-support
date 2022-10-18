@@ -5,6 +5,7 @@ import { fireEvent, render } from "@testing-library/react-native";
 
 import { createOptionFromStudent } from "../../utils/createOptionFromStudent";
 import { InputModalLocators } from "../InputModal/locators";
+import { PopupLocators } from "../Popup/locators";
 import { createOptionTestId, SelectLocators } from "./locators";
 import { Select } from "./Select";
 
@@ -18,8 +19,8 @@ describe("Select", () => {
 
     const { getByTestId } = render(<Select onSelect={handleSelect} options={options} />);
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
@@ -35,8 +36,8 @@ describe("Select", () => {
 
     const { getByTestId } = render(<Select onSelect={handleSelect} options={options} />);
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[0], isSelected: false }))
@@ -74,8 +75,8 @@ describe("Select", () => {
       <Select onSelect={handleSelect} options={options} value={value} />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
@@ -95,8 +96,8 @@ describe("Select", () => {
       <Select onSelect={handleSelect} options={options} value={value} />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[1], isSelected: false }))
@@ -118,8 +119,8 @@ describe("Select", () => {
     );
 
     expect(getByTestId(SelectLocators.Input).props.value).toBe(student1.name);
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
@@ -131,7 +132,7 @@ describe("Select", () => {
     expect(getByTestId(SelectLocators.Input).props.value).toBe("");
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+    expect(queryByTestId(PopupLocators.Background)).toBeFalsy();
   });
 
   it("Open modal, toggle selected option, close modal", async () => {
@@ -146,8 +147,8 @@ describe("Select", () => {
       <Select onSelect={handleSelect} options={options} value={value} />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
@@ -157,9 +158,9 @@ describe("Select", () => {
     await fireEvent.press(getByTestId(InputModalLocators.CloseText));
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: true }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
@@ -175,8 +176,8 @@ describe("Select", () => {
 
     const { getByTestId } = render(<Select onSelect={handleSelect} options={options} multiple />);
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
@@ -192,8 +193,8 @@ describe("Select", () => {
 
     const { getByTestId } = render(<Select onSelect={handleSelect} options={options} multiple />);
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[0], isSelected: false }))
@@ -231,8 +232,8 @@ describe("Select", () => {
       <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
@@ -252,8 +253,8 @@ describe("Select", () => {
       <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[1], isSelected: false }))
@@ -274,8 +275,8 @@ describe("Select", () => {
       <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
@@ -286,7 +287,7 @@ describe("Select", () => {
     expect(handleSelect).toBeCalledWith([]);
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+    expect(queryByTestId(PopupLocators.Background)).toBeFalsy();
   });
 
   it("Multiple: open modal, select another option, press on confirm", async () => {
@@ -301,8 +302,8 @@ describe("Select", () => {
       <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[1], isSelected: false }))
@@ -316,7 +317,7 @@ describe("Select", () => {
     );
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+    expect(queryByTestId(PopupLocators.Background)).toBeFalsy();
   });
 
   it("Multiple: open modal, toggle selected option, close modal", async () => {
@@ -331,8 +332,8 @@ describe("Select", () => {
       <Select onSelect={handleSelect} options={options} value={value} multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(
       getByTestId(createOptionTestId({ option: options[0], isSelected: true }))
@@ -342,9 +343,9 @@ describe("Select", () => {
     await fireEvent.press(getByTestId(InputModalLocators.CloseText));
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: true }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
@@ -374,8 +375,8 @@ describe("Select", () => {
       <Select onSelect={() => null} options={options} searchable multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
@@ -403,8 +404,8 @@ describe("Select", () => {
       <Select onSelect={() => null} options={options} searchable multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
@@ -428,8 +429,8 @@ describe("Select", () => {
       <Select onSelect={() => null} options={options} searchable multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
@@ -453,8 +454,8 @@ describe("Select", () => {
       <Select onSelect={() => null} options={options} searchable multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
@@ -482,8 +483,8 @@ describe("Select", () => {
       <Select onSelect={() => null} options={options} searchable multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();
@@ -505,8 +506,8 @@ describe("Select", () => {
       <Select onSelect={() => null} options={options} searchable multiple />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     expect(getByTestId(createOptionTestId({ option: options[0], isSelected: false }))).toBeTruthy();
     expect(getByTestId(createOptionTestId({ option: options[1], isSelected: false }))).toBeTruthy();

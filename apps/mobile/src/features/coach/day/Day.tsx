@@ -28,7 +28,7 @@ export const Day: React.FC = () => {
     operations: { onDateSelect, onActivityFilterSelect, setDefaultActivityFilter, getDay },
   } = useDay();
   const {
-    models: { isOpened, activity },
+    models: { isOpened, activity, isLoading: isLoadingActivity },
     operations: {
       createActivity,
       updateActivity,
@@ -82,6 +82,7 @@ export const Day: React.FC = () => {
       />
       <ActivityModal
         isEdit={activity?._id}
+        isLoading={isLoadingActivity}
         isOpened={isOpened}
         pictograms={pictograms}
         repeatTypeOptions={repeatTypeOptions}

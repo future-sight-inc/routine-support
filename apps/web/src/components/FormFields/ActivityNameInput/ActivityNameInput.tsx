@@ -17,8 +17,9 @@ export const ActivityNameInput: React.FC<FormFieldProps> = ({
       control={control}
       required={required}
       disabled={disabled}
-      render={({ field }) => (
-        <UncontrolledActivityNameInput {...field} placeholder={placeholder} />
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      render={({ field: { ref, ...fieldProps } }) => (
+        <UncontrolledActivityNameInput {...fieldProps} placeholder={placeholder} />
       )}
     />
   );

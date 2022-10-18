@@ -5,6 +5,7 @@ import { fireEvent, render } from "@testing-library/react-native";
 
 import { createOptionFromStudent } from "../../utils/createOptionFromStudent";
 import { InputModalLocators } from "../InputModal/locators";
+import { PopupLocators } from "../Popup/locators";
 import { createOptionTestId } from "../Select/locators";
 import { createStudentBadgeTestId, StudentsSelectorLocators } from "./locators";
 import { StudentsSelector } from "./StudentsSelector";
@@ -46,7 +47,7 @@ describe("StudentsSelector", () => {
     );
 
     await fireEvent.press(getByTestId(StudentsSelectorLocators.Wrapper));
-    expect(getByTestId(InputModalLocators.Background));
+    expect(getByTestId(PopupLocators.Background));
   });
 
   it("Open modal, select option, press on confirm", async () => {
@@ -63,7 +64,7 @@ describe("StudentsSelector", () => {
     );
 
     await fireEvent.press(getByTestId(StudentsSelectorLocators.Wrapper));
-    expect(getByTestId(InputModalLocators.Background));
+    expect(getByTestId(PopupLocators.Background));
 
     await fireEvent.press(
       getByTestId(

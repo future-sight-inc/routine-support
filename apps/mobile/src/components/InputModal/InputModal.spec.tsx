@@ -2,6 +2,7 @@ import React from "react";
 
 import { fireEvent, render } from "@testing-library/react-native";
 
+import { PopupLocators } from "../Popup/locators";
 import { Typography } from "../Typography";
 import { InputModal } from "./InputModal";
 import { InputModalLocators } from "./locators";
@@ -17,7 +18,7 @@ describe("InputModal", () => {
       />
     );
 
-    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+    expect(queryByTestId(PopupLocators.Background)).toBeFalsy();
     expect(getByText("Press")).toBeTruthy();
   });
 
@@ -32,14 +33,14 @@ describe("InputModal", () => {
       />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
     expect(getByText("Input")).toBeTruthy();
 
     await fireEvent.press(getByTestId(InputModalLocators.CloseText));
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+    expect(queryByTestId(PopupLocators.Background)).toBeFalsy();
   });
 
   it("Open modal and close on modal dim press", async () => {
@@ -52,13 +53,13 @@ describe("InputModal", () => {
       />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
-    await fireEvent.press(getByTestId(InputModalLocators.ModalDim));
+    await fireEvent.press(getByTestId(PopupLocators.ModalDim));
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+    expect(queryByTestId(PopupLocators.Background)).toBeFalsy();
   });
 
   it("Open modal, select value", async () => {
@@ -72,13 +73,13 @@ describe("InputModal", () => {
       />
     );
 
-    await fireEvent.press(getByTestId(InputModalLocators.PressElement));
-    expect(getByTestId(InputModalLocators.Background)).toBeTruthy();
+    await fireEvent.press(getByTestId(PopupLocators.PressElement));
+    expect(getByTestId(PopupLocators.Background)).toBeTruthy();
 
     await fireEvent.press(getByTestId(InputModalLocators.ConfirmText));
     expect(handleSelect).toBeCalled();
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    expect(queryByTestId(InputModalLocators.Background)).toBeFalsy();
+    expect(queryByTestId(PopupLocators.Background)).toBeFalsy();
   });
 });

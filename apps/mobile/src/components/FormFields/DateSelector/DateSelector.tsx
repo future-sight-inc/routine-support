@@ -27,11 +27,12 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
       required={required}
       disabled={disabled}
       helperText={helperText}
-      render={({ field, fieldState }) => (
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      render={({ field: { ref, ...fieldProps }, fieldState }) => (
         <UncontrolledDateSelector
           {...props}
-          {...field}
-          onSelect={(value) => field.onChange(value)}
+          {...fieldProps}
+          onSelect={(value) => fieldProps.onChange(value)}
           InputProps={{ ...InputProps, error: Boolean(fieldState.error) }}
         />
       )}

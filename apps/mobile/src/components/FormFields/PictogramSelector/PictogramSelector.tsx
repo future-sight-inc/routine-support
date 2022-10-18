@@ -27,11 +27,12 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
       required={required}
       disabled={disabled}
       helperText={helperText}
-      render={({ field }) => (
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      render={({ field: { ref, ...fieldProps } }) => (
         <UncontrolledPictogramSelector
           {...props}
-          {...field}
-          onSelect={(value) => field.onChange(value)}
+          {...fieldProps}
+          onSelect={(value) => fieldProps.onChange(value)}
         />
       )}
     />

@@ -19,6 +19,7 @@ function loadStories() {
   require("../apps/mobile/src/components/Modal/Modal.stories");
   require("../apps/mobile/src/components/NotificationsIcon/NotificationsIcon.stories");
   require("../apps/mobile/src/components/PictogramSelector/PictogramSelector.stories");
+  require("../apps/mobile/src/components/Popup/Popup.stories");
   require("../apps/mobile/src/components/Select/Select.stories");
   require("../apps/mobile/src/components/StudentBadge/StudentBadge.stories");
   require("../apps/mobile/src/components/StudentsSelector/StudentsSelector.stories");
@@ -48,6 +49,7 @@ const stories = [
   "../apps/mobile/src/components/Modal/Modal.stories",
   "../apps/mobile/src/components/NotificationsIcon/NotificationsIcon.stories",
   "../apps/mobile/src/components/PictogramSelector/PictogramSelector.stories",
+  "../apps/mobile/src/components/Popup/Popup.stories",
   "../apps/mobile/src/components/Select/Select.stories",
   "../apps/mobile/src/components/StudentBadge/StudentBadge.stories",
   "../apps/mobile/src/components/StudentsSelector/StudentsSelector.stories",

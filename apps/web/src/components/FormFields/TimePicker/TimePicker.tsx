@@ -20,7 +20,8 @@ export const TimePicker: React.FC<FormFieldProps> = ({
       label={label}
       required={required}
       disabled={disabled}
-      render={({ field: { value, onChange, ...field }, fieldState }) => (
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      render={({ field: { value, onChange, ref, ...field }, fieldState }) => (
         <TextField
           type="time"
           {...field}
