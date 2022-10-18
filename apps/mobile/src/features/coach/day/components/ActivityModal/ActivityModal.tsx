@@ -44,14 +44,7 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({
       title={isEdit ? "Редактирование" : "Новое событие"}
       isOpened={isOpened}
       onClose={onClose}
-      footer={
-        <Button
-          text={isEdit ? "Edit" : "Create"}
-          fullWidth
-          loading={isLoading}
-          onPress={onSubmit}
-        />
-      }
+      footer={<Button text={isEdit ? "Edit" : "Create"} loading={isLoading} onPress={onSubmit} />}
       scrollable
     >
       <TextField

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { GestureResponderEvent, Pressable, PressableProps, StyleSheet } from "react-native";
+import { PressableProps, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { MobileTheme } from "../../theme";
 
@@ -12,45 +12,18 @@ interface ButtonProps extends PressableProps {
   disabled?: boolean;
 }
 
-export const IconButton: React.FC<ButtonProps> = ({
-  icon,
-  disabled,
-  style,
-  onPressIn,
-  onPressOut,
-  ...props
-}) => {
-  const [isPressed, setPressed] = useState(false);
-
-  const handlePressIn = (event: GestureResponderEvent) => {
-    setPressed(true);
-    onPressIn && onPressIn(event);
-  };
-
-  const handlePressOut = (event: GestureResponderEvent) => {
-    setPressed(false);
-    onPressOut && onPressOut(event);
-  };
-
+export const IconButton: React.FC<ButtonProps> = ({ icon, disabled, style, ...props }) => {
   return (
-    <Pressable
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      style={[
-        styles.button,
-        {
-          backgroundColor: isPressed
-            ? MobileTheme.palette.secondary.clicked
-            : MobileTheme.palette.secondary.main,
-          opacity: disabled ? 0.3 : 1,
-        },
-        style,
-      ]}
-      {...props}
-      disabled={disabled}
-    >
-      <MaterialIcons name={icon} size={16} color={MobileTheme.palette.primary.text} />
-    </Pressable>
+    <TouchableOpacity {...props} disabled={disabled}>
+      <View
+        style={[
+          styles.button,
+          style,
+        ]}
+      >
+        <MaterialIcons name={icon} size={16} color={MobileTheme.palette.primary.text} />
+      </View>
+    </TouchableOpacity>
   );
 };
 

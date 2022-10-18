@@ -82,7 +82,6 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
         footer={
           <Button
             text="Выбрать"
-            fullWidth
             onPress={handleConfirm}
             testID={PictogramSelectorLocators.ConfirmButton}
           />

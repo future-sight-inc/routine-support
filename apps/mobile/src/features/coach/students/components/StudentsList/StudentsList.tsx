@@ -11,7 +11,6 @@ interface StudentsListProps {
   students: StudentType[];
   onStudentOpen: (student: StudentType) => void;
   onSettingsOpen: (student: StudentType) => void;
-  onQrOpen: (student: StudentType) => void;
   onStudentDelete: (student: StudentType) => void;
 }
 
@@ -19,7 +18,6 @@ export const StudentsList: React.FC<StudentsListProps> = ({
   students,
   onStudentOpen,
   onSettingsOpen,
-  onQrOpen,
   onStudentDelete,
 }) => {
   return (
@@ -36,7 +34,6 @@ export const StudentsList: React.FC<StudentsListProps> = ({
           student={item}
           onStudentOpen={() => onStudentOpen(item)}
           onSettingsOpen={() => onSettingsOpen(item)}
-          onQrOpen={() => onQrOpen(item)}
           onStudentDelete={() => onStudentDelete(item)}
         />
       )}
@@ -51,6 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: MobileTheme.palette.border.light,
   },
   emptyListText: {
+    marginTop: 16,
     textAlign: "center",
   },
 });

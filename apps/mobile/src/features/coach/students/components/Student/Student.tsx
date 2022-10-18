@@ -9,13 +9,13 @@ import { MobileTheme } from "apps/mobile/src/theme";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
+import { QrCode } from "../QrCode";
 import { StudentLocators } from "./locators";
 
 interface StudentProps {
   student: StudentType;
   onStudentOpen: () => void;
   onSettingsOpen: () => void;
-  onQrOpen: () => void;
   onStudentDelete: () => void;
 }
 
@@ -23,7 +23,6 @@ export const Student: React.FC<StudentProps> = ({
   student,
   onStudentOpen,
   onSettingsOpen,
-  onQrOpen,
   onStudentDelete,
 }) => {
   const renderRightActions = () => (
@@ -54,7 +53,7 @@ export const Student: React.FC<StudentProps> = ({
             onPress={onSettingsOpen}
             testID={StudentLocators.SettingsButton}
           />
-          <IconButton icon="qr-code" onPress={onQrOpen} testID={StudentLocators.QRButton} />
+          <QrCode student={student} />
         </View>
       </View>
     </Swipeable>

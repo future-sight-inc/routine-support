@@ -67,7 +67,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const handleCellPress = (cellTime: string) => {
     const parsedTime = parseTime(cellTime);
 
-    onCellPress({ start: parsedTime, end: parsedTime.add(1, "hour") });
+    onCellPress({ start: parsedTime, end: parsedTime.clone().add(1, "hours") });
   };
 
   return (
@@ -87,7 +87,7 @@ export const Calendar: React.FC<CalendarProps> = ({
               <View />
             </View>
             <TouchableWithoutFeedback onPress={() => handleCellPress(time)}>
-              <View style={styles.bodyColumn}></View>
+              <View style={styles.bodyColumn} />
             </TouchableWithoutFeedback>
           </View>
           {index !== timeRange.length - 1 && <View style={styles.separator} key={index} />}
@@ -134,6 +134,8 @@ const styles = StyleSheet.create({
   bodyColumn: {
     marginLeft: COLUMNS_GAP,
     zIndex: 1,
+    width: "100%",
+    height: ROW_HEIGHT,
   },
   separator: {
     marginLeft: TIME_COLUMN_WIDTH + COLUMNS_GAP,

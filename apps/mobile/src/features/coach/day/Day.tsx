@@ -59,9 +59,7 @@ export const Day: React.FC = () => {
   return (
     <MainLayout
       title="Calendar"
-      footer={
-        <Button text="Activity" icon="add" fullWidth onPress={() => openNewActivityModal()} />
-      }
+      footer={<Button text="Activity" icon="add" onPress={() => openNewActivityModal()} />}
     >
       <DayLayout
         daySelect={<DaySelect date={currentDate} onSelect={onDateSelect} />}

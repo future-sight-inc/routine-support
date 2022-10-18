@@ -42,7 +42,7 @@ export const Students: React.FC = () => {
 
   return (
     <StudentsLayout
-      addButton={<Button text="Student" icon="add" fullWidth />}
+      addButton={<Button text="Student" icon="add" />}
       studentsList={
         <StudentsList
           students={students}

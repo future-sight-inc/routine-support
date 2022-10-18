@@ -23,7 +23,7 @@ export const Navigation: React.FC<NavigationProps> = ({ pressElement, coach, onL
     <Modal
       pressElement={pressElement}
       title="Меню"
-      footer={<Button text="Выйти" fullWidth onPress={onLogout} />}
+      footer={<Button text="Выйти" onPress={onLogout} />}
       footerStyle={styles.footer}
     >
       <View style={styles.wrapper}>

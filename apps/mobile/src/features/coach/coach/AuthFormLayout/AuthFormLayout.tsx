@@ -36,7 +36,6 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
       {children}
       <Button
         text={submitButtonText}
-        fullWidth
         onPress={onSubmit}
         loading={loading}
         style={styles.submitButton}

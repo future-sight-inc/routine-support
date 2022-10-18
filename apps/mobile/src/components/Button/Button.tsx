@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import {
   ActivityIndicator,
-  GestureResponderEvent,
-  Pressable,
   PressableProps,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -21,7 +20,6 @@ type ButtonIcon = "add" | "remove";
 interface ButtonProps extends PressableProps {
   text: string;
   variant?: ButtonVariant;
-  fullWidth?: boolean;
   disabled?: boolean;
   icon?: ButtonIcon;
   loading?: boolean;
@@ -30,27 +28,13 @@ interface ButtonProps extends PressableProps {
 export const Button: React.FC<ButtonProps> = ({
   text,
   variant = "primary",
-  fullWidth,
   disabled,
   style,
   icon,
   loading,
-  onPressIn,
-  onPressOut,
   ...props
 }) => {
   const isDisabled = disabled || loading;
-  const [isPressed, setPressed] = useState(false);
-
-  const handlePressIn = (event: GestureResponderEvent) => {
-    setPressed(true);
-    onPressIn && onPressIn(event);
-  };
-
-  const handlePressOut = (event: GestureResponderEvent) => {
-    setPressed(false);
-    onPressOut && onPressOut(event);
-  };
 
   const getTextColor = (variant: ButtonVariant) => {
     switch (variant) {
@@ -90,32 +74,20 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <Pressable
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      style={[
-        styles.button,
-        {
-          backgroundColor: isPressed
-            ? MobileTheme.palette[variant].clicked
-            : MobileTheme.palette[variant].main,
-          width: fullWidth ? "100%" : styles.button.width,
-          opacity: isDisabled ? 0.3 : 1,
-        },
-        style,
-      ]}
+    <TouchableOpacity
       disabled={isDisabled}
       testID={ButtonLocators.Wrapper}
+      style={[styles.button, style]}
       {...props}
     >
       {renderInner()}
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    width: 200,
+    width: "100%",
     height: 50,
     flexDirection: "row",
     justifyContent: "center",
