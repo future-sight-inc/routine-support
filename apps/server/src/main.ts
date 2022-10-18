@@ -25,6 +25,11 @@ app.use(morgan("tiny"));
 
 app.use("/api", router);
 
+app.use("/docs/storybook", express.static(path.join(__dirname, "../../storybook/web")));
+app.use("/docs/storybook", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../storybook/web/index.html"));
+});
+
 app.use("/", express.static(path.join(__dirname, "../web")));
 app.use("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../web/index.html"));

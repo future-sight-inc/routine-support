@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ImageUrl } from "@routine-support/types";
+import { ImageUrl, Pictogram } from "@routine-support/types";
 import { useTranslation } from "react-i18next";
 
 import { Modal } from "../Modal";
@@ -11,6 +11,7 @@ import * as S from "./styled";
 
 interface PictogramPickerProps {
   value?: ImageUrl;
+  pictograms: Pictogram[];
   onChange: (pictogram: ImageUrl) => void;
 }
 
@@ -20,33 +21,23 @@ export interface PictogramPickerActions {
 
 export const PictogramPicker: React.FC<PictogramPickerProps> = ({
   value,
+  pictograms,
   onChange,
 }) => {
   const {
-    models: { selectedPictogram, opened, searchString, pictograms },
-    operations: {
-      onModalClose,
-      onModalOpen,
-      onPictogramClick,
-      onSearchStringChange,
-    },
-  } = usePictogramPickerComponent(value, { onChange });
+    models: { selectedPictogram, opened, searchString, filteredPictograms },
+    operations: { onModalClose, onModalOpen, onPictogramClick, onSearchStringChange },
+  } = usePictogramPickerComponent(value, pictograms, { onChange });
   const { t } = useTranslation();
 
   return (
     <S.Wrapper backgroundImage={selectedPictogram}>
       {selectedPictogram ? (
-        <S.EditButton
-          onClick={onModalOpen}
-          data-testid={PictogramPickerLocators.EditButton}
-        >
+        <S.EditButton onClick={onModalOpen} data-testid={PictogramPickerLocators.EditButton}>
           <S.EditIcon />
         </S.EditButton>
       ) : (
-        <S.OpenButton
-          onClick={onModalOpen}
-          data-testid={PictogramPickerLocators.OpenButton}
-        >
+        <S.OpenButton onClick={onModalOpen} data-testid={PictogramPickerLocators.OpenButton}>
           {t("Choose")}
         </S.OpenButton>
       )}
@@ -60,7 +51,7 @@ export const PictogramPicker: React.FC<PictogramPickerProps> = ({
             data-testid={PictogramPickerLocators.SearchField}
           />
           <S.PictogramsWrapper>
-            {pictograms.map((item, index) => (
+            {filteredPictograms.map((item, index) => (
               <S.Pictogram
                 key={index}
                 src={item.url}

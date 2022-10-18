@@ -1,12 +1,7 @@
 import React from "react";
 
-import {
-  Activity,
-  Coach,
-  WeekNumber,
-  YearNumber,
-} from "@routine-support/domains";
-import { Id } from "@routine-support/types";
+import { Activity, Coach, WeekNumber, YearNumber } from "@routine-support/domains";
+import { Id, Pictogram } from "@routine-support/types";
 import { CommonFlagPicker } from "apps/web/src/components/FormFields/CommonFlagPicker";
 import { ImportantFlagPicker } from "apps/web/src/components/FormFields/ImportantFlagPicker";
 import { StudentsPicker } from "apps/web/src/components/FormFields/StudentsPicker";
@@ -35,12 +30,14 @@ export interface ActivityFormActions {
 export interface ActivityFormProps {
   coach: Coach;
   activity: Partial<Activity> | undefined;
+  pictograms: Pictogram[];
   actions: ActivityFormActions;
 }
 
 export const ActivityForm: React.FC<ActivityFormProps> = ({
   coach,
   activity,
+  pictograms,
   actions,
 }) => {
   const {
@@ -67,43 +64,20 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           placeholder={t("Activity name")}
         />
         <S.DateWrapper>
-          <DatePicker
-            name="date"
-            control={control}
-            label={t("Activity date")}
-            required
-          />
-          <TimePicker
-            name="start"
-            control={control}
-            label={t("Activity start time")}
-            required
-          />
-          <TimePicker
-            name="end"
-            control={control}
-            label={t("Activity end time")}
-            required
-          />
+          <DatePicker name="date" control={control} label={t("Activity date")} required />
+          <TimePicker name="start" control={control} label={t("Activity start time")} required />
+          <TimePicker name="end" control={control} label={t("Activity end time")} required />
         </S.DateWrapper>
         <PictogramPicker
           name="pictogram"
           control={control}
           label={t("Pictogram")}
+          pictograms={pictograms}
           required
         />
-        <CommonFlagPicker
-          label={t("Activity type")}
-          control={control}
-          name="isCommon"
-        />
+        <CommonFlagPicker label={t("Activity type")} control={control} name="isCommon" />
         {shouldShowStudents && (
-          <StudentsPicker
-            name="students"
-            label={t("Students")}
-            required
-            control={control}
-          />
+          <StudentsPicker name="students" label={t("Students")} required control={control} />
         )}
         <S.RepeatWrapper>
           <RepeatTypePicker
@@ -115,17 +89,10 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
         </S.RepeatWrapper>
         <ImportantFlagPicker control={control} name="isImportant" />
         <S.ButtonsWrapper>
-          <S.SubmitButton
-            type="submit"
-            isLoading={isSubmitting}
-            disabled={!isDirty}
-          >
+          <S.SubmitButton type="submit" isLoading={isSubmitting} disabled={!isDirty}>
             {activity?._id ? t("Update") : t("Create")}
           </S.SubmitButton>
-          <S.SecondaryButton
-            type="button"
-            onClick={activity?._id ? onDelete : actions.closeModal}
-          >
+          <S.SecondaryButton type="button" onClick={activity?._id ? onDelete : actions.closeModal}>
             {activity?._id ? t("Delete") : t("Cancel")}
           </S.SecondaryButton>
         </S.ButtonsWrapper>

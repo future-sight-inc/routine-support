@@ -26,12 +26,9 @@ export const TextField: React.FC<TextFieldProps> = ({
       required={required}
       disabled={disabled}
       helperText={helperText}
-      render={({ field, fieldState }) => (
-        <UncontrolledTextField
-          error={Boolean(fieldState.error)}
-          {...props}
-          {...field}
-        />
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      render={({ field: { ref, ...fieldProps }, fieldState }) => (
+        <UncontrolledTextField error={Boolean(fieldState.error)} {...props} {...fieldProps} />
       )}
     />
   );

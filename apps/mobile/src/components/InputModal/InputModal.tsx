@@ -1,17 +1,10 @@
-import React, { ReactNode, useRef, useState } from "react";
+import React, { ReactNode, useState } from "react";
 
-import { OverlayContainer } from "@react-native-aria/overlays";
 import { rgba } from "polished";
-import {
-  Animated,
-  Dimensions,
-  Modal,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { MobileTheme } from "../../theme";
+import { Popup } from "../Popup";
 import { Typography } from "../Typography";
 import { InputModalLocators } from "./locators";
 
@@ -30,90 +23,41 @@ export const InputModal: React.FC<InputModalProps> = ({
 }) => {
   const [isOpened, setOpened] = useState(false);
 
-  const [isBackgroundVisible, setBackgroundVisible] = useState(false);
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-
-  const fadeInBackground = () => {
-    setBackgroundVisible(true);
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
-  };
-
-  const fadeOutBackground = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: false,
-    }).start(() => setBackgroundVisible(false));
-  };
-
   const handleOpen = () => {
     setOpened(true);
-    fadeInBackground();
   };
 
   const handleClose = () => {
-    fadeOutBackground();
     setOpened(false);
     onClose();
   };
 
   const handleConfirm = () => {
-    onConfirm();
-    fadeOutBackground();
     setOpened(false);
+    onConfirm();
   };
 
   return (
-    <>
-      <TouchableWithoutFeedback onPress={handleOpen} testID={InputModalLocators.PressElement}>
-        {pressElement}
-      </TouchableWithoutFeedback>
-      {isBackgroundVisible && (
-        <OverlayContainer>
-          <Animated.View
-            style={[
-              styles.background,
-              {
-                opacity: fadeAnim,
-              },
-            ]}
-            testID={InputModalLocators.Background}
-          />
-        </OverlayContainer>
-      )}
-      <Modal visible={isOpened} animationType="slide" transparent testID={InputModalLocators.Modal}>
-        <View style={styles.modalContentWrapper}>
-          <TouchableWithoutFeedback onPress={handleClose} testID={InputModalLocators.ModalDim}>
-            <View style={styles.modalDim} />
-          </TouchableWithoutFeedback>
-          <View style={styles.modalContent}>
-            <View style={styles.modalHeader}>
-              <Typography
-                variant="text1Bold"
-                color="primary"
-                onPress={handleClose}
-                testID={InputModalLocators.CloseText}
-              >
-                Закрыть
-              </Typography>
-              <Typography
-                variant="text1Bold"
-                color="primary"
-                onPress={handleConfirm}
-                testID={InputModalLocators.ConfirmText}
-              >
-                Выбрать
-              </Typography>
-            </View>
-            {input}
-          </View>
-        </View>
-      </Modal>
-    </>
+    <Popup
+      pressElement={pressElement}
+      isOpened={isOpened}
+      onClose={handleClose}
+      onOpen={handleOpen}
+    >
+      <View style={styles.modalHeader}>
+        <TouchableOpacity onPress={handleClose}>
+          <Typography variant="text1Bold" color="primary" testID={InputModalLocators.CloseText}>
+            Закрыть
+          </Typography>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleConfirm}>
+          <Typography variant="text1Bold" color="primary" testID={InputModalLocators.ConfirmText}>
+            Выбрать
+          </Typography>
+        </TouchableOpacity>
+      </View>
+      {input}
+    </Popup>
   );
 };
 

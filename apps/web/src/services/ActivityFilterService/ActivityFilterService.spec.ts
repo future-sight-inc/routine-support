@@ -6,23 +6,23 @@ beforeEach(ActivityFilterService.clearFilter);
 
 describe("ActivityFilterService", () => {
   it("Get filter. Empty", () => {
-    expect(ActivityFilterService.getFilter()).toStrictEqual({});
+    expect(ActivityFilterService.getFilter()).toStrictEqual([]);
   });
 
   it("Get filter. Has value", () => {
-    localStorage.setItem("filter", JSON.stringify({ common: true }));
-    expect(ActivityFilterService.getFilter()).toStrictEqual({ common: true });
+    localStorage.setItem("filter", JSON.stringify(["common"]));
+    expect(ActivityFilterService.getFilter()).toStrictEqual(["common"]);
   });
 
   it("Set filter. Common filter", () => {
-    ActivityFilterService.setFilter({ common: true });
-    expect(ActivityFilterService.getFilter()).toStrictEqual({ common: true });
+    ActivityFilterService.setFilter(["common"]);
+    expect(ActivityFilterService.getFilter()).toStrictEqual(["common"]);
   });
 
   it("Add property. Common filter", () => {
     ActivityFilterService.addProperty("common");
 
-    expect(ActivityFilterService.getFilter()).toStrictEqual({ common: true });
+    expect(ActivityFilterService.getFilter()).toStrictEqual(["common"]);
   });
 
   it("Add property. Common filter with two students", () => {
@@ -33,17 +33,13 @@ describe("ActivityFilterService", () => {
     ActivityFilterService.addProperty(student1._id);
     ActivityFilterService.addProperty(student2._id);
 
-    expect(ActivityFilterService.getFilter()).toStrictEqual({
-      common: true,
-      [student1._id]: true,
-      [student2._id]: true,
-    });
+    expect(ActivityFilterService.getFilter()).toStrictEqual(["common", student1._id, student2._id]);
   });
 
   it("Remove property. No one left", () => {
     ActivityFilterService.addProperty("common");
     ActivityFilterService.removeProperty("common");
 
-    expect(ActivityFilterService.getFilter()).toStrictEqual({});
+    expect(ActivityFilterService.getFilter()).toStrictEqual([]);
   });
 });

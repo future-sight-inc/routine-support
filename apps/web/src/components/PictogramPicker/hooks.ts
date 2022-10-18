@@ -3,32 +3,26 @@ import { ChangeEvent, useState } from "react";
 import { Pictogram } from "@routine-support/types";
 
 import { PictogramPickerActions } from "./PictogramPicker";
-import pictogramsInfo from "./pictograms_info.json";
 
 export const usePictogramPickerComponent = (
   value: string | undefined,
+  pictograms: Pictogram[],
   actions: PictogramPickerActions
 ) => {
   const [opened, setOpened] = useState(false);
   const [searchString, setSearchString] = useState("");
-  const [pictograms, setPictograms] = useState<Pictogram[]>(
-    pictogramsInfo.pictograms
-  );
-  const [selectedPictogram, setSelectedPictogram] = useState<
-  string | undefined
-  >(value);
+  const [filteredPictograms, setFilteredPictograms] = useState<Pictogram[]>(pictograms);
+  const [selectedPictogram, setSelectedPictogram] = useState<string | undefined>(value);
 
   const onSearchStringChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
     const regexp = new RegExp(`^${value}`);
 
     setSearchString(value);
-    setPictograms(
-      pictogramsInfo.pictograms.filter(
+    setFilteredPictograms(
+      pictograms.filter(
         (pictogram: Pictogram) =>
-          regexp.test(pictogram.en) ||
-          regexp.test(pictogram.nl) ||
-          regexp.test(pictogram.ru)
+          regexp.test(pictogram.en) || regexp.test(pictogram.nl) || regexp.test(pictogram.ru)
       )
     );
   };
@@ -54,7 +48,7 @@ export const usePictogramPickerComponent = (
   return {
     models: {
       selectedPictogram,
-      pictograms,
+      filteredPictograms,
       opened,
       searchString,
     },

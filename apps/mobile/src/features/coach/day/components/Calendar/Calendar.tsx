@@ -7,9 +7,10 @@ import {
   Student,
 } from "@routine-support/domains";
 import { TimeString } from "@routine-support/types";
+import { parseTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
-import { Dimensions, FlatList, StyleSheet, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { ActivitiesGroup } from "../ActivitiesGroup";
 import { CurrentTimeLine } from "../CurrentTimeLine";
@@ -20,6 +21,7 @@ interface CalendarProps {
   activities: ActivityType[];
   students: Student[];
   onActivityPress: (activity: ActivityType) => void;
+  onCellPress: (activity: Partial<ActivityType>) => void;
   onConfirmationStatusPress: (activity: ActivityType) => void;
 }
 
@@ -29,6 +31,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   activities,
   students,
   onActivityPress,
+  onCellPress,
   onConfirmationStatusPress,
 }) => {
   const activitiesGroups = groupActivities(activities);
@@ -50,49 +53,55 @@ export const Calendar: React.FC<CalendarProps> = ({
         <ActivitiesGroup
           group={group}
           students={students}
+          rowIndex={timeRange.indexOf(time)}
           rowHeight={ROW_HEIGHT}
+          rowWidth={ROW_WIDTH}
           onActivityPress={onActivityPress}
           onConfirmationStatusPress={onConfirmationStatusPress}
-          rowWidth={ROW_WIDTH}
+          style={{ marginLeft: TIME_COLUMN_WIDTH + COLUMNS_GAP }}
         />
       )
     );
   };
 
+  const handleCellPress = (cellTime: string) => {
+    const parsedTime = parseTime(cellTime);
+
+    onCellPress({ start: parsedTime, end: parsedTime.add(1, "hour") });
+  };
+
   return (
-    <FlatList
-      data={timeRange}
-      ListHeaderComponent={
-        isToday ? (
-          <CurrentTimeLine rowHeight={ROW_HEIGHT} timeColumnWidth={TIME_COLUMN_WIDTH} />
-        ) : null
-      }
-      ListHeaderComponentStyle={{ zIndex: 1 }}
-      renderItem={({ item, index }) => (
-        <View style={styles.row} key={index}>
-          <View style={styles.timeColumn}>
-            {index === 0 ? (
+    <ScrollView>
+      {timeRange.map((time, index) => (
+        <>
+          <View style={styles.row}>
+            <View style={styles.timeColumn}>
+              {index === 0 ? (
+                <View />
+              ) : (
+                <Typography variant="text3" color="secondary" style={styles.timeText}>
+                  {time}
+                </Typography>
+              )}
+              <View style={styles.dash} />
               <View />
-            ) : (
-              <Typography variant="text3" color="secondary" style={styles.timeText}>
-                {item}
-              </Typography>
-            )}
-            <View style={styles.dash} />
-            <View />
+            </View>
+            <TouchableWithoutFeedback onPress={() => handleCellPress(time)}>
+              <View style={styles.bodyColumn}></View>
+            </TouchableWithoutFeedback>
           </View>
-          <View
-            style={{
-              ...styles.bodyColumn,
-            }}
-          >
-            {renderActivitiesGroup(item)}
-          </View>
-        </View>
-      )}
-      keyExtractor={(item) => item}
-      ItemSeparatorComponent={() => <View style={styles.separator} />}
-    />
+          {index !== timeRange.length - 1 && <View style={styles.separator} key={index} />}
+          {renderActivitiesGroup(time)}
+        </>
+      ))}
+      {isToday ? (
+        <CurrentTimeLine
+          rowHeight={ROW_HEIGHT}
+          timeColumnWidth={TIME_COLUMN_WIDTH}
+          columnsGap={COLUMNS_GAP}
+        />
+      ) : null}
+    </ScrollView>
   );
 };
 
@@ -104,6 +113,7 @@ const COLUMNS_GAP = 24;
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
+    zIndex: 1,
   },
   timeColumn: {
     width: TIME_COLUMN_WIDTH,
@@ -123,12 +133,13 @@ const styles = StyleSheet.create({
   },
   bodyColumn: {
     marginLeft: COLUMNS_GAP,
+    zIndex: 1,
   },
   separator: {
     marginLeft: TIME_COLUMN_WIDTH + COLUMNS_GAP,
     width: "100%",
     height: 1,
     backgroundColor: MobileTheme.palette.border.light,
-    zIndex: 10,
+    zIndex: 0,
   },
 });

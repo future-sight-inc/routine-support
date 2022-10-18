@@ -9,7 +9,7 @@ export const ActivityFilterService = {
       return JSON.parse(savedActivityFilter);
     }
 
-    return {};
+    return [];
   },
   setFilter: (newActivityFilter: ActivityFilter) => {
     localStorage.setItem("filter", JSON.stringify(newActivityFilter));
@@ -21,7 +21,7 @@ export const ActivityFilterService = {
     const savedActivityFilter = ActivityFilterService.getFilter();
 
     if (savedActivityFilter) {
-      savedActivityFilter[id] = true;
+      savedActivityFilter.push(id);
 
       ActivityFilterService.setFilter(savedActivityFilter);
     }
@@ -30,9 +30,7 @@ export const ActivityFilterService = {
     const savedActivityFilter = ActivityFilterService.getFilter();
 
     if (savedActivityFilter) {
-      delete savedActivityFilter[id];
-
-      ActivityFilterService.setFilter(savedActivityFilter);
+      ActivityFilterService.setFilter(savedActivityFilter.filter((savedId) => savedId !== id));
     }
   },
 };

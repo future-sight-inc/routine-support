@@ -1,22 +1,32 @@
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 
 import DatePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import { stringifyDate, stringifyTime } from "@routine-support/utils";
 import moment, { Moment } from "moment";
 
 import { InputModal } from "../InputModal";
+import { TextField, TextFieldProps } from "../TextField";
+import { DateSelectorLocators } from "./locators";
 
-interface DateSelectorProps {
-  pressElement: ReactNode;
+type DateSelectorMode = "date" | "time";
+
+export interface DateSelectorProps {
+  InputComponent?: React.FC<{ value?: string }>;
+  InputProps?: TextFieldProps;
   onSelect: (value: Moment) => void;
   value?: Moment;
+  mode?: DateSelectorMode;
 }
 
 export const DateSelector: React.FC<DateSelectorProps> = ({
-  pressElement,
+  InputComponent = TextField,
+  InputProps,
   onSelect,
   value: defaultValue,
+  mode = "date",
 }) => {
   const [value, setValue] = useState<Moment>(defaultValue || moment());
+  const [displayedValue, setDisplayedValue] = useState<Moment>(value);
 
   const handleChange = (__: DateTimePickerEvent, date?: Date | undefined) => {
     const newValue = moment(date);
@@ -24,8 +34,9 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
     setValue(newValue);
   };
 
-  const handleSelect = () => {
+  const handleConfirm = () => {
     onSelect(value);
+    setDisplayedValue(value);
   };
 
   const handleClose = () => {
@@ -34,18 +45,36 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
     }
   };
 
+  const stringifyDisplayedValue = () => {
+    if (mode === "date") {
+      return stringifyDate(displayedValue);
+    }
+
+    if (mode === "time") {
+      return stringifyTime(displayedValue);
+    }
+  };
+
   return (
     <InputModal
-      pressElement={pressElement}
+      pressElement={
+        <InputComponent
+          {...InputProps}
+          value={stringifyDisplayedValue()}
+          pointerEvents="none"
+          testID={DateSelectorLocators.Input}
+        />
+      }
       input={
         <DatePicker
           value={value.toDate()}
           onChange={handleChange}
           display="spinner"
           textColor="black"
+          mode={mode}
         />
       }
-      onConfirm={handleSelect}
+      onConfirm={handleConfirm}
       onClose={handleClose}
     />
   );

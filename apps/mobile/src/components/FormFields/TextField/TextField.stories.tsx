@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { storiesOf } from "@storybook/react-native";
 import { useForm } from "react-hook-form";
@@ -6,12 +6,7 @@ import { useForm } from "react-hook-form";
 import { TextField } from "./TextField";
 
 const Wrapper: React.FC = () => {
-  const { control, getValues, watch } = useForm();
-
-  watch();
-  useEffect(() => {
-    console.log(getValues());
-  }, [control]);
+  const { control } = useForm();
 
   return <TextField name="name" control={control} label="Name" />;
 };

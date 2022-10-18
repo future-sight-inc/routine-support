@@ -16,7 +16,7 @@ export const DaySelect: React.FC<DaySelectorProps> = ({ date, onSelect }) => {
     <DateSelector
       value={date}
       onSelect={onSelect}
-      pressElement={
+      InputComponent={() => (
         <View style={styles.wrapper}>
           <View style={styles.dayNumberWrapper}>
             <Typography variant="text1">{date.date()}</Typography>
@@ -29,14 +29,13 @@ export const DaySelect: React.FC<DaySelectorProps> = ({ date, onSelect }) => {
             </Typography>
           </Typography>
         </View>
-      }
+      )}
     />
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: 50,
     flexDirection: "column",
     alignItems: "center",
   },
@@ -46,5 +45,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  dayNumber: {},
 });

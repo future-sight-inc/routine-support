@@ -7,9 +7,8 @@ import {
   UseFormStateReturn,
 } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { StyleSheet, View } from "react-native";
 
-import { Typography } from "../../Typography";
+import { FieldWrapper } from "../FieldWrapper";
 import { FormFieldProps } from "../types";
 
 export interface ControllerProps extends FormFieldProps {
@@ -36,33 +35,13 @@ export const Controller: React.FC<ControllerProps> = ({
       control={control}
       rules={{ required: required && t<string>("Required field") }}
       render={({ field, fieldState, formState }) => (
-        <View style={styles.wrapper}>
-          {label && (
-            <Typography variant="text2" color="secondary" style={styles.label}>
-              {label}
-            </Typography>
-          )}
+        <FieldWrapper
+          label={label && t<string>(label)}
+          error={fieldState.error?.message && t<string>(fieldState.error?.message)}
+        >
           {render({ field, fieldState, formState })}
-          {fieldState.error?.message && (
-            <Typography variant="text2" color="error" style={styles.error}>
-              {t(fieldState.error.message)}
-            </Typography>
-          )}
-        </View>
+        </FieldWrapper>
       )}
     />
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "column",
-  },
-  label: {
-    marginBottom: 4,
-  },
-  error: {
-    marginTop: -12,
-    marginBottom: 8,
-  },
-});

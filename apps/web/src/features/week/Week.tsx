@@ -55,9 +55,7 @@ export const Week: React.FC = () => {
           )
         }
         addActivityButton={
-          <AddActivityButton
-            onClick={() => Activity.operations.openNewActivityModal()}
-          />
+          <AddActivityButton onClick={() => Activity.operations.openNewActivityModal()} />
         }
         activityFilter={
           !Students.models.loading && (
@@ -68,13 +66,11 @@ export const Week: React.FC = () => {
           )
         }
         activityModal={
-          <Modal
-            isOpened={Activity.models.opened}
-            onClose={Activity.operations.closeActivityModal}
-          >
+          <Modal isOpened={Activity.models.opened} onClose={Activity.operations.closeActivityModal}>
             <ActivityForm
               coach={Coach.models.coach}
               activity={Activity.models.activity}
+              pictograms={Activity.models.pictograms}
               actions={{
                 createActivity: Activity.operations.createActivity,
                 updateActivity: Activity.operations.updateActivity,

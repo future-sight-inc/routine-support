@@ -34,7 +34,7 @@ export type DateInfo = {
   week: WeekNumber;
 };
 
-export type ActivityFilter = { [key: string]: boolean };
+export type ActivityFilter = string[];
 
 export type ActivityFilterQuery = Id[];
 
