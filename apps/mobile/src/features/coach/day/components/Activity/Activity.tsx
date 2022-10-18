@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import {
   Activity as ActivityType,
-  getActivityStatusesFromStudents,
   Student,
 } from "@routine-support/domains";
 import { getActivityColor } from "@routine-support/ui-theme";
 import { ConfirmationStatus } from "apps/mobile/src/components/ConfirmationStatus/ConfirmationStatus";
-import { Popup } from "apps/mobile/src/components/Popup";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
-import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { ActivityLocators } from "./locators";
 
@@ -20,7 +17,6 @@ interface ActivityProps {
   students: Student[];
   style?: Record<string, unknown>;
   onActivityPress: () => void;
-  onConfirmationStatusPress: () => void;
 }
 
 export const Activity: React.FC<ActivityProps> = ({
@@ -28,23 +24,7 @@ export const Activity: React.FC<ActivityProps> = ({
   students,
   style,
   onActivityPress,
-  onConfirmationStatusPress,
 }) => {
-  const [isOpened, setOpened] = useState(false);
-
-  const handleOpen = () => {
-    setOpened(true);
-  };
-
-  const handleClose = () => {
-    setOpened(false);
-  };
-
-  const { assignedStudents, confirmedStudents } = getActivityStatusesFromStudents(
-    activity,
-    students
-  );
-
   return (
     <TouchableWithoutFeedback onPress={() => onActivityPress()}>
       <View
@@ -57,21 +37,7 @@ export const Activity: React.FC<ActivityProps> = ({
         <Typography variant="caption4Normal" testID={ActivityLocators.Name}>
           {activity.name}
         </Typography>
-
-        <Popup isOpened={isOpened} onClose={handleClose}>
-          <ConfirmationStatus activity={activity} students={students} />
-        </Popup>
-        <TouchableOpacity style={styles.confirmationStatusWrapper} onPress={handleOpen}>
-          <MaterialIcons name="check" size={14} />
-
-          <Typography
-            variant="text2Bold"
-            style={styles.confirmationStatus}
-            testID={ActivityLocators.Status}
-          >
-            {confirmedStudents.length}/{assignedStudents.length}
-          </Typography>
-        </TouchableOpacity>
+        <ConfirmationStatus activity={activity} students={students} />
       </View>
     </TouchableWithoutFeedback>
   );

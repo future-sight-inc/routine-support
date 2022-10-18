@@ -92,7 +92,7 @@ export const Popup: React.FC<PopupProps> = ({
           />
         )}
         <Modal visible={isOpened} animationType="slide" transparent testID={PopupLocators.Modal}>
-          <View style={[styles.modalContentWrapper, { bottom: insets.bottom }]}>
+          <View style={[styles.modalContentWrapper, { bottom: insets.bottom || 16 }]}>
             <TouchableWithoutFeedback onPress={handleClose} testID={PopupLocators.ModalDim}>
               <View style={styles.modalDim} />
             </TouchableWithoutFeedback>
