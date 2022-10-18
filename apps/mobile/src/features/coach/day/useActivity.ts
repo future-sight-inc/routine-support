@@ -4,7 +4,7 @@ import { Activity } from "@routine-support/domains";
 import { coachActivityAPI } from "apps/mobile/src/services/ApiService";
 
 export const useActivity = () => {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [isOpened, setOpened] = useState(false);
   const [activity, setActivity] = useState<Activity | undefined>();
 
@@ -66,7 +66,7 @@ export const useActivity = () => {
     models: {
       activity,
       isOpened,
-      loading,
+      isLoading,
     },
     operations: {
       setActivity,

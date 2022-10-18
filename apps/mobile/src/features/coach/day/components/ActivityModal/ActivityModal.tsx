@@ -16,6 +16,7 @@ import { Dimensions, StyleSheet, View } from "react-native";
 
 interface ActivityModalProps {
   isEdit;
+  isLoading: boolean;
   isOpened: boolean;
   pictograms: Pictogram[];
   repeatTypeOptions: Option[];
@@ -28,6 +29,7 @@ interface ActivityModalProps {
 
 export const ActivityModal: React.FC<ActivityModalProps> = ({
   isEdit,
+  isLoading,
   isOpened,
   pictograms,
   repeatTypeOptions,
@@ -42,7 +44,14 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({
       title={isEdit ? "Редактирование" : "Новое событие"}
       isOpened={isOpened}
       onClose={onClose}
-      footer={<Button text={isEdit ? "Edit" : "Create"} fullWidth onPress={onSubmit} />}
+      footer={
+        <Button
+          text={isEdit ? "Edit" : "Create"}
+          fullWidth
+          loading={isLoading}
+          onPress={onSubmit}
+        />
+      }
       scrollable
     >
       <TextField
