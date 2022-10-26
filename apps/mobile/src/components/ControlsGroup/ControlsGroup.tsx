@@ -9,7 +9,7 @@ interface ControlsGroupProps {
 
 export const ControlsGroup: React.FC<ControlsGroupProps> = ({ children, style }) => {
   const calcProps = () => {
-    const childrenLength = Array.isArray(children) ? children.length : 1;
+    const childrenLength = Array.isArray(children) ? children.filter(Boolean).length : 1;
     const width =
       Dimensions.get("screen").width / childrenLength -
       32 / childrenLength -
@@ -24,13 +24,13 @@ export const ControlsGroup: React.FC<ControlsGroupProps> = ({ children, style })
   return (
     <View style={[styles.wrapper, style]}>
       {Array.isArray(children)
-        ? children.map((child, index) => (
+        ? children.filter(Boolean).map((child, index) => (
           <>
             {index > 0 && <View style={styles.gap} />}
             {React.cloneElement(child, calcProps())}
           </>
         ))
-        : React.cloneElement(child, calcProps())}
+        : React.cloneElement(children, calcProps())}
     </View>
   );
 };

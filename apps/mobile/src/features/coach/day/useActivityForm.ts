@@ -7,6 +7,7 @@ import { setFormErrors } from "apps/mobile/src/utils/setFormErrors";
 import { AxiosError } from "axios";
 import moment from "moment";
 import { useForm } from "react-hook-form";
+import { Alert } from "react-native";
 
 export const useActivityForm = (
   coach: Coach,
@@ -89,16 +90,29 @@ export const useActivityForm = (
   const onDelete = async () => {
     const id = getValues()._id;
 
-    if (id) {
-      // confirm({
-      //   title: t("Confirm your action"),
-      //   description: t("Are you sure you want to delete this activity?"),
-      //   onConfirm: async () => {
-      //     await actions.deleteActivity(id);
-      //     actions.getWeek({ config: { silent: true } });
-      //   },
-      // });
-    }
+    Alert.alert(
+      "Confirm your action",
+      "",
+      [
+        {
+          text: "Cancel",
+
+          style: "cancel",
+        },
+        {
+          text: "Confirm",
+          onPress: async () => {
+            await actions.deleteActivity(id);
+            actions.getDay({ config: { silent: true } });
+          },
+          style: "default",
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () => null,
+      }
+    );
   };
 
   return {
@@ -117,6 +131,6 @@ export const useActivityForm = (
         { text: "Every year", value: RepeatTypeEnum.EveryYear },
       ],
     },
-    operations: { handleSubmit: onSubmit, onDelete },
+    operations: { onSubmit, onDelete },
   };
 };

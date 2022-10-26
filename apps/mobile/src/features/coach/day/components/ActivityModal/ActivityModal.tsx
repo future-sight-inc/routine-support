@@ -26,6 +26,7 @@ interface ActivityModalProps {
   control: Control<any>;
   onClose: () => void;
   onSubmit: () => void;
+  onDelete: () => void;
 }
 
 export const ActivityModal: React.FC<ActivityModalProps> = ({
@@ -39,6 +40,7 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({
   students,
   onClose,
   onSubmit,
+  onDelete,
 }) => {
   return (
     <Modal
@@ -48,7 +50,7 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({
       footer={
         <ControlsGroup>
           {isEdit && (
-            <Button text="Delete" variant="secondary" disabled={isLoading} onPress={onSubmit} />
+            <Button text="Delete" variant="secondary" disabled={isLoading} onPress={onDelete} />
           )}
           <Button text={isEdit ? "Edit" : "Create"} loading={isLoading} onPress={onSubmit} />
         </ControlsGroup>
