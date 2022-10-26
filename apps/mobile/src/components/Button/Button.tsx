@@ -45,6 +45,15 @@ export const Button: React.FC<ButtonProps> = ({
     }
   };
 
+  const getBackgroundColor = (variant: ButtonVariant) => {
+    switch (variant) {
+    case "primary":
+      return MobileTheme.palette.primary.main;
+    default:
+      return MobileTheme.palette.secondary.main;
+    }
+  };
+
   const renderInner = () => {
     if (loading) {
       return (
@@ -63,7 +72,7 @@ export const Button: React.FC<ButtonProps> = ({
             </View>
           )}
           <Typography
-            style={{ ...styles.text, color: getTextColor(variant) }}
+            style={[styles.text, { color: getTextColor(variant) }]}
             testID={ButtonLocators.Text}
           >
             {text}
@@ -77,7 +86,7 @@ export const Button: React.FC<ButtonProps> = ({
     <TouchableOpacity
       disabled={isDisabled}
       testID={ButtonLocators.Wrapper}
-      style={[styles.button, style]}
+      style={[styles.button, { backgroundColor: getBackgroundColor(variant) }, style]}
       {...props}
     >
       {renderInner()}
@@ -92,7 +101,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: MobileTheme.palette.primary.main,
     borderRadius: MobileTheme.borderRadius.m,
   },
   text: {

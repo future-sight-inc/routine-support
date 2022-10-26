@@ -6,6 +6,7 @@
 function loadStories() {
   require("../apps/mobile/src/components/ActivityTypeSelector/ActivityTypeSelector.stories");
   require("../apps/mobile/src/components/Button/Button.stories");
+  require("../apps/mobile/src/components/ControlsGroup/ControlsGroup.stories");
   require("../apps/mobile/src/components/DateSelector/DateSelector.stories");
   require("../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories");
   require("../apps/mobile/src/components/FormFields/ActivityTypeSelector/ActivityTypeSelector.stories");
@@ -38,6 +39,7 @@ function loadStories() {
 const stories = [
   "../apps/mobile/src/components/ActivityTypeSelector/ActivityTypeSelector.stories",
   "../apps/mobile/src/components/Button/Button.stories",
+  "../apps/mobile/src/components/ControlsGroup/ControlsGroup.stories",
   "../apps/mobile/src/components/DateSelector/DateSelector.stories",
   "../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories",
   "../apps/mobile/src/components/FormFields/ActivityTypeSelector/ActivityTypeSelector.stories",
@@ -64,7 +66,6 @@ const stories = [
   "../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories",
   "../apps/mobile/src/features/coach/day/components/Filter/Filter.stories",
   "../apps/mobile/src/features/coach/students/components/Student/Student.stories",
-  "../apps/mobile/src/features/coach/students/components/StudentsLayout/StudentsLayout.stories",
   "../apps/mobile/src/features/coach/students/components/StudentsList/StudentsList.stories",
 ];
 

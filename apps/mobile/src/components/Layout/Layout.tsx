@@ -131,7 +131,7 @@ const createStyles = ({
       alignItems: "center",
       justifyContent: "flex-start",
       paddingVertical: LAYOUT_PADDING,
-      paddingBottom: insets.bottom,
+      paddingBottom: insets.bottom || 16,
       paddingHorizontal: LAYOUT_PADDING,
       backgroundColor: MobileTheme.palette.common.greyMuted,
       borderWidth: 1,
