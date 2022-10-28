@@ -3,6 +3,7 @@ import React from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Student as StudentType } from "@routine-support/domains";
 import { getColor } from "@routine-support/ui-theme";
+import { TouchableWithoutFeedback } from "@ui-kitten/components/devsupport";
 import { IconButton } from "apps/mobile/src/components/IconButton";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { MobileTheme } from "apps/mobile/src/theme";
@@ -38,24 +39,26 @@ export const Student: React.FC<StudentProps> = ({
 
   return (
     <Swipeable renderRightActions={renderRightActions}>
-      <View style={styles.wrapper} onPress={onStudentOpen}>
-        <MaterialIcons
-          name="face"
-          size={66}
-          style={styles.avatar}
-          color={getColor(student.color)}
-        />
-        <Typography variant="caption4Normal">{student.name}</Typography>
-        <View style={styles.buttonsBlock}>
-          <IconButton
-            icon="settings"
-            style={styles.settingsButton}
-            onPress={onSettingsOpen}
-            testID={StudentLocators.SettingsButton}
+      <TouchableWithoutFeedback onPress={onStudentOpen}>
+        <View style={styles.wrapper}>
+          <MaterialIcons
+            name="face"
+            size={66}
+            style={styles.avatar}
+            color={getColor(student.color)}
           />
-          <QrCode student={student} />
+          <Typography variant="caption4Normal">{student.name}</Typography>
+          <View style={styles.buttonsBlock}>
+            <IconButton
+              icon="settings"
+              style={styles.settingsButton}
+              onPress={onSettingsOpen}
+              testID={StudentLocators.SettingsButton}
+            />
+            <QrCode student={student} />
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Swipeable>
   );
 };

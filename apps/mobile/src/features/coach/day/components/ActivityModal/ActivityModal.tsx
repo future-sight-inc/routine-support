@@ -23,7 +23,7 @@ interface ActivityModalProps {
   repeatTypeOptions: Option[];
   isStudentsSelectorVisible: boolean;
   students: Student[];
-  control: Control<any>;
+  control: Control;
   onClose: () => void;
   onSubmit: () => void;
   onDelete: () => void;

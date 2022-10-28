@@ -28,10 +28,9 @@ export const useActivityForm = (
     students: [],
   };
   // ! баг в react-hook-form
-  const { control, handleSubmit, formState, getValues, setError, setValue, watch, reset } =
-    useForm<any>({
-      defaultValues,
-    });
+  const { control, handleSubmit, formState, setError, setValue, watch, reset } = useForm<any>({
+    defaultValues,
+  });
 
   const [submitError, setSubmitError] = useState<string | undefined>();
 
@@ -88,31 +87,31 @@ export const useActivityForm = (
   });
 
   const onDelete = async () => {
-    const id = getValues()._id;
+    if (activity?._id) {
+      Alert.alert(
+        "Confirm your action",
+        "",
+        [
+          {
+            text: "Cancel",
 
-    Alert.alert(
-      "Confirm your action",
-      "",
-      [
-        {
-          text: "Cancel",
-
-          style: "cancel",
-        },
-        {
-          text: "Confirm",
-          onPress: async () => {
-            await actions.deleteActivity(id);
-            actions.getDay({ config: { silent: true } });
+            style: "cancel",
           },
-          style: "default",
-        },
-      ],
-      {
-        cancelable: true,
-        onDismiss: () => null,
-      }
-    );
+          {
+            text: "Confirm",
+            onPress: async () => {
+              await actions.deleteActivity(activity?._id as string);
+              actions.getDay({ config: { silent: true } });
+            },
+            style: "default",
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => null,
+        }
+      );
+    }
   };
 
   return {
