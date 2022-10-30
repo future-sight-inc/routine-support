@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { Typography } from "../Typography";
 
 interface ErrorMessageProps {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: MobileTheme.borderRadius.m,
-    backgroundColor: MobileTheme.palette.error.main,
+    borderRadius: Theme.borderRadius.m,
+    backgroundColor: Theme.palette.error.main,
   },
 });

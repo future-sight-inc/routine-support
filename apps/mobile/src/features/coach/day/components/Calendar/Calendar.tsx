@@ -9,7 +9,7 @@ import {
 import { TimeString } from "@routine-support/types";
 import { parseTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import { Dimensions, ScrollView, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { ActivitiesGroup } from "../ActivitiesGroup";
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     height: 1,
     width: 12,
     marginLeft: 4,
-    backgroundColor: MobileTheme.palette.secondary.main,
+    backgroundColor: Theme.palette.secondary.main,
   },
   bodyColumn: {
     marginLeft: COLUMNS_GAP,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     marginLeft: TIME_COLUMN_WIDTH + COLUMNS_GAP,
     width: "100%",
     height: 1,
-    backgroundColor: MobileTheme.palette.border.light,
+    backgroundColor: Theme.palette.border.light,
     zIndex: 0,
   },
 });

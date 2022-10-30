@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Student } from "@routine-support/domains";
 import { StyleSheet, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { createOptionFromStudent } from "../../utils/createOptionFromStudent";
 import { Select } from "../Select";
 import { StudentBadge } from "../StudentBadge";
@@ -68,8 +68,8 @@ export const StudentsSelector: React.FC<StudentsSelectorProps> = ({
 const styles = StyleSheet.create({
   emptyWrapper: {
     height: 80,
-    backgroundColor: MobileTheme.palette.secondary.main,
-    borderRadius: MobileTheme.borderRadius.m,
+    backgroundColor: Theme.palette.secondary.main,
+    borderRadius: Theme.borderRadius.m,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     padding: 8,
-    backgroundColor: MobileTheme.palette.secondary.main,
-    borderRadius: MobileTheme.borderRadius.m,
+    backgroundColor: Theme.palette.secondary.main,
+    borderRadius: Theme.borderRadius.m,
   },
 });

@@ -6,7 +6,7 @@ import { getColor } from "@routine-support/ui-theme";
 import { TouchableWithoutFeedback } from "@ui-kitten/components/devsupport";
 import { IconButton } from "apps/mobile/src/components/IconButton";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
@@ -66,7 +66,7 @@ export const Student: React.FC<StudentProps> = ({
 const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    backgroundColor: MobileTheme.palette.common.white,
+    backgroundColor: Theme.palette.common.white,
     display: "flex",
     flexDirection: "row",
     paddingVertical: 8,
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
   deleteWrapper: {
     width: 80,
     height: 80,
-    backgroundColor: MobileTheme.palette.common.red,
+    backgroundColor: Theme.palette.common.red,
     alignItems: "center",
     justifyContent: "center",
   },
   deleteIcon: {
-    color: MobileTheme.palette.common.white,
+    color: Theme.palette.common.white,
   },
 });

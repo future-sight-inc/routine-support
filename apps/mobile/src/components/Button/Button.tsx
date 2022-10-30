@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { Typography } from "../Typography";
 import { ButtonLocators } from "./locators";
 
@@ -39,18 +39,18 @@ export const Button: React.FC<ButtonProps> = ({
   const getTextColor = (variant: ButtonVariant) => {
     switch (variant) {
     case "primary":
-      return MobileTheme.palette.common.white;
+      return Theme.palette.common.white;
     default:
-      return MobileTheme.palette.primary.text;
+      return Theme.palette.primary.text;
     }
   };
 
   const getBackgroundColor = (variant: ButtonVariant) => {
     switch (variant) {
     case "primary":
-      return MobileTheme.palette.primary.main;
+      return Theme.palette.primary.main;
     default:
-      return MobileTheme.palette.secondary.main;
+      return Theme.palette.secondary.main;
     }
   };
 
@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: MobileTheme.borderRadius.m,
+    borderRadius: Theme.borderRadius.m,
   },
   text: {
-    fontWeight: MobileTheme.fonts.caption4.weight,
-    fontSize: MobileTheme.fonts.caption4.size,
+    fontWeight: Theme.fonts.caption4.weight,
+    fontSize: Theme.fonts.caption4.size,
   },
   iconWrapper: {
     marginRight: 8,

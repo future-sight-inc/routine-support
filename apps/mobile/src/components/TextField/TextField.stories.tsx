@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import { StyleSheet, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { TextField } from "./TextField";
 
 storiesOf("Components", module).add("TextField", () => {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   customField: {
     borderWidth: 0,
     paddingHorizontal: 0,
-    fontSize: MobileTheme.fonts.caption4.size,
-    fontWeight: MobileTheme.fonts.caption4.weight,
+    fontSize: Theme.fonts.caption4.size,
+    fontWeight: Theme.fonts.caption4.weight,
   },
 });

@@ -11,7 +11,7 @@ import { Select } from "apps/mobile/src/components/FormFields/Select";
 import { StudentsSelector } from "apps/mobile/src/components/FormFields/StudentsSelector";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Modal } from "apps/mobile/src/components/Modal";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import { Control } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 
@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
   activityNameInput: {
     borderWidth: 0,
     paddingHorizontal: 0,
-    fontSize: MobileTheme.fonts.caption4.size,
-    fontWeight: MobileTheme.fonts.caption4.weight,
+    fontSize: Theme.fonts.caption4.size,
+    fontWeight: Theme.fonts.caption4.weight,
     marginBottom: 16,
   },
   dateInputsWrapper: {

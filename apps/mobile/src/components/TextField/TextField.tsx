@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from "react";
 
 import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 
 export interface TextFieldProps extends TextInputProps {
   error?: boolean;
@@ -31,14 +31,14 @@ export const TextField: React.FC<TextFieldProps> = ({
 
   const getBorderColor = () => {
     if (isFocused) {
-      return MobileTheme.palette.primary.main;
+      return Theme.palette.primary.main;
     }
 
     if (error) {
-      return MobileTheme.palette.error.text;
+      return Theme.palette.error.text;
     }
 
-    return MobileTheme.palette.border.normal;
+    return Theme.palette.border.normal;
   };
 
   return (
@@ -51,7 +51,7 @@ export const TextField: React.FC<TextFieldProps> = ({
           icon && { paddingLeft: 28 },
           style,
         ]}
-        placeholderTextColor={MobileTheme.palette.secondary.text}
+        placeholderTextColor={Theme.palette.secondary.text}
         {...props}
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 50,
     paddingHorizontal: 8,
-    borderRadius: MobileTheme.borderRadius.m,
+    borderRadius: Theme.borderRadius.m,
   },
   iconWrapper: {
     position: "absolute",

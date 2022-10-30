@@ -12,7 +12,7 @@ import {
   View,
 } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { Button } from "../Button";
 import { Modal } from "../Modal";
 import { Typography } from "../Typography";
@@ -147,7 +147,7 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
                     <MaterialIcons
                       name="not-interested"
                       size={40}
-                      color={MobileTheme.palette.secondary.text}
+                      color={Theme.palette.secondary.text}
                     />
                   </View>
                 </TouchableWithoutFeedback>
@@ -164,8 +164,8 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
 
 const styles = StyleSheet.create({
   currentValueWrapper: {
-    backgroundColor: MobileTheme.palette.secondary.main,
-    borderRadius: MobileTheme.borderRadius.m,
+    backgroundColor: Theme.palette.secondary.main,
+    borderRadius: Theme.borderRadius.m,
     marginBottom: 0,
   },
   pictogramPreviewWrapper: {
@@ -186,20 +186,20 @@ const styles = StyleSheet.create({
     height: Dimensions.get("screen").height - 480,
   },
   pictogramWrapper: {
-    backgroundColor: MobileTheme.palette.common.black,
+    backgroundColor: Theme.palette.common.black,
     width: Dimensions.get("screen").width / 4 - 16,
     height: Dimensions.get("screen").width / 4 - 16,
     margin: 2,
-    borderRadius: MobileTheme.borderRadius.m,
+    borderRadius: Theme.borderRadius.m,
   },
   notSelectedWrapper: {
-    backgroundColor: MobileTheme.palette.secondary.main,
+    backgroundColor: Theme.palette.secondary.main,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
   selectedPictogram: {
     borderWidth: 4,
-    borderColor: MobileTheme.palette.primary.main,
+    borderColor: Theme.palette.primary.main,
   },
 });

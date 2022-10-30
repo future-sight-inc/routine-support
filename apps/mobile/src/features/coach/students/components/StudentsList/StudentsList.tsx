@@ -2,7 +2,7 @@ import React from "react";
 
 import { Student as StudentType } from "@routine-support/domains";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import { FlatList, StyleSheet, View } from "react-native";
 
 import { Student } from "../Student";
@@ -45,7 +45,7 @@ export const StudentsList: React.FC<StudentsListProps> = ({
 const styles = StyleSheet.create({
   separator: {
     height: 1,
-    backgroundColor: MobileTheme.palette.border.light,
+    backgroundColor: Theme.palette.border.light,
   },
   emptyListText: {
     marginTop: 16,

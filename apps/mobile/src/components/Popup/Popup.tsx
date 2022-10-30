@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { PopupLocators } from "./locators";
 
 interface PopupProps {
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   background: {
     height: "100%",
     width: "100%",
-    backgroundColor: rgba(MobileTheme.palette.common.black, 0.6),
+    backgroundColor: rgba(Theme.palette.common.black, 0.6),
     position: "absolute",
   },
   modalContentWrapper: {
@@ -119,8 +119,8 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     width: Dimensions.get("screen").width - 32,
-    backgroundColor: MobileTheme.palette.common.white,
-    borderRadius: MobileTheme.borderRadius.m,
+    backgroundColor: Theme.palette.common.white,
+    borderRadius: Theme.borderRadius.m,
     padding: 16,
     margin: 16,
     marginBottom: 0,

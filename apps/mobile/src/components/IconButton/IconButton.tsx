@@ -3,7 +3,7 @@ import React from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { PressableProps, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 
 type ButtonIcon = "settings" | "qr-code";
 
@@ -21,7 +21,7 @@ export const IconButton: React.FC<ButtonProps> = ({ icon, disabled, style, ...pr
           style,
         ]}
       >
-        <MaterialIcons name={icon} size={16} color={MobileTheme.palette.primary.text} />
+        <MaterialIcons name={icon} size={16} color={Theme.palette.primary.text} />
       </View>
     </TouchableOpacity>
   );
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: MobileTheme.palette.secondary.main,
-    borderRadius: MobileTheme.borderRadius.s,
+    backgroundColor: Theme.palette.secondary.main,
+    borderRadius: Theme.borderRadius.s,
   },
 });

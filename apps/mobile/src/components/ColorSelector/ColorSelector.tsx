@@ -4,7 +4,7 @@ import { ColorEnum } from "@routine-support/domains";
 import { COLORS } from "@routine-support/ui-theme";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 
 export interface ColorSelectorProps {
   value?: ColorEnum;
@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     backgroundColor: "black",
-    borderRadius: MobileTheme.borderRadius.m,
+    borderRadius: Theme.borderRadius.m,
     marginRight: 8,
     marginBottom: 8,
   },
   active: {
     borderWidth: 2,
-    borderColor: MobileTheme.palette.primary.main,
+    borderColor: Theme.palette.primary.main,
   },
 });

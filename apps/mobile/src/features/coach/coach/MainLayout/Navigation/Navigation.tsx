@@ -7,7 +7,7 @@ import { Button } from "apps/mobile/src/components/Button";
 import { Modal } from "apps/mobile/src/components/Modal";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import { StyleSheet, View } from "react-native";
 
 import { Link } from "./components/Link";
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
   linkIconWrapper: {
     width: 30,
     height: 30,
-    backgroundColor: MobileTheme.palette.secondary.main,
-    borderRadius: MobileTheme.borderRadius.s,
+    backgroundColor: Theme.palette.secondary.main,
+    borderRadius: Theme.borderRadius.s,
     marginRight: 16,
     flexDirection: "column",
     alignItems: "center",
