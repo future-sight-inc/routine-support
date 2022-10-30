@@ -5,7 +5,7 @@ import { ErrorMessage } from "apps/mobile/src/components/ErrorMessage";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { Link } from "react-router-native";
 
 import { AuthFormLayout } from "../AuthFormLayout";
@@ -33,27 +33,31 @@ export const Login: React.FC<LoginProps> = ({ actions, loading }) => {
       onSubmit={handleSubmit}
       loading={loading}
     >
-      <TextField
-        control={control}
-        name="email"
-        placeholder="Почта"
-        keyboardType="email-address"
-        textContentType="emailAddress"
-        autoCapitalize="none"
-        autoCorrect={false}
-        required
-        disabled={loading}
-        style={styles.textInput}
-      />
-      <TextField
-        control={control}
-        name="password"
-        placeholder="Пароль"
-        required
-        secureTextEntry={true}
-        disabled={loading}
-        style={styles.textInput}
-      />
+      <View style={styles.fieldWrapper}>
+        <TextField
+          control={control}
+          name="email"
+          placeholder="Почта"
+          keyboardType="email-address"
+          textContentType="emailAddress"
+          autoCapitalize="none"
+          autoCorrect={false}
+          required
+          disabled={loading}
+          style={styles.textInput}
+        />
+      </View>
+      <View style={styles.fieldWrapper}>
+        <TextField
+          control={control}
+          name="password"
+          placeholder="Пароль"
+          required
+          secureTextEntry={true}
+          disabled={loading}
+          style={styles.textInput}
+        />
+      </View>
       {submitError && <ErrorMessage style={styles.errorMessage}>{submitError}</ErrorMessage>}
       <Link to={LinkService.coach.register()} underlayColor="transparent">
         <Typography variant="text1" color="secondary">
@@ -69,8 +73,10 @@ export const Login: React.FC<LoginProps> = ({ actions, loading }) => {
 
 const styles = StyleSheet.create({
   textInput: {
-    marginBottom: 16,
     width: Dimensions.get("screen").width - 32,
+  },
+  fieldWrapper: {
+    marginBottom: 16,
   },
   errorMessage: {
     marginBottom: 16,

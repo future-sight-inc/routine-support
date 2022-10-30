@@ -57,13 +57,15 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({
       }
       scrollable
     >
-      <TextField
-        name="name"
-        control={control}
-        placeholder="Введите заголовок"
-        required
-        style={styles.activityNameInput}
-      />
+      <View style={styles.fieldWrapper}>
+        <TextField
+          name="name"
+          control={control}
+          placeholder="Введите заголовок"
+          required
+          style={styles.activityNameInput}
+        />
+      </View>
       <ControlsGroup style={styles.dateInputsWrapper}>
         <DateSelector name="date" control={control} label="Дата" required />
         <DateSelector name="start" mode="time" control={control} label="Начало" required />
@@ -111,7 +113,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     fontSize: Theme.fonts.caption4.size,
     fontWeight: Theme.fonts.caption4.weight,
-    marginBottom: 16,
   },
   dateInputsWrapper: {
     marginBottom: 16,
