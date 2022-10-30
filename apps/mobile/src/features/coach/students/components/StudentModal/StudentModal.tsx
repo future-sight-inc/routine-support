@@ -2,6 +2,7 @@ import React from "react";
 
 import { Button } from "apps/mobile/src/components/Button";
 import { ControlsGroup } from "apps/mobile/src/components/ControlsGroup";
+import { ColorSelector } from "apps/mobile/src/components/FormFields/ColorSelector";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Modal } from "apps/mobile/src/components/Modal";
 import { Control } from "react-hook-form";
@@ -43,6 +44,9 @@ export const StudentModal: React.FC<StudentModalProps> = ({
     >
       <View style={styles.fieldWrapper}>
         <TextField label="Имя" name="name" control={control} placeholder="Введите имя" required />
+      </View>
+      <View style={styles.fieldWrapper}>
+        <ColorSelector label="Цвет" name="color" control={control} required />
       </View>
     </Modal>
   );

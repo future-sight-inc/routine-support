@@ -6,6 +6,7 @@
 function loadStories() {
   require("../apps/mobile/src/components/ActivityTypeSelector/ActivityTypeSelector.stories");
   require("../apps/mobile/src/components/Button/Button.stories");
+  require("../apps/mobile/src/components/ColorSelector/ColorSelector.stories");
   require("../apps/mobile/src/components/ControlsGroup/ControlsGroup.stories");
   require("../apps/mobile/src/components/DateSelector/DateSelector.stories");
   require("../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories");
@@ -39,6 +40,7 @@ function loadStories() {
 const stories = [
   "../apps/mobile/src/components/ActivityTypeSelector/ActivityTypeSelector.stories",
   "../apps/mobile/src/components/Button/Button.stories",
+  "../apps/mobile/src/components/ColorSelector/ColorSelector.stories",
   "../apps/mobile/src/components/ControlsGroup/ControlsGroup.stories",
   "../apps/mobile/src/components/DateSelector/DateSelector.stories",
   "../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories",
