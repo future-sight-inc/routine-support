@@ -53,7 +53,7 @@ export const useStudent = () => {
     }
   };
 
-  const openStudentModal = (student: Student) => {
+  const openStudentModal = (student?: Student) => {
     setStudent(student);
     setStudentModalOpened(true);
   };

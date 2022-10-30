@@ -3,6 +3,7 @@ import React from "react";
 import { Student as StudentType } from "@routine-support/domains";
 import { Button } from "apps/mobile/src/components/Button";
 import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
+import { Alert } from "react-native";
 
 import { StudentModal } from "./components/StudentModal";
 import { StudentsLayout } from "./components/StudentsLayout";
@@ -39,7 +40,7 @@ export const Students: React.FC = () => {
     getStudents,
   });
 
-  const handleStudentOpen = (student: StudentType): void => {
+  const handleStudentOpen = (student?: StudentType): void => {
     openStudentModal(student);
   };
 
@@ -48,8 +49,29 @@ export const Students: React.FC = () => {
   };
 
   const handleStudentDelete = async (student: StudentType): Promise<void> => {
-    await deleteStudent(student);
-    await getStudents({ silent: true });
+    Alert.alert(
+      "Confirm your action",
+      "",
+      [
+        {
+          text: "Cancel",
+
+          style: "cancel",
+        },
+        {
+          text: "Confirm",
+          onPress: async () => {
+            await deleteStudent(student);
+            await getStudents({ silent: true });
+          },
+          style: "default",
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () => null,
+      }
+    );
   };
 
   if (loading) {
