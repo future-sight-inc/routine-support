@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DevSettings } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AppRoot from "../app/app";
 
@@ -101,7 +102,11 @@ function ToggleStorybook(props) {
   }, []);
 
   if (showStorybook) {
-    return StorybookUIRoot ? <StorybookUIRoot /> : null;
+    return StorybookUIRoot ? (
+      <SafeAreaProvider>
+        <StorybookUIRoot />
+      </SafeAreaProvider>
+    ) : null;
   } else {
     return props.children;
   }
