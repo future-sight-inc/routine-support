@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { Typography } from "../Typography";
 import { ActivityTypeSelectorLocators, createActiveTypeTestId } from "./locators";
 
@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: Dimensions.get("screen").width / 2 - 20,
-    borderRadius: MobileTheme.borderRadius.m,
+    borderRadius: Theme.borderRadius.m,
     borderWidth: 1,
-    borderColor: MobileTheme.palette.border.normal,
+    borderColor: Theme.palette.border.normal,
   },
   selectedOption: {
-    backgroundColor: MobileTheme.palette.primary.main,
+    backgroundColor: Theme.palette.primary.main,
     borderWidth: 0,
   },
   gap: { width: 8 },

@@ -9,6 +9,7 @@ import { MainLayout } from "./coach/MainLayout";
 import { PrivateRoute } from "./coach/PrivateRoute";
 import { Register } from "./coach/Register";
 import { Day } from "./day/Day";
+import { Students } from "./students/Students";
 
 export const CoachEntry: React.FC = () => {
   return (
@@ -23,9 +24,7 @@ export const CoachEntry: React.FC = () => {
         <Day />
       </PrivateRoute>
       <PrivateRoute exact path={LinkService.coach.students()}>
-        <MainLayout title="Students">
-          <Typography>Here will be students</Typography>
-        </MainLayout>
+        <Students />
       </PrivateRoute>
       <PrivateRoute exact path={LinkService.coach.notifications()}>
         <MainLayout title="Notifications">

@@ -3,7 +3,7 @@ import React from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { NotificationsIconLocators } from "./locators";
 
 interface NotificationsIconProps {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     right: 0,
     width: 6,
     height: 6,
-    backgroundColor: MobileTheme.palette.common.red,
+    backgroundColor: Theme.palette.common.red,
     borderRadius: 3,
   },
 });

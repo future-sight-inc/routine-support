@@ -4,7 +4,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Option } from "@routine-support/types";
 import { FlatList, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { InputModal } from "../InputModal";
 import { TextField, TextFieldProps } from "../TextField";
 import { Typography } from "../Typography";
@@ -14,7 +14,7 @@ export interface SelectProps {
   InputComponent?: React.FC<{ value?: string }>;
   InputProps?: TextFieldProps;
   value?: any;
-  options: Option[];
+  options?: Option[];
   multiple?: boolean;
   searchable?: boolean;
   onSelect: (value: any) => void;
@@ -24,7 +24,7 @@ export const Select: React.FC<SelectProps> = ({
   InputComponent = TextField,
   InputProps,
   value: defaultValue,
-  options,
+  options = [],
   multiple,
   searchable,
   onSelect,
@@ -110,7 +110,7 @@ export const Select: React.FC<SelectProps> = ({
   };
 
   const getOptionColor = (option: Option): string => {
-    return option.color || MobileTheme.palette.primary.main;
+    return option.color || Theme.palette.primary.main;
   };
 
   const filterOptions = (options: Option[]) => {
@@ -137,9 +137,7 @@ export const Select: React.FC<SelectProps> = ({
               placeholder="Поиск"
               autoCapitalize="none"
               autoCorrect={false}
-              icon={
-                <MaterialIcons name="search" size={16} color={MobileTheme.palette.secondary.text} />
-              }
+              icon={<MaterialIcons name="search" size={16} color={Theme.palette.secondary.text} />}
               testID={SelectLocators.SearchField}
             />
           )}
@@ -158,7 +156,7 @@ export const Select: React.FC<SelectProps> = ({
                         borderColor: getOptionColor(option),
                         backgroundColor: isOptionSelected(option)
                           ? getOptionColor(option)
-                          : MobileTheme.palette.common.white,
+                          : Theme.palette.common.white,
                       },
                     ]}
                   >
@@ -206,10 +204,10 @@ const styles = StyleSheet.create({
     height: 18,
     borderRadius: 9,
     borderWidth: 2,
-    borderColor: MobileTheme.palette.common.white,
+    borderColor: Theme.palette.common.white,
   },
   searchField: {
-    backgroundColor: MobileTheme.palette.secondary.main,
+    backgroundColor: Theme.palette.secondary.main,
     marginBottom: 8,
   },
 });

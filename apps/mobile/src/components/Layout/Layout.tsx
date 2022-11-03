@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { EdgeInsets, SafeAreaView } from "react-native-safe-area-context";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { Typography } from "../Typography";
 import { LayoutLocators } from "./locators";
 
@@ -119,10 +119,10 @@ const createStyles = ({
       paddingTop: LAYOUT_PADDING,
       borderWidth: 1,
       borderBottomWidth: 0,
-      backgroundColor: MobileTheme.palette.common.white,
-      borderColor: MobileTheme.palette.border.light,
-      borderTopLeftRadius: MobileTheme.borderRadius.xxl,
-      borderTopRightRadius: MobileTheme.borderRadius.xxl,
+      backgroundColor: Theme.palette.common.white,
+      borderColor: Theme.palette.border.light,
+      borderTopLeftRadius: Theme.borderRadius.xxl,
+      borderTopRightRadius: Theme.borderRadius.xxl,
       overflow: "hidden",
       zIndex: 1,
     },
@@ -131,14 +131,14 @@ const createStyles = ({
       alignItems: "center",
       justifyContent: "flex-start",
       paddingVertical: LAYOUT_PADDING,
-      paddingBottom: insets.bottom,
+      paddingBottom: insets.bottom || 16,
       paddingHorizontal: LAYOUT_PADDING,
-      backgroundColor: MobileTheme.palette.common.greyMuted,
+      backgroundColor: Theme.palette.common.greyMuted,
       borderWidth: 1,
       borderBottomWidth: 0,
-      borderColor: MobileTheme.palette.border.light,
-      borderTopLeftRadius: MobileTheme.borderRadius.xl,
-      borderTopRightRadius: MobileTheme.borderRadius.xl,
+      borderColor: Theme.palette.border.light,
+      borderTopLeftRadius: Theme.borderRadius.xl,
+      borderTopRightRadius: Theme.borderRadius.xl,
       position: "absolute",
       bottom: 0,
       width: "100%",

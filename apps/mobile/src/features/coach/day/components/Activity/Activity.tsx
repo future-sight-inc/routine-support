@@ -7,7 +7,7 @@ import {
 import { getActivityColor } from "@routine-support/ui-theme";
 import { ConfirmationStatus } from "apps/mobile/src/components/ConfirmationStatus/ConfirmationStatus";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { ActivityLocators } from "./locators";
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
   wrapper: {
     height: "100%",
     padding: 8,
-    borderRadius: MobileTheme.borderRadius.m,
-    backgroundColor: MobileTheme.palette.common.blue,
+    borderRadius: Theme.borderRadius.m,
+    backgroundColor: Theme.palette.common.blue,
   },
   confirmationStatusWrapper: {
     position: "absolute",
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     height: 30,
     paddingHorizontal: 8,
     backgroundColor: "rgba(0, 0, 0, 0.1)",
-    borderRadius: MobileTheme.borderRadius.s,
+    borderRadius: Theme.borderRadius.s,
   },
   confirmationStatus: { marginLeft: 2 },
 });

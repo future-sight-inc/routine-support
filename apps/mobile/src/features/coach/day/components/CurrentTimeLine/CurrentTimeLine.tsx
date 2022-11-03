@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { parseTime, stringifyTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import moment from "moment";
 import { StyleSheet, View } from "react-native";
 
@@ -59,9 +59,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: MobileTheme.palette.primary.main,
+    backgroundColor: Theme.palette.primary.main,
     position: "absolute",
-    borderRadius: MobileTheme.borderRadius.s,
+    borderRadius: Theme.borderRadius.s,
     zIndex: 4,
   },
   currentTimeLine: {
@@ -75,13 +75,13 @@ const styles = StyleSheet.create({
   circle: {
     width: 10,
     height: 10,
-    backgroundColor: MobileTheme.palette.primary.main,
+    backgroundColor: Theme.palette.primary.main,
     borderRadius: 5,
   },
   line: {
     height: 2,
     width: "100%",
-    backgroundColor: MobileTheme.palette.primary.main,
+    backgroundColor: Theme.palette.primary.main,
     marginLeft: -4,
   },
 });

@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import {
   ActivityIndicator,
-  GestureResponderEvent,
-  Pressable,
   PressableProps,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { Typography } from "../Typography";
 import { ButtonLocators } from "./locators";
 
@@ -21,7 +20,6 @@ type ButtonIcon = "add" | "remove";
 interface ButtonProps extends PressableProps {
   text: string;
   variant?: ButtonVariant;
-  fullWidth?: boolean;
   disabled?: boolean;
   icon?: ButtonIcon;
   loading?: boolean;
@@ -30,34 +28,29 @@ interface ButtonProps extends PressableProps {
 export const Button: React.FC<ButtonProps> = ({
   text,
   variant = "primary",
-  fullWidth,
   disabled,
   style,
   icon,
   loading,
-  onPressIn,
-  onPressOut,
   ...props
 }) => {
   const isDisabled = disabled || loading;
-  const [isPressed, setPressed] = useState(false);
-
-  const handlePressIn = (event: GestureResponderEvent) => {
-    setPressed(true);
-    onPressIn && onPressIn(event);
-  };
-
-  const handlePressOut = (event: GestureResponderEvent) => {
-    setPressed(false);
-    onPressOut && onPressOut(event);
-  };
 
   const getTextColor = (variant: ButtonVariant) => {
     switch (variant) {
     case "primary":
-      return MobileTheme.palette.common.white;
+      return Theme.palette.common.white;
     default:
-      return MobileTheme.palette.primary.text;
+      return Theme.palette.primary.text;
+    }
+  };
+
+  const getBackgroundColor = (variant: ButtonVariant) => {
+    switch (variant) {
+    case "primary":
+      return Theme.palette.primary.main;
+    default:
+      return Theme.palette.secondary.main;
     }
   };
 
@@ -79,7 +72,7 @@ export const Button: React.FC<ButtonProps> = ({
             </View>
           )}
           <Typography
-            style={{ ...styles.text, color: getTextColor(variant) }}
+            style={[styles.text, { color: getTextColor(variant) }]}
             testID={ButtonLocators.Text}
           >
             {text}
@@ -90,42 +83,34 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <Pressable
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      style={[
-        style,
-        styles.button,
-        {
-          backgroundColor: isPressed
-            ? MobileTheme.palette[variant].clicked
-            : MobileTheme.palette[variant].main,
-          width: fullWidth ? "100%" : styles.button.width,
-          opacity: isDisabled ? 0.3 : 1,
-        },
-      ]}
+    <TouchableOpacity
       disabled={isDisabled}
       testID={ButtonLocators.Wrapper}
+      style={[
+        styles.button,
+        { backgroundColor: getBackgroundColor(variant) },
+        isDisabled && { opacity: 0.5 },
+        style,
+      ]}
       {...props}
     >
       {renderInner()}
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    width: 200,
+    width: "100%",
     height: 50,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: MobileTheme.palette.primary.main,
-    borderRadius: MobileTheme.borderRadius.m,
+    borderRadius: Theme.borderRadius.m,
   },
   text: {
-    fontWeight: MobileTheme.fonts.caption4.weight,
-    fontSize: MobileTheme.fonts.caption4.size,
+    fontWeight: Theme.fonts.caption4.weight,
+    fontSize: Theme.fonts.caption4.size,
   },
   iconWrapper: {
     marginRight: 8,

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Typography } from "apps/mobile/src/components/Typography";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { useHistory } from "react-router-native";
 
@@ -18,7 +18,7 @@ export const Link: React.FC<LinkProps> = ({ text, path, iconName, IconComponent 
 
   const createLinkIconWrapperStyles = (path: string) => {
     if (path === history.location.pathname) {
-      return [styles.linkIconWrapper, { backgroundColor: MobileTheme.palette.primary.main }];
+      return [styles.linkIconWrapper, { backgroundColor: Theme.palette.primary.main }];
     }
 
     return styles.linkIconWrapper;
@@ -26,10 +26,10 @@ export const Link: React.FC<LinkProps> = ({ text, path, iconName, IconComponent 
 
   const getIconColor = (path: string) => {
     if (path === history.location.pathname) {
-      return MobileTheme.palette.common.white;
+      return Theme.palette.common.white;
     }
 
-    return MobileTheme.palette.primary.text;
+    return Theme.palette.primary.text;
   };
 
   const getLinkColor = (path: string) => {
@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
   linkIconWrapper: {
     width: 30,
     height: 30,
-    backgroundColor: MobileTheme.palette.secondary.main,
-    borderRadius: MobileTheme.borderRadius.s,
+    backgroundColor: Theme.palette.secondary.main,
+    borderRadius: Theme.borderRadius.s,
     marginRight: 16,
     flexDirection: "column",
     alignItems: "center",

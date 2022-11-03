@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import { StyleSheet } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Select } from "./Select";
@@ -15,8 +15,8 @@ storiesOf("Components", module).add("Select", () => {
         InputComponent={() => <Typography style={styles.text}>Open regular select</Typography>}
         onSelect={() => null}
         options={[
-          { value: "1", text: "Boris", color: MobileTheme.palette.common.red },
-          { value: "2", text: "Andrew", color: MobileTheme.palette.common.brown },
+          { value: "1", text: "Boris", color: Theme.palette.common.red },
+          { value: "2", text: "Andrew", color: Theme.palette.common.brown },
         ]}
       />
       <Select
@@ -24,16 +24,16 @@ storiesOf("Components", module).add("Select", () => {
         onSelect={() => null}
         multiple
         options={[
-          { value: "1", text: "Boris", color: MobileTheme.palette.common.red },
-          { value: "2", text: "Andrew", color: MobileTheme.palette.common.brown },
+          { value: "1", text: "Boris", color: Theme.palette.common.red },
+          { value: "2", text: "Andrew", color: Theme.palette.common.brown },
         ]}
       />
       <Select
         onSelect={() => null}
         multiple
         options={[
-          { value: "1", text: "Boris", color: MobileTheme.palette.common.red },
-          { value: "2", text: "Andrew", color: MobileTheme.palette.common.brown },
+          { value: "1", text: "Boris", color: Theme.palette.common.red },
+          { value: "2", text: "Andrew", color: Theme.palette.common.brown },
         ]}
       />
     </>

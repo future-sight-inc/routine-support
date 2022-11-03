@@ -2,12 +2,12 @@ import React from "react";
 
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 
 export const LoadingScreen: React.FC = () => {
   return (
     <View style={styles.wrapper}>
-      <ActivityIndicator color={MobileTheme.palette.primary.main} />
+      <ActivityIndicator color={Theme.palette.primary.main} />
     </View>
   );
 };

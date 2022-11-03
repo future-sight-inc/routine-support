@@ -4,7 +4,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Activity, getActivityStatusesFromStudents, Student } from "@routine-support/domains";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
-import { MobileTheme } from "../../theme";
+import { Theme } from "../../theme";
 import { Popup } from "../Popup";
 import { StudentBadge } from "../StudentBadge";
 import { Typography } from "../Typography";
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     height: 30,
     paddingHorizontal: 8,
     backgroundColor: "rgba(0, 0, 0, 0.1)",
-    borderRadius: MobileTheme.borderRadius.s,
+    borderRadius: Theme.borderRadius.s,
   },
   confirmationStatus: { marginLeft: 2 },
   wrapper: { minHeight: 200 },

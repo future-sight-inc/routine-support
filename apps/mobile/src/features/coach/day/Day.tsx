@@ -40,7 +40,7 @@ export const Day: React.FC = () => {
   } = useActivity();
   const {
     models: { pictograms, repeatTypeOptions, isStudentsSelectorVisible, control },
-    operations: { handleSubmit },
+    operations: { onSubmit, onDelete },
   } = useActivityForm(coach!, activity, {
     createActivity,
     updateActivity,
@@ -59,9 +59,7 @@ export const Day: React.FC = () => {
   return (
     <MainLayout
       title="Calendar"
-      footer={
-        <Button text="Activity" icon="add" fullWidth onPress={() => openNewActivityModal()} />
-      }
+      footer={<Button text="Activity" icon="add" onPress={() => openNewActivityModal()} />}
     >
       <DayLayout
         daySelect={<DaySelect date={currentDate} onSelect={onDateSelect} />}
@@ -90,7 +88,8 @@ export const Day: React.FC = () => {
         control={control}
         isStudentsSelectorVisible={isStudentsSelectorVisible}
         onClose={() => closeActivityModal()}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        onDelete={onDelete}
       />
     </MainLayout>
   );

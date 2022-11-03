@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Button } from "apps/mobile/src/components/Button";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import { Dimensions, StyleSheet, View } from "react-native";
 import { EdgeInsets, SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -36,7 +36,6 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
       {children}
       <Button
         text={submitButtonText}
-        fullWidth
         onPress={onSubmit}
         loading={loading}
         style={styles.submitButton}
@@ -60,8 +59,8 @@ const createStyles = ({ insets }: { insets: EdgeInsets }) =>
       width: 50,
       height: 50,
       marginBottom: 16,
-      backgroundColor: MobileTheme.palette.primary.main,
-      borderRadius: MobileTheme.borderRadius.m,
+      backgroundColor: Theme.palette.primary.main,
+      borderRadius: Theme.borderRadius.m,
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",

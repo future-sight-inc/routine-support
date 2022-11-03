@@ -1,5 +1,5 @@
-import { Theme } from "@routine-support/ui-theme";
+import { Theme as UITheme } from "@routine-support/ui-theme";
 
 import { mapThemeToMobile } from "../utils/mapThemeToMobile";
 
-export const MobileTheme = mapThemeToMobile(Theme);
+export const Theme = mapThemeToMobile(UITheme);

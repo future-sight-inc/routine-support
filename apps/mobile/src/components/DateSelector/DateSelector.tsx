@@ -71,6 +71,7 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
           onChange={handleChange}
           display="spinner"
           textColor="black"
+          themeVariant="light"
           mode={mode}
         />
       }

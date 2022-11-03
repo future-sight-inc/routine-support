@@ -9,7 +9,7 @@ import {
 import { TimeString } from "@routine-support/types";
 import { parseTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { MobileTheme } from "apps/mobile/src/theme";
+import { Theme } from "apps/mobile/src/theme";
 import { Dimensions, ScrollView, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { ActivitiesGroup } from "../ActivitiesGroup";
@@ -67,7 +67,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const handleCellPress = (cellTime: string) => {
     const parsedTime = parseTime(cellTime);
 
-    onCellPress({ start: parsedTime, end: parsedTime.add(1, "hour") });
+    onCellPress({ start: parsedTime, end: parsedTime.clone().add(1, "hours") });
   };
 
   return (
@@ -87,7 +87,7 @@ export const Calendar: React.FC<CalendarProps> = ({
               <View />
             </View>
             <TouchableWithoutFeedback onPress={() => handleCellPress(time)}>
-              <View style={styles.bodyColumn}></View>
+              <View style={styles.bodyColumn} />
             </TouchableWithoutFeedback>
           </View>
           {index !== timeRange.length - 1 && <View style={styles.separator} key={index} />}
@@ -129,17 +129,19 @@ const styles = StyleSheet.create({
     height: 1,
     width: 12,
     marginLeft: 4,
-    backgroundColor: MobileTheme.palette.secondary.main,
+    backgroundColor: Theme.palette.secondary.main,
   },
   bodyColumn: {
     marginLeft: COLUMNS_GAP,
     zIndex: 1,
+    width: "100%",
+    height: ROW_HEIGHT,
   },
   separator: {
     marginLeft: TIME_COLUMN_WIDTH + COLUMNS_GAP,
     width: "100%",
     height: 1,
-    backgroundColor: MobileTheme.palette.border.light,
+    backgroundColor: Theme.palette.border.light,
     zIndex: 0,
   },
 });
