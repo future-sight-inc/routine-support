@@ -2,6 +2,7 @@ import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import {
   coachDayReducer,
   coachReducer,
+  notificationsReducer,
   studentDayReducer,
   studentReducer,
   studentsReducer,
@@ -12,6 +13,7 @@ export const store = configureStore({
     coachAuth: coachReducer,
     coachDay: coachDayReducer,
     coachStudents: studentsReducer,
+    coachNotifications: notificationsReducer,
 
     studentAuth: studentReducer,
     studentDay: studentDayReducer,
