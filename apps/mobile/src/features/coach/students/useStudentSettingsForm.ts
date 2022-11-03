@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 
 import { Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
-import { Alert } from "react-native";
 
-export const useStudentForm = (
+export const useStudentSettingsForm = (
   student: Partial<Student> | undefined,
   actions: {
-    createStudent: (student: Student) => Promise<void>;
-    updateStudent: (student: Student) => Promise<void>;
-    deleteStudent: (student: Student) => Promise<void>;
+    updateSettings: (student: Student) => Promise<void>;
     getStudents: (config?: { silent: boolean }) => void;
   }
 ) => {
@@ -22,45 +19,13 @@ export const useStudentForm = (
     try {
       setSubmitError(null);
 
-      if (values._id) {
-        await actions.updateStudent(values as Student);
-      } else {
-        await actions.createStudent(values as Student);
-      }
+      await actions.updateSettings(values as Student);
 
       actions.getStudents({ silent: true });
     } catch (error: any) {
       setSubmitError(error.message);
     }
   });
-
-  const onDelete = async () => {
-    if (student?._id) {
-      Alert.alert(
-        "Confirm your action",
-        "",
-        [
-          {
-            text: "Cancel",
-
-            style: "cancel",
-          },
-          {
-            text: "Confirm",
-            onPress: async () => {
-              await actions.deleteStudent(student as Student);
-              actions.getStudents();
-            },
-            style: "default",
-          },
-        ],
-        {
-          cancelable: true,
-          onDismiss: () => null,
-        }
-      );
-    }
-  };
 
   useEffect(() => {
     if (student) {
@@ -79,6 +44,6 @@ export const useStudentForm = (
       isSubmitting: formState.isSubmitting,
       submitError,
     },
-    operations: { onSubmit, onDelete },
+    operations: { onSubmit },
   };
 };

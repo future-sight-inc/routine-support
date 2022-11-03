@@ -2,51 +2,55 @@ import React from "react";
 
 import { Button } from "apps/mobile/src/components/Button";
 import { ControlsGroup } from "apps/mobile/src/components/ControlsGroup";
-import { ColorSelector } from "apps/mobile/src/components/FormFields/ColorSelector";
+import { ClockTypeSelector } from "apps/mobile/src/components/FormFields/ClockTypeSelector";
+import { LanguageSelector } from "apps/mobile/src/components/FormFields/LanguageSelector";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Modal } from "apps/mobile/src/components/Modal";
 import { Control } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 
-interface StudentModalProps {
-  isEdit: boolean;
+interface StudentSettingsModalProps {
   isLoading: boolean;
   isOpened: boolean;
   control: Control;
   onClose: () => void;
   onSubmit: () => void;
-  onDelete: () => void;
 }
 
-export const StudentModal: React.FC<StudentModalProps> = ({
-  isEdit,
+export const StudentSettingsModal: React.FC<StudentSettingsModalProps> = ({
   isLoading,
   isOpened,
   control,
   onClose,
   onSubmit,
-  onDelete,
 }) => {
   return (
     <Modal
-      title={isEdit ? "Редактирование" : "Новое событие"}
+      title="Настройки"
       isOpened={isOpened}
       onClose={onClose}
       footer={
         <ControlsGroup>
-          {isEdit && (
-            <Button text="Delete" variant="secondary" disabled={isLoading} onPress={onDelete} />
-          )}
-          <Button text={isEdit ? "Edit" : "Create"} loading={isLoading} onPress={onSubmit} />
+          <Button text="Edit" loading={isLoading} onPress={onSubmit} />
         </ControlsGroup>
       }
       scrollable
     >
       <View style={styles.fieldWrapper}>
-        <TextField label="Имя" name="name" control={control} placeholder="Введите имя" required />
+        <LanguageSelector label="Язык" name="language" control={control} required />
       </View>
       <View style={styles.fieldWrapper}>
-        <ColorSelector label="Цвет" name="color" control={control} required />
+        <ClockTypeSelector label="Тип часов" name="clockType" control={control} />
+      </View>
+      <View style={styles.fieldWrapper}>
+        <TextField
+          label="Пин-код"
+          name="pinCode"
+          control={control}
+          required
+          maxLength={4}
+          keyboardType="decimal-pad"
+        />
       </View>
     </Modal>
   );

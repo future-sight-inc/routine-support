@@ -6,46 +6,34 @@ import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
 import { Alert } from "react-native";
 
 import { StudentModal } from "./components/StudentModal";
+import { StudentSettingsModal } from "./components/StudentSettingsModal";
 import { StudentsLayout } from "./components/StudentsLayout";
 import { StudentsList } from "./components/StudentsList";
 import { useStudent } from "./useStudent";
 import { useStudentForm } from "./useStudentForm";
 import { useStudents } from "./useStudents";
+import { useStudentSettingsForm } from "./useStudentSettingsForm";
 
 export const Students: React.FC = () => {
-  const {
-    models: { students, loading },
-    operations: { getStudents },
-  } = useStudents();
-
-  const {
-    models: { student, loading: isStudentLoading, studentModalOpened },
-    operations: {
-      createStudent,
-      updateStudent,
-      deleteStudent,
-      openStudentModal,
-      closeStudentModal,
-      openSettingsModal,
-    },
-  } = useStudent();
-  const {
-    models: { control },
-    operations: { onSubmit, onDelete },
-  } = useStudentForm(student, {
-    createStudent,
-    updateStudent,
-    deleteStudent,
-    closeModal: closeStudentModal,
-    getStudents,
+  const Students = useStudents();
+  const Student = useStudent();
+  const StudentForm = useStudentForm(Student.models.student, {
+    createStudent: Student.operations.createStudent,
+    updateStudent: Student.operations.updateStudent,
+    deleteStudent: Student.operations.deleteStudent,
+    getStudents: Students.operations.getStudents,
+  });
+  const StudentSettingForm = useStudentSettingsForm(Student.models.student, {
+    updateSettings: Student.operations.updateSettings,
+    getStudents: Students.operations.getStudents,
   });
 
   const handleStudentOpen = (student?: StudentType): void => {
-    openStudentModal(student);
+    Student.operations.openStudentModal(student);
   };
 
   const handleSettingsOpen = (student: StudentType): void => {
-    openSettingsModal(student);
+    Student.operations.openSettingsModal(student);
   };
 
   const handleStudentDelete = async (student: StudentType): Promise<void> => {
@@ -61,8 +49,8 @@ export const Students: React.FC = () => {
         {
           text: "Confirm",
           onPress: async () => {
-            await deleteStudent(student);
-            await getStudents({ silent: true });
+            await Student.operations.deleteStudent(student);
+            await Students.operations.getStudents({ silent: true });
           },
           style: "default",
         },
@@ -74,7 +62,7 @@ export const Students: React.FC = () => {
     );
   };
 
-  if (loading) {
+  if (Students.models.loading) {
     return <LoadingScreen />;
   }
 
@@ -84,7 +72,7 @@ export const Students: React.FC = () => {
         addButton={<Button text="Student" icon="add" onPress={() => handleStudentOpen()} />}
         studentsList={
           <StudentsList
-            students={students}
+            students={Students.models.students}
             onStudentOpen={handleStudentOpen}
             onSettingsOpen={handleSettingsOpen}
             onStudentDelete={handleStudentDelete}
@@ -92,13 +80,20 @@ export const Students: React.FC = () => {
         }
       />
       <StudentModal
-        isEdit={student?._id}
-        isLoading={isStudentLoading}
-        isOpened={studentModalOpened}
-        control={control}
-        onClose={closeStudentModal}
-        onSubmit={onSubmit}
-        onDelete={onDelete}
+        isEdit={Boolean(Student.models.student?._id)}
+        isLoading={Student.models.loading}
+        isOpened={Student.models.studentModalOpened}
+        control={StudentForm.models.control}
+        onClose={Student.operations.closeStudentModal}
+        onSubmit={StudentForm.operations.onSubmit}
+        onDelete={StudentForm.operations.onDelete}
+      />
+      <StudentSettingsModal
+        isLoading={Student.models.loading}
+        isOpened={Student.models.settingsModalOpened}
+        onClose={Student.operations.closeSettingsModal}
+        control={StudentSettingForm.models.control}
+        onSubmit={StudentSettingForm.operations.onSubmit}
       />
     </>
   );

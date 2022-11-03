@@ -14,7 +14,7 @@ export interface SelectProps {
   InputComponent?: React.FC<{ value?: string }>;
   InputProps?: TextFieldProps;
   value?: any;
-  options: Option[];
+  options?: Option[];
   multiple?: boolean;
   searchable?: boolean;
   onSelect: (value: any) => void;
@@ -24,7 +24,7 @@ export const Select: React.FC<SelectProps> = ({
   InputComponent = TextField,
   InputProps,
   value: defaultValue,
-  options,
+  options = [],
   multiple,
   searchable,
   onSelect,
@@ -137,9 +137,7 @@ export const Select: React.FC<SelectProps> = ({
               placeholder="Поиск"
               autoCapitalize="none"
               autoCorrect={false}
-              icon={
-                <MaterialIcons name="search" size={16} color={Theme.palette.secondary.text} />
-              }
+              icon={<MaterialIcons name="search" size={16} color={Theme.palette.secondary.text} />}
               testID={SelectLocators.SearchField}
             />
           )}

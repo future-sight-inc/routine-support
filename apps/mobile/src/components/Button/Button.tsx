@@ -86,7 +86,12 @@ export const Button: React.FC<ButtonProps> = ({
     <TouchableOpacity
       disabled={isDisabled}
       testID={ButtonLocators.Wrapper}
-      style={[styles.button, { backgroundColor: getBackgroundColor(variant) }, style]}
+      style={[
+        styles.button,
+        { backgroundColor: getBackgroundColor(variant) },
+        isDisabled && { opacity: 0.5 },
+        style,
+      ]}
       {...props}
     >
       {renderInner()}
