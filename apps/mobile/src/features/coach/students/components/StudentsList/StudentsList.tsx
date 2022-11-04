@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: Theme.palette.border.light,
+    marginLeft: 16,
   },
   emptyListText: {
     marginTop: 16,

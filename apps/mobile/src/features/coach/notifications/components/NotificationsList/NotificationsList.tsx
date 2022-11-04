@@ -27,7 +27,7 @@ export const NotificationsList: React.FC<NotificationsListProps> = ({
       data={notificationsGroups}
       ListEmptyComponent={
         <Typography variant="text1" color="secondary" style={styles.emptyListText}>
-          No students
+          No notifications
         </Typography>
       }
       renderItem={({ item }) => (
