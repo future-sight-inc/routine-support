@@ -41,6 +41,7 @@ export const NotificationsList: React.FC<NotificationsListProps> = ({
               students={students}
               onNotificationDelete={() => onNotificationDelete(notification)}
               key={index}
+              showDivider={index !== item.notifications.length - 1}
             />
           ))}
         </View>
@@ -52,10 +53,10 @@ export const NotificationsList: React.FC<NotificationsListProps> = ({
 
 const styles = StyleSheet.create({
   wrapper: { height: "100%" },
-  groupWrapper: { paddingLeft: 16, paddingTop: 16 },
-  date: { marginBottom: 16 },
+  groupWrapper: { paddingLeft: 16, paddingTop: 16, marginBottom: 32 },
+  date: { marginBottom: 8 },
   emptyListText: {
-    marginTop: 16,
+    marginTop: 8,
     textAlign: "center",
   },
 });
