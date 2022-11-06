@@ -15,11 +15,7 @@ export const createEmitToUser = (connections: SocketConnection[]) => {
     };
   }) => {
     connections
-      .find(
-        (connection) =>
-          connection.userId === String(userId) &&
-          connection.userType === userType
-      )
+      .find((connection) => connection.userId === userId && connection.userType === userType)
       ?.sockets.forEach((socket) => {
         socket.emit(message.type, message.data);
       });

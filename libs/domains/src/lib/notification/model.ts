@@ -23,7 +23,4 @@ const notificationSchema = new Schema(
   { versionKey: false, minimize: false }
 );
 
-export const NotificationModel = model<NotificationSchema>(
-  "notification",
-  notificationSchema
-);
+export const NotificationModel = model<NotificationSchema>("notification", notificationSchema);
