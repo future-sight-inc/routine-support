@@ -58,9 +58,9 @@ export const Day: React.FC = () => {
         calendar={
           <Calendar
             isToday={isToday(Day.models.currentDate)}
-            activities={Day.models.day!.activities}
+            activities={Day.models.day?.activities}
             students={Students.models.students}
-            timeRange={Day.models.day!.timeRange}
+            timeRange={Day.models.day?.timeRange}
             onActivityPress={Activity.operations.openActivityModal}
             onCellPress={Activity.operations.openNewActivityModal}
           />

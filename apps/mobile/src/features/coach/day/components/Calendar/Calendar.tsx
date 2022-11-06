@@ -17,8 +17,8 @@ import { CurrentTimeLine } from "../CurrentTimeLine";
 
 interface CalendarProps {
   isToday: boolean;
-  timeRange: TimeString[];
-  activities: ActivityType[];
+  timeRange?: TimeString[];
+  activities?: ActivityType[];
   students: Student[];
   onActivityPress: (activity: ActivityType) => void;
   onCellPress: (activity: Partial<ActivityType>) => void;
@@ -26,8 +26,8 @@ interface CalendarProps {
 
 export const Calendar: React.FC<CalendarProps> = ({
   isToday,
-  timeRange,
-  activities,
+  timeRange = [],
+  activities = [],
   students,
   onActivityPress,
   onCellPress,
