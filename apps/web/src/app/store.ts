@@ -8,10 +8,10 @@ import {
 
 export const store = configureStore({
   reducer: {
-    week: weekReducer,
-    coach: coachReducer,
-    students: studentsReducer,
-    notifications: notificationsReducer,
+    coachWeek: weekReducer,
+    coachAuth: coachReducer,
+    coachStudents: studentsReducer,
+    coachNotifications: notificationsReducer,
   },
 });
 
