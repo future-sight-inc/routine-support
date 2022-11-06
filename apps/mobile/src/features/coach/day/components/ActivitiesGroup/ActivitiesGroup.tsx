@@ -19,7 +19,6 @@ interface ActivitiesGroup {
   rowIndex: number;
   style: StyleProp<ViewStyle>;
   onActivityPress: (activity: ActivityType) => void;
-  onConfirmationStatusPress: (activity: ActivityType) => void;
 }
 
 export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
@@ -30,7 +29,6 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
   rowIndex,
   style,
   onActivityPress,
-  onConfirmationStatusPress,
 }) => {
   return (
     <View
@@ -49,7 +47,6 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
           activity={activity}
           students={students}
           onActivityPress={() => onActivityPress(activity)}
-          onConfirmationStatusPress={() => onConfirmationStatusPress(activity)}
           style={{
             width: rowWidth / group.activities.length - TIMELINE_MARGIN,
             height: getActivityHeight({ activity, rowHeight }),

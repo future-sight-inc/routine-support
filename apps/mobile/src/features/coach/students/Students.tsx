@@ -2,7 +2,6 @@ import React from "react";
 
 import { Student as StudentType } from "@routine-support/domains";
 import { Button } from "apps/mobile/src/components/Button";
-import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
 import { Alert } from "react-native";
 
 import { StudentModal } from "./components/StudentModal";
@@ -62,13 +61,10 @@ export const Students: React.FC = () => {
     );
   };
 
-  if (Students.models.loading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <>
       <StudentsLayout
+        loading={Students.models.students}
         addButton={<Button text="Student" icon="add" onPress={() => handleStudentOpen()} />}
         studentsList={
           <StudentsList

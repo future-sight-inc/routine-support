@@ -1,10 +1,7 @@
 import React from "react";
 
-import { WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { Button } from "apps/mobile/src/components/Button";
-import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
 
-import { useSocketEventListener } from "../../student/student/hooks/useSocketEventListener";
 import { useStudents } from "../students/useStudents";
 import { NotificationsLayout } from "./components/NotificationsLayout";
 import { NotificationsList } from "./components/NotificationsList";
@@ -14,16 +11,9 @@ export const Notifications: React.FC = () => {
   const Notifications = useNotifications();
   const Students = useStudents();
 
-  useSocketEventListener(WeekSocketEventTypeEnum.UpdateNotifications, () => {
-    Notifications.operations.getNotifications({ config: { silent: true } });
-  });
-
-  if (Students.models.loading || Notifications.models.loading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <NotificationsLayout
+      loading={Students.models.loading || Notifications.models.loading}
       clearButton={
         <Button
           text="Clear"

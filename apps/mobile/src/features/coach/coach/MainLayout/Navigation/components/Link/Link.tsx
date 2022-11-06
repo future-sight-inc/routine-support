@@ -9,7 +9,6 @@ interface LinkProps {
   text: string;
   path: string;
   iconName: string;
-  // todo Добавить тип
   IconComponent: any;
 }
 

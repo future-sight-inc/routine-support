@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Coach } from "@routine-support/domains";
 import { Layout } from "apps/mobile/src/components/Layout";
+import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
 import { NotificationsIcon } from "apps/mobile/src/components/NotificationsIcon";
 import { StyleProp, ViewStyle } from "react-native";
 
@@ -15,6 +16,7 @@ export interface MainLayoutProps {
   bodyStyle?: StyleProp<ViewStyle>;
   footer?: ReactNode;
   footerStyle?: StyleProp<ViewStyle>;
+  loading?: boolean;
   onLogout: () => void;
   onNotificationsIconPress: () => void;
 }
@@ -26,9 +28,14 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
   bodyStyle,
   footer,
   footerStyle,
+  loading,
   onLogout,
   onNotificationsIconPress,
 }) => {
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <Layout
       title={title}

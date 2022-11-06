@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from "react-native";
 
 import { MainLayout } from "../../../coach/MainLayout";
 
@@ -13,9 +13,15 @@ interface NotificationsLayoutProps {
 export const NotificationsLayout: React.FC<NotificationsLayoutProps> = ({
   notificationsList,
   clearButton,
+  loading,
 }) => {
   return (
-    <MainLayout title="Notifications" footer={clearButton} bodyStyle={styles.body}>
+    <MainLayout
+      title="Notifications"
+      footer={clearButton}
+      bodyStyle={styles.body}
+      loading={loading}
+    >
       {notificationsList}
     </MainLayout>
   );

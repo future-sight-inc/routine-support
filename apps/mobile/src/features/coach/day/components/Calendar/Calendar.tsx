@@ -22,7 +22,6 @@ interface CalendarProps {
   students: Student[];
   onActivityPress: (activity: ActivityType) => void;
   onCellPress: (activity: Partial<ActivityType>) => void;
-  onConfirmationStatusPress: (activity: ActivityType) => void;
 }
 
 export const Calendar: React.FC<CalendarProps> = ({
@@ -32,7 +31,6 @@ export const Calendar: React.FC<CalendarProps> = ({
   students,
   onActivityPress,
   onCellPress,
-  onConfirmationStatusPress,
 }) => {
   const activitiesGroups = groupActivities(activities);
 
@@ -57,7 +55,6 @@ export const Calendar: React.FC<CalendarProps> = ({
           rowHeight={ROW_HEIGHT}
           rowWidth={ROW_WIDTH}
           onActivityPress={onActivityPress}
-          onConfirmationStatusPress={onConfirmationStatusPress}
           style={{ marginLeft: TIME_COLUMN_WIDTH + COLUMNS_GAP }}
         />
       )
