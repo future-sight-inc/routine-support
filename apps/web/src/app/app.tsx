@@ -12,7 +12,6 @@ import { MainLayout } from "../features/coach/components/MainLayout";
 import { PrivateRoute } from "../features/coach/components/PrivateRoute";
 import { useSocketEventListener } from "../features/coach/hooks/useSocketEventListener";
 import { Notifications } from "../features/notifications/Notifications";
-import { useNotifications } from "../features/notifications/useNotifications";
 import { Students } from "../features/students/Students";
 import { Week } from "../features/week";
 import { useWeek } from "../features/week/useWeek";
@@ -25,15 +24,12 @@ export const App = () => {
   const {
     operations: { updateWeek },
   } = useWeek();
-  const {
-    operations: { notify },
-  } = useNotifications();
 
   useSocketEventListener(WeekSocketEventTypeEnum.UpdateCalendar, () => {
     updateWeek();
   });
 
-  useSocketEventListener(WeekSocketEventTypeEnum.UpdateNotifications, notify);
+  // useSocketEventListener(WeekSocketEventTypeEnum.UpdateNotifications, notify);
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment} locale={i18n.language}>

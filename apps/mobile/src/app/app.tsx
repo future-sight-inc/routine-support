@@ -6,23 +6,6 @@ import { AppWrapper } from "../components/AppWrapper";
 import { CoachEntry } from "../features/coach";
 
 const App = () => {
-  // const {
-  //   operations: { getDay },
-  // } = useDay();
-
-  // const {
-  //   operations: { updateStudentSettings },
-  // } = useStudent();
-
-  // // Имеет смысл разделить две версии на разные entries, которые будут подключаться в App
-  // useSocketEventListener(WeekSocketEventTypeEnum.UpdateSchedule, () => {
-  //   getDay();
-  // });
-
-  // useSocketEventListener<Partial<Student>>(WeekSocketEventTypeEnum.UpdateSettings, (settings) => {
-  //   updateStudentSettings(settings);
-  // });
-
   const history = useHistory();
 
   useEffect(() => {

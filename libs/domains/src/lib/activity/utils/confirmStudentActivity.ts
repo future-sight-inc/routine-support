@@ -11,8 +11,7 @@ export const confirmStudentActivity = ({
   activity: Activity | ActivitySchema;
   confirmationDate: DateString;
 }) => {
-  const firstStudentConfirmed =
-    !activity.confirmation[confirmationDate]?.students;
+  const firstStudentConfirmed = !activity.confirmation[confirmationDate]?.students;
 
   if (firstStudentConfirmed) {
     activity.confirmation[confirmationDate] = {
@@ -20,12 +19,7 @@ export const confirmStudentActivity = ({
       isNotified: false,
     };
   } else {
-    if (
-      !activity.confirmation[confirmationDate].students.includes(
-        // todo Прокидывает ObjectId
-        String(student._id)
-      )
-    ) {
+    if (!activity.confirmation[confirmationDate].students.includes(student._id)) {
       activity.confirmation[confirmationDate].students.push(student._id);
     }
   }

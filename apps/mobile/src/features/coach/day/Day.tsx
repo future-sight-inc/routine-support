@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 import { isToday } from "@routine-support/utils";
 import { Button } from "apps/mobile/src/components/Button";
-import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
 
 import { MainLayout } from "../coach/MainLayout";
 import { useCoach } from "../coach/useCoach";
@@ -17,79 +16,68 @@ import { useActivityForm } from "./useActivityForm";
 import { useDay } from "./useDay";
 
 export const Day: React.FC = () => {
-  const {
-    models: { coach },
-  } = useCoach();
-  const {
-    models: { students, loading: loadingStudents },
-  } = useStudents();
-  const {
-    models: { day, currentDate, activityFilter, loading: loadingDay },
-    operations: { onDateSelect, onActivityFilterSelect, setDefaultActivityFilter, getDay },
-  } = useDay();
-  const {
-    models: { isOpened, activity, isLoading: isLoadingActivity },
-    operations: {
-      createActivity,
-      updateActivity,
-      deleteActivity,
-      openActivityModal,
-      openNewActivityModal,
-      closeActivityModal,
-    },
-  } = useActivity();
-  const {
-    models: { pictograms, repeatTypeOptions, isStudentsSelectorVisible, control },
-    operations: { onSubmit, onDelete },
-  } = useActivityForm(coach!, activity, {
-    createActivity,
-    updateActivity,
-    deleteActivity,
-    getDay,
+  const Coach = useCoach();
+  const Students = useStudents();
+  const Day = useDay();
+  const Activity = useActivity();
+
+  const ActivityForm = useActivityForm(Coach.models.coach, Activity.models.activity, {
+    createActivity: Activity.operations.createActivity,
+    updateActivity: Activity.operations.updateActivity,
+    deleteActivity: Activity.operations.deleteActivity,
+    getDay: Day.operations.getDay,
   });
 
   useEffect(() => {
-    setDefaultActivityFilter({ students });
-  }, [students]);
-
-  if (loadingStudents || loadingDay) {
-    return <LoadingScreen />;
-  }
+    Day.operations.setDefaultActivityFilter({ students: Students.models.students });
+  }, [Students.models.students]);
 
   return (
     <MainLayout
+      loading={Students.models.loading || Day.models.loading}
       title="Calendar"
-      footer={<Button text="Activity" icon="add" onPress={() => openNewActivityModal()} />}
+      footer={
+        <Button
+          text="Activity"
+          icon="add"
+          onPress={() => Activity.operations.openNewActivityModal()}
+        />
+      }
     >
       <DayLayout
-        daySelect={<DaySelect date={currentDate} onSelect={onDateSelect} />}
+        daySelect={
+          <DaySelect date={Day.models.currentDate} onSelect={Day.operations.onDateSelect} />
+        }
         filter={
-          <Filter students={students} value={activityFilter} onSelect={onActivityFilterSelect} />
+          <Filter
+            students={Students.models.students}
+            value={Day.models.activityFilter}
+            onSelect={Day.operations.onActivityFilterSelect}
+          />
         }
         calendar={
           <Calendar
-            isToday={isToday(currentDate)}
-            activities={day!.activities}
-            students={students}
-            timeRange={day!.timeRange}
-            onActivityPress={openActivityModal}
-            onCellPress={openNewActivityModal}
-            onConfirmationStatusPress={() => null}
+            isToday={isToday(Day.models.currentDate)}
+            activities={Day.models.day?.activities}
+            students={Students.models.students}
+            timeRange={Day.models.day?.timeRange}
+            onActivityPress={Activity.operations.openActivityModal}
+            onCellPress={Activity.operations.openNewActivityModal}
           />
         }
       />
       <ActivityModal
-        isEdit={activity?._id}
-        isLoading={isLoadingActivity}
-        isOpened={isOpened}
-        pictograms={pictograms}
-        repeatTypeOptions={repeatTypeOptions}
-        students={students}
-        control={control}
-        isStudentsSelectorVisible={isStudentsSelectorVisible}
-        onClose={() => closeActivityModal()}
-        onSubmit={onSubmit}
-        onDelete={onDelete}
+        isEdit={Activity.models.activity?._id}
+        isLoading={Activity.models.isLoading}
+        isOpened={Activity.models.isOpened}
+        pictograms={ActivityForm.models.pictograms}
+        repeatTypeOptions={ActivityForm.models.repeatTypeOptions}
+        students={Students.models.students}
+        control={ActivityForm.models.control}
+        isStudentsSelectorVisible={ActivityForm.models.isStudentsSelectorVisible}
+        onClose={Activity.operations.closeActivityModal}
+        onSubmit={ActivityForm.operations.onSubmit}
+        onDelete={ActivityForm.operations.onDelete}
       />
     </MainLayout>
   );

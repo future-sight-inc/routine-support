@@ -10,7 +10,7 @@ interface DayLayoutProps {
 
 export const DayLayout: React.FC<DayLayoutProps> = ({ daySelect, filter, calendar }) => {
   return (
-    <View style={styles.wrapper}>
+    <View>
       <View style={styles.header}>
         {daySelect}
         {filter}
@@ -21,11 +21,10 @@ export const DayLayout: React.FC<DayLayoutProps> = ({ daySelect, filter, calenda
 };
 
 const styles = StyleSheet.create({
-  wrapper: {},
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-start",
+    alignItems: "center",
     height: 33,
     marginBottom: 8,
   },

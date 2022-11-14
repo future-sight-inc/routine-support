@@ -31,7 +31,6 @@ export const Student: React.FC<StudentProps> = ({
       style={styles.deleteWrapper}
       testID={StudentLocators.DeleteButton}
       onPress={onStudentDelete}
-      activeOpacity={0.7}
     >
       <MaterialIcons name="delete" size={30} style={styles.deleteIcon} />
     </TouchableOpacity>

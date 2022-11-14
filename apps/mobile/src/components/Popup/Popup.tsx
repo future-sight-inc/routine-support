@@ -4,6 +4,7 @@ import { rgba } from "polished";
 import {
   Animated,
   Dimensions,
+  KeyboardAvoidingView,
   Modal,
   StyleSheet,
   TouchableOpacity,
@@ -19,6 +20,7 @@ interface PopupProps {
   isOpened?: boolean;
   pressElement?: ReactNode;
   children: ReactNode;
+  withOpacity?: boolean;
   onClose?: () => void;
   onOpen?: () => void;
 }
@@ -26,6 +28,7 @@ interface PopupProps {
 export const Popup: React.FC<PopupProps> = ({
   isOpened: defaultOpened = false,
   pressElement,
+  withOpacity = true,
   children,
   onClose,
   onOpen,
@@ -75,7 +78,11 @@ export const Popup: React.FC<PopupProps> = ({
   return (
     <>
       {pressElement && (
-        <TouchableOpacity onPress={handleOpen} testID={PopupLocators.PressElement}>
+        <TouchableOpacity
+          onPress={handleOpen}
+          testID={PopupLocators.PressElement}
+          activeOpacity={withOpacity ? 0.6 : 1}
+        >
           {pressElement}
         </TouchableOpacity>
       )}
@@ -96,7 +103,9 @@ export const Popup: React.FC<PopupProps> = ({
             <TouchableWithoutFeedback onPress={handleClose} testID={PopupLocators.ModalDim}>
               <View style={styles.modalDim} />
             </TouchableWithoutFeedback>
-            <View style={styles.modalContent}>{children}</View>
+            <KeyboardAvoidingView behavior='padding'>
+              <View style={styles.modalContent}>{children}</View>
+            </KeyboardAvoidingView>
           </View>
         </Modal>
       </Modal>

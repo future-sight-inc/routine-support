@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import {
-  Icon,
-  Layout,
-  StyleService,
-  Text,
-  useStyleSheet,
-  useTheme,
-} from "@ui-kitten/components";
+import { Icon, Layout, StyleService, Text, useStyleSheet, useTheme } from "@ui-kitten/components";
 import { useTranslation } from "react-i18next";
 import { TouchableOpacity, View } from "react-native";
 
@@ -20,11 +13,7 @@ interface pinCodeInputProps {
   onClose: () => void;
 }
 
-export const PinCodeInput: React.FC<pinCodeInputProps> = ({
-  pinCode,
-  onSuccessInput,
-  onClose,
-}) => {
+export const PinCodeInput: React.FC<pinCodeInputProps> = ({ pinCode, onSuccessInput, onClose }) => {
   const theme = useTheme();
   const styles = useStyleSheet(themedStyles);
   const { t } = useTranslation();
@@ -45,7 +34,6 @@ export const PinCodeInput: React.FC<pinCodeInputProps> = ({
         onSuccessInput();
       } else {
         setTimeout(() => setValue(""), 300);
-        // todo: freeze buttons
       }
     }
   }, [pinCode, value]);
@@ -63,15 +51,11 @@ export const PinCodeInput: React.FC<pinCodeInputProps> = ({
               key={index}
               style={{
                 ...styles.dot,
-                backgroundColor:
-                  index < value.length ? "black" : theme["color-basic-600"],
+                backgroundColor: index < value.length ? "black" : theme["color-basic-600"],
               }}
             />
           ))}
-        <TouchableOpacity
-          style={styles.backspace}
-          onPress={onBackspaceButtonPress}
-        >
+        <TouchableOpacity style={styles.backspace} onPress={onBackspaceButtonPress}>
           <Icon
             style={styles.backspaceIcon}
             fill={theme["color-basic-600"]}
@@ -81,10 +65,7 @@ export const PinCodeInput: React.FC<pinCodeInputProps> = ({
       </Layout>
       <Layout style={styles.keyboard}>
         {DIGITS.map((digit) => (
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => onNumberButtonPress(digit)}
-          >
+          <TouchableOpacity style={styles.button} onPress={() => onNumberButtonPress(digit)}>
             <Text category="h2">{digit}</Text>
           </TouchableOpacity>
         ))}

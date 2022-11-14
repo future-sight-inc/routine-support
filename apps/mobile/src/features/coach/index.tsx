@@ -2,13 +2,12 @@ import React from "react";
 
 import { Route, Switch } from "react-router-native";
 
-import { Typography } from "../../components/Typography";
 import { LinkService } from "../../services/LinkService";
 import { Login } from "./coach/Login";
-import { MainLayout } from "./coach/MainLayout";
 import { PrivateRoute } from "./coach/PrivateRoute";
 import { Register } from "./coach/Register";
 import { Day } from "./day/Day";
+import { Notifications } from "./notifications/Notifications";
 import { Students } from "./students/Students";
 
 export const CoachEntry: React.FC = () => {
@@ -27,9 +26,7 @@ export const CoachEntry: React.FC = () => {
         <Students />
       </PrivateRoute>
       <PrivateRoute exact path={LinkService.coach.notifications()}>
-        <MainLayout title="Notifications">
-          <Typography>Here will be notifications</Typography>
-        </MainLayout>
+        <Notifications />
       </PrivateRoute>
     </Switch>
   );

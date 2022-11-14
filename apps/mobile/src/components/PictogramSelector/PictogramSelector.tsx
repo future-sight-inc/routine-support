@@ -182,7 +182,6 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   pictogramsWrapper: {
-    // todo Добавить метод получения безопасных размеров тела лейаута (включая отступы)
     height: Dimensions.get("screen").height - 480,
   },
   pictogramWrapper: {
