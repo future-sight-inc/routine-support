@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { ReactNode, StrictMode } from "react";
 
 import { StyledEngineProvider } from "@mui/material/styles";
 import { Theme } from "@routine-support/ui-theme";
@@ -33,7 +33,11 @@ i18n
     fallbackLng: "en",
   });
 
-export const AppWrapper: React.FC = ({ children }) => (
+interface AppWrapperProps {
+  children: ReactNode;
+}
+
+export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => (
   <StrictMode>
     <Router>
       <StyledEngineProvider injectFirst>

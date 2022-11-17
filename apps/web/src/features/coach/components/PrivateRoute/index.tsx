@@ -1,19 +1,20 @@
-import { RouteProps } from "react-router-dom";
+import { ReactNode } from "react";
 
 import { usePrivateRouteComponent } from "./hooks";
 import { PrivateRoute as UncontrolledPrivateRoute } from "./PrivateRoute";
 
-export const PrivateRoute: React.FC<RouteProps> = (props) => {
+interface PrivateRouteProps {
+  children: ReactNode;
+}
+
+export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const {
     models: { loading, isLogged, isChecked },
   } = usePrivateRouteComponent();
 
   return (
-    <UncontrolledPrivateRoute
-      loading={loading}
-      isLogged={isLogged}
-      isChecked={isChecked}
-      {...props}
-    />
+    <UncontrolledPrivateRoute loading={loading} isLogged={isLogged} isChecked={isChecked}>
+      {children}
+    </UncontrolledPrivateRoute>
   );
 };

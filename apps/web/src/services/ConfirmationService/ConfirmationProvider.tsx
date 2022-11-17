@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 
@@ -13,7 +13,11 @@ export const ConfirmationContext = createContext<{
   confirm: (data: ConfirmationModalData) => void;
     }>({ confirm: () => null });
 
-export const ConfirmationProvider: React.FC = ({ children }) => {
+interface ConfirmationProviderProps {
+  children: ReactNode;
+}
+
+export const ConfirmationProvider: React.FC<ConfirmationProviderProps> = ({ children }) => {
   const [isOpened, setOpened] = useState(false);
   const [modalData, setModalData] = useState<ConfirmationModalData>({
     title: "",

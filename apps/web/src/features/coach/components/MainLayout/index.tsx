@@ -1,8 +1,14 @@
+import { ReactNode } from "react";
+
 import { useNotifications } from "../../../notifications/useNotifications";
 import { useCoach } from "../../useCoach";
 import { MainLayout as UncontrolledMainLayout } from "./MainLayout";
 
-export const MainLayout: React.FC = ({ children }) => {
+interface MainLayoutProps {
+  children: ReactNode;
+}
+
+export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const {
     models: { coach },
     operations: { logout, deleteCoach },

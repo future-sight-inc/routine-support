@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { Coach } from "@routine-support/domains";
 import { Footer } from "apps/web/src/components/Footer";
@@ -17,6 +17,7 @@ interface MainLayoutProps {
   user: Coach;
   notViewedCount: number;
   actions: MainLayoutActions;
+  children: ReactNode;
 }
 
 export const MainLayout: React.FC<MainLayoutProps> = ({

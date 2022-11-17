@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
@@ -39,7 +39,11 @@ i18n.use(initReactI18next).init({
   fallbackLng: "en",
 });
 
-export const AppWrapper: React.FC = ({ children }) => {
+interface AppWrapperProps {
+  children: ReactNode;
+}
+
+export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
   return (
     <NativeRouter>
       <SafeAreaProvider>
