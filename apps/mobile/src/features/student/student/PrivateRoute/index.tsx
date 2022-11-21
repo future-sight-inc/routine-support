@@ -1,15 +1,20 @@
 import React from "react";
 
-import { RouteProps } from "react-router-native";
+import { LinkService } from "apps/mobile/src/services/LinkService";
+import { Redirect, RouteProps } from "react-router-native";
 
+import { PrivateRoute as UncontrolledPrivateRoute } from "../../../../components/PrivateRoute";
 import { usePrivateRouteComponent } from "./hooks";
-import { PrivateRoute as UncontrolledPrivateRoute } from "./PrivateRoute";
 
 export const PrivateRoute: React.FC<RouteProps> = (props) => {
   const {
     models: { loading, isLogged, isChecked },
     operations: { logout },
   } = usePrivateRouteComponent();
+
+  if (!isLogged && isChecked) {
+    return <Redirect to={LinkService.student.login()} />;
+  }
 
   return (
     <UncontrolledPrivateRoute

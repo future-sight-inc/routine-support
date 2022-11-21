@@ -1,14 +1,14 @@
 import React from "react";
 
 import { LoginStudentDto, Student } from "@routine-support/domains";
-import { Button, Icon, Layout, Spinner, Text } from "@ui-kitten/components";
+import { Button } from "apps/mobile/src/components/Button";
+import { Typography } from "apps/mobile/src/components/Typography";
+import { LinkService } from "apps/mobile/src/services/LinkService";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useTranslation } from "react-i18next";
-import { Dimensions, Image, ImageBackground, StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { Redirect } from "react-router-native";
 
-import barcodeFrame from "../../../../../assets/barcode-frame.png";
-import qrImage from "../../../../../assets/qr.png";
 import { BARCODE_FRAME_WIDTH } from "./constants";
 import { useLoginComponent } from "./hooks";
 
@@ -29,58 +29,50 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
   const { t } = useTranslation();
 
   if (student) {
-    return <Redirect to="/" />;
+    return <Redirect to={LinkService.student.day()} />;
   }
 
   if (hasPermission === null) {
-    return <Text style={styles.infoText}>{t<string>("Camera permission request")}</Text>;
+    return (
+      <Typography style={styles.infoText}>{t<string>("Camera permission request")}</Typography>
+    );
   }
 
   if (hasPermission === false) {
-    return <Text style={styles.infoText}>{t<string>("No camera permission")}</Text>;
+    return <Typography style={styles.infoText}>{t<string>("No camera permission")}</Typography>;
   }
 
   if (!scanning) {
     return (
-      <Layout style={styles.previewWrapper}>
-        <Layout style={styles.previewTextWrapper}>
-          <Text category="h4" style={styles.previewTitle}>
-            {t<string>("You need to login")}
-          </Text>
-          <Text category="s1" style={styles.previewCaption}>
-            {t<string>("Scan QR instructions")}
-          </Text>
-          <Image source={qrImage} style={styles.previewImage} />
-        </Layout>
+      <View style={styles.previewWrapper}>
+        <View style={styles.previewTextWrapper}>
+          <Typography style={styles.previewTitle}>{t<string>("You need to login")}</Typography>
+          <Typography style={styles.previewCaption}>{t<string>("Scan QR instructions")}</Typography>
+          {/* <Image source={qrImage} style={styles.previewImage} /> */}
+        </View>
         <Button
           onPress={handleScannerOpen}
-          size="giant"
+          text={t<string>("Open scanner")}
           style={styles.openScannerButton}
-          accessoryLeft={(props) => <Icon {...props} name="camera-outline" />}
-        >
-          {t<string>("Open scanner")}
-        </Button>
-      </Layout>
+        />
+      </View>
     );
   }
 
   return (
-    <Layout style={styles.scannerWrapper}>
+    <View style={styles.scannerWrapper}>
       <BarCodeScanner onBarCodeScanned={handleQrScanned} style={StyleSheet.absoluteFillObject} />
       <View style={styles.barcodeFrame}>
-        <ImageBackground source={barcodeFrame} style={styles.barcodeImage} />
-        {loading && <Spinner status="control" size="giant" />}
+        {/* <ImageBackground source={barcodeFrame} style={styles.barcodeImage} /> */}
+        {/* {loading && <Spinner status="control" size="giant" />} */}
       </View>
 
       <Button
         onPress={handleScannerClose}
-        size="giant"
         style={styles.closeScannerButton}
-        accessoryLeft={(props) => <Icon {...props} name="close-outline" />}
-      >
-        {t<string>("Close")}
-      </Button>
-    </Layout>
+        text={t<string>("Close")}
+      />
+    </View>
   );
 };
 

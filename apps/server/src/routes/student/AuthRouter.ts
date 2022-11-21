@@ -8,7 +8,7 @@ import { emitToUser } from "../../main";
 
 export const authRouter = Router();
 
-authRouter.post("/login", (req, res) => {
+authRouter.post("/", (req, res) => {
   StudentModel.findById(req.body.id, (err, result) => {
     if (err || !result) {
       return res.status(401).send(err);
@@ -27,6 +27,7 @@ authRouter.get("/logout", (__, res) => {
 authRouter.get("/", studentAuthorization, (__, res) => {
   return res.status(200).send(res.locals[STUDENT_LOCALS_NAME]);
 });
+
 authRouter.put("/:id", async (req, res) => {
   const id = req.params.id;
 

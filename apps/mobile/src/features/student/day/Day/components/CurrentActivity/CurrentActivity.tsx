@@ -9,7 +9,7 @@ import { Button, Icon, Layout, Text, useTheme } from "@ui-kitten/components";
 import { Dimensions, ImageBackground } from "react-native";
 import { StyleSheet } from "react-native";
 
-import { Clock, ClockSizeEnum } from "../../../../../../../components/Clock";
+import { Clock, ClockSizeEnum } from "../../../../../../components/Clock";
 
 interface CurrentActivityProps {
   activity: ActivityType;

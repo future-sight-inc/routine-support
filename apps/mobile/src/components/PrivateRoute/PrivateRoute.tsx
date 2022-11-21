@@ -2,7 +2,7 @@ import React from "react";
 
 import { Route, RouteProps } from "react-router-native";
 
-import { LoadingScreen } from "../../../../components/LoadingScreen";
+import { LoadingScreen } from "../LoadingScreen";
 
 interface Props extends RouteProps {
   loading: boolean;

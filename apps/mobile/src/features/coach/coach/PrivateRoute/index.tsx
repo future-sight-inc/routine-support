@@ -3,8 +3,8 @@ import React from "react";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Redirect, RouteProps } from "react-router-native";
 
+import { PrivateRoute as UncontrolledPrivateRoute } from "../../../../components/PrivateRoute";
 import { usePrivateRouteComponent } from "./hooks";
-import { PrivateRoute as UncontrolledPrivateRoute } from "./PrivateRoute";
 
 export const PrivateRoute: React.FC<RouteProps> = (props) => {
   const {

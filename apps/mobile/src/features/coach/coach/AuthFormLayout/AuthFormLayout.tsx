@@ -3,9 +3,11 @@ import React, { ReactNode } from "react";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Button } from "apps/mobile/src/components/Button";
 import { Typography } from "apps/mobile/src/components/Typography";
+import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Theme } from "apps/mobile/src/theme";
 import { Dimensions, StyleSheet, View } from "react-native";
 import { EdgeInsets, SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { Link } from 'react-router-native'
 
 interface AuthFormLayoutProps {
   title: string;
@@ -27,6 +29,9 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
 
   return (
     <SafeAreaView style={styles.wrapper}>
+      <Link to={LinkService.student.login()}>
+        <Typography>Go to student</Typography>
+      </Link>
       <View style={styles.iconWrapper}>
         <MaterialCommunityIcons name="baby-face" size={32} color="white" />
       </View>

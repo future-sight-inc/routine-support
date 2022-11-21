@@ -1,24 +1,13 @@
 import React from "react";
 
-import {
-  Activity as ActivityType,
-  Day as DayType,
-  Student,
-} from "@routine-support/domains";
-import {
-  Icon,
-  Layout,
-  List,
-  Text,
-  TopNavigationAction,
-} from "@ui-kitten/components";
+import { Activity as ActivityType, Day as DayType, Student } from "@routine-support/domains";
+import { Icon, Layout, List, Text, TopNavigationAction } from "@ui-kitten/components";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
-import { Image, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
-import smile from "../../../../../assets/smile.png";
-import { MainLayout } from "../../../../../components/MainLayout";
-import { PinCodeInput } from "../../../../../components/PinCodeInput";
+import { MainLayout } from "../../../../components/MainLayout";
+import { PinCodeInput } from "../../../../components/PinCodeInput";
 import { Activity } from "./components/Activity";
 import { CurrentActivity } from "./components/CurrentActivity";
 import { useDayComponent } from "./hooks";
@@ -40,11 +29,7 @@ interface DayProps {
 export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
   const {
     models: { isPinCodeInputVisible },
-    operations: {
-      handleLogoutPress,
-      handlePinCodeSuccessInput,
-      handlePinCodeInputClose,
-    },
+    operations: { handleLogoutPress, handlePinCodeSuccessInput, handlePinCodeInputClose },
   } = useDayComponent(actions);
   const { t } = useTranslation();
 
@@ -75,19 +60,13 @@ export const Day: React.FC<DayProps> = ({ student, day, loading, actions }) => {
               <Text category="h5" style={styles.emptyText}>
                 {t<string>("No activities")}
               </Text>
-              <Image source={smile} style={styles.emptyIcon} />
             </Layout>
           }
-          data={day.activities.filter((activity) =>
-            activity.end.isSameOrAfter(moment())
-          )}
+          data={day.activities.filter((activity) => activity.end.isSameOrAfter(moment()))}
           renderItem={({ item, index }) => {
             const currentTime = moment();
 
-            if (
-              item.start.isSameOrBefore(currentTime) &&
-              currentTime.isSameOrBefore(item.end)
-            ) {
+            if (item.start.isSameOrBefore(currentTime) && currentTime.isSameOrBefore(item.end)) {
               return (
                 <CurrentActivity
                   activity={item}

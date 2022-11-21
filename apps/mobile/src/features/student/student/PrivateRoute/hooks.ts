@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useStudent } from "../../useStudent";
+import { useStudent } from "../useStudent";
 
 export const usePrivateRouteComponent = () => {
   const {

@@ -1,3 +1,4 @@
+import { LinkService } from "apps/mobile/src/services/LinkService";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Redirect } from "react-router-native";
 
@@ -12,7 +13,7 @@ export const Login: React.FC = () => {
   const insets = useSafeAreaInsets();
 
   if (isLogged) {
-    return <Redirect to="/coach/day" />;
+    return <Redirect to={LinkService.coach.day()} />;
   }
 
   return <UncontrolledLogin insets={insets} actions={{ login }} loading={loading} />;

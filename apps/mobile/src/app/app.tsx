@@ -4,6 +4,7 @@ import { useHistory } from "react-router-native";
 
 import { AppWrapper } from "../components/AppWrapper";
 import { CoachEntry } from "../features/coach";
+import { StudentEntry } from "../features/student";
 
 const App = () => {
   const history = useHistory();
@@ -14,16 +15,8 @@ const App = () => {
 
   return (
     <>
-      {/* <Route exact path="/student/login">
-        <StudentLogin />
-      </Route>
-      <PrivateRoute>
-        <Route exact path="/student/">
-          <Day />
-        </Route>
-      </PrivateRoute> */}
-
       <CoachEntry />
+      <StudentEntry />
     </>
   );
 };
