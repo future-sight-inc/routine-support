@@ -27,17 +27,17 @@ export const createCoachStudentAPI = (client: AxiosInstance) => ({
 
 export const createStudentAuthAPI = (client: AxiosInstance) => ({
   getStudent: async (): Promise<Student> => {
-    const request: AxiosResponse<Student> = await client.get("/student");
+    const request: AxiosResponse<Student> = await client.get("/auth");
 
     return request.data as Student;
   },
   login: async (data: LoginStudentDto): Promise<Student> => {
-    const request: AxiosResponse<Student> = await client.post("/student/login", data);
+    const request: AxiosResponse<Student> = await client.post("/auth/login", data);
 
     return request.data as Student;
   },
   logout: async () => {
-    const request: AxiosResponse = await client.get("/student/logout");
+    const request: AxiosResponse = await client.get("/auth/logout");
 
     return request.data;
   },

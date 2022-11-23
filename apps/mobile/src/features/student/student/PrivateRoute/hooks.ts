@@ -5,7 +5,7 @@ import { useStudent } from "../useStudent";
 export const usePrivateRouteComponent = () => {
   const {
     models: { loading, isLogged, isChecked },
-    operations: { getStudent, logout },
+    operations: { getStudent },
   } = useStudent();
 
   useEffect(() => {
@@ -16,6 +16,5 @@ export const usePrivateRouteComponent = () => {
 
   return {
     models: { loading, isLogged, isChecked },
-    operations: { logout },
   };
 };

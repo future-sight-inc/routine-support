@@ -11,7 +11,7 @@ export const Register: React.FC = () => {
   } = useCoach();
 
   if (isLogged) {
-    return <Redirect to={LinkService.coach.day} />;
+    return <Redirect to={LinkService.coach.day()} />;
   }
 
   return <UncontrolledRegister actions={{ register }} loading={loading} />;

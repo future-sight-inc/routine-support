@@ -1,20 +1,20 @@
 import { StudentModel, WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { Router } from "express";
-import { STUDENT_LOCALS_NAME } from "../../middleware/studentAuthorization";
 import { getAuthCookie } from "../../utils/getAuthCookie";
 import { studentAuthorization } from "../../middleware/studentAuthorization";
 import { emitToUser } from "../../main";
+import { AuthNames } from "../../constants/AuthNames";
 
 export const authRouter = Router();
 
-authRouter.post("/", (req, res) => {
+authRouter.post("/login", (req, res) => {
   StudentModel.findById(req.body.id, (err, result) => {
     if (err || !result) {
       return res.status(401).send(err);
     }
 
-    const cookie = getAuthCookie(result);
+    const cookie = getAuthCookie(AuthNames.Student, result);
 
     return res.status(200).cookie(cookie.name, cookie.token).send(result);
   });
@@ -25,7 +25,7 @@ authRouter.get("/logout", (__, res) => {
 });
 
 authRouter.get("/", studentAuthorization, (__, res) => {
-  return res.status(200).send(res.locals[STUDENT_LOCALS_NAME]);
+  return res.status(200).send(res.locals[AuthNames.Student]);
 });
 
 authRouter.put("/:id", async (req, res) => {

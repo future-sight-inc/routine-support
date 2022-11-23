@@ -17,9 +17,12 @@ export const AuthRoleSelector: React.FC<AuthRoleSelectorProps> = ({ authRole }) 
   const history = useHistory();
 
   const createHandleSelect = (newRole: AuthRole) => () => {
+    console.log(authRole, newRole);
     if (authRole === newRole) {
       return;
     }
+
+    console.log(LinkService[newRole].login());
 
     history.push(LinkService[newRole].login());
   };

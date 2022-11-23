@@ -13,7 +13,6 @@ import { useLoginComponent } from "./hooks";
 
 export interface LoginActions {
   login: (data: LoginCoachDto) => void;
-  loading: boolean;
 }
 
 interface LoginProps {

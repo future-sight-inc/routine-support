@@ -5,7 +5,7 @@ import { useCoach } from "../useCoach";
 export const usePrivateRouteComponent = () => {
   const {
     models: { loading, isLogged, isChecked },
-    operations: { getCoach, logout },
+    operations: { getCoach },
   } = useCoach();
 
   useEffect(() => {
@@ -16,6 +16,5 @@ export const usePrivateRouteComponent = () => {
 
   return {
     models: { loading, isLogged, isChecked },
-    operations: { logout },
   };
 };

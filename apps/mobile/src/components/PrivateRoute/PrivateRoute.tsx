@@ -1,18 +1,39 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-import { Route, RouteProps } from "react-router-native";
+import { Redirect, Route, RouteProps } from "react-router-native";
 
 import { LoadingScreen } from "../LoadingScreen";
 
 interface Props extends RouteProps {
+  isLogged: boolean;
+  isChecked: boolean;
   loading: boolean;
-  onLogout: () => void;
+  children: ReactNode;
+  redirectPath: string;
 }
 
-export const PrivateRoute: React.FC<Props> = ({ loading, ...routeProps }) => {
-  if (loading) {
-    return <LoadingScreen />;
-  }
+export const PrivateRoute: React.FC<Props> = ({
+  isLogged,
+  isChecked,
+  loading,
+  children,
+  redirectPath,
+  ...routeProps
+}) => {
+  return (
+    <Route
+      {...routeProps}
+      render={() => {
+        if (loading) {
+          return <LoadingScreen />;
+        }
 
-  return <Route {...routeProps} />;
+        if (!isLogged && isChecked) {
+          return <Redirect to={redirectPath} />;
+        }
+
+        return children;
+      }}
+    />
+  );
 };
