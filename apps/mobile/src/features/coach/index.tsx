@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, Switch } from "react-router-native";
+import { Route } from "react-router-native";
 
 import { LinkService } from "../../services/LinkService";
 import { Login } from "./coach/Login";
@@ -12,7 +12,7 @@ import { Students } from "./students/Students";
 
 export const CoachEntry: React.FC = () => {
   return (
-    <Switch>
+    <>
       <Route exact path={LinkService.coach.login()}>
         <Login />
       </Route>
@@ -28,6 +28,6 @@ export const CoachEntry: React.FC = () => {
       <PrivateRoute exact path={LinkService.coach.notifications()}>
         <Notifications />
       </PrivateRoute>
-    </Switch>
+    </>
   );
 };

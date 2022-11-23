@@ -3,42 +3,45 @@ import React, { ReactNode } from "react";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Button } from "apps/mobile/src/components/Button";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Theme } from "apps/mobile/src/theme";
-import { Dimensions, StyleSheet, View } from "react-native";
-import { EdgeInsets, SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
-import { Link } from 'react-router-native'
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { AuthRole, SafeAreaDimensions } from "../../types";
+import { useSafeAreaDimensions } from "../hooks/useSafeAreaDimensions";
+import { AuthRoleSelector } from "./components/AuthRoleSelector";
 
 interface AuthFormLayoutProps {
-  title: string;
   children: ReactNode;
+  caption: ReactNode;
   submitButtonText: string;
   loading: boolean;
+  authRole: AuthRole;
   onSubmit: () => void;
 }
 
 export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
-  title,
+  caption,
   children,
   submitButtonText,
   loading,
+  authRole,
   onSubmit,
 }) => {
-  const insets = useSafeAreaInsets();
-  const styles = createStyles({ insets });
+  const dimensions = useSafeAreaDimensions();
+  const styles = createStyles(dimensions);
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <Link to={LinkService.student.login()}>
-        <Typography>Go to student</Typography>
-      </Link>
       <View style={styles.iconWrapper}>
         <MaterialCommunityIcons name="baby-face" size={32} color="white" />
       </View>
-      <Typography variant="caption3" style={styles.title}>
-        {title}
+      <Typography variant="caption4" style={styles.title}>
+        Routine Support
       </Typography>
+      <AuthRoleSelector authRole={authRole} />
       {children}
+      <View style={styles.captionWrapper}>{caption}</View>
       <Button
         text={submitButtonText}
         onPress={onSubmit}
@@ -49,15 +52,15 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
   );
 };
 
-const createStyles = ({ insets }: { insets: EdgeInsets }) =>
+const createStyles = (dimensions: SafeAreaDimensions) =>
   StyleSheet.create({
     wrapper: {
-      height: Dimensions.get("screen").height,
+      height: dimensions.height,
       padding: 16,
-      paddingBottom: Dimensions.get("screen").height / 5,
+      paddingTop: dimensions.height / 5,
       position: "relative",
       flexDirection: "column",
-      justifyContent: "center",
+      justifyContent: "flex-start",
       alignItems: "center",
     },
     iconWrapper: {
@@ -73,12 +76,15 @@ const createStyles = ({ insets }: { insets: EdgeInsets }) =>
     title: { marginBottom: 16, width: "100%", textAlign: "center" },
     textInput: {
       marginBottom: 16,
-      width: Dimensions.get("screen").width - 32,
+      width: dimensions.width - 32,
+    },
+    captionWrapper: {
+      position: "absolute",
+      bottom: dimensions.bottom + 66,
     },
     submitButton: {
       position: "absolute",
-      bottom: insets.bottom || 16,
+      bottom: dimensions.bottom || 16,
       left: 16,
-      marginTop: "auto",
     },
   });

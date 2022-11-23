@@ -1,16 +1,22 @@
 import React from "react";
 
 import { LoginStudentDto, Student } from "@routine-support/domains";
+import { AuthFormLayout } from "apps/mobile/src/components/AuthFormLayout";
 import { Button } from "apps/mobile/src/components/Button";
+import { useSafeAreaDimensions } from "apps/mobile/src/components/hooks/useSafeAreaDimensions";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
+import { Theme } from "apps/mobile/src/theme";
+import { SafeAreaDimensions } from "apps/mobile/src/types";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useTranslation } from "react-i18next";
-import { Dimensions, StyleSheet, View } from "react-native";
-import { Redirect } from "react-router-native";
+import { ActivityIndicator, Image, ImageBackground, StyleSheet, View } from "react-native";
+import { Link, Redirect } from "react-router-native";
 
+import barcodeFrame from "./barcode-frame.png";
 import { BARCODE_FRAME_WIDTH } from "./constants";
 import { useLoginComponent } from "./hooks";
+import qrImage from "./qr.png";
 
 export interface LoginActions {
   login: (data: LoginStudentDto) => void;
@@ -27,6 +33,8 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
     operations: { handleQrScanned, handleScannerOpen, handleScannerClose },
   } = useLoginComponent(actions);
   const { t } = useTranslation();
+  const dimensions = useSafeAreaDimensions();
+  const styles = createStyles(dimensions);
 
   if (student) {
     return <Redirect to={LinkService.student.day()} />;
@@ -44,18 +52,27 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
 
   if (!scanning) {
     return (
-      <View style={styles.previewWrapper}>
-        <View style={styles.previewTextWrapper}>
-          <Typography style={styles.previewTitle}>{t<string>("You need to login")}</Typography>
-          <Typography style={styles.previewCaption}>{t<string>("Scan QR instructions")}</Typography>
-          {/* <Image source={qrImage} style={styles.previewImage} /> */}
-        </View>
-        <Button
-          onPress={handleScannerOpen}
-          text={t<string>("Open scanner")}
-          style={styles.openScannerButton}
-        />
-      </View>
+      <AuthFormLayout
+        authRole="student"
+        loading={loading}
+        submitButtonText={t<string>("Open scanner")}
+        onSubmit={handleScannerOpen}
+        caption={
+          <Link to={LinkService.coach.register()} underlayColor="transparent">
+            <Typography variant="text1" color="secondary">
+              Или войдите{" "}
+              <Typography variant="text1" color="primary">
+                с помощью пин-кода
+              </Typography>
+            </Typography>
+          </Link>
+        }
+      >
+        <Typography style={styles.previewTitle} color="secondary">
+          {t<string>("Отсканируйте QR код ребенка")}
+        </Typography>
+        <Image source={qrImage} style={styles.previewImage} />
+      </AuthFormLayout>
     );
   }
 
@@ -63,10 +80,9 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
     <View style={styles.scannerWrapper}>
       <BarCodeScanner onBarCodeScanned={handleQrScanned} style={StyleSheet.absoluteFillObject} />
       <View style={styles.barcodeFrame}>
-        {/* <ImageBackground source={barcodeFrame} style={styles.barcodeImage} /> */}
-        {/* {loading && <Spinner status="control" size="giant" />} */}
+        <ImageBackground source={barcodeFrame} style={styles.barcodeImage} />
+        {loading && <ActivityIndicator color={Theme.palette.primary.main} />}
       </View>
-
       <Button
         onPress={handleScannerClose}
         style={styles.closeScannerButton}
@@ -76,62 +92,52 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  previewWrapper: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 32,
-    paddingTop: 64,
-    ...StyleSheet.absoluteFillObject,
-  },
-  previewTextWrapper: {
-    marginTop: "auto",
-  },
-  previewImage: {
-    width: BARCODE_FRAME_WIDTH,
-    height: BARCODE_FRAME_WIDTH,
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginTop: 16,
-  },
-  previewTitle: {
-    textAlign: "center",
-  },
-  previewCaption: {
-    textAlign: "center",
-    marginTop: 8,
-  },
-  scannerWrapper: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    padding: 32,
-  },
-  openScannerButton: {
-    width: "100%",
-    marginTop: "auto",
-  },
-  barcodeFrame: {
-    width: BARCODE_FRAME_WIDTH,
-    height: BARCODE_FRAME_WIDTH,
-    position: "absolute",
-    top: Dimensions.get("screen").height / 2 - BARCODE_FRAME_WIDTH / 2,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  barcodeImage: {
-    width: BARCODE_FRAME_WIDTH,
-    height: BARCODE_FRAME_WIDTH,
-    position: "absolute",
-  },
-  closeScannerButton: {
-    width: "100%",
-  },
-  infoText: {
-    paddingTop: Dimensions.get("screen").height / 2 - 20,
-    width: "100%",
-    textAlign: "center",
-  },
-});
+const createStyles = (dimensions: SafeAreaDimensions) =>
+  StyleSheet.create({
+    previewImage: {
+      width: BARCODE_FRAME_WIDTH,
+      height: BARCODE_FRAME_WIDTH,
+      marginLeft: "auto",
+      marginRight: "auto",
+      marginTop: 16,
+    },
+    previewTitle: {
+      textAlign: "center",
+    },
+    previewCaption: {
+      textAlign: "center",
+      marginTop: 8,
+    },
+    scannerWrapper: {
+      flex: 1,
+      justifyContent: "flex-end",
+      alignItems: "center",
+      padding: 32,
+    },
+    openScannerButton: {
+      width: dimensions.width,
+      marginTop: "auto",
+    },
+    barcodeFrame: {
+      width: BARCODE_FRAME_WIDTH,
+      height: BARCODE_FRAME_WIDTH,
+      position: "absolute",
+      top: dimensions.height / 2 - BARCODE_FRAME_WIDTH / 2,
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    barcodeImage: {
+      width: BARCODE_FRAME_WIDTH,
+      height: BARCODE_FRAME_WIDTH,
+      position: "absolute",
+    },
+    closeScannerButton: {
+      width: dimensions.width,
+    },
+    infoText: {
+      paddingTop: dimensions.height / 2 - 20,
+      width: dimensions.width,
+      textAlign: "center",
+    },
+  });
