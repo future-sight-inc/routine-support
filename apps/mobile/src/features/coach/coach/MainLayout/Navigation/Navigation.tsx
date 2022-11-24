@@ -42,19 +42,19 @@ export const Navigation: React.FC<NavigationProps> = ({ pressElement, coach, onL
         <View style={styles.linksWrapper}>
           <Link
             text="Календарь"
-            path={LinkService.coach.day()}
+            name={LinkService.coach.day()}
             iconName="calendar-month"
             IconComponent={MaterialCommunityIcons}
           />
           <Link
             text="Дети"
-            path={LinkService.coach.students()}
+            name={LinkService.coach.students()}
             iconName="people-alt"
             IconComponent={MaterialIcons}
           />
           <Link
             text="Уведомления"
-            path={LinkService.coach.notifications()}
+            name={LinkService.coach.notifications()}
             iconName="bell"
             IconComponent={MaterialCommunityIcons}
           />

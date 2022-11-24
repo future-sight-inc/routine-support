@@ -1,5 +1,5 @@
+import { useNavigation } from "@react-navigation/native";
 import { LinkService } from "apps/mobile/src/services/LinkService";
-import { Redirect } from "react-router-native";
 
 import { useCoach } from "../useCoach";
 import { Login as UncontrolledLogin } from "./Login";
@@ -9,9 +9,10 @@ export const Login: React.FC = () => {
     models: { isLogged, loading },
     operations: { login },
   } = useCoach();
+  const navigation = useNavigation();
 
   if (isLogged) {
-    return <Redirect to={LinkService.coach.day()} />;
+    navigation.navigate(LinkService.coach.day(), {});
   }
 
   return <UncontrolledLogin actions={{ login }} loading={loading} />;

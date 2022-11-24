@@ -1,11 +1,20 @@
+import { useEffect } from "react";
+
+import { useNavigation } from "@react-navigation/native";
+import { Coach } from "@routine-support/domains";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Alert } from "react-native";
-import { useHistory } from "react-router-native";
 
 import { MainLayoutActions } from ".";
 
-export const useMainLayoutComponent = (actions: MainLayoutActions) => {
-  const history = useHistory();
+export const useMainLayoutComponent = (actions: MainLayoutActions, coach: Coach) => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    if (!coach) {
+      navigation.navigate(LinkService.coach.login(), {});
+    }
+  }, [coach]);
 
   const handleLogout = () => {
     Alert.alert(
@@ -31,7 +40,7 @@ export const useMainLayoutComponent = (actions: MainLayoutActions) => {
   };
 
   const handleNotificationsIconPress = () => {
-    history.push(LinkService.coach.notifications());
+    navigation.navigate(LinkService.coach.notifications(), {});
   };
 
   return { operations: { handleLogout, handleNotificationsIconPress } };

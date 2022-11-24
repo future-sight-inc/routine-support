@@ -1,39 +1,41 @@
-import React, { ReactNode } from "react";
+import React, { FC } from "react";
 
-import { Redirect, Route, RouteProps } from "react-router-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Redirect } from "react-router-native";
 
 import { LoadingScreen } from "../LoadingScreen";
 
-interface Props extends RouteProps {
+interface Props {
+  name: string;
   isLogged: boolean;
   isChecked: boolean;
   loading: boolean;
-  children: ReactNode;
+  component: FC;
   redirectPath: string;
 }
 
+const Stack = createNativeStackNavigator();
+
 export const PrivateRoute: React.FC<Props> = ({
+  name,
   isLogged,
   isChecked,
   loading,
-  children,
+  component: Component,
   redirectPath,
   ...routeProps
 }) => {
-  return (
-    <Route
-      {...routeProps}
-      render={() => {
-        if (loading) {
-          return <LoadingScreen />;
-        }
+  const renderInner = () => {
+    if (loading) {
+      return <LoadingScreen />;
+    }
 
-        if (!isLogged && isChecked) {
-          return <Redirect to={redirectPath} />;
-        }
+    if (!isLogged && isChecked) {
+      return <Redirect to={redirectPath} />;
+    }
 
-        return children;
-      }}
-    />
-  );
+    return <Component />;
+  };
+
+  return <Stack.Screen name={name} {...routeProps} component={renderInner} />;
 };

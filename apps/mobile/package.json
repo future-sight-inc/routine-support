@@ -78,7 +78,8 @@
     "react-native-qrcode-svg": "*",
     "metro-config": "*",
     "axios": "*",
-    "@expo/webpack-config": "*"
+    "@expo/webpack-config": "*",
+    "@react-navigation/native": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && cp yarn.lock ./apps/mobile/",

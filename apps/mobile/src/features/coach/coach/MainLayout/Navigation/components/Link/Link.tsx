@@ -1,55 +1,56 @@
 import React from "react";
 
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { Theme } from "apps/mobile/src/theme";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import { useHistory } from "react-router-native";
 
 interface LinkProps {
   text: string;
-  path: string;
+  name: string;
   iconName: string;
   IconComponent: any;
 }
 
-export const Link: React.FC<LinkProps> = ({ text, path, iconName, IconComponent }) => {
-  const history = useHistory();
+export const Link: React.FC<LinkProps> = ({ text, name, iconName, IconComponent }) => {
+  const route = useRoute();
+  const navigation = useNavigation()
 
-  const createLinkIconWrapperStyles = (path: string) => {
-    if (path === history.location.pathname) {
+  const createLinkIconWrapperStyles = (name: string) => {
+    if (name === route.name) {
       return [styles.linkIconWrapper, { backgroundColor: Theme.palette.primary.main }];
     }
 
     return styles.linkIconWrapper;
   };
 
-  const getIconColor = (path: string) => {
-    if (path === history.location.pathname) {
+  const getIconColor = (name: string) => {
+    if (name === route.name) {
       return Theme.palette.common.white;
     }
 
     return Theme.palette.primary.text;
   };
 
-  const getLinkColor = (path: string) => {
-    if (path === history.location.pathname) {
+  const getLinkColor = (name: string) => {
+    if (name === route.name) {
       return "primary";
     }
 
     return "normal";
   };
 
-  const handleLinkPress = (path: string) => {
-    return history.push(path);
+  const handleLinkPress = (name: string) => {
+    return navigation.navigate(name, {});
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => handleLinkPress(path)}>
+    <TouchableWithoutFeedback onPress={() => handleLinkPress(name)}>
       <View style={styles.wrapper}>
-        <View style={createLinkIconWrapperStyles(path)}>
-          <IconComponent name={iconName} size={18} color={getIconColor(path)} />
+        <View style={createLinkIconWrapperStyles(name)}>
+          <IconComponent name={iconName} size={18} color={getIconColor(name)} />
         </View>
-        <Typography variant="caption4Normal" color={getLinkColor(path)}>
+        <Typography variant="caption4Normal" color={getLinkColor(name)}>
           {text}
         </Typography>
       </View>

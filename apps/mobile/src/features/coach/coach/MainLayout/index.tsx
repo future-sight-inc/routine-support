@@ -31,7 +31,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
   } = useCoach();
   const {
     operations: { handleLogout, handleNotificationsIconPress },
-  } = useMainLayoutComponent({ logout });
+  } = useMainLayoutComponent({ logout }, coach);
 
   return (
     <UncontrolledMainLayout

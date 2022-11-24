@@ -1,32 +1,19 @@
 import React, { useEffect } from "react";
 
-import { Route, useHistory } from "react-router-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { AppWrapper } from "../components/AppWrapper";
 import { CoachEntry } from "../features/coach";
-import { PrivateRoute } from "../features/student/student/PrivateRoute";
 import { LinkService } from "../services/LinkService";
 
 const App = () => {
-  const history = useHistory();
+  const navigation = useNavigation();
 
   useEffect(() => {
-    // history.push(LinkService.coach.login())
-    history.push(LinkService.coach.login());
-    console.log("fuck");
+    navigation.navigate(LinkService.coach.login(), {});
   }, []);
 
-  return (
-    <>
-      <Route exact path={LinkService.student.login()}>
-        {console.log("login")}
-      </Route>
-      <PrivateRoute exact path={LinkService.student.day()}>
-        {console.log("wtf")}
-      </PrivateRoute>
-      <CoachEntry />
-    </>
-  );
+  return <CoachEntry />;
 };
 
 export default () => (

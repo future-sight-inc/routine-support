@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Link } from "@react-navigation/native";
 import { RegisterCoachDto } from "@routine-support/domains";
 import { AuthFormLayout } from "apps/mobile/src/components/AuthFormLayout";
 import { ErrorMessage } from "apps/mobile/src/components/ErrorMessage";
@@ -7,7 +8,6 @@ import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Dimensions, StyleSheet, View } from "react-native";
-import { Link } from "react-router-native";
 
 import { useRegisterComponent } from "./hooks";
 
@@ -32,7 +32,7 @@ export const Register: React.FC<RegisterProps> = ({ actions, loading }) => {
       submitButtonText="Зарегистрироваться"
       onSubmit={handleSubmit}
       caption={
-        <Link to={LinkService.coach.login()} underlayColor="transparent">
+        <Link to={{ screen: LinkService.coach.login(), params: {} }}>
           <Typography variant="text1" color="secondary">
             Уже зарегистрированы?{" "}
             <Typography variant="text1" color="primary">
