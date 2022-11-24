@@ -1,25 +1,27 @@
 import React, { ReactNode, useEffect, useState } from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Layout } from "apps/mobile/src/components/Layout";
 import {
+  Dimensions,
   Modal as NativeModal,
-  StyleProp,
+  ScrollView,
+  StyleSheet,
   TouchableWithoutFeedback,
   View,
-  ViewStyle,
 } from "react-native";
 
+import { Theme } from "../../theme";
+import { SafeAreaDimensions } from "../../types";
+import { useSafeAreaDimensions } from "../hooks/useSafeAreaDimensions";
+import { Typography } from "../Typography";
 import { ModalLocators } from "./locators";
 
 interface ModalProps {
   title: string;
   pressElement?: ReactNode;
   footer?: ReactNode;
-  footerStyle?: StyleProp<ViewStyle>;
   children: ReactNode;
   isOpened?: boolean;
-  scrollable?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
 }
@@ -29,13 +31,13 @@ export const Modal: React.FC<ModalProps> = ({
   pressElement,
   children,
   footer,
-  footerStyle,
   isOpened: defaultOpened = false,
-  scrollable,
   onOpen,
   onClose,
 }) => {
   const [isOpened, setOpened] = useState(defaultOpened);
+  const dimensions = useSafeAreaDimensions();
+  const styles = createStyles(dimensions);
 
   useEffect(() => {
     setOpened(defaultOpened);
@@ -57,23 +59,50 @@ export const Modal: React.FC<ModalProps> = ({
         <TouchableWithoutFeedback onPress={handleOpen}>{pressElement}</TouchableWithoutFeedback>
       )}
       <NativeModal visible={isOpened} animationType="slide" testID={ModalLocators.Modal}>
-        <Layout
-          title={title}
-          leftIcon={
-            <TouchableWithoutFeedback onPress={handleClose}>
-              <View testID={ModalLocators.CloseIcon}>
-                <MaterialIcons name="close" size={30} />
-              </View>
-            </TouchableWithoutFeedback>
-          }
-          rightIcon={<MaterialIcons name="close" size={30} color="transparent" />}
-          footer={footer}
-          footerStyle={footerStyle}
-          scrollable={scrollable}
+        <ScrollView
+          style={styles.wrapper}
+          stickyHeaderIndices={[0]}
+          showsVerticalScrollIndicator={false}
+          alwaysBounceVertical={false}
         >
+          <View>
+            <View style={styles.header}>
+              <TouchableWithoutFeedback onPress={handleClose}>
+                <View testID={ModalLocators.CloseIcon}>
+                  <MaterialIcons name="close" size={30} />
+                </View>
+              </TouchableWithoutFeedback>
+              <Typography variant="caption3Normal">{title}</Typography>
+              <View />
+            </View>
+          </View>
           {children}
-        </Layout>
+        </ScrollView>
+        <View style={styles.footer}>{footer}</View>
       </NativeModal>
     </>
   );
 };
+
+const createStyles = (dimensions: SafeAreaDimensions) =>
+  StyleSheet.create({
+    wrapper: {
+      paddingHorizontal: 16,
+      maxHeight: Dimensions.get("screen").height - 120,
+      marginTop: dimensions.top,
+    },
+    header: {
+      height: 78,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      backgroundColor: Theme.palette.common.white,
+    },
+    footer: {
+      position: "absolute",
+      bottom: dimensions.bottom,
+      width: "100%",
+      paddingHorizontal: 16,
+      backgroundColor: Theme.palette.common.white,
+    },
+  });
