@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { useNavigation } from "@react-navigation/native";
+import { DrawerActions } from "@react-navigation/native";
 import { Coach } from "@routine-support/domains";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Alert } from "react-native";
@@ -43,5 +44,9 @@ export const useMainLayoutComponent = (actions: MainLayoutActions, coach: Coach)
     navigation.navigate(LinkService.coach.notifications(), {});
   };
 
-  return { operations: { handleLogout, handleNotificationsIconPress } };
+  const handleMenuIconPress = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  };
+
+  return { operations: { handleLogout, handleNotificationsIconPress, handleMenuIconPress } };
 };

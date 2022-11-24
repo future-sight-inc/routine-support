@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 
 import * as eva from "@eva-design/eva";
-import { NavigationContainer } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import i18n from "i18next";
@@ -16,6 +16,7 @@ import { store } from "../../app/store";
 import enLocale from "../../locales/en.json";
 import nlLocale from "../../locales/nl.json";
 import ruLocale from "../../locales/ru.json";
+import { Theme } from "../../theme";
 import { Toast } from "../Toast";
 
 i18n.use(initReactI18next).init({
@@ -40,15 +41,24 @@ i18n.use(initReactI18next).init({
   fallbackLng: "en",
 });
 
+const NavigationTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Theme.palette.primary.main,
+    background: Theme.palette.common.white,
+  },
+};
+
 interface AppWrapperProps {
   children: ReactNode;
 }
 
 export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
   return (
-    <NavigationContainer>
-      <NativeRouter>
-        <SafeAreaProvider>
+    <SafeAreaProvider>
+      <NavigationContainer theme={NavigationTheme}>
+        <NativeRouter>
           <ApplicationProvider {...eva} theme={eva.light}>
             <ToastProvider
               renderToast={(toast) => (
@@ -60,8 +70,8 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
               <Provider store={store}>{children}</Provider>
             </ToastProvider>
           </ApplicationProvider>
-        </SafeAreaProvider>
-      </NativeRouter>
-    </NavigationContainer>
+        </NativeRouter>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };

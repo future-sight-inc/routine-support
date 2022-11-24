@@ -7,16 +7,11 @@ import { MainLayout } from "../../../coach/MainLayout";
 interface StudentsLayoutProps {
   addButton: ReactNode;
   studentsList: ReactNode;
-  loading: boolean;
 }
 
-export const StudentsLayout: React.FC<StudentsLayoutProps> = ({
-  addButton,
-  studentsList,
-  loading,
-}) => {
+export const StudentsLayout: React.FC<StudentsLayoutProps> = ({ addButton, studentsList }) => {
   return (
-    <MainLayout title="Students" footer={addButton} bodyStyle={styles.body} loading={loading}>
+    <MainLayout title="Students" footer={addButton} bodyStyle={styles.body}>
       {studentsList}
     </MainLayout>
   );

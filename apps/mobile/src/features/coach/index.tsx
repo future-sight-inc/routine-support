@@ -1,6 +1,6 @@
 import React from "react";
 
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { LinkService } from "../../services/LinkService";
 import { Login } from "./coach/Login";
@@ -9,16 +9,20 @@ import { Day } from "./day/Day";
 import { Notifications } from "./notifications/Notifications";
 import { Students } from "./students/Students";
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export const CoachEntry: React.FC = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={LinkService.coach.login()} component={Login} />
-      <Stack.Screen name={LinkService.coach.register()} component={Register} />
-      <Stack.Screen name={LinkService.coach.day()} component={Day} />
-      <Stack.Screen name={LinkService.coach.students()} component={Students} />
-      <Stack.Screen name={LinkService.coach.notifications()} component={Notifications} />
-    </Stack.Navigator>
+    <Drawer.Navigator useLegacyImplementation={true} initialRouteName={LinkService.coach.login()}>
+      <Drawer.Group screenOptions={{ headerShown: false, swipeEnabled: false }}>
+        <Drawer.Screen name={LinkService.coach.login()} component={Login} />
+        <Drawer.Screen name={LinkService.coach.register()} component={Register} />
+      </Drawer.Group>
+      <Drawer.Group>
+        <Drawer.Screen name={LinkService.coach.day()} component={Day} />
+        <Drawer.Screen name={LinkService.coach.students()} component={Students} />
+        <Drawer.Screen name={LinkService.coach.notifications()} component={Notifications} />
+      </Drawer.Group>
+    </Drawer.Navigator>
   );
 };

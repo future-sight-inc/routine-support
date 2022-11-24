@@ -8,6 +8,7 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { Student } from "../Student";
 
 interface StudentsListProps {
+  loading: boolean;
   students: StudentType[];
   onStudentOpen: (student: StudentType) => void;
   onSettingsOpen: (student: StudentType) => void;
@@ -15,6 +16,7 @@ interface StudentsListProps {
 }
 
 export const StudentsList: React.FC<StudentsListProps> = ({
+  loading,
   students,
   onStudentOpen,
   onSettingsOpen,
@@ -22,6 +24,7 @@ export const StudentsList: React.FC<StudentsListProps> = ({
 }) => {
   return (
     <FlatList
+      refreshing={loading}
       ItemSeparatorComponent={() => <View style={styles.separator} />}
       ListEmptyComponent={
         <Typography variant="text1" color="secondary" style={styles.emptyListText}>

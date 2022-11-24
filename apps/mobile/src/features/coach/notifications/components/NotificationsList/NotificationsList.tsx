@@ -14,16 +14,19 @@ import { Notification } from "../Notification";
 interface NotificationsListProps {
   notificationsGroups: NotificationsGroup[];
   students: Student[];
+  loading: boolean;
   onNotificationDelete: (notification: NotificationType) => void;
 }
 
 export const NotificationsList: React.FC<NotificationsListProps> = ({
   notificationsGroups,
   students,
+  loading,
   onNotificationDelete,
 }) => {
   return (
     <FlatList
+      refreshing={loading}
       data={notificationsGroups}
       ListEmptyComponent={
         <Typography variant="text1" color="secondary" style={styles.emptyListText}>

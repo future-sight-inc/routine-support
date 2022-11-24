@@ -16,6 +16,7 @@ import { ActivitiesGroup } from "../ActivitiesGroup";
 import { CurrentTimeLine } from "../CurrentTimeLine";
 
 interface CalendarProps {
+  loading: boolean;
   isToday: boolean;
   timeRange?: TimeString[];
   activities?: ActivityType[];

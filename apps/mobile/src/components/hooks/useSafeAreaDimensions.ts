@@ -11,6 +11,6 @@ export const useSafeAreaDimensions = (): SafeAreaDimensions => {
     ...insets,
     bottom: insets.bottom || 16,
     width: width - 32, // todo Стоит вынести отступы в конфиг
-    height,
+    height: height - 78 - 130,
   };
 };

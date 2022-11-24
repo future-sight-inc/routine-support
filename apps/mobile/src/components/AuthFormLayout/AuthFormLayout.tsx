@@ -55,7 +55,7 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
 const createStyles = (dimensions: SafeAreaDimensions) =>
   StyleSheet.create({
     wrapper: {
-      height: dimensions.height,
+      height: '100%',
       padding: 16,
       paddingTop: dimensions.height / 5,
       position: "relative",
