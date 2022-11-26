@@ -75,7 +75,11 @@
     "react-native-date-picker": "*",
     "@react-native-community/datetimepicker": "*",
     "@react-native-aria/overlays": "*",
-    "react-native-qrcode-svg": "*"
+    "react-native-qrcode-svg": "*",
+    "metro-config": "*",
+    "axios": "*",
+    "@expo/webpack-config": "*",
+    "@react-navigation/native": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && cp yarn.lock ./apps/mobile/",

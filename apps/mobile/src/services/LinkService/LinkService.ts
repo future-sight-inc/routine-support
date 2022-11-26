@@ -12,8 +12,8 @@ export const LinkService = {
   },
   student: {
     createPath: (path: PathEnum) => `/student${path}`,
-    login: () => LinkService.coach.createPath(PathEnum.Login),
-    register: () => LinkService.coach.createPath(PathEnum.Register),
-    day: () => LinkService.coach.createPath(PathEnum.Day),
+    login: () => LinkService.student.createPath(PathEnum.Login),
+    register: () => LinkService.student.createPath(PathEnum.Register),
+    day: () => LinkService.student.createPath(PathEnum.Day),
   },
 };

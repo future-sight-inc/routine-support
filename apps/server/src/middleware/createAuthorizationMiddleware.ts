@@ -7,13 +7,13 @@ export const createAuthorizationMiddleware =
   <T>(authName: string, model: Model<T>) =>
     (req: Request, res: Response, next: () => unknown) => {
       try {
-        const token = req.cookies.access_token;
+        const token = req.cookies[`${authName}_access_token`];
 
         const data = jwt.verify(token, process.env.SECRET_KEY || "") as User;
 
         return model.findById(data._id, (err, result) => {
           if (err || !result) {
-            res.clearCookie("access_token");
+            res.clearCookie(`${authName}_access_token`);
 
             return res.status(401).send({
               error: "Invalid credentials",

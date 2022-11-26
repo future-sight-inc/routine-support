@@ -2,7 +2,7 @@ import { Router } from "express";
 import { studentAuthorization } from "../../middleware/studentAuthorization";
 import { activityRouter } from "./ActivityRouter";
 import { dayRouter } from "./DayRouter";
-import { authRouter } from "./StudentRouter";
+import { authRouter } from "./AuthRouter";
 
 export const studentRouter = Router();
 

@@ -32,9 +32,7 @@ export const StudentsSelector: React.FC<StudentsSelectorProps> = ({
     onSelect(newValue);
   };
 
-  const selectedStudents = value
-    .map((id) => students.find((student) => student._id === id)!)
-    .filter(Boolean);
+  const selectedStudents = students.filter((student) => value.includes(student._id));
 
   return (
     <Select

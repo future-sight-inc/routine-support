@@ -1,28 +1,28 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { LinkService } from "apps/mobile/src/services/LinkService";
-import { Redirect, RouteProps } from "react-router-native";
 
+import { PrivateRoute as UncontrolledPrivateRoute } from "../../../../components/PrivateRoute";
 import { usePrivateRouteComponent } from "./hooks";
-import { PrivateRoute as UncontrolledPrivateRoute } from "./PrivateRoute";
 
-export const PrivateRoute: React.FC<RouteProps> = (props) => {
+interface PrivateRouteProps {
+  name: string;
+  component: FC;
+}
+
+export const PrivateRoute: React.FC<PrivateRouteProps> = ({ name, component }) => {
   const {
     models: { loading, isLogged, isChecked },
-    operations: { logout },
   } = usePrivateRouteComponent();
-
-  if (!isLogged && isChecked) {
-    return <Redirect to={LinkService.coach.login()} />;
-  }
 
   return (
     <UncontrolledPrivateRoute
+      name={name}
+      component={component}
       loading={loading}
       isLogged={isLogged}
       isChecked={isChecked}
-      onLogout={logout}
-      {...props}
+      redirectPath={LinkService.coach.login()}
     />
   );
 };

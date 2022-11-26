@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./styled";
 
@@ -10,12 +10,8 @@ interface NavigationLinkProps {
   children: ReactNode;
 }
 
-export const NavigationLink: React.FC<NavigationLinkProps> = ({
-  icon,
-  to = "/",
-  children,
-}) => {
-  const history = useHistory();
+export const NavigationLink: React.FC<NavigationLinkProps> = ({ icon, to = "/", children }) => {
+  const navigate = useNavigate();
   const location = useLocation();
   const isActive = to === location.pathname;
 
@@ -24,7 +20,7 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
       return;
     }
 
-    history.push(to);
+    navigate(to);
   };
 
   return (

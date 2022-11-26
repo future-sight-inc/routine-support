@@ -1,14 +1,14 @@
 import React from "react";
 
+import { Link } from "@react-navigation/native";
 import { RegisterCoachDto } from "@routine-support/domains";
+import { AuthFormLayout } from "apps/mobile/src/components/AuthFormLayout";
 import { ErrorMessage } from "apps/mobile/src/components/ErrorMessage";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Dimensions, StyleSheet, View } from "react-native";
-import { Link } from "react-router-native";
 
-import { AuthFormLayout } from "../AuthFormLayout";
 import { useRegisterComponent } from "./hooks";
 
 export interface RegisterActions {
@@ -28,10 +28,19 @@ export const Register: React.FC<RegisterProps> = ({ actions, loading }) => {
 
   return (
     <AuthFormLayout
-      title="Зарегистрироваться
-    в Routine Support"
+      authRole="coach"
       submitButtonText="Зарегистрироваться"
       onSubmit={handleSubmit}
+      caption={
+        <Link to={{ screen: LinkService.coach.login(), params: {} }}>
+          <Typography variant="text1" color="secondary">
+            Уже зарегистрированы?{" "}
+            <Typography variant="text1" color="primary">
+              Войти
+            </Typography>
+          </Typography>
+        </Link>
+      }
       loading={loading}
     >
       <View style={styles.fieldWrapper}>
@@ -70,21 +79,12 @@ export const Register: React.FC<RegisterProps> = ({ actions, loading }) => {
         />
       </View>
       {submitError && <ErrorMessage style={styles.errorMessage}>{submitError}</ErrorMessage>}
-      <Link to={LinkService.coach.login()} underlayColor="transparent">
-        <Typography variant="text1" color="secondary">
-          Уже зарегистрированы?{" "}
-          <Typography variant="text1" color="primary">
-            Войти
-          </Typography>
-        </Typography>
-      </Link>
     </AuthFormLayout>
   );
 };
 
 const styles = StyleSheet.create({
   textInput: {
-    marginBottom: 16,
     width: Dimensions.get("screen").width - 32,
   },
   fieldWrapper: {

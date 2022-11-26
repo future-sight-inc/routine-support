@@ -7,7 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DevSettings } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import AppRoot from "../app/app";
+import { App } from "../app/app";
 
 export const DEFAULT_REACTOTRON_WS_URI = "ws://localhost:9090";
 
@@ -115,7 +115,7 @@ function ToggleStorybook(props) {
 export default () => {
   return (
     <ToggleStorybook>
-      <AppRoot />
+      <App />
     </ToggleStorybook>
   );
 };

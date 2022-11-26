@@ -1,23 +1,23 @@
 import React from "react";
 
+import { Link } from "@react-navigation/native";
 import { LoginCoachDto } from "@routine-support/domains";
+import { AuthFormLayout } from "apps/mobile/src/components/AuthFormLayout";
 import { ErrorMessage } from "apps/mobile/src/components/ErrorMessage";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Dimensions, StyleSheet, View } from "react-native";
-import { Link } from "react-router-native";
 
-import { AuthFormLayout } from "../AuthFormLayout";
 import { useLoginComponent } from "./hooks";
 
 export interface LoginActions {
   login: (data: LoginCoachDto) => void;
-  loading: boolean;
 }
 
 interface LoginProps {
   actions: LoginActions;
+  loading: boolean;
 }
 
 export const Login: React.FC<LoginProps> = ({ actions, loading }) => {
@@ -28,7 +28,17 @@ export const Login: React.FC<LoginProps> = ({ actions, loading }) => {
 
   return (
     <AuthFormLayout
-      title="Войти в Routine Support"
+      authRole="coach"
+      caption={
+        <Link to={{ screen: LinkService.coach.register(), params: {} }}>
+          <Typography variant="text1" color="secondary">
+            Еще не зарегистрированы?{" "}
+            <Typography variant="text1" color="primary">
+              Создать аккаунт
+            </Typography>
+          </Typography>
+        </Link>
+      }
       submitButtonText="Войти"
       onSubmit={handleSubmit}
       loading={loading}
@@ -59,14 +69,6 @@ export const Login: React.FC<LoginProps> = ({ actions, loading }) => {
         />
       </View>
       {submitError && <ErrorMessage style={styles.errorMessage}>{submitError}</ErrorMessage>}
-      <Link to={LinkService.coach.register()} underlayColor="transparent">
-        <Typography variant="text1" color="secondary">
-          Еще не зарегистрированы?{" "}
-          <Typography variant="text1" color="primary">
-            Создать аккаунт
-          </Typography>
-        </Typography>
-      </Link>
     </AuthFormLayout>
   );
 };

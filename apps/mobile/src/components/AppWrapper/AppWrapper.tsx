@@ -1,6 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import * as eva from "@eva-design/eva";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import i18n from "i18next";
@@ -15,6 +16,7 @@ import { store } from "../../app/store";
 import enLocale from "../../locales/en.json";
 import nlLocale from "../../locales/nl.json";
 import ruLocale from "../../locales/ru.json";
+import { Theme } from "../../theme";
 import { Toast } from "../Toast";
 
 i18n.use(initReactI18next).init({
@@ -39,22 +41,37 @@ i18n.use(initReactI18next).init({
   fallbackLng: "en",
 });
 
-export const AppWrapper: React.FC = ({ children }) => {
+const NavigationTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Theme.palette.primary.main,
+    background: Theme.palette.common.white,
+  },
+};
+
+interface AppWrapperProps {
+  children: ReactNode;
+}
+
+export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
   return (
-    <NativeRouter>
-      <SafeAreaProvider>
-        <ApplicationProvider {...eva} theme={eva.light}>
-          <ToastProvider
-            renderToast={(toast) => (
-              <Toast title={toast.data.title} description={toast.data.description} />
-            )}
-            offsetTop={64}
-          >
-            <IconRegistry icons={EvaIconsPack} />
-            <Provider store={store}>{children}</Provider>
-          </ToastProvider>
-        </ApplicationProvider>
-      </SafeAreaProvider>
-    </NativeRouter>
+    <SafeAreaProvider>
+      <NavigationContainer theme={NavigationTheme}>
+        <NativeRouter>
+          <ApplicationProvider {...eva} theme={eva.light}>
+            <ToastProvider
+              renderToast={(toast) => (
+                <Toast title={toast.data.title} description={toast.data.description} />
+              )}
+              offsetTop={64}
+            >
+              <IconRegistry icons={EvaIconsPack} />
+              <Provider store={store}>{children}</Provider>
+            </ToastProvider>
+          </ApplicationProvider>
+        </NativeRouter>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };

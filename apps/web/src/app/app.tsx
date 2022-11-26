@@ -1,17 +1,16 @@
 import React from "react";
 
+import Notifications from "@mui/icons-material/Notifications";
 import AdapterMoment from "@mui/lab/AdapterMoment";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { useTranslation } from "react-i18next";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { LoginForm } from "../features/coach/components/Forms/LoginForm";
 import { RegisterForm } from "../features/coach/components/Forms/RegisterForm";
-import { MainLayout } from "../features/coach/components/MainLayout";
 import { PrivateRoute } from "../features/coach/components/PrivateRoute";
 import { useSocketEventListener } from "../features/coach/hooks/useSocketEventListener";
-import { Notifications } from "../features/notifications/Notifications";
 import { Students } from "../features/students/Students";
 import { Week } from "../features/week";
 import { useWeek } from "../features/week/useWeek";
@@ -34,25 +33,34 @@ export const App = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterMoment} locale={i18n.language}>
       <ConfirmationProvider>
-        <Route path={LinkService.login()}>
-          <LoginForm />
-        </Route>
-        <Route path={LinkService.register()}>
-          <RegisterForm />
-        </Route>
-        <PrivateRoute>
-          <MainLayout>
-            <Route exact path={LinkService.home()}>
-              <Week />
-            </Route>
-            <Route exact path={LinkService.students()}>
-              <Students />
-            </Route>
-            <Route exact path={LinkService.notifications()}>
-              <Notifications />
-            </Route>
-          </MainLayout>
-        </PrivateRoute>
+        <Routes>
+          <Route path={LinkService.login()} element={<LoginForm />} />
+          <Route path={LinkService.register()} element={<RegisterForm />} />
+          <Route
+            path={LinkService.home()}
+            element={
+              <PrivateRoute>
+                <Week />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={LinkService.students()}
+            element={
+              <PrivateRoute>
+                <Students />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={LinkService.notifications()}
+            element={
+              <PrivateRoute>
+                <Notifications />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
       </ConfirmationProvider>
     </LocalizationProvider>
   );

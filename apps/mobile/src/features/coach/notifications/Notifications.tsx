@@ -13,7 +13,6 @@ export const Notifications: React.FC = () => {
 
   return (
     <NotificationsLayout
-      loading={Students.models.loading || Notifications.models.loading}
       clearButton={
         <Button
           text="Clear"
@@ -23,6 +22,7 @@ export const Notifications: React.FC = () => {
       }
       notificationsList={
         <NotificationsList
+          loading={Students.models.loading || Notifications.models.loading}
           notificationsGroups={Notifications.models.notificationsGroups}
           students={Students.models.students}
           onNotificationDelete={Notifications.operations.deleteNotification}

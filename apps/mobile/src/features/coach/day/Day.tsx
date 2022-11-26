@@ -34,7 +34,6 @@ export const Day: React.FC = () => {
 
   return (
     <MainLayout
-      loading={Students.models.loading || Day.models.loading}
       title="Calendar"
       footer={
         <Button
@@ -57,6 +56,7 @@ export const Day: React.FC = () => {
         }
         calendar={
           <Calendar
+            loading={Students.models.loading || Day.models.loading}
             isToday={isToday(Day.models.currentDate)}
             activities={Day.models.day?.activities}
             students={Students.models.students}

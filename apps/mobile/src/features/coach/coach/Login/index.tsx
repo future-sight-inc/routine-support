@@ -1,5 +1,5 @@
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Redirect } from "react-router-native";
+import { useNavigation } from "@react-navigation/native";
+import { LinkService } from "apps/mobile/src/services/LinkService";
 
 import { useCoach } from "../useCoach";
 import { Login as UncontrolledLogin } from "./Login";
@@ -9,11 +9,11 @@ export const Login: React.FC = () => {
     models: { isLogged, loading },
     operations: { login },
   } = useCoach();
-  const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
 
   if (isLogged) {
-    return <Redirect to="/coach/day" />;
+    navigation.navigate(LinkService.coach.day(), {});
   }
 
-  return <UncontrolledLogin insets={insets} actions={{ login }} loading={loading} />;
+  return <UncontrolledLogin actions={{ login }} loading={loading} />;
 };

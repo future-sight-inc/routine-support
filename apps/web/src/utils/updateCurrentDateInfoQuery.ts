@@ -1,12 +1,7 @@
 import { DateInfo, getDateInfoQuery } from "@routine-support/domains";
 
-export const updateCurrentDateInfoQuery = (
-  dateInfo: DateInfo,
-  history: {
-    push: (url: string) => void;
-  }
-) => {
+export const updateCurrentDateInfoQuery = (dateInfo: DateInfo, navigate: any) => {
   const dateInfoQuery = getDateInfoQuery(dateInfo);
 
-  history.push("/?" + dateInfoQuery);
+  navigate("/?" + dateInfoQuery);
 };

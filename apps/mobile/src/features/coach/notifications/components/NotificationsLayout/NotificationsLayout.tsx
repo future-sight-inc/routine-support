@@ -13,15 +13,9 @@ interface NotificationsLayoutProps {
 export const NotificationsLayout: React.FC<NotificationsLayoutProps> = ({
   notificationsList,
   clearButton,
-  loading,
 }) => {
   return (
-    <MainLayout
-      title="Notifications"
-      footer={clearButton}
-      bodyStyle={styles.body}
-      loading={loading}
-    >
+    <MainLayout title="Notifications" footer={clearButton} bodyStyle={styles.body}>
       {notificationsList}
     </MainLayout>
   );

@@ -13,6 +13,7 @@ storiesOf("Week", module).add("MiniCalendar", () => {
     <Layout>
       <MiniCalendar
         currentDate={moment()}
+        // eslint-disable-next-line
         onWeekSelect={(week) => console.log(week)}
       />
     </Layout>

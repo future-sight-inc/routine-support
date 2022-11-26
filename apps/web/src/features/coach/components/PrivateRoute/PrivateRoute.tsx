@@ -1,21 +1,24 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { CircularProgress } from "@mui/material";
 import { LinkService } from "apps/web/src/services/LinkService";
-import { Redirect, Route, RouteProps } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
+import { MainLayout } from "../MainLayout";
 import * as S from "./styled";
-interface Props extends RouteProps {
+
+interface PrivateRouteProps {
   loading: boolean;
   isLogged: boolean;
   isChecked: boolean;
+  children: ReactNode;
 }
 
-export const PrivateRoute: React.FC<Props> = ({
+export const PrivateRoute: React.FC<PrivateRouteProps> = ({
   loading,
   isLogged,
   isChecked,
-  ...routeProps
+  children,
 }) => {
   if (loading) {
     return (
@@ -26,8 +29,8 @@ export const PrivateRoute: React.FC<Props> = ({
   }
 
   if (!isLogged && isChecked) {
-    return <Redirect to={LinkService.login()} />;
+    return <Navigate to={LinkService.login()} />;
   }
 
-  return <Route {...routeProps} />;
+  return <MainLayout>{children}</MainLayout>;
 };

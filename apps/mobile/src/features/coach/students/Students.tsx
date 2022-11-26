@@ -64,10 +64,11 @@ export const Students: React.FC = () => {
   return (
     <>
       <StudentsLayout
-        loading={Students.models.loading}
+        // loading={Students.models.loading}
         addButton={<Button text="Student" icon="add" onPress={() => handleStudentOpen()} />}
         studentsList={
           <StudentsList
+            loading={Students.models.loading}
             students={Students.models.students}
             onStudentOpen={handleStudentOpen}
             onSettingsOpen={handleSettingsOpen}
