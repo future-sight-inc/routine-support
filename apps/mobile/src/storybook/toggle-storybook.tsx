@@ -9,7 +9,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { App } from "../app/app";
 
-export const DEFAULT_REACTOTRON_WS_URI = "ws://localhost:9090";
+const DEFAULT_REACTOTRON_WS_URI = "ws://localhost:9090";
 
 /**
  * Loads a string from storage.

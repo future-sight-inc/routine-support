@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { LabelWithHelper } from "../../LabelWithHelper";
 import { FormFieldProps } from "../types";
 import * as S from "./styled";
-export interface ControllerProps extends FormFieldProps {
+interface ControllerProps extends FormFieldProps {
   render: (arg: {
     field: ControllerRenderProps;
     fieldState: ControllerFieldState;

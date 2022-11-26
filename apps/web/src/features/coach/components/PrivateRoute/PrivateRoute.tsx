@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 
-import { CircularProgress } from "@mui/material";
 import { LinkService } from "apps/web/src/services/LinkService";
 import { Navigate } from "react-router-dom";
 
@@ -22,9 +21,9 @@ export const PrivateRoute: React.FC<PrivateRouteProps> = ({
 }) => {
   if (loading) {
     return (
-      <S.LoaderWrapper>
-        <CircularProgress />
-      </S.LoaderWrapper>
+      <S.SpinnerWrapper>
+        <S.Spinner />
+      </S.SpinnerWrapper>
     );
   }
 

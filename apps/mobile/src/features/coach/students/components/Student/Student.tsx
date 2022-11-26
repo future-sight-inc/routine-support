@@ -3,11 +3,10 @@ import React from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Student as StudentType } from "@routine-support/domains";
 import { getColor } from "@routine-support/ui-theme";
-import { TouchableWithoutFeedback } from "@ui-kitten/components/devsupport";
 import { IconButton } from "apps/mobile/src/components/IconButton";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { Theme } from "apps/mobile/src/theme";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import { QrCode } from "../QrCode";

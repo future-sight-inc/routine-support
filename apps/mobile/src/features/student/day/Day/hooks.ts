@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-import { DayActions } from "./Day";
-
-export const useDayComponent = (actions: DayActions) => {
+export const useDayComponent = () => {
   const [isPinCodeInputVisible, setPinCodeVisible] = useState(false);
 
   const handleLogoutPress = () => {
@@ -10,7 +8,7 @@ export const useDayComponent = (actions: DayActions) => {
   };
 
   const handlePinCodeSuccessInput = async () => {
-    await actions.logout();
+    // await actions.logout();
     setPinCodeVisible(false);
   };
 

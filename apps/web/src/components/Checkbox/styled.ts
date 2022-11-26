@@ -2,7 +2,6 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import styled, { css } from "styled-components";
 
-import { LabelWithHelper } from "../LabelWithHelper";
 
 export const CheckIcon = styled(CheckBoxIcon).attrs(() => ({
   sx: { fontSize: 20 },
@@ -27,5 +26,3 @@ export const EmptyIcon = styled(CheckBoxOutlineBlankIcon).attrs(() => ({
 }))`
   color: ${({ theme }) => theme.palette.secondary.text};
 `;
-
-export const Label = styled(LabelWithHelper)``;

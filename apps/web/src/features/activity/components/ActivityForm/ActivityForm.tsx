@@ -27,7 +27,7 @@ export interface ActivityFormActions {
   }) => void;
 }
 
-export interface ActivityFormProps {
+interface ActivityFormProps {
   coach: Coach;
   activity: Partial<Activity> | undefined;
   pictograms: Pictogram[];
