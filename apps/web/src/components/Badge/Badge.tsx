@@ -2,12 +2,11 @@ import React, { ReactNode } from "react";
 
 import { Theme } from "@routine-support/ui-theme";
 
-
 import * as S from "./styled";
 
-export type BadgeColor = "primary" | "alert";
+type BadgeColor = "primary" | "alert";
 
-export type TextColor = "black" | "white";
+type TextColor = "black" | "white";
 
 interface BadgeProps {
   color?: BadgeColor;
@@ -16,12 +15,7 @@ interface BadgeProps {
   dataTestId?: string;
 }
 
-export const Badge: React.FC<BadgeProps> = ({
-  color,
-  textColor,
-  children,
-  dataTestId,
-}) => {
+export const Badge: React.FC<BadgeProps> = ({ color, textColor, children, dataTestId }) => {
   const getColorOfBadge = (color?: BadgeColor) => {
     switch (color) {
     case "primary":
@@ -46,9 +40,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
   return (
     <S.Wrapper color={getColorOfBadge(color)} data-testid={dataTestId}>
-      <S.InnerText textColor={getColorOfText(textColor)}>
-        {children}
-      </S.InnerText>
+      <S.InnerText textColor={getColorOfText(textColor)}>{children}</S.InnerText>
     </S.Wrapper>
   );
 };

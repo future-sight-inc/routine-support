@@ -8,7 +8,7 @@ import { NotificationsIcon } from "apps/mobile/src/components/NotificationsIcon"
 import { Typography } from "apps/mobile/src/components/Typography";
 import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
 
-export interface MainLayoutProps {
+interface MainLayoutProps {
   title: string;
   children: ReactNode;
   bodyStyle?: StyleProp<ViewStyle>;

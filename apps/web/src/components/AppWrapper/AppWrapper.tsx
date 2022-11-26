@@ -1,6 +1,5 @@
 import { ReactNode, StrictMode } from "react";
 
-import { StyledEngineProvider } from "@mui/material/styles";
 import { Theme } from "@routine-support/ui-theme";
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
@@ -40,14 +39,12 @@ interface AppWrapperProps {
 export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => (
   <StrictMode>
     <Router>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={Theme}>
-          <Provider store={store}>
-            {children}
-            <ToastContainer />
-          </Provider>
-        </ThemeProvider>
-      </StyledEngineProvider>
+      <ThemeProvider theme={Theme}>
+        <Provider store={store}>
+          {children}
+          <ToastContainer />
+        </Provider>
+      </ThemeProvider>
     </Router>
   </StrictMode>
 );

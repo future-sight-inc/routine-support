@@ -7,12 +7,6 @@ export const Wrapper = styled.div`
   gap: 16px;
 `;
 
-export const NameInput = styled.input`
-  font-size: 24px;
-  border: none;
-  outline: none;
-`;
-
 export const DateWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 90px 90px;

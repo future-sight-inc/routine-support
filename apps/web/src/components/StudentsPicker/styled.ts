@@ -80,36 +80,3 @@ export const DeleteStudentIcon = styled(ClearIcon).attrs(() => ({
     color: ${({ theme }) => theme.palette.primary.text};
   }
 `;
-
-export const Menu = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  cursor: pointer;
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
-  transform: translateY(100%);
-  z-index: 1000;
-  max-height: 180px;
-  overflow: scroll;
-
-  ${({ theme }) => css`
-    border-radius: ${theme.borderRadius.m};
-    background: ${theme.palette.common.white};
-    box-shadow: ${theme.boxShadow.small};
-  `}
-`;
-
-export const Option = styled(Typography)`
-  ${({ theme }) => css`
-    height: 40px;
-    line-height: 40px;
-    padding: 0 8px;
-
-    &:hover {
-      background: ${theme.palette.secondary.main};
-    }
-  `}
-`;

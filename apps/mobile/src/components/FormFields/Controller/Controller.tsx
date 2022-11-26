@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { FieldWrapper } from "../FieldWrapper";
 import { FormFieldProps } from "../types";
 
-export interface ControllerProps extends FormFieldProps {
+interface ControllerProps extends FormFieldProps {
   render: (arg: {
     field: ControllerRenderProps;
     fieldState: ControllerFieldState;

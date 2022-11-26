@@ -1,4 +1,4 @@
-export enum ColorPickerLocators {
+enum ColorPickerLocators {
   Color = "ColorPickerColor",
   ActiveColor = "ColorPickerActiveColor",
 }
