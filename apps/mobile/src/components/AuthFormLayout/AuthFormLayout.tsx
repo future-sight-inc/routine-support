@@ -7,8 +7,8 @@ import { Theme } from "apps/mobile/src/theme";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { AuthRole, SafeAreaDimensions } from "../../types";
 import { useSafeAreaDimensions } from "../../hooks/useSafeAreaDimensions";
+import { AuthRole, SafeAreaDimensions } from "../../types";
 import { AuthRoleSelector } from "./components/AuthRoleSelector";
 
 interface AuthFormLayoutProps {

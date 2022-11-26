@@ -5,7 +5,6 @@ import { Student } from "@routine-support/domains";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { BarCodeEvent, BarCodeScanner } from "expo-barcode-scanner";
 import { useTranslation } from "react-i18next";
-import { useWindowDimensions } from "react-native";
 import { useToast } from "react-native-toast-notifications";
 
 import { LoginActions } from "./Login";
@@ -17,7 +16,6 @@ export const useLoginComponent = (actions: LoginActions, student: Student | null
   const [barcode, setBarcode] = useState<BarCodeEvent | undefined>();
 
   const navigation = useNavigation();
-  const { height: viewportHeight, width: viewportWidth } = useWindowDimensions();
   const toast = useToast();
   const { t } = useTranslation();
 
@@ -29,8 +27,6 @@ export const useLoginComponent = (actions: LoginActions, student: Student | null
     if (student) {
       navigation.navigate(LinkService.student.day(), {});
     }
-
-    console.log(student);
   }, [student]);
 
   const checkPermission = async () => {
@@ -48,32 +44,6 @@ export const useLoginComponent = (actions: LoginActions, student: Student | null
       if (event.cornerPoints && event.bounds) {
         setLoading(true);
         setBarcode(event);
-
-        // todo Сломалась проверка границ, выключено на время разработки мобилы
-        // const barcodeArea = {
-        //   x: viewportWidth / 2 - BARCODE_FRAME_WIDTH / 2,
-        //   y: viewportHeight / 2 - BARCODE_FRAME_WIDTH / 2,
-        //   width: BARCODE_FRAME_WIDTH,
-        //   height: BARCODE_FRAME_WIDTH,
-        // };
-        // const barcode = {
-        //   x: event.cornerPoints[0].x,
-        //   y: event.cornerPoints[0].y,
-        //   width: event.bounds.size.width,
-        //   height: event.bounds.size.height,
-        // };
-
-        // if (isInArea(barcodeArea, barcode)) {
-        //   const data = JSON.parse(event.data);
-
-        //   if (data.id) {
-        //     await actions.login(data);
-
-        //     setScanning(false);
-        //   } else {
-        //     throw new Error();
-        //   }
-        // }
 
         const data = JSON.parse(event.data);
 

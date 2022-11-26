@@ -15,12 +15,7 @@ describe("ConfirmationModal", () => {
   it("Closed modal", () => {
     const { queryByTestId } = render(
       <AppWrapper>
-        <ConfirmationModal
-          isOpened={false}
-          title=""
-          onConfirm={() => null}
-          onClose={() => null}
-        />
+        <ConfirmationModal isOpened={false} title="" onConfirm={() => null} onClose={() => null} />
       </AppWrapper>
     );
 
@@ -30,12 +25,7 @@ describe("ConfirmationModal", () => {
   it("Opened modal", () => {
     const { getByTestId } = render(
       <AppWrapper>
-        <ConfirmationModal
-          isOpened
-          title=""
-          onConfirm={() => null}
-          onClose={() => null}
-        />
+        <ConfirmationModal isOpened title="" onConfirm={() => null} onClose={() => null} />
       </AppWrapper>
     );
 
@@ -46,30 +36,18 @@ describe("ConfirmationModal", () => {
     const TITLE = "Title";
     const { getByTestId } = render(
       <AppWrapper>
-        <ConfirmationModal
-          isOpened
-          title={TITLE}
-          onConfirm={() => null}
-          onClose={() => null}
-        />
+        <ConfirmationModal isOpened title={TITLE} onConfirm={() => null} onClose={() => null} />
       </AppWrapper>
     );
 
-    expect(getByTestId(ConfirmationModalLocators.Title)).toHaveTextContent(
-      TITLE
-    );
+    expect(getByTestId(ConfirmationModalLocators.Title)).toHaveTextContent(TITLE);
   });
 
   it("Doesn't have description", () => {
     const TITLE = "Title";
     const { queryByTestId } = render(
       <AppWrapper>
-        <ConfirmationModal
-          isOpened
-          title={TITLE}
-          onConfirm={() => null}
-          onClose={() => null}
-        />
+        <ConfirmationModal isOpened title={TITLE} onConfirm={() => null} onClose={() => null} />
       </AppWrapper>
     );
 
@@ -91,9 +69,7 @@ describe("ConfirmationModal", () => {
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationModalLocators.Description)
-    ).toHaveTextContent(DESCRIPTION);
+    expect(queryByTestId(ConfirmationModalLocators.Description)).toHaveTextContent(DESCRIPTION);
   });
 
   it("Shows proper confirm button text", () => {
@@ -113,9 +89,9 @@ describe("ConfirmationModal", () => {
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationModalLocators.ConfirmButton)
-    ).toHaveTextContent(CONFIRM_BUTTON_TEXT);
+    expect(queryByTestId(ConfirmationModalLocators.ConfirmButton)).toHaveTextContent(
+      CONFIRM_BUTTON_TEXT
+    );
   });
 
   it("Shows proper passed confirm button text", () => {
@@ -135,9 +111,9 @@ describe("ConfirmationModal", () => {
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationModalLocators.ConfirmButton)
-    ).toHaveTextContent(CONFIRM_BUTTON_TEXT);
+    expect(queryByTestId(ConfirmationModalLocators.ConfirmButton)).toHaveTextContent(
+      CONFIRM_BUTTON_TEXT
+    );
   });
 
   it("Calls confirm on click", async () => {
@@ -145,7 +121,7 @@ describe("ConfirmationModal", () => {
     const DESCRIPTION = "Description";
     const CONFIRM_BUTTON_TEXT = "Confirm text";
     const handleConfirm = () => {
-      console.log();
+      return;
     };
     const logSpy = jest.spyOn(console, "log");
     const { getByTestId } = render(
@@ -171,7 +147,7 @@ describe("ConfirmationModal", () => {
     const DESCRIPTION = "Description";
     const CONFIRM_BUTTON_TEXT = "Confirm text";
     const handleCancel = () => {
-      console.log();
+      return;
     };
     const logSpy = jest.spyOn(console, "log");
     const { getByTestId } = render(

@@ -5,9 +5,9 @@ import { StatusBar } from "expo-status-bar";
 import { ScrollView, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { useSafeAreaDimensions } from "../../hooks/useSafeAreaDimensions";
 import { Theme } from "../../theme";
 import { SafeAreaDimensions } from "../../types";
-import { useSafeAreaDimensions } from "../../hooks/useSafeAreaDimensions";
 
 export interface LayoutProps {
   children: ReactNode;

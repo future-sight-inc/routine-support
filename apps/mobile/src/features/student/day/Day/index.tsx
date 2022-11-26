@@ -8,12 +8,15 @@ import { useDay } from "../useDay";
 
 export const Day: React.FC = () => {
   const {
-    models: { day, loading },
-    operations: { getDay, confirmActivity },
+    models: {
+      day,
+      // loading
+    },
+    // operations: { getDay, confirmActivity },
   } = useDay();
   const {
     models: { student },
-    operations: { logout },
+    // operations: { logout },
   } = useStudent();
 
   if (!day || !student) {

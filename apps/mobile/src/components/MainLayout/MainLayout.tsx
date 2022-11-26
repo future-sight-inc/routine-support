@@ -29,7 +29,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <StatusBar style="light-content" />
+      {/* eslint-disable-next-line */}
+      <StatusBar style="light" />
       <Layout style={styles.navigationWrapper}>
         <TopNavigation
           alignment="center"

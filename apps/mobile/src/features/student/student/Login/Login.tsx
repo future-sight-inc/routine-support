@@ -3,18 +3,16 @@ import React from "react";
 import { LoginStudentDto, Student } from "@routine-support/domains";
 import { AuthFormLayout } from "apps/mobile/src/components/AuthFormLayout";
 import { Button } from "apps/mobile/src/components/Button";
-import { useSafeAreaDimensions } from "apps/mobile/src/hooks/useSafeAreaDimensions";
 import { Typography } from "apps/mobile/src/components/Typography";
+import { useSafeAreaDimensions } from "apps/mobile/src/hooks/useSafeAreaDimensions";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Theme } from "apps/mobile/src/theme";
 import { SafeAreaDimensions } from "apps/mobile/src/types";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useTranslation } from "react-i18next";
-import { ActivityIndicator, Image, ImageBackground, StyleSheet, View } from "react-native";
+import { ActivityIndicator, Image, StyleSheet, View } from "react-native";
 import { Link } from "react-router-native";
 
-import barcodeFrame from "./barcode-frame.png";
-import { BARCODE_FRAME_WIDTH } from "./constants";
 import { useLoginComponent } from "./hooks";
 import qrImage from "./qr.png";
 
@@ -77,7 +75,6 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
     <View style={styles.scannerWrapper}>
       <BarCodeScanner onBarCodeScanned={handleQrScanned} style={StyleSheet.absoluteFillObject} />
       <View style={styles.barcodeFrame}>
-        <ImageBackground source={barcodeFrame} style={styles.barcodeImage} />
         {loading && <ActivityIndicator color={Theme.palette.primary.main} />}
       </View>
       <Button
@@ -92,8 +89,8 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
 const createStyles = (dimensions: SafeAreaDimensions) =>
   StyleSheet.create({
     previewImage: {
-      width: BARCODE_FRAME_WIDTH,
-      height: BARCODE_FRAME_WIDTH,
+      width: 250,
+      height: 250,
       marginLeft: "auto",
       marginRight: "auto",
       marginTop: 16,
@@ -116,18 +113,13 @@ const createStyles = (dimensions: SafeAreaDimensions) =>
       marginTop: "auto",
     },
     barcodeFrame: {
-      width: BARCODE_FRAME_WIDTH,
-      height: BARCODE_FRAME_WIDTH,
+      width: 250,
+      height: 250,
       position: "absolute",
-      top: dimensions.height / 2 - BARCODE_FRAME_WIDTH / 2,
+      top: dimensions.height / 2 - 250 / 2,
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-    },
-    barcodeImage: {
-      width: BARCODE_FRAME_WIDTH,
-      height: BARCODE_FRAME_WIDTH,
-      position: "absolute",
     },
     closeScannerButton: {
       width: dimensions.width,
