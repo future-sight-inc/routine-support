@@ -7,7 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Theme } from "../../theme";
 import { SafeAreaDimensions } from "../../types";
-import { useSafeAreaDimensions } from "../hooks/useSafeAreaDimensions";
+import { useSafeAreaDimensions } from "../../hooks/useSafeAreaDimensions";
 
 export interface LayoutProps {
   children: ReactNode;

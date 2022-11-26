@@ -1,12 +1,12 @@
 import React from "react";
 
+import { useNavigation } from "@react-navigation/native";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Theme } from "apps/mobile/src/theme";
 import { AuthRole, SafeAreaDimensions } from "apps/mobile/src/types";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import { useHistory } from "react-router-native";
 
-import { useSafeAreaDimensions } from "../../../hooks/useSafeAreaDimensions";
+import { useSafeAreaDimensions } from "../../../../hooks/useSafeAreaDimensions";
 import { Typography } from "../../../Typography";
 
 interface AuthRoleSelectorProps {
@@ -14,17 +14,14 @@ interface AuthRoleSelectorProps {
 }
 
 export const AuthRoleSelector: React.FC<AuthRoleSelectorProps> = ({ authRole }) => {
-  const history = useHistory();
+  const navigation = useNavigation();
 
   const createHandleSelect = (newRole: AuthRole) => () => {
-    console.log(authRole, newRole);
     if (authRole === newRole) {
       return;
     }
 
-    console.log(LinkService[newRole].login());
-
-    history.push(LinkService[newRole].login());
+    navigation.navigate(LinkService[newRole].login(), {});
   };
 
   const dimensions = useSafeAreaDimensions();

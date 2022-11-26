@@ -12,7 +12,7 @@ import {
 
 import { Theme } from "../../theme";
 import { SafeAreaDimensions } from "../../types";
-import { useSafeAreaDimensions } from "../hooks/useSafeAreaDimensions";
+import { useSafeAreaDimensions } from "../../hooks/useSafeAreaDimensions";
 import { Typography } from "../Typography";
 import { ModalLocators } from "./locators";
 

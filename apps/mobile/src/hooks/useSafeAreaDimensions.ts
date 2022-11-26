@@ -1,7 +1,7 @@
 import { Dimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { SafeAreaDimensions } from "../../types";
+import { SafeAreaDimensions } from "../types";
 
 export const useSafeAreaDimensions = (): SafeAreaDimensions => {
   const insets = useSafeAreaInsets();

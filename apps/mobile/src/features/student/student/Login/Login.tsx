@@ -3,7 +3,7 @@ import React from "react";
 import { LoginStudentDto, Student } from "@routine-support/domains";
 import { AuthFormLayout } from "apps/mobile/src/components/AuthFormLayout";
 import { Button } from "apps/mobile/src/components/Button";
-import { useSafeAreaDimensions } from "apps/mobile/src/components/hooks/useSafeAreaDimensions";
+import { useSafeAreaDimensions } from "apps/mobile/src/hooks/useSafeAreaDimensions";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Theme } from "apps/mobile/src/theme";
@@ -11,7 +11,7 @@ import { SafeAreaDimensions } from "apps/mobile/src/types";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Image, ImageBackground, StyleSheet, View } from "react-native";
-import { Link, Redirect } from "react-router-native";
+import { Link } from "react-router-native";
 
 import barcodeFrame from "./barcode-frame.png";
 import { BARCODE_FRAME_WIDTH } from "./constants";
@@ -31,14 +31,11 @@ export const Login: React.FC<LoginProps> = ({ student, actions }) => {
   const {
     models: { hasPermission, scanning, loading },
     operations: { handleQrScanned, handleScannerOpen, handleScannerClose },
-  } = useLoginComponent(actions);
+  } = useLoginComponent(actions, student);
   const { t } = useTranslation();
+
   const dimensions = useSafeAreaDimensions();
   const styles = createStyles(dimensions);
-
-  if (student) {
-    return <Redirect to={LinkService.student.day()} />;
-  }
 
   if (hasPermission === null) {
     return (
