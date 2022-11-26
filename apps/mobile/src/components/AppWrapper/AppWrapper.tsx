@@ -1,9 +1,6 @@
 import React, { ReactNode } from "react";
 
-import * as eva from "@eva-design/eva";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
-import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
-import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { NativeModules, Platform } from "react-native";
@@ -59,17 +56,14 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
     <SafeAreaProvider>
       <NavigationContainer theme={NavigationTheme}>
         <NativeRouter>
-          <ApplicationProvider {...eva} theme={eva.light}>
-            <ToastProvider
-              renderToast={(toast) => (
-                <Toast title={toast.data.title} description={toast.data.description} />
-              )}
-              offsetTop={64}
-            >
-              <IconRegistry icons={EvaIconsPack} />
-              <Provider store={store}>{children}</Provider>
-            </ToastProvider>
-          </ApplicationProvider>
+          <ToastProvider
+            renderToast={(toast) => (
+              <Toast title={toast.data.title} description={toast.data.description} />
+            )}
+            offsetTop={64}
+          >
+            <Provider store={store}>{children}</Provider>
+          </ToastProvider>
         </NativeRouter>
       </NavigationContainer>
     </SafeAreaProvider>
