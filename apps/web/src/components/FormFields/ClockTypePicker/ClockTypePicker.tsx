@@ -1,8 +1,9 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import { ClockTypePicker as UncontrolledClockTypePicker } from "../../ClockTypePicker";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 export const ClockTypePicker: React.FC<FormFieldProps> = ({
   name,

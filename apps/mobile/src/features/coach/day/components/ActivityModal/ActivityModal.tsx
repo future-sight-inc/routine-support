@@ -35,7 +35,7 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({
   isOpened,
   pictograms,
   repeatTypeOptions,
-  control,
+  control, // todo
   isStudentsSelectorVisible,
   students,
   onClose,

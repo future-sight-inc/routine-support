@@ -1,11 +1,12 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import {
   StudentsSelector as UncontrolledStudentsSelector,
   StudentsSelectorProps as UncontrolledStudentsSelectorProps,
 } from "../../StudentsSelector";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 type StudentsSelectorProps = FormFieldProps & Omit<UncontrolledStudentsSelectorProps, "onSelect">;
 
 export const StudentsSelector: React.FC<StudentsSelectorProps> = ({

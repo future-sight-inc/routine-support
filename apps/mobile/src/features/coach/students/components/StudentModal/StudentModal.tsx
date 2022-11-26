@@ -22,7 +22,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
   isEdit,
   isLoading,
   isOpened,
-  control,
+  control, // todo
   onClose,
   onSubmit,
   onDelete,

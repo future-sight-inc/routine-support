@@ -1,8 +1,8 @@
 import React from "react";
 
 import { createMockStudent } from "@routine-support/domains";
+import { useForm } from "@routine-support/forms";
 import { storiesOf } from "@storybook/react-native";
-import { useForm } from "react-hook-form";
 
 import { StudentsSelector } from "./StudentsSelector";
 

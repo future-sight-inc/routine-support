@@ -1,8 +1,9 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import { RepeatTypePicker as UncontrolledRepeatTypePicker } from "../../RepeatTypePicker";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 export const RepeatTypePicker: React.FC<FormFieldProps> = ({
   name,

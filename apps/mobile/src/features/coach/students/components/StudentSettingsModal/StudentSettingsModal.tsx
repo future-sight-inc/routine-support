@@ -20,7 +20,7 @@ interface StudentSettingsModalProps {
 export const StudentSettingsModal: React.FC<StudentSettingsModalProps> = ({
   isLoading,
   isOpened,
-  control,
+  control, // todo
   onClose,
   onSubmit,
 }) => {

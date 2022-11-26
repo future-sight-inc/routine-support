@@ -1,8 +1,9 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import { CommonFlagPicker as UncontrolledCommonFlagPicker } from "../../CommonFlagPicker";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 export const CommonFlagPicker: React.FC<FormFieldProps> = ({
   name,

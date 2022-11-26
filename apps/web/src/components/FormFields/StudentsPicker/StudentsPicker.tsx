@@ -1,5 +1,5 @@
+import { FormFieldProps } from "@routine-support/forms";
 import { Controller } from "apps/web/src/components/FormFields/Controller";
-import { FormFieldProps } from "apps/web/src/components/FormFields/types";
 import { useStudents } from "apps/web/src/features/students/useStudents";
 
 import { StudentsPicker as UncontrolledStudentsPicker } from "../../StudentsPicker";

@@ -1,10 +1,9 @@
 import { useState } from "react";
 
 import { RegisterCoachDto } from "@routine-support/domains";
-import { SubmitErrorData } from "@routine-support/types";
-import { setFormErrors } from "apps/mobile/src/utils/setFormErrors";
+import { setFormErrors, SubmitErrorData } from "@routine-support/forms";
+import { useForm } from "@routine-support/forms";
 import { AxiosError } from "axios";
-import { useForm } from "react-hook-form";
 
 import { RegisterActions } from "./Register";
 

@@ -1,10 +1,10 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
 import { Pictogram } from "@routine-support/types";
 
 import { PictogramSelector as UncontrolledPictogramSelector } from "../../PictogramSelector";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 type PictogramSelectorProps = FormFieldProps & {
   pictograms: Pictogram[];

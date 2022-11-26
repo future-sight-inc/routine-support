@@ -1,8 +1,9 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import { Select as UncontrolledSelect, SelectProps as UncontrolledSelectProps } from "../../Select";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 type SelectProps = FormFieldProps & Omit<UncontrolledSelectProps, "onSelect">;
 

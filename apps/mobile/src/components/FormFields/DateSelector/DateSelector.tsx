@@ -1,11 +1,12 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import {
   DateSelector as UncontrolledDateSelector,
   DateSelectorProps as UncontrolledDateSelectorProps,
 } from "../../DateSelector";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 type DateSelectorProps = FormFieldProps & Omit<UncontrolledDateSelectorProps, "onSelect">;
 

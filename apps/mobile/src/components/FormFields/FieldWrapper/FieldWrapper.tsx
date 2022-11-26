@@ -1,15 +1,10 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
+import { FieldWrapperProps } from "@routine-support/forms";
 import { StyleSheet, View } from "react-native";
 
 import { Typography } from "../../Typography";
 import { FieldWrapperLocators } from "./locators";
-
-interface FieldWrapperProps {
-  label?: string;
-  error?: string;
-  children: ReactNode;
-}
 
 export const FieldWrapper: React.FC<FieldWrapperProps> = ({ label, children, error }) => {
   return (
