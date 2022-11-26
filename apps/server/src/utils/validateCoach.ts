@@ -1,5 +1,5 @@
 import { Coach } from "@routine-support/domains";
-import { SubmitErrorData } from "@routine-support/types";
+import { SubmitErrorData } from "@routine-support/forms";
 import { validateCoachEmail } from "./validateCoachEmail";
 
 export const validateCoach = async (

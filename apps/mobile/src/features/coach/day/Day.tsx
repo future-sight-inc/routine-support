@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 
+import { useActivityForm } from "@routine-support/forms";
 import { isToday } from "@routine-support/utils";
 import { Button } from "apps/mobile/src/components/Button";
 
@@ -12,7 +13,6 @@ import { DayLayout } from "./components/DayLayout";
 import { DaySelect } from "./components/DaySelect";
 import { Filter } from "./components/Filter";
 import { useActivity } from "./useActivity";
-import { useActivityForm } from "./useActivityForm";
 import { useDay } from "./useDay";
 
 export const Day: React.FC = () => {
@@ -25,7 +25,7 @@ export const Day: React.FC = () => {
     createActivity: Activity.operations.createActivity,
     updateActivity: Activity.operations.updateActivity,
     deleteActivity: Activity.operations.deleteActivity,
-    getDay: Day.operations.getDay,
+    updateCalendar: Day.operations.getDay,
   });
 
   useEffect(() => {

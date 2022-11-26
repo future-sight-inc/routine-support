@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 
 import { Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
-import { Alert } from "react-native";
 
 export const useStudentForm = (
   student: Partial<Student> | undefined,
   actions: {
-    createStudent: (student: Student) => Promise<void>;
-    updateStudent: (student: Student) => Promise<void>;
-    deleteStudent: (student: Student) => Promise<void>;
+    createStudent: (data: Student) => Promise<void>;
+    updateStudent: (data: Student) => Promise<void>;
+    deleteStudent: (data: Student) => Promise<void>;
     getStudents: (config?: { silent: boolean }) => void;
   }
 ) => {
@@ -36,29 +35,9 @@ export const useStudentForm = (
 
   const onDelete = async () => {
     if (student?._id) {
-      Alert.alert(
-        "Confirm your action",
-        "",
-        [
-          {
-            text: "Cancel",
+      await actions.deleteStudent(student as Student);
 
-            style: "cancel",
-          },
-          {
-            text: "Confirm",
-            onPress: async () => {
-              await actions.deleteStudent(student as Student);
-              actions.getStudents();
-            },
-            style: "default",
-          },
-        ],
-        {
-          cancelable: true,
-          onDismiss: () => null,
-        }
-      );
+      actions.getStudents();
     }
   };
 

@@ -1,17 +1,17 @@
 import React from "react";
 
 import { LoginCoachDto } from "@routine-support/domains";
+import { useCoachLoginForm } from "@routine-support/forms";
 import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { LinkService } from "apps/web/src/services/LinkService";
 import { useTranslation } from "react-i18next";
 
 import * as S from "../styled";
-import { useLoginFormComponent } from "./hooks";
 import { LoginFormLocators } from "./locators";
 
 export interface LoginFormActions {
-  login: (data: LoginCoachDto) => void;
+  login: (data: LoginCoachDto) => Promise<void>;
 }
 
 interface LoginFormProps {
@@ -22,7 +22,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
   const {
     models: { submitError, control },
     operations: { handleSubmit },
-  } = useLoginFormComponent(actions);
+  } = useCoachLoginForm(actions);
 
   const { t } = useTranslation();
 
@@ -52,10 +52,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ actions }) => {
         </S.ButtonWrapper>
         <S.LinkText>
           {t("No account yet")}{" "}
-          <S.Link
-            to={LinkService.register()}
-            data-testid={LoginFormLocators.LinkToRegister}
-          >
+          <S.Link to={LinkService.register()} data-testid={LoginFormLocators.LinkToRegister}>
             {t("Create account")}
           </S.Link>
         </S.LinkText>

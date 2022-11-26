@@ -34,7 +34,6 @@ export const StudentSettingsModal: React.FC<StudentSettingsModalProps> = ({
           <Button text="Edit" loading={isLoading} onPress={onSubmit} />
         </ControlsGroup>
       }
-      scrollable
     >
       <View style={styles.fieldWrapper}>
         <LanguageSelector label="Язык" name="language" control={control} required />

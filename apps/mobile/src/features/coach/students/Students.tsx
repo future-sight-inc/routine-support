@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Student as StudentType } from "@routine-support/domains";
+import { useStudentForm, useStudentSettingsForm } from "@routine-support/forms";
 import { Button } from "apps/mobile/src/components/Button";
 import { Alert } from "react-native";
 
@@ -9,9 +10,7 @@ import { StudentSettingsModal } from "./components/StudentSettingsModal";
 import { StudentsLayout } from "./components/StudentsLayout";
 import { StudentsList } from "./components/StudentsList";
 import { useStudent } from "./useStudent";
-import { useStudentForm } from "./useStudentForm";
 import { useStudents } from "./useStudents";
-import { useStudentSettingsForm } from "./useStudentSettingsForm";
 
 export const Students: React.FC = () => {
   const Students = useStudents();

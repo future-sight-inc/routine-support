@@ -4,6 +4,7 @@
     "api-client": "libs/api-client",
     "constants": "libs/constants",
     "domains": "libs/domains",
+    "forms": "libs/forms",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
     "pictograms": "libs/pictograms",

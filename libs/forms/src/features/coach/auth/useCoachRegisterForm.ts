@@ -1,28 +1,27 @@
 import { useState } from "react";
 
-import { LoginCoachDto } from "@routine-support/domains";
-import { SubmitErrorData } from "@routine-support/types";
-import { setFormErrors } from "apps/web/src/utils/setFormErrors";
+import { RegisterCoachDto } from "@routine-support/domains";
 import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
+import { setFormErrors, SubmitErrorData } from "@routine-support/forms";
 
-import { LoginFormActions } from "./LoginForm";
-
-export const useLoginFormComponent = (actions: LoginFormActions) => {
+export const useCoachRegisterForm = (actions: {
+  register: (data: RegisterCoachDto) => Promise<void>;
+}) => {
   const {
     register,
     handleSubmit,
     control,
     setError,
     formState: { isSubmitting },
-  } = useForm<LoginCoachDto>();
+  } = useForm<RegisterCoachDto>();
   const [submitError, setSubmitError] = useState<string | undefined>();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitError(undefined);
 
-      await actions.login(data);
+      await actions.register(data);
     } catch (error) {
       const data = (error as AxiosError<SubmitErrorData>).response?.data;
 

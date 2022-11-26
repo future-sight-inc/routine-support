@@ -55,7 +55,6 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({
           <Button text={isEdit ? "Edit" : "Create"} loading={isLoading} onPress={onSubmit} />
         </ControlsGroup>
       }
-      scrollable
     >
       <View style={styles.fieldWrapper}>
         <TextField

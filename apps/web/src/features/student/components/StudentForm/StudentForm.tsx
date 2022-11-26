@@ -1,12 +1,12 @@
 import React from "react";
 
 import { Student } from "@routine-support/domains";
+import { useStudentForm } from "@routine-support/forms";
 import { ColorPicker } from "apps/web/src/components/FormFields/ColorPicker";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { useTranslation } from "react-i18next";
 
 import { ErrorText } from "../../../../components/ErrorText";
-import { useStudentFormComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface StudentFormActions {
@@ -25,13 +25,13 @@ interface StudentFormProps {
 export const StudentForm: React.FC<StudentFormProps> = ({ student, actions }) => {
   const {
     models: { control, isDirty, isSubmitting, submitError },
-    operations: { handleSubmit, onDelete },
-  } = useStudentFormComponent(student, actions);
+    operations: { onSubmit, onDelete },
+  } = useStudentForm(student, actions);
 
   const { t } = useTranslation();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <S.Wrapper>
         <S.Title>{student?._id ? t("Modify student") : t("Add student")}</S.Title>
         <TextField name="name" control={control} label={t("Name")} required />

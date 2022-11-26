@@ -1,5 +1,5 @@
 import { ActivitySchema } from "@routine-support/domains";
-import { FormError, SubmitErrorData } from "@routine-support/types";
+import { FormError, SubmitErrorData } from "@routine-support/forms";
 import { parseTime } from "@routine-support/utils";
 
 export const validateActivityTime = (

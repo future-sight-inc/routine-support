@@ -2,6 +2,7 @@ import React from "react";
 
 import { Link } from "@react-navigation/native";
 import { LoginCoachDto } from "@routine-support/domains";
+import { useCoachLoginForm } from "@routine-support/forms";
 import { AuthFormLayout } from "apps/mobile/src/components/AuthFormLayout";
 import { ErrorMessage } from "apps/mobile/src/components/ErrorMessage";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
@@ -9,10 +10,8 @@ import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Dimensions, StyleSheet, View } from "react-native";
 
-import { useLoginComponent } from "./hooks";
-
 export interface LoginActions {
-  login: (data: LoginCoachDto) => void;
+  login: (data: LoginCoachDto) => Promise<void>;
 }
 
 interface LoginProps {
@@ -24,7 +23,7 @@ export const Login: React.FC<LoginProps> = ({ actions, loading }) => {
   const {
     models: { submitError, control },
     operations: { handleSubmit },
-  } = useLoginComponent(actions);
+  } = useCoachLoginForm(actions);
 
   return (
     <AuthFormLayout

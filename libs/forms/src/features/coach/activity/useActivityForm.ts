@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 
 import { Activity, Coach, RepeatTypeEnum } from "@routine-support/domains";
 import { PICTOGRAMS } from "@routine-support/pictograms";
-import { SubmitErrorData } from "@routine-support/types";
-import { setFormErrors } from "apps/mobile/src/utils/setFormErrors";
 import { AxiosError } from "axios";
 import moment from "moment";
 import { useForm } from "react-hook-form";
-import { Alert } from "react-native";
+import { setFormErrors, SubmitErrorData } from "@routine-support/forms";
 
 export const useActivityForm = (
   coach: Coach,
@@ -16,7 +14,7 @@ export const useActivityForm = (
     createActivity: (activity: Activity) => Promise<void>;
     updateActivity: (activity: Activity) => Promise<void>;
     deleteActivity: (id: string) => Promise<void>;
-    getDay: (data: { config?: { silent: boolean } }) => void;
+    updateCalendar: (data: { config?: { silent: boolean } }) => void;
   }
 ) => {
   const defaultValues = {
@@ -78,7 +76,7 @@ export const useActivityForm = (
         } as Activity);
       }
 
-      actions.getDay({ config: { silent: true } });
+      actions.updateCalendar({ config: { silent: true } });
     } catch (error) {
       const data = (error as AxiosError<SubmitErrorData>).response?.data;
 
@@ -88,29 +86,9 @@ export const useActivityForm = (
 
   const onDelete = async () => {
     if (activity?._id) {
-      Alert.alert(
-        "Confirm your action",
-        "",
-        [
-          {
-            text: "Cancel",
+      await actions.deleteActivity(activity?._id as string);
 
-            style: "cancel",
-          },
-          {
-            text: "Confirm",
-            onPress: async () => {
-              await actions.deleteActivity(activity?._id as string);
-              actions.getDay({ config: { silent: true } });
-            },
-            style: "default",
-          },
-        ],
-        {
-          cancelable: true,
-          onDismiss: () => null,
-        }
-      );
+      actions.updateCalendar({ config: { silent: true } });
     }
   };
 
