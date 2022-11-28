@@ -7,8 +7,7 @@ import {
   UseFormStateReturn,
 } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { FieldWrapperProps } from "../../types/FieldWrapperProps";
-import { FormFieldProps } from "../../types/FormFieldProps";
+import { FieldWrapperProps, FormFieldProps } from "../../types";
 
 interface ControllerProps extends FormFieldProps {
   render: (arg: {
