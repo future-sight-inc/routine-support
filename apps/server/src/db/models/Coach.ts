@@ -1,5 +1,5 @@
+import { Coach } from "@routine-support/domains";
 import { model, Schema } from "mongoose";
-import { Coach } from "./types";
 
 const coachSchema = new Schema(
   {

@@ -1,11 +1,8 @@
 import { Router } from "express";
-import {
-  ActivityModel,
-  confirmStudentActivity,
-  WeekSocketEventTypeEnum,
-} from "@routine-support/domains";
+import { confirmStudentActivity, WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { emitToUser } from "../../main";
+import { ActivityModel } from "../../db/models/Activity";
 
 export const activityRouter = Router();
 

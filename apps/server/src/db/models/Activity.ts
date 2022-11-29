@@ -1,5 +1,5 @@
+import { ActivitySchema, RepeatTypeEnum } from "@routine-support/domains";
 import { model, Schema } from "mongoose";
-import { ActivitySchema, RepeatTypeEnum } from "./types";
 
 const activitySchema = new Schema(
   {

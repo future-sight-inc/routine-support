@@ -1,6 +1,6 @@
+import { ClockTypeEnum, ColorEnum, Student } from "@routine-support/domains";
 import { LanguageEnum } from "@routine-support/types";
 import { model, Schema } from "mongoose";
-import { ClockTypeEnum, ColorEnum, Student } from "./types";
 
 const studentSchema = new Schema(
   {

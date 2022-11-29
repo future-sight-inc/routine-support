@@ -1,11 +1,9 @@
-import {
-  ActivityModel,
-  CoachModel,
-  NotificationModel,
-  StudentModel,
-} from "@routine-support/domains";
 import { Router } from "express";
 import { AuthNames } from "../../constants/AuthNames";
+import { ActivityModel } from "../../db/models/Activity";
+import { CoachModel } from "../../db/models/Coach";
+import { NotificationModel } from "../../db/models/Notification";
+import { StudentModel } from "../../db/models/Student";
 import { coachAuthorization } from "../../middleware/coachAuthorization";
 import { getAuthCookie } from "../../utils/getAuthCookie";
 import { hashPassword } from "../../utils/hashPassword";

@@ -1,5 +1,5 @@
+import { NotificationSchema } from "@routine-support/domains";
 import { model, Schema } from "mongoose";
-import { NotificationSchema } from "./types";
 
 const notificationSchema = new Schema(
   {
