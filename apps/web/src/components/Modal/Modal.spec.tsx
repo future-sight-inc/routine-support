@@ -21,7 +21,9 @@ const ConnectedModal = () => {
 
   return (
     <>
-      <button onClick={handleOpen}>Open modal</button>
+      <button onClick={handleOpen} data-testid="button">
+        Open modal
+      </button>
       <Modal isOpened={isOpened} onClose={handleClose} />
     </>
   );
@@ -51,13 +53,13 @@ describe("Modal", () => {
   });
 
   it("Open by click on button, close by click on close icon", async () => {
-    const { container, queryByTestId, getByTestId } = render(
+    const { queryByTestId, getByTestId } = render(
       <AppWrapper>
         <ConnectedModal />
       </AppWrapper>
     );
 
-    container.querySelector("button")?.click();
+    await userEvent.click(getByTestId("button"));
     expect(queryByTestId(ModalLocators.Container)).toBeTruthy();
 
     await userEvent.click(getByTestId(ModalLocators.CloseIcon));
@@ -65,13 +67,13 @@ describe("Modal", () => {
   });
 
   it("Open by click on button, close by click on background", async () => {
-    const { container, getByTestId, queryByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <AppWrapper>
         <ConnectedModal />
       </AppWrapper>
     );
 
-    container.querySelector("button")?.click();
+    await userEvent.click(getByTestId("button"));
     expect(queryByTestId(ModalLocators.Container)).toBeTruthy();
 
     await userEvent.click(getByTestId(ModalLocators.Container));
