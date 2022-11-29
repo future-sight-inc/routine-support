@@ -4,6 +4,7 @@ import { createMockStudent } from "@routine-support/domains";
 import { fireEvent, render } from "@testing-library/react-native";
 
 import { createOptionFromStudent } from "../../utils/createOptionFromStudent";
+import { AppWrapper } from "../AppWrapper";
 import { InputModalLocators } from "../InputModal/locators";
 import { PopupLocators } from "../Popup/locators";
 import { createOptionTestId, SelectLocators } from "./locators";
@@ -17,7 +18,11 @@ describe("Select", () => {
     const student3 = createMockStudent();
     const options = [student1, student2, student3].map(createOptionFromStudent);
 
-    const { getByTestId } = render(<Select onSelect={handleSelect} options={options} />);
+    const { getByTestId } = render(
+      <AppWrapper>
+        <Select onSelect={handleSelect} options={options} />
+      </AppWrapper>
+    );
 
     await fireEvent.press(getByTestId(PopupLocators.PressElement));
     expect(getByTestId(PopupLocators.Background)).toBeTruthy();

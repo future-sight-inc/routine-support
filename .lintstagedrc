@@ -1,6 +1,10 @@
 {
   "{apps,libs}/**/*.{js,ts,tsx}": [
     "yarn pretty-quick --staged",
-    "yarn lint:write"
+    "yarn lint:write",
+    "yarn test:utils",
+    "yarn test:domains",
+    "yarn test:server",
+    "yarn test:web"
   ]
 }
