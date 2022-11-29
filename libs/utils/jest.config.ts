@@ -1,16 +1,16 @@
+/* eslint-disable */
 module.exports = {
-  displayName: "web",
+  displayName: "utils",
   preset: "../../jest.preset.js",
   globals: {
     "ts-jest": {
       tsconfig: "<rootDir>/tsconfig.spec.json",
     },
   },
-  testEnvironment: "<rootDir>/custom-text-encoder.js",
+  testEnvironment: "node",
   transform: {
-    "^.+\\.[t|j]sx?$": "babel-jest",
-    "node_modules/.+\\.[t|j]sx?$": "babel-jest",
+    "^.+\\.[t|j]sx?$": ["babel-jest", { presets: ["@nrwl/react/babel"] }],
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  coverageDirectory: "../../coverage/libs/models",
+  coverageDirectory: "../../coverage/libs/utils",
 };

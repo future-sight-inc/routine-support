@@ -40,3 +40,14 @@ export type Option = {
   text: string;
   color?: string;
 };
+
+export interface FormError {
+  name: string;
+  message: string;
+}
+
+export interface SubmitErrorData {
+  isValid: boolean;
+  errors?: FormError[];
+  error?: string;
+}

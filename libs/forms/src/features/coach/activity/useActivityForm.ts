@@ -5,7 +5,8 @@ import { PICTOGRAMS } from "@routine-support/pictograms";
 import { AxiosError } from "axios";
 import moment from "moment";
 import { useForm } from "react-hook-form";
-import { setFormErrors, SubmitErrorData } from "@routine-support/forms";
+import { setFormErrors } from "@routine-support/forms";
+import { SubmitErrorData } from "@routine-support/types";
 
 export const useActivityForm = (
   coach: Coach,

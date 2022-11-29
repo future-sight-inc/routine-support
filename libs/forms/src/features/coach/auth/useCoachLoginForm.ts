@@ -3,7 +3,8 @@ import { useState } from "react";
 import { LoginCoachDto } from "@routine-support/domains";
 import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
-import { setFormErrors, SubmitErrorData } from "@routine-support/forms";
+import { setFormErrors } from "@routine-support/forms";
+import { SubmitErrorData } from "@routine-support/types";
 
 export const useCoachLoginForm = (actions: { login: (data: LoginCoachDto) => Promise<void> }) => {
   const {

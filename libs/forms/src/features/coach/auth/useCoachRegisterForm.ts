@@ -3,7 +3,8 @@ import { useState } from "react";
 import { RegisterCoachDto } from "@routine-support/domains";
 import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
-import { setFormErrors, SubmitErrorData } from "@routine-support/forms";
+import { setFormErrors } from "@routine-support/forms";
+import { SubmitErrorData } from "@routine-support/types";
 
 export const useCoachRegisterForm = (actions: {
   register: (data: RegisterCoachDto) => Promise<void>;

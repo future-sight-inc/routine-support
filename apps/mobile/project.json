@@ -1,4 +1,6 @@
 {
+  "name": "mobile",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/mobile/src",
   "projectType": "application",
   "targets": {
@@ -16,7 +18,7 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "nx start mobile"
       }
@@ -78,19 +80,64 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/mobile"],
+      "outputs": ["{workspaceRoot}/coverage/apps/mobile"],
       "options": {
-        "jestConfig": "apps/mobile/jest.config.js",
+        "jestConfig": "apps/mobile/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "storybook": {
       "executor": "@nrwl/react-native:storybook",
       "options": {
-        "searchDir": "apps/mobile",
+        "searchDir": ["apps/mobile"],
         "outputFile": "./.storybook/story-loader.js",
         "pattern": "**/*.stories.@(js|jsx|ts|tsx|md)",
         "silent": false
+      }
+    },
+    "eject": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx prebuild mobile"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/expo:build",
+      "options": {}
+    },
+    "build-list": {
+      "executor": "@nrwl/expo:build-list",
+      "options": {}
+    },
+    "download": {
+      "executor": "@nrwl/expo:download",
+      "options": {
+        "output": "apps/mobile/dist"
+      }
+    },
+    "update": {
+      "executor": "@nrwl/expo:update",
+      "options": {}
+    },
+    "prebuild": {
+      "executor": "@nrwl/expo:prebuild",
+      "options": {}
+    },
+    "install": {
+      "executor": "@nrwl/expo:install",
+      "options": {}
+    },
+    "export": {
+      "executor": "@nrwl/expo:export",
+      "options": {
+        "platform": "all",
+        "outputDir": "../../dist/apps/mobile"
+      }
+    },
+    "export-web": {
+      "executor": "@nrwl/expo:export",
+      "options": {
+        "bundler": "webpack"
       }
     }
   },

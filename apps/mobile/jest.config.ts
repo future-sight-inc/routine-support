@@ -1,3 +1,4 @@
+/* eslint-disable */
 module.exports = {
   displayName: "mobile",
   resolver: "@nrwl/jest/plugins/resolver",

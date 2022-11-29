@@ -1,5 +1,6 @@
+/* eslint-disable */
 module.exports = {
-  displayName: "domains",
+  displayName: "types",
   preset: "../../jest.preset.js",
   globals: {
     "ts-jest": {
@@ -8,8 +9,8 @@ module.exports = {
   },
   testEnvironment: "node",
   transform: {
-    "^.+\\.[t|j]sx?$": "babel-jest",
+    "^.+\\.[tj]sx?$": "ts-jest",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  coverageDirectory: "../../coverage/libs/models",
+  coverageDirectory: "../../coverage/libs/types",
 };

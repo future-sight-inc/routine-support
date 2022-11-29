@@ -1,4 +1,6 @@
 {
+  "name": "pictograms",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/pictograms/src",
   "projectType": "library",
   "targets": {
@@ -21,7 +23,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/pictograms"],
+      "outputs": ["{workspaceRoot}/coverage/libs/pictograms"],
       "options": {
         "jestConfig": "libs/pictograms/jest.config.ts",
         "passWithNoTests": true

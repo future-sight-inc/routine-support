@@ -1,5 +1,5 @@
 import { ActivitySchema } from "@routine-support/domains";
-import { SubmitErrorData } from "@routine-support/forms";
+import { SubmitErrorData } from "@routine-support/types";
 import { validateActivityImportance } from "./validateActivityImportance";
 import { validateActivityTime } from "./validateActivityTime";
 

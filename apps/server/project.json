@@ -1,5 +1,6 @@
 {
-  "root": "apps/server",
+  "name": "server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/server/src",
   "projectType": "application",
   "targets": {
@@ -40,9 +41,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/server"],
+      "outputs": ["{workspaceRoot}/coverage/apps/server"],
       "options": {
-        "jestConfig": "apps/server/jest.config.js",
+        "jestConfig": "apps/server/jest.config.ts",
         "passWithNoTests": true
       }
     }

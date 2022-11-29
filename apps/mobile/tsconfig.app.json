@@ -11,7 +11,8 @@
     "**/*.stories.ts",
     "**/*.stories.js",
     "**/*.stories.jsx",
-    "**/*.stories.tsx"
+    "**/*.stories.tsx",
+    "jest.config.ts"
   ],
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
 }

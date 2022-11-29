@@ -4,7 +4,7 @@ import {
   createActivityFromSchema,
   isTimeCrossed,
 } from "@routine-support/domains";
-import { SubmitErrorData } from "@routine-support/forms";
+import { SubmitErrorData } from "@routine-support/types";
 
 export const validateActivityImportance = async (
   activity: ActivitySchema

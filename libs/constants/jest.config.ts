@@ -1,5 +1,6 @@
+/* eslint-disable */
 module.exports = {
-  displayName: "types",
+  displayName: "constants",
   preset: "../../jest.preset.js",
   globals: {
     "ts-jest": {
@@ -8,8 +9,8 @@ module.exports = {
   },
   testEnvironment: "node",
   transform: {
-    "^.+\\.[tj]sx?$": "ts-jest",
+    "^.+\\.[t|j]sx?$": ["babel-jest", { presets: ["@nrwl/react/babel"] }],
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  coverageDirectory: "../../coverage/libs/types",
+  coverageDirectory: "../../coverage/libs/constants",
 };
