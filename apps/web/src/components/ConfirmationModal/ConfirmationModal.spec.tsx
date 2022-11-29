@@ -120,10 +120,7 @@ describe("ConfirmationModal", () => {
     const TITLE = "Title";
     const DESCRIPTION = "Description";
     const CONFIRM_BUTTON_TEXT = "Confirm text";
-    const handleConfirm = () => {
-      return;
-    };
-    const logSpy = jest.spyOn(console, "log");
+    const handleConfirm = jest.fn();
     const { getByTestId } = render(
       <AppWrapper>
         <ConfirmationModal
@@ -139,17 +136,14 @@ describe("ConfirmationModal", () => {
 
     await userEvent.click(getByTestId(ConfirmationModalLocators.ConfirmButton));
 
-    expect(logSpy).toBeCalledTimes(1);
+    expect(handleConfirm).toBeCalledTimes(1);
   });
 
   it("Calls cancel on click", async () => {
     const TITLE = "Title";
     const DESCRIPTION = "Description";
     const CONFIRM_BUTTON_TEXT = "Confirm text";
-    const handleCancel = () => {
-      return;
-    };
-    const logSpy = jest.spyOn(console, "log");
+    const handleCancel = jest.fn();
     const { getByTestId } = render(
       <AppWrapper>
         <ConfirmationModal
@@ -165,6 +159,6 @@ describe("ConfirmationModal", () => {
 
     await userEvent.click(getByTestId(ConfirmationModalLocators.CancelButton));
 
-    expect(logSpy).toBeCalledTimes(1);
+    expect(handleCancel).toBeCalledTimes(1);
   });
 });

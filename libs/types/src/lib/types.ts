@@ -24,17 +24,6 @@ export type AuthQrCode = {
   data: AuthQrCodeData;
 };
 
-export interface FormError {
-  name: string;
-  message: string;
-}
-
-export interface SubmitErrorData {
-  isValid: boolean;
-  errors?: FormError[];
-  error?: string;
-}
-
 export enum LanguageEnum {
   En = "en",
   Nl = "nl",
@@ -51,3 +40,14 @@ export type Option = {
   text: string;
   color?: string;
 };
+
+export interface FormError {
+  name: string;
+  message: string;
+}
+
+export interface SubmitErrorData {
+  isValid: boolean;
+  errors?: FormError[];
+  error?: string;
+}

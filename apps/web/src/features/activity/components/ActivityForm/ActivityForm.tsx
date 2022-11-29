@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Activity, Coach, WeekNumber, YearNumber } from "@routine-support/domains";
+import { useActivityForm } from "@routine-support/forms";
 import { Id, Pictogram } from "@routine-support/types";
 import { CommonFlagPicker } from "apps/web/src/components/FormFields/CommonFlagPicker";
-import { ImportantFlagPicker } from "apps/web/src/components/FormFields/ImportantFlagPicker";
 import { StudentsPicker } from "apps/web/src/components/FormFields/StudentsPicker";
 import { useTranslation } from "react-i18next";
 
@@ -13,7 +13,6 @@ import { DatePicker } from "../../../../components/FormFields/DatePicker";
 import { PictogramPicker } from "../../../../components/FormFields/PictogramPicker";
 import { RepeatTypePicker } from "../../../../components/FormFields/RepeatTypePicker";
 import { TimePicker } from "../../../../components/FormFields/TimePicker";
-import { useActivityFormComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface ActivityFormActions {
@@ -21,7 +20,7 @@ export interface ActivityFormActions {
   updateActivity: (activity: Activity) => Promise<void>;
   deleteActivity: (id: Id) => Promise<void>;
   closeModal: () => void;
-  getWeek: (data: {
+  updateCalendar: (data: {
     params?: { year: YearNumber; week: WeekNumber };
     config?: { silent: boolean };
   }) => void;
@@ -41,21 +40,14 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
   actions,
 }) => {
   const {
-    models: {
-      control,
-      isDirty,
-      isSubmitting,
-      submitError,
-      shouldShowStudents,
-      isRepeatTypeAvailable,
-    },
-    operations: { handleSubmit, onDelete },
-  } = useActivityFormComponent(coach, activity, actions);
+    models: { control, isDirty, isSubmitting, submitError, isStudentsSelectorVisible },
+    operations: { onSubmit, onDelete },
+  } = useActivityForm(coach, activity, actions);
 
   const { t } = useTranslation();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <S.Wrapper>
         <ActivityNameInput
           name="name"
@@ -76,18 +68,12 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({
           required
         />
         <CommonFlagPicker label={t("Activity type")} control={control} name="isCommon" />
-        {shouldShowStudents && (
+        {isStudentsSelectorVisible && (
           <StudentsPicker name="students" label={t("Students")} required control={control} />
         )}
         <S.RepeatWrapper>
-          <RepeatTypePicker
-            control={control}
-            name="repeatType"
-            label={t("Repeat type")}
-            disabled={!isRepeatTypeAvailable}
-          />
+          <RepeatTypePicker control={control} name="repeatType" label={t("Repeat type")} />
         </S.RepeatWrapper>
-        <ImportantFlagPicker control={control} name="isImportant" />
         <S.ButtonsWrapper>
           <S.SubmitButton type="submit" isLoading={isSubmitting} disabled={!isDirty}>
             {activity?._id ? t("Update") : t("Create")}

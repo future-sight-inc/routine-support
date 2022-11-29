@@ -19,6 +19,7 @@
       "@routine-support/api-client": ["libs/api-client/src/index.ts"],
       "@routine-support/constants": ["libs/constants/src/index.ts"],
       "@routine-support/domains": ["libs/domains/src/index.ts"],
+      "@routine-support/forms": ["libs/forms/src/index.ts"],
       "@routine-support/pictograms": ["libs/pictograms/src/index.ts"],
       "@routine-support/types": ["libs/types/src/index.ts"],
       "@routine-support/ui-theme": ["libs/ui-theme/src/index.ts"],

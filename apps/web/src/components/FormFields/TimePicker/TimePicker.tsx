@@ -1,10 +1,10 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
 import { parseTime, stringifyTime } from "@routine-support/utils";
 
 import { TextField } from "../../TextField";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 export const TimePicker: React.FC<FormFieldProps> = ({
   name,

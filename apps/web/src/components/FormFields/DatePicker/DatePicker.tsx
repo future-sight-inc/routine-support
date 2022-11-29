@@ -1,10 +1,10 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
 import moment from "moment";
 
 import { TextField } from "../../TextField";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 const HTML_DATE_FORMAT = "YYYY-MM-DD";
 

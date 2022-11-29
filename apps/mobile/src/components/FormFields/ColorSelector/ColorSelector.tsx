@@ -1,11 +1,12 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import {
   ColorSelector as UncontrolledColorSelector,
   ColorSelectorProps as UncontrolledColorSelectorProps,
 } from "../../ColorSelector";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 type ColorSelectorProps = FormFieldProps & UncontrolledColorSelectorProps;
 

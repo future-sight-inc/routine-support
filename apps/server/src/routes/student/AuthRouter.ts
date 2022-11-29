@@ -1,10 +1,11 @@
-import { StudentModel, WeekSocketEventTypeEnum } from "@routine-support/domains";
+import { WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { Router } from "express";
 import { getAuthCookie } from "../../utils/getAuthCookie";
 import { studentAuthorization } from "../../middleware/studentAuthorization";
 import { emitToUser } from "../../main";
 import { AuthNames } from "../../constants/AuthNames";
+import { StudentModel } from "../../db/models/Student";
 
 export const authRouter = Router();
 

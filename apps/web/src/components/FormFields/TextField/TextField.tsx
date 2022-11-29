@@ -1,11 +1,12 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import {
   TextField as UncontrolledTextField,
   TextFieldProps as UncontrolledTextFieldProps,
 } from "../../TextField";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 type TextFieldProps = FormFieldProps & UncontrolledTextFieldProps;
 

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { fireEvent, render } from "@testing-library/react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Typography } from "../Typography";
 import { PopupLocators } from "./locators";
@@ -11,7 +12,9 @@ jest.useFakeTimers();
 describe("Popup", () => {
   it("Initial. Should not display popup", () => {
     const { queryByTestId, getByText } = render(
-      <Popup pressElement={<Typography>Press</Typography>}>{null}</Popup>
+      <SafeAreaProvider>
+        <Popup pressElement={<Typography>Press</Typography>}>{null}</Popup>
+      </SafeAreaProvider>
     );
 
     expect(queryByTestId(PopupLocators.Background)).toBeFalsy();

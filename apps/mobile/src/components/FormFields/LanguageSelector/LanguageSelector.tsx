@@ -1,8 +1,9 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import { LanguageSelector as UncontrolledLanguageSelector } from "../../LanguageSelector";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 export const LanguageSelector: React.FC<FormFieldProps> = ({
   name,

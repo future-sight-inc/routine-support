@@ -1,8 +1,9 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import { Checkbox as UICheckbox } from "../../Checkbox";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 type CheckboxProps = FormFieldProps & {
   label: string;

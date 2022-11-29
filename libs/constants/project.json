@@ -1,5 +1,6 @@
 {
-  "root": "libs/constants",
+  "name": "constants",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/constants/src",
   "projectType": "library",
   "targets": {
@@ -12,9 +13,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/constants"],
+      "outputs": ["{workspaceRoot}/coverage/libs/constants"],
       "options": {
-        "jestConfig": "libs/constants/jest.config.js",
+        "jestConfig": "libs/constants/jest.config.ts",
         "passWithNoTests": true
       }
     }

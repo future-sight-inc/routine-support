@@ -1,8 +1,9 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import { ActivityTypeSelector as UncontrolledActivityTypeSelector } from "../../ActivityTypeSelector";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 export const ActivityTypeSelector: React.FC<FormFieldProps> = ({
   name,

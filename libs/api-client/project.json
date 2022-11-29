@@ -1,5 +1,6 @@
 {
-  "root": "libs/api-client",
+  "name": "api-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/api-client/src",
   "projectType": "library",
   "targets": {
@@ -12,9 +13,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api-client"],
+      "outputs": ["{workspaceRoot}/coverage/libs/api-client"],
       "options": {
-        "jestConfig": "libs/api-client/jest.config.js",
+        "jestConfig": "libs/api-client/jest.config.ts",
         "passWithNoTests": true
       }
     }

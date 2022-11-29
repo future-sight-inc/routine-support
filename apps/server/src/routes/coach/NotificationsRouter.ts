@@ -1,9 +1,9 @@
 import {
   createNotificationFromSchema,
   createSchemaFromNotificationGroup,
-  NotificationModel,
 } from "@routine-support/domains";
 import { Router } from "express";
+import { NotificationModel } from "../../db/models/Notification";
 import { coachAuthorization } from "../../middleware/coachAuthorization";
 import { groupNotifications } from "../../utils/groupNotifications";
 

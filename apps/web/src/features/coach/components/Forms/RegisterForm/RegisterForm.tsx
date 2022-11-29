@@ -1,6 +1,7 @@
 import React from "react";
 
 import { RegisterCoachDto } from "@routine-support/domains";
+import { useCoachRegisterForm } from "@routine-support/forms";
 import { ErrorText } from "apps/web/src/components/ErrorText";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { LinkService } from "apps/web/src/services/LinkService";
@@ -8,10 +9,9 @@ import { Button } from "apps/web/src/styled/components/Button";
 import { useTranslation } from "react-i18next";
 
 import * as S from "../styled";
-import { useRegisterFormComponent } from "./hooks";
 
 export interface RegisterFormActions {
-  register: (data: RegisterCoachDto) => void;
+  register: (data: RegisterCoachDto) => Promise<void>;
 }
 
 interface RegisterFormProps {
@@ -22,7 +22,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
   const {
     models: { submitError, control },
     operations: { handleSubmit },
-  } = useRegisterFormComponent(actions);
+  } = useCoachRegisterForm(actions);
 
   const { t } = useTranslation();
 
@@ -31,13 +31,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
       <S.Form onSubmit={handleSubmit}>
         <S.Title>{t("Sign up")}</S.Title>
         <S.FieldsWrapper>
-          <TextField
-            name="name"
-            type="text"
-            control={control}
-            required
-            placeholder={t("Name")}
-          />
+          <TextField name="name" type="text" control={control} required placeholder={t("Name")} />
           <TextField
             name="email"
             type="email"
@@ -58,8 +52,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ actions }) => {
           {submitError && <ErrorText>{submitError}</ErrorText>}
         </S.ButtonWrapper>
         <S.LinkText>
-          {t("Already have an account")}{" "}
-          <S.Link to={LinkService.login()}>{t("Sign in")}</S.Link>
+          {t("Already have an account")} <S.Link to={LinkService.login()}>{t("Sign in")}</S.Link>
         </S.LinkText>
       </S.Form>
     </S.Wrapper>

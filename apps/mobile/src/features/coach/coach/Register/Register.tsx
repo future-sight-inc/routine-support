@@ -2,6 +2,7 @@ import React from "react";
 
 import { Link } from "@react-navigation/native";
 import { RegisterCoachDto } from "@routine-support/domains";
+import { useCoachRegisterForm } from "@routine-support/forms";
 import { AuthFormLayout } from "apps/mobile/src/components/AuthFormLayout";
 import { ErrorMessage } from "apps/mobile/src/components/ErrorMessage";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
@@ -9,10 +10,8 @@ import { Typography } from "apps/mobile/src/components/Typography";
 import { LinkService } from "apps/mobile/src/services/LinkService";
 import { Dimensions, StyleSheet, View } from "react-native";
 
-import { useRegisterComponent } from "./hooks";
-
 export interface RegisterActions {
-  register: (data: RegisterCoachDto) => void;
+  register: (data: RegisterCoachDto) => Promise<void>;
 }
 
 interface RegisterProps {
@@ -24,7 +23,7 @@ export const Register: React.FC<RegisterProps> = ({ actions, loading }) => {
   const {
     models: { submitError, control },
     operations: { handleSubmit },
-  } = useRegisterComponent(actions);
+  } = useCoachRegisterForm(actions);
 
   return (
     <AuthFormLayout

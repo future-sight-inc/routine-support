@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Student } from "@routine-support/domains";
+import { FormFieldControl } from "@routine-support/forms";
 import { Option, Pictogram } from "@routine-support/types";
 import { Button } from "apps/mobile/src/components/Button";
 import { ControlsGroup } from "apps/mobile/src/components/ControlsGroup";
@@ -12,7 +13,6 @@ import { StudentsSelector } from "apps/mobile/src/components/FormFields/Students
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Modal } from "apps/mobile/src/components/Modal";
 import { Theme } from "apps/mobile/src/theme";
-import { Control } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 
 interface ActivityModalProps {
@@ -23,7 +23,7 @@ interface ActivityModalProps {
   repeatTypeOptions: Option[];
   isStudentsSelectorVisible: boolean;
   students: Student[];
-  control: Control;
+  control: FormFieldControl;
   onClose: () => void;
   onSubmit: () => void;
   onDelete: () => void;
@@ -55,7 +55,6 @@ export const ActivityModal: React.FC<ActivityModalProps> = ({
           <Button text={isEdit ? "Edit" : "Create"} loading={isLoading} onPress={onSubmit} />
         </ControlsGroup>
       }
-      scrollable
     >
       <View style={styles.fieldWrapper}>
         <TextField

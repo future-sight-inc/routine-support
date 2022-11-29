@@ -1,13 +1,13 @@
 import React from "react";
 
 import { Student } from "@routine-support/domains";
+import { useStudentSettingsForm } from "@routine-support/forms";
 import { ClockTypePicker } from "apps/web/src/components/FormFields/ClockTypePicker";
 import { LanguagePicker } from "apps/web/src/components/FormFields/LanguagePicker";
 import { TextField } from "apps/web/src/components/FormFields/TextField";
 import { useTranslation } from "react-i18next";
 
 import { ErrorText } from "../../../../components/ErrorText";
-import { useSettingsFormComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface SettingsFormActions {
@@ -24,13 +24,13 @@ interface SettingsFormProps {
 export const SettingsForm: React.FC<SettingsFormProps> = ({ student, actions }) => {
   const {
     models: { control, isDirty, isSubmitting, submitError },
-    operations: { handleSubmit },
-  } = useSettingsFormComponent(student, actions);
+    operations: { onSubmit },
+  } = useStudentSettingsForm(student, actions);
 
   const { t } = useTranslation();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <S.Wrapper>
         <S.Title>{t("App settings")}</S.Title>
         <S.LanguagePickerWrapper>

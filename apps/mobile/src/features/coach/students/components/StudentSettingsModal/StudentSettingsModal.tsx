@@ -1,18 +1,18 @@
 import React from "react";
 
+import { FormFieldControl } from "@routine-support/forms";
 import { Button } from "apps/mobile/src/components/Button";
 import { ControlsGroup } from "apps/mobile/src/components/ControlsGroup";
 import { ClockTypeSelector } from "apps/mobile/src/components/FormFields/ClockTypeSelector";
 import { LanguageSelector } from "apps/mobile/src/components/FormFields/LanguageSelector";
 import { TextField } from "apps/mobile/src/components/FormFields/TextField";
 import { Modal } from "apps/mobile/src/components/Modal";
-import { Control } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 
 interface StudentSettingsModalProps {
   isLoading: boolean;
   isOpened: boolean;
-  control: Control;
+  control: FormFieldControl;
   onClose: () => void;
   onSubmit: () => void;
 }
@@ -34,7 +34,6 @@ export const StudentSettingsModal: React.FC<StudentSettingsModalProps> = ({
           <Button text="Edit" loading={isLoading} onPress={onSubmit} />
         </ControlsGroup>
       }
-      scrollable
     >
       <View style={styles.fieldWrapper}>
         <LanguageSelector label="Язык" name="language" control={control} required />

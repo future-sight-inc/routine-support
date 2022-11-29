@@ -1,5 +1,6 @@
 {
-  "root": "libs/domains",
+  "name": "domains",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/domains/src",
   "projectType": "library",
   "targets": {
@@ -12,9 +13,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/domains"],
+      "outputs": ["{workspaceRoot}/coverage/libs/domains"],
       "options": {
-        "jestConfig": "libs/domains/jest.config.js",
+        "jestConfig": "libs/domains/jest.config.ts",
         "passWithNoTests": true
       }
     }

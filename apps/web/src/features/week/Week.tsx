@@ -79,7 +79,7 @@ export const Week: React.FC = () => {
                 updateActivity: Activity.operations.updateActivity,
                 deleteActivity: Activity.operations.deleteActivity,
                 closeModal: Activity.operations.closeActivityModal,
-                getWeek: Week.operations.getWeek,
+                updateCalendar: Week.operations.getWeek,
               }}
             />
           </Modal>

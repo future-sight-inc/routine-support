@@ -154,7 +154,6 @@ export const PictogramSelector: React.FC<PictogramSelectorProps> = ({
               )
             }
             numColumns={4}
-            keyExtractor={(__, index) => index}
           />
         </View>
       </Modal>

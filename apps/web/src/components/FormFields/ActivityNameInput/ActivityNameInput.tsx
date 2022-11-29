@@ -1,8 +1,9 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import { ActivityNameInput as UncontrolledActivityNameInput } from "../../ActivityNameInput";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 export const ActivityNameInput: React.FC<FormFieldProps> = ({
   name,

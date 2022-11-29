@@ -1,8 +1,9 @@
 import React from "react";
 
+import { FormFieldProps } from "@routine-support/forms";
+
 import { ColorPicker as UncontrolledColorPicker } from "../../ColorPicker";
 import { Controller } from "../Controller";
-import { FormFieldProps } from "../types";
 
 export const ColorPicker: React.FC<FormFieldProps> = ({
   name,
