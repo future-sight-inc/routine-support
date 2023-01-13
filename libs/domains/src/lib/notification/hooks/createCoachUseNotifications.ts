@@ -12,7 +12,7 @@ interface Deps {
 export const createCoachUseNotifications =
   ({ notificationApi }: Deps) =>
     () => {
-      const [loading, setLoading] = useState(true);
+      const [loading, setLoading] = useState(false);
       const { notificationsGroups, notViewedCount } = useSelector(
         (state: any) => state.coachNotifications
       );
@@ -22,7 +22,9 @@ export const createCoachUseNotifications =
       const [error, setError] = useState<string | null>(null);
 
       useEffect(() => {
-        getNotifications();
+        if (notificationsGroups.length === 0) {
+          getNotifications();
+        }
       }, []);
 
       const getNotifications = async (data?: { config?: { silent: boolean } }) => {

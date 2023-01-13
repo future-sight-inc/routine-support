@@ -11,11 +11,7 @@ interface ModalProps {
   children?: ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({
-  isOpened,
-  onClose,
-  children,
-}) => {
+export const Modal: React.FC<ModalProps> = ({ isOpened, onClose, children }) => {
   if (!isOpened) {
     return null;
   }
@@ -27,10 +23,7 @@ export const Modal: React.FC<ModalProps> = ({
           onClick={(event: MouseEvent) => event.stopPropagation()}
           data-testid={ModalLocators.Content}
         >
-          <S.CloseIcon
-            onClick={onClose}
-            data-testid={ModalLocators.CloseIcon}
-          />
+          <S.CloseIcon onClick={onClose} data-testid={ModalLocators.CloseIcon} />
           {children}
         </S.ModalContent>
       </S.Modal>

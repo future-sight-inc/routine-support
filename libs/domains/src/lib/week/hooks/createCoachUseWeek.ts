@@ -31,7 +31,9 @@ export const createCoachUseWeek =
       const [error, setError] = useState<string | null>(null);
 
       useEffect(() => {
-        getWeek();
+        if (!week) {
+          getWeek();
+        }
       }, []);
 
       const getWeek = async (data?: {

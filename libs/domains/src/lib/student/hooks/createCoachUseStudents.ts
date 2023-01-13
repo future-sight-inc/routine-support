@@ -10,7 +10,7 @@ interface Deps {
 export const createCoachUseStudents =
   ({ studentApi }: Deps) =>
     () => {
-      const [loading, setLoading] = useState(true);
+      const [loading, setLoading] = useState(false);
       const { students } = useSelector((state: any) => state.coachStudents);
       const coachId = useSelector((state: any) => state.coachAuth.coach?._id);
       const dispatch = useDispatch();
@@ -18,7 +18,9 @@ export const createCoachUseStudents =
       const [error, setError] = useState<string | null>(null);
 
       useEffect(() => {
-        getStudents();
+        if (students.length === 0) {
+          getStudents();
+        }
       }, []);
 
       const getStudents = async (config?: { silent: boolean }) => {
