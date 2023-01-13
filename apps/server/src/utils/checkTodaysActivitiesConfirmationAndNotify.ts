@@ -1,14 +1,11 @@
-import {
-  ActivityModel,
-  CoachModel,
-  NotificationModel,
-  setActivityNotified,
-  StudentModel,
-  WeekSocketEventTypeEnum,
-} from "@routine-support/domains";
+import { setActivityNotified, WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
+import { ActivityModel } from "../db/models/Activity";
+import { CoachModel } from "../db/models/Coach";
+import { NotificationModel } from "../db/models/Notification";
+import { StudentModel } from "../db/models/Student";
 import { emitToUser } from "../main";
 import { getActivitiesOfWeek } from "./getActivitiesOfWeek";
 import { shouldNotifyActivity } from "./shouldNotifyActivity";

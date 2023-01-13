@@ -4,19 +4,20 @@ import { useTranslation } from "react-i18next";
 
 import { Select } from "../Select";
 import * as S from "./styled";
+import { getLocaleFromDetector } from "./utils";
 
 const LANGUAGES = [
   {
     text: "Nederlands",
-    value: "nl-NL",
+    value: "nl",
   },
   {
     text: "English",
-    value: "en-EN",
+    value: "en",
   },
   {
     text: "Русский",
-    value: "ru-RU",
+    value: "ru",
   },
 ];
 
@@ -35,7 +36,7 @@ export const LanguageSelector: React.FC = () => {
         showBorder={false}
         menuPlacement="top"
         icon={<S.LanguageIcon />}
-        value={i18n.language}
+        value={getLocaleFromDetector(i18n.language)}
         InputElement={S.TextField}
       />
     </S.Wrapper>

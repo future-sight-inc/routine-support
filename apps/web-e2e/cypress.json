@@ -8,5 +8,10 @@
   "video": true,
   "videosFolder": "../../dist/cypress/apps/web-e2e/videos",
   "screenshotsFolder": "../../dist/cypress/apps/web-e2e/screenshots",
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "env": {
+    "COACH_USER_NAME": "coach",
+    "COACH_EMAIL": "coach2@redemption.en",
+    "COACH_PASSWORD": "guess what you silly"
+  }
 }
