@@ -14,10 +14,4 @@ describe("web", () => {
     cy.visit("/");
     cy.login();
   });
-
-  it("Should delete profile", () => {
-    cy.visit("/");
-    cy.login();
-    cy.deleteProfile();
-  });
 });

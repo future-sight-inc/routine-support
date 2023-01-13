@@ -1,9 +1,6 @@
-import {
-  ActivityModel,
-  getDaysOfWeek,
-  RepeatTypeEnum,
-} from "@routine-support/domains";
+import { getDaysOfWeek, RepeatTypeEnum } from "@routine-support/domains";
 import { Moment } from "moment";
+import { ActivityModel } from "../db/models/Activity";
 import { repeatActivities } from "./repeatActivities";
 
 export const getActivitiesOfWeek = async ({

@@ -1,10 +1,6 @@
-import {
-  ActivityModel,
-  ActivitySchema,
-  createActivityFromSchema,
-  isTimeCrossed,
-} from "@routine-support/domains";
+import { ActivitySchema, createActivityFromSchema, isTimeCrossed } from "@routine-support/domains";
 import { SubmitErrorData } from "@routine-support/types";
+import { ActivityModel } from "../db/models/Activity";
 
 export const validateActivityImportance = async (
   activity: ActivitySchema
