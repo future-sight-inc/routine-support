@@ -14,45 +14,45 @@ interface Deps {
   useStoreState: () => State;
 }
 
-export const createCoachUseStudents =
-  ({ studentApi, useStoreState }: Deps) =>
-    () => {
-      const [loading, setLoading] = useState(false);
-      const {
-        coachStudents: { students },
-        coachAuth: { coach },
-      } = useStoreState();
-      const coachId = coach?._id;
-      const dispatch = useDispatch();
+const useStudents = ({ studentApi, useStoreState }: Deps) => {
+  const [loading, setLoading] = useState(false);
+  const {
+    coachStudents: { students },
+    coachAuth: { coach },
+  } = useStoreState();
+  const coachId = coach?._id;
+  const dispatch = useDispatch();
 
-      const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-      useEffect(() => {
-        if (students.length === 0) {
-          getStudents();
-        }
-      }, []);
+  useEffect(() => {
+    if (students.length === 0) {
+      getStudents();
+    }
+  }, []);
 
-      const getStudents = async (config?: { silent: boolean }) => {
-        if (coachId) {
-          try {
-            setError(null);
+  const getStudents = async (config?: { silent: boolean }) => {
+    if (coachId) {
+      try {
+        setError(null);
 
-            !config?.silent && setLoading(true);
+        !config?.silent && setLoading(true);
 
-            const students = await studentApi.getStudents(coachId);
+        const students = await studentApi.getStudents(coachId);
 
-            dispatch(studentsActions.setStudents(students));
-          } catch (error: any) {
-            setError(error.message);
-          } finally {
-            setLoading(false);
-          }
-        }
-      };
+        dispatch(studentsActions.setStudents(students));
+      } catch (error: any) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
-      return {
-        models: { students, loading, error },
-        operations: { getStudents },
-      };
-    };
+  return {
+    models: { students, loading, error },
+    operations: { getStudents },
+  };
+};
+
+export const createCoachUseStudents = (deps: Deps) => useStudents(deps);

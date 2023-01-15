@@ -170,7 +170,7 @@ export const Select: React.FC<SelectProps> = ({
                 </View>
               </TouchableWithoutFeedback>
             )}
-            keyExtractor={(item) => item.value}
+            keyExtractor={(item) => item.text}
             style={styles.wrapper}
           />
         </>

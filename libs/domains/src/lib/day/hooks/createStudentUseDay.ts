@@ -17,53 +17,53 @@ interface Deps {
   useStoreState: () => State;
 }
 
-export const createStudentUseDay =
-  ({ studentDayApi, studentActivityApi, useStoreState }: Deps) =>
-    () => {
-      const {
-        studentDay: { day },
-      } = useStoreState();
-      const dispatch = useDispatch();
-      const [loading, setLoading] = useState(false);
+const useDay = ({ studentDayApi, studentActivityApi, useStoreState }: Deps) => {
+  const {
+    studentDay: { day },
+  } = useStoreState();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
-      useEffect(() => {
-        getDay();
-      }, []);
+  useEffect(() => {
+    getDay();
+  }, []);
 
-      useEffect(() => {
-        const intervalId = setInterval(async () => {
-          await getDay({ silent: true });
-        }, 60 * 1000);
+  useEffect(() => {
+    const intervalId = setInterval(async () => {
+      await getDay({ silent: true });
+    }, 60 * 1000);
 
-        return () => clearInterval(intervalId);
-      }, []);
+    return () => clearInterval(intervalId);
+  }, []);
 
-      const getDay = async (config?: { silent: boolean }) => {
-        try {
-          !config?.silent && setLoading(true);
+  const getDay = async (config?: { silent: boolean }) => {
+    try {
+      !config?.silent && setLoading(true);
 
-          const day = await studentDayApi.getDay(stringifyDate(moment()));
+      const day = await studentDayApi.getDay(stringifyDate(moment()));
 
-          dispatch(studentDayActions.setDay(day));
-        } catch (error) {
-          console.error(error);
-        } finally {
-          setLoading(false);
-        }
-      };
+      dispatch(studentDayActions.setDay(day));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-      const confirmActivity = async (activity: Activity) => {
-        try {
-          await studentActivityApi.confirmActivity(activity);
+  const confirmActivity = async (activity: Activity) => {
+    try {
+      await studentActivityApi.confirmActivity(activity);
 
-          getDay({ silent: true });
-        } catch (error) {
-          console.error(error);
-        }
-      };
+      getDay({ silent: true });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-      return {
-        models: { loading, day: day ? createDayFromSchema(day) : null },
-        operations: { getDay, confirmActivity },
-      };
-    };
+  return {
+    models: { loading, day: day ? createDayFromSchema(day) : null },
+    operations: { getDay, confirmActivity },
+  };
+};
+
+export const createStudentUseDay = (deps: Deps) => useDay(deps);

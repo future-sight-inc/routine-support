@@ -15,97 +15,97 @@ interface Deps {
   useStoreState: () => State;
 }
 
-export const createCoachUseNotifications =
-  ({ notificationApi, useStoreState }: Deps) =>
-    () => {
-      const { coachAuth, coachNotifications } = useStoreState();
-      const { notificationsGroups, notViewedCount } = coachNotifications;
-      const coachId = coachAuth.coach?._id;
+const useNotifications = ({ notificationApi, useStoreState }: Deps) => {
+  const { coachAuth, coachNotifications } = useStoreState();
+  const { notificationsGroups, notViewedCount } = coachNotifications;
+  const coachId = coachAuth.coach?._id;
 
-      const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-      const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-      const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-      useEffect(() => {
-        if (notificationsGroups.length === 0) {
-          getNotifications();
-        }
-      }, []);
+  useEffect(() => {
+    if (notificationsGroups.length === 0) {
+      getNotifications();
+    }
+  }, []);
 
-      const getNotifications = async (data?: { config?: { silent: boolean } }) => {
-        if (coachId) {
-          try {
-            setError(null);
+  const getNotifications = async (data?: { config?: { silent: boolean } }) => {
+    if (coachId) {
+      try {
+        setError(null);
 
-            !data?.config?.silent && setLoading(true);
+        !data?.config?.silent && setLoading(true);
 
-            const responseData = await notificationApi.getNotifications();
+        const responseData = await notificationApi.getNotifications();
 
-            dispatch(notificationsActions.setNotificationsGroups(responseData));
-          } catch (error: any) {
-            setError(error.message);
-          } finally {
-            setLoading(false);
-          }
-        }
-      };
+        dispatch(notificationsActions.setNotificationsGroups(responseData));
+      } catch (error: any) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
-      const deleteNotification = async (notification: Notification) => {
-        try {
-          await notificationApi.deleteNotification(notification._id);
-        } finally {
-          getNotifications({ config: { silent: true } });
-        }
-      };
+  const deleteNotification = async (notification: Notification) => {
+    try {
+      await notificationApi.deleteNotification(notification._id);
+    } finally {
+      getNotifications({ config: { silent: true } });
+    }
+  };
 
-      const clearAllNotifications = async () => {
-        try {
-          await notificationApi.deleteNotifications();
-        } finally {
-          getNotifications({ config: { silent: true } });
-        }
-      };
+  const clearAllNotifications = async () => {
+    try {
+      await notificationApi.deleteNotifications();
+    } finally {
+      getNotifications({ config: { silent: true } });
+    }
+  };
 
-      const viewNotification = async (notification: Notification) => {
-        try {
-          await notificationApi.viewNotification(notification._id);
-        } finally {
-          getNotifications({ config: { silent: true } });
-        }
-      };
+  const viewNotification = async (notification: Notification) => {
+    try {
+      await notificationApi.viewNotification(notification._id);
+    } finally {
+      getNotifications({ config: { silent: true } });
+    }
+  };
 
-      // const notify = async () => {
-      //   if (location.pathname !== LinkService.notifications()) {
-      //     const audio = new Audio(notificationSound);
+  // const notify = async () => {
+  //   if (location.pathname !== LinkService.notifications()) {
+  //     const audio = new Audio(notificationSound);
 
-      //     await getNotifications();
+  //     await getNotifications();
 
-      //     toast(t("Activity was missed"), {
-      //       hideProgressBar: true,
-      //       onClick: () => {
-      //         history.push(LinkService.notifications());
-      //       },
-      //     });
+  //     toast(t("Activity was missed"), {
+  //       hideProgressBar: true,
+  //       onClick: () => {
+  //         history.push(LinkService.notifications());
+  //       },
+  //     });
 
-      //     audio.play();
-      //   }
-      // };
+  //     audio.play();
+  //   }
+  // };
 
-      return {
-        models: {
-          notificationsGroups: notificationsGroups.map(createNotificationsGroupFromSchema),
-          notViewedCount,
-          loading,
-          error,
-        },
-        operations: {
-          getNotifications,
-          deleteNotification,
-          clearAllNotifications,
-          viewNotification,
-        // notify,
-        },
-      };
-    };
+  return {
+    models: {
+      notificationsGroups: notificationsGroups.map(createNotificationsGroupFromSchema),
+      notViewedCount,
+      loading,
+      error,
+    },
+    operations: {
+      getNotifications,
+      deleteNotification,
+      clearAllNotifications,
+      viewNotification,
+      // notify,
+    },
+  };
+};
+
+export const createCoachUseNotifications = (deps: Deps) => useNotifications(deps);

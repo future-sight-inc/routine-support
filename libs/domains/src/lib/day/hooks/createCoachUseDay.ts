@@ -61,7 +61,12 @@ export const createCoachUseDay =
       };
 
       return {
-        models: { loading, day: day ? createDayFromSchema(day) : null, currentDate, activityFilter },
+        models: {
+          loading,
+          day: day ? createDayFromSchema(day) : null,
+          currentDate,
+          activityFilter,
+        },
         operations: {
           getDay,
           onDateSelect: setCurrentDate,

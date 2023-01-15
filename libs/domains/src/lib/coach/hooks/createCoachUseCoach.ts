@@ -22,135 +22,135 @@ interface Deps {
   useStoreState: () => State;
 }
 
-export const createCoachUseCoach =
-  ({ coachApi, useStoreState }: Deps) =>
-    () => {
-      const {
-        coachAuth: { coach, isLogged, socketConnection },
-      } = useStoreState();
-      const dispatch = useDispatch();
-      const [loading, setLoading] = useState(false);
-      const [isChecked, setIsChecked] = useState(false);
+const useCoach = ({ coachApi, useStoreState }: Deps) => {
+  const {
+    coachAuth: { coach, isLogged, socketConnection },
+  } = useStoreState();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
-      useEffect(() => {
-        if (coach && !socketConnection) {
-          dispatch(
-            coachActions.setSocketConnection(
-              io({
-                auth: {
-                  userId: coach._id,
-                  userType: SocketUserTypeEnum.Coach,
-                },
-              })
-            )
-          );
-        }
-      }, [coach, socketConnection]);
+  useEffect(() => {
+    if (coach && !socketConnection) {
+      dispatch(
+        coachActions.setSocketConnection(
+          io({
+            auth: {
+              userId: coach._id,
+              userType: SocketUserTypeEnum.Coach,
+            },
+          })
+        )
+      );
+    }
+  }, [coach, socketConnection]);
 
-      const login = async (data: LoginCoachDto) => {
-        try {
-          setLoading(true);
+  const login = async (data: LoginCoachDto) => {
+    try {
+      setLoading(true);
 
-          const user = await coachApi.login(data);
+      const user = await coachApi.login(data);
 
-          dispatch(coachActions.setCoach(user));
-        } catch (error) {
-          dispatch(coachActions.setCoach(null));
-          throw error;
-        } finally {
-          setIsChecked(true);
-          setLoading(false);
-        }
-      };
+      dispatch(coachActions.setCoach(user));
+    } catch (error) {
+      dispatch(coachActions.setCoach(null));
+      throw error;
+    } finally {
+      setIsChecked(true);
+      setLoading(false);
+    }
+  };
 
-      const logout = async () => {
-        try {
-          setLoading(true);
+  const logout = async () => {
+    try {
+      setLoading(true);
 
-          await coachApi.logout();
-        } catch (error) {
-          console.error(error);
-        } finally {
-          dispatch(coachActions.setCoach(null));
-          dispatch(coachActions.setSocketConnection(null));
-          setIsChecked(true);
-          setLoading(false);
-        }
-      };
+      await coachApi.logout();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      dispatch(coachActions.setCoach(null));
+      dispatch(coachActions.setSocketConnection(null));
+      setIsChecked(true);
+      setLoading(false);
+    }
+  };
 
-      const register = async (data: RegisterCoachDto) => {
-        try {
-          setLoading(true);
+  const register = async (data: RegisterCoachDto) => {
+    try {
+      setLoading(true);
 
-          const user = await coachApi.register(data);
+      const user = await coachApi.register(data);
 
-          dispatch(coachActions.setCoach(user));
-        } catch (error) {
-          dispatch(coachActions.setCoach(null));
-          throw error;
-        } finally {
-          setIsChecked(true);
-          setLoading(false);
-        }
-      };
+      dispatch(coachActions.setCoach(user));
+    } catch (error) {
+      dispatch(coachActions.setCoach(null));
+      throw error;
+    } finally {
+      setIsChecked(true);
+      setLoading(false);
+    }
+  };
 
-      const getCoach = async () => {
-        try {
-          setLoading(true);
+  const getCoach = async () => {
+    try {
+      setLoading(true);
 
-          const user = await coachApi.getCoach();
+      const user = await coachApi.getCoach();
 
-          dispatch(coachActions.setCoach(user));
-        } catch {
-          dispatch(coachActions.setCoach(null));
-        } finally {
-          setIsChecked(true);
-          setLoading(false);
-        }
-      };
+      dispatch(coachActions.setCoach(user));
+    } catch {
+      dispatch(coachActions.setCoach(null));
+    } finally {
+      setIsChecked(true);
+      setLoading(false);
+    }
+  };
 
-      const updateCoach = async (data: UpdateCoachDto) => {
-        try {
-          setLoading(true);
+  const updateCoach = async (data: UpdateCoachDto) => {
+    try {
+      setLoading(true);
 
-          const user = await coachApi.updateCoach(data);
+      const user = await coachApi.updateCoach(data);
 
-          dispatch(coachActions.setCoach(user));
-        } catch {
-          dispatch(coachActions.setCoach(null));
-        } finally {
-          setIsChecked(true);
-          setLoading(false);
-        }
-      };
+      dispatch(coachActions.setCoach(user));
+    } catch {
+      dispatch(coachActions.setCoach(null));
+    } finally {
+      setIsChecked(true);
+      setLoading(false);
+    }
+  };
 
-      const deleteCoach = async () => {
-        try {
-          setLoading(true);
+  const deleteCoach = async () => {
+    try {
+      setLoading(true);
 
-          await coachApi.deleteCoach();
-        } finally {
-          dispatch(coachActions.setCoach(null));
-          setIsChecked(true);
-          setLoading(false);
-        }
-      };
+      await coachApi.deleteCoach();
+    } finally {
+      dispatch(coachActions.setCoach(null));
+      setIsChecked(true);
+      setLoading(false);
+    }
+  };
 
-      return {
-        models: {
-          coach,
-          isLogged,
-          isChecked,
-          loading,
-          socketConnection,
-        },
-        operations: {
-          login,
-          register,
-          logout,
-          getCoach,
-          updateCoach,
-          deleteCoach,
-        },
-      };
-    };
+  return {
+    models: {
+      coach,
+      isLogged,
+      isChecked,
+      loading,
+      socketConnection,
+    },
+    operations: {
+      login,
+      register,
+      logout,
+      getCoach,
+      updateCoach,
+      deleteCoach,
+    },
+  };
+};
+
+export const createCoachUseCoach = (deps: Deps) => useCoach(deps);
