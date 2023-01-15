@@ -2,22 +2,29 @@ import { createStudentDayAPI } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Activity, createStudentActivityAPI } from "../../activity";
-import { studentDayActions } from "../slice";
+import { DayState, studentDayActions } from "../slice";
 import { createDayFromSchema } from "../utils";
+
+interface State {
+  studentDay: DayState;
+}
 
 interface Deps {
   studentDayApi: ReturnType<typeof createStudentDayAPI>;
   studentActivityApi: ReturnType<typeof createStudentActivityAPI>;
+  useStoreState: () => State;
 }
 
 export const createStudentUseDay =
-  ({ studentDayApi, studentActivityApi }: Deps) =>
+  ({ studentDayApi, studentActivityApi, useStoreState }: Deps) =>
     () => {
+      const {
+        studentDay: { day },
+      } = useStoreState();
       const dispatch = useDispatch();
       const [loading, setLoading] = useState(false);
-      const { day } = useSelector((state: any) => state.studentDay);
 
       useEffect(() => {
         getDay();

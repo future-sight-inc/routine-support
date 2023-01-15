@@ -5,22 +5,31 @@ import {
   coachDayActions,
   createCoachDayAPI,
   createDayFromSchema,
+  DayState,
   Student,
 } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+interface State {
+  coachDay: DayState;
+}
 
 interface Deps {
   dayApi: ReturnType<typeof createCoachDayAPI>;
+  useStoreState: () => State;
 }
 
 export const createCoachUseDay =
-  ({ dayApi }: Deps) =>
+  ({ dayApi, useStoreState }: Deps) =>
     () => {
+      const {
+        coachDay: { day },
+      } = useStoreState();
       const dispatch = useDispatch();
       const [loading, setLoading] = useState(false);
-      const { day } = useSelector((state: any) => state.coachDay);
+
       const [currentDate, setCurrentDate] = useState(moment());
 
       const [activityFilter, setActivityFilter] = useState<ActivityFilter>([]);

@@ -1,10 +1,11 @@
 import { createCoachAuthAPI } from "../api";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { useEffect, useState } from "react";
 
 import {
   coachActions,
+  CoachState,
   LoginCoachDto,
   RegisterCoachDto,
   UpdateCoachDto,
@@ -12,16 +13,22 @@ import {
 import { SocketUserTypeEnum } from "@routine-support/types";
 import io from "socket.io-client";
 
+interface State {
+  coachAuth: CoachState;
+}
+
 interface Deps {
   coachApi: ReturnType<typeof createCoachAuthAPI>;
+  useStoreState: () => State;
 }
 
 export const createCoachUseCoach =
-  ({ coachApi }: Deps) =>
+  ({ coachApi, useStoreState }: Deps) =>
     () => {
+      const {
+        coachAuth: { coach, isLogged, socketConnection },
+      } = useStoreState();
       const dispatch = useDispatch();
-
-      const { coach, isLogged, socketConnection } = useSelector((state: any) => state.coachAuth);
       const [loading, setLoading] = useState(false);
       const [isChecked, setIsChecked] = useState(false);
 

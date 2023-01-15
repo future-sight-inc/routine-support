@@ -1,23 +1,30 @@
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 import { studentDayActions } from "../../day";
 import { createStudentAuthAPI } from "../api";
-import { studentActions } from "../studentSlice";
+import { studentActions, StudentState } from "../studentSlice";
 import { LoginStudentDto, Student } from "../types";
+
+interface State {
+  studentAuth: StudentState;
+}
 
 interface Deps {
   studentApi: ReturnType<typeof createStudentAuthAPI>;
   socketEndpoint: string;
+  useStoreState: () => State;
 }
 
 export const createStudentUseStudent =
-  ({ studentApi, socketEndpoint }: Deps) =>
+  ({ studentApi, socketEndpoint, useStoreState }: Deps) =>
     () => {
       const dispatch = useDispatch();
 
-      const { student, isLogged, socketConnection } = useSelector((state: any) => state.studentAuth);
+      const {
+        studentAuth: { student, isLogged, socketConnection },
+      } = useStoreState();
       const [loading, setLoading] = useState(false);
       const [isChecked, setIsChecked] = useState(false);
 

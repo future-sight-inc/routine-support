@@ -1,18 +1,28 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { CoachState } from "../../coach";
 import { createCoachStudentAPI } from "../api";
-import { studentsActions } from "../studentsSlice";
+import { studentsActions, StudentsState } from "../studentsSlice";
+
+interface State {
+  coachStudents: StudentsState;
+  coachAuth: CoachState;
+}
 
 interface Deps {
   studentApi: ReturnType<typeof createCoachStudentAPI>;
+  useStoreState: () => State;
 }
 
 export const createCoachUseStudents =
-  ({ studentApi }: Deps) =>
+  ({ studentApi, useStoreState }: Deps) =>
     () => {
       const [loading, setLoading] = useState(false);
-      const { students } = useSelector((state: any) => state.coachStudents);
-      const coachId = useSelector((state: any) => state.coachAuth.coach?._id);
+      const {
+        coachStudents: { students },
+        coachAuth: { coach },
+      } = useStoreState();
+      const coachId = coach?._id;
       const dispatch = useDispatch();
 
       const [error, setError] = useState<string | null>(null);

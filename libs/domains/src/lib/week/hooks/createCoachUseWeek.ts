@@ -1,23 +1,36 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createCoachWeekAPI } from "../api";
-import { weekActions } from "../slice";
+import { weekActions, WeekState } from "../slice";
 import { ActivityFilter, DateInfo, WeekNumber, YearNumber } from "../types";
 import { createWeekFromSchema, dateInfoToMoment, getCurrentDateInfo } from "../utils";
+
+interface State {
+  coachWeek: WeekState;
+}
 
 interface Deps {
   weekApi: ReturnType<typeof createCoachWeekAPI>;
   useDateInfoQuery: () => DateInfo | undefined;
   useUpdateCurrentDateInfoQuery: () => (date: DateInfo) => void;
   useSavedActivityFilter: () => ActivityFilter | undefined;
+  useStoreState: () => State;
 }
 
 export const createCoachUseWeek =
-  ({ weekApi, useDateInfoQuery, useUpdateCurrentDateInfoQuery, useSavedActivityFilter }: Deps) =>
+  ({
+    weekApi,
+    useDateInfoQuery,
+    useUpdateCurrentDateInfoQuery,
+    useSavedActivityFilter,
+    useStoreState,
+  }: Deps) =>
     () => {
       const [loading, setLoading] = useState(false);
-      const { week } = useSelector((state: any) => state.coachWeek);
+      const {
+        coachWeek: { week },
+      } = useStoreState();
       const dispatch = useDispatch();
 
       const currentDateInfo = getCurrentDateInfo();

@@ -1,22 +1,29 @@
-import { Notification } from "@routine-support/domains";
+import { CoachState, Notification } from "@routine-support/domains";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createCoachNotificationAPI } from "../api";
-import { notificationsActions } from "../slice";
+import { notificationsActions, NotificationsState } from "../slice";
 import { createNotificationsGroupFromSchema } from "../utils";
+
+interface State {
+  coachAuth: CoachState;
+  coachNotifications: NotificationsState;
+}
 
 interface Deps {
   notificationApi: ReturnType<typeof createCoachNotificationAPI>;
+  useStoreState: () => State;
 }
 
 export const createCoachUseNotifications =
-  ({ notificationApi }: Deps) =>
+  ({ notificationApi, useStoreState }: Deps) =>
     () => {
+      const { coachAuth, coachNotifications } = useStoreState();
+      const { notificationsGroups, notViewedCount } = coachNotifications;
+      const coachId = coachAuth.coach?._id;
+
       const [loading, setLoading] = useState(false);
-      const { notificationsGroups, notViewedCount } = useSelector(
-        (state: any) => state.coachNotifications
-      );
-      const coachId = useSelector((state: any) => state.coachAuth.coach?._id);
+
       const dispatch = useDispatch();
 
       const [error, setError] = useState<string | null>(null);

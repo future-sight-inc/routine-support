@@ -1,21 +1,29 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { CoachState } from "../../coach";
 import { createCoachStudentAPI } from "../api";
 import { CreateStudentDto, Student } from "../types";
 
+interface State {
+  coachAuth: CoachState;
+}
+
 interface Deps {
   studentApi: ReturnType<typeof createCoachStudentAPI>;
+  useStoreState: () => State;
 }
 
 export const createCoachUseStudent =
-  ({ studentApi }: Deps) =>
+  ({ studentApi, useStoreState }: Deps) =>
     () => {
       const [loading, setLoading] = useState(false);
       const [studentModalOpened, setStudentModalOpened] = useState(false);
       const [settingsModalOpened, setSettingsModalOpened] = useState(false);
 
       const [student, setStudent] = useState<Student | undefined>();
-      const coachId = useSelector((state: any) => state.coachAuth.coach?._id);
+      const {
+        coachAuth: { coach },
+      } = useStoreState();
+      const coachId = coach?._id;
 
       const createStudent = async (student: CreateStudentDto) => {
         if (coachId) {
