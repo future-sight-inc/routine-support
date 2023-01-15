@@ -55,4 +55,4 @@ const useStudents = ({ studentApi, useStoreState }: Deps) => {
   };
 };
 
-export const createCoachUseStudents = (deps: Deps) => useStudents(deps);
+export const createCoachUseStudents = (deps: Deps) => () => useStudents(deps);

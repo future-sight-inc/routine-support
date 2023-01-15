@@ -108,4 +108,4 @@ const useNotifications = ({ notificationApi, useStoreState }: Deps) => {
   };
 };
 
-export const createCoachUseNotifications = (deps: Deps) => useNotifications(deps);
+export const createCoachUseNotifications = (deps: Deps) => () => useNotifications(deps);

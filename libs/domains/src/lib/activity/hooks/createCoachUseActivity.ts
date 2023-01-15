@@ -85,4 +85,4 @@ const useActivity = ({ activityApi }: Deps) => {
   };
 };
 
-export const createCoachUseActivity = (deps: Deps) => useActivity(deps);
+export const createCoachUseActivity = (deps: Deps) => () => useActivity(deps);

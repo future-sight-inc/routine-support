@@ -110,4 +110,4 @@ const useStudent = ({ studentApi, socketEndpoint, useStoreState }: Deps) => {
   };
 };
 
-export const createStudentUseStudent = (deps: Deps) => useStudent(deps);
+export const createStudentUseStudent = (deps: Deps) => () => useStudent(deps);

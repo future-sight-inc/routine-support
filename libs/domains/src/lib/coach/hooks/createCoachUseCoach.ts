@@ -153,4 +153,4 @@ const useCoach = ({ coachApi, useStoreState }: Deps) => {
   };
 };
 
-export const createCoachUseCoach = (deps: Deps) => useCoach(deps);
+export const createCoachUseCoach = (deps: Deps) => () => useCoach(deps);

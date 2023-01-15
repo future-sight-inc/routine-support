@@ -66,4 +66,4 @@ const useDay = ({ studentDayApi, studentActivityApi, useStoreState }: Deps) => {
   };
 };
 
-export const createStudentUseDay = (deps: Deps) => useDay(deps);
+export const createStudentUseDay = (deps: Deps) => () => useDay(deps);

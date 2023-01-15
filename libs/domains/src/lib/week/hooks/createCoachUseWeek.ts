@@ -99,4 +99,4 @@ const useWeek = ({
   };
 };
 
-export const createCoachUseWeek = (deps: Deps) => useWeek(deps);
+export const createCoachUseWeek = (deps: Deps) => () => useWeek(deps);

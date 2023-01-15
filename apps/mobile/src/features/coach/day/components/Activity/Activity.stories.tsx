@@ -17,9 +17,9 @@ storiesOf("Coach/Day", module).add("Activity", () => {
 
   return (
     <View style={styles.wrapper}>
-      <Activity activity={activity1} students={[student1]} />
+      <Activity activity={activity1} students={[student1]} onActivityPress={() => null} />
       <View style={styles.divider} />
-      <Activity activity={activity2} students={[student1]} />
+      <Activity activity={activity2} students={[student1]} onActivityPress={() => null} />
     </View>
   );
 });
