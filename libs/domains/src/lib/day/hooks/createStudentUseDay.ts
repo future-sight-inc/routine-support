@@ -61,7 +61,7 @@ const useDay = ({ studentDayApi, studentActivityApi, useStoreState }: Deps) => {
   };
 
   return {
-    models: { loading, day: day ? createDayFromSchema(day) : null },
+    models: { loading, day: day ? createDayFromSchema(day) : null, currentDate: moment() },
     operations: { getDay, confirmActivity },
   };
 };

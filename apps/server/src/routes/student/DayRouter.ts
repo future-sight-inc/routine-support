@@ -4,6 +4,7 @@ import { Router } from "express";
 import { filterActivitiesForStudent } from "../../utils/filterActivitiesForStudent";
 import { getActivitiesOfWeek } from "../../utils/getActivitiesOfWeek";
 import { getDayScheduleActivities } from "../../utils/getDayScheduleActivities";
+import { getTimeRange } from "../../utils/getTimeRange";
 
 export const dayRouter = Router();
 
@@ -26,5 +27,6 @@ dayRouter.get("/:date", async (req, res) => {
   return res.status(200).send({
     date,
     activities: dayScheduleActivities.map(createSchemaFromActivity),
+    timeRange: getTimeRange(),
   });
 });
