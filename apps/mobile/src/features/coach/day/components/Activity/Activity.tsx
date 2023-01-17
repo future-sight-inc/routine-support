@@ -1,10 +1,7 @@
 import React from "react";
 
-import {
-  Activity as ActivityType,
-  Student,
-} from "@routine-support/domains";
 import { getActivityColor } from "@routine-support/ui-theme";
+import { ActivityComponent } from "apps/mobile/src/components/Calendar";
 import { ConfirmationStatus } from "apps/mobile/src/components/ConfirmationStatus/ConfirmationStatus";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { Theme } from "apps/mobile/src/theme";
@@ -12,27 +9,11 @@ import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 import { ActivityLocators } from "./locators";
 
-interface ActivityProps {
-  activity: ActivityType;
-  students: Student[];
-  style?: Record<string, unknown>;
-  onActivityPress: () => void;
-}
-
-export const Activity: React.FC<ActivityProps> = ({
-  activity,
-  students,
-  style,
-  onActivityPress,
-}) => {
+export const Activity: ActivityComponent = ({ activity, students, style, onActivityPress }) => {
   return (
     <TouchableWithoutFeedback onPress={() => onActivityPress()}>
       <View
-        style={{
-          ...styles.wrapper,
-          backgroundColor: getActivityColor(activity, students),
-          ...style,
-        }}
+        style={[styles.wrapper, { backgroundColor: getActivityColor(activity, students) }, style]}
       >
         <Typography variant="caption4Normal" testID={ActivityLocators.Name}>
           {activity.name}

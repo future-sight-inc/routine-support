@@ -6,6 +6,7 @@
 function loadStories() {
   require("../apps/mobile/src/components/ActivityTypeSelector/ActivityTypeSelector.stories");
   require("../apps/mobile/src/components/Button/Button.stories");
+  require("../apps/mobile/src/components/Calendar/Calendar.stories");
   require("../apps/mobile/src/components/ClockTypeSelector/ClockTypeSelector.stories");
   require("../apps/mobile/src/components/ColorSelector/ColorSelector.stories");
   require("../apps/mobile/src/components/ControlsGroup/ControlsGroup.stories");
@@ -31,7 +32,6 @@ function loadStories() {
   require("../apps/mobile/src/components/TextField/TextField.stories");
   require("../apps/mobile/src/components/Typography/Typography.stories");
   require("../apps/mobile/src/features/coach/day/components/Activity/Activity.stories");
-  require("../apps/mobile/src/features/coach/day/components/Calendar/Calendar.stories");
   require("../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories");
   require("../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories");
   require("../apps/mobile/src/features/coach/day/components/Filter/Filter.stories");
@@ -43,6 +43,7 @@ function loadStories() {
 const stories = [
   "../apps/mobile/src/components/ActivityTypeSelector/ActivityTypeSelector.stories",
   "../apps/mobile/src/components/Button/Button.stories",
+  "../apps/mobile/src/components/Calendar/Calendar.stories",
   "../apps/mobile/src/components/ClockTypeSelector/ClockTypeSelector.stories",
   "../apps/mobile/src/components/ColorSelector/ColorSelector.stories",
   "../apps/mobile/src/components/ControlsGroup/ControlsGroup.stories",
@@ -68,7 +69,6 @@ const stories = [
   "../apps/mobile/src/components/TextField/TextField.stories",
   "../apps/mobile/src/components/Typography/Typography.stories",
   "../apps/mobile/src/features/coach/day/components/Activity/Activity.stories",
-  "../apps/mobile/src/features/coach/day/components/Calendar/Calendar.stories",
   "../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories",
   "../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories",
   "../apps/mobile/src/features/coach/day/components/Filter/Filter.stories",

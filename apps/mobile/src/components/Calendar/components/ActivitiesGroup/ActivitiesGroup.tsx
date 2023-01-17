@@ -6,7 +6,7 @@ import {
   Student,
 } from "@routine-support/domains";
 import { TIMELINE_MARGIN } from "apps/mobile/src/constants/TimelineMargin";
-import { Activity } from "apps/mobile/src/features/coach/day/components/Activity"; // todo use generic Activity component
+// todo use generic Activity component
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
 import { getActivitiesGroupTopOffset, getActivityHeight, getActivityTopOffset } from "./utils";
@@ -19,6 +19,12 @@ interface ActivitiesGroup {
   rowIndex: number;
   style: StyleProp<ViewStyle>;
   onActivityPress: (activity: ActivityType) => void;
+  ActivityComponent: React.FC<{
+    activity: ActivityType;
+    students: Student[];
+    style: StyleProp<ViewStyle>;
+    onActivityPress: (activity: ActivityType) => void;
+  }>;
 }
 
 export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
@@ -29,6 +35,7 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
   rowIndex,
   style,
   onActivityPress,
+  ActivityComponent,
 }) => {
   return (
     <View
@@ -42,7 +49,7 @@ export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({
       ]}
     >
       {group.activities.map((activity, index) => (
-        <Activity
+        <ActivityComponent
           key={index}
           activity={activity}
           students={students}

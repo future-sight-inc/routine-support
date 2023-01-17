@@ -10,10 +10,25 @@ import { TimeString } from "@routine-support/types";
 import { parseTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { Theme } from "apps/mobile/src/theme";
-import { Dimensions, ScrollView, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Dimensions,
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
+} from "react-native";
 
-import { ActivitiesGroup } from "../ActivitiesGroup";
-import { CurrentTimeLine } from "../CurrentTimeLine";
+import { ActivitiesGroup } from "./components/ActivitiesGroup";
+import { CurrentTimeLine } from "./components/CurrentTimeLine";
+
+export type ActivityComponent = React.FC<{
+  activity: ActivityType;
+  students: Student[];
+  style: StyleProp<ViewStyle>;
+  onActivityPress: (activity: ActivityType) => void;
+}>;
 
 interface CalendarProps {
   loading: boolean;
@@ -23,6 +38,7 @@ interface CalendarProps {
   students: Student[];
   onActivityPress: (activity: ActivityType) => void;
   onCellPress: (activity: Partial<ActivityType>) => void;
+  ActivityComponent: ActivityComponent;
 }
 
 export const Calendar: React.FC<CalendarProps> = ({
@@ -32,6 +48,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   students,
   onActivityPress,
   onCellPress,
+  ActivityComponent,
 }) => {
   const activitiesGroups = groupActivities(activities);
 
@@ -57,6 +74,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           rowWidth={ROW_WIDTH}
           onActivityPress={onActivityPress}
           style={{ marginLeft: TIME_COLUMN_WIDTH + COLUMNS_GAP }}
+          ActivityComponent={ActivityComponent}
         />
       )
     );
