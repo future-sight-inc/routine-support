@@ -23,10 +23,11 @@ const useDay = ({ studentDayApi, studentActivityApi, useStoreState }: Deps) => {
   } = useStoreState();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [currentDate, setCurrentDate] = useState(moment());
 
   useEffect(() => {
     getDay();
-  }, []);
+  }, [currentDate]);
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
@@ -40,7 +41,7 @@ const useDay = ({ studentDayApi, studentActivityApi, useStoreState }: Deps) => {
     try {
       !config?.silent && setLoading(true);
 
-      const day = await studentDayApi.getDay(stringifyDate(moment()));
+      const day = await studentDayApi.getDay(stringifyDate(currentDate));
 
       dispatch(studentDayActions.setDay(day));
     } catch (error) {
@@ -61,8 +62,8 @@ const useDay = ({ studentDayApi, studentActivityApi, useStoreState }: Deps) => {
   };
 
   return {
-    models: { loading, day: day ? createDayFromSchema(day) : null, currentDate: moment() },
-    operations: { getDay, confirmActivity },
+    models: { loading, day: day ? createDayFromSchema(day) : null, currentDate },
+    operations: { getDay, confirmActivity, onDateSelect: setCurrentDate },
   };
 };
 

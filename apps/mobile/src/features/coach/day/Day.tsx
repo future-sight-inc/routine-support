@@ -4,6 +4,7 @@ import { useActivityForm } from "@routine-support/forms";
 import { isToday } from "@routine-support/utils";
 import { Button } from "apps/mobile/src/components/Button";
 import { Calendar } from "apps/mobile/src/components/Calendar";
+import { DaySelect } from "apps/mobile/src/components/DaySelect";
 
 import { MainLayout } from "../coach/MainLayout";
 import { useCoach } from "../coach/useCoach";
@@ -11,7 +12,6 @@ import { useStudents } from "../students/useStudents";
 import { Activity as ActivityComponent } from "./components/Activity";
 import { ActivityModal } from "./components/ActivityModal";
 import { DayLayout } from "./components/DayLayout";
-import { DaySelect } from "./components/DaySelect";
 import { Filter } from "./components/Filter";
 import { useActivity } from "./useActivity";
 import { useDay } from "./useDay";

@@ -2,6 +2,7 @@ import { SocketUserTypeEnum } from "@routine-support/types";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
+import { coachActions } from "../../coach";
 import { studentDayActions } from "../../day";
 import { createStudentAuthAPI } from "../api";
 import { studentActions, StudentState } from "../studentSlice";
@@ -48,11 +49,13 @@ const useStudent = ({ studentApi, socketEndpoint, useStoreState }: Deps) => {
       dispatch(studentActions.setStudent(student));
     } catch (error) {
       dispatch(studentActions.setStudent(null));
+
       console.error(error);
 
       throw error;
     } finally {
       setIsChecked(true);
+      dispatch(coachActions.setCoach(null));
     }
   };
 

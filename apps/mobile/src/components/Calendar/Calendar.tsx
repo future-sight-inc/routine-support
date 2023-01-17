@@ -61,6 +61,8 @@ export const Calendar: React.FC<CalendarProps> = ({
     return filteredGroup;
   };
 
+  console.log(activitiesGroups);
+
   const renderActivitiesGroup = (time: TimeString) => {
     const group = getGroupByTime(time, activitiesGroups);
 

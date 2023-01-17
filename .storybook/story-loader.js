@@ -11,6 +11,7 @@ function loadStories() {
   require("../apps/mobile/src/components/ColorSelector/ColorSelector.stories");
   require("../apps/mobile/src/components/ControlsGroup/ControlsGroup.stories");
   require("../apps/mobile/src/components/DateSelector/DateSelector.stories");
+  require("../apps/mobile/src/components/DaySelect/DaySelect.stories");
   require("../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories");
   require("../apps/mobile/src/components/FormFields/ActivityTypeSelector/ActivityTypeSelector.stories");
   require("../apps/mobile/src/components/FormFields/ClockTypeSelector/ClockTypeSelector.stories");
@@ -33,11 +34,11 @@ function loadStories() {
   require("../apps/mobile/src/components/Typography/Typography.stories");
   require("../apps/mobile/src/features/coach/day/components/Activity/Activity.stories");
   require("../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories");
-  require("../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories");
   require("../apps/mobile/src/features/coach/day/components/Filter/Filter.stories");
   require("../apps/mobile/src/features/coach/notifications/components/Notification/Notification.stories");
   require("../apps/mobile/src/features/coach/students/components/Student/Student.stories");
   require("../apps/mobile/src/features/coach/students/components/StudentsList/StudentsList.stories");
+  require("../apps/mobile/src/features/student/day/components/Activity/Activity.stories");
 }
 
 const stories = [
@@ -48,6 +49,7 @@ const stories = [
   "../apps/mobile/src/components/ColorSelector/ColorSelector.stories",
   "../apps/mobile/src/components/ControlsGroup/ControlsGroup.stories",
   "../apps/mobile/src/components/DateSelector/DateSelector.stories",
+  "../apps/mobile/src/components/DaySelect/DaySelect.stories",
   "../apps/mobile/src/components/ErrorMessage/ErrorMessage.stories",
   "../apps/mobile/src/components/FormFields/ActivityTypeSelector/ActivityTypeSelector.stories",
   "../apps/mobile/src/components/FormFields/ClockTypeSelector/ClockTypeSelector.stories",
@@ -70,11 +72,11 @@ const stories = [
   "../apps/mobile/src/components/Typography/Typography.stories",
   "../apps/mobile/src/features/coach/day/components/Activity/Activity.stories",
   "../apps/mobile/src/features/coach/day/components/DayLayout/DayLayout.stories",
-  "../apps/mobile/src/features/coach/day/components/DaySelect/DaySelect.stories",
   "../apps/mobile/src/features/coach/day/components/Filter/Filter.stories",
   "../apps/mobile/src/features/coach/notifications/components/Notification/Notification.stories",
   "../apps/mobile/src/features/coach/students/components/Student/Student.stories",
   "../apps/mobile/src/features/coach/students/components/StudentsList/StudentsList.stories",
+  "../apps/mobile/src/features/student/day/components/Activity/Activity.stories",
 ];
 
 module.exports = {

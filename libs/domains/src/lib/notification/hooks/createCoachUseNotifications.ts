@@ -27,9 +27,7 @@ const useNotifications = ({ notificationApi, useStoreState }: Deps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (notificationsGroups.length === 0) {
-      getNotifications();
-    }
+    getNotifications();
   }, []);
 
   const getNotifications = async (data?: { config?: { silent: boolean } }) => {

@@ -8,6 +8,7 @@ import {
   CoachState,
   LoginCoachDto,
   RegisterCoachDto,
+  studentActions,
   UpdateCoachDto,
 } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
@@ -58,6 +59,7 @@ const useCoach = ({ coachApi, useStoreState }: Deps) => {
     } finally {
       setIsChecked(true);
       setLoading(false);
+      dispatch(studentActions.setStudent(null));
     }
   };
 
@@ -89,6 +91,7 @@ const useCoach = ({ coachApi, useStoreState }: Deps) => {
     } finally {
       setIsChecked(true);
       setLoading(false);
+      dispatch(studentActions.setStudent(null));
     }
   };
 

@@ -5,6 +5,6 @@ import moment from "moment";
 
 import { DaySelect } from "./DaySelect";
 
-storiesOf("Coach/Day", module).add("DaySelect", () => {
+storiesOf("Components", module).add("DaySelect", () => {
   return <DaySelect date={moment()} onSelect={() => null} />;
 });

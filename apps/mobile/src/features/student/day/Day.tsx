@@ -3,6 +3,7 @@ import React from "react";
 import { isToday } from "@routine-support/utils";
 import { Button } from "apps/mobile/src/components/Button";
 import { Calendar } from "apps/mobile/src/components/Calendar";
+import { DaySelect } from "apps/mobile/src/components/DaySelect";
 import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
 import { Dimensions, View } from "react-native";
 
@@ -31,6 +32,7 @@ export const Day: React.FC = () => {
       footer={<Button text="Activity" icon="add" onPress={() => null} />}
     >
       <View style={{ width: Dimensions.get("screen").width }}>
+        <DaySelect date={Day.models.currentDate} onSelect={Day.operations.onDateSelect} />
         <Calendar
           loading={Students.models.loading || Day.models.loading}
           isToday={isToday(Day.models.currentDate)}

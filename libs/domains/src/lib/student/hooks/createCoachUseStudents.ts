@@ -26,9 +26,7 @@ const useStudents = ({ studentApi, useStoreState }: Deps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (students.length === 0) {
-      getStudents();
-    }
+    getStudents();
   }, []);
 
   const getStudents = async (config?: { silent: boolean }) => {
