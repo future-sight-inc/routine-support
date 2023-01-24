@@ -7,82 +7,82 @@ interface Deps {
   activityApi: ReturnType<typeof createCoachActivityAPI>;
 }
 
-export const createCoachUseActivity =
-  ({ activityApi }: Deps) =>
-    () => {
-      const [isLoading, setLoading] = useState(false);
-      const [isOpened, setOpened] = useState(false);
-      const [activity, setActivity] = useState<Activity | undefined>();
+const useActivity = ({ activityApi }: Deps) => {
+  const [isLoading, setLoading] = useState(false);
+  const [isOpened, setOpened] = useState(false);
+  const [activity, setActivity] = useState<Activity | undefined>();
 
-      const createActivity = async (activity: Activity) => {
-        try {
-          setLoading(true);
+  const createActivity = async (activity: Activity) => {
+    try {
+      setLoading(true);
 
-          await activityApi.createActivity(activity);
+      await activityApi.createActivity(activity);
 
-          setOpened(false);
-        } finally {
-          setLoading(false);
-          setActivity(undefined);
-        }
-      };
+      setOpened(false);
+    } finally {
+      setLoading(false);
+      setActivity(undefined);
+    }
+  };
 
-      const updateActivity = async (activity: Activity) => {
-        try {
-          setLoading(true);
+  const updateActivity = async (activity: Activity) => {
+    try {
+      setLoading(true);
 
-          await activityApi.updateActivity(activity);
+      await activityApi.updateActivity(activity);
 
-          setOpened(false);
-        } finally {
-          setLoading(false);
-          setActivity(undefined);
-        }
-      };
+      setOpened(false);
+    } finally {
+      setLoading(false);
+      setActivity(undefined);
+    }
+  };
 
-      const deleteActivity = async (id: string) => {
-        try {
-          setLoading(true);
+  const deleteActivity = async (id: string) => {
+    try {
+      setLoading(true);
 
-          await activityApi.deleteActivity(id);
+      await activityApi.deleteActivity(id);
 
-          setOpened(false);
-        } finally {
-          setLoading(false);
-          setActivity(undefined);
-        }
-      };
+      setOpened(false);
+    } finally {
+      setLoading(false);
+      setActivity(undefined);
+    }
+  };
 
-      const openActivityModal = (activity: Activity) => {
-        setActivity(activity);
-        setOpened(true);
-      };
+  const openActivityModal = (activity: Activity) => {
+    setActivity(activity);
+    setOpened(true);
+  };
 
-      const openNewActivityModal = (activityToOpen?: Partial<Activity>) => {
-        setActivity({ ...activity, ...activityToOpen } as Activity);
-        setOpened(true);
-      };
+  const openNewActivityModal = (activityToOpen?: Partial<Activity>) => {
+    setActivity({ ...activity, ...activityToOpen } as Activity);
+    setOpened(true);
+  };
 
-      const closeActivityModal = () => {
-        setActivity(undefined);
-        setOpened(false);
-      };
+  const closeActivityModal = () => {
+    setActivity(undefined);
+    setOpened(false);
+  };
 
-      return {
-        models: {
-          activity,
-          isOpened,
-          isLoading,
-          pictograms: PICTOGRAMS,
-        },
-        operations: {
-          setActivity,
-          createActivity,
-          updateActivity,
-          deleteActivity,
-          openActivityModal,
-          openNewActivityModal,
-          closeActivityModal,
-        },
-      };
-    };
+  return {
+    models: {
+      activity,
+      isOpened,
+      isLoading,
+      pictograms: PICTOGRAMS,
+    },
+    operations: {
+      setActivity,
+      createActivity,
+      updateActivity,
+      deleteActivity,
+      openActivityModal,
+      openNewActivityModal,
+      closeActivityModal,
+    },
+  };
+};
+
+export const createCoachUseActivity = (deps: Deps) => () => useActivity(deps);

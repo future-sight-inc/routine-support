@@ -5,59 +5,73 @@ import {
   coachDayActions,
   createCoachDayAPI,
   createDayFromSchema,
+  DayState,
   Student,
 } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
 import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+interface State {
+  coachDay: DayState;
+}
 
 interface Deps {
   dayApi: ReturnType<typeof createCoachDayAPI>;
+  useStoreState: () => State;
 }
 
-export const createCoachUseDay =
-  ({ dayApi }: Deps) =>
-    () => {
-      const dispatch = useDispatch();
-      const [loading, setLoading] = useState(false);
-      const { day } = useSelector((state: any) => state.coachDay);
-      const [currentDate, setCurrentDate] = useState(moment());
+const useDay = ({ dayApi, useStoreState }: Deps) => {
+  const {
+    coachDay: { day },
+  } = useStoreState();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
-      const [activityFilter, setActivityFilter] = useState<ActivityFilter>([]);
+  const [currentDate, setCurrentDate] = useState(moment());
 
-      useEffect(() => {
-        getDay();
-      }, [currentDate, activityFilter]);
+  const [activityFilter, setActivityFilter] = useState<ActivityFilter>([]);
 
-      const getDay = async (data?: { config?: { silent: boolean } }) => {
-        try {
-          !data?.config?.silent && setLoading(true);
+  useEffect(() => {
+    getDay();
+  }, [currentDate, activityFilter]);
 
-          const day = await dayApi.getDay({ date: stringifyDate(currentDate), activityFilter });
+  const getDay = async (data?: { config?: { silent: boolean } }) => {
+    try {
+      !data?.config?.silent && setLoading(true);
 
-          dispatch(coachDayActions.setDay(day));
-        } catch (error) {
-          console.error(error);
-        } finally {
-          setLoading(false);
-        }
-      };
+      const day = await dayApi.getDay({ date: stringifyDate(currentDate), activityFilter });
 
-      const setDefaultActivityFilter = ({ students }: { students: Student[] }) => {
-        const activityFilter = ["common"];
+      dispatch(coachDayActions.setDay(day));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        students.forEach((student) => activityFilter.push(student._id));
+  const setDefaultActivityFilter = ({ students }: { students: Student[] }) => {
+    const activityFilter = ["common"];
 
-        setActivityFilter(activityFilter);
-      };
+    students.forEach((student) => activityFilter.push(student._id));
 
-      return {
-        models: { loading, day: day ? createDayFromSchema(day) : null, currentDate, activityFilter },
-        operations: {
-          getDay,
-          onDateSelect: setCurrentDate,
-          onActivityFilterSelect: setActivityFilter,
-          setDefaultActivityFilter,
-        },
-      };
-    };
+    setActivityFilter(activityFilter);
+  };
+
+  return {
+    models: {
+      loading,
+      day: day ? createDayFromSchema(day) : null,
+      currentDate,
+      activityFilter,
+    },
+    operations: {
+      getDay,
+      onDateSelect: setCurrentDate,
+      onActivityFilterSelect: setActivityFilter,
+      setDefaultActivityFilter,
+    },
+  };
+};
+
+export const createCoachUseDay = (deps: Deps) => () => useDay(deps);

@@ -1,5 +1,14 @@
 import { createCoachUseStudent } from "@routine-support/domains";
 
+import { useAppSelector } from "../../app/store";
 import { coachStudentAPI } from "../../services/ApiService";
 
-export const useStudent = createCoachUseStudent({ studentApi: coachStudentAPI });
+const useStoreState = () => {
+  const state = useAppSelector((state) => state);
+
+  return {
+    coachAuth: state.coachAuth,
+  };
+};
+
+export const useStudent = createCoachUseStudent({ studentApi: coachStudentAPI, useStoreState });

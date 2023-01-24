@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { Pictogram } from "@routine-support/types";
 
@@ -13,6 +13,10 @@ export const usePictogramPickerComponent = (
   const [searchString, setSearchString] = useState("");
   const [filteredPictograms, setFilteredPictograms] = useState<Pictogram[]>(pictograms);
   const [selectedPictogram, setSelectedPictogram] = useState<string | undefined>(value);
+
+  useEffect(() => {
+    setSelectedPictogram(value);
+  }, [value]);
 
   const onSearchStringChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;

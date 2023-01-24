@@ -1,106 +1,116 @@
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
+import { coachActions } from "../../coach";
 import { studentDayActions } from "../../day";
 import { createStudentAuthAPI } from "../api";
-import { studentActions } from "../studentSlice";
+import { studentActions, StudentState } from "../studentSlice";
 import { LoginStudentDto, Student } from "../types";
+
+interface State {
+  studentAuth: StudentState;
+}
 
 interface Deps {
   studentApi: ReturnType<typeof createStudentAuthAPI>;
   socketEndpoint: string;
+  useStoreState: () => State;
 }
 
-export const createStudentUseStudent =
-  ({ studentApi, socketEndpoint }: Deps) =>
-    () => {
-      const dispatch = useDispatch();
+const useStudent = ({ studentApi, socketEndpoint, useStoreState }: Deps) => {
+  const dispatch = useDispatch();
 
-      const { student, isLogged, socketConnection } = useSelector((state: any) => state.studentAuth);
-      const [loading, setLoading] = useState(false);
-      const [isChecked, setIsChecked] = useState(false);
+  const {
+    studentAuth: { student, isLogged, socketConnection },
+  } = useStoreState();
+  const [loading, setLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
-      useEffect(() => {
-        if (student && !socketConnection) {
-          dispatch(
-            studentActions.setSocketConnection(
-              io(socketEndpoint, {
-                auth: {
-                  userId: student._id,
-                  userType: SocketUserTypeEnum.Student,
-                },
-              })
-            )
-          );
-        }
-      }, [student, socketConnection]);
+  useEffect(() => {
+    if (student && !socketConnection) {
+      dispatch(
+        studentActions.setSocketConnection(
+          io(socketEndpoint, {
+            auth: {
+              userId: student._id,
+              userType: SocketUserTypeEnum.Student,
+            },
+          })
+        )
+      );
+    }
+  }, [student, socketConnection]);
 
-      const login = async (data: LoginStudentDto) => {
-        try {
-          const student = await studentApi.login(data);
+  const login = async (data: LoginStudentDto) => {
+    try {
+      const student = await studentApi.login(data);
 
-          dispatch(studentActions.setStudent(student));
-        } catch (error) {
-          dispatch(studentActions.setStudent(null));
-          console.error(error);
+      dispatch(studentActions.setStudent(student));
+    } catch (error) {
+      dispatch(studentActions.setStudent(null));
 
-          throw error;
-        } finally {
-          setIsChecked(true);
-        }
-      };
+      console.error(error);
 
-      const logout = async () => {
-        try {
-          setLoading(true);
+      throw error;
+    } finally {
+      setIsChecked(true);
+      dispatch(coachActions.setCoach(null));
+    }
+  };
 
-          await studentApi.logout();
-        } catch (error) {
-          console.error(error);
-        } finally {
-          dispatch(studentActions.setStudent(null));
-          setIsChecked(true);
-          setLoading(false);
-          dispatch(studentDayActions.setDay(null));
+  const logout = async () => {
+    try {
+      setLoading(true);
 
-          socketConnection?.disconnect();
-          dispatch(studentActions.setSocketConnection(null));
-        }
-      };
+      await studentApi.logout();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      dispatch(studentActions.setStudent(null));
+      setIsChecked(true);
+      setLoading(false);
+      dispatch(studentDayActions.setDay(null));
 
-      const getStudent = async () => {
-        try {
-          setLoading(true);
+      socketConnection?.disconnect();
+      dispatch(studentActions.setSocketConnection(null));
+    }
+  };
 
-          const student = await studentApi.getStudent();
+  const getStudent = async () => {
+    try {
+      setLoading(true);
 
-          dispatch(studentActions.setStudent(student));
-        } catch {
-          dispatch(studentActions.setStudent(null));
-        } finally {
-          setIsChecked(true);
-          setLoading(false);
-        }
-      };
+      const student = await studentApi.getStudent();
 
-      const updateStudentSettings = (settings: Partial<Student>) => {
-        dispatch(studentActions.updateStudentSettings(settings));
-      };
+      dispatch(studentActions.setStudent(student));
+    } catch {
+      dispatch(studentActions.setStudent(null));
+    } finally {
+      setIsChecked(true);
+      setLoading(false);
+    }
+  };
 
-      return {
-        models: {
-          student,
-          isLogged,
-          isChecked,
-          loading,
-          socketConnection,
-        },
-        operations: {
-          login,
-          logout,
-          getStudent,
-          updateStudentSettings,
-        },
-      };
-    };
+  const updateStudentSettings = (settings: Partial<Student>) => {
+    dispatch(studentActions.updateStudentSettings(settings));
+  };
+
+  return {
+    models: {
+      student,
+      isLogged,
+      isChecked,
+      loading,
+      socketConnection,
+    },
+    operations: {
+      login,
+      logout,
+      getStudent,
+      updateStudentSettings,
+    },
+  };
+};
+
+export const createStudentUseStudent = (deps: Deps) => () => useStudent(deps);

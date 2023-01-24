@@ -1,102 +1,109 @@
-import { Notification } from "@routine-support/domains";
+import { CoachState, Notification } from "@routine-support/domains";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createCoachNotificationAPI } from "../api";
-import { notificationsActions } from "../slice";
+import { notificationsActions, NotificationsState } from "../slice";
 import { createNotificationsGroupFromSchema } from "../utils";
+
+interface State {
+  coachAuth: CoachState;
+  coachNotifications: NotificationsState;
+}
 
 interface Deps {
   notificationApi: ReturnType<typeof createCoachNotificationAPI>;
+  useStoreState: () => State;
 }
 
-export const createCoachUseNotifications =
-  ({ notificationApi }: Deps) =>
-    () => {
-      const [loading, setLoading] = useState(true);
-      const { notificationsGroups, notViewedCount } = useSelector(
-        (state: any) => state.coachNotifications
-      );
-      const coachId = useSelector((state: any) => state.coachAuth.coach?._id);
-      const dispatch = useDispatch();
+const useNotifications = ({ notificationApi, useStoreState }: Deps) => {
+  const { coachAuth, coachNotifications } = useStoreState();
+  const { notificationsGroups, notViewedCount } = coachNotifications;
+  const coachId = coachAuth.coach?._id;
 
-      const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-      useEffect(() => {
-        getNotifications();
-      }, []);
+  const dispatch = useDispatch();
 
-      const getNotifications = async (data?: { config?: { silent: boolean } }) => {
-        if (coachId) {
-          try {
-            setError(null);
+  const [error, setError] = useState<string | null>(null);
 
-            !data?.config?.silent && setLoading(true);
+  useEffect(() => {
+    getNotifications();
+  }, []);
 
-            const responseData = await notificationApi.getNotifications();
+  const getNotifications = async (data?: { config?: { silent: boolean } }) => {
+    if (coachId) {
+      try {
+        setError(null);
 
-            dispatch(notificationsActions.setNotificationsGroups(responseData));
-          } catch (error: any) {
-            setError(error.message);
-          } finally {
-            setLoading(false);
-          }
-        }
-      };
+        !data?.config?.silent && setLoading(true);
 
-      const deleteNotification = async (notification: Notification) => {
-        try {
-          await notificationApi.deleteNotification(notification._id);
-        } finally {
-          getNotifications({ config: { silent: true } });
-        }
-      };
+        const responseData = await notificationApi.getNotifications();
 
-      const clearAllNotifications = async () => {
-        try {
-          await notificationApi.deleteNotifications();
-        } finally {
-          getNotifications({ config: { silent: true } });
-        }
-      };
+        dispatch(notificationsActions.setNotificationsGroups(responseData));
+      } catch (error: any) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
-      const viewNotification = async (notification: Notification) => {
-        try {
-          await notificationApi.viewNotification(notification._id);
-        } finally {
-          getNotifications({ config: { silent: true } });
-        }
-      };
+  const deleteNotification = async (notification: Notification) => {
+    try {
+      await notificationApi.deleteNotification(notification._id);
+    } finally {
+      getNotifications({ config: { silent: true } });
+    }
+  };
 
-      // const notify = async () => {
-      //   if (location.pathname !== LinkService.notifications()) {
-      //     const audio = new Audio(notificationSound);
+  const clearAllNotifications = async () => {
+    try {
+      await notificationApi.deleteNotifications();
+    } finally {
+      getNotifications({ config: { silent: true } });
+    }
+  };
 
-      //     await getNotifications();
+  const viewNotification = async (notification: Notification) => {
+    try {
+      await notificationApi.viewNotification(notification._id);
+    } finally {
+      getNotifications({ config: { silent: true } });
+    }
+  };
 
-      //     toast(t("Activity was missed"), {
-      //       hideProgressBar: true,
-      //       onClick: () => {
-      //         history.push(LinkService.notifications());
-      //       },
-      //     });
+  // const notify = async () => {
+  //   if (location.pathname !== LinkService.notifications()) {
+  //     const audio = new Audio(notificationSound);
 
-      //     audio.play();
-      //   }
-      // };
+  //     await getNotifications();
 
-      return {
-        models: {
-          notificationsGroups: notificationsGroups.map(createNotificationsGroupFromSchema),
-          notViewedCount,
-          loading,
-          error,
-        },
-        operations: {
-          getNotifications,
-          deleteNotification,
-          clearAllNotifications,
-          viewNotification,
-        // notify,
-        },
-      };
-    };
+  //     toast(t("Activity was missed"), {
+  //       hideProgressBar: true,
+  //       onClick: () => {
+  //         history.push(LinkService.notifications());
+  //       },
+  //     });
+
+  //     audio.play();
+  //   }
+  // };
+
+  return {
+    models: {
+      notificationsGroups: notificationsGroups.map(createNotificationsGroupFromSchema),
+      notViewedCount,
+      loading,
+      error,
+    },
+    operations: {
+      getNotifications,
+      deleteNotification,
+      clearAllNotifications,
+      viewNotification,
+      // notify,
+    },
+  };
+};
+
+export const createCoachUseNotifications = (deps: Deps) => () => useNotifications(deps);

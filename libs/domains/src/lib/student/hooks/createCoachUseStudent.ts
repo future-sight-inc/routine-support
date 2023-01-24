@@ -1,118 +1,126 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { CoachState } from "../../coach";
 import { createCoachStudentAPI } from "../api";
 import { CreateStudentDto, Student } from "../types";
 
-interface Deps {
-  studentApi: ReturnType<typeof createCoachStudentAPI>;
+interface State {
+  coachAuth: CoachState;
 }
 
-export const createCoachUseStudent =
-  ({ studentApi }: Deps) =>
-    () => {
-      const [loading, setLoading] = useState(false);
-      const [studentModalOpened, setStudentModalOpened] = useState(false);
-      const [settingsModalOpened, setSettingsModalOpened] = useState(false);
+interface Deps {
+  studentApi: ReturnType<typeof createCoachStudentAPI>;
+  useStoreState: () => State;
+}
 
-      const [student, setStudent] = useState<Student | undefined>();
-      const coachId = useSelector((state: any) => state.coachAuth.coach?._id);
+const useStudent = ({ studentApi, useStoreState }: Deps) => {
+  const [loading, setLoading] = useState(false);
+  const [studentModalOpened, setStudentModalOpened] = useState(false);
+  const [settingsModalOpened, setSettingsModalOpened] = useState(false);
 
-      const createStudent = async (student: CreateStudentDto) => {
-        if (coachId) {
-          try {
-            setLoading(true);
+  const [student, setStudent] = useState<Student | undefined>();
+  const {
+    coachAuth: { coach },
+  } = useStoreState();
+  const coachId = coach?._id;
 
-            await studentApi.createStudent({
-              ...student,
-              coachId,
-            });
+  const createStudent = async (student: CreateStudentDto) => {
+    if (coachId) {
+      try {
+        setLoading(true);
 
-            setStudentModalOpened(false);
-          } finally {
-            setLoading(false);
-          }
-        }
-      };
+        await studentApi.createStudent({
+          ...student,
+          coachId,
+        });
 
-      const updateStudent = async (student: Student) => {
-        try {
-          setLoading(true);
-
-          await studentApi.updateStudent(student);
-
-          setStudentModalOpened(false);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      const deleteStudent = async (student: Student) => {
-        try {
-          setLoading(true);
-
-          await studentApi.deleteStudent(student._id);
-
-          setStudentModalOpened(false);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      const openStudentModal = (student?: Student) => {
-        setStudent(student);
-        setStudentModalOpened(true);
-      };
-
-      const openNewStudentModal = () => {
-        setStudent(undefined);
-        setStudentModalOpened(true);
-      };
-
-      const closeStudentModal = () => {
-        setStudent(undefined);
         setStudentModalOpened(false);
-      };
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
-      const updateSettings = async (student: Student) => {
-        try {
-          setLoading(true);
+  const updateStudent = async (student: Student) => {
+    try {
+      setLoading(true);
 
-          await studentApi.updateStudent(student);
+      await studentApi.updateStudent(student);
 
-          setSettingsModalOpened(false);
-        } finally {
-          setLoading(false);
-        }
-      };
+      setStudentModalOpened(false);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-      const openSettingsModal = (student: Student) => {
-        setStudent(student);
-        setSettingsModalOpened(true);
-      };
+  const deleteStudent = async (student: Student) => {
+    try {
+      setLoading(true);
 
-      const closeSettingsModal = () => {
-        setStudent(undefined);
-        setSettingsModalOpened(false);
-      };
+      await studentApi.deleteStudent(student._id);
 
-      return {
-        models: {
-          student,
-          studentModalOpened,
-          settingsModalOpened,
-          loading,
-        },
-        operations: {
-          setStudent,
-          createStudent,
-          updateStudent,
-          deleteStudent,
-          openStudentModal,
-          openNewStudentModal,
-          closeStudentModal,
-          updateSettings,
-          openSettingsModal,
-          closeSettingsModal,
-        },
-      };
-    };
+      setStudentModalOpened(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const openStudentModal = (student?: Student) => {
+    setStudent(student);
+    setStudentModalOpened(true);
+  };
+
+  const openNewStudentModal = () => {
+    setStudent(undefined);
+    setStudentModalOpened(true);
+  };
+
+  const closeStudentModal = () => {
+    setStudent(undefined);
+    setStudentModalOpened(false);
+  };
+
+  const updateSettings = async (student: Student) => {
+    try {
+      setLoading(true);
+
+      await studentApi.updateStudent(student);
+
+      setSettingsModalOpened(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const openSettingsModal = (student: Student) => {
+    setStudent(student);
+    setSettingsModalOpened(true);
+  };
+
+  const closeSettingsModal = () => {
+    setStudent(undefined);
+    setSettingsModalOpened(false);
+  };
+
+  return {
+    models: {
+      student,
+      studentModalOpened,
+      settingsModalOpened,
+      loading,
+    },
+    operations: {
+      setStudent,
+      createStudent,
+      updateStudent,
+      deleteStudent,
+      openStudentModal,
+      openNewStudentModal,
+      closeStudentModal,
+      updateSettings,
+      openSettingsModal,
+      closeSettingsModal,
+    },
+  };
+};
+
+export const createCoachUseStudent = (deps: Deps) => () => useStudent(deps);

@@ -1,12 +1,13 @@
 {
   "root": true,
-  "plugins": ["@nrwl/nx", "unused-imports", "editorconfig"],
+  "plugins": ["@nrwl/nx", "unused-imports", "editorconfig", "prettier"],
   "ignorePatterns": ["!**/*", "node_modules"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:editorconfig/all"
+    "plugin:editorconfig/all",
+    "eslint-config-prettier"
   ],
   "overrides": [
     {
