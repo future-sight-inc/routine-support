@@ -44,7 +44,7 @@ const useWeek = ({ weekApi, useStoreState }: Deps) => {
 
       dispatch(weekActions.setWeek(week));
     } catch {
-      setError("Error while loading calendar!");
+      setError("Error during fetching!");
     } finally {
       setLoading(false);
     }

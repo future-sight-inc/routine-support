@@ -10,7 +10,6 @@ export const useStudentSettingsForm = (
     getStudents: (config?: { silent: boolean }) => void;
   }
 ) => {
-  // todo Костыль
   const { control, handleSubmit, formState, setValue, reset } = useForm<any>({
     defaultValues: student,
   });
@@ -23,9 +22,8 @@ export const useStudentSettingsForm = (
       await actions.updateSettings(values);
 
       actions.getStudents({ silent: true });
-    } catch (error: any) {
-      // todo Костыль
-      setSubmitError(error.message);
+    } catch {
+      setSubmitError("Error during request!");
     }
   });
 

@@ -40,8 +40,8 @@ const useNotifications = ({ notificationApi, useStoreState }: Deps) => {
         const responseData = await notificationApi.getNotifications();
 
         dispatch(notificationsActions.setNotificationsGroups(responseData));
-      } catch (error: any) {
-        setError(error.message);
+      } catch {
+        setError("Error during fetching!");
       } finally {
         setLoading(false);
       }

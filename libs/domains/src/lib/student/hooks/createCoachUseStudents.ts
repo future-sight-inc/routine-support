@@ -40,7 +40,7 @@ const useStudents = ({ studentApi, useStoreState }: Deps) => {
 
         dispatch(studentsActions.setStudents(students));
       } catch {
-        setError("Error while fetching students!");
+        setError("Error during fetching!");
       } finally {
         setLoading(false);
       }

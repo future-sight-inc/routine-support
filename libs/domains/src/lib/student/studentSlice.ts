@@ -23,7 +23,6 @@ export const studentSlice = createSlice({
       state.isLogged = !!action.payload;
     },
     updateStudentSettings: (state, action: PayloadAction<Partial<Student>>) => {
-      // todo баг в типизации redux
       state.student = { ...state.student, ...action.payload } as any; // todo;
     },
   },

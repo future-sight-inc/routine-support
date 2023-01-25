@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ export const useStudentForm = (
     getStudents: (config?: { silent: boolean }) => void;
   }
 ) => {
-  const { control, handleSubmit, formState, setValue, reset } = useForm<any>({
+  const { control, handleSubmit, formState, setValue, reset } = useForm<Student>({
     defaultValues: student,
   });
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -28,9 +28,8 @@ export const useStudentForm = (
       }
 
       actions.getStudents({ silent: true });
-    } catch (error: any) {
-      // todo Костыль
-      setSubmitError(error.message);
+    } catch {
+      setSubmitError("Error during request!");
     }
   });
 
