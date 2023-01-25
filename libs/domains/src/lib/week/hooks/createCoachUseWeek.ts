@@ -1,10 +1,12 @@
-import moment from "moment";
+import { Moment } from "moment";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createCoachWeekAPI } from "../api";
 import { weekActions, WeekState } from "../slice";
-import { ActivityFilter, DateInfo, WeekNumber, YearNumber } from "../types";
-import { createWeekFromSchema, dateInfoToMoment, getCurrentDateInfo } from "../utils";
+import { ActivityFilter } from "../types";
+import { createWeekFromSchema, getDateInfoFromMoment } from "../utils";
+import { getSavedActivityFilter } from "./getSavedActivityFilter";
+import { getSavedCurrentDate } from "./getSavedCurrentDate";
 
 interface State {
   coachWeek: WeekState;
@@ -12,87 +14,51 @@ interface State {
 
 interface Deps {
   weekApi: ReturnType<typeof createCoachWeekAPI>;
-  useDateInfoQuery: () => DateInfo | undefined;
-  useUpdateCurrentDateInfoQuery: () => (date: DateInfo) => void;
-  useSavedActivityFilter: () => ActivityFilter | undefined;
   useStoreState: () => State;
 }
 
-const useWeek = ({
-  weekApi,
-  useDateInfoQuery,
-  useUpdateCurrentDateInfoQuery,
-  useSavedActivityFilter,
-  useStoreState,
-}: Deps) => {
-  const [loading, setLoading] = useState(false);
+const useWeek = ({ weekApi, useStoreState }: Deps) => {
   const {
     coachWeek: { week },
   } = useStoreState();
   const dispatch = useDispatch();
-
-  const currentDateInfo = getCurrentDateInfo();
-
-  const dateInfoQuery = useDateInfoQuery();
-  const updateCurrentDateInfoQuery = useUpdateCurrentDateInfoQuery();
-  const savedActivityFilter = useSavedActivityFilter();
-
-  const currentDate = dateInfoQuery ? dateInfoToMoment(dateInfoQuery) : moment();
-
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     getWeek();
   }, []);
 
-  const getWeek = async (data?: {
-    params?: {
-      year: YearNumber;
-      week: WeekNumber;
-    };
-    activityFilter?: ActivityFilter;
-    config?: {
-      silent?: boolean;
-    };
-  }) => {
+  const getWeek = async (data?: { date?: Moment; activityFilter?: ActivityFilter }) => {
     try {
-      !data?.config?.silent && setLoading(true);
-
-      const date: DateInfo = {
-        year: data?.params?.year || dateInfoQuery?.year || currentDateInfo.year,
-        week: data?.params?.week || dateInfoQuery?.week || currentDateInfo.week,
-      };
-
-      updateCurrentDateInfoQuery(date);
+      const currentDateInfo = data?.date
+        ? getDateInfoFromMoment(data?.date)
+        : getDateInfoFromMoment(getSavedCurrentDate());
+      const activityFilter = data?.activityFilter || getSavedActivityFilter();
 
       const week = await weekApi.getWeek(
-        date.year,
-        date.week,
-        data?.activityFilter || savedActivityFilter || []
+        currentDateInfo.year,
+        currentDateInfo.week,
+        activityFilter
       );
 
       dispatch(weekActions.setWeek(week));
-    } catch (error: any) {
-      setError(error.message);
+    } catch {
+      setError("Error while loading calendar!");
     } finally {
       setLoading(false);
     }
   };
 
-  const updateWeek = () => {
-    getWeek({ config: { silent: true } });
-  };
-
   return {
     models: {
       week: week ? createWeekFromSchema(week) : null,
-      currentDate,
+      currentDate: getSavedCurrentDate(),
       loading,
       error,
     },
     operations: {
       getWeek,
-      updateWeek,
     },
   };
 };

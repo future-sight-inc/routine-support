@@ -34,10 +34,7 @@ export const useActivityFilterComponent = (students: Student[], actions: Activit
     const newActivityFilter = ActivityFilterService.getFilter();
 
     setActivityFilter(newActivityFilter);
-    actions.getWeek({
-      activityFilter: newActivityFilter,
-      config: { silent: true },
-    });
+    actions.getWeek({ activityFilter: newActivityFilter });
   };
 
   return { models: { activityFilter }, operations: { handleChange } };

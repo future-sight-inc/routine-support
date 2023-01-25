@@ -15,7 +15,7 @@ export const useActivityForm = (
     createActivity: (activity: Activity) => Promise<void>;
     updateActivity: (activity: Activity) => Promise<void>;
     deleteActivity: (id: string) => Promise<void>;
-    updateCalendar: (data: { config?: { silent: boolean } }) => void;
+    updateCalendar: () => void;
   }
 ) => {
   const defaultValues = {
@@ -72,7 +72,7 @@ export const useActivityForm = (
         await actions.createActivity(values);
       }
 
-      actions.updateCalendar({ config: { silent: true } });
+      actions.updateCalendar();
     } catch (error) {
       const data = (error as AxiosError<SubmitErrorData>).response?.data; // todo
 
@@ -84,7 +84,7 @@ export const useActivityForm = (
     if (activity?._id) {
       await actions.deleteActivity(activity?._id);
 
-      actions.updateCalendar({ config: { silent: true } });
+      actions.updateCalendar();
     }
   };
 

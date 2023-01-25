@@ -39,8 +39,8 @@ const useStudents = ({ studentApi, useStoreState }: Deps) => {
         const students = await studentApi.getStudents(coachId);
 
         dispatch(studentsActions.setStudents(students));
-      } catch (error: any) {
-        setError(error.message);
+      } catch {
+        setError("Error while fetching students!");
       } finally {
         setLoading(false);
       }

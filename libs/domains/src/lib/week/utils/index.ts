@@ -2,7 +2,6 @@ export { createMockWeekFromDateStringArray } from "./createMockWeekFromDateStrin
 export { createWeekFromSchema } from "./createWeekFromSchema";
 export { createWeekInfoFromSchema } from "./createWeekInfoFromSchema";
 export { dateInfoToMoment } from "./dateInfoToMoment";
-export { getCurrentDateInfo } from "./getCurrentDateInfo";
 export { getDateInfoFromMoment } from "./getDateInfoFromMoment";
 export { getDateInfoQuery } from "./getDateInfoQuery";
 export { getDaysOfWeek } from "./getDaysOfWeek";
