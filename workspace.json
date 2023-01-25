@@ -2,7 +2,6 @@
   "version": 2,
   "projects": {
     "api-client": "libs/api-client",
-    "constants": "libs/constants",
     "domains": "libs/domains",
     "forms": "libs/forms",
     "mobile": "apps/mobile",
