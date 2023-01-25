@@ -26,7 +26,7 @@ export const useActivityForm = (
     repeatType: RepeatTypeEnum.None,
     students: [],
   };
-  // ! баг в react-hook-form
+  // todo Костыль
   const { control, handleSubmit, formState, setError, setValue, watch, reset } = useForm<any>({
     defaultValues,
   });
@@ -35,6 +35,7 @@ export const useActivityForm = (
 
   const [isStudentsSelectorVisible, setStudentsSelectorVisible] = useState(!defaultValues.isCommon);
 
+  // todo Костыль
   useEffect(() => {
     if (activity) {
       Object.keys(activity).forEach((key) => {

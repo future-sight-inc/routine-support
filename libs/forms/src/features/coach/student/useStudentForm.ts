@@ -28,7 +28,7 @@ export const useStudentForm = (
       }
 
       actions.getStudents({ silent: true });
-    } catch (error: any) {
+    } catch (error: any) { // todo Костыль
       setSubmitError(error.message);
     }
   });
@@ -41,6 +41,7 @@ export const useStudentForm = (
     }
   };
 
+  // todo Костыль
   useEffect(() => {
     if (student) {
       Object.keys(student).forEach((key) => {

@@ -32,7 +32,7 @@ export const studentSlice = createSlice({
     },
     updateStudentSettings: (state, action: PayloadAction<Partial<Student>>) => {
       // todo баг в типизации redux
-      state.student = { ...state.student, ...action.payload } as any;
+      state.student = { ...state.student, ...action.payload };
     },
   },
 });

@@ -10,6 +10,7 @@ export const useStudentSettingsForm = (
     getStudents: (config?: { silent: boolean }) => void;
   }
 ) => {
+  // todo Костыль
   const { control, handleSubmit, formState, setValue, reset } = useForm<any>({
     defaultValues: student,
   });
@@ -22,11 +23,12 @@ export const useStudentSettingsForm = (
       await actions.updateSettings(values as Student);
 
       actions.getStudents({ silent: true });
-    } catch (error: any) {
+    } catch (error: any) { // todo Костыль
       setSubmitError(error.message);
     }
   });
 
+  // todo Костыль
   useEffect(() => {
     if (student) {
       Object.keys(student).forEach((key) => {

@@ -11,7 +11,7 @@ export const createCoachStudentAPI = (client: AxiosInstance) => ({
   updateStudent: async ({ _id, ...data }: Student): Promise<Student> => {
     const request: AxiosResponse<Student> = await client.put(`/student/${_id}`, data);
 
-    return request.data as Student;
+    return request.data;
   },
   deleteStudent: async (id: Id): Promise<AxiosResponse> => {
     const request = await client.delete(`/student/${id}`);
@@ -21,7 +21,7 @@ export const createCoachStudentAPI = (client: AxiosInstance) => ({
   getStudents: async (coachId: CoachId): Promise<Student[]> => {
     const request: AxiosResponse<Student[]> = await client.get(`/student/coach/${coachId}`);
 
-    return request.data as Student[];
+    return request.data;
   },
 });
 
@@ -29,12 +29,12 @@ export const createStudentAuthAPI = (client: AxiosInstance) => ({
   getStudent: async (): Promise<Student> => {
     const request: AxiosResponse<Student> = await client.get("/auth");
 
-    return request.data as Student;
+    return request.data;
   },
   login: async (data: LoginStudentDto): Promise<Student> => {
     const request: AxiosResponse<Student> = await client.post("/auth/login", data);
 
-    return request.data as Student;
+    return request.data;
   },
   logout: async () => {
     const request: AxiosResponse = await client.get("/auth/logout");
