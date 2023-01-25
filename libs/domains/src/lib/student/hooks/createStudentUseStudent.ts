@@ -1,7 +1,5 @@
-import { SocketUserTypeEnum } from "@routine-support/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { io } from "socket.io-client";
 import { coachActions } from "../../coach";
 import { studentDayActions } from "../../day";
 import { createStudentAuthAPI } from "../api";
@@ -14,11 +12,10 @@ interface State {
 
 interface Deps {
   studentApi: ReturnType<typeof createStudentAuthAPI>;
-  socketEndpoint: string;
   useStoreState: () => State;
 }
 
-const useStudent = ({ studentApi, socketEndpoint, useStoreState }: Deps) => {
+const useStudent = ({ studentApi, useStoreState }: Deps) => {
   const dispatch = useDispatch();
 
   const {
@@ -26,21 +23,6 @@ const useStudent = ({ studentApi, socketEndpoint, useStoreState }: Deps) => {
   } = useStoreState();
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-
-  useEffect(() => {
-    if (student && !socketConnection) {
-      dispatch(
-        studentActions.setSocketConnection(
-          io(socketEndpoint, {
-            auth: {
-              userId: student._id,
-              userType: SocketUserTypeEnum.Student,
-            },
-          })
-        )
-      );
-    }
-  }, [student, socketConnection]);
 
   const login = async (data: LoginStudentDto) => {
     try {
@@ -73,7 +55,6 @@ const useStudent = ({ studentApi, socketEndpoint, useStoreState }: Deps) => {
       dispatch(studentDayActions.setDay(null));
 
       socketConnection?.disconnect();
-      dispatch(studentActions.setSocketConnection(null));
     }
   };
 

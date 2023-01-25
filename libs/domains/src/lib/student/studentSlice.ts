@@ -22,14 +22,6 @@ export const studentSlice = createSlice({
       state.student = action.payload;
       state.isLogged = !!action.payload;
     },
-    setSocketConnection: (state, action: PayloadAction<Socket | null>) => {
-      if (state.socketConnection) {
-        state.socketConnection.disconnect();
-      }
-
-      // todo баг в типизации redux
-      state.socketConnection = action.payload as Socket as any;
-    },
     updateStudentSettings: (state, action: PayloadAction<Partial<Student>>) => {
       // todo баг в типизации redux
       state.student = { ...state.student, ...action.payload } as any; // todo;

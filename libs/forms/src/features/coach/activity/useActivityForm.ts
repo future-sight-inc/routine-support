@@ -9,7 +9,7 @@ import { setFormErrors } from "@routine-support/forms";
 import { SubmitErrorData } from "@routine-support/types";
 
 export const useActivityForm = (
-  coach: Coach,
+  coach: Coach | null,
   activity: Partial<Activity> | undefined,
   actions: {
     createActivity: (activity: Activity) => Promise<void>;
@@ -28,7 +28,7 @@ export const useActivityForm = (
   };
   // todo Костыль
   const { control, handleSubmit, formState, setError, setValue, watch, reset } = useForm<any>({
-    defaultValues: { ...defaultValues, coachId: coach._id },
+    defaultValues: { ...defaultValues, coachId: coach?._id },
   });
 
   const [submitError, setSubmitError] = useState<string | undefined>();

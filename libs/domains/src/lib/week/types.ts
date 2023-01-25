@@ -38,7 +38,7 @@ export type ActivityFilter = string[];
 
 export type ActivityFilterQuery = Id[];
 
-export enum WeekSocketEventTypeEnum {
+export enum WeekSocketEventTypeEnum { // todo move to features
   UpdateCalendar = "update calendar",
   UpdateNotifications = "update notifications",
   UpdateSchedule = "update schedule",
