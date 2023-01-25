@@ -6,14 +6,12 @@
     "domains": "libs/domains",
     "forms": "libs/forms",
     "mobile": "apps/mobile",
-    "mobile-e2e": "apps/mobile-e2e",
     "pictograms": "libs/pictograms",
     "server": "apps/server",
     "types": "libs/types",
     "ui-theme": "libs/ui-theme",
     "utils": "libs/utils",
-    "web": "apps/web",
-    "web-e2e": "apps/web-e2e"
+    "web": "apps/web"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }
