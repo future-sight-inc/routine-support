@@ -4,7 +4,7 @@ import { Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
 export const useStudentForm = (
-  student: Partial<Student> | undefined,
+  student: Student | undefined,
   actions: {
     createStudent: (data: Student) => Promise<void>;
     updateStudent: (data: Student) => Promise<void>;
@@ -22,20 +22,21 @@ export const useStudentForm = (
       setSubmitError(null);
 
       if (values._id) {
-        await actions.updateStudent(values as Student);
+        await actions.updateStudent(values);
       } else {
-        await actions.createStudent(values as Student);
+        await actions.createStudent(values);
       }
 
       actions.getStudents({ silent: true });
-    } catch (error: any) { // todo Костыль
+    } catch (error: any) {
+      // todo Костыль
       setSubmitError(error.message);
     }
   });
 
   const onDelete = async () => {
     if (student?._id) {
-      await actions.deleteStudent(student as Student);
+      await actions.deleteStudent(student);
 
       actions.getStudents();
     }

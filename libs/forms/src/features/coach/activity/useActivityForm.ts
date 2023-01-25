@@ -28,7 +28,7 @@ export const useActivityForm = (
   };
   // todo Костыль
   const { control, handleSubmit, formState, setError, setValue, watch, reset } = useForm<any>({
-    defaultValues,
+    defaultValues: { ...defaultValues, coachId: coach._id },
   });
 
   const [submitError, setSubmitError] = useState<string | undefined>();
@@ -67,20 +67,14 @@ export const useActivityForm = (
       setSubmitError(undefined);
 
       if (values._id) {
-        await actions.updateActivity({
-          ...values,
-          coachId: coach._id,
-        } as Activity);
+        await actions.updateActivity(values);
       } else {
-        await actions.createActivity({
-          ...values,
-          coachId: coach._id,
-        } as Activity);
+        await actions.createActivity(values);
       }
 
       actions.updateCalendar({ config: { silent: true } });
     } catch (error) {
-      const data = (error as AxiosError<SubmitErrorData>).response?.data;
+      const data = (error as AxiosError<SubmitErrorData>).response?.data; // todo
 
       setFormErrors(data, setError, setSubmitError);
     }
@@ -88,7 +82,7 @@ export const useActivityForm = (
 
   const onDelete = async () => {
     if (activity?._id) {
-      await actions.deleteActivity(activity?._id as string);
+      await actions.deleteActivity(activity?._id);
 
       actions.updateCalendar({ config: { silent: true } });
     }
