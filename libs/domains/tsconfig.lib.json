@@ -6,5 +6,15 @@
     "types": []
   },
   "exclude": ["**/*.spec.ts", "jest.config.ts"],
-  "include": ["**/*.ts"]
+  "include": [
+    "**/*.ts",
+    "../features/src/lib/coach/auth/slice.ts",
+    "../features/src/lib/coach/students/hooks/createCoachUseStudents.ts",
+    "../features/src/lib/coach/students/slice.ts",
+    "../features/src/lib/coach/notifications/slice.ts",
+    "../features/src/lib/coach/notifications/api.ts",
+    "../features/src/lib/coach/week/api.ts",
+    "../features/src/lib/coach/day/hooks/createCoachUseDay.ts",
+    "../features/src/lib/student/day/api.ts"
+  ]
 }

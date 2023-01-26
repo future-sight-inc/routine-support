@@ -1,4 +1,4 @@
-import { createCoachUseWeek } from "@routine-support/domains";
+import { createCoachUseWeek } from "@routine-support/features";
 
 import { useAppSelector } from "../../app/store";
 import { coachWeekAPI } from "../../services/ApiService";

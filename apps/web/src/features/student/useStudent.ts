@@ -1,4 +1,4 @@
-import { createCoachUseStudent } from "@routine-support/domains";
+import { createCoachUseStudent } from "@routine-support/features";
 
 import { useAppSelector } from "../../app/store";
 import { coachStudentAPI } from "../../services/ApiService";

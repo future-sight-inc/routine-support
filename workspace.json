@@ -3,6 +3,7 @@
   "projects": {
     "api-client": "libs/api-client",
     "domains": "libs/domains",
+    "features": "libs/features",
     "forms": "libs/forms",
     "mobile": "apps/mobile",
     "pictograms": "libs/pictograms",

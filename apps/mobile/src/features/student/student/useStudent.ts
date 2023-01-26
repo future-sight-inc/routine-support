@@ -1,5 +1,4 @@
-import { createStudentUseStudent } from "@routine-support/domains";
-import { getEnvVars } from "apps/mobile/environment";
+import { createStudentUseStudent } from "@routine-support/features";
 import { useAppSelector } from "apps/mobile/src/app/store";
 import { studentAuthAPI } from "apps/mobile/src/services/ApiService";
 
@@ -12,7 +11,6 @@ const useStoreState = () => {
 };
 
 export const useStudent = createStudentUseStudent({
-  socketEndpoint: getEnvVars().socketEndpoint,
   studentApi: studentAuthAPI,
   useStoreState,
 });

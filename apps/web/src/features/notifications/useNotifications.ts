@@ -1,4 +1,4 @@
-import { createCoachUseNotifications } from "@routine-support/domains";
+import { createCoachUseNotifications } from "@routine-support/features";
 
 import { useAppSelector } from "../../app/store";
 import { coachNotificationAPI } from "../../services/ApiService";

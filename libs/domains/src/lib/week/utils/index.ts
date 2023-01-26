@@ -7,3 +7,4 @@ export { getDateInfoQuery } from "./getDateInfoQuery";
 export { getDaysOfWeek } from "./getDaysOfWeek";
 export { getMondayFromWeekInfo } from "./getMondayFromWeekInfo";
 export { repeatActivity } from "./repeatActivity";
+export { createActivityFilterParam } from "./createActivityFilterParam";

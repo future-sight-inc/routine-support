@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ export const useStudentForm = (
     getStudents: (config?: { silent: boolean }) => void;
   }
 ) => {
-  const { control, handleSubmit, formState, setValue, reset } = useForm<Student>({
+  const { control, handleSubmit, formState, setValue, reset } = useForm<any>({
     defaultValues: student,
   });
   const [submitError, setSubmitError] = useState<string | null>(null);
