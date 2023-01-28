@@ -1,5 +1,4 @@
 import { Activity } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 import { stringifyDate } from "@routine-support/utils";
 import { AxiosInstance, AxiosResponse } from "axios";
 
@@ -14,7 +13,7 @@ export const createCoachActivityAPI = (client: AxiosInstance) => ({
 
     return request;
   },
-  deleteActivity: async (id: Id): Promise<AxiosResponse> => {
+  deleteActivity: async (id: string): Promise<AxiosResponse> => {
     const request: AxiosResponse = await client.delete(`/activity/${id}`);
 
     return request;

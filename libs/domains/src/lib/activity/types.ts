@@ -1,7 +1,3 @@
-import { DateString, Id, ImageUrl } from "@routine-support/types";
-
-export type ActivityName = string;
-
 export enum RepeatTypeEnum {
   None,
   EveryDay,
@@ -11,23 +7,23 @@ export enum RepeatTypeEnum {
 }
 
 export type Activity = {
-  _id: Id;
-  coachId: Id;
-  name: ActivityName;
-  pictogram: ImageUrl;
+  _id: string;
+  coachId: string;
+  name: string;
+  pictogram: string;
   date: Date;
   start: Date;
   end: Date;
   repeatType: RepeatTypeEnum;
   isCommon: boolean;
   isImportant: boolean;
-  students: Id[];
+  students: string[];
   confirmation: ConfirmationInfo;
 };
 
 export type ConfirmationInfo = {
-  [key in DateString]: {
-    students: Id[];
+  [key in string]: {
+    students: string[];
     isNotified: boolean;
   };
 };

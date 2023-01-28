@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Activity, Student } from "@routine-support/domains";
-import { TimeString } from "@routine-support/types";
 import { getActivityColor } from "@routine-support/ui-theme";
 import { indexOfTimeRange } from "@routine-support/utils";
 
@@ -9,7 +8,7 @@ import { ActivityCard } from "./components/ActivityCard";
 import { ConfirmationStatus } from "./components/ConfirmationStatus";
 
 interface ActivityGroupProps {
-  timeRange: TimeString[];
+  timeRange: string[];
   activities: Activity[];
   students: Student[];
   onActivityClick: (activity: Activity) => void;

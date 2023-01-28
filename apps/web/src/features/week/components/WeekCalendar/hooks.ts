@@ -1,7 +1,6 @@
 import { RefObject, useEffect, useState } from "react";
 
 import { groupActivities, Week } from "@routine-support/domains";
-import { TimeString } from "@routine-support/types";
 import { parseTime } from "@routine-support/utils";
 import { addHours, getMinutes, isToday } from "date-fns";
 
@@ -44,7 +43,7 @@ export const useWeekCalendarComponent = ({
     }
   }, [scrolled, currentTimeRef, timelineTopOffset]);
 
-  const onCellClick = (time: TimeString, day: Date) => {
+  const onCellClick = (time: string, day: Date) => {
     actions.openNewActivityModal({
       date: day,
       start: parseTime(time),

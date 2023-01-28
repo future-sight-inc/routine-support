@@ -1,9 +1,8 @@
-import { Id } from "@routine-support/types";
 import { Activity } from "../activity";
 
 export type Notification = {
-  _id: Id;
-  coachId: Id;
+  _id: string;
+  coachId: string;
   activity: Activity;
   isViewed: boolean;
   date: Date;

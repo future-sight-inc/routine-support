@@ -1,7 +1,6 @@
 import React, { ChangeEvent, createRef, useEffect, useState } from "react";
 
 import { getStudentsByIds, Student } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 import { useTranslation } from "react-i18next";
 
 import { Menu } from "../Menu";
@@ -14,9 +13,9 @@ import * as S from "./styled";
 import { filterStudents } from "./utils";
 
 interface StudentPickerProps {
-  value?: Id[];
+  value?: string[];
   students: Student[];
-  onChange: (students: Id[]) => void;
+  onChange: (students: string[]) => void;
 }
 
 export const StudentsPicker: React.FC<StudentPickerProps> = ({
@@ -29,7 +28,7 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
   const [isOpened, setIsOpened] = useState(false);
   const [filter, setFilter] = useState<string>("");
 
-  const [selectedStudents, setSelectedStudents] = useState<Id[]>(value || []);
+  const [selectedStudents, setSelectedStudents] = useState<string[]>(value || []);
 
   const studentsToChoose = filterStudents({
     students,
@@ -58,7 +57,7 @@ export const StudentsPicker: React.FC<StudentPickerProps> = ({
     setFilter(event.target.value);
   };
 
-  const handleSelect = (studentId: Id) => {
+  const handleSelect = (studentId: string) => {
     const selectedStudent = students.find(
       (student) => student._id === studentId
     );

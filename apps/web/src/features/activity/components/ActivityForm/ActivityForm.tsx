@@ -2,7 +2,7 @@ import React from "react";
 
 import { Activity, Coach } from "@routine-support/domains";
 import { useActivityForm } from "@routine-support/forms";
-import { Id, Pictogram } from "@routine-support/types";
+import { Pictogram } from "@routine-support/types";
 import { CommonFlagPicker } from "apps/web/src/components/FormFields/CommonFlagPicker";
 import { StudentsPicker } from "apps/web/src/components/FormFields/StudentsPicker";
 import { useTranslation } from "react-i18next";
@@ -18,7 +18,7 @@ import * as S from "./styled";
 export interface ActivityFormActions {
   createActivity: (activity: Activity) => Promise<void>;
   updateActivity: (activity: Activity) => Promise<void>;
-  deleteActivity: (id: Id) => Promise<void>;
+  deleteActivity: (id: string) => Promise<void>;
   closeModal: () => void;
   updateCalendar: () => void;
 }

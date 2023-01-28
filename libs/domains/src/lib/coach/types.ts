@@ -1,21 +1,17 @@
-import { Email } from "@routine-support/types";
-
-export type CoachName = string;
-
 export type Coach = {
   _id: string;
-  name: CoachName;
-  email: Email;
+  name: string;
+  email: string;
 };
 
 export type LoginCoachDto = {
-  email: Email;
+  email: string;
   password: string;
 };
 
 export type RegisterCoachDto = {
   name: string;
-  email: Email;
+  email: string;
   password: string;
 };
 

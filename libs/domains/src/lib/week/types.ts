@@ -1,8 +1,5 @@
-import { Id, TimeRange } from "@routine-support/types";
+import { TimeRange } from "@routine-support/types";
 import { Day } from "../day";
-
-export type YearNumber = number;
-export type WeekNumber = number;
 
 export type Week = {
   days: Day[];
@@ -10,20 +7,20 @@ export type Week = {
 };
 
 export type WeekInfo = {
-  year: YearNumber;
-  weekNumber: WeekNumber;
+  year: number;
+  weekNumber: number;
   timeRange: TimeRange;
   days: Date[];
 };
 
 export type DateInfo = {
-  year: YearNumber;
-  week: WeekNumber;
+  year: number;
+  week: number;
 };
 
 export type ActivityFilter = string[];
 
-export type ActivityFilterQuery = Id[];
+export type ActivityFilterQuery = string[];
 
 export enum WeekSocketEventTypeEnum { // todo move to features
   UpdateCalendar = "update calendar",

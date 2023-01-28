@@ -6,7 +6,6 @@ import {
   groupActivities,
   Student,
 } from "@routine-support/domains";
-import { TimeString } from "@routine-support/types";
 import { parseTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { Theme } from "apps/mobile/src/theme";
@@ -33,7 +32,7 @@ export type ActivityComponent = React.FC<{
 interface CalendarProps {
   loading: boolean;
   isToday: boolean;
-  timeRange?: TimeString[];
+  timeRange?: string[];
   activities?: ActivityType[];
   students: Student[];
   onActivityPress: (activity: ActivityType) => void;
@@ -52,7 +51,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 }) => {
   const activitiesGroups = groupActivities(activities);
 
-  const getGroupByTime = (time: TimeString, activitiesGroups: ActivitiesGroupType[]) => {
+  const getGroupByTime = (time: string, activitiesGroups: ActivitiesGroupType[]) => {
     const [hour] = time.split(":");
     const filteredGroup = activitiesGroups.find(
       (activityGroup) => activityGroup.start.get("h") === Number(hour)
@@ -61,9 +60,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     return filteredGroup;
   };
 
-  console.log(activitiesGroups);
-
-  const renderActivitiesGroup = (time: TimeString) => {
+  const renderActivitiesGroup = (time: string) => {
     const group = getGroupByTime(time, activitiesGroups);
 
     return (

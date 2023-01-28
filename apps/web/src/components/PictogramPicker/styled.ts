@@ -1,11 +1,10 @@
 import UIEditIcon from "@mui/icons-material/Edit";
-import { ImageUrl } from "@routine-support/types";
 import styled, { css } from "styled-components";
 
 import { Button } from "../../styled/components/Button";
 import { Typography } from "../../styled/components/Typography";
 
-export const Wrapper = styled.div<{ backgroundImage?: ImageUrl }>`
+export const Wrapper = styled.div<{ backgroundImage?: string }>`
   position: relative;
   display: flex;
   flex-direction: column;

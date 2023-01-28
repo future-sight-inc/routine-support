@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ImageUrl, Pictogram } from "@routine-support/types";
+import { Pictogram } from "@routine-support/types";
 import { useTranslation } from "react-i18next";
 
 import { Modal } from "../Modal";
@@ -10,13 +10,13 @@ import { createPictogramDataTestId, PictogramPickerLocators } from "./locators";
 import * as S from "./styled";
 
 interface PictogramPickerProps {
-  value?: ImageUrl;
+  value?: string;
   pictograms: Pictogram[];
-  onChange: (pictogram: ImageUrl) => void;
+  onChange: (pictogram: string) => void;
 }
 
 export interface PictogramPickerActions {
-  onChange: (pictogram: ImageUrl) => void;
+  onChange: (pictogram: string) => void;
 }
 
 export const PictogramPicker: React.FC<PictogramPickerProps> = ({

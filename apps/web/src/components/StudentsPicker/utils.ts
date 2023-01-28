@@ -1,5 +1,4 @@
 import { Student } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 
 export const filterStudents = ({
   students,
@@ -7,7 +6,7 @@ export const filterStudents = ({
   filter,
 }: {
   students: Student[];
-  selectedStudents: Id[];
+  selectedStudents: string[];
   filter: string;
 }) => {
   let filtered = students;
