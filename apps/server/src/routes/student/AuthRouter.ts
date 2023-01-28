@@ -1,6 +1,6 @@
-import { WeekSocketEventTypeEnum } from "@routine-support/domains";
+import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
-import { Router } from "express";
+import { Response, Router } from "express";
 import { getAuthCookie } from "../../utils/getAuthCookie";
 import { studentAuthorization } from "../../middleware/studentAuthorization";
 import { emitToUser } from "../../main";
@@ -9,7 +9,7 @@ import { StudentModel } from "../../db/models/Student";
 
 export const authRouter = Router();
 
-authRouter.post("/login", (req, res) => {
+authRouter.post("/login", (req, res: Response<Student>) => {
   StudentModel.findById(req.body.id, (err, result) => {
     if (err || !result) {
       return res.status(401).send(err);

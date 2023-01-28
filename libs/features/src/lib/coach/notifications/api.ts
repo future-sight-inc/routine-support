@@ -1,4 +1,8 @@
-import { NotificationsGroup } from "@routine-support/domains";
+import {
+  NotificationsGroup,
+  NotificationsGroupJson,
+  parseNotificationsGroupJson,
+} from "@routine-support/domains";
 import { AxiosInstance, AxiosResponse } from "axios";
 
 export const createCoachNotificationAPI = (client: AxiosInstance) => ({
@@ -8,12 +12,12 @@ export const createCoachNotificationAPI = (client: AxiosInstance) => ({
   }> => {
     const response: AxiosResponse<{
       notViewedCount: number;
-      notificationsGroups: NotificationsGroup[];
+      notificationsGroups: NotificationsGroupJson[];
     }> = await client.get("/notifications");
 
     return {
       notViewedCount: response.data.notViewedCount,
-      notificationsGroups: response.data.notificationsGroups,
+      notificationsGroups: response.data.notificationsGroups.map(parseNotificationsGroupJson),
     };
   },
   viewNotification: async (id: string): Promise<AxiosResponse> => {

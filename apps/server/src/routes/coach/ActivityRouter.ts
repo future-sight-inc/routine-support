@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { WeekSocketEventTypeEnum } from "@routine-support/domains";
+import { Response, Router } from "express";
+import { ActivityJson, stringifyActivity, WeekSocketEventTypeEnum } from "@routine-support/domains";
 
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { emitToUser } from "../../main";
@@ -9,11 +9,11 @@ import { StudentModel } from "../../db/models/Student";
 
 export const activityRouter = Router();
 
-activityRouter.get("/:id", async (req, res) => {
+activityRouter.get("/:id", async (req, res: Response<ActivityJson | undefined>) => {
   const activity = await ActivityModel.findById(req.params.id);
 
   if (activity) {
-    res.status(200).send(activity);
+    res.status(200).send(stringifyActivity(activity));
   }
 
   return res.sendStatus(404);

@@ -21,6 +21,12 @@ export type Activity = {
   confirmation: ConfirmationInfo;
 };
 
+export type ActivityJson = Omit<Activity, "date" | "start" | "end"> & {
+  date: string;
+  start: string;
+  end: string;
+};
+
 export type ConfirmationInfo = {
   [key in string]: {
     students: string[];

@@ -1,17 +1,19 @@
+import { DayJson, stringifyDay } from "@routine-support/domains";
 import { parseDate, stringifyDate } from "@routine-support/utils";
-import { Router } from "express";
+import { Response, Router } from "express";
 import { filterActivitiesForStudent } from "../../utils/filterActivitiesForStudent";
 import { getActivitiesOfWeek } from "../../utils/getActivitiesOfWeek";
 import { getTimeRange } from "../../utils/getTimeRange";
 
 export const dayRouter = Router();
 
-dayRouter.get("/:date", async (req, res) => {
+dayRouter.get("/:date", async (req, res: Response<DayJson>) => {
   const { date } = req.params;
+  const currentDate = parseDate(date);
   const student = res.locals.student;
 
   const activitiesOfWeek = await getActivitiesOfWeek({
-    currentDate: parseDate(date),
+    currentDate,
     coachId: student.coachId,
   });
 
@@ -22,9 +24,11 @@ dayRouter.get("/:date", async (req, res) => {
     _id: student._id,
   });
 
-  return res.status(200).send({
-    date,
-    activities: studentActivities,
-    timeRange: getTimeRange(),
-  });
+  return res.status(200).send(
+    stringifyDay({
+      date: currentDate,
+      activities: studentActivities,
+      timeRange: getTimeRange(),
+    })
+  );
 });

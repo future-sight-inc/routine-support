@@ -1,24 +1,32 @@
-import { Router } from "express";
+import { NotificationsGroupJson, stringifyNotificationsGroup } from "@routine-support/domains";
+import { Response, Router } from "express";
 import { NotificationModel } from "../../db/models/Notification";
 import { coachAuthorization } from "../../middleware/coachAuthorization";
 import { groupNotifications } from "../../utils/groupNotifications";
 
 export const notificationsRouter = Router();
 
-notificationsRouter.get("/", coachAuthorization, async (__, res) => {
-  const notifications = await NotificationModel.find({
-    coachId: res.locals.coach._id,
-  }).lean();
+notificationsRouter.get(
+  "/",
+  coachAuthorization,
+  async (
+    __,
+    res: Response<{ notViewedCount: number; notificationsGroups: NotificationsGroupJson[] }>
+  ) => {
+    const notifications = await NotificationModel.find({
+      coachId: res.locals.coach._id,
+    }).lean();
 
-  const notViewedCount =
-    notifications.filter((notification) => !notification.isViewed)?.length || 0;
-  const notificationGroups = groupNotifications(notifications);
+    const notViewedCount =
+      notifications.filter((notification) => !notification.isViewed)?.length || 0;
+    const notificationGroups = groupNotifications(notifications);
 
-  return res.status(200).send({
-    notViewedCount,
-    notificationsGroups: notificationGroups,
-  });
-});
+    return res.status(200).send({
+      notViewedCount,
+      notificationsGroups: notificationGroups.map(stringifyNotificationsGroup),
+    });
+  }
+);
 
 notificationsRouter.put("/view/:id", coachAuthorization, async (req, res) => {
   await NotificationModel.findByIdAndUpdate(req.params.id, {

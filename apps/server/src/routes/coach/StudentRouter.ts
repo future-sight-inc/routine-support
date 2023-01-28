@@ -1,6 +1,6 @@
-import { WeekSocketEventTypeEnum } from "@routine-support/domains";
+import { Student, WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
-import { Router } from "express";
+import { Response, Router } from "express";
 import { ActivityModel } from "../../db/models/Activity";
 import { StudentModel } from "../../db/models/Student";
 import { emitToUser } from "../../main";
@@ -8,7 +8,7 @@ import { coachAuthorization } from "../../middleware/coachAuthorization";
 
 export const studentRouter = Router();
 
-studentRouter.post("/", coachAuthorization, async (req, res) => {
+studentRouter.post("/", coachAuthorization, async (req, res: Response<Student>) => {
   StudentModel.create({ ...req.body }, (err, result) => {
     if (err) {
       console.log(err);

@@ -1,16 +1,25 @@
 import { TimeRange } from "@routine-support/types";
-import { Day } from "../day";
+import { Day, DayJson } from "../day";
 
 export type Week = {
   days: Day[];
   weekInfo: WeekInfo;
 };
 
+export type WeekJson = {
+  days: DayJson[];
+  weekInfo: WeekInfoJson;
+};
+
 export type WeekInfo = {
   year: number;
-  weekNumber: number;
+  week: number;
   timeRange: TimeRange;
   days: Date[];
+};
+
+export type WeekInfoJson = Omit<WeekInfo, "days"> & {
+  days: string[];
 };
 
 export type DateInfo = {

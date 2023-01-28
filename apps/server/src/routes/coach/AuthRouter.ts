@@ -1,4 +1,6 @@
-import { Router } from "express";
+import { Coach } from "@routine-support/domains";
+import { SubmitErrorData } from "@routine-support/types";
+import { Response, Router } from "express";
 import { AuthNames } from "../../constants/AuthNames";
 import { ActivityModel } from "../../db/models/Activity";
 import { CoachModel } from "../../db/models/Coach";
@@ -11,7 +13,7 @@ import { validateCoach } from "../../utils/validateCoach";
 
 export const authRouter = Router();
 
-authRouter.post("/", async (req, res) => {
+authRouter.post("/", async (req, res: Response<Coach | SubmitErrorData>) => {
   const validationData = await validateCoach(req.body);
 
   if (validationData && !validationData.isValid) {
@@ -34,14 +36,14 @@ authRouter.post("/", async (req, res) => {
   );
 });
 
-authRouter.post("/login", async (req, res) => {
+authRouter.post("/login", async (req, res: Response<Coach | SubmitErrorData>) => {
   const { email, password } = req.body;
 
   CoachModel.findOne(
     { email: email.toLowerCase(), password: hashPassword(password) },
     (err, result) => {
       if (err || !result) {
-        return res.status(401).send({ error: "Invalid credentials" });
+        return res.status(401).send({ error: "Invalid credentials", isValid: false });
       }
 
       const cookie = getAuthCookie(AuthNames.Coach, result);
@@ -51,11 +53,11 @@ authRouter.post("/login", async (req, res) => {
   );
 });
 
-authRouter.get("/", coachAuthorization, (__, res) => {
+authRouter.get("/", coachAuthorization, (__, res: Response<Coach>) => {
   return res.status(200).send(res.locals[AuthNames.Coach]);
 });
 
-authRouter.delete("/", coachAuthorization, async (__, res) => {
+authRouter.delete("/", coachAuthorization, async (__, res: Response<Coach>) => {
   const coach = res.locals[AuthNames.Coach];
 
   await CoachModel.findByIdAndDelete(coach._id);

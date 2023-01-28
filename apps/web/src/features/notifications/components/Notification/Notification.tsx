@@ -24,6 +24,8 @@ export const Notification: React.FC<NotificationProps> = ({
   onDelete,
   onView,
 }) => {
+  console.log(activity)
+
   const containerRef = createRef<HTMLDivElement>();
   const isVisible = useOnScreen(containerRef);
 

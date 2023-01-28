@@ -1,10 +1,11 @@
 import { Activity, RepeatTypeEnum } from "@routine-support/domains";
+import { parseDate, parseTime, stringifyDate, stringifyTime } from "@routine-support/utils";
 import { model, Schema } from "mongoose";
 
 const activitySchema = new Schema(
   {
     name: {
-      type: Schema.Types.Date,
+      type: Schema.Types.String,
       required: true,
     },
     pictogram: {
@@ -14,14 +15,20 @@ const activitySchema = new Schema(
     date: {
       type: Schema.Types.Date,
       required: true,
+      get: (date) => parseDate(date),
+      set: (date) => stringifyDate(date),
     },
     start: {
       type: Schema.Types.Date,
       required: true,
+      get: (date) => parseTime(date),
+      set: (date) => stringifyTime(date),
     },
     end: {
       type: Schema.Types.Date,
       required: true,
+      get: (date) => parseTime(date),
+      set: (date) => stringifyDate(date),
     },
     coachId: {
       type: Schema.Types.ObjectId,
@@ -51,7 +58,7 @@ const activitySchema = new Schema(
       default: {},
     },
   },
-  { versionKey: false, minimize: false }
+  { versionKey: false, minimize: false, toObject: { getters: true } }
 );
 
 export const ActivityModel = model<Activity>("activity", activitySchema);

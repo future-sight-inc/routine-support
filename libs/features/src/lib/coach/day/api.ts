@@ -1,4 +1,4 @@
-import { ActivityFilter, createActivityFilterParam, Day } from "@routine-support/domains";
+import { ActivityFilter, createActivityFilterParam, Day, DayJson, parseDayJson } from "@routine-support/domains";
 import { AxiosInstance, AxiosResponse } from "axios";
 
 export const createCoachDayAPI = (client: AxiosInstance) => ({
@@ -9,10 +9,10 @@ export const createCoachDayAPI = (client: AxiosInstance) => ({
     date: string;
     activityFilter: ActivityFilter;
   }): Promise<Day> => {
-    const response: AxiosResponse<Day> = await client.get(`/day/${date}`, {
+    const response: AxiosResponse<DayJson> = await client.get(`/day/${date}`, {
       params: { filter: createActivityFilterParam(activityFilter) },
     });
 
-    return response.data;
+    return parseDayJson(response.data);
   },
 });

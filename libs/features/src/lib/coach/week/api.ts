@@ -1,13 +1,15 @@
-import { ActivityFilter, Week } from "@routine-support/domains";
+import { ActivityFilter, parseWeekJson, Week, WeekJson } from "@routine-support/domains";
 import { AxiosInstance, AxiosResponse } from "axios";
 import { createActivityFilterParam } from "libs/domains/src/lib/week/utils/createActivityFilterParam";
 
 export const createCoachWeekAPI = (client: AxiosInstance) => ({
   getWeek: async (year: number, week: number, filter: ActivityFilter): Promise<Week> => {
-    const response: AxiosResponse<Week> = await client.get(`/week/${year}/${week}`, {
+    const response: AxiosResponse<WeekJson> = await client.get(`/week/${year}/${week}`, {
       params: { filter: createActivityFilterParam(filter) },
     });
 
-    return response.data;
+    console.log(response.data, parseWeekJson(response.data));
+
+    return parseWeekJson(response.data);
   },
 });

@@ -1,6 +1,6 @@
-import { getDaysOfWeek } from "@routine-support/domains";
+import { getDaysOfWeek, stringifyWeek, WeekJson } from "@routine-support/domains";
 import { setISOWeek, setYear } from "date-fns";
-import { Router } from "express";
+import { Response, Router } from "express";
 import { filterActivities } from "../../utils/filterActivities";
 import { getActivitiesOfWeek } from "../../utils/getActivitiesOfWeek";
 import { getDaysOfCalendarWeek } from "../../utils/getDaysOfCalendarWeek";
@@ -9,7 +9,7 @@ import { parseActivitiesFilter } from "../../utils/parseActivitiesFilter";
 
 export const weekRouter = Router();
 
-weekRouter.get("/:year/:week", async (req, res) => {
+weekRouter.get("/:year/:week", async (req, res: Response<WeekJson>) => {
   const year = Number(req.params.year);
   const week = Number(req.params.week);
 
@@ -22,13 +22,15 @@ weekRouter.get("/:year/:week", async (req, res) => {
   });
   const filteredActivities = filterActivities(activitiesOfTheWeek, parsedFilter);
 
-  res.status(200).send({
-    days: getDaysOfCalendarWeek(filteredActivities, { week, year }),
-    year,
-    week,
-    weekInfo: {
-      days: getDaysOfWeek({ week, year }),
-      timeRange: getTimeRange(),
-    },
-  });
+  res.status(200).send(
+    stringifyWeek({
+      days: getDaysOfCalendarWeek(filteredActivities, { week, year }),
+      weekInfo: {
+        year,
+        week,
+        days: getDaysOfWeek({ week, year }),
+        timeRange: getTimeRange(),
+      },
+    })
+  );
 });

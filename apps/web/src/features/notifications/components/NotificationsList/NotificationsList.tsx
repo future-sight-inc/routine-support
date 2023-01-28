@@ -46,7 +46,7 @@ export const NotificationsList: React.FC<NotificationsListProps> = ({
               <S.NotificationGroupDate>
                 {isToday(notificationGroup.date)
                   ? t("Today")
-                  : format(notificationGroup.date, "dddd DD MMM")}
+                  : format(notificationGroup.date, "dddd dd MMM")}
               </S.NotificationGroupDate>
               <S.NotificationWrapper>
                 {notificationGroup.notifications.map((notification, index) => (
