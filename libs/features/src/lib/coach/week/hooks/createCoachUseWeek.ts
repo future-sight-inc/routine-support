@@ -1,9 +1,4 @@
-import {
-  ActivityFilter,
-  createWeekFromSchema,
-  getDateInfoFromMoment,
-} from "@routine-support/domains";
-import { Moment } from "moment";
+import { ActivityFilter, getDateInfoFromDate } from "@routine-support/domains";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createCoachWeekAPI } from "../api";
@@ -31,11 +26,11 @@ const useWeek = ({ weekApi, useStoreState }: Deps) => {
     getWeek();
   }, []);
 
-  const getWeek = async (data?: { date?: Moment; activityFilter?: ActivityFilter }) => {
+  const getWeek = async (data?: { date?: Date; activityFilter?: ActivityFilter }) => {
     try {
       const currentDateInfo = data?.date
-        ? getDateInfoFromMoment(data?.date)
-        : getDateInfoFromMoment(getSavedCurrentDate());
+        ? getDateInfoFromDate(data?.date)
+        : getDateInfoFromDate(getSavedCurrentDate());
       const activityFilter = data?.activityFilter || getSavedActivityFilter();
 
       const week = await weekApi.getWeek(
@@ -54,7 +49,7 @@ const useWeek = ({ weekApi, useStoreState }: Deps) => {
 
   return {
     models: {
-      week: week ? createWeekFromSchema(week) : null,
+      week,
       currentDate: getSavedCurrentDate(),
       loading,
       error,

@@ -1,6 +1,5 @@
-import { Moment } from "moment";
-import { DateString, Id, TimeRange } from "@routine-support/types";
-import { Day, DaySchema } from "../day";
+import { Id, TimeRange } from "@routine-support/types";
+import { Day } from "../day";
 
 export type YearNumber = number;
 export type WeekNumber = number;
@@ -10,24 +9,12 @@ export type Week = {
   weekInfo: WeekInfo;
 };
 
-export interface WeekSchema {
-  days: DaySchema[];
-  weekInfo: WeekInfoSchema;
-}
-
 export type WeekInfo = {
   year: YearNumber;
   weekNumber: WeekNumber;
   timeRange: TimeRange;
-  days: Moment[];
+  days: Date[];
 };
-
-export interface WeekInfoSchema {
-  year: YearNumber;
-  weekNumber: WeekNumber;
-  timeRange: TimeRange;
-  days: DateString[];
-}
 
 export type DateInfo = {
   year: YearNumber;

@@ -1,6 +1,4 @@
-export { getMinutes } from "./getMinutes";
 export { indexOfTimeRange } from "./indexOfTimeRange";
-export { isToday } from "./isToday";
 export { parseDate } from "./parseDate";
 export { parseTime } from "./parseTime";
 export { pxToNumber } from "./pxToNumber";

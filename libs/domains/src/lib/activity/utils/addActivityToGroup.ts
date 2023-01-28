@@ -8,11 +8,11 @@ export const addActivityToGroup = (
   const shouldUpdateEnd = activity.end >= group.end;
 
   if (shouldUpdateStart) {
-    group.start = activity.start.clone();
+    group.start = activity.start;
   }
 
   if (shouldUpdateEnd) {
-    group.end = activity.end.clone();
+    group.end = activity.end;
   }
 
   group.activities.push(activity);

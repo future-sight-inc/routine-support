@@ -1,6 +1,5 @@
-import { Activity, createDayFromSchema } from "@routine-support/domains";
+import { Activity } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
-import moment from "moment";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createStudentActivityAPI } from "../../../coach";
@@ -23,7 +22,7 @@ const useDay = ({ studentDayApi, studentActivityApi, useStoreState }: Deps) => {
   } = useStoreState();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [currentDate, setCurrentDate] = useState(moment());
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
     getDay();
@@ -62,7 +61,7 @@ const useDay = ({ studentDayApi, studentActivityApi, useStoreState }: Deps) => {
   };
 
   return {
-    models: { loading, day: day ? createDayFromSchema(day) : null, currentDate },
+    models: { loading, day, currentDate },
     operations: { getDay, confirmActivity, onDateSelect: setCurrentDate },
   };
 };

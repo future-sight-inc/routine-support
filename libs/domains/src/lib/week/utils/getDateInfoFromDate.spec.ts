@@ -1,5 +1,5 @@
 import { parseDate } from "@routine-support/utils";
-import { getDateInfoFromMoment } from "./getDateInfoFromMoment";
+import { getDateInfoFromDate } from "./getDateInfoFromDate";
 import {
   FIRST_WEEK_OF_YEAR,
   FIRST_WEEK_OF_YEAR_INFO,
@@ -11,12 +11,12 @@ import {
   WEEK_OF_MONTH_INFO,
 } from "./mocks";
 
-describe("getDateInfoFromMoment", () => {
+describe("getDateInfoFromDate", () => {
   it("Regular week", () => {
     const mondayDateString = WEEK_OF_MONTH[0];
     const mondayMoment = parseDate(mondayDateString);
 
-    expect(getDateInfoFromMoment(mondayMoment)).toStrictEqual(
+    expect(getDateInfoFromDate(mondayMoment)).toStrictEqual(
       WEEK_OF_MONTH_INFO
     );
   });
@@ -25,7 +25,7 @@ describe("getDateInfoFromMoment", () => {
     const mondayDateString = WEEK_BETWEEN_MONTHS[0];
     const mondayMoment = parseDate(mondayDateString);
 
-    expect(getDateInfoFromMoment(mondayMoment)).toStrictEqual(
+    expect(getDateInfoFromDate(mondayMoment)).toStrictEqual(
       WEEK_BETWEEN_MONTHS_INFO
     );
   });
@@ -34,7 +34,7 @@ describe("getDateInfoFromMoment", () => {
     const mondayDateString = WEEK_BETWEEN_YEARS[0];
     const mondayMoment = parseDate(mondayDateString);
 
-    expect(getDateInfoFromMoment(mondayMoment)).toStrictEqual(
+    expect(getDateInfoFromDate(mondayMoment)).toStrictEqual(
       WEEK_BETWEEN_YEARS_INFO
     );
   });
@@ -43,7 +43,7 @@ describe("getDateInfoFromMoment", () => {
     const mondayDateString = FIRST_WEEK_OF_YEAR[0];
     const mondayMoment = parseDate(mondayDateString);
 
-    expect(getDateInfoFromMoment(mondayMoment)).toStrictEqual(
+    expect(getDateInfoFromDate(mondayMoment)).toStrictEqual(
       FIRST_WEEK_OF_YEAR_INFO
     );
   });

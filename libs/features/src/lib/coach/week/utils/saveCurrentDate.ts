@@ -1,6 +1,5 @@
 import { stringifyDate } from "@routine-support/utils";
-import { Moment } from "moment";
 
-export const saveCurrentDate = (date: Moment) => {
+export const saveCurrentDate = (date: Date) => {
   localStorage.setItem("currentDate", stringifyDate(date));
 };

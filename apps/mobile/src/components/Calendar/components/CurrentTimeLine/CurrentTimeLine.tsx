@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import { parseTime, stringifyTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { Theme } from "apps/mobile/src/theme";
-import { getTimeInHours } from "apps/mobile/src/utils/getTimeInHours";
-import moment from "moment";
+import { getMinutes } from "date-fns";
 import { StyleSheet, View } from "react-native";
 
 interface CurrentTimeLineProps {
@@ -18,12 +16,12 @@ export const CurrentTimeLine: React.FC<CurrentTimeLineProps> = ({
   timeColumnWidth,
   columnsGap,
 }) => {
-  const [currentTime, setCurrentTime] = useState(stringifyTime(moment()));
-  const timeInHours = getTimeInHours(parseTime(currentTime));
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const timeInHours = getMinutes(currentTime) / 60;
   const offsetTop = timeInHours * rowHeight + (timeInHours % 1);
 
   useEffect(() => {
-    const intervalId = setInterval(() => setCurrentTime(stringifyTime(moment())), 1000);
+    const intervalId = setInterval(() => setCurrentTime(new Date()), 1000);
 
     return () => clearInterval(intervalId);
   }, []);

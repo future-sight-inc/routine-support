@@ -1,15 +1,11 @@
-import { ActivitySchema, DateInfo, DaySchema } from "@routine-support/domains";
-import { getDateStringRangeFromWeek } from "./getDateStringRangeFromWeek";
+import { Activity, DateInfo, Day, getDaysOfWeek } from "@routine-support/domains";
 import { getTimeRange } from "./getTimeRange";
 
-export function getDaysOfCalendarWeek(
-  activities: ActivitySchema[],
-  weekInfo: DateInfo
-): DaySchema[] {
-  const daysOfWeek = getDateStringRangeFromWeek(weekInfo);
+export function getDaysOfCalendarWeek(activities: Activity[], weekInfo: DateInfo): Day[] {
+  const daysOfWeek = getDaysOfWeek(weekInfo);
 
   const daysOfCalendarWeek = daysOfWeek.map((day) => {
-    const calendarDay: DaySchema = {
+    const calendarDay: Day = {
       date: day,
       activities: [],
       timeRange: getTimeRange(),

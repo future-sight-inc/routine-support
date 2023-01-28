@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-import { NotificationsGroupSchema } from "../../../../../domains/src/lib/notification/types";
+import { NotificationsGroup } from "@routine-support/domains";
 
 export interface NotificationsState {
   notViewedCount: number;
-  notificationsGroups: NotificationsGroupSchema[];
+  notificationsGroups: NotificationsGroup[];
 }
 
 const initialState: NotificationsState = {
@@ -20,7 +19,7 @@ export const notificationsSlice = createSlice({
       state,
       action: PayloadAction<{
         notViewedCount: number;
-        notificationsGroups: NotificationsGroupSchema[];
+        notificationsGroups: NotificationsGroup[];
       }>
     ) => {
       state.notViewedCount = action.payload.notViewedCount;

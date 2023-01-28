@@ -1,6 +1,6 @@
-import { Moment } from "moment";
+import { format } from "date-fns";
 import { TIME_FORMAT } from "./constants";
 
-export const stringifyTime = (time: Moment): string => {
-  return time.format(TIME_FORMAT);
+export const stringifyTime = (time: Date): string => {
+  return format(time, TIME_FORMAT);
 };

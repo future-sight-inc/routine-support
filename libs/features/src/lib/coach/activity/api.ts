@@ -1,19 +1,16 @@
-import { Activity, createSchemaFromActivity } from "@routine-support/domains";
+import { Activity } from "@routine-support/domains";
 import { Id } from "@routine-support/types";
 import { stringifyDate } from "@routine-support/utils";
 import { AxiosInstance, AxiosResponse } from "axios";
 
 export const createCoachActivityAPI = (client: AxiosInstance) => ({
   createActivity: async (data: Activity): Promise<AxiosResponse> => {
-    const request: AxiosResponse = await client.post("/activity", createSchemaFromActivity(data));
+    const request: AxiosResponse = await client.post("/activity", data);
 
     return request;
   },
   updateActivity: async (activity: Activity): Promise<AxiosResponse> => {
-    const request: AxiosResponse = await client.put(
-      `/activity/${activity._id}`,
-      createSchemaFromActivity(activity)
-    );
+    const request: AxiosResponse = await client.put(`/activity/${activity._id}`, activity);
 
     return request;
   },

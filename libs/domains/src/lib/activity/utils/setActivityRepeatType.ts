@@ -1,12 +1,5 @@
-import {
-  Activity,
-  ActivitySchema,
-  RepeatTypeEnum,
-} from "@routine-support/domains";
+import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 
-export const setActivityRepeatType = (
-  activity: ActivitySchema | Activity,
-  repeatType: RepeatTypeEnum
-): void => {
+export const setActivityRepeatType = (activity: Activity, repeatType: RepeatTypeEnum): void => {
   activity.repeatType = repeatType;
 };

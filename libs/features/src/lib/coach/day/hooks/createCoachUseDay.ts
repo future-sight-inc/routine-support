@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { ActivityFilter, createDayFromSchema, Student } from "@routine-support/domains";
+import { ActivityFilter, Student } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
-import moment from "moment";
 import { useDispatch } from "react-redux";
 import { createCoachDayAPI } from "../api";
 import { coachDayActions, DayState } from "../slice";
@@ -23,7 +22,7 @@ const useDay = ({ dayApi, useStoreState }: Deps) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  const [currentDate, setCurrentDate] = useState(moment());
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   const [activityFilter, setActivityFilter] = useState<ActivityFilter>([]);
 
@@ -56,7 +55,7 @@ const useDay = ({ dayApi, useStoreState }: Deps) => {
   return {
     models: {
       loading,
-      day: day ? createDayFromSchema(day) : null,
+      day,
       currentDate,
       activityFilter,
     },

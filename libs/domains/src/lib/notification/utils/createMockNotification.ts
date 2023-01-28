@@ -1,9 +1,4 @@
-import {
-  Activity,
-  createMockActivity,
-  Notification,
-} from "@routine-support/domains";
-import moment from "moment";
+import { Activity, createMockActivity, Notification } from "@routine-support/domains";
 import * as uuid from "uuid";
 
 export const createMockNotification = (
@@ -15,7 +10,7 @@ export const createMockNotification = (
   return {
     _id: uuid.v4(),
     coachId: uuid.v4(),
-    date: moment(),
+    date: new Date(),
     activity,
     isViewed: false,
     ...notificationData,

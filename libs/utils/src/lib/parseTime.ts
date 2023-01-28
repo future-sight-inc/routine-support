@@ -1,10 +1,11 @@
-import { DateString, TimeString } from "@routine-support/types";
-import moment, { Moment } from "moment";
+import { TimeString } from "@routine-support/types";
+import { parse } from "date-fns";
+import { TIME_FORMAT } from "./constants";
 
-export const parseTime = (time: TimeString, baseDate?: DateString): Moment => {
+export const parseTime = (time: TimeString, baseDate?: Date): Date => {
   if (baseDate) {
-    return moment(`${baseDate} ${time}`, "DD.MM.YYYY hh:mm");
+    return parse(time, TIME_FORMAT, baseDate);
   } else {
-    return moment(time, "hh:mm");
+    return parse(time, TIME_FORMAT, new Date());
   }
 };

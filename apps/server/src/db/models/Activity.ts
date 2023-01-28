@@ -1,26 +1,26 @@
-import { ActivitySchema, RepeatTypeEnum } from "@routine-support/domains";
+import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 import { model, Schema } from "mongoose";
 
 const activitySchema = new Schema(
   {
     name: {
-      type: String,
+      type: Schema.Types.Date,
       required: true,
     },
     pictogram: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
     },
     date: {
-      type: String,
+      type: Schema.Types.Date,
       required: true,
     },
     start: {
-      type: String,
+      type: Schema.Types.Date,
       required: true,
     },
     end: {
-      type: String,
+      type: Schema.Types.Date,
       required: true,
     },
     coachId: {
@@ -28,7 +28,7 @@ const activitySchema = new Schema(
       required: true,
     },
     repeatType: {
-      type: Number,
+      type: Schema.Types.Number,
       required: true,
       default: RepeatTypeEnum.None,
     },
@@ -54,4 +54,4 @@ const activitySchema = new Schema(
   { versionKey: false, minimize: false }
 );
 
-export const ActivityModel = model<ActivitySchema>("activity", activitySchema);
+export const ActivityModel = model<Activity>("activity", activitySchema);

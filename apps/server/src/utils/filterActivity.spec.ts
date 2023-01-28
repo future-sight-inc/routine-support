@@ -1,6 +1,6 @@
 import {
   addStudentToActivity,
-  createMockActivitySchema,
+  createMockActivity,
   createMockFilter,
   createMockStudent,
 } from "@routine-support/domains";
@@ -11,7 +11,7 @@ const OTHER_STUDENT = createMockStudent();
 
 describe("filterActivities: get common", () => {
   it("Common activity. Should be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
     const filter = createMockFilter({ isCommon: true });
     const isActivityAvailable = filterActivity(activity, filter);
 
@@ -19,7 +19,7 @@ describe("filterActivities: get common", () => {
   });
 
   it("Student's activity. Shouldn't be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     addStudentToActivity(activity, TARGET_STUDENT);
     const filter = createMockFilter({ isCommon: true });
@@ -31,7 +31,7 @@ describe("filterActivities: get common", () => {
 
 describe("filterActivities: get only target student's activity", () => {
   it("Common activity. Shouldn't be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
     const filter = createMockFilter({});
     const isActivityAvailable = filterActivity(activity, filter);
 
@@ -39,7 +39,7 @@ describe("filterActivities: get only target student's activity", () => {
   });
 
   it("Student's activity. Should be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     addStudentToActivity(activity, TARGET_STUDENT);
     const filter = createMockFilter({ students: [TARGET_STUDENT._id] });
@@ -49,7 +49,7 @@ describe("filterActivities: get only target student's activity", () => {
   });
 
   it("Other student's activity. Shouldn't be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     addStudentToActivity(activity, OTHER_STUDENT);
     const filter = createMockFilter({ students: [TARGET_STUDENT._id] });
@@ -61,7 +61,7 @@ describe("filterActivities: get only target student's activity", () => {
 
 describe("filterActivities: get target and other students activity", () => {
   it("Both students activity. Should be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     addStudentToActivity(activity, TARGET_STUDENT);
     addStudentToActivity(activity, OTHER_STUDENT);
@@ -74,7 +74,7 @@ describe("filterActivities: get target and other students activity", () => {
   });
 
   it("Target student's activity. Should be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     addStudentToActivity(activity, TARGET_STUDENT);
     const filter = createMockFilter({
@@ -86,7 +86,7 @@ describe("filterActivities: get target and other students activity", () => {
   });
 
   it("Common activity. Shouldn't be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
     const filter = createMockFilter({
       students: [TARGET_STUDENT._id, OTHER_STUDENT._id],
     });
@@ -98,7 +98,7 @@ describe("filterActivities: get target and other students activity", () => {
 
 describe("filterActivities: get common, target and other student's activities", () => {
   it("Common activity. Should be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
     const filter = createMockFilter({
       isCommon: true,
       students: [TARGET_STUDENT._id, OTHER_STUDENT._id],
@@ -109,7 +109,7 @@ describe("filterActivities: get common, target and other student's activities", 
   });
 
   it("Target student's activity. Should be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     addStudentToActivity(activity, TARGET_STUDENT);
     const filter = createMockFilter({
@@ -122,7 +122,7 @@ describe("filterActivities: get common, target and other student's activities", 
   });
 
   it("Both students activity. Should be available", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     addStudentToActivity(activity, TARGET_STUDENT);
     addStudentToActivity(activity, OTHER_STUDENT);

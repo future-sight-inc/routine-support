@@ -442,7 +442,7 @@ describe("MiniCalendar", () => {
 
     expect(
       getByTestId(container, MiniCalendarLocators.CurrentMonth)
-    ).toHaveTextContent(today.format("MMM YYYY"));
+    ).toHaveTextContent(today.format("MMM yyyy"));
     expect(queryAllByTestId(container, /ActiveWeek-.*/)).toHaveLength(1);
     expect(
       queryByTestId(container, `ActiveWeek-${today.isoWeek()}-${today.year()}`)
@@ -454,7 +454,7 @@ describe("MiniCalendar", () => {
 
     expect(
       getByTestId(container, MiniCalendarLocators.CurrentMonth)
-    ).toHaveTextContent(calendarCurrentDate.format("MMM YYYY"));
+    ).toHaveTextContent(calendarCurrentDate.format("MMM yyyy"));
     expect(queryAllByTestId(container, /ActiveWeek-.*/)).toHaveLength(1);
     expect(
       queryByTestId(
@@ -479,7 +479,7 @@ describe("MiniCalendar", () => {
 
     expect(
       getByTestId(container, MiniCalendarLocators.CurrentMonth)
-    ).toHaveTextContent(calendarCurrentDate.format("MMM YYYY"));
+    ).toHaveTextContent(calendarCurrentDate.format("MMM yyyy"));
     expect(queryAllByTestId(container, /ActiveWeek-.*/)).toHaveLength(1);
     expect(
       queryByTestId(
@@ -494,7 +494,7 @@ describe("MiniCalendar", () => {
 
     expect(
       getByTestId(container, MiniCalendarLocators.CurrentMonth)
-    ).toHaveTextContent(today.format("MMM YYYY"));
+    ).toHaveTextContent(today.format("MMM yyyy"));
     expect(queryAllByTestId(container, /ActiveWeek-.*/)).toHaveLength(1);
     expect(
       queryByTestId(container, `ActiveWeek-${today.isoWeek()}-${today.year()}`)
@@ -516,7 +516,7 @@ describe("MiniCalendar", () => {
 
     expect(
       getByTestId(container, MiniCalendarLocators.CurrentMonth)
-    ).toHaveTextContent(calendarCurrentDate.format("MMM YYYY"));
+    ).toHaveTextContent(calendarCurrentDate.format("MMM yyyy"));
     expect(queryAllByTestId(container, /ActiveWeek-.*/)).toHaveLength(1);
     expect(
       queryByTestId(
@@ -531,7 +531,7 @@ describe("MiniCalendar", () => {
 
     expect(
       getByTestId(container, MiniCalendarLocators.CurrentMonth)
-    ).toHaveTextContent(today.format("MMM YYYY"));
+    ).toHaveTextContent(today.format("MMM yyyy"));
     expect(queryAllByTestId(container, /ActiveWeek-.*/)).toHaveLength(1);
     expect(
       queryByTestId(container, `ActiveWeek-${today.isoWeek()}-${today.year()}`)

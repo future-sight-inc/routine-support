@@ -1,15 +1,13 @@
 import React, { createRef } from "react";
 
 import { Activity, isTimeCrossed, Student, Week } from "@routine-support/domains";
-import { isToday, parseTime, stringifyTime } from "@routine-support/utils";
-import { stringifyDate } from "@routine-support/utils";
-import moment from "moment";
+import { parseTime, stringifyTime } from "@routine-support/utils";
+import { addHours, isToday, isWeekend } from "date-fns";
 
 import { ActivityGroup } from "./components/ActivityGroup";
 import { AddActivityIcon } from "./components/AddActivityIcon";
 import { useWeekCalendarComponent } from "./hooks";
 import * as S from "./styled";
-import { isWeekend } from "./utils";
 
 export interface WeekCalendarActions {
   openActivityModal: (activity: Activity) => void;
@@ -38,7 +36,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({ week, students, acti
           <S.Cell key={index}>{index > 0 && <S.Time>{time}</S.Time>}</S.Cell>
         ))}
         {isCurrentWeek && (
-          <S.CurrentTime top={timelineTopOffset}>{stringifyTime(moment())}</S.CurrentTime>
+          <S.CurrentTime top={timelineTopOffset}>{stringifyTime(new Date())}</S.CurrentTime>
         )}
       </S.TimeColumn>
       {week.weekInfo.days.map((day, index) => (
@@ -49,8 +47,8 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({ week, students, acti
                 isEmpty={
                   !groupedActivitiesByDays[index].some((group) =>
                     isTimeCrossed(group, {
-                      start: parseTime(time, stringifyDate(day)),
-                      end: parseTime(time, stringifyDate(day)).add(1, "hours"),
+                      start: parseTime(time, day),
+                      end: addHours(parseTime(time, day), 1),
                     })
                   )
                 }

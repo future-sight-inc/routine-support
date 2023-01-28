@@ -7,6 +7,7 @@ import {
 } from "@routine-support/domains";
 import { isToday } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
+import { format } from "date-fns";
 import { FlatList, StyleSheet, View } from "react-native";
 
 import { Notification } from "../Notification";
@@ -36,7 +37,7 @@ export const NotificationsList: React.FC<NotificationsListProps> = ({
       renderItem={({ item }) => (
         <View style={styles.groupWrapper}>
           <Typography style={styles.date} variant="text2" color="secondary">
-            {isToday(item.date) ? "Today" : item.date.format("dddd DD MMM")}
+            {isToday(item.date) ? "Today" : format(item.date, "dddd DD MMM")}
           </Typography>
           {item.notifications.map((notification, index) => (
             <Notification

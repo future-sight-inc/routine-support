@@ -1,4 +1,4 @@
-import { parseDate } from "@routine-support/utils";
+import { parseDate, stringifyDate } from "@routine-support/utils";
 import { Router } from "express";
 import { filterActivitiesForStudent } from "../../utils/filterActivitiesForStudent";
 import { getActivitiesOfWeek } from "../../utils/getActivitiesOfWeek";
@@ -15,7 +15,9 @@ dayRouter.get("/:date", async (req, res) => {
     coachId: student.coachId,
   });
 
-  const todaysActivities = activitiesOfWeek.filter((activity) => activity.date === date);
+  const todaysActivities = activitiesOfWeek.filter(
+    (activity) => stringifyDate(activity.date) === date
+  );
   const studentActivities = filterActivitiesForStudent(todaysActivities, {
     _id: student._id,
   });

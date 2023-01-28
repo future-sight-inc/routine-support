@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 
 import { useActivityForm } from "@routine-support/forms";
-import { isToday } from "@routine-support/utils";
 import { Button } from "apps/mobile/src/components/Button";
 import { Calendar } from "apps/mobile/src/components/Calendar";
 import { DaySelect } from "apps/mobile/src/components/DaySelect";
+import { isToday } from "date-fns";
 
 import { MainLayout } from "../coach/MainLayout";
 import { useCoach } from "../coach/useCoach";

@@ -1,9 +1,9 @@
-import { ActivityFilterQuery, ActivitySchema } from "@routine-support/domains";
+import { Activity, ActivityFilterQuery } from "@routine-support/domains";
 import { filterActivity } from "./filterActivity";
 
 export const filterActivities = (
-  activities: ActivitySchema[],
+  activities: Activity[],
   filter: ActivityFilterQuery = []
-): ActivitySchema[] => {
+): Activity[] => {
   return activities.filter((activity) => filterActivity(activity, filter));
 };

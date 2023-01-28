@@ -1,16 +1,15 @@
 import React from "react";
 
-import { Moment } from "moment";
 
 import { useMiniCalendarComponent } from "./hooks";
 import { MiniCalendar as UncontrolledMiniCalendar } from "./MiniCalendar";
 
 export interface MiniCalendarActions {
-  getWeek: (data?: { date?: Moment }) => void;
+  getWeek: (data?: { date?: Date }) => void;
 }
 
 interface MiniCalendarProps {
-  currentDate: Moment;
+  currentDate: Date;
   actions: MiniCalendarActions;
 }
 

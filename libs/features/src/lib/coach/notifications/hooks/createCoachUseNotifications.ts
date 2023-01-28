@@ -1,4 +1,4 @@
-import { createNotificationsGroupFromSchema, Notification } from "@routine-support/domains";
+import { Notification } from "@routine-support/domains";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { CoachState } from "../../auth/slice";
@@ -74,7 +74,7 @@ const useNotifications = ({ notificationApi, useStoreState }: Deps) => {
 
   return {
     models: {
-      notificationsGroups: notificationsGroups.map(createNotificationsGroupFromSchema),
+      notificationsGroups,
       notViewedCount,
       loading,
       error,

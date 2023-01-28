@@ -1,7 +1,3 @@
-import {
-  createNotificationFromSchema,
-  createSchemaFromNotificationGroup,
-} from "@routine-support/domains";
 import { Router } from "express";
 import { NotificationModel } from "../../db/models/Notification";
 import { coachAuthorization } from "../../middleware/coachAuthorization";
@@ -16,11 +12,11 @@ notificationsRouter.get("/", coachAuthorization, async (__, res) => {
 
   const notViewedCount =
     notifications.filter((notification) => !notification.isViewed)?.length || 0;
-  const notificationGroups = groupNotifications(notifications.map(createNotificationFromSchema));
+  const notificationGroups = groupNotifications(notifications);
 
   return res.status(200).send({
     notViewedCount,
-    notificationsGroups: notificationGroups.map(createSchemaFromNotificationGroup),
+    notificationsGroups: notificationGroups,
   });
 });
 

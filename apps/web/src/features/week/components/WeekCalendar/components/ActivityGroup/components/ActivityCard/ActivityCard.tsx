@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 
 import { Activity } from "@routine-support/domains";
-import { getMinutes, stringifyTime } from "@routine-support/utils";
+import { stringifyTime } from "@routine-support/utils";
+import { getMinutes } from "date-fns";
 
 import * as S from "./styled";
 
@@ -28,7 +29,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
     <S.Wrapper
       backgroundColor={backgroundColor}
       rowStart={rowStart}
-      marginTop={activity.start.get("minutes") / 60}
+      marginTop={getMinutes(activity.start) / 60}
       height={(getMinutes(activity.end) - getMinutes(activity.start)) / 60}
       index={index}
       count={count}

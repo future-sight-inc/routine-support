@@ -1,10 +1,10 @@
 import React from "react";
 
-import { isToday } from "@routine-support/utils";
 import { Button } from "apps/mobile/src/components/Button";
 import { Calendar } from "apps/mobile/src/components/Calendar";
 import { DaySelect } from "apps/mobile/src/components/DaySelect";
 import { LoadingScreen } from "apps/mobile/src/components/LoadingScreen";
+import { isToday } from "date-fns";
 import { Dimensions, View } from "react-native";
 
 import { useStudents } from "../../coach/students/useStudents";

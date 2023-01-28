@@ -1,7 +1,7 @@
-import { Activity, ActivitySchema, Student } from "@routine-support/domains";
+import { Activity, Student } from "@routine-support/domains";
 
 export const addStudentToActivity = (
-  activity: ActivitySchema | Activity,
+  activity: Activity,
   student: Student
 ): void => {
   const updatedStudents = activity.students;

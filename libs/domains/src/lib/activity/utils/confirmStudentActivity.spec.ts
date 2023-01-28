@@ -1,8 +1,6 @@
-import {
-  createMockActivity,
-  createMockStudent,
-} from "@routine-support/domains";
+import { createMockActivity, createMockStudent } from "@routine-support/domains";
 import { stringifyDate } from "@routine-support/utils";
+import { addDays } from "date-fns";
 import { confirmStudentActivity } from "./confirmStudentActivity";
 
 describe("confirmStudentActivity", () => {
@@ -13,7 +11,7 @@ describe("confirmStudentActivity", () => {
     confirmStudentActivity({
       student,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     expect(activity.confirmation).toStrictEqual({
@@ -32,13 +30,13 @@ describe("confirmStudentActivity", () => {
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     confirmStudentActivity({
       student: student2,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     expect(activity.confirmation).toStrictEqual({
@@ -56,13 +54,13 @@ describe("confirmStudentActivity", () => {
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     expect(activity.confirmation).toStrictEqual({
@@ -76,18 +74,18 @@ describe("confirmStudentActivity", () => {
   it("Confirm repeat activity two different days", () => {
     const activity = createMockActivity();
     const student = createMockStudent();
-    const dateOneDayAfter = activity.date.clone().add(1, "day");
+    const dateOneDayAfter = addDays(activity.date, 1);
 
     confirmStudentActivity({
       student,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     confirmStudentActivity({
       student,
       activity,
-      confirmationDate: stringifyDate(dateOneDayAfter),
+      confirmationDate: dateOneDayAfter,
     });
 
     expect(activity.confirmation).toStrictEqual({

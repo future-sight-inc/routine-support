@@ -1,7 +1,5 @@
 import { setActivityNotified, WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
-import { stringifyDate } from "@routine-support/utils";
-import moment from "moment";
 import { ActivityModel } from "../db/models/Activity";
 import { CoachModel } from "../db/models/Coach";
 import { NotificationModel } from "../db/models/Notification";
@@ -14,7 +12,7 @@ export const checkTodaysActivitiesConfirmationAndNotify = async () => {
   const coaches = await CoachModel.find().lean();
 
   coaches.forEach(async (coach) => {
-    const currentDate = moment();
+    const currentDate = new Date();
     const coachStudents = await StudentModel.find({
       coachId: coach._id,
     }).lean();
@@ -25,7 +23,7 @@ export const checkTodaysActivitiesConfirmationAndNotify = async () => {
     });
 
     const todaysActivities = activitiesOfWeek.filter(
-      (activity) => activity.date === stringifyDate(currentDate)
+      (activity) => activity.date === currentDate
     );
 
     const activitiesToNotify = todaysActivities.filter((activity) =>

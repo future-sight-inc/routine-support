@@ -1,10 +1,6 @@
 export { createMockWeekFromDateStringArray } from "./createMockWeekFromDateStringArray";
-export { createWeekFromSchema } from "./createWeekFromSchema";
-export { createWeekInfoFromSchema } from "./createWeekInfoFromSchema";
-export { dateInfoToMoment } from "./dateInfoToMoment";
-export { getDateInfoFromMoment } from "./getDateInfoFromMoment";
+export { getDateInfoFromDate } from "./getDateInfoFromDate";
 export { getDateInfoQuery } from "./getDateInfoQuery";
 export { getDaysOfWeek } from "./getDaysOfWeek";
-export { getMondayFromWeekInfo } from "./getMondayFromWeekInfo";
 export { repeatActivity } from "./repeatActivity";
 export { createActivityFilterParam } from "./createActivityFilterParam";

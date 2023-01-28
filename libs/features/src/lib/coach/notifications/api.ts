@@ -1,14 +1,14 @@
-import { NotificationsGroupSchema } from "@routine-support/domains";
+import { NotificationsGroup } from "@routine-support/domains";
 import { AxiosInstance, AxiosResponse } from "axios";
 
 export const createCoachNotificationAPI = (client: AxiosInstance) => ({
   getNotifications: async (): Promise<{
     notViewedCount: number;
-    notificationsGroups: NotificationsGroupSchema[];
+    notificationsGroups: NotificationsGroup[];
   }> => {
     const response: AxiosResponse<{
       notViewedCount: number;
-      notificationsGroups: NotificationsGroupSchema[];
+      notificationsGroups: NotificationsGroup[];
     }> = await client.get("/notifications");
 
     return {

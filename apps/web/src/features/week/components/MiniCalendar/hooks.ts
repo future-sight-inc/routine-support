@@ -1,9 +1,7 @@
-import { Moment } from "moment";
-
 import { MiniCalendarActions } from "./";
 
 export const useMiniCalendarComponent = (actions: MiniCalendarActions) => {
-  const handleWeekSelect = (date: Moment) => {
+  const handleWeekSelect = (date: Date) => {
     actions.getWeek({ date });
   };
 

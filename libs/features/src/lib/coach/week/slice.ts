@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { WeekSchema } from "@routine-support/domains";
+import { Week } from "@routine-support/domains";
 
 export interface WeekState {
-  week: WeekSchema | null;
+  week: Week | null;
 }
 
 const initialState: WeekState = {
@@ -13,7 +13,7 @@ export const weekSlice = createSlice({
   name: "week",
   initialState,
   reducers: {
-    setWeek: (state, action: PayloadAction<WeekSchema>) => {
+    setWeek: (state, action: PayloadAction<Week>) => {
       state.week = action.payload;
     },
   },
