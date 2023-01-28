@@ -1,5 +1,10 @@
 import { Response, Router } from "express";
-import { ActivityJson, stringifyActivity, WeekSocketEventTypeEnum } from "@routine-support/domains";
+import {
+  ActivityJson,
+  parseActivityJson,
+  stringifyActivity,
+  WeekSocketEventTypeEnum,
+} from "@routine-support/domains";
 
 import { SocketUserTypeEnum } from "@routine-support/types";
 import { emitToUser } from "../../main";
@@ -20,14 +25,15 @@ activityRouter.get("/:id", async (req, res: Response<ActivityJson | undefined>) 
 });
 
 activityRouter.post("/", async (req, res) => {
-  const validationData = await validateActivity(req.body);
+  const activity = parseActivityJson(req.body);
+  const validationData = await validateActivity(activity);
 
   if (validationData && !validationData.isValid) {
     return res.status(422).send(validationData);
   }
 
   await ActivityModel.create({
-    ...req.body,
+    ...activity,
     confirmation: {},
   });
 
@@ -50,15 +56,15 @@ activityRouter.post("/", async (req, res) => {
 
 activityRouter.put("/:id", async (req, res) => {
   const id = req.params.id;
-
-  const validationData = await validateActivity(req.body);
+  const activity = parseActivityJson(req.body);
+  const validationData = await validateActivity(activity);
 
   if (validationData && !validationData.isValid) {
     return res.status(422).send(validationData);
   }
 
   await ActivityModel.findByIdAndUpdate(id, {
-    ...req.body,
+    ...activity,
     confirmation: {},
   });
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Student } from "@routine-support/domains";
+import { ColorEnum, Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
 export const useStudentForm = (
@@ -12,8 +12,8 @@ export const useStudentForm = (
     getStudents: (config?: { silent: boolean }) => void;
   }
 ) => {
-  const { control, handleSubmit, formState, setValue, reset } = useForm<any>({
-    defaultValues: student,
+  const { control, handleSubmit, formState, setValue, reset } = useForm<Student>({
+    defaultValues: { color: ColorEnum.Purple, ...student },
   });
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -44,7 +44,7 @@ export const useStudentForm = (
   // todo Костыль
   useEffect(() => {
     if (student) {
-      Object.keys(student).forEach((key) => {
+      Object.keys(student).forEach((key: any) => {
         setValue(key, student[key]);
       });
     } else {

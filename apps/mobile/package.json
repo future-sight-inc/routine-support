@@ -31,7 +31,6 @@
     "react-test-renderer": "*",
     "socket.io-client": "*",
     "expo-constants": "*",
-    "moment": "*",
     "uuid": "*",
     "react-native-toast-notifications": "*",
     "@storybook/react-native": "*",

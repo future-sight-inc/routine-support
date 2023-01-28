@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import DatePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { stringifyDate, stringifyTime } from "@routine-support/utils";
-import moment, { Moment } from "moment";
 
 import { InputModal } from "../InputModal";
 import { TextField, TextFieldProps } from "../TextField";
@@ -13,8 +12,8 @@ type DateSelectorMode = "date" | "time";
 export interface DateSelectorProps {
   InputComponent?: React.FC<{ value?: string }>;
   InputProps?: TextFieldProps;
-  onSelect: (value: Moment) => void;
-  value?: Moment;
+  onSelect: (value: Date) => void;
+  value?: Date;
   mode?: DateSelectorMode;
 }
 
@@ -25,13 +24,13 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
   value: defaultValue,
   mode = "date",
 }) => {
-  const [value, setValue] = useState<Moment>(defaultValue || moment());
-  const [displayedValue, setDisplayedValue] = useState<Moment>(value);
+  const [value, setValue] = useState<Date>(defaultValue || new Date());
+  const [displayedValue, setDisplayedValue] = useState<Date>(value);
 
-  const handleChange = (__: DateTimePickerEvent, date?: Date | undefined) => {
-    const newValue = moment(date);
-
-    setValue(newValue);
+  const handleChange = (__: DateTimePickerEvent, value?: Date | undefined) => {
+    if (value) {
+      setValue(value);
+    }
   };
 
   const handleConfirm = () => {
@@ -67,7 +66,7 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
       }
       input={
         <DatePicker
-          value={value.toDate()}
+          value={value}
           onChange={handleChange}
           display="spinner"
           textColor="black"

@@ -8,8 +8,6 @@ export const createCoachWeekAPI = (client: AxiosInstance) => ({
       params: { filter: createActivityFilterParam(filter) },
     });
 
-    console.log(response.data, parseWeekJson(response.data));
-
     return parseWeekJson(response.data);
   },
 });

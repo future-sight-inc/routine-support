@@ -27,7 +27,7 @@ studentRouter.delete("/:id", async (req, res) => {
 
   const studentsActivities = await ActivityModel.find({
     students: { $in: [studentId] },
-  }).lean();
+  }).lean({ getters: true });
 
   studentsActivities.forEach(({ _id: activityId, students }) => {
     const filteredStudents = students.filter((id) => id !== studentId);

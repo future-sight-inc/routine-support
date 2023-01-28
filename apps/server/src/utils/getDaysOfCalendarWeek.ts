@@ -1,4 +1,5 @@
 import { Activity, DateInfo, Day, getDaysOfWeek } from "@routine-support/domains";
+import { getDate } from "date-fns";
 import { getTimeRange } from "./getTimeRange";
 
 export function getDaysOfCalendarWeek(activities: Activity[], weekInfo: DateInfo): Day[] {
@@ -11,7 +12,9 @@ export function getDaysOfCalendarWeek(activities: Activity[], weekInfo: DateInfo
       timeRange: getTimeRange(),
     };
 
-    calendarDay.activities = activities.filter((activity) => activity?.date === calendarDay.date);
+    calendarDay.activities = activities.filter(
+      (activity) => getDate(activity?.date) === getDate(calendarDay.date)
+    );
 
     return calendarDay;
   });

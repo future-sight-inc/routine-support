@@ -20,6 +20,7 @@ weekRouter.get("/:year/:week", async (req, res: Response<WeekJson>) => {
     currentDate: setISOWeek(setYear(new Date(), year), week),
     coachId: res.locals.coach._id,
   });
+
   const filteredActivities = filterActivities(activitiesOfTheWeek, parsedFilter);
 
   res.status(200).send(

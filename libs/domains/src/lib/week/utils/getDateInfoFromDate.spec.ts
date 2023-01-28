@@ -14,37 +14,29 @@ import {
 describe("getDateInfoFromDate", () => {
   it("Regular week", () => {
     const mondayDateString = WEEK_OF_MONTH[0];
-    const mondayMoment = parseDate(mondayDateString);
+    const monday = parseDate(mondayDateString);
 
-    expect(getDateInfoFromDate(mondayMoment)).toStrictEqual(
-      WEEK_OF_MONTH_INFO
-    );
+    expect(getDateInfoFromDate(monday)).toStrictEqual(WEEK_OF_MONTH_INFO);
   });
 
   it("Week between months", () => {
     const mondayDateString = WEEK_BETWEEN_MONTHS[0];
-    const mondayMoment = parseDate(mondayDateString);
+    const monday = parseDate(mondayDateString);
 
-    expect(getDateInfoFromDate(mondayMoment)).toStrictEqual(
-      WEEK_BETWEEN_MONTHS_INFO
-    );
+    expect(getDateInfoFromDate(monday)).toStrictEqual(WEEK_BETWEEN_MONTHS_INFO);
   });
 
   it("Last week of year", () => {
     const mondayDateString = WEEK_BETWEEN_YEARS[0];
-    const mondayMoment = parseDate(mondayDateString);
+    const monday = parseDate(mondayDateString);
 
-    expect(getDateInfoFromDate(mondayMoment)).toStrictEqual(
-      WEEK_BETWEEN_YEARS_INFO
-    );
+    expect(getDateInfoFromDate(monday)).toStrictEqual(WEEK_BETWEEN_YEARS_INFO);
   });
 
   it("First week of year", () => {
     const mondayDateString = FIRST_WEEK_OF_YEAR[0];
-    const mondayMoment = parseDate(mondayDateString);
+    const monday = parseDate(mondayDateString);
 
-    expect(getDateInfoFromDate(mondayMoment)).toStrictEqual(
-      FIRST_WEEK_OF_YEAR_INFO
-    );
+    expect(getDateInfoFromDate(monday)).toStrictEqual(FIRST_WEEK_OF_YEAR_INFO);
   });
 });

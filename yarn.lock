@@ -18990,7 +18990,7 @@ mkdirp@^1.0.3, mkdirp@^1.0.4, mkdirp@~1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment@^2.19.3, moment@^2.29.3:
+moment@^2.19.3:
   version "2.29.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.3.tgz#edd47411c322413999f7a5940d526de183c031f3"
   integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==
@@ -19014,6 +19014,13 @@ mongodb@4.5.0:
     socks "^2.6.2"
   optionalDependencies:
     saslprep "^1.0.3"
+
+mongoose-lean-getters@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/mongoose-lean-getters/-/mongoose-lean-getters-0.3.6.tgz#73ce31b8600fd215d92741b527e99ea60693a442"
+  integrity sha512-Z+uKP8M2czjFaWtNtp+k/zF5WwyIwffv/FjMHyyA4KkoGViqsE2ePQE/gW0NW3JIXv7NJCdd44DKsGMgwvJumw==
+  dependencies:
+    mpath "0.8.x"
 
 mongoose@^6.3.3:
   version "6.3.3"
@@ -19050,6 +19057,11 @@ move-concurrently@^1.0.1:
     mkdirp "^0.5.1"
     rimraf "^2.5.4"
     run-queue "^1.0.3"
+
+mpath@0.8.x:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/mpath/-/mpath-0.8.4.tgz#6b566d9581621d9e931dd3b142ed3618e7599313"
+  integrity sha512-DTxNZomBcTWlrMW76jy1wvV37X/cNNxPW1y2Jzd4DZkAaC5ZGsm8bfGfNOthcDuRJujXLqiuS6o3Tpy0JEoh7g==
 
 mpath@0.9.0:
   version "0.9.0"

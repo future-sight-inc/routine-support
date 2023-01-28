@@ -1,6 +1,7 @@
 import { Activity, RepeatTypeEnum } from "@routine-support/domains";
 import { parseDate, parseTime, stringifyDate, stringifyTime } from "@routine-support/utils";
 import { model, Schema } from "mongoose";
+import mongooseLeanGetters from "mongoose-lean-getters";
 
 const activitySchema = new Schema(
   {
@@ -13,22 +14,22 @@ const activitySchema = new Schema(
       required: true,
     },
     date: {
-      type: Schema.Types.Date,
+      type: Schema.Types.String,
       required: true,
       get: (date) => parseDate(date),
       set: (date) => stringifyDate(date),
     },
     start: {
-      type: Schema.Types.Date,
+      type: Schema.Types.String,
       required: true,
       get: (date) => parseTime(date),
       set: (date) => stringifyTime(date),
     },
     end: {
-      type: Schema.Types.Date,
+      type: Schema.Types.String,
       required: true,
       get: (date) => parseTime(date),
-      set: (date) => stringifyDate(date),
+      set: (date) => stringifyTime(date),
     },
     coachId: {
       type: Schema.Types.ObjectId,
@@ -58,7 +59,12 @@ const activitySchema = new Schema(
       default: {},
     },
   },
-  { versionKey: false, minimize: false, toObject: { getters: true } }
+  {
+    versionKey: false,
+    minimize: false,
+  }
 );
+
+activitySchema.plugin(mongooseLeanGetters);
 
 export const ActivityModel = model<Activity>("activity", activitySchema);

@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { Activity, Coach, RepeatTypeEnum } from "@routine-support/domains";
 import { PICTOGRAMS } from "@routine-support/pictograms";
 import { AxiosError } from "axios";
-import moment from "moment";
 import { useForm } from "react-hook-form";
 import { setFormErrors } from "@routine-support/forms";
 import { SubmitErrorData } from "@routine-support/types";
+import { addHours } from "date-fns";
 
 export const useActivityForm = (
   coach: Coach | null,
@@ -19,15 +19,15 @@ export const useActivityForm = (
   }
 ) => {
   const defaultValues = {
-    date: moment(),
-    start: moment(),
-    end: moment().add("hours", 1),
+    date: new Date(),
+    start: new Date(),
+    end: addHours(new Date(), 1),
     isCommon: true,
     repeatType: RepeatTypeEnum.None,
     students: [],
   };
-  // todo Костыль
-  const { control, handleSubmit, formState, setError, setValue, watch, reset } = useForm<any>({
+
+  const { control, handleSubmit, formState, setError, setValue, watch, reset } = useForm<Activity>({
     defaultValues: { ...defaultValues, coachId: coach?._id },
   });
 
@@ -38,7 +38,7 @@ export const useActivityForm = (
   // todo Костыль
   useEffect(() => {
     if (activity) {
-      Object.keys(activity).forEach((key) => {
+      Object.keys(activity).forEach((key: any) => {
         setValue(key, activity[key]);
       });
     } else {

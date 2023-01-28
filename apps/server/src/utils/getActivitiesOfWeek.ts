@@ -18,12 +18,12 @@ export const getActivitiesOfWeek = async ({
   const activitiesWithoutRepeat = await ActivityModel.find({
     coachId,
     repeatType: RepeatTypeEnum.None,
-  }).lean();
+  }).lean({ getters: true });
 
   let activitiesWithRepeat = await ActivityModel.find({
     coachId,
     repeatType: { $gt: RepeatTypeEnum.None },
-  }).lean();
+  }).lean({ getters: true });
 
   activitiesWithRepeat = repeatActivities(activitiesWithRepeat, currentWeek);
 
