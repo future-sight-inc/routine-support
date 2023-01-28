@@ -57,6 +57,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({ week, students, acti
           ))}
           {groupedActivitiesByDays[index].map((group) => (
             <ActivityGroup
+              key={stringifyTime(group.start)}
               students={students}
               timeRange={week.weekInfo.timeRange}
               activities={group.activities}

@@ -46,7 +46,7 @@ export const Week: React.FC = () => {
           Week.models.week && (
             <WeekCalendar
               week={Week.models.week}
-              students={[]}
+              students={Students.models.students}
               actions={{
                 openActivityModal: Activity.operations.openActivityModal,
                 openNewActivityModal: Activity.operations.openNewActivityModal,

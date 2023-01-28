@@ -1,8 +1,8 @@
 import { RefObject, useEffect, useState } from "react";
 
 import { groupActivities, Week } from "@routine-support/domains";
-import { parseTime } from "@routine-support/utils";
-import { addHours, getMinutes, isToday } from "date-fns";
+import { getTimeInHours, parseTime } from "@routine-support/utils";
+import { addHours, isToday } from "date-fns";
 
 import { WeekCalendarActions } from "./WeekCalendar";
 
@@ -23,8 +23,8 @@ export const useWeekCalendarComponent = ({
   useEffect(() => {
     const checkOffset = () => {
       const frame = containerRef?.current?.scrollHeight;
-      const minutes = getMinutes(new Date());
-      const offsetTop = (minutes / (24 * 60)) * (frame || 0);
+      const hours = getTimeInHours(new Date());
+      const offsetTop = (hours / 24) * (frame || 0);
 
       setTimelineTopOffset(offsetTop);
     };
