@@ -19,12 +19,7 @@ interface ActivitiesGroup {
   rowIndex: number;
   style: StyleProp<ViewStyle>;
   onActivityPress: (activity: ActivityType) => void;
-  ActivityComponent: React.FC<{
-    activity: ActivityType;
-    students: Student[];
-    style: StyleProp<ViewStyle>;
-    onActivityPress: (activity: ActivityType) => void;
-  }>;
+  ActivityComponent: any; // todo
 }
 
 export const ActivitiesGroup: React.FC<ActivitiesGroup> = ({

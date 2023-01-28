@@ -9,6 +9,7 @@ import {
 import { parseTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { Theme } from "apps/mobile/src/theme";
+import { addHours, getHours } from "date-fns";
 import {
   Dimensions,
   ScrollView,
@@ -25,8 +26,8 @@ import { CurrentTimeLine } from "./components/CurrentTimeLine";
 export type ActivityComponent = React.FC<{
   activity: ActivityType;
   students: Student[];
-  style: StyleProp<ViewStyle>;
-  onActivityPress: (activity: ActivityType) => void;
+  style?: StyleProp<ViewStyle>;
+  onActivityPress: (activity?: Partial<ActivityType>) => void;
 }>;
 
 interface CalendarProps {
@@ -54,7 +55,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const getGroupByTime = (time: string, activitiesGroups: ActivitiesGroupType[]) => {
     const [hour] = time.split(":");
     const filteredGroup = activitiesGroups.find(
-      (activityGroup) => activityGroup.start.get("h") === Number(hour)
+      (activityGroup) => getHours(activityGroup.start) === Number(hour)
     );
 
     return filteredGroup;
@@ -82,7 +83,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const handleCellPress = (cellTime: string) => {
     const parsedTime = parseTime(cellTime);
 
-    onCellPress({ start: parsedTime, end: parsedTime.clone().add(1, "hours") });
+    onCellPress({ start: parsedTime, end: addHours(parsedTime, 1) });
   };
 
   return (

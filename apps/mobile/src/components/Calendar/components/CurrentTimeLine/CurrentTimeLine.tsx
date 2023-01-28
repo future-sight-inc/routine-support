@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+import { getTimeInHours, stringifyTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { Theme } from "apps/mobile/src/theme";
-import { getMinutes } from "date-fns";
 import { StyleSheet, View } from "react-native";
 
 interface CurrentTimeLineProps {
@@ -17,7 +17,7 @@ export const CurrentTimeLine: React.FC<CurrentTimeLineProps> = ({
   columnsGap,
 }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const timeInHours = getMinutes(currentTime) / 60;
+  const timeInHours = getTimeInHours(currentTime);
   const offsetTop = timeInHours * rowHeight + (timeInHours % 1);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const CurrentTimeLine: React.FC<CurrentTimeLineProps> = ({
     <>
       <View style={{ ...styles.currentTime, top: offsetTop }}>
         <Typography variant="text3" color="white">
-          {currentTime}
+          {stringifyTime(currentTime)}
         </Typography>
       </View>
       <View

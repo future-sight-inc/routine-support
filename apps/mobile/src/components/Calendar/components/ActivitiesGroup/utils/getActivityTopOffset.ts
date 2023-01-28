@@ -1,5 +1,5 @@
 import { ActivitiesGroup, Activity } from "@routine-support/domains";
-import { getTimeInHours } from "apps/mobile/src/utils/getTimeInHours";
+import { getTimeInHours } from "@routine-support/utils";
 
 export const getActivityTopOffset = ({
   activity,

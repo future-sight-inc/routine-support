@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
   coachDayReducer,
+  coachReducer,
+  notificationsReducer,
   studentDayReducer,
   studentReducer,
   studentsReducer,
 } from "@routine-support/features";
-import { coachReducer, notificationsReducer } from "@routine-support/features";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
