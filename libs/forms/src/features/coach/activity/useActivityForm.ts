@@ -28,7 +28,7 @@ export const useActivityForm = (
   };
 
   const { control, handleSubmit, formState, setError, setValue, watch, reset } = useForm<Activity>({
-    defaultValues: { ...defaultValues, coachId: coach?._id },
+    defaultValues: { ...defaultValues },
   });
 
   const [submitError, setSubmitError] = useState<string | undefined>();

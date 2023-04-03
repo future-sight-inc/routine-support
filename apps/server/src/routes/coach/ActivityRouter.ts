@@ -34,6 +34,7 @@ activityRouter.post("/", async (req, res) => {
 
   await ActivityModel.create({
     ...activity,
+    coachId: res.locals.coach._id,
     confirmation: {},
   });
 
