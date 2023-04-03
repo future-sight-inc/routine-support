@@ -1,42 +1,29 @@
 import { CreateStudentDto, Student } from "@routine-support/domains";
 import { useState } from "react";
-import { CoachState } from "../../auth/slice";
 import { createCoachStudentAPI } from "../api";
-
-interface State {
-  coachAuth: CoachState;
-}
 
 interface Deps {
   studentApi: ReturnType<typeof createCoachStudentAPI>;
-  useStoreState: () => State;
 }
 
-const useStudent = ({ studentApi, useStoreState }: Deps) => {
+const useStudent = ({ studentApi }: Deps) => {
   const [loading, setLoading] = useState(false);
   const [studentModalOpened, setStudentModalOpened] = useState(false);
   const [settingsModalOpened, setSettingsModalOpened] = useState(false);
 
   const [student, setStudent] = useState<Student | undefined>();
-  const {
-    coachAuth: { coach },
-  } = useStoreState();
-  const coachId = coach?._id;
 
   const createStudent = async (student: CreateStudentDto) => {
-    if (coachId) {
-      try {
-        setLoading(true);
+    try {
+      setLoading(true);
 
-        await studentApi.createStudent({
-          ...student,
-          coachId,
-        });
+      await studentApi.createStudent({
+        ...student,
+      });
 
-        setStudentModalOpened(false);
-      } finally {
-        setLoading(false);
-      }
+      setStudentModalOpened(false);
+    } finally {
+      setLoading(false);
     }
   };
 

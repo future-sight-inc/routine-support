@@ -9,7 +9,7 @@ import { coachAuthorization } from "../../middleware/coachAuthorization";
 export const studentRouter = Router();
 
 studentRouter.post("/", coachAuthorization, async (req, res: Response<Student>) => {
-  StudentModel.create({ ...req.body }, (err, result) => {
+  StudentModel.create({ ...req.body, coachId: res.locals.coach._id }, (err, result) => {
     if (err) {
       console.log(err);
 
