@@ -1,6 +1,6 @@
 import { Coach, LoginCoachDto, RegisterCoachDto, Student } from "@routine-support/domains";
 import { CoachModel } from "../db/models/Coach";
-import { getAuthCookie } from "../utils/getAuthCookie";
+import { createAuthCookie } from "../utils/createAuthCookie";
 import { AuthNames } from "../constants/AuthNames";
 import { SubmitErrorData } from "@routine-support/types";
 import { hashPassword } from "../utils/hashPassword";
@@ -28,7 +28,7 @@ export const AuthController = {
 
     return {
       coach,
-      cookie: getAuthCookie(AuthNames.Coach, coach),
+      cookie: createAuthCookie(AuthNames.Coach, coach),
       validationData,
     };
   },
@@ -52,7 +52,7 @@ export const AuthController = {
 
     return {
       coach,
-      cookie: getAuthCookie(AuthNames.Coach, coach),
+      cookie: createAuthCookie(AuthNames.Coach, coach),
       validationData,
     };
   },
@@ -71,7 +71,7 @@ export const AuthController = {
 
     return {
       student,
-      cookie: getAuthCookie(AuthNames.Student, student),
+      cookie: createAuthCookie(AuthNames.Student, student),
     };
   },
 };

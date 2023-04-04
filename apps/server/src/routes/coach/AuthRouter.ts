@@ -4,6 +4,7 @@ import { Response, Router } from "express";
 import { AuthNames } from "../../constants/AuthNames";
 import { AuthController } from "../../controllers";
 import { coachAuthorization } from "../../middleware/coachAuthorization";
+import { ACCESS_TOKEN } from "../../constants/AccessToken";
 
 export const authRouter = Router();
 
@@ -34,12 +35,9 @@ authRouter.get("/", coachAuthorization, (__, res: Response<Coach>) => {
 authRouter.delete("/", coachAuthorization, async (__, res: Response<Coach>) => {
   await AuthController.deleteCoach(res.locals.coach._id);
 
-  return res
-    .status(200)
-    .clearCookie(`${AuthNames.Coach}_access_token`)
-    .send(res.locals[AuthNames.Coach]);
+  return res.status(200).clearCookie(ACCESS_TOKEN).send(res.locals[AuthNames.Coach]);
 });
 
 authRouter.get("/logout", (__, res) => {
-  return res.clearCookie(`${AuthNames.Coach}_access_token`).sendStatus(200);
+  return res.clearCookie(ACCESS_TOKEN).sendStatus(200);
 });
