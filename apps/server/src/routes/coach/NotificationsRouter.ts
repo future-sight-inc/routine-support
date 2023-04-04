@@ -1,8 +1,7 @@
 import { NotificationsGroupJson, stringifyNotificationsGroup } from "@routine-support/domains";
 import { Response, Router } from "express";
-import { NotificationModel } from "../../db/models/Notification";
+import { NotificationController } from "../../controllers";
 import { coachAuthorization } from "../../middleware/coachAuthorization";
-import { groupNotifications } from "../../utils/groupNotifications";
 
 export const notificationsRouter = Router();
 
@@ -13,13 +12,9 @@ notificationsRouter.get(
     __,
     res: Response<{ notViewedCount: number; notificationsGroups: NotificationsGroupJson[] }>
   ) => {
-    const notifications = await NotificationModel.find({
-      coachId: res.locals.coach._id,
-    }).lean();
-
-    const notViewedCount =
-      notifications.filter((notification) => !notification.isViewed)?.length || 0;
-    const notificationGroups = groupNotifications(notifications);
+    const { notViewedCount, notificationGroups } = await NotificationController.getAll(
+      res.locals.coach._id
+    );
 
     return res.status(200).send({
       notViewedCount,
@@ -29,21 +24,19 @@ notificationsRouter.get(
 );
 
 notificationsRouter.put("/view/:id", coachAuthorization, async (req, res) => {
-  await NotificationModel.findByIdAndUpdate(req.params.id, {
-    isViewed: true,
-  });
+  await NotificationController.setViewed(req.params.id);
 
   return res.sendStatus(200);
 });
 
 notificationsRouter.delete("/:id", coachAuthorization, async (req, res) => {
-  await NotificationModel.findByIdAndDelete(req.params.id);
+  await NotificationController.delete(req.params.id);
 
   return res.sendStatus(200);
 });
 
-notificationsRouter.delete("/", coachAuthorization, async (req, res) => {
-  await NotificationModel.deleteMany({ coachId: res.locals.coach._id });
+notificationsRouter.delete("/", coachAuthorization, async (__, res) => {
+  await NotificationController.deleteAll(res.locals.coach._id);
 
   return res.sendStatus(200);
 });

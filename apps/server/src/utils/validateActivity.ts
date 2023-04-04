@@ -3,15 +3,13 @@ import { SubmitErrorData } from "@routine-support/types";
 import { validateActivityImportance } from "./validateActivityImportance";
 import { validateActivityTime } from "./validateActivityTime";
 
-export const validateActivity = async (
-  activity: Activity
-): Promise<SubmitErrorData | undefined> => {
+export const validateActivity = async (activity: Activity): Promise<SubmitErrorData> => {
   try {
-    validateActivityTime(activity);
+    const validationData = validateActivityTime(activity);
 
     await validateActivityImportance(activity);
 
-    return;
+    return validationData;
   } catch (error) {
     return error as SubmitErrorData;
   }

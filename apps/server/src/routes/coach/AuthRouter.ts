@@ -2,55 +2,31 @@ import { Coach } from "@routine-support/domains";
 import { SubmitErrorData } from "@routine-support/types";
 import { Response, Router } from "express";
 import { AuthNames } from "../../constants/AuthNames";
-import { ActivityModel } from "../../db/models/Activity";
-import { CoachModel } from "../../db/models/Coach";
-import { NotificationModel } from "../../db/models/Notification";
-import { StudentModel } from "../../db/models/Student";
+import { AuthController } from "../../controllers";
 import { coachAuthorization } from "../../middleware/coachAuthorization";
-import { getAuthCookie } from "../../utils/getAuthCookie";
-import { hashPassword } from "../../utils/hashPassword";
-import { validateCoach } from "../../utils/validateCoach";
 
 export const authRouter = Router();
 
 authRouter.post("/", async (req, res: Response<Coach | SubmitErrorData>) => {
-  const validationData = await validateCoach(req.body);
+  const { validationData, coach, cookie } = await AuthController.registerCoach(req.body);
 
-  if (validationData && !validationData.isValid) {
+  if (!validationData.isValid || !coach || !cookie) {
     return res.status(422).send(validationData);
   }
 
-  return CoachModel.create(
-    { ...req.body, email: req.body.email.toLowerCase(), password: hashPassword(req.body.password) },
-    (err, result) => {
-      if (err) {
-        console.log(err);
-
-        return;
-      }
-
-      const cookie = getAuthCookie(AuthNames.Coach, result);
-
-      return res.status(200).cookie(cookie.name, cookie.token).send(result);
-    }
-  );
+  return res.status(200).cookie(cookie.name, cookie.token).send(coach);
 });
 
 authRouter.post("/login", async (req, res: Response<Coach | SubmitErrorData>) => {
-  const { email, password } = req.body;
+  const { validationData, coach, cookie } = await AuthController.loginCoach(req.body);
 
-  CoachModel.findOne(
-    { email: email.toLowerCase(), password: hashPassword(password) },
-    (err, result) => {
-      if (err || !result) {
-        return res.status(401).send({ error: "Invalid credentials", isValid: false });
-      }
+  console.log(validationData, coach, cookie)
 
-      const cookie = getAuthCookie(AuthNames.Coach, result);
+  if (!validationData.isValid || !coach || !cookie) {
+    return res.status(401).send({ error: "Invalid credentials", isValid: false });
+  }
 
-      return res.status(200).cookie(cookie.name, cookie.token).send(result);
-    }
-  );
+  return res.status(200).cookie(cookie.name, cookie.token).send(coach);
 });
 
 authRouter.get("/", coachAuthorization, (__, res: Response<Coach>) => {
@@ -58,12 +34,7 @@ authRouter.get("/", coachAuthorization, (__, res: Response<Coach>) => {
 });
 
 authRouter.delete("/", coachAuthorization, async (__, res: Response<Coach>) => {
-  const coach = res.locals[AuthNames.Coach];
-
-  await CoachModel.findByIdAndDelete(coach._id);
-  await StudentModel.deleteMany({ coachId: coach._id });
-  await ActivityModel.deleteMany({ coachId: coach._id });
-  await NotificationModel.deleteMany({ coachId: coach._id });
+  await AuthController.deleteCoach(res.locals.coach._id);
 
   return res
     .status(200)

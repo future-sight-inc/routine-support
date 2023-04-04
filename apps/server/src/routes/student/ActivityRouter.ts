@@ -1,41 +1,25 @@
-import { Router } from "express";
-import { confirmStudentActivity, WeekSocketEventTypeEnum } from "@routine-support/domains";
+import { WeekSocketEventTypeEnum } from "@routine-support/domains";
 import { SocketUserTypeEnum } from "@routine-support/types";
+import { Router } from "express";
+import { ActivityController } from "../../controllers";
 import { emitToUser } from "../../main";
-import { ActivityModel } from "../../db/models/Activity";
 
 export const activityRouter = Router();
 
 activityRouter.put("/confirm/:id", async (req, res) => {
-  const { id } = req.params;
+  const activityId = req.params.id;
   const { date } = req.body;
   const { student } = res.locals;
 
-  const activityToConfirm = await ActivityModel.findById(id);
+  await ActivityController.confirmActivity(activityId, date, student);
 
-  if (activityToConfirm) {
-    confirmStudentActivity({
-      student,
-      activity: activityToConfirm,
-      confirmationDate: date,
-    });
-  }
-
-  ActivityModel.findByIdAndUpdate(id, { ...activityToConfirm }, (err) => {
-    if (err) {
-      console.log(err);
-
-      return;
-    }
-
-    emitToUser({
-      userId: student.coachId,
-      userType: SocketUserTypeEnum.Coach,
-      message: {
-        type: WeekSocketEventTypeEnum.UpdateCalendar,
-      },
-    });
-
-    return res.sendStatus(200);
+  emitToUser({
+    userId: student.coachId,
+    userType: SocketUserTypeEnum.Coach,
+    message: {
+      type: WeekSocketEventTypeEnum.UpdateCalendar,
+    },
   });
+
+  return res.sendStatus(200);
 });
