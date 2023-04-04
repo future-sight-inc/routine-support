@@ -20,8 +20,6 @@ authRouter.post("/", async (req, res: Response<Coach | SubmitErrorData>) => {
 authRouter.post("/login", async (req, res: Response<Coach | SubmitErrorData>) => {
   const { validationData, coach, cookie } = await AuthController.loginCoach(req.body);
 
-  console.log(validationData, coach, cookie)
-
   if (!validationData.isValid || !coach || !cookie) {
     return res.status(401).send({ error: "Invalid credentials", isValid: false });
   }

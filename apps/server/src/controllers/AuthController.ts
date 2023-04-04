@@ -37,8 +37,6 @@ export const AuthController = {
   ): Promise<{ coach?: Coach; cookie?: Cookie; validationData: SubmitErrorData }> => {
     const validationData = await validateCoach(data);
 
-    console.log(data, validationData);
-
     if (!validationData?.isValid) {
       return { validationData };
     }
