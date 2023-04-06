@@ -1,5 +1,5 @@
 import {
-  createMockActivitySchema,
+  createMockActivity,
   setActivityTime,
 } from "@routine-support/domains";
 import { SubmitErrorData } from "@routine-support/types";
@@ -17,7 +17,7 @@ const TIME_VALIDATION_ERROR: SubmitErrorData = {
 
 describe("validateActivityTime", () => {
   it("Start time is greater then end time", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     setActivityTime(
       {
@@ -35,7 +35,7 @@ describe("validateActivityTime", () => {
   });
 
   it("Start time is equals end time", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     setActivityTime(
       {
@@ -53,7 +53,7 @@ describe("validateActivityTime", () => {
   });
 
   it("Start time is less then end time", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     setActivityTime(
       {
@@ -68,7 +68,7 @@ describe("validateActivityTime", () => {
   });
 
   it("Start time is less then end time in minutes", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     setActivityTime(
       {
@@ -83,7 +83,7 @@ describe("validateActivityTime", () => {
   });
 
   it("Start time is greater then end time in minutes", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     setActivityTime(
       {

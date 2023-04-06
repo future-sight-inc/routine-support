@@ -1,22 +1,18 @@
-import { getDateInfoFromMoment, getDaysOfWeek } from "@routine-support/domains";
-import { Moment } from "moment";
+import { getDateInfoFromDate, getDaysOfWeek } from "@routine-support/domains";
+import { addWeeks, endOfMonth, isAfter, startOfMonth, startOfWeek } from "date-fns";
 
-export const getWeeksOfCalendar = (currentDate: Moment) => {
-  const start = currentDate
-    .clone()
-    .locale("ru")
-    .startOf("month")
-    .startOf("week");
-  const end = currentDate.clone().locale("ru").endOf("month");
-  const weeks: Moment[][] = [];
+export const getWeeksOfCalendar = (currentDate: Date) => {
+  let start = startOfWeek(startOfMonth(currentDate));
+  const end = endOfMonth(start);
+  const weeks: Date[][] = [];
 
   let isIncomplete = true;
 
   while (isIncomplete) {
-    weeks.push(getDaysOfWeek(getDateInfoFromMoment(start)));
-    start.add(1, "w");
+    weeks.push(getDaysOfWeek(getDateInfoFromDate(start)));
+    start = addWeeks(start, 1);
 
-    if (start.isAfter(end)) {
+    if (isAfter(start, end)) {
       isIncomplete = false;
     }
   }

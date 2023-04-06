@@ -1,34 +1,42 @@
-import { ActivitySchema, RepeatTypeEnum } from "@routine-support/domains";
+import { Activity, RepeatTypeEnum } from "@routine-support/domains";
+import { parseDate, parseTime, stringifyDate, stringifyTime } from "@routine-support/utils";
 import { model, Schema } from "mongoose";
+import mongooseLeanGetters from "mongoose-lean-getters";
 
 const activitySchema = new Schema(
   {
     name: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
     },
     pictogram: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
     },
     date: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
+      get: (date) => parseDate(date),
+      set: (date) => stringifyDate(date),
     },
     start: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
+      get: (date) => parseTime(date),
+      set: (date) => stringifyTime(date),
     },
     end: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
+      get: (date) => parseTime(date),
+      set: (date) => stringifyTime(date),
     },
     coachId: {
       type: Schema.Types.ObjectId,
       required: true,
     },
     repeatType: {
-      type: Number,
+      type: Schema.Types.Number,
       required: true,
       default: RepeatTypeEnum.None,
     },
@@ -51,7 +59,12 @@ const activitySchema = new Schema(
       default: {},
     },
   },
-  { versionKey: false, minimize: false }
+  {
+    versionKey: false,
+    minimize: false,
+  }
 );
 
-export const ActivityModel = model<ActivitySchema>("activity", activitySchema);
+activitySchema.plugin(mongooseLeanGetters);
+
+export const ActivityModel = model<Activity>("activity", activitySchema);

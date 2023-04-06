@@ -1,5 +1,4 @@
 import { ActivityFilter } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 
 export const ActivityFilterService = {
   getFilter: () => {
@@ -17,7 +16,7 @@ export const ActivityFilterService = {
   clearFilter: () => {
     localStorage.removeItem("filter");
   },
-  addProperty: (id: Id) => {
+  addProperty: (id: string) => {
     const savedActivityFilter = ActivityFilterService.getFilter();
 
     if (savedActivityFilter) {
@@ -26,7 +25,7 @@ export const ActivityFilterService = {
       ActivityFilterService.setFilter(savedActivityFilter);
     }
   },
-  removeProperty: (id: Id) => {
+  removeProperty: (id: string) => {
     const savedActivityFilter = ActivityFilterService.getFilter();
 
     if (savedActivityFilter) {

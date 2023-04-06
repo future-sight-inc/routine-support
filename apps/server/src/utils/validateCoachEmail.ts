@@ -2,7 +2,7 @@ import { FormError } from "@routine-support/types";
 import { CoachModel } from "../db/models/Coach";
 
 export const validateCoachEmail = async (email: string) => {
-  const isEmailValid = (await CoachModel.find({ email }).countDocuments()) === 0;
+  const isEmailValid = Boolean(await CoachModel.findOne({ email: email.toLowerCase() }));
   const emailError: FormError = {
     name: "email",
     message: "Invalid email error",
@@ -12,5 +12,5 @@ export const validateCoachEmail = async (email: string) => {
     return { isValid: true };
   }
 
-  throw { isValid: false, errors: [emailError] };
+  return { isValid: false, errors: [emailError] };
 };

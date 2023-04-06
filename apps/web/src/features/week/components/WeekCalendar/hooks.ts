@@ -1,9 +1,8 @@
 import { RefObject, useEffect, useState } from "react";
 
 import { groupActivities, Week } from "@routine-support/domains";
-import { TimeString } from "@routine-support/types";
-import { getMinutes, isToday, parseTime } from "@routine-support/utils";
-import moment, { Moment } from "moment";
+import { getTimeInHours, parseTime } from "@routine-support/utils";
+import { addHours, isToday } from "date-fns";
 
 import { WeekCalendarActions } from "./WeekCalendar";
 
@@ -24,8 +23,8 @@ export const useWeekCalendarComponent = ({
   useEffect(() => {
     const checkOffset = () => {
       const frame = containerRef?.current?.scrollHeight;
-      const minutes = getMinutes(moment());
-      const offsetTop = (minutes / (24 * 60)) * (frame || 0);
+      const hours = getTimeInHours(new Date());
+      const offsetTop = (hours / 24) * (frame || 0);
 
       setTimelineTopOffset(offsetTop);
     };
@@ -44,11 +43,11 @@ export const useWeekCalendarComponent = ({
     }
   }, [scrolled, currentTimeRef, timelineTopOffset]);
 
-  const onCellClick = (time: TimeString, day: Moment) => {
+  const onCellClick = (time: string, day: Date) => {
     actions.openNewActivityModal({
       date: day,
       start: parseTime(time),
-      end: parseTime(time).add(1, "hours"),
+      end: addHours(parseTime(time), 1),
     });
   };
 

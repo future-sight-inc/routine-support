@@ -67,13 +67,11 @@ describe("ConfirmationProvider", () => {
     );
 
     expect(getByTestId(ConfirmationModalLocators.ModalContent)).toBeVisible();
-    expect(getByTestId(ConfirmationModalLocators.Title)).toHaveTextContent(
-      TITLE
-    );
+    expect(getByTestId(ConfirmationModalLocators.Title)).toHaveTextContent(TITLE);
     expect(queryByTestId(ConfirmationModalLocators.Description)).toBeFalsy();
-    expect(
-      queryByTestId(ConfirmationModalLocators.ConfirmButton)
-    ).toHaveTextContent(DEFAULT_BUTTON_TEXT);
+    expect(queryByTestId(ConfirmationModalLocators.ConfirmButton)).toHaveTextContent(
+      DEFAULT_BUTTON_TEXT
+    );
   });
 
   it("Shows proper description", () => {
@@ -92,9 +90,7 @@ describe("ConfirmationProvider", () => {
     );
 
     expect(getByTestId(ConfirmationModalLocators.ModalContent)).toBeVisible();
-    expect(
-      getByTestId(ConfirmationModalLocators.Description)
-    ).toHaveTextContent(DESCRIPTION);
+    expect(getByTestId(ConfirmationModalLocators.Description)).toHaveTextContent(DESCRIPTION);
   });
 
   it("Shows proper confirm button text", () => {
@@ -115,18 +111,15 @@ describe("ConfirmationProvider", () => {
     );
 
     expect(getByTestId(ConfirmationModalLocators.ModalContent)).toBeVisible();
-    expect(
-      getByTestId(ConfirmationModalLocators.ConfirmButton)
-    ).toHaveTextContent(CONFIRM_BUTTON_TEXT);
+    expect(getByTestId(ConfirmationModalLocators.ConfirmButton)).toHaveTextContent(
+      CONFIRM_BUTTON_TEXT
+    );
   });
 
   it("Calls confirm function", async () => {
     const TITLE = "Title";
     const DESCRIPTION = "Description";
-    const handleConfirm = () => {
-      console.log();
-    };
-    const logSpy = jest.spyOn(console, "log");
+    const handleConfirm = jest.fn();
     const { getByTestId } = render(
       <AppWrapper>
         <ConfirmationProvider>
@@ -143,6 +136,6 @@ describe("ConfirmationProvider", () => {
 
     await userEvent.click(getByTestId(ConfirmationModalLocators.ConfirmButton));
 
-    expect(logSpy).toBeCalledTimes(1);
+    expect(handleConfirm).toBeCalledTimes(1);
   });
 });

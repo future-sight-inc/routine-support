@@ -1,7 +1,6 @@
 import React from "react";
 
-import { Student } from "@routine-support/domains";
-import { ActivityFilter as ActivityFilterType } from "@routine-support/domains";
+import { ActivityFilter as ActivityFilterType, Student } from "@routine-support/domains";
 import { COMMON_ACTIVITY_COLOR, getColor } from "@routine-support/ui-theme";
 import { Checkbox } from "apps/web/src/components/Checkbox";
 import { useTranslation } from "react-i18next";
@@ -10,7 +9,7 @@ import { useActivityFilterComponent } from "./hooks";
 import * as S from "./styled";
 
 export interface ActivityFilterActions {
-  getWeek: (data: { activityFilter: ActivityFilterType; config: { silent: boolean } }) => void;
+  getWeek: (data?: { activityFilter?: ActivityFilterType }) => void;
 }
 
 interface ActivityFilterProps {

@@ -1,11 +1,11 @@
-import moment from "moment";
+import { parseDate } from "@routine-support/utils";
 
-export const DATE_STANDARD = moment("2022-02-14");
-export const DATE_WEEK_BETWEEN_MONTHS_BEGIN = moment("2022-02-01");
-export const DATE_WEEK_BETWEEN_MONTHS_END = moment("2022-02-28");
-export const DATE_WEEK_BETWEEN_YEARS_BEGIN = moment("2023-01-01");
-export const DATE_WEEK_BETWEEN_YEARS_END = moment("2022-12-31");
-export const DATE_SHORT_MONTH = moment("2021-02-14");
+export const DATE_STANDARD = parseDate("14.02.2022");
+export const DATE_WEEK_BETWEEN_MONTHS_BEGIN = parseDate("01.02.2022");
+export const DATE_WEEK_BETWEEN_MONTHS_END = parseDate("28.02.2022");
+export const DATE_WEEK_BETWEEN_YEARS_BEGIN = parseDate("01.01.2023");
+export const DATE_WEEK_BETWEEN_YEARS_END = parseDate("31.12.2022");
+export const DATE_SHORT_MONTH = parseDate("14.02.2021");
 
 export const WEEKS_FEBRUARY_2022 = [
   [

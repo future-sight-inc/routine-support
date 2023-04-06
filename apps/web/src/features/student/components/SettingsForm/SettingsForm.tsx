@@ -17,7 +17,7 @@ export interface SettingsFormActions {
 }
 
 interface SettingsFormProps {
-  student: Partial<Student> | undefined;
+  student: Student | undefined;
   actions: SettingsFormActions;
 }
 

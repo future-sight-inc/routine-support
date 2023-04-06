@@ -1,4 +1,4 @@
-import { createCoachUseActivity } from "@routine-support/domains";
+import { createCoachUseActivity } from "@routine-support/features";
 
 import { coachActivityAPI } from "../../services/ApiService";
 

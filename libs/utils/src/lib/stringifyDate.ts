@@ -1,6 +1,6 @@
-import { DATE_FORMAT } from "@routine-support/constants";
-import { Moment } from "moment";
+import { format } from "date-fns";
+import { DATE_FORMAT } from "./constants";
 
-export const stringifyDate = (date: Moment): string => {
-  return date.format(DATE_FORMAT);
+export const stringifyDate = (date: Date): string => {
+  return format(date, DATE_FORMAT);
 };

@@ -1,5 +1,4 @@
 import { storiesOf } from "@storybook/react";
-import moment from "moment";
 import styled from "styled-components";
 
 import { MiniCalendar } from "./MiniCalendar";
@@ -12,7 +11,7 @@ storiesOf("Week", module).add("MiniCalendar", () => {
   return (
     <Layout>
       <MiniCalendar
-        currentDate={moment()}
+        currentDate={new Date()}
         // eslint-disable-next-line
         onWeekSelect={(week) => console.log(week)}
       />

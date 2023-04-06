@@ -5,7 +5,7 @@ import {
   createCoachNotificationAPI,
   createCoachStudentAPI,
   createCoachWeekAPI,
-} from "@routine-support/domains";
+} from "@routine-support/features";
 
 const client = createClient("/api/coach");
 

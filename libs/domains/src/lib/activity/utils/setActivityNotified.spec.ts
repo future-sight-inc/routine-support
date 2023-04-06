@@ -1,18 +1,19 @@
 import {
-  createMockActivitySchema,
+  createMockActivity,
   createMockStudent,
 } from "@routine-support/domains";
+import { stringifyDate } from "@routine-support/utils";
 import { confirmStudentActivity } from "./confirmStudentActivity";
 import { setActivityNotified } from "./setActivityNotified";
 
 describe("setActivityNotified", () => {
   it("No confirmed students", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
 
     setActivityNotified(activity, true);
 
     expect(activity.confirmation).toStrictEqual({
-      [activity.date]: {
+      [stringifyDate(activity.date)]: {
         students: [],
         isNotified: true,
       },
@@ -20,7 +21,7 @@ describe("setActivityNotified", () => {
   });
 
   it("One confirmed student", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
     const student = createMockStudent();
 
     confirmStudentActivity({
@@ -32,7 +33,7 @@ describe("setActivityNotified", () => {
     setActivityNotified(activity, true);
 
     expect(activity.confirmation).toStrictEqual({
-      [activity.date]: {
+      [stringifyDate(activity.date)]: {
         students: [student._id],
         isNotified: true,
       },

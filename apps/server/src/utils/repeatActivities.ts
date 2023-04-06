@@ -1,19 +1,9 @@
-import {
-  Activity,
-  ActivitySchema,
-  createActivityFromSchema,
-  createSchemaFromActivity,
-  repeatActivity,
-} from "@routine-support/domains";
-import { Moment } from "moment";
+import { Activity, repeatActivity } from "@routine-support/domains";
 
-export const repeatActivities = (
-  activities: ActivitySchema[],
-  currentWeek: Moment[]
-): ActivitySchema[] => {
+export const repeatActivities = (activities: Activity[], currentWeek: Date[]): Activity[] => {
   let repeatedActivities: Activity[] = [];
 
-  activities.map(createActivityFromSchema).forEach((activity) => {
+  activities.forEach((activity) => {
     const repeatedActivity = repeatActivity(activity, currentWeek);
 
     if (repeatedActivity) {
@@ -21,5 +11,5 @@ export const repeatActivities = (
     }
   });
 
-  return repeatedActivities.map(createSchemaFromActivity);
+  return repeatedActivities;
 };

@@ -1,7 +1,6 @@
-import { Id, LanguageEnum } from "@routine-support/types";
+import { LanguageEnum } from "@routine-support/types";
 
 export type Token = string;
-export type CoachId = Id;
 
 export enum ColorEnum {
   Yellow,
@@ -15,9 +14,9 @@ export enum ColorEnum {
 }
 
 export type Student = {
-  _id: Id;
+  _id: string;
   name: string;
-  coachId: CoachId;
+  coachId: string;
   color: ColorEnum;
   pinCode: string;
   clockType: ClockTypeEnum;
@@ -26,7 +25,7 @@ export type Student = {
 
 export type CreateStudentDto = {
   name: string;
-  coachId: CoachId;
+  coachId: string;
   pinCode: string;
   color: ColorEnum;
   clockType: ClockTypeEnum;
@@ -34,7 +33,7 @@ export type CreateStudentDto = {
 };
 
 export type LoginStudentDto = {
-  id: Id;
+  id: string;
 };
 
 export enum ClockTypeEnum {

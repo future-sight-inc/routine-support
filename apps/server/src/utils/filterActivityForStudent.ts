@@ -1,7 +1,7 @@
-import { ActivitySchema, Student } from "@routine-support/domains";
+import { Activity, Student } from "@routine-support/domains";
 
 export const filterActivityForStudent = (
-  activity: ActivitySchema,
+  activity: Activity,
   student: Pick<Student, "_id">
 ): boolean => {
   if (activity.isCommon) {

@@ -1,49 +1,26 @@
-import { WeekSocketEventTypeEnum } from "@routine-support/domains";
-import { SocketUserTypeEnum } from "@routine-support/types";
-import { Router } from "express";
-import { getAuthCookie } from "../../utils/getAuthCookie";
-import { studentAuthorization } from "../../middleware/studentAuthorization";
-import { emitToUser } from "../../main";
+import { Student } from "@routine-support/domains";
+import { Response, Router } from "express";
 import { AuthNames } from "../../constants/AuthNames";
-import { StudentModel } from "../../db/models/Student";
+import { AuthController } from "../../controllers";
+import { studentAuthorization } from "../../middleware/studentAuthorization";
+import { ACCESS_TOKEN } from "../../constants/AccessToken";
 
 export const authRouter = Router();
 
-authRouter.post("/login", (req, res) => {
-  StudentModel.findById(req.body.id, (err, result) => {
-    if (err || !result) {
-      return res.status(401).send(err);
-    }
+authRouter.post("/login", async (req, res: Response<Student>) => {
+  const { student, cookie } = await AuthController.loginStudent(req.body.id);
 
-    const cookie = getAuthCookie(AuthNames.Student, result);
+  if (student && cookie) {
+    return res.status(200).cookie(cookie.name, cookie.token).send(student);
+  }
 
-    return res.status(200).cookie(cookie.name, cookie.token).send(result);
-  });
+  return res.sendStatus(401);
 });
 
 authRouter.get("/logout", (__, res) => {
-  return res.clearCookie("access_token").sendStatus(200);
+  return res.clearCookie(ACCESS_TOKEN).sendStatus(200);
 });
 
 authRouter.get("/", studentAuthorization, (__, res) => {
   return res.status(200).send(res.locals[AuthNames.Student]);
-});
-
-authRouter.put("/:id", async (req, res) => {
-  const id = req.params.id;
-
-  await StudentModel.findByIdAndUpdate(id, {
-    ...req.body,
-  });
-
-  emitToUser({
-    userId: id,
-    userType: SocketUserTypeEnum.Student,
-    message: {
-      type: WeekSocketEventTypeEnum.UpdateSettings,
-      data: req.body,
-    },
-  });
-
-  res.sendStatus(200);
 });

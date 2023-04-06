@@ -1,25 +1,13 @@
-import {
-  ActivitySchema,
-  createActivityFromSchema,
-  getActivityStatusesFromStudents,
-  Student,
-} from "@routine-support/domains";
-import moment from "moment";
+import { Activity, getActivityStatusesFromStudents, Student } from "@routine-support/domains";
+import { stringifyDate } from "@routine-support/utils";
 
-export const shouldNotifyActivity = (
-  activitySchema: ActivitySchema,
-  students: Student[]
-): boolean => {
-  const activity = createActivityFromSchema(activitySchema);
-  const { pendingStudents } = getActivityStatusesFromStudents(
-    activity,
-    students
-  );
-  const currentTime = moment();
+export const shouldNotifyActivity = (activity: Activity, students: Student[]): boolean => {
+  const { pendingStudents } = getActivityStatusesFromStudents(activity, students);
+  const currentTime = new Date();
 
   return (
     pendingStudents.length > 0 &&
-    !activity.confirmation[activitySchema.date]?.isNotified &&
-    currentTime.isSameOrAfter(activity.end)
+    !activity.confirmation[stringifyDate(activity.date)]?.isNotified &&
+    currentTime >= activity.end
   );
 };

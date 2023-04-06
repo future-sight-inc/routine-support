@@ -1,4 +1,4 @@
-import { createCoachUseDay } from "@routine-support/domains";
+import { createCoachUseDay } from "@routine-support/features";
 import { useAppSelector } from "apps/mobile/src/app/store";
 import { coachDayAPI } from "apps/mobile/src/services/ApiService";
 

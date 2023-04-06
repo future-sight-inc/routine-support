@@ -1,44 +1,37 @@
-import { Moment } from "moment";
-import { DateString, Id, TimeRange } from "@routine-support/types";
-import { Day, DaySchema } from "../day";
-
-export type YearNumber = number;
-export type WeekNumber = number;
+import { TimeRange } from "@routine-support/types";
+import { Day, DayJson } from "../day";
 
 export type Week = {
   days: Day[];
   weekInfo: WeekInfo;
 };
 
-export interface WeekSchema {
-  days: DaySchema[];
-  weekInfo: WeekInfoSchema;
-}
-
-export type WeekInfo = {
-  year: YearNumber;
-  weekNumber: WeekNumber;
-  timeRange: TimeRange;
-  days: Moment[];
+export type WeekJson = {
+  days: DayJson[];
+  weekInfo: WeekInfoJson;
 };
 
-export interface WeekInfoSchema {
-  year: YearNumber;
-  weekNumber: WeekNumber;
+export type WeekInfo = {
+  year: number;
+  week: number;
   timeRange: TimeRange;
-  days: DateString[];
-}
+  days: Date[];
+};
+
+export type WeekInfoJson = Omit<WeekInfo, "days"> & {
+  days: string[];
+};
 
 export type DateInfo = {
-  year: YearNumber;
-  week: WeekNumber;
+  year: number;
+  week: number;
 };
 
 export type ActivityFilter = string[];
 
-export type ActivityFilterQuery = Id[];
+export type ActivityFilterQuery = string[];
 
-export enum WeekSocketEventTypeEnum {
+export enum WeekSocketEventTypeEnum { // todo move to features
   UpdateCalendar = "update calendar",
   UpdateNotifications = "update notifications",
   UpdateSchedule = "update schedule",

@@ -6,10 +6,10 @@ import {
   groupActivities,
   Student,
 } from "@routine-support/domains";
-import { TimeString } from "@routine-support/types";
 import { parseTime } from "@routine-support/utils";
 import { Typography } from "apps/mobile/src/components/Typography";
 import { Theme } from "apps/mobile/src/theme";
+import { addHours, getHours } from "date-fns";
 import {
   Dimensions,
   ScrollView,
@@ -26,14 +26,14 @@ import { CurrentTimeLine } from "./components/CurrentTimeLine";
 export type ActivityComponent = React.FC<{
   activity: ActivityType;
   students: Student[];
-  style: StyleProp<ViewStyle>;
-  onActivityPress: (activity: ActivityType) => void;
+  style?: StyleProp<ViewStyle>;
+  onActivityPress: (activity?: Partial<ActivityType>) => void;
 }>;
 
 interface CalendarProps {
   loading: boolean;
   isToday: boolean;
-  timeRange?: TimeString[];
+  timeRange?: string[];
   activities?: ActivityType[];
   students: Student[];
   onActivityPress: (activity: ActivityType) => void;
@@ -52,18 +52,16 @@ export const Calendar: React.FC<CalendarProps> = ({
 }) => {
   const activitiesGroups = groupActivities(activities);
 
-  const getGroupByTime = (time: TimeString, activitiesGroups: ActivitiesGroupType[]) => {
+  const getGroupByTime = (time: string, activitiesGroups: ActivitiesGroupType[]) => {
     const [hour] = time.split(":");
     const filteredGroup = activitiesGroups.find(
-      (activityGroup) => activityGroup.start.get("h") === Number(hour)
+      (activityGroup) => getHours(activityGroup.start) === Number(hour)
     );
 
     return filteredGroup;
   };
 
-  console.log(activitiesGroups);
-
-  const renderActivitiesGroup = (time: TimeString) => {
+  const renderActivitiesGroup = (time: string) => {
     const group = getGroupByTime(time, activitiesGroups);
 
     return (
@@ -85,7 +83,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const handleCellPress = (cellTime: string) => {
     const parsedTime = parseTime(cellTime);
 
-    onCellPress({ start: parsedTime, end: parsedTime.clone().add(1, "hours") });
+    onCellPress({ start: parsedTime, end: addHours(parsedTime, 1) });
   };
 
   return (

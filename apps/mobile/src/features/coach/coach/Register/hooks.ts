@@ -1,8 +1,9 @@
 import { useState } from "react";
 
 import { RegisterCoachDto } from "@routine-support/domains";
-import { setFormErrors, SubmitErrorData } from "@routine-support/forms";
+import { setFormErrors } from "@routine-support/forms";
 import { useForm } from "@routine-support/forms";
+import { SubmitErrorData } from "@routine-support/types";
 import { AxiosError } from "axios";
 
 import { RegisterActions } from "./Register";

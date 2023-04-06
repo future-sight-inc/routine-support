@@ -1,7 +1,6 @@
 import { Student } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 
-export const getStudentsByIds = (students: Student[] = [], ids: Id[] = []): Student[] => {
+export const getStudentsByIds = (students: Student[] = [], ids: string[] = []): Student[] => {
   const result: Student[] = [];
 
   ids.forEach((id) => {

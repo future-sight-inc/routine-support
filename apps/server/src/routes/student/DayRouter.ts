@@ -1,28 +1,14 @@
+import { DayJson, stringifyDay } from "@routine-support/domains";
 import { parseDate } from "@routine-support/utils";
-import { Router } from "express";
-import { filterActivitiesForStudent } from "../../utils/filterActivitiesForStudent";
-import { getActivitiesOfWeek } from "../../utils/getActivitiesOfWeek";
-import { getTimeRange } from "../../utils/getTimeRange";
+import { Response, Router } from "express";
+import { ScheduleController } from "../../controllers";
 
 export const dayRouter = Router();
 
-dayRouter.get("/:date", async (req, res) => {
-  const { date } = req.params;
-  const student = res.locals.student;
+dayRouter.get("/:date", async (req, res: Response<DayJson>) => {
+  const date = parseDate(req.params.date);
+  const studentId = res.locals.student._id;
+  const daySchedule = await ScheduleController.getStudentDaySchedule({ date, studentId });
 
-  const activitiesOfWeek = await getActivitiesOfWeek({
-    currentDate: parseDate(date),
-    coachId: student.coachId,
-  });
-
-  const todaysActivities = activitiesOfWeek.filter((activity) => activity.date === date);
-  const studentActivities = filterActivitiesForStudent(todaysActivities, {
-    _id: student._id,
-  });
-
-  return res.status(200).send({
-    date,
-    activities: studentActivities,
-    timeRange: getTimeRange(),
-  });
+  return res.status(200).send(stringifyDay(daySchedule));
 });

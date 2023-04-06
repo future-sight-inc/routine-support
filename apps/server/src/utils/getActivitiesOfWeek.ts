@@ -1,5 +1,5 @@
 import { getDaysOfWeek, RepeatTypeEnum } from "@routine-support/domains";
-import { Moment } from "moment";
+import { getISOWeek, getYear } from "date-fns";
 import { ActivityModel } from "../db/models/Activity";
 import { repeatActivities } from "./repeatActivities";
 
@@ -7,23 +7,23 @@ export const getActivitiesOfWeek = async ({
   currentDate,
   coachId,
 }: {
-  currentDate: Moment;
+  currentDate: Date;
   coachId: string;
 }) => {
   const currentWeek = getDaysOfWeek({
-    year: currentDate.year(),
-    week: currentDate.isoWeek(),
+    year: getYear(currentDate),
+    week: getISOWeek(currentDate),
   });
 
   const activitiesWithoutRepeat = await ActivityModel.find({
     coachId,
     repeatType: RepeatTypeEnum.None,
-  }).lean();
+  }).lean({ getters: true });
 
   let activitiesWithRepeat = await ActivityModel.find({
     coachId,
     repeatType: { $gt: RepeatTypeEnum.None },
-  }).lean();
+  }).lean({ getters: true });
 
   activitiesWithRepeat = repeatActivities(activitiesWithRepeat, currentWeek);
 

@@ -1,13 +1,11 @@
-import { Coach } from "@routine-support/domains";
+import { LoginCoachDto, RegisterCoachDto } from "@routine-support/domains";
 import { SubmitErrorData } from "@routine-support/types";
 import { validateCoachEmail } from "./validateCoachEmail";
 
-export const validateCoach = async (coach: Coach): Promise<SubmitErrorData | undefined> => {
-  try {
-    await validateCoachEmail(coach.email);
+export const validateCoach = async (
+  coach: LoginCoachDto | RegisterCoachDto
+): Promise<SubmitErrorData> => {
+  const validationData = await validateCoachEmail(coach.email);
 
-    return;
-  } catch (error) {
-    return error as SubmitErrorData;
-  }
+  return validationData;
 };

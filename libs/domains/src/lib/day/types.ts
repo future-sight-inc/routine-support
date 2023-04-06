@@ -1,15 +1,12 @@
-import { Activity, ActivitySchema } from "@routine-support/domains";
-import { DateString, TimeString } from "@routine-support/types";
-import { Moment } from "moment";
+import { Activity, ActivityJson } from "@routine-support/domains";
 
 export type Day = {
-  date: Moment;
+  date: Date;
   activities: Activity[];
-  timeRange: TimeString[];
+  timeRange: string[];
 };
 
-export type DaySchema = {
-  date: DateString;
-  activities: ActivitySchema[];
-  timeRange: TimeString[];
+export type DayJson = Omit<Day, "date" | "activities"> & {
+  date: string;
+  activities: ActivityJson[];
 };

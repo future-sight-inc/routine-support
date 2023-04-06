@@ -1,7 +1,7 @@
-import { ActivityFilterQuery, ActivitySchema } from "@routine-support/domains";
+import { Activity, ActivityFilterQuery } from "@routine-support/domains";
 
 export const filterActivity = (
-  activity: ActivitySchema,
+  activity: Activity,
   filter: ActivityFilterQuery = []
 ): boolean => {
   const isCommonActivity =

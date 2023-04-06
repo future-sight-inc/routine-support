@@ -4,7 +4,7 @@ import { Student } from "@routine-support/domains";
 import { useForm } from "react-hook-form";
 
 export const useStudentSettingsForm = (
-  student: Partial<Student> | undefined,
+  student: Student | undefined,
   actions: {
     updateSettings: (student: Student) => Promise<void>;
     getStudents: (config?: { silent: boolean }) => void;
@@ -19,14 +19,15 @@ export const useStudentSettingsForm = (
     try {
       setSubmitError(null);
 
-      await actions.updateSettings(values as Student);
+      await actions.updateSettings(values);
 
       actions.getStudents({ silent: true });
-    } catch (error: any) {
-      setSubmitError(error.message);
+    } catch {
+      setSubmitError("Error during request!");
     }
   });
 
+  // todo Костыль
   useEffect(() => {
     if (student) {
       Object.keys(student).forEach((key) => {

@@ -1,5 +1,5 @@
-import { Moment } from "moment";
+import { getDate } from "date-fns";
 
-export const getDayNumbersFromWeek = (daysOfWeek: Moment[]): number[] => {
-  return daysOfWeek.map((day) => day.date());
+export const getDayNumbersFromWeek = (daysOfWeek: Date[]): number[] => {
+  return daysOfWeek.map((day) => getDate(day));
 };

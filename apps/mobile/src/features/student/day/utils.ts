@@ -1,12 +1,11 @@
 import { Activity } from "@routine-support/domains";
-import { Id } from "@routine-support/types";
 import { stringifyDate } from "@routine-support/utils";
 
 export const isActivityConfirmed = ({
   studentId = "",
   activity,
 }: {
-  studentId?: Id;
+  studentId?: string;
   activity: Activity;
 }): boolean => {
   const dateString = stringifyDate(activity.date);

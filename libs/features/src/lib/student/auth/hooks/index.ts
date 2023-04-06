@@ -1,0 +1,1 @@
+export { createStudentUseStudent } from "./createStudentUseStudent";

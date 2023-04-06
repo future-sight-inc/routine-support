@@ -3,7 +3,6 @@ import {
   createMockActivity,
   createMockStudent,
 } from "@routine-support/domains";
-import { stringifyDate } from "@routine-support/utils";
 import { confirmStudentActivity } from "./confirmStudentActivity";
 import { getActivityStatusesFromStudents } from "./getActivityStatusesFromStudents";
 
@@ -41,7 +40,7 @@ describe("getActivityStatusesFromStudents", () => {
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { assignedStudents, pendingStudents, confirmedStudents } =
@@ -59,7 +58,7 @@ describe("getActivityStatusesFromStudents", () => {
     confirmStudentActivity({
       student,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { assignedStudents, pendingStudents, confirmedStudents } =
@@ -78,12 +77,12 @@ describe("getActivityStatusesFromStudents", () => {
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
     confirmStudentActivity({
       student: student2,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { assignedStudents, pendingStudents, confirmedStudents } =
@@ -135,7 +134,7 @@ describe("getActivityStatusesFromStudents", () => {
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { assignedStudents, pendingStudents, confirmedStudents } =
@@ -155,7 +154,7 @@ describe("getActivityStatusesFromStudents", () => {
     confirmStudentActivity({
       student,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { assignedStudents, pendingStudents, confirmedStudents } =
@@ -177,12 +176,12 @@ describe("getActivityStatusesFromStudents", () => {
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
     confirmStudentActivity({
       student: student2,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { assignedStudents, pendingStudents, confirmedStudents } =

@@ -1,21 +1,21 @@
 import { setActivityNotified } from "@routine-support/domains";
 import {
   addStudentToActivity,
-  createMockActivitySchema,
+  createMockActivity,
   createMockStudent,
 } from "@routine-support/domains";
 import { shouldNotifyActivity } from "./shouldNotifyActivity";
 
 describe("shouldNotifyActivity", () => {
   it("Common activity, one pending, not notified", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
     const student = createMockStudent();
 
     expect(shouldNotifyActivity(activity, [student])).toBeTruthy();
   });
 
   it("Individual activity, one pending, not notified", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
     const student = createMockStudent();
 
     addStudentToActivity(activity, student);
@@ -24,7 +24,7 @@ describe("shouldNotifyActivity", () => {
   });
 
   it("Common activity, one pending, notified", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
     const student = createMockStudent();
 
     setActivityNotified(activity, true);
@@ -33,7 +33,7 @@ describe("shouldNotifyActivity", () => {
   });
 
   it("Individual activity, one pending, notified", () => {
-    const activity = createMockActivitySchema();
+    const activity = createMockActivity();
     const student = createMockStudent();
 
     addStudentToActivity(activity, student);

@@ -1,13 +1,13 @@
 import { Activity } from "@routine-support/domains";
-import { Moment } from "moment";
+import { getDate } from "date-fns";
 import { getDayNumbersFromWeek } from "./getDayNumbersFromWeek";
 
 export const repeatActivityThisMonth = (
   activity: Activity,
-  daysOfCurrentWeek: Moment[]
+  daysOfCurrentWeek: Date[]
 ): Activity | undefined => {
   const dayNumbersOfWeek = getDayNumbersFromWeek(daysOfCurrentWeek);
-  const activityDayNumber = activity.date.date();
+  const activityDayNumber = getDate(activity.date)
   const repeatActivityDayIndex = dayNumbersOfWeek.indexOf(activityDayNumber);
   const shouldRepeatActivity = repeatActivityDayIndex !== -1;
 

@@ -1,14 +1,13 @@
 import { Activity } from "@routine-support/domains";
-import { Moment } from "moment";
 
 export const repeatActivityEveryDay = (
   activity: Activity,
-  daysOfCurrentWeek: Moment[]
+  daysOfCurrentWeek: Date[]
 ): Activity[] => {
   const repeatedActivity: Activity[] = [];
 
   daysOfCurrentWeek.forEach((day) => {
-    const shouldRepeatActivity = day.isSameOrAfter(activity.date);
+    const shouldRepeatActivity = day >= activity.date;
 
     if (shouldRepeatActivity) {
       repeatedActivity.push({ ...activity, date: day });

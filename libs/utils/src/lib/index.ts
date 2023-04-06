@@ -1,9 +1,8 @@
-export { getMinutes } from "./getMinutes";
 export { indexOfTimeRange } from "./indexOfTimeRange";
-export { isToday } from "./isToday";
 export { parseDate } from "./parseDate";
 export { parseTime } from "./parseTime";
 export { pxToNumber } from "./pxToNumber";
 export { serialize } from "./serialize";
 export { stringifyDate } from "./stringifyDate";
 export { stringifyTime } from "./stringifyTime";
+export { getTimeInHours } from "./getTimeInHours";

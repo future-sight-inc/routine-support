@@ -3,12 +3,12 @@ import React from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { DateSelector } from "apps/mobile/src/components/DateSelector";
 import { Typography } from "apps/mobile/src/components/Typography";
-import { Moment } from "moment";
+import { format, getDate } from "date-fns";
 import { StyleSheet, View } from "react-native";
 
 interface DaySelectorProps {
-  date: Moment;
-  onSelect: (value: Moment) => void;
+  date: Date;
+  onSelect: (value: Date) => void;
 }
 
 export const DaySelect: React.FC<DaySelectorProps> = ({ date, onSelect }) => {
@@ -19,13 +19,13 @@ export const DaySelect: React.FC<DaySelectorProps> = ({ date, onSelect }) => {
       InputComponent={() => (
         <View style={styles.wrapper}>
           <View style={styles.dayNumberWrapper}>
-            <Typography variant="text1">{date.date()}</Typography>
+            <Typography variant="text1">{getDate(date)}</Typography>
             <MaterialIcons name="arrow-drop-down" size={20} />
           </View>
           <Typography variant="text3">
-            {date.format("MMMM")},{" "}
+            {format(date, "MMMM")},{" "}
             <Typography variant="text3" color="secondary">
-              {date.format("dd")}
+              {format(date, "dd")}
             </Typography>
           </Typography>
         </View>

@@ -8,7 +8,7 @@ import {
   createStudentActivityAPI,
   createStudentAuthAPI,
   createStudentDayAPI,
-} from "@routine-support/domains";
+} from "@routine-support/features";
 import { getEnvVars } from "apps/mobile/environment";
 
 const { apiEndpoint } = getEnvVars();

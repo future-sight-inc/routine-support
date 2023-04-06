@@ -1,5 +1,5 @@
 export { createMockNotification } from "./createMockNotification";
-export { createNotificationFromSchema } from "./createNotificationFromSchema";
-export { createNotificationsGroupFromSchema } from "./createNotificationsGroupFromSchema";
-export { createSchemaFromNotification } from "./createSchemaFromNotification";
-export { createSchemaFromNotificationGroup } from "./createSchemaFromNotificationGroup";
+export { parseNotificationJson } from "./parseNotificationJson";
+export { parseNotificationsGroupJson } from "./parseNotificationsGroupJson";
+export { stringifyNotification } from "./stringifyNotification";
+export { stringifyNotificationsGroup } from "./stringifyNotificationsGroup";

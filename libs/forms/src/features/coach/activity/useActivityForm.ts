@@ -3,41 +3,42 @@ import { useEffect, useState } from "react";
 import { Activity, Coach, RepeatTypeEnum } from "@routine-support/domains";
 import { PICTOGRAMS } from "@routine-support/pictograms";
 import { AxiosError } from "axios";
-import moment from "moment";
 import { useForm } from "react-hook-form";
 import { setFormErrors } from "@routine-support/forms";
 import { SubmitErrorData } from "@routine-support/types";
+import { addHours } from "date-fns";
 
 export const useActivityForm = (
-  coach: Coach,
+  coach: Coach | null,
   activity: Partial<Activity> | undefined,
   actions: {
     createActivity: (activity: Activity) => Promise<void>;
     updateActivity: (activity: Activity) => Promise<void>;
     deleteActivity: (id: string) => Promise<void>;
-    updateCalendar: (data: { config?: { silent: boolean } }) => void;
+    updateCalendar: () => void;
   }
 ) => {
   const defaultValues = {
-    date: moment(),
-    start: moment(),
-    end: moment().add("hours", 1),
+    date: new Date(),
+    start: new Date(),
+    end: addHours(new Date(), 1),
     isCommon: true,
     repeatType: RepeatTypeEnum.None,
     students: [],
   };
-  // ! баг в react-hook-form
-  const { control, handleSubmit, formState, setError, setValue, watch, reset } = useForm<any>({
-    defaultValues,
+
+  const { control, handleSubmit, formState, setError, setValue, watch, reset } = useForm<Activity>({
+    defaultValues: { ...defaultValues },
   });
 
   const [submitError, setSubmitError] = useState<string | undefined>();
 
   const [isStudentsSelectorVisible, setStudentsSelectorVisible] = useState(!defaultValues.isCommon);
 
+  // todo Костыль
   useEffect(() => {
     if (activity) {
-      Object.keys(activity).forEach((key) => {
+      Object.keys(activity).forEach((key: any) => {
         setValue(key, activity[key]);
       });
     } else {
@@ -66,20 +67,14 @@ export const useActivityForm = (
       setSubmitError(undefined);
 
       if (values._id) {
-        await actions.updateActivity({
-          ...values,
-          coachId: coach._id,
-        } as Activity);
+        await actions.updateActivity(values);
       } else {
-        await actions.createActivity({
-          ...values,
-          coachId: coach._id,
-        } as Activity);
+        await actions.createActivity(values);
       }
 
-      actions.updateCalendar({ config: { silent: true } });
+      actions.updateCalendar();
     } catch (error) {
-      const data = (error as AxiosError<SubmitErrorData>).response?.data;
+      const data = (error as AxiosError<SubmitErrorData>).response?.data; // todo
 
       setFormErrors(data, setError, setSubmitError);
     }
@@ -87,9 +82,9 @@ export const useActivityForm = (
 
   const onDelete = async () => {
     if (activity?._id) {
-      await actions.deleteActivity(activity?._id as string);
+      await actions.deleteActivity(activity?._id);
 
-      actions.updateCalendar({ config: { silent: true } });
+      actions.updateCalendar();
     }
   };
 

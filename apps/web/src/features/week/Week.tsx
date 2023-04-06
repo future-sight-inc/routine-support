@@ -58,12 +58,10 @@ export const Week: React.FC = () => {
           <AddActivityButton onClick={() => Activity.operations.openNewActivityModal()} />
         }
         activityFilter={
-          !Students.models.loading && (
-            <ActivityFilter
-              students={Students.models.students}
-              actions={{ getWeek: Week.operations.getWeek }}
-            />
-          )
+          <ActivityFilter
+            students={Students.models.students}
+            actions={{ getWeek: Week.operations.getWeek }}
+          />
         }
         activityModal={
           <Modal

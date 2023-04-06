@@ -4,7 +4,6 @@ import {
   createMockActivity,
   createMockStudent,
 } from "@routine-support/domains";
-import { stringifyDate } from "@routine-support/utils";
 import "@testing-library/jest-dom";
 import { cleanup, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -31,19 +30,12 @@ describe("ConfirmationStatus", () => {
 
     const { getByTestId, queryByTestId } = render(
       <AppWrapper>
-        <ConfirmationStatus
-          activity={activity}
-          students={[student1, student2]}
-        />
+        <ConfirmationStatus activity={activity} students={[student1, student2]} />
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeFalsy();
-    expect(
-      getByTestId(ConfirmationStatusLocatorsEnum.Counter)
-    ).toHaveTextContent("0/2");
+    expect(queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeFalsy();
+    expect(getByTestId(ConfirmationStatusLocatorsEnum.Counter)).toHaveTextContent("0/2");
   });
 
   it("Unopened, one student pending, one student confirmed", () => {
@@ -56,24 +48,17 @@ describe("ConfirmationStatus", () => {
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { getByTestId, queryByTestId } = render(
       <AppWrapper>
-        <ConfirmationStatus
-          activity={activity}
-          students={[student1, student2]}
-        />
+        <ConfirmationStatus activity={activity} students={[student1, student2]} />
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeFalsy();
-    expect(
-      getByTestId(ConfirmationStatusLocatorsEnum.Counter)
-    ).toHaveTextContent("1/2");
+    expect(queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeFalsy();
+    expect(getByTestId(ConfirmationStatusLocatorsEnum.Counter)).toHaveTextContent("1/2");
   });
 
   it("Unopened, all students confirmed", () => {
@@ -86,29 +71,22 @@ describe("ConfirmationStatus", () => {
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
     confirmStudentActivity({
       student: student2,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { getByTestId, queryByTestId } = render(
       <AppWrapper>
-        <ConfirmationStatus
-          activity={activity}
-          students={[student1, student2]}
-        />
+        <ConfirmationStatus activity={activity} students={[student1, student2]} />
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeFalsy();
-    expect(
-      getByTestId(ConfirmationStatusLocatorsEnum.Counter)
-    ).toHaveTextContent("2/2");
+    expect(queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeFalsy();
+    expect(getByTestId(ConfirmationStatusLocatorsEnum.Counter)).toHaveTextContent("2/2");
   });
 
   it("Modal opens and closes", async () => {
@@ -121,28 +99,19 @@ describe("ConfirmationStatus", () => {
 
     const { getByTestId, queryByTestId } = render(
       <AppWrapper>
-        <ConfirmationStatus
-          activity={activity}
-          students={[student1, student2]}
-        />
+        <ConfirmationStatus activity={activity} students={[student1, student2]} />
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeFalsy();
+    expect(queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeFalsy();
 
     await userEvent.click(getByTestId(ConfirmationStatusLocatorsEnum.Counter));
 
-    expect(
-      getByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeVisible();
+    expect(getByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeVisible();
 
     await userEvent.click(getByTestId(ModalLocators.CloseIcon));
 
-    expect(
-      queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeFalsy();
+    expect(queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeFalsy();
   });
 
   it("Opened, all students pending", async () => {
@@ -155,22 +124,15 @@ describe("ConfirmationStatus", () => {
 
     const { getByTestId, queryByTestId } = render(
       <AppWrapper>
-        <ConfirmationStatus
-          activity={activity}
-          students={[student1, student2]}
-        />
+        <ConfirmationStatus activity={activity} students={[student1, student2]} />
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeFalsy();
+    expect(queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeFalsy();
 
     await userEvent.click(getByTestId(ConfirmationStatusLocatorsEnum.Counter));
 
-    expect(
-      getByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeVisible();
+    expect(getByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeVisible();
 
     expect(getByTestId(createPendingStudentDataTestId(student1)));
     expect(getByTestId(createPendingStudentDataTestId(student2)));
@@ -186,27 +148,20 @@ describe("ConfirmationStatus", () => {
     confirmStudentActivity({
       student: student2,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { getByTestId, queryByTestId } = render(
       <AppWrapper>
-        <ConfirmationStatus
-          activity={activity}
-          students={[student1, student2]}
-        />
+        <ConfirmationStatus activity={activity} students={[student1, student2]} />
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeFalsy();
+    expect(queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeFalsy();
 
     await userEvent.click(getByTestId(ConfirmationStatusLocatorsEnum.Counter));
 
-    expect(
-      getByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeVisible();
+    expect(getByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeVisible();
 
     expect(getByTestId(createPendingStudentDataTestId(student1)));
     expect(getByTestId(createConfirmedStudentDataTestId(student2)));
@@ -222,36 +177,27 @@ describe("ConfirmationStatus", () => {
     confirmStudentActivity({
       student: student1,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
     confirmStudentActivity({
       student: student2,
       activity,
-      confirmationDate: stringifyDate(activity.date),
+      confirmationDate: activity.date,
     });
 
     const { getByTestId, queryByTestId } = render(
       <AppWrapper>
-        <ConfirmationStatus
-          activity={activity}
-          students={[student1, student2]}
-        />
+        <ConfirmationStatus activity={activity} students={[student1, student2]} />
       </AppWrapper>
     );
 
-    expect(
-      queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeFalsy();
+    expect(queryByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeFalsy();
 
     await userEvent.click(getByTestId(ConfirmationStatusLocatorsEnum.Counter));
 
-    expect(
-      getByTestId(ConfirmationStatusLocatorsEnum.ModalContent)
-    ).toBeVisible();
+    expect(getByTestId(ConfirmationStatusLocatorsEnum.ModalContent)).toBeVisible();
 
-    expect(
-      queryByTestId(ConfirmationStatusLocatorsEnum.PendingStudentWrapper)
-    ).toBeFalsy();
+    expect(queryByTestId(ConfirmationStatusLocatorsEnum.PendingStudentWrapper)).toBeFalsy();
     expect(getByTestId(createConfirmedStudentDataTestId(student1)));
     expect(getByTestId(createConfirmedStudentDataTestId(student2)));
   });

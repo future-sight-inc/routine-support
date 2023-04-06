@@ -6,7 +6,7 @@ import {
   studentDayReducer,
   studentReducer,
   studentsReducer,
-} from "@routine-support/domains";
+} from "@routine-support/features";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({

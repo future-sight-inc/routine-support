@@ -8,7 +8,7 @@ import { Alert } from "react-native";
 
 import { MainLayoutActions } from ".";
 
-export const useMainLayoutComponent = (actions: MainLayoutActions, coach: Coach) => {
+export const useMainLayoutComponent = (actions: MainLayoutActions, coach: Coach | null) => {
   const navigation = useNavigation();
 
   useEffect(() => {

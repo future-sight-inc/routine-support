@@ -1,16 +1,14 @@
 import { Activity } from "@routine-support/domains";
-import { Moment } from "moment";
+import { getDay } from "date-fns";
 
 export const repeatActivityThisWeek = (
   activity: Activity,
-  daysOfCurrentWeek: Moment[]
+  daysOfCurrentWeek: Date[]
 ): Activity | undefined => {
-  const dayOfWeekIndex = activity.date.locale("ru").weekday();
+  const dayOfWeekIndex = getDay(activity.date);
   const repeatedActivityDate = daysOfCurrentWeek[dayOfWeekIndex];
 
-  const shouldRepeatActivity = repeatedActivityDate.isSameOrAfter(
-    activity.date
-  );
+  const shouldRepeatActivity = repeatedActivityDate >= activity.date;
 
   if (shouldRepeatActivity) {
     return { ...activity, date: repeatedActivityDate };
